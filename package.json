@@ -1,0 +1,38 @@
+{
+  "name": "vuetui",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "new:component": "node scripts/newComponent.js",
+    "new:sub": "node scripts/newSubComponent.js"
+  },
+  "dependencies": {
+    "@formkit/auto-animate": "^1.0.0-beta.3",
+    "@vueuse/core": "^9.1.0",
+    "vue": "^3.2.37",
+    "vue-router": "4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.10",
+    "@types/color": "^3.0.3",
+    "@types/lodash": "^4.14.182",
+    "@vitejs/plugin-vue": "^3.0.0",
+    "autoprefixer": "^10.4.8",
+    "boxen": "^7.0.0",
+    "chalk": "^5.0.1",
+    "color": "^4.2.3",
+    "consola": "^2.15.3",
+    "inquirer": "^9.1.0",
+    "lodash": "^4.17.21",
+    "sass": "^1.54.3",
+    "sass-loader": "^13.0.2",
+    "shelljs": "^0.8.5",
+    "typescript": "^4.6.4",
+    "vite": "^3.0.0",
+    "vue-tsc": "^0.38.4"
+  }
+}

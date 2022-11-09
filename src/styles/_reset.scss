@@ -1,0 +1,76 @@
+button {
+  cursor: pointer;
+}
+[disabled],
+.disabled {
+  opacity: 0.65;
+  cursor: default;
+  pointer-events: none;
+}
+[class*="vs-"] {
+  box-sizing: border-box;
+  outline: none;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+  // transition: all .25s linear;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: none;
+}
+body {
+  line-height: 1.5;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  outline: none;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+/* clears the 'X' from Internet Explorer */
+input.vs-hide-clear[type="search"]::-ms-clear,
+input.vs-hide-clear[type="search"]::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* clears the 'X' from Chrome */
+input.vs-hide-clear[type="search"]::-webkit-search-decoration,
+input.vs-hide-clear[type="search"]::-webkit-search-cancel-button,
+input.vs-hide-clear[type="search"]::-webkit-search-results-button,
+input.vs-hide-clear[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}

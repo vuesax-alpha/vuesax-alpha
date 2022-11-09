@@ -1,0 +1,26 @@
+// @import "./vars";
+// @import "./colors";
+
+// get color var css
+@function -color($color, $alpha: 1) {
+  @return unquote("rgba(var(--vs-#{$color}), #{$alpha})");
+}
+
+@function -var($var) {
+  @return unquote("var(--vs-#{$var})");
+}
+
+// break point
+$break-points: (
+  'smx': 640px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+  'xxl': 1536px
+);
+
+@mixin break-point($key) {
+  @media screen and (min-width: map-get($break-points, $key)) {
+    @content;
+  }
+}
