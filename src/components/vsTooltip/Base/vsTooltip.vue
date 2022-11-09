@@ -115,7 +115,7 @@ export default defineComponent({
         position = "right";
       }
 
-      setCordsPosition(tooltip, this.$refs.content, position);
+      setCordsPosition(tooltip, this.$refs.content as unknown as HTMLElement, position);
       this.$emit('update:modelValue', true);
     },
     handlerMouseEnter() {
@@ -151,12 +151,12 @@ export default defineComponent({
         return;
       }
       this.$nextTick(() => {
-        setCordsPosition(tooltip, this.$refs.content, position);
+        setCordsPosition(tooltip, this.$refs.content as unknown as HTMLElement, position);
       });
 
       for (let index = 0; index < 300; index++) {
         setTimeout(() => {
-          setCordsPosition(tooltip, this.$refs.content, position);
+          setCordsPosition(tooltip, this.$refs.content as unknown as HTMLElement, position);
         }, index);
       }
     },
