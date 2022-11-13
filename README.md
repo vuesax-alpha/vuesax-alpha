@@ -1,8 +1,8 @@
 # vuesax-alpha (version Vuesax-next v4.0) support for Vue 3
 
   ### Author: 
-    * [Vuesax.com](https://vuesax.com/)
-    * [Github](https://github.com/lusaxweb/vuesax-next)
+    * [Vuesax.com]('https://vuesax.com/')
+    * [Github]('https://github.com/lusaxweb/vuesax-next')
 
   <img width="100%" src="https://raw.githubusercontent.com/lusaxweb/vuesax-next/master/public/vuesax.gif" alt="vuesax" />
 
