@@ -1,0 +1,89 @@
+@import "../../../styles/_mixins.scss";
+@import "root";
+
+.scrollbar-fade {
+  &-enter-active {
+    transition: opacity 340ms ease-out;
+  }
+
+  &-leave-active {
+    transition: opacity 120ms ease-out;
+  }
+
+  &-enter-from,
+  &-leave-active {
+    opacity: 0;
+  }
+}
+
+.vs-scrollbar {
+  $scrollbar-opacity: 0.313;
+  $scrollbar-hover-opacity: 0.5685;
+  $scrollbar-thumb-bg-color: -color("scrollbar-thumb");
+  $scrollbar-bar-bg-color: -color("scrollbar-thumb", .1);
+
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+
+  &__wrap {
+    overflow: auto;
+    height: 100%;  
+  }
+
+  &--hidden-default {
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__thumb {
+    position: relative;
+    display: block;
+    width: 0;
+    height: 0;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: $scrollbar-thumb-bg-color;
+    transition: background-color 0.25s ease;
+    opacity: $scrollbar-opacity;
+
+    &:hover, &:active {
+      background-color: $scrollbar-thumb-bg-color;
+      opacity: $scrollbar-hover-opacity;
+    }
+  }
+
+  &__bar {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    z-index: 1;
+    // border-radius: 4px;
+    padding: 0 3px;
+
+    &:hover, &.highlight {
+      background-color: $scrollbar-bar-bg-color;
+      transition: background-color .2s linear;
+    }
+
+    &--horizontal {
+      left: 2px;
+
+      > div {
+        height: 100%;
+      }
+    }
+
+    &--vertical {
+      top: 2px;
+
+      > div {
+        width: 100%;
+      }
+    }
+  }
+}
+

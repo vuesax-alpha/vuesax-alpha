@@ -1,0 +1,603 @@
+@import "../../../styles/_mixins.scss";
+@import "root";
+
+$clearableRight: 34px;
+$iconActiveMargin: -4px;
+
+@mixin state($color) {
+  .vs-select__input {
+    // border: 2px solid -color($color,.5);
+    background: -color($color, 0.05);
+    color: -color($color, 1);
+    &:hover {
+      // border: 2px solid -color($color, 0);
+      color: -color("text", 1);
+    }
+  }
+  .vs-select__chips {
+    background: -color($color, 0.05);
+    color: -color($color, 1);
+    &:hover {
+      &:after {
+        opacity: 0;
+      }
+    }
+    &:after {
+      width: 100%;
+      height: 100%;
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 0px;
+      left: 0px;
+      border: 2px solid -color($color, 0.5);
+      border-radius: inherit;
+      transition: all 0.25s ease;
+    }
+  }
+  .vs-select__label {
+    color: -color($color, 1);
+  }
+  .vs-select__icon {
+    color: -color($color, 1);
+    background: -color($color, 0.1);
+    box-shadow: -15px 10px 10px -10px -color($color, 0.1);
+  }
+  .vs-icon-arrow {
+    &:after {
+      background: -color($color);
+    }
+    &:before {
+      background: -color($color);
+    }
+  }
+  ~ div .vs-select__message--#{$color} {
+    color: -color($color, 1);
+    // opacity: 1;
+    // visibility: visible;
+    // height: auto;
+    // margin-top: 0;
+  }
+}
+// Vue transition
+.vs-select {
+  &-enter-active {
+    transition: all 0.25s ease;
+  }
+  &-enter-from {
+    opacity: 0;
+    transform: translate(0, -10px);
+    transition: all 0.25s ease;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, -var(shadow-opacity));
+    &:after {
+      opacity: 0 !important;
+      box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, -var(shadow-opacity));
+    }
+  }
+  &-leave-active {
+    transition: all 0.25s ease;
+  }
+  &-leave-to {
+    opacity: 0;
+    transform: translate(0, -10px);
+    transition: all 0.25s ease;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, -var(shadow-opacity));
+    &.top {
+      transform: translate(0, 10px) !important;
+    }
+    &:after {
+      opacity: 0 !important;
+      box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, -var(shadow-opacity));
+    }
+  }
+}
+
+.v-clearable {
+  // &-enter-from, &-leave-to {
+  //   right: 10px;
+  //   // opacity: 0;
+  // }
+  // &-enter-to, &-leave-from {
+  //   right: $clearableRight;
+  //   // opacity: 1;
+  // }
+  &-enter-active {
+    // transition: all .25s ease;
+    animation: vs-clearable .25s ease;
+  }
+  &-leave-active {
+    animation: vs-clearable .25s ease reverse;
+  }
+}
+@keyframes vs-clearable {
+  0% {
+    right: 10px;
+    opacity: .2;
+  }
+  10% {
+    opacity: .7;
+  }
+  100% {
+    right: $clearableRight;
+  }
+}
+
+/** */
+.vs-select-content {
+  width: 100%;
+  max-width: 200px;
+  &.block {
+    &.block {
+      max-width: 100%;
+    }
+  }
+}
+.vs-select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  width: 100%;
+
+  &--state-success {
+    @include state("success");
+  }
+  &--state-danger {
+    @include state("danger");
+  }
+  &--state-warn {
+    @include state("warn");
+  }
+  &--state-dark {
+    @include state("dark");
+  }
+  &--state-primary {
+    @include state("primary");
+  }
+
+  &.loading {
+    pointer-events: none;
+    *:not(.vs-select__loading):not(.vs-select__label) {
+      opacity: 0.6;
+    }
+    .vs-select__label {
+      pointer-events: none !important;
+    }
+  }
+  &.top {
+    &.activeOptions {
+      .vs-select__input,
+      .vs-select__chips {
+        border-radius: 0px 0px 12px 12px !important;
+        box-shadow: 0px -5px 25px -4px rgba(0, 0, 0, -var(shadow-opacity)) !important;
+      }
+    }
+  }
+  &--disabled {
+    pointer-events: none;
+    * {
+      opacity: 0.6;
+    }
+
+    label {
+      opacity: 1;
+      pointer-events: none;
+    }
+  }
+  .vs-select__arrow {
+    // color: -color('text');
+    z-index: 600;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    right: 10px;
+    // top: 50%;
+    top: 20px;
+    z-index: 99999;
+    transform: translateY(-50%);
+    transition: all 0.25s ease;
+    // pointer-events: none;
+    cursor: pointer;
+  }
+  .vs-select__clearable {
+    --vs-color: var(--vs-text);
+    position: absolute;
+    right: 10px;
+    margin-top: 0;
+    // top: 50%;
+    top: 20px;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9999px;
+    // z-index: 100000;
+    cursor: pointer;
+    background-color: -color('gray-2');
+    transition: all .25s ease;
+    z-index: 99998;
+    
+    .vs-icon-close {
+      transform: scale(.7);
+    }
+  }
+  &.activeOptions {
+    .vs-select__arrow {
+      transform: rotate(180deg) translateY(50%);
+      margin-top: -2px !important;
+    }
+    .vs-select__clearable {
+      margin-top: $iconActiveMargin;
+      right: $clearableRight;
+    }
+    .vs-select__input {
+      border-radius: 12px 12px 0px 0px;
+      background: -color("background");
+      box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, -var(shadow-opacity));
+      transform: translate(0, -4px);
+      transition: all 0.25s ease, height 0s;
+      border: 2px solid transparent;
+      color: -color("text");
+      padding-left: 10px;
+    }
+    .vs-select__chips {
+      border-radius: 12px 12px 0px 0px;
+      background: -color("background");
+      box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, -var(shadow-opacity));
+      transform: translate(0, -4px);
+      transition: all 0.25s ease, height 0s;
+      &:after {
+        opacity: 0;
+      }
+    }
+    .vs-select__label--placeholder {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translate(-3%, -28px) !important;
+      font-size: 0.75rem;
+      margin-top: -20px;
+      margin-left: -8px;
+    }
+    .vs-select__label {
+      margin-top: -20px;
+      margin-left: -8px;
+    }
+  }
+  &__input {
+    opacity: 1;
+    padding: 7px 13px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s ease, height 0s;
+    background: -color("gray-2");
+    color: -color("text");
+    min-height: 38px;
+    padding-right: 30px;
+    padding-left: 0;
+    width: 100%;
+
+    &.multiple {
+      color: transparent;
+      background: transparent;
+      pointer-events: none;
+    }
+    &.simple {
+      cursor: pointer;
+      user-select: none;
+
+      ~ .vs-select__arrow {
+        pointer-events: none;
+      }
+    }
+    &:hover {
+      background: -color("background");
+      box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, -var(shadow-opacity));
+      transform: translate(0, -4px); 
+      
+      ~ .vs-select__chips {
+        background: -color("background");
+        transform: translate(0, -4px); 
+      }
+      ~ .vs-select__label {
+        margin-top: -20px;
+        margin-left: -8px;
+      }
+      ~ .vs-select__arrow {
+        margin-top: $iconActiveMargin;
+      }
+      ~ .vs-select__clearable {
+        margin-top: $iconActiveMargin;
+        right: $clearableRight;
+      }
+    }
+  }
+  &__chips {
+    width: 100%;
+    height: max-content;
+    position: absolute;
+    left: 0px;
+    background: -color("gray-2");
+    z-index: 300;
+    border-radius: 12px;
+    display: flex;
+    border: 0px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 5px;
+    min-height: 38px;
+    transition: all 0.25s ease, height 0s;
+    padding-right: 26px;
+    // &:focus {
+    //   border-radius: 12px 12px 0px 0px;
+    //   background: -color("background");
+    //   box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, -var(shadow-opacity));
+    //   transform: translate(0, -4px);
+    //   transition: all 0.25s ease;
+    // }
+    // &:hover {
+    //   background: -color("background");
+    //   // box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, -var(shadow-opacity));
+    //   transform: translate(0, -4px);
+    //   transition: all 0.25s ease;
+
+    //   ~ .vs-select__arrow {
+    //     margin-top: $iconActiveMargin;
+    //     transition: all 0.25s ease;
+    //   }
+    //   ~ .vs-select__clearable {
+    //     margin-top: $iconActiveMargin;
+    //     right: $clearableRight;
+    //   }
+    // }
+    &__input {
+      width: auto;
+      flex: 1;
+      padding: 2px 0;
+      max-width: 100%;
+      position: relative;
+      min-width: 0px;
+      border: 0px solid transparent;
+      background: transparent;
+      margin: 2px 3px;
+      min-width: 30px;
+      color: -color("text");
+      transition: all .15s linear;
+
+      &::placeholder {
+        color: -color("text", 0.4);
+      }
+
+      &:focus {
+        padding-left: 4px;
+      }
+    }
+    &__chip {
+      flex: 0 1 auto;
+      position: relative;
+      background: -color("background");
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 4px 2px 6px;
+      margin: 2px 3px;
+      font-size: 0.84rem;
+      border: 2px solid -color("gray-2");
+      box-sizing: border-box;
+      color: -color("text");
+      &.isCollapse {
+        padding-right: 6px !important;
+      }
+      &.disabled {
+        background-color: -color("gray-2");
+        border-color: transparent;
+      }
+      &__close {
+        // position: absolute;
+        // top: -4px;
+        // right: -4px;
+        margin-left: 6px;
+        width: 15px;
+        height: 15px;
+        background: -color("gray-3");
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 0.75rem;
+        cursor: pointer;
+        transition: all 0.25s ease;
+
+        &:hover {
+          background: -color("danger");
+
+          .vs-icon-close {
+            --vs-color: var(--vs-background);
+            &:after {
+              width: 12px;
+              transform: rotate(180deg);
+            }
+            &:before {
+              width: 12px;
+              transform: rotate(180deg);
+            }
+          }
+        }
+        .vs-icon-close {
+          --vs-color: var(--vs-text);
+          transform: scale(0.5);
+        }
+      }
+    }
+  }
+  &__options {
+    --vs-color: var(--vs-primary);
+    position: absolute;
+    z-index: 99999;
+    background: -color("background");
+    padding: 5px;
+    border-radius: 0px 0px 12px 12px;
+    overflow: hidden;
+    box-shadow: 0px 10px 20px -5px rgba(0, 0, 0, -var(shadow-opacity));
+    &.top {
+      border-radius: 12px 12px 0px 0px;
+      box-shadow: 0px -10px 20px -5px rgba(0, 0, 0, -var(shadow-opacity));
+      &:after {
+        top: auto;
+        bottom: -10px;
+      }
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      top: -10px;
+      width: 80%;
+      margin-left: 10%;
+      left: 0px;
+      height: 10px;
+      background: -color("background");
+      box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, -var(shadow-opacity));
+      z-index: 200;
+      transition: all 0.25s ease 0.05s;
+      opacity: 1;
+    }
+    &__content {
+      max-height: 200px;
+      overflow: auto;
+      height: auto;
+      z-index: 100;
+      transform: scale(1);
+      transition: all 0.25s ease;
+      position: relative;
+      scroll-behavior: smooth;
+      
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      
+      &__not-data {
+        color: -color('text');
+        font-size: 0.8rem;
+        text-align: center;
+        padding: 6px 10px;
+      }
+    }
+  }
+  &__label {
+    position: absolute;
+    left: 14px;
+    top: 22px;
+    font-size: 0.8rem;
+    transition: all 0.25s ease;
+    cursor: default;
+    user-select: none;
+    pointer-events: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    opacity: 0.4;
+    z-index: 500;
+    margin-top: -20px;
+    margin-left: -8px;
+    padding-bottom: 14px;
+    color: -color('text');
+    // top: 10px
+    &--hidden {
+      opacity: 0;
+      visibility: hidden;
+      &.vs-select__label--placeholder {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translate(-3%, -28px) !important;
+        font-size: 0.75rem;
+        margin-top: 0px !important;
+      }
+    }
+    &--label {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translate(-3%, -28px) !important;
+      font-size: 0.75rem;
+      // margin-top: 0px !important;
+    }
+  }
+  &__loading {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 7px;
+    left: auto;
+    pointer-events: none;
+    border-radius: 50%;
+    box-sizing: border-box;
+    background: inherit;
+    cursor: default;
+    z-index: 600;
+
+    * {
+      opacity: 1 !important;
+    }
+
+    ~ .vs-select__arrow {
+      opacity: 0 !important;
+    }
+    ~ .vs-select__clearable {
+      opacity: 0 !important;
+    }
+  }
+  &__message {
+    font-size: 0.7rem;
+    padding: 0px 7px;
+    overflow: hidden;
+    height: auto;
+    transition: all .25s ease;
+    // margin-bottom: auto;
+
+    &--success {
+      color: -color('success');
+    }
+    &--danger {
+      color: -color('danger');
+    }
+    &--warn {
+      color: -color('warn');
+    }
+    &--dark {
+      color: -color('dark');
+    }
+    &--primary {
+      color: -color('primary');
+    }
+  }
+}
+
+.vs-darken {
+  .vs-select__options {
+    &.isColorDark {
+      --vs-color: 0, 0, 0 !important;
+      .vs-select__option {
+        &:hover {
+          background: -color("color", 0.2);
+          color: -color("text");
+        }
+      }
+      .activeOption {
+        color: -color("text");
+        background: -color("color", 0.6);
+      }
+    }
+  }
+}
