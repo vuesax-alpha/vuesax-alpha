@@ -1,10 +1,11 @@
 {
   "name": "vuesax-alpha",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Vuesax-next component for Vue 3",
   "files": [
     "dist"
   ],
+  "repository": "https://github.com/tranthinh-coding/vuesax-alpha",
   "main": "./dist/vuesax-alpha.cjs",
   "module": "./dist/vuesax-alpha.js",
   "exports": {
