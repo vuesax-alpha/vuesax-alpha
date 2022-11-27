@@ -1,4 +1,4 @@
-# vuesax-alpha (version Vuesax-next v4.0) support for Vue 3
+# vuesax-alpha (Vuesax-next) support for Vue 3
 
 ### Author: 
   [Vuesax.com](https://vuesax.com/)
