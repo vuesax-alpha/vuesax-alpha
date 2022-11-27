@@ -3,6 +3,7 @@
 ### Author: 
   [Vuesax.com](https://vuesax.com/)
   [Github](https://github.com/lusaxweb/vuesax-next)
+  [ThisProject](https://github.com/tranthinh-coding/vuesax-alpha)
 
   <img width="100%" src="https://raw.githubusercontent.com/lusaxweb/vuesax-next/master/public/vuesax.gif" alt="vuesax" />
 
@@ -57,8 +58,3 @@ The central team is working on the priority that is to create new components and
 - Plugin for Nuxtjs
 - vs-code helper plugin
 - vuesax / types
-
-## ⚠️ ALERT 🚧
-
-Keep in mind that **Vuesax 4** is in **ALPHA** state and may have inconsistencies and problems that we are going to solve, for now we do not recommend using it for real projects only tests
-

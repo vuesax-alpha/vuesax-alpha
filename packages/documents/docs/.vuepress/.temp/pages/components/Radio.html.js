@@ -1,0 +1,14 @@
+export const data = JSON.parse("{\"key\":\"v-609ac51e\",\"path\":\"/components/Radio.html\",\"title\":\"Radio\",\"lang\":\"en-US\",\"frontmatter\":{\"PROPS\":[{\"name\":\"color\",\"type\":\"String\",\"values\":\"Vuesax Colors, RGB, HEX\",\"description\":\"Change the color of the radio.\",\"default\":\"primary\",\"link\":null,\"usage\":\"#color\",\"code\":\"<vs-radio success v-model=\\\"picked\\\" val=\\\"2\\\">\\n  Success\\n</vs-radio>\\n\"},{\"name\":\"disabled\",\"type\":\"Boolean\",\"values\":\"true,false\",\"description\":\"Determine if the component is in the disabled state.\",\"default\":false,\"link\":null,\"usage\":\"#default\",\"code\":\"<vs-radio disabled v-model=\\\"picked\\\" val=\\\"3\\\">\\n  Option C\\n</vs-radio>\\n\"},{\"name\":\"loading\",\"type\":\"Boolean\",\"values\":\"true,false\",\"description\":\"Determine if the component has a loading animation and is disabled.\",\"default\":false,\"link\":null,\"usage\":\"#loading\",\"code\":\"<vs-radio loading v-model=\\\"picked\\\" val=\\\"1\\\">\\n  Option 1\\n</vs-radio>\\n\"},{\"name\":\"val\",\"type\":\"String\",\"values\":\"String\",\"description\":\"Determine the value of the radio input.\",\"default\":null,\"link\":null,\"usage\":\"#default\",\"code\":\"<vs-radio v-model=\\\"picked\\\" val=\\\"1\\\">\\n  Option A\\n</vs-radio>\\n\"}],\"SLOTS\":[{\"name\":\"default\",\"type\":\"slot\",\"values\":null,\"description\":\"Add a label to the component.\",\"default\":null,\"link\":null,\"usage\":\"#label\",\"code\":\"<vs-radio v-model=\\\"picked\\\" val=\\\"1\\\">\\n  Label\\n</vs-radio>\\n\"},{\"name\":\"icon\",\"type\":\"slot\",\"values\":null,\"description\":\"Add an icon inside the radio.\",\"default\":null,\"link\":null,\"usage\":\"#icon\",\"code\":\"<vs-radio v-model=\\\"picked\\\" val=\\\"1\\\">\\n  Yen\\n  <template #icon>\\n    <i class='bx bx-yen' ></i>\\n  </template>\\n</vs-radio>\\n\"}],\"NEWS\":[\"loading\",\"icon\",\"label\"]},\"excerpt\":\"\",\"headers\":[{\"level\":2,\"title\":\"Default\",\"slug\":\"default\",\"link\":\"#default\",\"children\":[]},{\"level\":2,\"title\":\"Color\",\"slug\":\"color\",\"link\":\"#color\",\"children\":[]},{\"level\":2,\"title\":\"Label\",\"slug\":\"label\",\"link\":\"#label\",\"children\":[]},{\"level\":2,\"title\":\"Loading\",\"slug\":\"loading\",\"link\":\"#loading\",\"children\":[]},{\"level\":2,\"title\":\"Icon\",\"slug\":\"icon\",\"link\":\"#icon\",\"children\":[]},{\"level\":2,\"title\":\"API\",\"slug\":\"api\",\"link\":\"#api\",\"children\":[]}],\"git\":{\"updatedTime\":null,\"contributors\":[]},\"filePathRelative\":\"components/Radio.md\"}")
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

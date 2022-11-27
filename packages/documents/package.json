@@ -1,0 +1,35 @@
+{
+  "name": "documents",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/prismjs": "^1.26.0",
+    "@vuepress/client": "^2.0.0-beta.53",
+    "@vuepress/plugin-active-header-links": "^2.0.0-beta.53",
+    "@vuepress/plugin-container": "^2.0.0-beta.53",
+    "@vuepress/plugin-docsearch": "^2.0.0-beta.53",
+    "@vuepress/plugin-register-components": "^2.0.0-beta.53",
+    "@vuepress/plugin-theme-data": "^2.0.0-beta.53",
+    "boxicons": "^2.1.4",
+    "node-sass": "^8.0.0",
+    "sass": "^1.56.1",
+    "sass-loader": "^13.2.0",
+    "vuepress": "^2.0.0-beta.53"
+  },
+  "dependencies": {
+    "@docsearch/css": "^3.3.0",
+    "@docsearch/js": "^3.3.0",
+    "@vuepress/shared-utils": "^1.9.7",
+    "lodash": "^4.17.21",
+    "minimist": "^1.2.7",
+    "prismjs": "^1.29.0",
+    "vue": "^3.2.45",
+    "vuesax-alpha": "^0.0.15"
+  }
+}

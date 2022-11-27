@@ -1,0 +1,7 @@
+# injection
+  prefix: $ij_name
+
+- declare type frontmatter
+- declare composable
+- convert stylus to scss
+- convert vue 2 to vue 3

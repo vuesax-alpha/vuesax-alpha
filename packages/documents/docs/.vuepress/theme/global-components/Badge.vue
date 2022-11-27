@@ -1,0 +1,67 @@
+<template>
+  <span :class="['badge', type, vertical]">
+    {{ text || $slots.default }}
+  </span>
+</template>
+
+<script lang="ts" setup>
+defineProps({
+  type: {
+    type: String,
+    default: "tip",
+  },
+  text: String,
+  vertical: {
+    type: String,
+    default: "top",
+  },
+});
+</script>
+
+<style lang="scss" scoped>
+@import "../styles/mixin";
+
+.badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  border-radius: 5px;
+  padding: 1px 5px;
+  color: #fff;
+  margin-right: 0px;
+  background-color: #42b983;
+  cursor: default;
+  pointer-events: none;
+  user-select: none;
+  &.middle {
+    vertical-align: middle;
+  }
+  &.top {
+    vertical-align: top;
+  }
+  &.accent {
+    background: -color(accent-color);
+  }
+  &.text {
+    background: -var(theme-color);
+    color: #fff;
+  }
+}
+.badge.tip,
+.badge.green,
+.badge.success {
+  background-color: #42b983;
+  color: #fff;
+}
+.badge.error,
+.badge.danger {
+  background: #ff4757;
+  color: #fff;
+  border: 0px;
+}
+.badge.warning,
+.badge.warn,
+.badge.yellow {
+  background: #ffba00;
+  color: #fff;
+}
+</style>
