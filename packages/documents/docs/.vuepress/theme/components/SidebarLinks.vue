@@ -1,95 +1,91 @@
 <template>
-  <ul
-    class="sidebar-links"
-    v-if="items.length"
-  >
+  <ul class="sidebar-links" v-if="sidebar.length">
     <li
-      v-for="(item, i) in items"
+      v-for="(item, i) in sidebar"
       :key="i"
-      :class="{'active': item.path === $route.path}"
+      :class="{ active: item.link === $route.path }"
     >
       <SidebarGroup
-        v-if="item.type === 'group'"
-        :item="item"
-        :open="fixed || i === openGroupIndex || $vsTheme.sidebarCollapseOpen"
+        v-if="!isString(item) && isSidebarGroup(item)"
+        :sidebar="item"
+        :open="fixed || i === openGroupIndex || vsTheme?.sidebarCollapseOpen || false"
         :collapsable="true"
         :depth="depth"
         @toggle="toggleGroup(i)"
       />
-        <!-- :collapsable="item.collapsable || item.collapsible" -->
-      <SidebarLink
-        v-else
-        :sidebarDepth="sidebarDepth"
-        :item="item"
-      />
+      <SidebarLink v-else :sidebarDepth="sidebarDepth" :sidebar="item" />
     </li>
   </ul>
 </template>
 
-<script>
-import SidebarGroup from '@theme/components/SidebarGroup.vue'
-import SidebarLink from '@theme/components/SidebarLink.vue'
-import { isActive } from '../util'
-import Vue from 'vue'
-export default {
-  name: 'SidebarLinks',
+<script setup lang="ts">
+import { ref, watch, onActivated, inject } from "vue";
+import { SidebarConfigArray, SidebarGroup as SidebarGroupType, SidebarItem } from "vuepress-vite";
+import { RouteLocationNormalizedLoaded, useRoute, useRouter } from "vue-router";
+import SidebarGroup from "./SidebarGroup.vue";
+import SidebarLink from "./SidebarLink.vue";
+import { isActive } from "../util";
+import { vsThemeKey } from "../type";
+import { isString } from "@vue/shared";
 
-  components: { SidebarGroup, SidebarLink },
+const props = defineProps<{
+  sidebar: SidebarConfigArray;
+  /**
+   * depth of current sidebar links
+   */
+  depth: number;
+  /**
+   * depth of headers to be extracted
+   */
+  sidebarDepth?: number;
+  fixed: boolean;
+}>();
 
-  props: [
-    'items',
-    'depth',  // depth of current sidebar links
-    'sidebarDepth', // depth of headers to be extracted
-    'fixed'
-  ],
+const route = useRoute();
+const router = useRouter();
 
-  data () {
-    return {
-      openGroupIndex: 0,
-      allOpen: false
-    }
-  },
+const vsTheme = inject(vsThemeKey, null);
 
-  created () {
-    this.refreshIndex()
-    Vue.observable(this.$site.themeConfig)
-    Vue.observable(this.$vsTheme)
-  },
+const openGroupIndex = ref<number>(0);
+const allOpen = ref<boolean>(false);
 
-  watch: {
-    '$route' () {
-      this.refreshIndex()
-    }
-  },
+onActivated(() => {
+  refreshIndex();
+});
 
-  methods: {
-    refreshIndex () {
-      const index = resolveOpenGroupIndex(
-        this.$route,
-        this.items
-      )
-      if (index > -1) {
-        this.openGroupIndex = index
-      }
-    },
+watch(router, () => {
+  refreshIndex();
+});
 
-    toggleGroup (index) {
-      this.openGroupIndex = index === this.openGroupIndex ? -1 : index
-    },
-
-    isActive (page) {
-      return isActive(this.$route, page.regularPath)
-    }
-  }
+const isSidebarGroup = (item: string | SidebarGroupType | SidebarItem) => {
+  if (typeof item === 'string') return false;
+  if ('children' in item) return true;
+  return false;
 }
 
-function resolveOpenGroupIndex (route, items) {
-  for (let i = 0; i < items.length; i++) {
-    const item = items[i]
-    if (item.type === 'group' && item.children.some(c => c.type === 'page' && isActive(route, c.path))) {
-      return i
+const refreshIndex = () => {
+  const index = resolveOpenGroupIndex(route, props.sidebar);
+  if (index > -1) {
+    openGroupIndex.value = index;
+  }
+};
+
+const toggleGroup = (index: number) => {
+  openGroupIndex.value = index === openGroupIndex.value ? -1 : index;
+};
+
+const resolveOpenGroupIndex = (route: RouteLocationNormalizedLoaded, sidebar: SidebarConfigArray) => {
+  for (let i = 0; i < sidebar.length; i++) {
+    const item = sidebar[i];
+    if (isString(item)) continue;
+
+    if (
+      'children' in item &&
+      item.children.some((c) => isActive(route, isString(c) ? c : c.link || ''))
+    ) {
+      return i;
     }
   }
-  return -1
-}
+  return -1;
+};
 </script>

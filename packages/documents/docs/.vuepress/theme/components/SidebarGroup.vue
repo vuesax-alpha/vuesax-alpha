@@ -4,9 +4,9 @@
     :class="[
       {
         collapsable,
-        'is-sub-group': depth !== 0
+        'is-sub-group': depth !== 0,
       },
-      `depth-${depth}`
+      `depth-${depth}`,
     ]"
   >
     <router-link
@@ -14,16 +14,13 @@
       class="sidebar-heading clickable"
       :class="{
         open,
-        'active': isActive($route, item.path)
+        active: isActive($route, item.path),
       }"
       :to="item.path"
       @click.native="$emit('toggle')"
     >
       <span>{{ item.title }}</span>
-      <span
-        class="arrow"
-        v-if="collapsable"
-        :class="open ? 'down' : 'right'">
+      <span class="arrow" v-if="collapsable" :class="open ? 'down' : 'right'">
       </span>
     </router-link>
 
@@ -45,7 +42,7 @@
     <DropdownTransition>
       <SidebarLinks
         class="sidebar-group-items"
-        :items="item.children"
+        :sidebar="item.children"
         v-if="open || !collapsable"
         :sidebarDepth="item.sidebarDepth"
         :depth="depth + 1"
@@ -54,87 +51,105 @@
   </section>
 </template>
 
-<script>
-import { isActive } from '../util'
-import DropdownTransition from '@theme/components/DropdownTransition.vue'
+<script lang="ts" setup>
+import { SidebarGroupCollapsible } from "vuepress-vite";
+import { isActive } from "../util";
+import DropdownTransition from "./DropdownTransition.vue";
+import SidebarLinks from "./SidebarLinks.vue";
 
-export default {
-  name: 'SidebarGroup',
-  props: ['item', 'open', 'collapsable', 'depth', 'fixed'],
-  components: { DropdownTransition },
-  // ref: https://vuejs.org/v2/guide/components-edge-cases.html#Circular-References-Between-Components
-  beforeCreate () {
-    this.$options.components.SidebarLinks = require('./SidebarLinks.vue').default
-  },
-  methods: { isActive }
-}
+defineProps<{
+  open: boolean;
+  collapsable: boolean;
+  depth: number;
+  fixed: boolean;
+  sidebar: SidebarGroupCollapsible;
+}>();
 </script>
 
-<style lang="stylus">
-getVar(var)
-    unquote("var(--vs-"+var+")")
-.sidebar-group
-  .sidebar-group
-    padding-left 0.5em
-  &:not(.collapsable)
-    .sidebar-heading:not(.clickable)
-      cursor auto
-      color inherit
-  // refine styles of nested sidebar groups
-  &.is-sub-group
-    padding-left 0
-    & > .sidebar-heading
-      font-size 0.95em
-      line-height 1.4
-      font-weight normal
-      padding-left 2rem
-      &:not(.clickable)
-        opacity 0.5
-    & > .sidebar-group-items
-      padding-left 1rem
-      & > li > .sidebar-link
-        font-size: 0.95em;
-        border-left none
-  &.depth-2
-    & > .sidebar-heading
-      border-left none
-
-.sidebar-heading
-  color getVar(theme-color)
-  transition color .15s ease
-  cursor pointer
-  font-size 1em
-  font-weight bold
-  // text-transform uppercase
-  padding 0.35rem 1.5rem 0.35rem 1.25rem
-  width 100%
-  box-sizing border-box
-  margin 0
-  border-left 0.25rem solid transparent
-  display flex
-  align-items center
-  justify-content flex-start
-  box-icon
-    max-width 20px
-    margin-bottom -4px
-    margin-left 4px
-  &.open
-    box-icon
-      transform rotate(90deg)
-  .arrow
-    position relative
-    top -0.12em
-    left 0.5em
-  &.clickable
-    &.active
-      font-weight 600
-      color $accentColor
-      border-left-color $accentColor
-    &:hover
-      color $accentColor
-
-.sidebar-group-items
-  transition height .1s ease-out
-  font-size 0.95em
-  overflow hidden
+<style lang="scss">
+@import "../styles/mixin";
+.sidebar-group {
+  .sidebar-group {
+    padding-left: 0.5em;
+  }
+  &:not(.collapsable) {
+    .sidebar-heading {
+      &:not(.clickable) {
+        cursor: auto;
+        color: inherit;
+      }
+    }
+  }
+  &.is-sub-group {
+    padding-left: 0;
+    & > .sidebar-heading {
+      font-size: 0.95em;
+      line-height: 1.4;
+      font-weight: normal;
+      padding-left: 2rem;
+      &:not(.clickable) {
+        opacity: 0.5;
+      }
+    }
+    & > .sidebar-group-items {
+      padding-left: 1rem;
+      & > li {
+        & > .sidebar-link {
+          font-size: 0.95em;
+          border-left: none;
+        }
+      }
+    }
+  }
+  &.depth-2 {
+    & > .sidebar-heading {
+      border-left: none;
+    }
+  }
+}
+.sidebar-heading {
+  color: -color('theme-color');
+  transition: color 0.15s ease;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 0.35rem 1.5rem 0.35rem 1.25rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border-left: 0.25rem solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-icon {
+    max-width: 20px;
+    margin-bottom: -4px;
+    margin-left: 4px;
+  }
+  &.open {
+    box-icon {
+      transform: rotate(90deg);
+    }
+  }
+  .arrow {
+    position: relative;
+    top: -0.12em;
+    left: 0.5em;
+  }
+  &.clickable {
+    &.active {
+      font-weight: 600;
+      color: -color('accent-color');
+      border-left-color: -color('accent-color');
+    }
+    &:hover {
+      color: -color('accent-color');
+    }
+  }
+}
+.sidebar-group-items {
+  transition: height 0.1s ease-out;
+  font-size: 0.95em;
+  overflow: hidden;
+}
 </style>

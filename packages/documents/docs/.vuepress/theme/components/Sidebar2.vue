@@ -6,19 +6,25 @@
     <div class="content-sidebar">
       <!-- <NavLinks/> -->
       <!-- <slot name="top"/> -->
-      <SidebarLinks :fixed="fixed" :depth="1" :items="items" />
+      <SidebarLinks :fixed="fixed" :depth="1" :sidebar="sidebar" />
       <!-- <slot name="bottom"/> -->
     </div>
   </aside>
 </template>
 
 <script setup lang="ts">
+import { SidebarConfigArray } from "vuepress-vite";
 import SidebarLinks from "./SidebarLinks.vue";
 
-defineProps(["items", "fixed"]);
+defineProps<{
+  sidebar: SidebarConfigArray,
+  fixed: boolean
+}>();
 </script>
 
 <style lang="scss">
+@import "../styles/mixin";
+
 // vuesax-theme
 .effect1 {
   transform: rotate(-90deg);
@@ -29,7 +35,7 @@ defineProps(["items", "fixed"]);
   right: -37px;
   top: -2px;
   pointer-events: none;
-  fill: getVar(theme-layout);
+  fill: -color("theme-layout");
 }
 .header__btns {
   display: flex;
@@ -47,7 +53,7 @@ defineProps(["items", "fixed"]);
     display: flex;
     align-items: center;
     justify-content: center;
-    height: $navbarHeight;
+    height: -var('navbar-height');
     cursor: pointer;
     transition: all 0.25s ease;
     outline: none;
@@ -59,7 +65,7 @@ defineProps(["items", "fixed"]);
       bottom: 0px;
       left: 50%;
       transform: translate(-50%);
-      background: $textColor;
+      background: -color("text-color");
       width: 0px;
       height: 2px;
       transition: all 0.25s ease;
@@ -126,7 +132,7 @@ defineProps(["items", "fixed"]);
   }
   .nav-links {
     display: none;
-    border-bottom: 1px solid $borderColor;
+    border-bottom: 1px solid -color("border-color");
     padding: 0.5rem 0 0.75rem 0;
     a {
       font-weight: 600;
