@@ -1,5 +1,5 @@
 import { DefaultThemeOptions } from "vuepress";
-import type { Theme } from "@vuepress/core";
+import type { App, Theme } from "@vuepress/core";
 
 export declare interface VuesaxAlphaThemeOptions extends DefaultThemeOptions {
   /**
@@ -11,6 +11,10 @@ export declare interface VuesaxAlphaThemeOptions extends DefaultThemeOptions {
   next?: string;
   prev?: string;
   searchMaxSuggestions?: number;
+  /**
+   * Vuepress App 
+   */
+  app?: App;
 }
 
 export declare const vuesaxAlphaTheme: ({
