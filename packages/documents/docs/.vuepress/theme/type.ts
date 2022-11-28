@@ -10,12 +10,6 @@ export interface vsThemeContext {
 
 export const vsThemeKey: InjectionKey<vsThemeContext> = Symbol("$vsTheme");
 
-export interface userContext {
-  user: any;
-}
-
-export const userContextKey: InjectionKey<userContext> = Symbol("$user");
-
 export const siteDataKey: InjectionKey<Ref<SiteData>> = Symbol('$siteData');
 
 export interface codesandboxContext {
