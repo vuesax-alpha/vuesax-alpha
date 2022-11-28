@@ -2,7 +2,7 @@
   <div class="search-box" :class="{ focused, showSuggestions }">
     <div class="con-input">
       <input
-        @input="query = $event.target.value"
+        @input="inputEvent"
         aria-label="Search"
         :value="query"
         :class="{ focused: focused }"
@@ -36,17 +36,20 @@
       >
         <li
           class="suggestion"
-          v-for="(s, i) in suggestions"
+          v-for="(suggestion, i) in suggestions"
           :key="i"
           :class="{ focused: i === focusIndex }"
           @mousedown="go(i)"
           @mouseenter="focus(i)"
         >
-          <a :href="s.path" @click.prevent>
-            <span class="page-title">{{ s.title || s.path }}</span>
-            <span v-if="s.header" class="header"
-              ><i class="bx bx-chevron-right"></i> {{ s.header.title }}</span
-            >
+          <a :href="suggestion.path" @click.prevent>
+            <span class="page-title">{{
+              suggestion.title || suggestion.path
+            }}</span>
+            <span v-if="suggestion.header" class="header">
+              <i class="bx bx-chevron-right"></i>
+              {{ suggestion.header }}
+            </span>
           </a>
         </li>
       </ul>
@@ -55,23 +58,28 @@
 </template>
 
 <script setup lang="ts">
-import { usePageData, useRouteLocale, useSiteData, useSiteLocaleData } from '@vuepress/client';
-import { useThemeData } from '@vuepress/plugin-theme-data/lib/client';
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
-import { useRouter } from 'vue-router';
-import { VuesaxAlphaThemeOptions } from '../vuesaxAlphaTheme';
+import {
+  PageData,
+  RouteLocale,
+  usePageData,
+  useRouteLocale,
+  useSiteData,
+} from "@vuepress/client";
+import { useThemeData } from "@vuepress/plugin-theme-data/lib/client";
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { useRouter } from "vue-router";
 
-const emits = defineEmits(['showSuggestions']);
+import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
+
+const emits = defineEmits(["showSuggestions"]);
 
 const router = useRouter();
-
 const themeData = useThemeData<VuesaxAlphaThemeOptions>();
-const pageData = usePageData();
 const routeLocale = useRouteLocale();
+const siteData = useSiteData();
 
 /* global SEARCH_MAX_SUGGESTIONS, SEARCH_PATHS, SEARCH_HOTKEYS */
-const SEARCH_MAX_SUGGESTIONS = 5;
-const SEARCH_PATHS = null;
+const SEARCH_MAX_SUGGESTIONS = themeData.value.searchMaxSuggestions || 5;
 const SEARCH_HOTKEYS = ["s", "/"];
 
 const query = ref<string>("");
@@ -82,97 +90,83 @@ const placeholder = ref<string>("");
 const $input = ref<HTMLElement>()!;
 
 const showSuggestions = computed(() => {
-  const active =
-    focused.value && (suggestions.value?.length || 0 );
+  const active = focused.value && (suggestions.value?.length || 0);
   return active;
-})
+});
 
-const suggestions = computed(() => {
-  const _query = query.value.trim().toLowerCase();
-  if (!_query) {
-    return;
-  }
-
-  const max = themeData.value.searchMaxSuggestions || SEARCH_MAX_SUGGESTIONS;
-  const localePath = routeLocale.value;
-
-  const matches = (item) =>
-    item && item.title && item.title.toLowerCase().indexOf(query) > -1;
-  
-  const res = [];
-
-  for (let i = 0; i < pages.length; i++) {
-    if (res.length >= max) break;
-    const p = pages[i];
-    // filter out results that do not match current locale
-    if (this.getPageLocalePath(p) !== localePath) {
-      continue;
+const suggestions = computed(
+  (): {
+    title: string;
+    path: string;
+    header?: string;
+  }[] => {
+    const _query = query.value.trim().toLowerCase();
+    const pages = themeData.value.app?.pages;
+    if (!_query || !pages) {
+      return [];
     }
 
-    // filter out results that do not match searchable paths
-    if (!isSearchable(p)) {
-      continue;
-    }
+    const res: {
+      title: string;
+      path: string;
+      header?: string;
+    }[] = [];
+    const localePath: RouteLocale = routeLocale.value;
 
-    if (matches(p)) {
-      res.push(p);
-    } else if (p.headers) {
-      for (let j = 0; j < p.headers.length; j++) {
-        if (res.length >= max) break;
-        const h = p.headers[j];
-        if (matches(h)) {
-          res.push(
-            Object.assign({}, p, {
-              path: p.path + "#" + h.slug,
-              header: h,
-            })
-          );
+    const matches = ({ title }: { title: string }) =>
+      title.toLowerCase().indexOf(query.value) > -1;
+
+    for (let i = 0; i < pages.length; i++) {
+      if (res.length >= SEARCH_MAX_SUGGESTIONS) break;
+      const page = pages[i];
+      // filter out results that do not match current locale
+      if (getPageLocalePath(page) !== localePath) {
+        continue;
+      }
+
+      if (matches(page)) {
+        res.push({
+          title: page.title,
+          path: page.path,
+        });
+      } else if (page.headers) {
+        for (let j = 0; j < page.headers.length; j++) {
+          if (res.length >= SEARCH_MAX_SUGGESTIONS) break;
+          const h = page.headers[j];
+          if (matches(h)) {
+            res.push({
+              title: page.title,
+              path: page.path + "#" + h.slug,
+              header: h.title,
+            });
+          }
         }
       }
     }
+    return res;
   }
-  return res;
-})
+);
+
 // make suggestions align right when there are not enough items
 const alignRight = computed(() => {
-  const navCount = (this.$site.themeConfig.nav || []).length;
-  const repo = this.$site.repo ? 1 : 0;
+  const navCount = (themeData.value.navbar || []).length;
+  const repo = themeData.value.repo ? 1 : 0;
   return navCount + repo <= 2;
-})
+});
 
 watch([focused, suggestions], () => {
-  const active =
-    focused.value && suggestions.value?.length;
+  const active = focused.value && suggestions.value?.length;
   emits("showSuggestions", active);
 });
 
-const getPageLocalePath = (page) => {
-  for (const localePath in this.$site.locales || {}) {
+const getPageLocalePath = (page: PageData) => {
+  for (const localePath in siteData.value.locales || {}) {
     if (localePath !== "/" && page.path.indexOf(localePath) === 0) {
       return localePath;
     }
   }
   return "/";
-}
-
-const isSearchable = (page) => {
-  let searchPaths = SEARCH_PATHS;
-
-  // all paths searchables
-  if (searchPaths === null) {
-    return true;
-  }
-
-  searchPaths = Array.isArray(searchPaths)
-    ? searchPaths
-    : new Array(searchPaths);
-
-  return (
-    searchPaths.filter((path) => {
-      return page.path.match(path);
-    }).length > 0
-  );
-}
+};
 
 const onHotkey = (event: KeyboardEvent) => {
   if (
@@ -182,7 +176,7 @@ const onHotkey = (event: KeyboardEvent) => {
     $input.value!.focus();
     event.preventDefault();
   }
-}
+};
 
 const onUp = () => {
   if (showSuggestions.value) {
@@ -192,7 +186,7 @@ const onUp = () => {
       focusIndex.value = suggestions.value.length - 1;
     }
   }
-}
+};
 
 const onDown = () => {
   if (showSuggestions.value) {
@@ -202,7 +196,7 @@ const onDown = () => {
       focusIndex.value = 0;
     }
   }
-}
+};
 
 const go = (i: number) => {
   if (!showSuggestions.value) {
@@ -211,15 +205,19 @@ const go = (i: number) => {
   router.push(suggestions.value[i].path);
   query.value = "";
   focusIndex.value = 0;
-}
+};
 
 const focus = (index: number) => {
   focusIndex.value = index;
-}
+};
 
 const unfocus = () => {
   focusIndex.value = -1;
-}
+};
+
+const inputEvent = (evt: Event) => {
+  query.value = (evt.target as HTMLInputElement).value;
+};
 
 onMounted(() => {
   placeholder.value = themeData.value.searchPlaceholder || "";
@@ -228,7 +226,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   document.removeEventListener("keydown", onHotkey);
-})
+});
 </script>
 
 <style scoped lang="scss">
@@ -259,7 +257,7 @@ onBeforeUnmount(() => {
   &.showSuggestions {
     .con-input {
       input {
-        background: -color('theme-bg2');
+        background: -color("theme-bg2");
       }
     }
   }
@@ -273,13 +271,13 @@ onBeforeUnmount(() => {
       width: 20px;
       pointer-events: none;
       transition: all 0.2s ease;
-      fill: -color('theme-color');
+      fill: -color("theme-color");
     }
   }
   input {
     cursor: text;
     width: 15rem;
-    color: -color('theme-color');
+    color: -color("theme-color");
     border: 1px solid darken($borderColor, 10%);
     display: inline-block;
     border-radius: 2rem;
@@ -298,7 +296,7 @@ onBeforeUnmount(() => {
     opacity: 1;
     border-radius: 14px 5px 14px 14px;
     &::placeholder {
-      color: -color('theme-color');
+      color: -color("theme-color");
     }
     &:focus {
       width: 25rem;
@@ -309,7 +307,7 @@ onBeforeUnmount(() => {
     }
   }
   .suggestions {
-    background: -color('theme-layout');
+    background: -color("theme-layout");
     width: 100%;
     position: absolute;
     bottom: 0px;
@@ -335,18 +333,18 @@ onBeforeUnmount(() => {
     cursor: pointer;
     transition: all 0.25s ease;
     &:hover {
-      background: -color('theme-bg') !important;
+      background: -color("theme-bg") !important;
     }
     a {
       display: flex;
       align-items: center;
       justify-content: flex-start;
       white-space: normal;
-      color: -color('theme-color');
+      color: -color("theme-color");
       box-icon {
         width: 17px;
         height: 17px;
-        fill: -color('theme-color');
+        fill: -color("theme-color");
         margin-right: 5px;
       }
       .page-title {
@@ -364,7 +362,7 @@ onBeforeUnmount(() => {
     }
     &.focused {
       a {
-        color: -color('theme-color');
+        color: -color("theme-color");
       }
     }
   }
