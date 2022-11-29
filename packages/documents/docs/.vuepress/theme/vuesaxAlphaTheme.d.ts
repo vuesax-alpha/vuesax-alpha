@@ -11,6 +11,7 @@ export declare interface VuesaxAlphaThemeOptions extends DefaultThemeOptions {
   next?: string;
   prev?: string;
   searchMaxSuggestions?: number;
+  displayAllHeaders?: boolean;
   /**
    * Vuepress App 
    */
