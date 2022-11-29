@@ -9,11 +9,12 @@ export interface ThemeNormalPropsFrontmatter {
   link: string;
   code: string;
 }
-
 export interface ThemeNormalApiFrontmatter extends PageFrontmatter {
   props: ThemeNormalPropsFrontmatter;
   slots: ThemeNormalPropsFrontmatter;
   events: ThemeNormalPropsFrontmatter;
+  news: string[];
+  updates: string[];
 }
 
 export interface ThemePageFrontmatter extends ThemeNormalApiFrontmatter {
