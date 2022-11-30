@@ -42,9 +42,12 @@ import { vsThemeKey } from "../type";
 
 import codex from "./codex.vue";
 
-defineProps(["codepen", "codesandbox"]);
+const props = defineProps<{
+  codepen: string;
+  codesandbox: string;
+}>();
 
-const $vsTheme = inject(vsThemeKey, {});
+const $vsTheme = inject(vsThemeKey)!;
 </script>
 
 <style lang="scss">

@@ -5,17 +5,17 @@
 </template>
 
 <script lang="ts" setup>
-defineProps({
-  type: {
-    type: String,
-    default: "tip",
-  },
-  text: String,
-  vertical: {
-    type: String,
-    default: "top",
-  },
-});
+withDefaults(
+  defineProps<{
+    type: string;
+    text: string;
+    vertical: string;
+  }>(),
+  {
+    type: "tip",
+    vertical: "top",
+  }
+);
 </script>
 
 <style lang="scss" scoped>
