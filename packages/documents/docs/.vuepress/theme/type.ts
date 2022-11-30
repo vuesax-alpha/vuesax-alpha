@@ -1,5 +1,4 @@
-import { InjectionKey, Ref } from "vue";
-import { SiteData } from "@vuepress/shared"
+import { InjectionKey } from "vue";
 
 export interface vsThemeContext {
   mobileActive: boolean;
@@ -9,8 +8,6 @@ export interface vsThemeContext {
 }
 
 export const vsThemeKey: InjectionKey<vsThemeContext> = Symbol("$vsTheme");
-
-export const siteDataKey: InjectionKey<Ref<SiteData>> = Symbol('$siteData');
 
 export interface codesandboxContext {
   url?: string;
