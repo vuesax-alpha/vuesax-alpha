@@ -1,21 +1,21 @@
 import { App } from "vue";
-import _Components from "@/components/index";
-import _ComponentsLayout from "@/layout/index";
-import defineFunctions from "@/functions/defineFunctions";
-import defineDirecives from "@/directives/defineDirecives";
+import _Components from "./components/index";
+import _ComponentsLayout from "./layout/index";
+import defineFunctions from "./functions/defineFunctions";
+import defineDirecives from "./directives/defineDirecives";
 
-import { setColor } from "@/util";
-import { toggleTheme } from "@/functions/toggleTheme";
-import { setTheme } from "@/functions/toggleTheme";
-import { getPage } from "@/functions/vsTable/index";
-import { getLength } from "@/functions/vsTable/index";
-import { toggleSelectAll } from "@/functions/vsTable/index";
-import { getSearch } from "@/functions/vsTable/index";
-import { sortData } from "@/functions/vsTable/index";
-import loading from "@/functions/vsLoading/Base/loading";
-import notification from "@/functions/vsNotification/Base/notification";
+import { setColor } from "./util";
+import { toggleTheme } from "./functions/toggleTheme";
+import { setTheme } from "./functions/toggleTheme";
+import { getPage } from "./functions/vsTable/index";
+import { getLength } from "./functions/vsTable/index";
+import { toggleSelectAll } from "./functions/vsTable/index";
+import { getSearch } from "./functions/vsTable/index";
+import { sortData } from "./functions/vsTable/index";
+import loading from "./functions/vsLoading/Base/loading";
+import notification from "./functions/vsNotification/Base/notification";
 
-import "@/styles/index";
+import "./styles/index";
 
 export default {
   install: (app: App) => {
