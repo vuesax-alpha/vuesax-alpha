@@ -1,11 +1,5 @@
 <template>
   <div class="clean">
-    <!-- not-line-active -->
-    <!-- background="primary"
-      textWhite
-      not-shadow
-      hover-expand
-      square -->
     <vs-sidebar :open="openSidebar" :reduce="reduce" v-model="active">
       <template #logo>
         <img src="/logos/logo-vuesax-logotipo-vuesax-png-3.png" alt="" />
@@ -97,13 +91,18 @@
 import { ref } from "vue";
 
 const reduce = ref<boolean>(false);
-const activeSidebar = ref<boolean>(false);
 const active = ref<string>("docs");
 const openSidebar = ref<boolean>(false);
+const activeSidebar = ref<boolean>(false);
 
 const handleChange = (val: string) => {
   active.value = val;
 };
+
+defineExpose({
+  activeSidebar,
+  handleChange
+})
 </script>
 
 <style lang="scss">

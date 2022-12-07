@@ -10,7 +10,7 @@ import {
 
 import Layout from "./layouts/Layout.vue";
 import NotFound from "./layouts/NotFound.vue";
-import Sidebar from "./layouts/Sidebar.vue";
+// import Sidebar from "./layouts/Sidebar.vue";
 
 import "./styles/vuesax-alpha";
 
@@ -32,7 +32,6 @@ export default defineClientConfig({
   rootComponents: [],
   layouts: {
     Layout,
-    NotFound,
-    Sidebar
+    NotFound
   }
 });
