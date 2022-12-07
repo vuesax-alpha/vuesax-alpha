@@ -6,16 +6,13 @@ import { activeHeaderLinksPlugin } from "@vuepress/plugin-active-header-links";
 import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
 import { themeDataPlugin } from "@vuepress/plugin-theme-data";
 import containerPlugin from "@vuepress/plugin-container";
-import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 
 import { VuesaxAlphaThemeOptions } from "./vuesaxAlphaTheme";
-import { defaultTheme } from "vuepress-vite";
 
 export const vuesaxAlphaTheme = (options?: VuesaxAlphaThemeOptions): Theme => {
   return (app: App) => {
     return {
       name: "vuepress-theme-vuesax-alpha",
-      // extends: defaultTheme(options),
       clientConfigFile: path.resolve(
         __dirname,
         "themeEnhance.ts"
@@ -46,21 +43,6 @@ export const vuesaxAlphaTheme = (options?: VuesaxAlphaThemeOptions): Theme => {
         registerComponentsPlugin({
           componentsDir: path.resolve(__dirname, "global-components"),
         }),
-        docsearchPlugin({
-          appId: "R2IYF7ETH7",
-          apiKey: "599cec31baffa4868cae4e79f180729b",
-          indexName: 'docsearch',
-          locales: {
-            '/': {
-              placeholder: 'Vuesax search',
-              translations: {
-                button: {
-                  buttonText: "Vuesax search"
-                }
-              }
-            }
-          }
-        })
       ],
     };
   }
