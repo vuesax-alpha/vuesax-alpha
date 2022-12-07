@@ -1,3 +1,5 @@
+@import "./config";
+
 code {
   // color: -color('text-color');
   color: lighten(#b0b4be, 0.2);
@@ -87,20 +89,20 @@ div[class*="language-"] {
         left: 0;
         top: 0;
         display: block;
-        width: -var('line-numbers-wrapper-width');
+        width: $lineNumbersWrapperWidth;
         height: 100%;
         background-color: rgba(0, 0, 0, 66%);
       }
     }
 
     pre {
-      padding-left: -var('line-numbers-wrapper-width') + 1 rem;
+      padding-left: $lineNumbersWrapperWidth + 1 rem;
       vertical-align: middle;
     }
     .line-numbers-wrapper {
       position: absolute;
       top: 0;
-      width: -var('line-numbers-wrapper-width');
+      width: $lineNumbersWrapperWidth;
       text-align: center;
       color: rgba(255, 255, 255, 0.3);
       padding: 1.25rem 0;
@@ -121,7 +123,7 @@ div[class*="language-"] {
       z-index: 2;
       top: 0;
       left: 0;
-      width: -var('line-numbers-wrapper-width');
+      width: $lineNumbersWrapperWidth;
       height: 100%;
       border-radius: 6px 0 0 6px;
       border-right: 1px solid rgba(0, 0, 0, 0.66);
