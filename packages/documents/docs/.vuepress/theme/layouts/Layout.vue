@@ -30,10 +30,10 @@
       </div>
     </transition>
 
-    <header-notification />
+    <HeaderNotification />
 
     <ClientOnly>
-      <navbar
+      <Navbar
         v-if="shouldShowNavbar"
         v-show="!pageData.frontmatter.navbar"
         @toggle-sidebar="toggleSidebar"
@@ -44,81 +44,64 @@
       />
     </ClientOnly>
 
-    <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
+    <Home v-if="pageData.frontmatter.home" />
 
-    <home v-if="pageData.frontmatter.home" />
-
-    <Docs-home
+    <DocsHome
       :sidebar-items="sidebarItems"
       v-else-if="pageData.frontmatter.docsHome"
     />
 
-    <Pass-layout
-      :sidebar-items="sidebarItems"
-      v-else-if="pageData.frontmatter.passLayout"
-    />
-
-    <license
+    <License
       :sidebar-items="sidebarItems"
       v-else-if="pageData.frontmatter.license"
     />
 
-    <branding
+    <Branding
       :sidebar-items="sidebarItems"
       v-else-if="pageData.frontmatter.branding"
     />
 
-    <navbar v-else-if="pageData.frontmatter.navbar" />
+    <Navbar v-else-if="pageData.frontmatter.navbar" />
 
-    <page v-else :sidebar-items="sidebarItems">
-      <slot name="page-top" slot="top" />
-      <slot name="page-bottom" slot="bottom" />
-    </page>
+    <Page v-else :sidebar="sidebarItems">
+      <slot name="page-top" slot="top"></slot>
+      <slot name="page-bottom" slot="bottom"></slot>
+    </Page>
 
-    <carbon ref="$carbon" />
-    <Codefund ref="$codefund" />
-    <vuesax-ads v-if="ads == 'vuesax'" />
+    <Sidebar :sidebar="sidebarItems">
+      <slot name="sidebar-top" slot="top"></slot>
+      <slot name="sidebar-bottom" slot="bottom"></slot>
+    </Sidebar>
 
-    <sidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar">
-      <slot name="sidebar-top" slot="top" />
-      <slot name="sidebar-bottom" slot="bottom" />
-    </sidebar>
     <ClientOnly>
-      <config v-if="!pageData.frontmatter.navbar" />
+      <Config v-if="!pageData.frontmatter.navbar" />
     </ClientOnly>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onActivated, onMounted, reactive, ref, watch } from "vue";
+import { computed, onMounted, reactive, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { usePageData, usePageHeadTitle, useRouteLocale, useSiteData } from "@vuepress/client";
-import { useThemeData, useThemeLocaleData,  } from '@vuepress/plugin-theme-data/lib/client';
+import { usePageData, usePageHeadTitle, useRouteLocale } from "@vuepress/client";
+import { useThemeData, useThemeLocaleData,  } from '@vuepress/plugin-theme-data/client';
 import { codesandboxContext } from "../type";
 import { resolveSidebarItems } from "../util";
 
 import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
 
-import Sidebar from "./Sidebar.vue";
-
 import Home from "../components/Home.vue";
 import Navbar from "../components/Navbar.vue";
 import Page from "../components/Page.vue";
-import Carbon, { CarbonExpose } from "../components/Carbon.vue";
 import DocsHome from "../components/DocsHome.vue";
 import Config from "../components/Config.vue";
-import PassLayout from "../components/PassLayout.vue";
 import License from "../components/License.vue";
+import Sidebar from "../components/Sidebar.vue";
 import HeaderNotification from "../components/HeaderNotification.vue";
-import Codefund from "../components/Codefund.vue";
-import VuesaxAds from "../components/VuesaxAds.vue";
 import Branding from "../components/Branding.vue";
-import navbar from "../components/navbarLayout.vue";
 
 const route = useRoute();
 const router = useRouter();
 
-const siteData = useSiteData();
 const pageData = usePageData();
 const pageTitle = usePageHeadTitle();
 const themeData = useThemeData<VuesaxAlphaThemeOptions>();
@@ -126,13 +109,8 @@ const themeLocaleData = useThemeLocaleData<VuesaxAlphaThemeOptions>();
 const routeLocale = useRouteLocale();
 
 const isSidebarOpen = ref<boolean>(false);
-const ads = ref<string>("codefund");
-const noAdvertiser = ref<boolean>(false);
 const codesandbox = ref<codesandboxContext>({});
 let touchStart = reactive<{ x: number; y: number }>({ x: NaN, y: NaN });
-
-const $codefund = ref<HTMLElement>();
-const $carbon = ref<CarbonExpose>();
 
 const shouldShowNavbar = computed(() => {
   const { logo, repo, navbar }  = themeData.value;
@@ -180,42 +158,10 @@ const pageClasses = computed(() => {
   ];
 });
 
-watch(
-  codesandbox,
-  (val) => {
-    if (noAdvertiser.value) {
-      // loadCodeFund();
-    } else {
-      if (val) {
-        ads.value = "carbon";
-        $carbon.value?.load(); // carbon ref instance
-      }
-    }
-  },
-  { deep: true }
-);
-
-watch(
-  () => route.path,
-  (to, from) => {
-    if (to !== from) {
-      // Vue.observable(this.$codesandbox);
-      ads.value = "carbon";
-      $carbon.value?.load(); // carbon ref instance
-    }
-  }
-);
-
-onActivated(() => {
-  // this.codesandbox = Vue.observable(this.$codesandbox);
-});
-
 onMounted(() => {
   router.afterEach(() => {
     isSidebarOpen.value = false;
   });
-  $carbon.value?.clean();
-  $carbon.value?.load();
   loadDarkModeFavicon();
 });
 
@@ -238,7 +184,6 @@ const loadDarkModeFavicon = () => {
       }
     };
 
-    // eslint-disable-next-line no-unused-vars
     const initSwitcher = (delay: number = 300) => {
       // Exit if media queries aren't supported
       if (typeof window.matchMedia !== "function") {
@@ -326,7 +271,7 @@ const onTouchEnd = (e: TouchEvent) => {
   transition: opacity 0.5s;
 }
 
-.fade-code-enter,
+.fade-code-enter-from,
 .fade-code-leave-to {
   opacity: 0;
 }
