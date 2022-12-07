@@ -5,10 +5,9 @@
     <vs-button transparent disabled >Disabled</vs-button>
   </div>
 </template>
-<script>
-export default {
-  data:() => ({
-    active: 0
-  })
-}
+
+<script lang="ts" setup>
+import { ref } from "vue";
+
+const active = ref<number>(0);
 </script>

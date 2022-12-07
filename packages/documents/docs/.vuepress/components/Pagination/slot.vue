@@ -5,25 +5,29 @@
         <vs-option
           v-for="numberPage in 20"
           :label="numberPage"
-          :value="numberPage">
+          :value="numberPage"
+        >
           {{ numberPage }}
         </vs-option>
       </vs-select>
     </vs-pagination>
   </div>
 </template>
-<script>
-export default {
-  data:() => ({
-    page: 1,
-  }),
-}
+
+<script lang="ts" setup>
+import { ref } from "vue";
+
+const page = ref(1);
 </script>
-<style lang="stylus">
-.con-pagination
-  .vs-select-content
-    max-width 60px
-    margin 0px 4px
-  .vs-pagination-content
-    margin 10px 0px
+
+<style lang="scss">
+.con-pagination {
+  .vs-select-content {
+    min-width: 60px;
+    margin: 0 4px;
+  }
+  .vs-pagination-content {
+    margin: 10px 0px;
+  }
+}
 </style>

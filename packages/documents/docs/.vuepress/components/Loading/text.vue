@@ -3,21 +3,22 @@
     <vs-button flat @click="openLoading">Open Loading <b>Text</b></vs-button>
   </div>
 </template>
-<script>
-export default {
-  methods: {
-    openLoading() {
-      const loading = this.$vs.loading({
-        text: 'Loading...'
-      })
-      setTimeout(() => {
-        loading.close()
-      }, 3000)
-    }
-  }
-}
+
+<script lang="ts" setup>
+import { loading } from "vuesax-alpha";
+
+const openLoading = () => {
+  const loadingInstance = loading({
+    text: "Loading...",
+  });
+  setTimeout(() => {
+    loadingInstance.close();
+  }, 3000);
+};
 </script>
-<style scoped lang="stylus">
-  b
-    margin-left 5px
+
+<style scoped lang="scss">
+b {
+  margin-left: 5px;
+}
 </style>

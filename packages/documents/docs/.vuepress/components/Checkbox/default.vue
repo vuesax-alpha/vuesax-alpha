@@ -5,10 +5,8 @@
     </vs-checkbox>
   </div>
 </template>
-<script>
-export default {
-  data:() => ({
-    option: true,
-  })
-}
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const option = ref(true);
 </script>

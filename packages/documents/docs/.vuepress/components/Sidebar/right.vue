@@ -72,16 +72,17 @@
     </vs-sidebar>
   </div>
 </template>
-<script>
-export default {
-  data:() => ({
-    active: 'home',
-  })
-}
+
+<script lang="ts" setup>
+import { ref } from "vue";
+
+const active = ref("home");
 </script>
-<style lang="stylus">
-  .hidden
-    overflow hidden
-    position relative
-    min-height 600px
+
+<style lang="scss">
+.hidden {
+  overflow: hidden;
+  position: relative;
+  min-height: 600px;
+}
 </style>

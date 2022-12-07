@@ -30,16 +30,17 @@
     </vs-button>
   </div>
 </template>
-<script>
-export default {
-  data: () => ({
-    color: 'danger'
-  })
-}
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const color = ref<string>('danger');
 </script>
-<style scoped lang="stylus">
-.alert-example
-  .vs-button--active
-    transform translate(0, -5px)
-    border-radius 0px 0px 12px 12px
+<style scoped lang="scss">
+.alert-example {
+	.vs-button--active {
+		transform: translate(0, -5px);
+		border-radius: 0px 0px 12px 12px;
+	}
+}
+
 </style>

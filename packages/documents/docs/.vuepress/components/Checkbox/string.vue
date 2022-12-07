@@ -9,13 +9,13 @@
     </span>
   </div>
 </template>
-<script>
-export default {
-  data:() => ({
-    option: null,
-  })
-}
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const option = ref(null)
 </script>
+
 <style scoped lang="stylus">
 .con-checkbox
   flex-direction column

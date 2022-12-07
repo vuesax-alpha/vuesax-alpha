@@ -138,16 +138,17 @@
     </vs-sidebar>
   </div>
 </template>
-<script>
-export default {
-  data:() => ({
-    active: 'Instagram',
-  })
-}
+
+<script lang="ts" setup>
+import { ref } from "vue";
+
+const active = ref("Instagram");
 </script>
-<style lang="stylus">
-  .hidden
-    overflow hidden
-    position relative
-    min-height 600px
+
+<style lang="scss">
+.hidden {
+  overflow: hidden;
+  position: relative;
+  min-height: 600px;
+}
 </style>

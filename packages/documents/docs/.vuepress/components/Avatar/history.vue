@@ -17,13 +17,11 @@
     </vs-avatar>
   </div>
 </template>
-<script>
-export default {
-
+<style scoped lang="scss">
+  .con-avatars {
+	.vs-avatar-content {
+		margin: 10px;
+	}
 }
-</script>
-<style scoped lang="stylus">
-  .con-avatars
-    .vs-avatar-content
-      margin 10px
+
 </style>

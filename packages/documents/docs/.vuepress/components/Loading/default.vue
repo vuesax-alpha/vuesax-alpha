@@ -1,17 +1,16 @@
 <template>
-  <div ref="target" id="target" class="center">
+  <div id="target" class="center">
     <vs-button flat @click="openLoading">Open Loading</vs-button>
   </div>
 </template>
-<script>
-export default {
-  methods: {
-    openLoading() {
-      const loading = this.$vs.loading()
-      setTimeout(() => {
-        loading.close()
-      }, 3000)
-    }
-  }
-}
+
+<script lang="ts" setup>
+import { loading } from "vuesax-alpha";
+
+const openLoading = () => {
+  const loadingInstance = loading();
+  setTimeout(() => {
+    loadingInstance.close();
+  }, 3000);
+};
 </script>

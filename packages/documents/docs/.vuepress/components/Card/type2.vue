@@ -26,18 +26,20 @@
     </vs-card>
   </div>
 </template>
-<script>
-export default {
-  data:() => ({
-    active: 0
-  })
-}
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const active = ref<number>(0);
 </script>
-<style lang="stylus" scoped>
-  .btn-chat
-    i
-      font-size 1.2rem
-    .span
-      padding-left 5px
-      font-weight bold
+<style lang="scss" scoped>
+.btn-chat {
+	i {
+		font-size: 1.2rem;
+	}
+	.span {
+		padding-left: 5px;
+		font-weight: bold;
+	}
+}
 </style>

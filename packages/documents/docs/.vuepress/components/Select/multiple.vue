@@ -7,27 +7,13 @@
       placeholder="Filter"
       v-model="value"
     >
-      <vs-option label="Vuesax" value="1">
-        Vuesax
-      </vs-option>
-      <vs-option label="Vue" value="2">
-        Vue
-      </vs-option>
-      <vs-option label="Javascript" value="3">
-        Javascript
-      </vs-option>
-      <vs-option label="Sass" value="4">
-        Sass
-      </vs-option>
-      <vs-option label="Typescript" value="5">
-        Typescript
-      </vs-option>
-      <vs-option label="Webpack" value="6">
-        Webpack
-      </vs-option>
-      <vs-option label="Nodejs" value="7">
-        Nodejs
-      </vs-option>
+      <vs-option label="Vuesax" value="1"> Vuesax </vs-option>
+      <vs-option label="Vue" value="2"> Vue </vs-option>
+      <vs-option label="Javascript" value="3"> Javascript </vs-option>
+      <vs-option label="Sass" value="4"> Sass </vs-option>
+      <vs-option label="Typescript" value="5"> Typescript </vs-option>
+      <vs-option label="Webpack" value="6"> Webpack </vs-option>
+      <vs-option label="Nodejs" value="7"> Nodejs </vs-option>
     </vs-select>
     <vs-select
       label="Filter Multiple"
@@ -36,27 +22,13 @@
       placeholder="Filter Multiple"
       v-model="value2"
     >
-      <vs-option label="Vuesax" value="1">
-        Vuesax
-      </vs-option>
-      <vs-option label="Vue" value="2">
-        Vue
-      </vs-option>
-      <vs-option label="Javascript" value="3">
-        Javascript
-      </vs-option>
-      <vs-option label="Sass" value="4">
-        Sass
-      </vs-option>
-      <vs-option label="Typescript" value="5">
-        Typescript
-      </vs-option>
-      <vs-option label="Webpack" value="6">
-        Webpack
-      </vs-option>
-      <vs-option label="Nodejs" value="7">
-        Nodejs
-      </vs-option>
+      <vs-option label="Vuesax" value="1"> Vuesax </vs-option>
+      <vs-option label="Vue" value="2"> Vue </vs-option>
+      <vs-option label="Javascript" value="3"> Javascript </vs-option>
+      <vs-option label="Sass" value="4"> Sass </vs-option>
+      <vs-option label="Typescript" value="5"> Typescript </vs-option>
+      <vs-option label="Webpack" value="6"> Webpack </vs-option>
+      <vs-option label="Nodejs" value="7"> Nodejs </vs-option>
     </vs-select>
 
     <vs-select
@@ -67,47 +39,38 @@
       placeholder="Collapse chips"
       v-model="value3"
     >
-      <vs-option label="Vuesax" value="1">
-        Vuesax
-      </vs-option>
-      <vs-option label="Vue" value="2">
-        Vue
-      </vs-option>
-      <vs-option label="Javascript" value="3">
-        Javascript
-      </vs-option>
-      <vs-option label="Sass" value="4">
-        Sass
-      </vs-option>
-      <vs-option label="Typescript" value="5">
-        Typescript
-      </vs-option>
-      <vs-option label="Webpack" value="6">
-        Webpack
-      </vs-option>
-      <vs-option label="Nodejs" value="7">
-        Nodejs
-      </vs-option>
+      <vs-option label="Vuesax" value="1"> Vuesax </vs-option>
+      <vs-option label="Vue" value="2"> Vue </vs-option>
+      <vs-option label="Javascript" value="3"> Javascript </vs-option>
+      <vs-option label="Sass" value="4"> Sass </vs-option>
+      <vs-option label="Typescript" value="5"> Typescript </vs-option>
+      <vs-option label="Webpack" value="6"> Webpack </vs-option>
+      <vs-option label="Nodejs" value="7"> Nodejs </vs-option>
     </vs-select>
   </div>
 </template>
-<script>
-export default {
-  data:() => ({
-    value: ['1', '2', '3'],
-    value2: ['4',],
-    value3: ['1', '4', '5', '6'],
-  })
-}
-</script>
-<style scoped lang="stylus">
-.con-selects
-  .vs-select-content
-    margin 20px 10px
-    max-width calc(40% - 20px)
 
-@media ( max-width: 500px )
-  .con-selects
-    .vs-select-content
-      max-width 100%
+<script lang="ts" setup>
+import { reactive } from "vue";
+
+const value = reactive(["1", "2", "3"]);
+const value2 = reactive(["4"]);
+const value3 = reactive(["1", "4", "5", "6"]);
+</script>
+
+<style scoped lang="scss">
+.con-selects {
+  .vs-select-content {
+    margin: 20px 10px;
+    max-width: calc(40% - 20px);
+  }
+}
+
+@media (max-width: 500px) {
+  .con-selects {
+    .vs-select-content {
+      max-width: 100%;
+    }
+  }
+}
 </style>

@@ -134,11 +134,13 @@
     </vs-button>
   </div>
 </template>
-<style lang="stylus" scoped>
-.center
-  flex-wrap wrap
-  padding 20px
-  max-width 400px
-  margin auto
+
+<style lang="scss" scoped>
+.center {
+  flex-wrap: wrap;
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+}
 </style>
 

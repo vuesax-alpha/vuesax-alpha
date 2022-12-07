@@ -1,57 +1,60 @@
 <template>
-  <div
-    :class="{ hasOpenLoading }"
-    class="center">
+  <div :class="{ hasOpenLoading }" class="center">
     <div
       v-for="(type, i) in types"
       :ref="`box${i}`"
       @click="handleClickLoading(type)"
-      class="box-loading" />
+      class="box-loading"
+    ></div>
   </div>
 </template>
-<script>
-export default {
-  data: () => ({
-    hasOpenLoading: false,
-    types: [
-      'default',
-      'waves',
-      'corners',
-      'border',
-      'points',
-      'square',
-      'gradient',
-      'rectangle',
-      'circles',
-      'square-rotate',
-      'scale'
-    ]
-  }),
-  methods: {
-    handleClickLoading(type) {
-      const loading = this.$vs.loading({
-        type
-      })
-      this.hasOpenLoading = true
-      setTimeout(() => {
-        loading.close()
-        this.hasOpenLoading = false
-      }, 3000)
-    },
-    openLoading(type, ref) {
-      this.$vs.loading({
-        target: this.$refs[ref][0],
-        text: type,
-        type
-      })
-    }
-  },
-  mounted() {
-    this.types.forEach((type, i) => {
-      this.openLoading(type, `box${i}`)
-    })
-  }
-}
+
+<script lang="ts" setup>
+import { onMounted, reactive, Ref, ref } from "vue";
+import { loading } from "vuesax-alpha";
+
+const hasOpenLoading = ref(false);
+const types = [
+  "default",
+  "waves",
+  "corners",
+  "border",
+  "points",
+  "square",
+  "gradient",
+  "rectangle",
+  "circles",
+  "square-rotate",
+  "scale",
+];
+
+const $refs = reactive<{
+  [x: string]: Ref<HTMLElement>;
+}>({});
+
+const handleClickLoading = (type: string) => {
+  const loadingInstance = loading({
+    type,
+  });
+  hasOpenLoading.value = true;
+  setTimeout(() => {
+    loadingInstance.close();
+    hasOpenLoading.value = false;
+  }, 3000);
+};
+const openLoading = (type: string, ref: string) => {
+  loading({
+    target: $refs[ref].value,
+    text: type,
+    type,
+  });
+};
+
+onMounted(() => {
+  types.forEach((type, i) => {
+    openLoading(type, `box${i}`);
+  });
+});
 </script>
 <style scoped lang="stylus">
 getColor(vsColor, alpha = 1)

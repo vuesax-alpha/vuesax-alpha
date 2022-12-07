@@ -1,4 +1,3 @@
-
 <template>
   <div class="center con-switch">
     <vs-switch v-model="active1" />
@@ -10,25 +9,30 @@
     <vs-switch color="rgb(59,222,200)" v-model="active7" />
   </div>
 </template>
-<script>
-export default {
-  data:() => ({
-    active1: true,
-    active2: true,
-    active3: true,
-    active4: true,
-    active5: true,
-    active6: true,
-    active7: true,
-  }),
-}
-</script>
-<style lang="stylus" scoped>
-.con-switch
-  display flex
-  align-items center
-  justify-content center
-  >>>.vs-switch
-    margin 10px
-</style>
 
+<script lang="ts" setup>
+import { ref } from "vue";
+
+const active1 = ref(true);
+const active2 = ref(true);
+const active3 = ref(true);
+const active4 = ref(true);
+const active5 = ref(true);
+const active6 = ref(true);
+const active7 = ref(true);
+</script>
+
+<style lang="scss" scoped>
+.con-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & > {
+    & > {
+      & > .vs-switch {
+        margin: 10px;
+      }
+    }
+  }
+}
+</style>

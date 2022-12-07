@@ -1,34 +1,33 @@
 <template>
-  <div ref="target" id="target" class="center">
+  <div id="target" class="center">
     <vs-button flat @click="openLoading">Open Loading <b>Percent</b></vs-button>
   </div>
 </template>
-<script>
-export default {
-  data: () => ({
-    percent: 0
-  }),
-  methods: {
-    openLoading() {
 
-      const loading = this.$vs.loading({
-        percent: this.percent
-      })
-      const interval = setInterval(() => {
-        if (this.percent <= 100) {
-          loading.changePercent(`${this.percent++}%`)
-        }
-      }, 40)
-      setTimeout(() => {
-        loading.close()
-        clearInterval(interval)
-        this.percent = 0
-      }, 4800)
+<script lang="ts" setup>
+import { ref } from "vue";
+import { loading } from "vuesax-alpha";
+
+const percent = ref(0);
+const openLoading = () => {
+  const loadingInstance = loading({
+    percent: percent.value,
+  });
+  const interval = setInterval(() => {
+    if (percent.value <= 100) {
+      loadingInstance.setPercent(`${percent.value++}%`);
     }
-  }
-}
+  }, 40);
+  setTimeout(() => {
+    loadingInstance.close();
+    clearInterval(interval);
+    percent.value = 0;
+  }, 4800);
+};
 </script>
-<style scoped lang="stylus">
-  b
-    margin-left 5px
+
+<style scoped lang="scss">
+b {
+  margin-left: 5px;
+}
 </style>

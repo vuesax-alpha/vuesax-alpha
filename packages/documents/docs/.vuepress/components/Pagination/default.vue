@@ -3,10 +3,9 @@
     <vs-pagination v-model="page" :length="20" />
   </div>
 </template>
-<script>
-export default {
-  data:() => ({
-    page: 1
-  })
-}
+
+<script lang="ts" setup>
+import { ref } from "vue";
+
+const page = ref(1);
 </script>

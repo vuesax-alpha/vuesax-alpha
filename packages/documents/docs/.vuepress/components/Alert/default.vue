@@ -8,10 +8,8 @@
     </vs-alert>
   </div>
 </template>
-<script>
-export default {
-  data:() => ({
-    active: true
-  })
-}
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const active = ref<boolean>(true);
 </script>

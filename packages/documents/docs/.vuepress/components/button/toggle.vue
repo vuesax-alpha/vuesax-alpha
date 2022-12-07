@@ -7,11 +7,11 @@
       :color="success ? 'success' : 'primary'"
     >
       <span v-if="!success">
-        <i class='bx bx-mail-send' ></i>
-          Send
+        <i class="bx bx-mail-send"></i>
+        Send
       </span>
 
-      <i class='bx bx-check' v-else ></i>
+      <i class="bx bx-check" v-else></i>
     </vs-button>
 
     <vs-button
@@ -20,49 +20,51 @@
       :loading="loadingFace"
       color="facebook"
     >
-      <i class='bx bxl-facebook-square' ></i>
-      {{ successFace ? 'Logout' : 'Facebook' }}
-      <template #animate >
-        <i class='bx bx-user' ></i> Login
-      </template>
+      <i class="bx bxl-facebook-square"></i>
+      {{ successFace ? "Logout" : "Facebook" }}
+      <template #animate> <i class="bx bx-user"></i> Login </template>
     </vs-button>
   </div>
 </template>
-<script>
-  export default {
-    data:() => ({
-      sending: false,
-      success: false,
 
-      loadingFace: false,
-      successFace: false
-    }),
-    methods:{
-      handleClick() {
-        this.sending = true
+<script lang="ts" setup>
+import { ref } from "vue";
 
-        setTimeout(() => {
-          this.sending = false
-          this.success = !this.success
-        }, 2000);
-      },
-      handleClickFace() {
-        this.loadingFace = true
+const sending = ref<boolean>(false);
+const success = ref<boolean>(false);
+const loadingFace = ref<boolean>(false);
+const successFace = ref<boolean>(false);
 
-        setTimeout(() => {
-          this.loadingFace = false
-          this.successFace = !this.successFace
-        }, 2000);
-      }
+const handleClick = () => {
+  sending.value = true;
+
+  setTimeout(() => {
+    sending.value = false;
+    success.value = !success.value;
+  }, 2000);
+};
+const handleClickFace = () => {
+  loadingFace.value = true;
+
+  setTimeout(() => {
+    loadingFace.value = false;
+    successFace.value = !successFace.value;
+  }, 2000);
+};
+</script>
+
+<style scoped lang="scss">
+span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+i {
+  &.bx {
+    &:not(.bx-check) {
+      padding-right: 5px;
+      font-size: 1.1rem;
     }
   }
-</script>
-<style scoped lang="stylus">
-  span
-    display flex
-    align-items center
-    justify-content center
-  i.bx:not(.bx-check)
-    padding-right 5px
-    font-size 1.1rem
+}
 </style>

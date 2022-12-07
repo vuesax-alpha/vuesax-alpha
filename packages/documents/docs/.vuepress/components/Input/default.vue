@@ -3,10 +3,9 @@
     <vs-input v-model="value" placeholder="Name" />
   </div>
 </template>
-<script>
-export default {
-  data:() => ({
-    value: ''
-  })
-}
+
+<script lang="ts" setup>
+import { ref } from "vue";
+
+const value = ref("");
 </script>

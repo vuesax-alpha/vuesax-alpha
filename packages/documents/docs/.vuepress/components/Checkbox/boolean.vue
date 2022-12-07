@@ -8,16 +8,23 @@
     </vs-checkbox>
   </div>
 </template>
-<script>
-export default {
-  data:() => ({
-    option1: true,
-    option2: false,
-  })
-}
+<script lang="ts" setup>
+import { ref } from "vue";
+
+const option1 = ref<boolean>(true);
+const option2 = ref<boolean>(false);
 </script>
-<style scoped lang="stylus">
-.con-checkbox
-  >>>.vs-checkbox-content
-    min-width 80px
+
+<style scoped lang="scss">
+.con-checkbox {
+  flex-direction: column;
+  align-items: flex-start;
+  & > {
+    & > {
+      & > .vs-checkbox-content {
+        min-width: 80px;
+      }
+    }
+  }
+}
 </style>

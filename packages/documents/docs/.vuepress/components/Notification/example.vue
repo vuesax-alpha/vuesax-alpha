@@ -11,33 +11,33 @@
     </vs-button>
   </div>
 </template>
-<script>
-import user from './user.vue'
-import cookie from './cookie.vue'
-import call from './call.vue'
-export default {
-  methods: {
-    openNotificationCookie() {
-      const noti = this.$vs.notification({
-        duration: 'none',
-        content: cookie,
-      })
-    },
-    openNotificationUser() {
-      const noti = this.$vs.notification({
-        duration: 'none',
-        width: 'auto',
-        content: user,
-      })
-    },
-    openNotificationCall() {
-      const noti = this.$vs.notification({
-        duration: 'none',
-        width: 'auto',
-        content: call,
-        notPadding: true,
-      })
-    }
-  }
-}
+
+<script lang="ts" setup>
+import { notification } from "vuesax-alpha";
+
+import user from "./user.vue";
+import cookie from "./cookie.vue";
+import call from "./call.vue";
+
+const openNotificationCookie = () => {
+  notification({
+    duration: "none",
+    content: cookie,
+  });
+};
+const openNotificationUser = () => {
+  notification({
+    duration: "none",
+    width: "auto",
+    content: user,
+  });
+};
+const openNotificationCall = () => {
+  notification({
+    duration: "none",
+    width: "auto",
+    content: call,
+    notPadding: true,
+  });
+};
 </script>

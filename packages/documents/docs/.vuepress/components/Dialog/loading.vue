@@ -42,59 +42,68 @@
     </vs-dialog>
   </div>
 </template>
-<script>
-export default {
-  data:() => ({
-    active: false,
-    input1: '',
-    input2: '',
-    checkbox1: false
-  })
-}
+<script lang="ts" setup>
+const { ref } = require("vue");
+
+const active = ref(false);
+const input1 = ref("");
+const input2 = ref("");
+const checkbox1 = ref(false);
 </script>
-<style lang="stylus">
-getColor(vsColor, alpha = 1)
-    unquote("rgba(var(--vs-"+vsColor+"), "+alpha+")")
-getVar(var)
-    unquote("var(--vs-"+var+")")
-.not-margin
-  margin 0px
-  font-weight normal
-  padding 10px
-.con-form
-  width 100%
-  .flex
-    display flex
-    align-items center
-    justify-content space-between
-    a
-      font-size .8rem
-      opacity .7
-      &:hover
-        opacity 1
-  .vs-checkbox-label
-    font-size .8rem
-  .vs-input-content
-    margin 10px 0px
-    width calc(100%)
-    .vs-input
-      width 100%
-.footer-dialog
-  display flex
-  align-items center
-  justify-content center
-  flex-direction column
-  width calc(100%)
-  .new
-    margin 0px
-    margin-top 20px
-    padding: 0px
-    font-size .7rem
-    a
-      color getColor('primary') !important
-      margin-left 6px
-      &:hover
-        text-decoration underline
-  .vs-button
-    margin 0px
+
+<style lang="scss">
+@import "../../assets/styles/mixin";
+.not-margin {
+  margin: 0px;
+  font-weight: normal;
+  padding: 10px;
+}
+.con-form {
+  width: 100%;
+  .flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    a {
+      font-size: 0.8rem;
+      opacity: 0.7;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  .vs-checkbox-label {
+    font-size: 0.8rem;
+  }
+  .vs-input-content {
+    margin: 10px 0px;
+    width: calc(100%);
+    .vs-input {
+      width: 100%;
+    }
+  }
+}
+.footer-dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: calc(100%);
+  .new {
+    margin: 0px;
+    margin-top: 20px;
+    padding: 0px;
+    font-size: 0.7rem;
+    a {
+      color: -color("primary") !important;
+      margin-left: 6px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .vs-button {
+    margin: 0px;
+  }
+}
 </style>

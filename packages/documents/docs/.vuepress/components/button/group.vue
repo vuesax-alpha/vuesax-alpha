@@ -67,17 +67,23 @@
     </vs-button-group>
   </div>
 </template>
-<script>
-export default {
-  data:() => ({
-    active: 0
-  })
-}
+
+<script lang="ts" setup>
+import { ref } from "vue";
+
+const active = ref<number>(0);
 </script>
-<style lang="stylus" scoped>
-.center
-  flex-wrap wrap
-  >>>.vs-button-group
-    margin 20px 20px
+<style lang="scss" scoped>
+.center {
+	flex-wrap: wrap;
+	& >  {
+		& >  {
+			& > .vs-button-group {
+				margin: 20px 20px;
+			}
+		}
+	}
+}
+
 </style>
 

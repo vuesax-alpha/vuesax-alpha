@@ -1,34 +1,34 @@
 <template>
-  <div ref="target" id="target" class="center">
-    <vs-button flat @click="openLoading">Open Loading <b>Progress</b></vs-button>
+  <div id="target" class="center">
+    <vs-button flat @click="openLoading"
+      >Open Loading <b>Progress</b></vs-button
+    >
   </div>
 </template>
-<script>
-export default {
-  data: () => ({
-    progress: 0
-  }),
-  methods: {
-    openLoading() {
+<script lang="ts" setup>
+import { ref } from "vue";
+import { loading } from "vuesax-alpha";
 
-      const loading = this.$vs.loading({
-        progress: 0
-      })
-      const interval = setInterval(() => {
-        if (this.progress <= 100) {
-          loading.changeProgress(this.progress++)
-        }
-      }, 40)
-      setTimeout(() => {
-        loading.close()
-        clearInterval(interval)
-        this.progress = 0
-      }, 4100)
+const progress = ref(0);
+
+const openLoading = () => {
+  const loadingInstance = loading({
+    progress: 0,
+  });
+  const interval = setInterval(() => {
+    if (progress.value <= 100) {
+      loadingInstance.setProgress(progress.value++);
     }
-  }
-}
+  }, 40);
+  setTimeout(() => {
+    loadingInstance.close();
+    clearInterval(interval);
+    progress.value = 0;
+  }, 4100);
+};
 </script>
-<style scoped lang="stylus">
-  b
-    margin-left 5px
+<style scoped lang="scss">
+b {
+  margin-left: 5px;
+}
 </style>

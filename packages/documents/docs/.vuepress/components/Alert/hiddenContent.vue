@@ -8,10 +8,8 @@
     </vs-alert>
   </div>
 </template>
-<script>
-export default {
-  data:() => ({
-    hidden: true
-  })
-}
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const hidden = ref<boolean>(true);
 </script>
