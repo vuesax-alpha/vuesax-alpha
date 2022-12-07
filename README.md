@@ -2,8 +2,8 @@
 
 ### Author: 
   [Vuesax.com](https://vuesax.com/)
+
   [Github](https://github.com/lusaxweb/vuesax-next)
-  [ThisProject](https://github.com/tranthinh-coding/vuesax-alpha)
 
   <img width="100%" src="https://raw.githubusercontent.com/lusaxweb/vuesax-next/master/public/vuesax.gif" alt="vuesax" />
 
