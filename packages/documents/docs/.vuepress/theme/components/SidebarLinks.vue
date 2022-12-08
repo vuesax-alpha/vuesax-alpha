@@ -1,19 +1,19 @@
 <template>
-  <ul class="sidebar-links" v-if="sidebar.length">
+  <ul class="sidebar-links" v-if="links.length">
     <li
-      v-for="(item, i) in sidebar"
-      :key="i"
+      v-for="(item, i) in links"
       :class="{ active: item.link === $route.path }"
     >
-      <SidebarGroup
-        v-if="!isString(item) && isSidebarGroup(item)"
-        :sidebar="item"
-        :open="fixed || i === openGroupIndex || vsTheme?.sidebarCollapseOpen || false"
-        :collapsable="true"
-        :depth="depth"
-        @toggle="toggleGroup(i)"
-      />
-      <SidebarLink v-else :sidebarDepth="sidebarDepth" :sidebar="item" />
+      <template v-if="!isString(item) && ('children' in item)">
+        <SidebarGroup
+          :item="item"
+          :open="fixed || i === openGroupIndex || vsTheme?.sidebarCollapseOpen || false"
+          :collapsable="true"
+          :depth="depth"
+          @toggle="toggleGroup(i)"
+        />
+      </template>
+      <SidebarLink v-else :sidebarDepth="sidebarDepth" :link="item" />
     </li>
   </ul>
 </template>
@@ -22,14 +22,14 @@
 import { ref, watch, onActivated, inject } from "vue";
 import { SidebarConfigArray, SidebarGroup as SidebarGroupType, SidebarItem } from "vuepress-vite";
 import { RouteLocationNormalizedLoaded, useRoute, useRouter } from "vue-router";
+import { isString } from "@vue/shared";
 import SidebarGroup from "./SidebarGroup.vue";
 import SidebarLink from "./SidebarLink.vue";
 import { isActive } from "../util";
 import { vsThemeKey } from "../type";
-import { isString } from "@vue/shared";
 
 const props = defineProps<{
-  sidebar: SidebarConfigArray;
+  links: SidebarConfigArray;
   /**
    * depth of current sidebar links
    */
@@ -38,7 +38,7 @@ const props = defineProps<{
    * depth of headers to be extracted
    */
   sidebarDepth?: number;
-  fixed: boolean;
+  fixed?: boolean;
 }>();
 
 const route = useRoute();
@@ -53,7 +53,7 @@ onActivated(() => {
   refreshIndex();
 });
 
-watch(router, () => {
+watch(route, () => {
   refreshIndex();
 });
 
@@ -64,7 +64,7 @@ const isSidebarGroup = (item: string | SidebarGroupType | SidebarItem) => {
 }
 
 const refreshIndex = () => {
-  const index = resolveOpenGroupIndex(route, props.sidebar);
+  const index = resolveOpenGroupIndex(route, props.links);
   if (index > -1) {
     openGroupIndex.value = index;
   }

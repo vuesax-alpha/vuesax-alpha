@@ -132,7 +132,7 @@ const shouldShowSidebar = computed(() => {
   return (
     !frontmatter.home &&
     frontmatter.sidebar !== false &&
-    (themeData.value.sidebar as []).length
+    (themeData.value.sidebar || []).length
   );
 });
 

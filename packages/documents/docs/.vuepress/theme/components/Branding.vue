@@ -123,7 +123,7 @@ const images = [
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/mixin";
+@import "../styles/use";
 
 .darken {
   .con-branding {
@@ -139,15 +139,10 @@ const images = [
 }
 
 .con-branding {
-  & ~ {
-    & > {
-      & > {
-        & > .config {
-          left: 0px;
-        }
-      }
-    }
+  .config {
+    left: 0px;
   }
+  
   .con-images {
     display: flex;
     align-items: flex-start;
@@ -177,7 +172,7 @@ const images = [
         padding: 10px 0px;
         a {
           background: transparent;
-          border: 2px solid getVar(theme-bg2);
+          border: 2px solid -color('theme-bg2');
           padding: 6px 15px;
           margin-left: 8px;
           border-radius: 10px;
@@ -191,7 +186,7 @@ const images = [
             margin-right: 7px;
           }
           &:hover {
-            background: getVar(theme-bg2);
+            background: -color('theme-bg2');
           }
         }
       }
@@ -250,7 +245,7 @@ const images = [
         height: 80px;
         background-image: linear-gradient(
           180deg,
-          getVar(theme-layout) 0%,
+          -color('theme-layout') 0%,
           transparent 100%
         );
         z-index: 200;

@@ -125,7 +125,8 @@ const openContact = () => {
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
 .darken {
   .con-faq {
     ul {
@@ -274,14 +275,8 @@ const openContact = () => {
 }
 .con-license {
   width: 100%;
-  & ~ {
-    & > {
-      & > {
-        & > .config {
-          left: 0px;
-        }
-      }
-    }
+  ~ .config {
+    left: 0px;
   }
   header {
     display: flex;

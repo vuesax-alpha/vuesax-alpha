@@ -35,6 +35,8 @@ defineExpose<CarbonExpose>({
 </script>
 
 <style lang="scss">
+@import "../styles/use";
+
 @keyframes loading {
   0% {
     transform: rotate(0deg);

@@ -1,49 +1,31 @@
 <template>
   <nav class="nav-links" v-if="userNav.length || repoLink">
     <!-- user links -->
-    <div class="nav-item" v-for="item in userLinks" :key="item.link">
-      <DropdownLink v-if="item.type === 'links'" :item="item" />
-      <NavLink v-else :item="item" />
+    <div class="nav-item" v-for="item in userNav">
+      <template v-if="!isString(item)">
+        <DropdownLink v-if="('children' in item)" :item="item" />
+        <NavLink v-else :nav-item="item" />
+      </template>
     </div>
-
-    <!-- repo link -->
-    <!-- <a
-      v-if="repoLink"
-      :href="repoLink"
-      class="repo-link"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {{ repoLabel }}
-      <OutboundLink/>
-    </a> -->
   </nav>
 </template>
 
 <script lang="ts" setup>
 import DropdownLink from "./DropdownLink.vue";
-import { resolveTypeNavLinkItem } from "../util";
 import NavLink from "./NavLink.vue";
 import { computed } from "@vue/reactivity";
 import {
   useThemeData,
   useThemeLocaleData,
-} from "@vuepress/plugin-theme-data/lib/client";
+} from "@vuepress/plugin-theme-data/client";
 import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
+import { isString } from "@vue/shared";
 
 const themeData = useThemeData<VuesaxAlphaThemeOptions>();
 const themeLocaleData = useThemeLocaleData<VuesaxAlphaThemeOptions>();
 
 const userNav = computed(() => {
   return themeLocaleData.value.navbar || themeData.value.navbar || [];
-});
-
-const userLinks = computed(() => {
-  return userNav.value.map((navItem) => {
-    return Object.assign(resolveTypeNavLinkItem(navItem), {
-      items: (navItem.children || []).map(resolveTypeNavLinkItem),
-    });
-  });
 });
 
 const repoLink = computed(() => {
@@ -75,7 +57,8 @@ const repoLabel = computed(() => {
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
 .nav-links {
   display: flex;
   align-items: center;

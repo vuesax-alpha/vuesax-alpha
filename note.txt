@@ -9,3 +9,5 @@
 - scrollbar card group
 
 - always show thumb
+
+- vsFuntions not suggest params

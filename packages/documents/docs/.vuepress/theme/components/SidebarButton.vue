@@ -12,11 +12,12 @@
 defineEmits<{
   (event: 'toggle-sidebar'): void
 }>()
-defineProps<{ openSidebar: boolean }>();
+defineProps<{ openSidebar?: boolean }>();
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
 .isSidebarOpen {
   .sidebar-button {
     transform: rotate(90deg);

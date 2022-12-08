@@ -1,7 +1,6 @@
 <template>
   <div class="config">
     <button class="config-btn">
-      <!-- <box-icon name='cog' ></box-icon> -->
       <i class="bx bx-cog"></i>
       <svg
         class="effect1config"
@@ -34,16 +33,13 @@
           />
         </svg>
         <li @click="reloadConfig">
-          <!-- <box-icon name='rotate-left'></box-icon> -->
           <i title="reload config" class="bx bx-rotate-left"></i>
         </li>
         <li @click="changeSidebar">
-          <!-- <box-icon :title="`Hidden Sidebar`" class="hidden-sidebar-hidden" name='left-indent'></box-icon> -->
           <i
             title="Hidden Sidebar"
             class="bx bx-left-indent hidden-sidebar-hidden"
           ></i>
-          <!-- <box-icon :title="`Open Sidebar`" class="visible-sidebar-hidden" name='right-indent' ></box-icon> -->
           <i
             title="Open Sidebar"
             class="bx bx-right-indent visible-sidebar-hidden"
@@ -56,14 +52,9 @@
           @click="changeMenu"
           :class="{ active: !$vsTheme.sidebarCollapseOpen }"
         >
-          <!-- <box-icon v-if="$vsTheme.sidebarCollapseOpen" name='list-minus'></box-icon> -->
           <i v-if="$vsTheme.sidebarCollapseOpen" class="bx bx-list-minus"></i>
-          <!-- <box-icon v-else name='list-plus'></box-icon> -->
           <i v-else class="bx bx-list-plus"></i>
         </li>
-        <!-- <li title="View examples mobile style" @click="ChangeMobile" :class="{'active': $vsTheme.mobileActive}">
-          <i class="bx bx-mobile-alt"></i>
-        </li> -->
         <li
           :title="`${!$vsTheme?.openCode ? 'Open' : 'Close'} all Code`"
           @click="changeOpenCode"
@@ -74,35 +65,17 @@
         <li class="theme-color-layout" title="Theme Color Layout">
           <i class="bx bx-paint-roll"></i>
           <input
-            @change="changeColorLayout(($event.target as HTMLInputElement).value)"
+            @change="
+              changeColorLayout(($event.target as HTMLInputElement).value)
+            "
             type="color"
             value="#2564ff"
           />
         </li>
-        <!-- <li :title="`Theme ${ !$vsTheme.themeDarken ? 'Dark' : 'Light'}`" class="li-darken" @click="ChangeTheme" :class="{'active': $vsTheme.themeDarken}">
-          <i v-if="!$vsTheme.themeDarken" class="bx bx-brightness-half"></i>
-          <i v-else class="bx bx-brightness"></i>
-        </li> -->
         <li class="theme-color-primary" title="Theme Primary Color">
           <i class="bx bxs-color-fill"></i>
           <input @change="changeColor" type="color" value="#2564ff" />
         </li>
-        <!--
-        <li class="theme-translate" title="Theme translate">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
-
-          <ul class="lang">
-            <li
-              v-for="(item, i) in lang[0].items"
-              :key="i"
-              v-show="item.link !== $page.path"
-              >
-              <router-link :to="item.link">
-                {{ item.text }}
-              </router-link>
-            </li>
-          </ul>
-        </li> -->
 
         <svg
           class="effect1config invert"
@@ -136,7 +109,7 @@
 
       <ul class="lang">
         <li
-          v-for="(item, i) in lang[0].items"
+          v-for="(item, i) in lang[0]?.items"
           :key="i"
           v-show="item.link !== pageData.path"
         >
@@ -165,15 +138,13 @@
 </template>
 
 <script setup lang="ts">
-import { usePageData, usePageLang, useRouteLocale, useSiteData } from "@vuepress/client";
-import { useThemeData, useThemeLocaleData } from "@vuepress/plugin-theme-data/lib/client";
+import { usePageData, usePageLang, useSiteData } from "@vuepress/client";
+import { useThemeData } from "@vuepress/plugin-theme-data/client";
 import { computed, inject, onActivated, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { LocaleConfig, LocaleData } from "vuepress-vite";
 import { vsThemeContext, vsThemeKey } from "../type";
 import { vsSetTheme, vsToggleTheme } from "vuesax-alpha";
 
-const route = useRoute();
 const router = useRouter();
 const themeData = useThemeData();
 const pageData = usePageData();
@@ -181,7 +152,6 @@ const siteData = useSiteData();
 const pageLang = usePageLang();
 
 const $vsTheme = inject<vsThemeContext>(vsThemeKey, {} as vsThemeContext)!;
-
 const $el = ref<HTMLElement>();
 
 const lang = computed(() => {
@@ -191,7 +161,9 @@ const lang = computed(() => {
     const routes = router.options.routes;
 
     const languageDropdown = {
-      text: (themeData.value.locales![pageLang.value] as any).selectLanguageText || "Languages",
+      text:
+        (themeData.value.locales![pageLang.value] as any).selectLanguageText ||
+        "Languages",
       items: Object.keys(locales).map((path) => {
         const locale = locales[path];
         const text = locale.title;
@@ -216,10 +188,18 @@ const lang = computed(() => {
 });
 
 const reloadConfig = () => {
-  const sidebar = document.querySelector(".theme-container > .sidebar") as HTMLElement;
-  const navbar = document.querySelector(".theme-container > .navbar") as HTMLElement;
-  const config = document.querySelector(".theme-container > .config") as HTMLElement;
-  const effect1 = document.querySelector(".header-page > .effect1") as HTMLElement;
+  const sidebar = document.querySelector(
+    ".theme-container > .sidebar"
+  ) as HTMLElement;
+  const navbar = document.querySelector(
+    ".theme-container > .navbar"
+  ) as HTMLElement;
+  const config = document.querySelector(
+    ".theme-container > .config"
+  ) as HTMLElement;
+  const effect1 = document.querySelector(
+    ".header-page > .effect1"
+  ) as HTMLElement;
 
   sidebar?.style.removeProperty(`--vs-theme-layout`);
   navbar?.style.removeProperty(`--vs-theme-layout`);
@@ -239,7 +219,7 @@ const reloadConfig = () => {
   $vsTheme.openCode = false;
 
   localStorage.vsTheme = "dark";
-  const returnTheme = vsSetTheme('dark');
+  const returnTheme = vsSetTheme("dark");
   $vsTheme.themeDarken = returnTheme == "dark";
   if (returnTheme == "dark") {
     document.body.classList.add("darken");
@@ -281,7 +261,8 @@ const contrastColor = (element: string) => {
     .replace(/\)$/, "")
     .replace(/\s/g, "")
     .split(",");
-  const yiq = (Number(rgb[0]) * 299 + Number(rgb[1]) * 587 + Number(rgb[2]) * 114) / 1000;
+  const yiq =
+    (Number(rgb[0]) * 299 + Number(rgb[1]) * 587 + Number(rgb[2]) * 114) / 1000;
   if (yiq >= 128) {
     return true;
   } else {
@@ -292,10 +273,18 @@ const changeColorLayout = (colorBase: string) => {
   document.body.classList.add("all-transition");
   $el.value!.focus();
 
-  const sidebar = document.querySelector(".theme-container > .sidebar")! as HTMLElement;
-  const navbar = document.querySelector(".theme-container > .navbar")! as HTMLElement;
-  const config = document.querySelector(".theme-container > .config")! as HTMLElement;
-  const effect1 = document.querySelector(".header-page > .effect1")! as HTMLElement;
+  const sidebar = document.querySelector(
+    ".theme-container > .sidebar"
+  )! as HTMLElement;
+  const navbar = document.querySelector(
+    ".theme-container > .navbar"
+  )! as HTMLElement;
+  const config = document.querySelector(
+    ".theme-container > .config"
+  )! as HTMLElement;
+  const effect1 = document.querySelector(
+    ".header-page > .effect1"
+  )! as HTMLElement;
 
   sidebar.style.setProperty(`--vs-theme-layout`, colorBase);
   navbar.style.setProperty(`--vs-theme-layout`, colorBase);
@@ -336,7 +325,7 @@ const changeOpenCode = () => {
   $vsTheme.openCode = !$vsTheme.openCode;
 };
 const changeTheme = () => {
-  const returnTheme = vsToggleTheme('dark');
+  const returnTheme = vsToggleTheme("dark");
   $vsTheme.themeDarken = returnTheme == "dark";
   if (returnTheme == "dark") {
     document.body.classList.add("darken");
@@ -354,17 +343,11 @@ onMounted(() => {
     document.body.classList.remove("darken");
   }
 });
-onActivated(() => {
-  // Vue.prototype.$mobile = { active: localStorage.mobile != "true" || false };
-  // Vue.prototype.$menu = { active: (localStorage.menu != 'true') || false }
-  // Vue.observable(this.$site.sidebarCollapseOpen)
-  // Vue.observable(this.$vsTheme);
-  // Vue.observable(this.$mobile);
-  // Vue.observable(this.$site.themeConfig);
-});
 </script>
 
 <style lang="scss">
+@import "../styles/use";
+
 [vs-theme="dark"] {
   --vs-theme-bg: #18191c;
   --vs-theme-color: #fff;
@@ -469,7 +452,7 @@ onActivated(() => {
   }
   svg {
     width: 18px;
-    fill: -color('theme-color');
+    fill: -color("theme-color");
   }
   .lang {
     transition: all 0.25s ease;
@@ -488,7 +471,7 @@ onActivated(() => {
       a {
         padding: 7px 15px;
         font-weight: bold;
-        background: -color('theme-layout');
+        background: -color("theme-layout");
         border-radius: 20px;
         transition: all 0.25s ease;
         margin-bottom: 10px;
@@ -526,7 +509,7 @@ onActivated(() => {
   }
   i {
     &.bx {
-      color: -color('primary');
+      color: -color("primary");
     }
   }
 }
@@ -550,7 +533,7 @@ onActivated(() => {
     align-items: center;
     justify-content: center;
     border: 0px;
-    background: -color('theme-layout');
+    background: -color("theme-layout");
     transition: all 0.25s ease;
     &.config-btn {
       width: 40px;
@@ -569,8 +552,8 @@ onActivated(() => {
     left: -3px;
     position: absolute;
     transform: rotate(179deg);
-    fill: -color('theme-layout');
-    stroke: -color('theme-layout');
+    fill: -color("theme-layout");
+    stroke: -color("theme-layout");
     &.invert {
       transform: rotate(-90deg);
       bottom: -36px;
@@ -581,7 +564,7 @@ onActivated(() => {
     &.bx {
       font-size: 1.2rem;
       transition: all 0.25s ease;
-      color: -color('theme-color');
+      color: -color("theme-color");
       &.bxs-moon {
         color: rgba(0, 0, 0, 0.5);
       }
@@ -593,7 +576,7 @@ onActivated(() => {
       top: 0px;
       left: 0px;
       transform: translate(-15px, calc(-100% - 25px));
-      background: -color('theme-layout');
+      background: -color("theme-layout");
       list-style: none;
       padding-left: 0px;
       margin: 0px;
@@ -613,7 +596,7 @@ onActivated(() => {
         position: relative;
         &.active {
           background: rgba(0, 0, 0, 0.05);
-          border: 2px solid -color('theme-bg2');
+          border: 2px solid -color("theme-bg2");
         }
         .visible-sidebar-hidden {
           display: none;

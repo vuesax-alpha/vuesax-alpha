@@ -55,15 +55,6 @@
       >
         license
       </vs-navbar-item>
-      <template #right>
-        <vs-button flat :color="textWhite ? '#fff' : 'primary'"
-          >Login</vs-button
-        >
-        <vs-button :shadow="textWhite" :color="textWhite ? '#fff' : 'primary'"
-          >Get Started</vs-button
-        >
-        <!-- <vs-input square transparent color="#fff" :text-white="textWhite" placeholder="Search"></vs-input> -->
-      </template>
     </vs-navbar>
 
     <div class="content-1 contentx">
@@ -117,6 +108,8 @@ const handleCollapsed = (val: boolean) => {
 </script>
 
 <style lang="scss">
+@import "../styles/use";
+
 .btn-menu {
   margin-right: 15px;
 }

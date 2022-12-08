@@ -10,16 +10,16 @@
     ]"
   >
     <router-link
-      v-if="item.path"
+      v-if="item.link"
       class="sidebar-heading clickable"
       :class="{
         open,
-        active: isActive($route, item.path),
+        active: isActive($route, item.link),
       }"
-      :to="item.path"
+      :to="item.link"
       @click.native="$emit('toggle')"
     >
-      <span>{{ item.title }}</span>
+      <span>{{ item.text }}</span>
       <span class="arrow" v-if="collapsable" :class="open ? 'down' : 'right'">
       </span>
     </router-link>
@@ -30,7 +30,7 @@
       :class="{ open }"
       @click="$emit('toggle')"
     >
-      <span>{{ item.title }}</span>
+      <span>{{ item.text }}</span>
       <!-- <span
         class="arrow"
         v-if="collapsable"
@@ -41,9 +41,9 @@
 
     <DropdownTransition>
       <SidebarLinks
-        class="sidebar-group-items"
-        :sidebar="item.children"
         v-if="open || !collapsable"
+        class="sidebar-group-items"
+        :links="item.children"
         :sidebarDepth="item.sidebarDepth"
         :depth="depth + 1"
       />
@@ -61,13 +61,13 @@ defineProps<{
   open: boolean;
   collapsable: boolean;
   depth: number;
-  fixed: boolean;
-  sidebar: SidebarGroupCollapsible;
+  item: SidebarGroupCollapsible;
 }>();
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
 .sidebar-group {
   .sidebar-group {
     padding-left: 0.5em;

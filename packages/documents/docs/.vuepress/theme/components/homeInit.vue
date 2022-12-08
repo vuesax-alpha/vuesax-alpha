@@ -616,7 +616,8 @@
 <script lang="ts" setup></script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
 
 @keyframes btn1 {
   0% {

@@ -19,7 +19,8 @@ withDefaults(
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/mixin";
+@import "../styles/use";
+
 
 .badge {
   display: inline-block;
@@ -39,10 +40,10 @@ withDefaults(
     vertical-align: top;
   }
   &.accent {
-    background: -color(accent-color);
+    background: -color('accent-color');
   }
   &.text {
-    background: -var(theme-color);
+    background: -color('theme-color');
     color: #fff;
   }
 }

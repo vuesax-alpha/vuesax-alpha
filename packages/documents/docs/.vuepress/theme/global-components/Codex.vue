@@ -346,19 +346,20 @@ const leavecodes = (el: HTMLElement) => {
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
 
 .noti-code {
   position: fixed;
   bottom: 0px;
   width: 100%;
   max-width: 500px;
-  background: -var(theme-color);
+  background: -color('theme-color');
   left: 50%;
   transform: translate(-50%, 100%);
   padding: 10px 20px;
   text-align: center;
-  color: -var(theme-layout);
+  color: -color('theme-layout');
   border-radius: 20px 20px 0px 0px;
   opacity: 0;
   visibility: hidden;
@@ -476,7 +477,7 @@ const leavecodes = (el: HTMLElement) => {
   }
 }
 .code {
-  background: -var(theme-layout);
+  background: -color('theme-layout');
   z-index: 300;
   position: relative;
   padding-bottom: 10px;
@@ -492,7 +493,7 @@ const leavecodes = (el: HTMLElement) => {
 .con-code {
   display: block;
   transition: all 0.25s ease;
-  background: -var(theme-code2);
+  background: -color('theme-code2');
   border-radius: 20px;
   width: calc(100% - 20px);
   margin: 0px 10px;
@@ -521,7 +522,7 @@ const leavecodes = (el: HTMLElement) => {
     padding-top: 10px;
     li {
       list-style: none;
-      color: -var(theme-color);
+      color: -color('theme-color');
       opacity: 0.6;
       padding: 3px 10px;
       transition: all 0.25s ease;
@@ -550,14 +551,14 @@ const leavecodes = (el: HTMLElement) => {
         height: 60%;
         top: 20%;
         width: 1px;
-        background: -color(borderColor, 1);
+        background: -color('border-color', 1);
         display: block;
       }
       &.active {
-        color: -color(accent-color) !important;
+        color: -color('accent-color') !important;
         opacity: 1;
         border-radius: 12px 12px 0px 0px;
-        background: -var(theme-code2);
+        background: -color('theme-code2');
         i {
           color: #fff !important;
         }
@@ -568,7 +569,7 @@ const leavecodes = (el: HTMLElement) => {
       &:not(.not-a) {
         svg {
           transition: all 0.25s ease;
-          fill: -color(textColor, 0.6);
+          fill: -color('text-color', 0.6);
           pointer-events: none;
         }
       }
@@ -578,7 +579,7 @@ const leavecodes = (el: HTMLElement) => {
 .header-codex ul li svg,
 .header-codex ul li i {
   max-width: 18px;
-  fill: -var(theme-color) !important;
+  fill: -color('theme-color') !important;
 }
 
 @media (max-width: 500px) {

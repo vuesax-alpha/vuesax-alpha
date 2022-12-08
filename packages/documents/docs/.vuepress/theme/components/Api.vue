@@ -99,10 +99,9 @@
 <script setup lang="ts">
 import { computed } from "@vue/reactivity";
 import { usePageData } from "@vuepress/client";
-import { onMounted } from "vue";
-import { watch } from "fs";
+import { onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
-import { useThemeData } from "@vuepress/plugin-theme-data/lib/client";
+import { useThemeData } from "@vuepress/plugin-theme-data/client";
 import prism from "prismjs";
 
 import { ThemeNormalApiFrontmatter, ThemeNormalPropsFrontmatter } from "../shared/frontmatter/normal";
@@ -277,7 +276,7 @@ const getCode = (str: string) => {
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
 .content-table {
   &:last-child {
     table {

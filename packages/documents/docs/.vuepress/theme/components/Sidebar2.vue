@@ -6,7 +6,7 @@
     <div class="content-sidebar">
       <!-- <NavLinks/> -->
       <!-- <slot name="top"/> -->
-      <SidebarLinks :fixed="fixed" :depth="1" :sidebar="sidebar" />
+      <SidebarLinks :fixed="fixed" :depth="1" :links="sidebar" />
       <!-- <slot name="bottom"/> -->
     </div>
   </aside>
@@ -23,7 +23,7 @@ defineProps<{
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
 
 // vuesax-theme
 .effect1 {
@@ -53,7 +53,7 @@ defineProps<{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: -var('navbar-height');
+    height: $navbarHeight;
     cursor: pointer;
     transition: all 0.25s ease;
     outline: none;

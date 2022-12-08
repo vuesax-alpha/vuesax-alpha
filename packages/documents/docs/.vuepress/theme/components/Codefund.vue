@@ -3,7 +3,8 @@
 </template>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
 .codefund {
   position: fixed;
   right: 0px;

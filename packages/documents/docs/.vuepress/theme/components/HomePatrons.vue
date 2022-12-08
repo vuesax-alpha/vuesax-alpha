@@ -40,7 +40,8 @@ const openUrl = () => {
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
 
 .darken {
   .con-patrons {

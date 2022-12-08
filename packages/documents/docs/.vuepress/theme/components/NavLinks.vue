@@ -1,33 +1,22 @@
 <template>
   <nav class="nav-links" v-if="userNav.length || repoLink">
     <!-- user links -->
-    <div class="nav-item" v-for="(navItem, index) of userNav" :key="index">
-      <template v-if="typeof navItem === 'string'"></template>
-      <NavLink v-else :nav-item="navItem" />
-      <DropdownLink :item="navItem" />
+    <div class="nav-item" v-for="navItem in userNav">
+      <template v-if="!isString(navItem)">
+        <DropdownLink v-if="('children' in navItem)" :item="navItem" />
+        <NavLink v-else :nav-item="navItem" />
+      </template>
     </div>
-
-    <!-- repo link -->
-    <!-- <a
-      v-if="repoLink"
-      :href="repoLink"
-      class="repo-link"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {{ repoLabel }}
-      <OutboundLink/>
-    </a> -->
   </nav>
 </template>
 
 <script lang="ts" setup>
 import { computed } from "@vue/reactivity";
-import { isLinkHttp } from "@vuepress/shared";
+import { isLinkHttp, isString } from "@vuepress/shared";
 import {
   useThemeData,
   useThemeLocaleData,
-} from "@vuepress/plugin-theme-data/lib/client";
+} from "@vuepress/plugin-theme-data/client";
 import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
 import DropdownLink from "./DropdownLink.vue";
 import NavLink from "./NavLink.vue";
@@ -68,7 +57,8 @@ const repoLabel = computed(() => {
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
 
 .nav-links {
   display: flex;

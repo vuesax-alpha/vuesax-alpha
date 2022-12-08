@@ -62,7 +62,8 @@ const open = (url: string) => {
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
 .darken {
   .con-themes {
     header {

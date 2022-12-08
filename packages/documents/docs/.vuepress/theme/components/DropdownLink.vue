@@ -1,43 +1,46 @@
 <template>
   <div class="dropdown-wrapper" :class="{ open }">
-    <a class="dropdown-title" v-if="!item.link" @click="toggle">
+    <a class="dropdown-title" v-if="item.text" @click="toggle">
       <span :class="item.text" class="title">
         <span v-if="item.text !== '...'">
           {{ item.text }}
         </span>
         <i v-else class="bx bx-dots-horizontal-rounded"> </i>
+
         <i v-if="hasFle" class="bx bx-chevron-down not-remove"></i>
       </span>
     </a>
 
-    <NavLink v-else :item="item" :arrow="true" />
-
     <DropdownTransition>
       <ul class="nav-dropdown" v-show="open">
-        <li
-          class="dropdown-item"
-          :key="subItem.link || index"
-          v-for="(subItem, index) in item.items"
-        >
-          <h4 v-if="subItem.type === 'links'">{{ subItem.text }}</h4>
+        <li class="dropdown-item" v-for="subItem in item.children">
+          <template v-if="!isString(subItem)">
+            <template v-if="'children' in subItem">
+              <h4>{{ subItem.text }}</h4>
+              <ul class="dropdown-subitem-wrapper">
+                <li
+                  class="dropdown-subitem"
+                  v-for="childSubItem in subItem.children"
+                >
+                  <template
+                    v-if="
+                      !isString(childSubItem) && !('children' in childSubItem)
+                    "
+                  >
+                    <NavLink
+                      :exact="
+                        $route.path.indexOf('/guide/components/') !== -1 ||
+                        childSubItem.text === 'Button'
+                      "
+                      :nav-item="childSubItem"
+                    />
+                  </template>
+                </li>
+              </ul>
+            </template>
 
-          <ul class="dropdown-subitem-wrapper" v-if="subItem.type === 'links'">
-            <li
-              class="dropdown-subitem"
-              :key="childSubItem.link"
-              v-for="childSubItem in subItem.items"
-            >
-              <NavLink
-                :exact="
-                  $route.path.indexOf('/guide/components/') !== -1 ||
-                  childSubItem.text === 'Button'
-                "
-                :item="childSubItem"
-              />
-            </li>
-          </ul>
-
-          <NavLink v-else :item="subItem" />
+            <NavLink v-else :nav-item="subItem" />
+          </template>
         </li>
       </ul>
     </DropdownTransition>
@@ -45,22 +48,22 @@
 </template>
 
 <script setup lang="ts">
-import NavLink from './NavLink.vue'
-import DropdownTransition from './DropdownTransition.vue'
-import { ref } from 'vue';
+import NavLink from "./NavLink.vue";
+import DropdownTransition from "./DropdownTransition.vue";
+import { ref } from "vue";
+import { NavbarGroup } from "vuepress-vite";
+import { isString } from "@vue/shared";
 
-type DropdownLink = {
-
-}
-
-defineProps<{ item: DropdownLink, hasFle: any }>({ item: { required: true }, hasFle: null })
+defineProps<{
+  item: NavbarGroup;
+  hasFle?: boolean;
+}>();
 
 const open = ref<boolean>(false);
 
 const toggle = () => {
-    open.value = !open.value
-  }
-}
+  open.value = !open.value;
+};
 </script>
 
 <style lang="scss">
@@ -167,7 +170,7 @@ const toggle = () => {
   font-size: 0.7rem;
 }
 
-@media (max-width: $MQMobile) {
+@media (max-width: -var("mq-mobile")) {
   .dropdown-wrapper {
     &.open {
       .dropdown-title {
@@ -197,7 +200,7 @@ const toggle = () => {
   }
 }
 
-@media (min-width: $MQMobile) {
+@media (min-width: -var("mq-mobile")) {
   .dropdown-wrapper {
     position: relative;
     &:after {
@@ -224,7 +227,7 @@ const toggle = () => {
       .arrow {
         border-left: 4px solid transparent;
         border-right: 4px solid transparent;
-        border-top: 6px solid $arrowBgColor;
+        border-top: 6px solid -color("arrow-bg-color");
         border-bottom: 0;
       }
     }

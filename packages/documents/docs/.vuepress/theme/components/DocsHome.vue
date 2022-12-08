@@ -12,7 +12,7 @@ defineProps<{ sidebarItems: SidebarConfigArray }>();
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
 .docs-home {
   & ~ .config {
     left: 0px;

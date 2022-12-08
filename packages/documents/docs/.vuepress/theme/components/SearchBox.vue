@@ -65,7 +65,7 @@ import {
   useRouteLocale,
   useSiteData,
 } from "@vuepress/client";
-import { useThemeData } from "@vuepress/plugin-theme-data/lib/client";
+import { useThemeData } from "@vuepress/plugin-theme-data/client";
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 
@@ -230,7 +230,8 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
 
 .fade-enter-active,
 .fade-leave-active {

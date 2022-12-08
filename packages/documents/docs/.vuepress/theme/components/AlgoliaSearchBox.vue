@@ -62,6 +62,8 @@ watch(siteData, (newValue) => {
 </script>
 
 <style lang="scss">
+@import "../styles/use";
+
 .algolia-search-wrapper {
   & > span {
     vertical-align: middle;

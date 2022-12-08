@@ -1,5 +1,5 @@
 <template>
-  <div class="con-twits">
+  <div class="con-twits" ref="$twits">
     <header>
       <h2>
         <span>Some Words validating</span> <b>Vuesax</b>
@@ -13,9 +13,9 @@
       @mouseleave="mouseleaveUl"
       @mouseup="mouseupx"
       class="con-projects-ul"
+      ref="$ul"
     >
-      <!-- @mousewheel="scrollH" -->
-      <li v-for="(item, index) in twits" :key="index">
+      <li v-for="item in twits">
         <div class="con-img-t">
           <img :src="item.img" alt="" />
           <img class="filter" :src="item.img" alt="" />
@@ -34,17 +34,17 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, watch } from "vue";
 
-const leftx = ref<number>(0);
+const speed = 0.08;
 const notPulse = ref<boolean>(true);
 const translatex = ref<number>(0);
-const scrolling = ref<boolean>(false);
-const drag = ref<boolean>(false);
-const activeView = ref<boolean>(false);
-const active = ref<number>(0);
 const mousex = ref<number>(0);
-const change = ref<number>(0);
 const moving = ref<boolean>(false);
 const notScrolling = ref<boolean>(false);
+const offset = ref<number>(0);
+
+const $ul = ref<HTMLElement>()!;
+const $twits = ref<HTMLElement>()!;
+
 const twits = reactive([
   {
     name: "Sébastien Chopin",
@@ -58,49 +58,49 @@ const twits = reactive([
     user: "@PaurakhSharma",
     link: "https://twitter.com/PaurakhSharma",
     text: "Awesome news 🎉 Best looking Vue component library 🔥",
-    img: "https://pbs.twimg.com/profile_images/1160037349037768704/dtk4DCfv_400x400.jpg",
+    img: "https://pbs.twimg.com/profile_images/1583893184333201411/3XHND--7_400x400.jpg",
   },
   {
     name: "illy",
     user: "@__illy___",
     link: "https://twitter.com/__illy___",
     text: "Create a serverless mobile web application with Vue (ts), <b>Vuesax</b> and Firebase",
-    img: "https://pbs.twimg.com/profile_images/1184434161873870848/9e37ffmP_400x400.jpg",
+    img: "https://pbs.twimg.com/profile_images/1450809763206287368/w5jauMCH_400x400.jpg",
   },
   {
     name: "lvzy",
     user: "@lvzy12",
     link: "https://twitter.com/lvzy12",
     text: "Vuesax 4.0 UI components are very beautiful, look forward to your continuous updates 😻😻😻",
-    img: "https://pbs.twimg.com/profile_images/1210388192207097857/Xj8nbZKE_400x400.jpg",
+    img: "https://pbs.twimg.com/profile_images/1230510660443725824/veABaJie_400x400.jpg",
   },
   {
     name: "Gusto",
     user: "@gustojs",
     link: "https://twitter.com/gustojs",
     text: `<b>@vuesax</b> is one of more unique UI libraries for <b>@vuejs</b>. Its author <b>@luisdfly</b> would want to focus on the upcoming 4.x release, but with a responsibility to maintain 3.x version, it's not easy. You can help him a lot by taking over some of those tasks.`,
-    img: "https://pbs.twimg.com/profile_images/1169194630241341445/Mwnt1Rqv_400x400.jpg",
+    img: "https://pbs.twimg.com/profile_images/1264846973372432384/9hlJm_eq_400x400.jpg",
   },
   {
     name: "Luis Pedraz",
     user: "@PedrazL",
     link: "https://twitter.com/PedrazL",
     text: `Love the work you do, this looks great. Is this going to be part of <b>@vuesax</b> 4.0 or it's just a stand-alone component`,
-    img: "https://pbs.twimg.com/profile_images/1031481292507033600/7Cg3Oei5_400x400.jpg",
+    img: "https://pbs.twimg.com/profile_images/1539484981843599360/82oifda4_400x400.jpg",
   },
   {
     name: "Sergio Márquez",
     user: "@Undervane",
     link: "https://twitter.com/Undervane",
     text: `I personally like <b>@vuesax</b> , although it's not mature yet, but nothing that could not be resolved by contributing to make it better!`,
-    img: "https://pbs.twimg.com/profile_images/1210437765906812929/_4nXz0Cw_400x400.jpg",
+    img: "https://pbs.twimg.com/profile_images/1599144825978343426/mqHxkpOM_400x400.jpg",
   },
   {
     name: "Stattick",
     user: "@Stattick_",
     link: "https://twitter.com/Stattick_",
     text: `I recently discovered <b>#vuesax</b>, my favorite component library for <b>#VueJS</b> and that is not complete yet.`,
-    img: "https://pbs.twimg.com/profile_images/1089337790456836096/YY7YjWzs_400x400.jpg",
+    img: "https://pbs.twimg.com/profile_images/1305254964617531394/wOK2RFWg_400x400.jpg",
   },
   {
     name: "新井 モノ",
@@ -109,13 +109,13 @@ const twits = reactive([
     text: "Create modern and modern sites with <b>Vuesax</b>!",
     img: "https://pbs.twimg.com/profile_images/1167749700667133954/qcnRP65y_400x400.jpg",
   },
-  {
-    name: "Woterix",
-    user: "@woterix",
-    link: "https://twitter.com/woterix",
-    text: "<b>Vuesax</b> is a library of Vuejs components that facilitates front-end development and streamlines work with great visual quality",
-    img: "https://pbs.twimg.com/profile_images/980674833800286208/SNzLa2L8_400x400.jpg",
-  },
+  // {
+  //   name: "Woterix",
+  //   user: "@woterix",
+  //   link: "https://twitter.com/woterix",
+  //   text: "<b>Vuesax</b> is a library of Vuejs components that facilitates front-end development and streamlines work with great visual quality",
+  //   img: "https://pbs.twimg.com/profile_images/980674833800286208/SNzLa2L8_400x400.jpg",
+  // },
   {
     name: "Laravel VueJs",
     user: "@LaravelVueJs",
@@ -125,8 +125,8 @@ const twits = reactive([
   },
 ]);
 
-watch(translatex, () => {
-  if (translatex.value > 100) {
+watch(translatex, (transform: number) => {
+  if (transform > 100) {
     notScrolling.value = true;
   } else {
     notScrolling.value = false;
@@ -137,25 +137,19 @@ onMounted(() => {
   smooth();
   document.addEventListener("keydown", keydownx);
 });
+
 const smooth = () => {
-  const element = document.querySelector(".con-projects-ul") as HTMLElement;
-  if (!element) return;
-
-  const speed = 0.08;
-  const raf = ref<number>();
-  const offset = ref(0);
-
   const smoothScroll = () => {
-    leftx.value = translatex.value;
-    offset.value += (leftx.value - offset.value) * speed;
+    offset.value += (translatex.value - offset.value) * speed;
 
-    const scroll = `translateX(${offset.value}px) translateZ(0)`;
-    element.style.transform = scroll;
+    const scroll = `translateX(-${offset.value}px) translateZ(0)`;
+    $ul.value!.style.transform = scroll;
 
-    raf.value = requestAnimationFrame(smoothScroll);
+    requestAnimationFrame(smoothScroll);
   };
   smoothScroll();
 };
+
 const mouseleaveUl = () => {
   mousex.value = 0;
   notPulse.value = true;
@@ -163,16 +157,13 @@ const mouseleaveUl = () => {
     moving.value = false;
   }, 50);
 };
+
 const mousemovex = (e: MouseEvent) => {
   if (notPulse.value) {
     return;
   }
-  const element = (e.target as HTMLElement).closest(
-    ".con-projects-ul"
-  ) as HTMLElement | null;
-  if (!element) return;
-
-  const parent = element.parentNode! as HTMLElement;
+  const element = $ul.value!;
+  const parent = $twits.value!;
 
   let move: number;
 
@@ -187,11 +178,10 @@ const mousemovex = (e: MouseEvent) => {
     moving.value = true;
   }
   if (move > 50) {
-    translatex.value -= -80;
+    translatex.value += 80;
     if (translatex.value > element.clientWidth - parent.clientWidth) {
       translatex.value = element.clientWidth - parent.clientWidth;
     }
-    // element.style.transform = `translate(-${translatex.value}px)`
     if (e.type == "touchmove") {
       mousex.value =
         (e as unknown as TouchEvent).targetTouches[0].clientX - 200;
@@ -203,7 +193,6 @@ const mousemovex = (e: MouseEvent) => {
     if (translatex.value < 0) {
       translatex.value = 0;
     }
-    // element.style.transform = `translate(-${translatex.value}px)`
     if (e.type == "touchmove") {
       mousex.value =
         (e as unknown as TouchEvent).targetTouches[0].clientX - 200;
@@ -214,32 +203,22 @@ const mousemovex = (e: MouseEvent) => {
 };
 const mouseupx = (e: MouseEvent) => {
   e.preventDefault();
-  const element = (e.target as HTMLElement).closest(
-    ".con-projects-ul"
-  ) as HTMLElement | null;
-  if (!element) return;
-  const parent = element.parentNode! as HTMLElement;
-  // if(e.type=='touchend'){
-  //   // translatex.value -= -mousex.value + (e.targetTouches[0].clientX - 200)
-  // } else {
-  //   // translatex.value -= -mousex.value + (e.clientX - 200)
-  // }
+  const element = $ul.value!;
+  const parent = $twits.value!;
 
   if (translatex.value < 0) {
     translatex.value = 0;
   }
-
   if (translatex.value > element.clientWidth - parent.clientWidth) {
     translatex.value = element.clientWidth - parent.clientWidth;
   }
-
-  // element.style.transform = `translate(-${translatex.value}px)`
   mousex.value = 0;
   notPulse.value = true;
   setTimeout(() => {
     moving.value = false;
   }, 1);
 };
+
 const mousedownx = (e: MouseEvent) => {
   e.preventDefault();
   setTimeout(() => {
@@ -251,13 +230,11 @@ const mousedownx = (e: MouseEvent) => {
     mousex.value = e.clientX - 200;
   }
 };
+
 const keydownx = (evt: KeyboardEvent) => {
   const eventKey = evt.key;
-  const element = document.querySelector(
-    ".con-projects-ul"
-  ) as HTMLElement | null;
-  const parent = document.querySelector(".con-projects") as HTMLElement | null;
-  if (!element || !parent) return;
+  const element = $ul.value!;
+  const parent = $twits.value!;
 
   if (eventKey == "ArrowRight") {
     translatex.value -= -300;
@@ -271,37 +248,16 @@ const keydownx = (evt: KeyboardEvent) => {
     }
   }
 };
-const scrollH = (e: any) => {
-  scrolling.value = true;
-  e = window.event || e;
-  const delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.detail));
-  const element = e.target.closest(".con-projects-ul");
-  const parent = element.parentNode;
-  // console.dir(element)
-  if (delta == 1 && translatex.value > 0) {
-    translatex.value -= 250;
-    if (translatex.value < 0) {
-      translatex.value = 0;
-    }
-  } else if (
-    delta == -1 &&
-    translatex.value < element.clientWidth - parent.clientWidth
-  ) {
-    translatex.value += 250;
-    if (translatex.value > element.clientWidth - parent.clientWidth) {
-      translatex.value = element.clientWidth - parent.clientWidth;
-    }
-  }
-};
 </script>
+
 <style lang="scss" scoped>
-@import "../styles/mixin";
+@import "../styles/use";
 
 .darken {
   .con-twits {
     ul {
       li {
-        background: -color('theme-bg');
+        background: -color("theme-bg");
         .filter {
           opacity: 0.2;
         }
@@ -354,6 +310,7 @@ const scrollH = (e: any) => {
       padding: 20px;
       border-radius: 40px;
       margin: 20px;
+      transition: all 0.25s ease;
       &:hover {
         background: -color("primary");
         box-shadow: 0px 10px 30px -5px -color("primary", 0.4);

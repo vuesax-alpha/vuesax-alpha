@@ -47,7 +47,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
 .header-notification {
   width: 100%;
   position: fixed;

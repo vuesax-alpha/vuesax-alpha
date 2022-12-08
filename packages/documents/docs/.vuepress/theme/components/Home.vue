@@ -1,9 +1,5 @@
 <template>
   <main class="home" aria-labelledby="main-title">
-    <!-- <Adsense
-      data-ad-client="ca-pub-4283907298344887"
-      data-ad-slot="4634073296">
-    </Adsense> -->
     <div class="init">
       <header class="hero">
         <div class="points-init">
@@ -32,20 +28,8 @@
               "
               title="Get Started"
               class="action-button"
-              :nav-item="(pageFrontmatter.action as NavbarItem)"
+              :nav-item="action"
             ></NavLink>
-
-            <a
-              @mouseleave="time('discord')"
-              @mouseenter="(nativeButtons.discord = true), (expand = true)"
-              title="Discord"
-              class="discord"
-              target="_blank"
-              href="https://discord.gg/6AZNXEa"
-            >
-              <i class="bx bxl-discord"></i>
-              Discord
-            </a>
 
             <a
               @mouseleave="time('github')"
@@ -53,11 +37,11 @@
               title="Github"
               class="github"
               target="_blank"
-              href="https://github.com/lusaxweb/vuesax"
+              href="https://github.com/tranthinh-coding/vuesax-alpha/"
             >
               <i class="bx bxl-github"></i>
               <span title="Stargazers" class="badge-star">
-                <!-- <i class='bx bxs-star' ></i> -->
+                <i class='bx bxs-star' ></i>
                 {{ numberWithCommas }}
               </span>
             </a>
@@ -74,39 +58,6 @@
         }"
       />
     </div>
-    <!-- <home-init>
-      <header class="hero">
-        <div class="content-hero">
-          <h1 v-if="data.heroText !== null" v-html="data.heroText || $title || 'Hello'" id="main-title" />
-
-          <p v-html="data.tagline || $description || 'Welcome to your VuePress site'" class="description" />
-
-          <div class="con-btns">
-            <NavLink
-              title="Get Started"
-              class="action-button"
-              :item="actionLink"
-            />
-
-            <a title="Discord" class="discord" target="_blank" href="https://discord.gg/9dsKtvB">
-              <i class='bx bxl-discord' ></i>
-              Discord
-            </a>
-
-            <a title="Github" class="github" target="_blank" href="https://github.com/lusaxweb/vuesax">
-              <i class='bx bxl-github' ></i>
-              <span title="Stargazers" class="badge-star">
-                <!<i class='bx bxs-star' ></i>
-                {{ numberWithCommas }}
-              </span>
-            </a>
-          </div>
-        </div>
-
-      </header>
-    </home-init> -->
-
-    <Patrons />
 
     <Illustration1 :feature="(pageFrontmatter.features as Array<ThemeHomeFeatureOption>)[0]" />
     <Illustration2 :feature="(pageFrontmatter.features as Array<ThemeHomeFeatureOption>)[1]" />
@@ -116,30 +67,9 @@
     <Illustration4 :feature="(pageFrontmatter.features as Array<ThemeHomeFeatureOption>)[3]" />
 
     <twitter />
-    <PremiumThemes :data="pageFrontmatter.premiumThemes" />
 
-    <!-- <div
-      class="features"
-      v-if="data.features && data.features.length"
-    >
-      <div
-        class="feature"
-        v-for="(feature, index) in data.features"
-        :key="index"
-      >
-        <h2>{{ feature.title }}</h2>
-        <p>{{ feature.details }}</p>
-      </div>
-    </div>
+    <Content class="custom"/>
 
-    <Content class="custom"/> -->
-
-    <!-- <div
-      class="footer"
-      v-if="data.footer"
-    >
-      {{ data.footer }}
-    </div> -->
     <Footer :subscribe-frontmatter="pageFrontmatter.suscribe"></Footer>
   </main>
 </template>
@@ -167,11 +97,8 @@ import Illustration2 from "./HomeIllustration2.vue";
 import Illustration3 from "./HomeIllustration3.vue";
 import Illustration4 from "./HomeIllustration4.vue";
 import HomeComponent from "./HomeComponent.vue";
-import PremiumThemes from "./premiumThemes.vue";
-import Patrons from "./HomePatrons.vue";
 import twitter from "./HomeTwiter.vue";
 import Uses from "./HomeUses.vue";
-import { NavbarItem } from "vuepress-vite";
 
 const pageFrontmatter = usePageFrontmatter<ThemeProjectHomePageFrontmatter>();
 
@@ -185,10 +112,10 @@ const nativeButtons = reactive<NativeButtons>({
 
 const expand = ref<boolean>(false);
 
-const actions = computed(() => {
+const action = computed(() => {
   return {
-    link: pageFrontmatter.value.actions,
-    text: pageFrontmatter.value.actionText,
+    link: pageFrontmatter.value.action?.link || '',
+    text: pageFrontmatter.value.action?.text || '',
   };
 });
 const numberWithCommas = computed(() => {
@@ -214,7 +141,9 @@ const time = (variable: PageButtonKeys) => {
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
+
 .darken {
   .init {
     &:after {
@@ -358,6 +287,7 @@ const time = (variable: PageButtonKeys) => {
 .github {
   padding: 10px 20px;
   margin: 0px 10px;
+  margin-left: 14px;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -373,6 +303,7 @@ const time = (variable: PageButtonKeys) => {
     border-radius: inherit;
     content: "";
     position: absolute;
+    box-sizing: content-box;
     top: 0px;
     left: 0px;
     width: calc(100% - 4px);
@@ -386,10 +317,10 @@ const time = (variable: PageButtonKeys) => {
   i {
     font-size: 1.4rem;
   }
-  &.github {
-    padding: 10px;
-    margin-left: 0px;
-  }
+  // &.github {
+  //   padding: 10px;
+  //   margin-left: 0px;
+  // }
 }
 .logo-vuesax {
   max-width: 260px;

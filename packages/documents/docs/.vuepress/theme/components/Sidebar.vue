@@ -16,7 +16,7 @@
     </svg>
     <div class="content-sidebar">
       <slot name="top"></slot>
-      <SidebarLinks :fixed="fixed" :depth="0" :sidebar="sidebar" />
+      <SidebarLinks :fixed="fixed" :depth="0" :links="sidebar" />
       <NavLinks2 />
       <slot name="bottom"></slot>
     </div>
@@ -30,13 +30,13 @@ import { SidebarConfigArray } from "vuepress-vite";
 
 defineProps<{
   sidebar: SidebarConfigArray,
-  fixed: boolean
+  fixed?: boolean
 }>()
 </script>
 
 <style lang="scss">
-// vuesax-theme
-@import "../styles/mixin";
+@import "../styles/use";
+
 .effect1 {
   transform: rotate(-90deg);
   position: absolute;
@@ -64,7 +64,7 @@ defineProps<{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: -var('navbar-height');
+    height: $navbarHeight;
     cursor: pointer;
     transition: all 0.25s ease;
     outline: none;

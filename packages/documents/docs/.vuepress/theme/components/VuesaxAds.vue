@@ -37,7 +37,8 @@ onActivated(() => {
 });
 </script>
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
 .con-vuesax-ads {
   position: fixed;
   bottom: 0px;

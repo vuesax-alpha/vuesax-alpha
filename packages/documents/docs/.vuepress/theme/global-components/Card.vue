@@ -51,7 +51,8 @@ const $vsTheme = inject(vsThemeKey)!;
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
 
 h1 {
   & + .card {
@@ -119,7 +120,7 @@ h1 {
     margin-top: 10px;
     border-radius: 5px 20px 0px 0px;
     border-bottom: 0px solid rgba(0, 0, 0, 0.03);
-    background: -var(theme-layout);
+    background: -color('theme-layout');
     position: relative;
     overflow: hidden;
     transition: all 0.25s ease;
@@ -131,7 +132,7 @@ h1 {
       height: 100%;
       content: "";
       position: absolute;
-      border: 8px solid -var(theme-bg2);
+      border: 8px solid -color('theme-bg2');
       box-sizing: border-box;
       top: 0px;
       left: 0px;
@@ -148,7 +149,7 @@ h1 {
       height: 25px;
       content: "";
       position: absolute;
-      background: -var(theme-bg2);
+      background: -color('theme-bg2');
       box-sizing: border-box;
       top: 0px;
       left: 50%;

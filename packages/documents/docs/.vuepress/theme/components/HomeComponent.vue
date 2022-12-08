@@ -124,7 +124,6 @@
 
         <footer>
           <vs-input v-model="input1" placeholder="Comment" />
-          <!-- <input placeholder="Comment" type="text" name="" id="comment"> -->
           <vs-button icon flat>
             <i class="bx bx-send"></i>
           </vs-button>
@@ -221,7 +220,6 @@
 
       <div class="component12">
         <vs-input v-model="input2" placeholder="Search" />
-        <!-- <input placeholder="Search" type="text" name="" id="search"> -->
         <vs-button icon>
           <i class="bx bx-search"></i>
         </vs-button>
@@ -230,7 +228,6 @@
       <div class="component13">
         <header>
           <vs-input v-model="input3" placeholder="location"></vs-input>
-          <!-- <input placeholder="Location" type="text" name="" id="location"> -->
           <button>
             <i class="bx bx-chevron-right"></i>
           </button>
@@ -238,47 +235,15 @@
 
         <ul>
           <li>
-            <!-- <input checked type="checkbox" name="" id="checkbox1">
-            <span class="check">
-              <i class='bx bx-check'></i>
-            </span>
-
-            <label for="">
-              Spain
-            </label> -->
             <vs-checkbox> Spain </vs-checkbox>
           </li>
           <li>
-            <!-- <input type="checkbox" name="" id="checkbox2">
-            <span class="check">
-              <i class='bx bx-check'></i>
-            </span>
-
-            <label for="">
-              Germany
-            </label> -->
             <vs-checkbox> Germany </vs-checkbox>
           </li>
           <li>
-            <!-- <input type="checkbox" name="" id="checkbox3">
-            <span class="check">
-              <i class='bx bx-check'></i>
-            </span>
-
-            <label for="">
-              Italy
-            </label> -->
             <vs-checkbox> Italy </vs-checkbox>
           </li>
           <li>
-            <!-- <input type="checkbox" name="" id="checkbox4">
-            <span class="check">
-              <i class='bx bx-check'></i>
-            </span>
-
-            <label for="">
-              Japan
-            </label> -->
             <vs-checkbox> Japan </vs-checkbox>
           </li>
         </ul>
@@ -321,7 +286,7 @@ const handleBurDrop = () => {
 };
 </script>
 <style scoped lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
 
 @keyframes waveslogo {
   0% {
@@ -359,7 +324,7 @@ const handleBurDrop = () => {
   .component13 {
     header {
       input {
-        background: -color('theme-bg') !important;
+        background: -color("theme-bg") !important;
       }
       button {
         border: 2px solid rgba(255, 255, 255, 0.1) !important;
@@ -375,7 +340,7 @@ const handleBurDrop = () => {
     display: block;
   }
   .circle {
-    background: -color('theme-bg2') !important;
+    background: -color("theme-bg2") !important;
   }
   .bxs-star {
     fill: #fff !important;
@@ -390,7 +355,7 @@ const handleBurDrop = () => {
     }
   }
   *::placeholder {
-    color: -color('theme-color');
+    color: -color("theme-color");
   }
 }
 .darken .con-logo .github-logo__1,
@@ -436,7 +401,7 @@ const handleBurDrop = () => {
     width: 100%;
     height: 100%;
     border-radius: inherit;
-    background: -color('theme-layout');
+    background: -color("theme-layout");
     z-index: 20;
   }
   .github-logo__1 {
@@ -492,7 +457,7 @@ const handleBurDrop = () => {
     .component13 {
       width: 300px;
       padding: 15px;
-      background: -color('theme-layout');
+      background: -color("theme-layout");
       border-radius: 20px;
       top: 180px;
       left: 0px;
@@ -506,12 +471,8 @@ const handleBurDrop = () => {
       }
       .vs-input-parent {
         width: calc(100% - 50px);
-        & > {
-          & > {
-            & > input {
-              width: 100% !important;
-            }
-          }
+        input {
+          width: 100% !important;
         }
       }
       ul {
@@ -538,7 +499,7 @@ const handleBurDrop = () => {
             width: 22px;
             height: 22px;
             display: block;
-            background: -color('theme-bg2');
+            background: -color("theme-bg2");
             border-radius: 5px;
             display: flex;
             align-items: center;
@@ -602,7 +563,7 @@ const handleBurDrop = () => {
         input {
           padding: 9px 20px;
           border: 0px;
-          background: -color('theme-bg2');
+          background: -color("theme-bg2");
           width: calc(100% - 50px);
           border-radius: 14px;
           transition: all 0.25s ease;
@@ -626,20 +587,16 @@ const handleBurDrop = () => {
       left: 0px;
       transition: all 0.25s ease;
       animation: componentAnimate 20s infinite ease alternate;
-      & > {
-        & > {
-          & > input {
-            background: -color('theme-layout');
-            padding: 10px 15px;
-            box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.04);
-            width: 275px;
-            &:focus {
-              padding-left: 20px;
-              & ~ button {
-                transform: translate(-5px, -9px);
-                box-shadow: 0px 10px 20px -10px -color("primary", 0.8);
-              }
-            }
+      input {
+        background: -color("theme-layout");
+        padding: 10px 15px;
+        box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.04);
+        width: 275px;
+        &:focus {
+          padding-left: 20px;
+          & ~ button {
+            transform: translate(-5px, -9px);
+            box-shadow: 0px 10px 20px -10px -color("primary", 0.8);
           }
         }
       }
@@ -667,7 +624,7 @@ const handleBurDrop = () => {
       animation: componentAnimate 16s infinite ease reverse;
       .liquid {
         width: 20px;
-        background: -color('theme-layout');
+        background: -color("theme-layout");
         height: 15px;
         right: 30px;
         position: absolute;
@@ -685,9 +642,9 @@ const handleBurDrop = () => {
           height: 15px;
           background: transparent;
           border-radius: 0px 50% 50% 0px;
-          border-right: 5px solid -color('theme-layout');
-          border-bottom: 5px solid -color('theme-layout');
-          border-top: 5px solid -color('theme-layout');
+          border-right: 5px solid -color("theme-layout");
+          border-bottom: 5px solid -color("theme-layout");
+          border-top: 5px solid -color("theme-layout");
         }
         &:before {
           content: "";
@@ -698,9 +655,9 @@ const handleBurDrop = () => {
           height: 15px;
           background: transparent;
           border-radius: 0px 50% 50% 0px;
-          border-right: 5px solid -color('theme-layout');
-          border-bottom: 5px solid -color('theme-layout');
-          border-top: 5px solid -color('theme-layout');
+          border-right: 5px solid -color("theme-layout");
+          border-bottom: 5px solid -color("theme-layout");
+          border-top: 5px solid -color("theme-layout");
           transform: rotate(180deg);
         }
       }
@@ -721,7 +678,7 @@ const handleBurDrop = () => {
         width: 100%;
         position: absolute;
         top: 0px;
-        background: -color('theme-layout');
+        background: -color("theme-layout");
         list-style: none;
         border-radius: 15px;
         padding-bottom: 5px;
@@ -758,7 +715,7 @@ const handleBurDrop = () => {
         justify-content: center;
         position: relative;
         input {
-          background: -color('theme-layout');
+          background: -color("theme-layout");
           padding: 12px 15px;
           width: 100%;
           border: 0px;
@@ -786,7 +743,7 @@ const handleBurDrop = () => {
       top: 600px;
       position: absolute;
       left: 360px;
-      background: -color('theme-layout');
+      background: -color("theme-layout");
       border-radius: 18px;
       box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.04);
       transition: all 0.25s ease;
@@ -832,7 +789,7 @@ const handleBurDrop = () => {
         width: 100%;
         position: absolute;
         top: 0px;
-        background: -color('theme-layout');
+        background: -color("theme-layout");
         list-style: none;
         border-radius: 0px 0px 15px 15px;
         padding-bottom: 5px;
@@ -865,7 +822,7 @@ const handleBurDrop = () => {
         justify-content: center;
         position: relative;
         input {
-          background: -color('theme-layout');
+          background: -color("theme-layout");
           padding: 14px 15px;
           width: 100%;
           border: 0px;
@@ -874,7 +831,7 @@ const handleBurDrop = () => {
           transition: all 0.25s ease;
           box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.05);
           font-size: 0.8rem;
-          color: -color('theme-color');
+          color: -color("theme-color");
           &::selection {
             background: transparent;
           }
@@ -890,7 +847,7 @@ const handleBurDrop = () => {
     }
     .component8 {
       width: 260px;
-      background: -color('theme-layout');
+      background: -color("theme-layout");
       border-radius: 30px;
       padding: 15px;
       position: absolute;
@@ -921,7 +878,7 @@ const handleBurDrop = () => {
           align-items: center;
           justify-content: center;
           img {
-            border: 2px solid -color('theme-layout');
+            border: 2px solid -color("theme-layout");
             width: 45px;
             border-radius: 50%;
             margin-left: -23px;
@@ -944,7 +901,7 @@ const handleBurDrop = () => {
         width: 60px;
         height: 60px;
         border-radius: 22px;
-        background: -color('theme-layout');
+        background: -color("theme-layout");
         box-shadow: 10px 12px 50px -6px rgba(0, 0, 0, 0.3);
         z-index: 300;
         display: flex;
@@ -999,7 +956,7 @@ const handleBurDrop = () => {
     }
     .component7 {
       width: 260px;
-      background: -color('theme-layout');
+      background: -color("theme-layout");
       border-radius: 30px;
       padding: 15px;
       position: absolute;
@@ -1023,23 +980,19 @@ const handleBurDrop = () => {
           height: 41px;
           margin-left: 10px;
         }
-        & > {
-          & > {
-            & > .vs-input-parent {
-              width: calc(100% - 60px);
-            }
-            & > input {
-              width: 100%;
-              padding: 12px 14px;
-              border: 0px;
-              background: -color('theme-bg');
-              border-radius: 10px;
-              font-size: 0.7rem;
-              transition: all 0.25s ease;
-              &:focus {
-                background: -color('theme-bg2');
-              }
-            }
+        .vs-input-parent {
+          width: calc(100% - 60px);
+        }
+        input {
+          width: 100% !important;
+          padding: 12px 14px;
+          border: 0px;
+          background: -color("theme-bg");
+          border-radius: 10px;
+          font-size: 0.7rem;
+          transition: all 0.25s ease;
+          &:focus {
+            background: -color("theme-bg2");
           }
         }
       }
@@ -1071,8 +1024,8 @@ const handleBurDrop = () => {
           border-radius: 16px;
           border: 0px;
           margin: 0px 5px;
-          background: -color('theme-layout');
-          color: -color('theme-color');
+          background: -color("theme-layout");
+          color: -color("theme-color");
           box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.08);
           font-weight: bold;
           font-size: 0.75rem;
@@ -1131,7 +1084,7 @@ const handleBurDrop = () => {
       position: absolute;
       width: 160px;
       height: 160px;
-      background: -color('theme-layout');
+      background: -color("theme-layout");
       padding: 20px;
       border-radius: 30px;
       left: 920px;
@@ -1163,7 +1116,7 @@ const handleBurDrop = () => {
         padding: 0px;
         i {
           font-size: 1.1rem;
-          color: -color('theme-color') !important;
+          color: -color("theme-color") !important;
         }
       }
     }
@@ -1174,7 +1127,7 @@ const handleBurDrop = () => {
       flex-direction: column;
       position: absolute;
       width: 220px;
-      background: -color('theme-layout');
+      background: -color("theme-layout");
       padding: 20px;
       border-radius: 30px;
       left: 860px;
@@ -1194,7 +1147,7 @@ const handleBurDrop = () => {
         position: absolute;
         top: 15px;
         right: 15px;
-        fill: -color('theme-color');
+        fill: -color("theme-color");
         opacity: 0.2;
       }
       p {
@@ -1230,7 +1183,7 @@ const handleBurDrop = () => {
       flex-direction: column;
       position: absolute;
       width: 140px;
-      background: -color('theme-layout');
+      background: -color("theme-layout");
       padding: 10px;
       border-radius: 30px;
       user-select: none;
@@ -1274,7 +1227,7 @@ const handleBurDrop = () => {
       .con-switch {
         width: 65px;
         height: 35px;
-        background: -color('theme-layout');
+        background: -color("theme-layout");
         box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.04);
         border-radius: 25px;
         display: flex;
@@ -1303,7 +1256,7 @@ const handleBurDrop = () => {
           background: -color("primary");
           .circle {
             transform: translate(30px);
-            background: -color('theme-layout') !important;
+            background: -color("theme-layout") !important;
             box-shadow: -3px 3px 20px 0px rgba(255, 255, 255, 0.35);
           }
           p {
@@ -1315,7 +1268,7 @@ const handleBurDrop = () => {
         .circle {
           width: 25px;
           height: 25px;
-          background: -color('theme-layout');
+          background: -color("theme-layout");
           box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.08);
           border-radius: 50%;
           position: relative;
@@ -1345,7 +1298,7 @@ const handleBurDrop = () => {
       top: 0px;
       box-shadow: 0px 15px 30px -8px rgba(0, 0, 0, 0.08);
       border-radius: 30%;
-      background: -color('theme-layout');
+      background: -color("theme-layout");
       padding: 35px;
       transition: all 0.25s ease;
       animation: componentAnimate 19s infinite ease reverse;
@@ -1366,7 +1319,7 @@ const handleBurDrop = () => {
       align-items: center;
       justify-content: center;
       padding: 8px 10px;
-      background: -color('theme-layout');
+      background: -color("theme-layout");
       transition: all 0.25s ease;
       animation: componentAnimate 15s infinite ease;
       position: absolute;
@@ -1388,8 +1341,8 @@ const handleBurDrop = () => {
             min-width: 100px;
           }
           .vs-button--shadow {
-            background: -color('theme-layout') !important;
-            color: -color('theme-color') !important;
+            background: -color("theme-layout") !important;
+            color: -color("theme-color") !important;
           }
         }
         p {

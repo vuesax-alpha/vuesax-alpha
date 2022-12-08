@@ -1,20 +1,33 @@
 <template>
-  <router-link
-    :title="title"
-    :to="item.path"
-    :class="{
-      active,
-      "sidebar-link": true,
-      'sidebar-new': NEW,
-      'sidebar-update': UPDATE
-    }"
-  >
-    {{ item.title || item.path }}
+  <RenderLink 
+    :to="link.link!"
+    :text="(link.text || link.link || '')"
+    :active="active"
+  ></RenderLink>
 
-    <ul class="sidebar-sub-headers">
-      
-    </ul>
-  </router-link>
+  <template v-if="link.children">
+    <RenderChildren
+      :children="link.children"
+      :link="link.basePath"
+      :route="route"
+      :max-depth="maxDepth"
+      :depth="1"
+      :news="news"
+      :updates="updates"
+    ></RenderChildren>
+  </template>
+
+  <template v-else-if="isActiveHeaders">
+    <RenderChildren
+      :children="link.headers"
+      :link="link.path"
+      :route="route"
+      :max-depth="maxDepth"
+      :depth="1"
+      :news="news"
+      :updates="updates"
+    ></RenderChildren>
+  </template>
 </template>
 
 <script lang="ts" setup>
@@ -22,150 +35,64 @@ import { usePageData, usePageFrontmatter } from "@vuepress/client";
 import { useRoute, useRouter } from "vue-router";
 import { isActive, hashRE, groupHeaders } from "../util";
 
-const props = defineProps(['item', 'sidebarDepth']);
+import { ThemeNormalApiFrontmatter } from "../shared/frontmatter/normal";
+import { useThemeData, useThemeLocaleData } from "@vuepress/plugin-theme-data/client";
+import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
+
+import RenderLink from "./SidebarLink/RenderLink.vue";
+import RenderChildren from "./SidebarLink/RenderChildren.vue";
+import { computed } from "@vue/reactivity";
+import { SidebarConfig, SidebarGroup, SidebarItem } from "vuepress-vite";
+
+const props = defineProps<{
+  link: SidebarGroup;
+  sidebarDepth?: number;
+}>();
 
 const route = useRoute();
 const router = useRouter();
 const pageData = usePageData();
-const pageFrontmatter = usePageFrontmatter();
+const themeData = useThemeData<VuesaxAlphaThemeOptions>();
+const themeLocaleData = useThemeLocaleData<VuesaxAlphaThemeOptions>();
+const pageFrontmatter = usePageFrontmatter<ThemeNormalApiFrontmatter>();
 const headers = groupHeaders(pageData.value.headers); 
 
-const NEWS = $page.frontmatter.NEWS || [];
-const UPDATE = $page.frontmatter.UPDATE || [];
+const news = pageFrontmatter.value.news || [];
+const updates = pageFrontmatter.value.updates || [];
 
 // console.log(NEWS)
 // use custom active class matching logic
 // due to edge case of paths ending with / + hash
-const selfActive = isActive(route, props.item.path);
+const selfActive = isActive(route, props.link.link);
 // for sidebar: auto pages, a hash link should be active if one of its child
 // matches
 const active =
-  props.item.type === "auto"
+  props.link.type === "auto"
     ? selfActive ||
-      props.item.children.some((c) =>
-        isActive(route, item.basePath + "#" + c.slug)
+      props.link.children.some((c: any) =>
+        isActive(route, props.link.basePath + "#" + c.slug)
       )
     : selfActive;
 
-const link = renderLink(h, item.path, item.title || item.path, active);
-
-const configDepth =
-  $page.frontmatter.sidebarDepth ||
-  sidebarDepth ||
-  $themeLocaleConfig.sidebarDepth ||
-  $themeConfig.sidebarDepth;
-
-const maxDepth = configDepth == null ? 1 : configDepth;
+const maxDepth = props.sidebarDepth ||
+  themeLocaleData.value.sidebarDepth ||
+  themeData.value.sidebarDepth || 
+  1;
 
 const displayAllHeaders =
-  $themeLocaleConfig.displayAllHeaders || $themeConfig.displayAllHeaders;
+  themeLocaleData.value.displayAllHeaders || 
+  themeData.value.displayAllHeaders;
 
-if (item.type === "auto") {
-  return [
-    link,
-    renderChildren(
-      h,
-      item.children,
-      item.basePath,
-      $route,
-      maxDepth,
-      1,
-      NEWS,
-      UPDATE
-    ),
-  ];
-} else if (
-  (active || displayAllHeaders) &&
-  item.headers &&
-  !hashRE.test(item.path)
-) {
-  const children = groupHeaders(item.headers);
-  return [
-    link,
-    renderChildren(
-      h,
-      children,
-      item.path,
-      $route,
-      maxDepth,
-      1,
-      NEWS,
-      UPDATE
-    ),
-  ];
-} else {
-  return link;
-}
-
-function renderLink(h, to, text, active, NEW = false, UPDATE = false) {
-  var title = "";
-  if (NEW) title = "New";
-  if (UPDATE) title = "Update";
-  return h(
-    "router-link",
-    {
-      attrs: {
-        title,
-      },
-      props: {
-        to,
-        activeClass: "",
-        exactActiveClass: "",
-      },
-      class: {
-        active,
-        "sidebar-link": true,
-        "sidebar-new": NEW,
-        "sidebar-update": UPDATE,
-      },
-    },
-    text
-  );
-}
-
-function renderChildren(
-  h,
-  children,
-  path,
-  route,
-  maxDepth,
-  depth = 1,
-  NEWS,
-  UPDATE
-) {
-  if (!children || depth > maxDepth) return null;
-  return h(
-    "ul",
-    { class: "sidebar-sub-headers" },
-    children.map((c) => {
-      const active = isActive(route, path + "#" + c.slug);
-      return h("li", { class: "sidebar-sub-header" }, [
-        renderLink(
-          h,
-          path + "#" + c.slug,
-          c.title,
-          active,
-          NEWS.includes(c.slug),
-          UPDATE.includes(c.slug)
-        ),
-        renderChildren(
-          h,
-          c.children,
-          path,
-          route,
-          maxDepth,
-          depth + 1,
-          NEWS,
-          UPDATE
-        ),
-      ]);
-    })
-  );
-}
+const isActiveHeaders = computed(() => {
+  return (active || displayAllHeaders) &&
+  props.link.headers &&
+  !hashRE.test(props.link.path)
+})
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
 .sidebar-new {
   position: relative;
   color: #42b983 !important;

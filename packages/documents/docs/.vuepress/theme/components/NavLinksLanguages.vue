@@ -1,9 +1,11 @@
 <template>
   <nav class="nav-links" v-if="userNav.length || repoLink">
     <!-- user links -->
-    <div class="nav-item" v-for="(navItem, index) in userNav" :key="index">
-      <DropdownLink v-if="item.type === 'links'" :item="navItem" :has-fle="true" />
-      <NavLink v-else :nav-item="navItem" />
+    <div class="nav-item" v-for="navItem in userNav">
+      <template v-if="!isString(navItem)">
+        <DropdownLink v-if="'children' in navItem" :item="navItem" has-fle />
+        <NavLink v-else :nav-item="navItem" />
+      </template>
     </div>
   </nav>
 </template>
@@ -15,11 +17,11 @@ import { computed } from "@vue/reactivity";
 import {
   useThemeData,
   useThemeLocaleData,
-} from "@vuepress/plugin-theme-data/lib/client";
+} from "@vuepress/plugin-theme-data/client";
 import { useRouter } from "vue-router";
 import { usePageData, usePageLang, useSiteData } from "@vuepress/client";
 import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
-import { isLinkHttp } from "@vuepress/shared";
+import { isLinkHttp, isString } from "@vuepress/shared";
 
 const router = useRouter();
 
@@ -36,7 +38,9 @@ const lang = computed(() => {
     const routes = router.options.routes;
 
     const languageDropdown = {
-      text: (themeData.value.locales![pageLang.value] as any).selectLanguageText || "Languages",
+      text:
+        (themeData.value.locales![pageLang.value] as any).selectLanguageText ||
+        "Languages",
       items: Object.keys(locales).map((path) => {
         const locale = locales[path];
         const text = locale.title;
@@ -93,7 +97,8 @@ const repoLabel = computed(() => {
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -120,7 +125,7 @@ const repoLabel = computed(() => {
         bottom: -3px;
         width: 0px;
         height: 3px;
-        background: -color('theme-color');
+        background: -color("theme-color");
         border-radius: 2px;
         transition: all 0.25s ease;
       }
@@ -140,7 +145,7 @@ const repoLabel = computed(() => {
 }
 .nav-links a:hover,
 .nav-links a.router-link-active {
-  color: -color('theme-color');
+  color: -color("theme-color");
 }
 .nav-links .nav-item a:hover,
 .nav-links .nav-item a.router-link-active {
@@ -157,7 +162,7 @@ const repoLabel = computed(() => {
 @media (min-width: $MQMobile) {
   .nav-links a:hover,
   .nav-links a.router-link-active {
-    color: -color('theme-color');
+    color: -color("theme-color");
   }
 }
 </style>

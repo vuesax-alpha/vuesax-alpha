@@ -34,7 +34,8 @@ const handleRouter = (link?: string) => {
 </script>
 
 <style scoped lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
 .btn-action {
   display: inline-block;
   font-size: 1rem;

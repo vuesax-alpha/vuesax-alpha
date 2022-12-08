@@ -1,8 +1,8 @@
 <template>
-  <div class="con-twits">
+  <div class="con-twits" ref="$twits">
     <header>
       <h2>
-        These are some of the <b>libraries</b>, <b>languages ​</b> and
+        These are some of the <b>libraries</b>, <b>languages </b> and
         <b>technologies</b> <br />that we use to create this beautiful
         <b>framework</b>
       </h2>
@@ -14,8 +14,8 @@
       @mouseleave="mouseleaveUl"
       @mouseup="mouseupx"
       class="con-projects-ul-uses"
+      ref="$ul"
     >
-      <!-- @mousewheel="scrollH" -->
       <li v-for="(item, index) in twits" :key="index">
         <div class="con-img-t">
           <img :class="{ 'not-darken': item.img2 }" :src="item.img" alt="" />
@@ -43,18 +43,13 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, watch } from "vue";
 
-const leftx = ref<number>(0);
+const speed = 0.08;
 const notPulse = ref<boolean>(true);
 const translatex = ref<number>(0);
-const scrolling = ref<boolean>(false);
-const drag = ref<boolean>(false);
-const activeView = ref<boolean>(false);
-const active = ref<number>(0);
-const delta = ref<number>(0);
 const mousex = ref<number>(0);
-const change = ref<number>(0);
 const moving = ref<boolean>(false);
 const notScrolling = ref<boolean>(false);
+const offset = ref<number>(0);
 const twits = reactive([
       {
         name: "Vuejs",
@@ -117,36 +112,34 @@ const twits = reactive([
       },
 ]);
 
-watch(translatex, () => {
-  if (translatex.value > 100) {
+const $ul = ref<HTMLElement>()!;
+const $twits = ref<HTMLElement>()!;
+
+watch(translatex, (transform: number) => {
+  if (transform > 100) {
     notScrolling.value = true;
   } else {
     notScrolling.value = false;
   }
 });
+
 onMounted(() => {
   smooth();
   document.addEventListener("keydown", keydownx);
 });
+
 const smooth = () => {
-  const element = document.querySelector(".con-projects-ul-uses") as HTMLElement;
-  if (!element) return;
-
-  const speed = 0.08;
-  const raf = ref<number>();
-  const offset = ref(0);
-
   const smoothScroll = () => {
-    leftx.value = translatex.value;
-    offset.value += (leftx.value - offset.value) * speed;
+    offset.value += (translatex.value - offset.value) * speed;
 
-    const scroll = `translateX(${offset.value}px) translateZ(0)`;
-    element.style.transform = scroll;
+    const scroll = `translateX(-${offset.value}px) translateZ(0)`;
+    $ul.value!.style.transform = scroll;
 
-    raf.value = requestAnimationFrame(smoothScroll);
+    requestAnimationFrame(smoothScroll);
   };
   smoothScroll();
 };
+
 const mouseleaveUl = () => {
   mousex.value = 0;
   notPulse.value = true;
@@ -154,16 +147,13 @@ const mouseleaveUl = () => {
     moving.value = false;
   }, 50);
 };
+
 const mousemovex = (e: MouseEvent) => {
   if (notPulse.value) {
     return;
   }
-  const element = (e.target as HTMLElement).closest(
-    ".con-projects-ul-uses"
-  ) as HTMLElement | null;
-  if (!element) return;
-
-  const parent = element.parentNode! as HTMLElement;
+  const element = $ul.value!;
+  const parent = $twits.value!;
 
   let move: number;
 
@@ -178,11 +168,10 @@ const mousemovex = (e: MouseEvent) => {
     moving.value = true;
   }
   if (move > 50) {
-    translatex.value -= -80;
+    translatex.value += 80;
     if (translatex.value > element.clientWidth - parent.clientWidth) {
       translatex.value = element.clientWidth - parent.clientWidth;
     }
-    // element.style.transform = `translate(-${translatex.value}px)`
     if (e.type == "touchmove") {
       mousex.value =
         (e as unknown as TouchEvent).targetTouches[0].clientX - 200;
@@ -194,7 +183,6 @@ const mousemovex = (e: MouseEvent) => {
     if (translatex.value < 0) {
       translatex.value = 0;
     }
-    // element.style.transform = `translate(-${translatex.value}px)`
     if (e.type == "touchmove") {
       mousex.value =
         (e as unknown as TouchEvent).targetTouches[0].clientX - 200;
@@ -205,32 +193,22 @@ const mousemovex = (e: MouseEvent) => {
 };
 const mouseupx = (e: MouseEvent) => {
   e.preventDefault();
-  const element = (e.target as HTMLElement).closest(
-    ".con-projects-ul"
-  ) as HTMLElement | null;
-  if (!element) return;
-  const parent = element.parentNode! as HTMLElement;
-  // if(e.type=='touchend'){
-  //   // translatex.value -= -mousex.value + (e.targetTouches[0].clientX - 200)
-  // } else {
-  //   // translatex.value -= -mousex.value + (e.clientX - 200)
-  // }
+  const element = $ul.value!;
+  const parent = $twits.value!;
 
   if (translatex.value < 0) {
     translatex.value = 0;
   }
-
   if (translatex.value > element.clientWidth - parent.clientWidth) {
     translatex.value = element.clientWidth - parent.clientWidth;
   }
-
-  // element.style.transform = `translate(-${translatex.value}px)`
   mousex.value = 0;
   notPulse.value = true;
   setTimeout(() => {
     moving.value = false;
   }, 1);
 };
+
 const mousedownx = (e: MouseEvent) => {
   e.preventDefault();
   setTimeout(() => {
@@ -242,13 +220,11 @@ const mousedownx = (e: MouseEvent) => {
     mousex.value = e.clientX - 200;
   }
 };
+
 const keydownx = (evt: KeyboardEvent) => {
   const eventKey = evt.key;
-  const element = document.querySelector(
-    ".con-projects-ul"
-  ) as HTMLElement | null;
-  const parent = document.querySelector(".con-projects") as HTMLElement | null;
-  if (!element || !parent) return;
+  const element = $ul.value!;
+  const parent = $twits.value!;
 
   if (eventKey == "ArrowRight") {
     translatex.value -= -300;
@@ -262,32 +238,11 @@ const keydownx = (evt: KeyboardEvent) => {
     }
   }
 };
-const scrollH = (e: any) => {
-  scrolling.value = true;
-  e = window.event || e;
-  const delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.detail));
-  const element = e.target.closest(".con-projects-ul");
-  const parent = element.parentNode;
-  // console.dir(element)
-  if (delta == 1 && translatex.value > 0) {
-    translatex.value -= 250;
-    if (translatex.value < 0) {
-      translatex.value = 0;
-    }
-  } else if (
-    delta == -1 &&
-    translatex.value < element.clientWidth - parent.clientWidth
-  ) {
-    translatex.value += 250;
-    if (translatex.value > element.clientWidth - parent.clientWidth) {
-      translatex.value = element.clientWidth - parent.clientWidth;
-    }
-  }
-};
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/mixin";
+@import "../styles/use";
+
 
 .darken {
   .con-twits {

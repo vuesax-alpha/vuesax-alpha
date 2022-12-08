@@ -9,12 +9,6 @@
         <i class="bx bx-left-arrow-alt"></i>
       </router-link>
 
-      <!-- <div class="con-svg">
-        <header-svg/>
-      </div> -->
-      <!-- <pre>
-        {{ $page.title }}
-      </pre> -->
       <div class="header__content">
         <div ref="$flex" class="flex-header">
           <h1 ref="$title" id="header-title">
@@ -22,12 +16,6 @@
           </h1>
 
           <ul ref="$titleul" class="interactive-links">
-            <!-- <li title="Copy Link">
-              <a target="_blank" href="">
-                <i class="bx bx-link"></i>
-              </a>
-            </li> -->
-
             <li title="Share">
               <button>
                 <i class="bx bx-share-alt"></i>
@@ -132,7 +120,7 @@
       </svg>
     </header>
 
-    <Sidebar2 key="sidebar-new" :fixed="true" :items="themeData.sidebar" />
+    <Sidebar2 :fixed="true" :sidebar="themeData.sidebar" />
 
     <slot name="top"></slot>
 
@@ -171,7 +159,6 @@
         </span>
       </p>
     </div>
-
     <slot name="bottom"></slot>
 
     <div ref="$up" @click="handleUp" class="up">
@@ -189,8 +176,9 @@ import {
   usePageData,
   usePageFrontmatter,
 } from "@vuepress/client";
-import { useThemeData } from "@vuepress/plugin-theme-data/lib/client";
+import { useThemeData } from '@vuepress/plugin-theme-data/client';
 import { SidebarConfigArray } from "vuepress-vite";
+
 import {
   normalize,
   outboundRE,
@@ -210,7 +198,7 @@ const themeData = useThemeData<VuesaxAlphaThemeOptions>();
 const pageFrontmatter = usePageFrontmatter<ThemePageFrontmatter>();
 
 const props = defineProps<{
-  sidebar: SidebarConfigArray | false;
+  sidebar?: SidebarConfigArray;
 }>();
 
 const $page = ref<HTMLElement>()!;
@@ -398,7 +386,7 @@ const flattenSidebar = (
 </script>
 
 <style lang="scss">
-@import "../styles/_mixin.scss";
+@import "../styles/use";
 
 .back-link {
   position: absolute;
@@ -460,7 +448,7 @@ const flattenSidebar = (
     opacity: 0.7;
   }
   &:hover {
-    color: $accentColor;
+    color: -color('accent-color');
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
   }
   &.active {
@@ -788,7 +776,7 @@ const flattenSidebar = (
   .edit-link {
     display: inline-block;
     a {
-      color: lighten(rgba(var(--vs-text-color)), 25%);
+      color: -color('text-color'); // lighten 25%
       margin-right: 0.25rem;
     }
   }
@@ -812,6 +800,8 @@ const flattenSidebar = (
 
 .page-nav {
   // @extend $wrapper
+  @include wrapper;
+
   padding-top: 1rem;
   padding-bottom: 0;
   position: relative;

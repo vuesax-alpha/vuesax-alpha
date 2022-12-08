@@ -97,10 +97,10 @@ import { onMounted, Ref, ref } from "vue";
 import SidebarButton from "./SidebarButton.vue";
 import NavLinks from "./NavLinks.vue";
 import SearchBox from "./SearchBox.vue";
-import { computed } from "@vue/reactivity";
 import { usePageData, useSiteData } from "@vuepress/client";
-import { useThemeData } from "@vuepress/plugin-theme-data/lib/client";
+import { useThemeData } from "@vuepress/plugin-theme-data/client";
 import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
+import { computed } from "@vue/reactivity";
 
 const siteData = useSiteData();
 const themeData = useThemeData<VuesaxAlphaThemeOptions>();
@@ -121,16 +121,17 @@ const css = (el: HTMLElement, property: string) => {
 }
 
 const MOBILE_DESKTOP_BREAKPOINT = 719; // refer to config.styl
-const NAVBAR_VERTICAL_PADDING =
-  parseInt(css($el.value, "paddingLeft")) +
+const NAVBAR_VERTICAL_PADDING = computed(() => {
+  return parseInt(css($el.value, "paddingLeft")) +
   parseInt(css($el.value, "paddingRight"));
+});
 
 onMounted(() => {
   const handleLinksWrapWidth = () => {
     if (document.documentElement.clientWidth < MOBILE_DESKTOP_BREAKPOINT) {
       linksWrapMaxWidth.value = null;
     } else {
-      linksWrapMaxWidth.value = $el.value.offsetWidth - NAVBAR_VERTICAL_PADDING;
+      linksWrapMaxWidth.value = $el.value.offsetWidth - NAVBAR_VERTICAL_PADDING.value;
     }
   };
   handleLinksWrapWidth();
@@ -151,7 +152,7 @@ const handleShowSuggestions = (active: boolean) => {
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
 
 // $navbar-vertical-padding: 0.7rem;
 // $navbar-horizontal-padding: 1.5rem;
@@ -301,8 +302,8 @@ const handleShowSuggestions = (active: boolean) => {
     }
   }
   .logo {
-    height: calc(-var('navbar-height') - 1.4rem);
-    min-width: calc(-var('navbar-height') - 1.4rem);
+    height: calc($navbarHeight - 1.4rem);
+    min-width: calc($navbarHeight - 1.4rem);
     margin-right: 0.8rem;
     vertical-align: top;
   }

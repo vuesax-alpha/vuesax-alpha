@@ -51,7 +51,8 @@ import Footer from "./Footer.vue";
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
 .pass {
   padding-top: 60px;
   & ~ .config {
