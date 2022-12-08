@@ -4047,10 +4047,10 @@ vuepress@^2.0.0-beta.53:
   dependencies:
     vuepress-vite "2.0.0-beta.53"
 
-vuesax-alpha@^0.0.16:
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/vuesax-alpha/-/vuesax-alpha-0.0.16.tgz#58ae2d1fb2775751b7a5ff494690fc52df53a520"
-  integrity sha512-TTkdqTwzcge2V+SxxTrL+JZf+s2YoBGK1WUmsL0H6pc2C1O3q+/hCgpKKfoeCAEk/JyqUks30CdFZJgvPh77LQ==
+vuesax-alpha@^0.0.18:
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/vuesax-alpha/-/vuesax-alpha-0.0.18.tgz#110b1a13ac880fa270020e973aaf830c2152a4e2"
+  integrity sha512-xfHUifUuzhTokgWtny3/u4Jrb6H7Wtib6byRb5xyil9AVUUsc0W5bMADUp+csxGHKoPc1mHJQyZFoiVPy2aWEg==
   dependencies:
     "@formkit/auto-animate" "^1.0.0-beta.3"
     "@vueuse/core" "^9.1.0"
