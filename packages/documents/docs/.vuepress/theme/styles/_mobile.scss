@@ -1,7 +1,6 @@
 // narrow desktop / iPad
-@media (max-width: -var('MQNarrow')) {
+@media (max-width: $MQNarrow) {
   .sidebar {
-    $sidebarWidth: -var('sidebar-width');
     font-size: 15px;
     width: calc($sidebarWidth * 0.82);
   }
@@ -61,7 +60,7 @@
 }
 
 // narrow mobile
-@media (max-width: -var('MQMobileNarrow')) {  
+@media (max-width: $MQMobileNarrow) {  
   h1 {
     font-size: 1.9rem;
   }
