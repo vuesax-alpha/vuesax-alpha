@@ -285,7 +285,7 @@ const time = (variable: PageButtonKeys) => {
   }
 }
 .github {
-  padding: 10px 20px;
+  padding: 10px;
   margin: 0px 10px;
   margin-left: 14px;
   font-weight: 600;
