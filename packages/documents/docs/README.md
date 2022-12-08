@@ -1,11 +1,10 @@
 ---
 home: true
-heroText: <b>Vuesax</b> Framework <br> Components for <a target="_blank" href="https://vuejs.org/" >Vuejs</a>
-tagline: We love what we do. Let us help you do what <b>You love</b>.
-actions:
-  - text: Get Started
-    link: /docs/guide/
-    type: primary
+heroText: <b>Vuesax-alpha</b> Framework <br> Components for <a target="_blank" href="https://vuejs.org/" >Vuejs</a>
+description: We love what we do. Let us help you do what <b>You love</b>.
+action:
+  text: Get Started
+  link: /docs/guide/
 suscribe: <b>Subscribe</b> to our <br> Weekly Newsletter
 premiumThemes:
   title: <b>Vuesax</b> Premium Themes
@@ -16,19 +15,16 @@ features:
     action:
       text: Components
       link: /docs/components/
-      type: primary
   - title: Do you need support for applications or <b>Responsive Pages</b>?
     details: Vuesax components have responsive support and adapt to each type of size, apart from that you can easily use the grid components to generate <b>visual changes based on screen size</b> either a <b>phone</b>, <b>tablet</b> or <b>desktop</b>.
     action:
       text: Design grid
       link: /docs/layout/
-      type: primary
   - title: <b>Vuesax</b> is here to help you create your ideas and develop those <b>great projects</b>
     details: Do you have an idea? or some project for a client, vuesax can help you <b>create faster and work less</b> giving you everything you need to implement an interface from the simplest to the most complex.
     action: 
       text: Getting Started
       link: /docs/guide/gettingStarted/
-      type: primary
   - title: <b>Unique and beautiful<b> design
     details: <b>Our designs are unique</b> for each component and are not anchored to any visual trends or design rules, which makes us unique and of course your projects as well.
     action: false
