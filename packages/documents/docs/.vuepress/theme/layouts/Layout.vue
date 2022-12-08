@@ -83,6 +83,7 @@
 import { computed, onMounted, reactive, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { usePageData, usePageHeadTitle, useRouteLocale } from "@vuepress/client";
+// @ts-ignore
 import { useThemeData, useThemeLocaleData,  } from '@vuepress/plugin-theme-data/client';
 import { codesandboxContext } from "../type";
 import { resolveSidebarItems } from "../util";
