@@ -1,6 +1,6 @@
 {
   "name": "vuesax-alpha",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Vuesax-next component for Vue 3",
   "files": [
     "dist"
