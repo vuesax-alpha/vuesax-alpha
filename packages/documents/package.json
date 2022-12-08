@@ -30,6 +30,6 @@
     "minimist": "^1.2.7",
     "prismjs": "^1.29.0",
     "vue": "^3.2.45",
-    "vuesax-alpha": "^0.0.18"
+    "vuesax-alpha": "^0.0.19"
   }
 }
