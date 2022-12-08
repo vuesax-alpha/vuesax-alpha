@@ -13,6 +13,7 @@ $codeLang: js, ts, html, md, vue, css, sass, scss, less, stylus, go, java, c, sh
 
 $primary: rgb(26, 92, 255);
 $themeBg: rgb(244, 247, 248);
+$borderColor: rgb(234, 236, 239);
 $themeColor: rgb(44, 62, 80);
 $themeLayout: rgb(255, 255, 255);
 $themeBg2: rgb(238, 242, 245);
@@ -39,8 +40,8 @@ $layoutColor: rgb(255, 255, 255);
   --vs-theme-code: 63, 61, 86;
   --vs-theme-code2: 54, 52, 73;
 
+  --vs-border-color: 234, 236, 239;
   --vs-accent-color: 37, 100, 255;
-  // $accentColor = #111214
   --vs-text-color: 176, 180, 190;
   --vs-code-bg-color: 63, 61, 86;
   --vs-arrow-bg-color: 204, 204, 204;
