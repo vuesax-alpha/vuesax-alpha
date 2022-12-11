@@ -10,7 +10,7 @@
 .fade-leave-active {
   transition: opacity 0.5s ease;
 }
-.fade-enter,
+.fade-enter-from,
 .fade-leave-to {
   opacity: 0;
 }
@@ -54,9 +54,6 @@
   flex-wrap: wrap;
 }
 
-// .darken
-//   .vs-loading:not(.vs-loading--background)
-//     background: -color('theme-layout')
 .vs-clipboard {
   opacity: 0;
   position: fixed;
@@ -99,6 +96,9 @@ body {
   margin: 0;
   background-color: -color('theme-layout');
   color: -color('theme-color') !important;
+}
+svg {
+  max-width: unset !important;
 }
 body {
   font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -168,7 +168,7 @@ button {
 .content:not(.custom) {
   @include wrapper;
   > *:first-child {
-    margin-top: -var("navbar-height");
+    margin-top: $navbarHeight;
   }
   a:hover {
     text-decoration: underline;
@@ -238,9 +238,8 @@ h6 {
   font-weight: 600;
   line-height: 1.25;
   .content:not(.custom) > & {
-    $navbarHeight: -var('navbar-height');
-    margin-top: calc(0.5rem - $navbarHeight);
-    padding-top: calc($navbarHeight + 1rem);
+    margin-top: 0.5rem - $navbarHeight;
+    padding-top: $navbarHeight + 1rem;
     margin-bottom: 0;
     &:first-child {
       margin-top: -1.5rem;
