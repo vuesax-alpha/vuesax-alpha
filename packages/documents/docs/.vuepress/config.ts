@@ -1,5 +1,5 @@
 import { defineUserConfig } from "vuepress";
-import { enNavbar, enSidebar } from "./locale";
+import { enNavbar, enSidebar, enSearchData } from "./locale";
 import { vuesaxAlphaTheme } from "./theme/index";
 
 export default defineUserConfig({
@@ -21,6 +21,13 @@ export default defineUserConfig({
         href: `/logos/logo-vuesax-logotipo-vuesax-png-8.png`,
         media: "(prefers-color-scheme:dark)",
         type: "image/png",
+      },
+    ],
+    [
+      "link",
+      {
+        href: "https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css",
+        rel: "stylesheet",
       },
     ],
     [
@@ -72,25 +79,30 @@ export default defineUserConfig({
     repo: "tranthinh-coding/vuesax-alpha",
     docsBranch: "main",
     docsDir: "packages/documents",
-    docsRepo: "https://github.com/tranthinh-coding/vuesax-alpha/tree/main/packages/documents/",
+    docsRepo:
+      "https://github.com/tranthinh-coding/vuesax-alpha/tree/main/packages/documents/",
     editLink: true,
     editLinkPattern:
       "https://github.com/tranthinh-coding/vuesax-alpha/tree/main/packages/documents/",
     lastUpdated: true,
     logo: "/logos/logo-vuesax-svg-3.svg",
     logoDark: "/logos/logo-vuesax-svg-4.svg",
-    linkPrevVersion: "https://lusaxweb.github.io/vuesax/",
+    linkPrevVersion: "https://vuesax.com/",
     searchPlaceholder: "Vuesax Search",
     locales: {
       "/": {
-        selectLanguageText: 'Languages',
+        selectLanguageText: "Languages",
         selectLanguageName: "English",
         navbar: enNavbar,
         sidebar: enSidebar,
       },
     },
+    search: true,
     searchMaxSuggestions: 5,
-    lastUpdatedText: 'Last Updated',
+    searchData: {
+      '/': enSearchData
+    },
+    lastUpdatedText: "Last Updated",
   }),
   markdown: {
     html: true,
@@ -99,5 +111,4 @@ export default defineUserConfig({
     },
     typographer: true,
   },
-  
 });
