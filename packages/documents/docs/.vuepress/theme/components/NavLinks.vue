@@ -3,7 +3,7 @@
     <!-- user links -->
     <div class="nav-item" v-for="navItem in userNav">
       <template v-if="!isString(navItem)">
-        <DropdownLink v-if="('children' in navItem)" :item="navItem" />
+        <DropdownLink v-if="('children' in navItem)" :item="navItem" :has-fle="true" />
         <NavLink v-else :nav-item="navItem" />
       </template>
     </div>
@@ -58,7 +58,6 @@ const repoLabel = computed(() => {
 
 <style lang="scss">
 @import "../styles/use";
-
 
 .nav-links {
   display: flex;
@@ -124,6 +123,13 @@ const repoLabel = computed(() => {
   .nav-links a:hover,
   .nav-links a.router-link-active {
     color: -color("theme-color");
+  }
+}
+
+@media (max-width: 1080px) {
+  .nav-links {
+    opacity: 0;
+    visibility: hidden;
   }
 }
 </style>

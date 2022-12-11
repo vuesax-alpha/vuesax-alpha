@@ -5,11 +5,12 @@
         <div class="points-init">
           <span v-for="span in 16" :key="span"></span>
         </div>
-        <div class="circle-init"></div>
         <div class="content-hero">
           <h1
             v-if="pageFrontmatter.heroText"
-            v-html="pageFrontmatter.heroText || pageFrontmatter.title || 'Hello'"
+            v-html="
+              pageFrontmatter.heroText || pageFrontmatter.title || 'Hello'
+            "
             id="main-title"
           ></h1>
 
@@ -41,7 +42,7 @@
             >
               <i class="bx bxl-github"></i>
               <span title="Stargazers" class="badge-star">
-                <i class='bx bxs-star' ></i>
+                <i class="bx bxs-star"></i>
                 {{ numberWithCommas }}
               </span>
             </a>
@@ -59,18 +60,26 @@
       />
     </div>
 
-    <Illustration1 :feature="(pageFrontmatter.features as Array<ThemeHomeFeatureOption>)[0]" />
-    <Illustration2 :feature="(pageFrontmatter.features as Array<ThemeHomeFeatureOption>)[1]" />
+    <Illustration1
+      :feature="(pageFrontmatter.features as Array<ThemeHomeFeatureOption>)[0]"
+    />
+    <Illustration2
+      :feature="(pageFrontmatter.features as Array<ThemeHomeFeatureOption>)[1]"
+    />
 
-    <Uses />
-    <Illustration3 :feature="(pageFrontmatter.features as Array<ThemeHomeFeatureOption>)[2]" />
-    <Illustration4 :feature="(pageFrontmatter.features as Array<ThemeHomeFeatureOption>)[3]" />
+    <HomeUses />
+    <Illustration3
+      :feature="(pageFrontmatter.features as Array<ThemeHomeFeatureOption>)[2]"
+    />
+    <Illustration4
+      :feature="(pageFrontmatter.features as Array<ThemeHomeFeatureOption>)[3]"
+    />
 
-    <twitter />
+    <HomeTwitter />
 
-    <Content class="custom"/>
+    <Content class="custom" />
 
-    <Footer :subscribe-frontmatter="pageFrontmatter.suscribe"></Footer>
+    <Footer></Footer>
   </main>
 </template>
 
@@ -86,19 +95,21 @@ export type NativeButtons<T extends PageButtons = PageButtons> = Required<T>;
 
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref } from "vue";
-import { usePageData, usePageFrontmatter } from "@vuepress/client";
+import { usePageFrontmatter } from "@vuepress/client";
 
-import { ThemeProjectHomePageFrontmatter, ThemeHomeFeatureOption } from "../shared/frontmatter/home";
+import {
+  ThemeProjectHomePageFrontmatter,
+  ThemeHomeFeatureOption,
+} from "../shared/frontmatter/home";
 import NavLink from "./NavLink.vue";
 import Footer from "./Footer.vue";
-import HomeInit from "./homeInit.vue";
 import Illustration1 from "./HomeIllustration1.vue";
 import Illustration2 from "./HomeIllustration2.vue";
 import Illustration3 from "./HomeIllustration3.vue";
 import Illustration4 from "./HomeIllustration4.vue";
 import HomeComponent from "./HomeComponent.vue";
-import twitter from "./HomeTwiter.vue";
-import Uses from "./HomeUses.vue";
+import HomeTwitter from "./HomeTwitter.vue";
+import HomeUses from "./HomeUses.vue";
 
 const pageFrontmatter = usePageFrontmatter<ThemeProjectHomePageFrontmatter>();
 
@@ -114,8 +125,8 @@ const expand = ref<boolean>(false);
 
 const action = computed(() => {
   return {
-    link: pageFrontmatter.value.action?.link || '',
-    text: pageFrontmatter.value.action?.text || '',
+    link: pageFrontmatter.value.action?.link || "",
+    text: pageFrontmatter.value.action?.text || "",
   };
 });
 const numberWithCommas = computed(() => {
@@ -143,26 +154,25 @@ const time = (variable: PageButtonKeys) => {
 <style lang="scss">
 @import "../styles/use";
 
-
 .darken {
   .init {
     &:after {
       background-image: radial-gradient(
-        -color('theme-bg') 0%,
-        -color('theme-bg') 30%,
+        -color("theme-bg") 0%,
+        -color("theme-bg") 30%,
         transparent 70%
       );
     }
   }
   .discord {
-    background: -color('theme-bg');
+    background: -color("theme-bg");
     color: #fff !important;
     i {
       color: #fff !important;
     }
   }
   .badge-star {
-    background: -color('theme-bg2');
+    background: -color("theme-bg2");
     color: #fff;
   }
 }
@@ -204,7 +214,7 @@ const time = (variable: PageButtonKeys) => {
         position: relative;
         width: 6px;
         height: 6px;
-        background: -color('theme-bg2');
+        background: -color("theme-bg2");
         border-radius: 50%;
         transition: all 0.25s ease;
       }
@@ -214,14 +224,14 @@ const time = (variable: PageButtonKeys) => {
     position: absolute;
     width: 430px;
     height: 430px;
-    border: 40px solid -color('theme-bg');
+    border: 40px solid -color("theme-bg");
     border-radius: 50%;
     bottom: -80px;
     left: -200px;
     z-index: -1;
     transition: all 0.25s ease;
     &:hover {
-      border: 40px solid -color('theme-bg2');
+      border: 40px solid -color("theme-bg2");
     }
   }
   .hero {
@@ -233,8 +243,8 @@ const time = (variable: PageButtonKeys) => {
   top: -8px;
   right: -25px;
   font-size: 0.7rem;
-  background: -color('theme-color');
-  color: -color('theme-layout');
+  background: -color("theme-color");
+  color: -color("theme-layout");
   border-radius: 8px 8px 8px 4px;
   padding: 2px 5px;
   font-weight: normal;
@@ -268,11 +278,11 @@ const time = (variable: PageButtonKeys) => {
     left: 0px;
     width: calc(100% - 4px);
     height: calc(100% - 4px);
-    border: 2px solid -color('theme-color');
+    border: 2px solid -color("theme-color");
     opacity: 0.2;
     transition: all 0.25s ease;
     background: transparent;
-    box-shadow: 0px 0px 0px 0px -color('theme-color');
+    box-shadow: 0px 0px 0px 0px -color("theme-color");
   }
   &:hover {
     &:after {
@@ -308,11 +318,11 @@ const time = (variable: PageButtonKeys) => {
     left: 0px;
     width: calc(100% - 4px);
     height: calc(100% - 4px);
-    border: 2px solid -color('theme-color');
+    border: 2px solid -color("theme-color");
     opacity: 0.2;
     transition: all 0.25s ease;
     background: transparent;
-    box-shadow: 0px 0px 0px 0px -color('theme-color');
+    box-shadow: 0px 0px 0px 0px -color("theme-color");
   }
   i {
     font-size: 1.4rem;
@@ -324,14 +334,14 @@ const time = (variable: PageButtonKeys) => {
 }
 .logo-vuesax {
   max-width: 260px;
-  fill: -color('theme-color');
+  fill: -color("theme-color");
 }
 .home {
   margin: 0px auto;
   display: block;
   width: 100%;
   overflow: hidden;
-  background: -color('theme-layout');
+  background: -color("theme-layout");
   & ~ .config {
     left: 0px;
   }
@@ -371,9 +381,10 @@ const time = (variable: PageButtonKeys) => {
       max-width: 35rem;
       font-size: 1.1rem;
       line-height: 1.3;
-      color: -color('theme-color');
+      color: -color("theme-color");
       opacity: 0.6;
       margin-top: 0px;
+      margin-bottom: 1em;
     }
     .action-button {
       display: inline-block;
@@ -414,10 +425,10 @@ const time = (variable: PageButtonKeys) => {
       font-weight: 500;
       border-bottom: none;
       padding-bottom: 0;
-      color: -color('theme-color');
+      color: -color("theme-color");
     }
     p {
-      color: -color('theme-color');
+      color: -color("theme-color");
       opacity: 0.7;
     }
   }
@@ -644,6 +655,14 @@ const time = (variable: PageButtonKeys) => {
         width: calc(100% - 30px);
       }
     }
+  }
+}
+
+@media (min-width: 760px) and (max-width: 960px) {
+  .home .hero {
+    margin-top: 180px;
+    align-items: flex-start;
+    z-index: 1000;
   }
 }
 </style>

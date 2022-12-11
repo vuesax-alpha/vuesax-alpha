@@ -1,6 +1,6 @@
 <template>
   <div class="dropdown-wrapper" :class="{ open }">
-    <a class="dropdown-title" v-if="item.text" @click="toggle">
+    <a class="dropdown-title" @click="toggle">
       <span :class="item.text" class="title">
         <span v-if="item.text !== '...'">
           {{ item.text }}
@@ -67,15 +67,23 @@ const toggle = () => {
 </script>
 
 <style lang="scss">
-@import "../styles/mixin";
+@import "../styles/use";
+
 .dropdown-wrapper {
   .dropdown-title {
     display: flex !important;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
     .title {
       display: flex !important;
       align-items: center;
+      justify-content: center;
+      &.Languages {
+        span {
+          font-size: 0.7rem;
+        }
+      }
     }
     i {
       &.bx {
@@ -114,7 +122,7 @@ const toggle = () => {
         margin-bottom: 6px;
         font-weight: bold;
         cursor: default;
-        color: -color("theme-color");
+        color: getVar(theme-color);
       }
       .dropdown-subitem-wrapper {
         padding: 0;
@@ -165,12 +173,8 @@ const toggle = () => {
     }
   }
 }
-.dropdown-wrapper .dropdown-title .title justify-content center¨ span,
-.dropdown-wrapper .dropdown-title .title.Languages span {
-  font-size: 0.7rem;
-}
 
-@media (max-width: -var("mq-mobile")) {
+@media (max-width: $MQMobile) {
   .dropdown-wrapper {
     &.open {
       .dropdown-title {
@@ -200,7 +204,7 @@ const toggle = () => {
   }
 }
 
-@media (min-width: -var("mq-mobile")) {
+@media (min-width: $MQMobile) {
   .dropdown-wrapper {
     position: relative;
     &:after {

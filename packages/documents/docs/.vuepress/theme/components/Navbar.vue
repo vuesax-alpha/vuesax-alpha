@@ -1,6 +1,6 @@
 <template>
   <header class="navbar" ref="$el">
-    <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')" />
+    <SidebarButton @toggle-sidebar="emits('toggle-sidebar')" />
 
     <router-link :to="pageData.path" class="home-link">
       <svg
@@ -73,7 +73,11 @@
         >
           <i class="bx bxl-github"></i>
         </a>
-        <a title="Facebook" target="_blank" href="https://www.facebook.com/thinh.onichan">
+        <a
+          title="Facebook"
+          target="_blank"
+          href="https://www.facebook.com/thinh.onichan"
+        >
           <i class="bx bxl-facebook"></i>
         </a>
       </div>
@@ -83,26 +87,27 @@
         @blur="focused = false"
         @showSuggestions="handleShowSuggestions"
         v-if="
-          themeData.search !== false &&
-          pageData.frontmatter.search !== false
+          themeData.search !== false && pageData.frontmatter.search !== false
         "
       />
-      <!-- <NavLinksLanguages class="can-hide"/> -->
     </div>
   </header>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, Ref, ref } from "vue";
+import { onMounted, ref } from "vue";
+import { usePageData } from "@vuepress/client";
+import { useThemeData } from "@vuepress/plugin-theme-data/client";
+
+import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
 import SidebarButton from "./SidebarButton.vue";
 import NavLinks from "./NavLinks.vue";
 import SearchBox from "./SearchBox.vue";
-import { usePageData, useSiteData } from "@vuepress/client";
-import { useThemeData } from "@vuepress/plugin-theme-data/client";
-import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
-import { computed } from "@vue/reactivity";
 
-const siteData = useSiteData();
+const emits = defineEmits<{
+  (event: "toggle-sidebar"): void;
+}>();
+
 const themeData = useThemeData<VuesaxAlphaThemeOptions>();
 const pageData = usePageData();
 
@@ -110,7 +115,7 @@ const linksWrapMaxWidth = ref<number | null>(null);
 const showSuggestions = ref<boolean>(false);
 const focused = ref<boolean>(false);
 
-const $el = ref<HTMLElement>()! as Ref<HTMLElement>;
+const $el = ref<HTMLElement>()!;
 
 const css = (el: HTMLElement, property: string) => {
   // NOTE: Known bug, will return 'auto' if style value is 'auto'
@@ -118,20 +123,20 @@ const css = (el: HTMLElement, property: string) => {
   // null means not to return pseudo styles
   // @ts-ignore
   return win?.getComputedStyle(el)[property];
-}
-
-const MOBILE_DESKTOP_BREAKPOINT = 719; // refer to config.styl
-const NAVBAR_VERTICAL_PADDING = computed(() => {
-  return parseInt(css($el.value, "paddingLeft")) +
-  parseInt(css($el.value, "paddingRight"));
-});
+};
 
 onMounted(() => {
+  const MOBILE_DESKTOP_BREAKPOINT = 719; // refer to config.styl
+  const NAVBAR_VERTICAL_PADDING = 
+    parseInt(css($el.value!, "paddingLeft")) +
+    parseInt(css($el.value!, "paddingRight"))
+
   const handleLinksWrapWidth = () => {
     if (document.documentElement.clientWidth < MOBILE_DESKTOP_BREAKPOINT) {
       linksWrapMaxWidth.value = null;
     } else {
-      linksWrapMaxWidth.value = $el.value.offsetWidth - NAVBAR_VERTICAL_PADDING.value;
+      linksWrapMaxWidth.value =
+        $el.value!.offsetWidth - NAVBAR_VERTICAL_PADDING;
     }
   };
   handleLinksWrapWidth();
@@ -139,9 +144,9 @@ onMounted(() => {
 
   window.addEventListener("scroll", () => {
     if (window.pageYOffset > 0) {
-      $el.value.classList.add("fixed");
+      $el.value?.classList.add("fixed");
     } else {
-      $el.value.classList.remove("fixed");
+      $el.value?.classList.remove("fixed");
     }
   });
 });
@@ -154,88 +159,6 @@ const handleShowSuggestions = (active: boolean) => {
 <style lang="scss">
 @import "../styles/use";
 
-// $navbar-vertical-padding: 0.7rem;
-// $navbar-horizontal-padding: 1.5rem;
-
-.user-info {
-  position: relative;
-  margin-left: 10px;
-  .user-dropdown {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-right: 10px;
-    &:hover {
-      .dropdown {
-        opacity: 1;
-        visibility: visible;
-      }
-    }
-    .dropdown {
-      width: 160px;
-      visibility: hidden;
-      opacity: 0;
-      position: absolute;
-      right: 10px;
-      bottom: 0px;
-      transform: translate(0, 100%);
-      box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.15);
-      transition: all 0.25s ease;
-      .dropdown-content {
-        width: 160px;
-        border-radius: 15px 5px 15px 15px;
-        padding: 10px;
-        background: -color('theme-layout');
-        margin-top: 15px;
-        position: relative;
-      }
-      .name-user {
-        border-bottom: 1px solid -color('theme-bg2');
-        margin-bottom: 10px;
-        width: 100%;
-        padding: 5px 10px;
-        padding-top: 0px;
-        font-size: 0.8rem;
-        text-align: center;
-      }
-      .logout {
-        background: -color('theme-color');
-        color: -color('theme-layout');
-        border: 0px;
-        padding: 8px 25px;
-        border-radius: 10px;
-        transition: all 0.25s ease;
-        box-shadow: 0px 0px 0px 0px -color('theme-color');
-        width: 100%;
-        &:hover {
-          box-shadow: 0px 5px 15px -5px -color('theme-color');
-          transform: translate(0, -4px);
-        }
-      }
-    }
-    .user {
-      img {
-        width: 40px;
-        border-radius: 30%;
-      }
-    }
-  }
-  .btn-login {
-    background: -color('theme-color');
-    color: -color('theme-layout');
-    border: 0px;
-    padding: 10px 15px;
-    border-radius: 10px 10px 20px 10px;
-    margin-right: 10px;
-    padding-right: 17px;
-    transition: all 0.25s ease;
-    box-shadow: 0px 0px 0px 0px -color('theme-color');
-    &:hover {
-      box-shadow: 0px 5px 15px -5px -color('theme-color');
-      transform: translate(0, -4px);
-    }
-  }
-}
 .logo-nav {
   fill: -color('theme-color');
   height: 28px;
@@ -243,7 +166,7 @@ const handleShowSuggestions = (active: boolean) => {
 .home-link {
   position: absolute;
   left: 0px;
-  font-weight: bold;
+  font-weight: 700;
   padding-left: 30px;
 }
 .v-old {
@@ -273,10 +196,6 @@ const handleShowSuggestions = (active: boolean) => {
       justify-content: center;
       padding: 4px;
       box-sizing: border-box;
-      box-icon {
-        width: 20px !important;
-        height: 20px !important;
-      }
     }
   }
 }
@@ -296,21 +215,18 @@ const handleShowSuggestions = (active: boolean) => {
   }
   &.fixed {
     border-radius: 0px;
-    background: -color('theme-layout');
-    .btn-login {
-      border-radius: 10px;
-    }
+    background: -color("theme-layout");
   }
   .logo {
-    height: calc($navbarHeight - 1.4rem);
-    min-width: calc($navbarHeight - 1.4rem);
+    height: $navbarHeight - 1.4rem;
+    min-width: $navbarHeight - 1.4rem;
     margin-right: 0.8rem;
     vertical-align: top;
   }
   .site-name {
     font-size: 1.3rem;
     font-weight: 600;
-    color: -color('theme-color');
+    color: -color("theme-color");
     position: relative;
   }
   .links {
@@ -370,20 +286,17 @@ const handleShowSuggestions = (active: boolean) => {
     }
   }
 }
-
+ 
 @media (max-width: 500px) {
   .home-link {
     width: 24px !important;
     overflow: hidden;
     padding: 0px;
     margin-top: 3px;
+
     .logo-nav {
       height: 24px;
-    }
-  }
-  .user-info {
-    .btn-login {
-      margin-right: 0px;
+      width: auto;
     }
   }
 }
