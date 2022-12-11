@@ -1,4 +1,5 @@
 import { NavbarConfig, SidebarConfig } from "vuepress-vite";
+import { SearchDataOption } from "./theme/vuesaxAlphaTheme";
 
 export const enNavbar: NavbarConfig = [
   {
@@ -174,4 +175,18 @@ export const enSidebar: SidebarConfig = [
       },
     ],
   },
+];
+
+export const enSearchData: SearchDataOption[] = [
+  {
+    title: "Alert",
+    path: "components/alert",
+    headers: [
+      {
+        title: "Default",
+        slug: "default",
+      },
+    ],
+  },
+  
 ];
