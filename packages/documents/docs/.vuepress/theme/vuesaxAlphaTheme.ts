@@ -12,10 +12,19 @@ export declare interface VuesaxAlphaThemeOptions extends DefaultThemeOptions {
   prev?: string;
   searchMaxSuggestions?: number;
   displayAllHeaders?: boolean;
-  /**
-   * Vuepress App 
-   */
-  app?: App;
+  searchData?: SearchData;
+}
+export declare type SearchData = {
+  [x: string]: SearchDataOption[];
+}
+export declare type SearchDataOption = {
+  title: string;
+  path: string;
+  headers?: SearchDataHeaderOption[];
+}
+export declare type SearchDataHeaderOption = {
+  title: string;
+  slug: string;
 }
 
 export declare const vuesaxAlphaTheme: ({
