@@ -1,55 +1,5 @@
 <template>
   <footer class="footer">
-    <!-- Begin Mailchimp Signup Form -->
-    <div class="subscribe-content" id="mc_embed_signup">
-      <div class="con-form">
-        <h4 v-if="subscribeFrontmatter" v-html="subscribeFrontmatter"></h4>
-        <h4 v-else>
-          <b>Subscribe</b> to our <br />
-          Weekly Newsletter
-        </h4>
-        <form
-          action="https://lusaxweb.us19.list-manage.com/subscribe/post?u=0437617d8716e89975fcc0f14&amp;id=8188b99f63"
-          method="post"
-          id="mc-embedded-subscribe-form"
-          name="mc-embedded-subscribe-form"
-          class="validate"
-          target="_blank"
-          novalidate
-        >
-          <div id="mc_embed_signup_scroll">
-            <input
-              type="email"
-              value=""
-              name="EMAIL"
-              class="email"
-              id="mce-EMAIL"
-              placeholder="Email"
-              required
-            />
-            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-            <div style="position: absolute; left: -5000px" aria-hidden="true">
-              <input
-                type="text"
-                name="b_0437617d8716e89975fcc0f14_8188b99f63"
-                tabindex="-1"
-                value=""
-              />
-            </div>
-            <div class="clear">
-              <input
-                type="submit"
-                value="SUSCRIBE!"
-                name="subscribe"
-                id="mc-embedded-subscribe"
-                class="button"
-              />
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <!--End mc_embed_signup-->
     <div class="footer__uls">
       <ul v-for="(link, index) in links" :key="index">
         <li class="title">
@@ -64,17 +14,16 @@
     </div>
 
     <div class="copy">
-      <span class="span-copy"> Copyright © 2020 Vuesax </span>
+      <span class="span-copy"> Copyright © 2022 Vuesax-alpha </span>
       <span class="span-lusaxweb">
         <span> Created By </span>
-        <a target="_blank" href="http://lusaxweb.net">Lusaxweb</a>
+        <a @click.prevent target="_blank" href="javascript:void(0)">Tranthinh-coding</a>
       </span>
     </div>
   </footer>
 </template>
 
 <script setup lang="ts">
-defineProps<{ subscribeFrontmatter?: string }>();
 const links = [
   {
     title: "Vuesax",
@@ -110,7 +59,7 @@ const links = [
       },
       {
         text: "Github",
-        link: "https://github.com/lusaxweb/vuesax-next",
+        link: "https://github.com/tranthinh-coding/vuesax-alpha",
       },
       {
         text: "Privacy Policy",
@@ -123,7 +72,7 @@ const links = [
     items: [
       {
         text: "Github Issues",
-        link: "https://github.com/lusaxweb/vuesax-next/issues",
+        link: "https://github.com/tranthinh-coding/vuesax-alpha/issues",
       },
       // {
       //   text: 'Latest Releases',
@@ -138,13 +87,13 @@ const links = [
   {
     title: "Community",
     items: [
-      {
-        text: "Discord",
-        link: "https://discord.gg/6AZNXEa",
-      },
+      // {
+      //   text: "Discord",
+      //   link: "https://discord.gg/6AZNXEa",
+      // },
       {
         text: "Github",
-        link: "https://github.com/lusaxweb/vuesax-next/",
+        link: "https://github.com/tranthinh-coding/vuesax-alpha",
       },
     ],
   },
