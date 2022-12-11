@@ -2,15 +2,14 @@
   <div class="search-box" :class="{ focused, showSuggestions }">
     <div class="con-input">
       <input
-        @input="inputEvent"
         aria-label="Search"
-        :value="query"
+        v-model="query"
         :class="{ focused: focused }"
         :placeholder="placeholder"
         autocomplete="off"
-        spellcheck="false"
-        @focus="(focused = true), $emit('focus')"
-        @blur="(focused = false), $emit('blur')"
+        spellcheck="false" 
+        @focus="(focused = true), emits('focus')"
+        @blur="(focused = false), emits('blur')"
         @keyup.enter="go(focusIndex)"
         @keyup.up="onUp"
         @keyup.down="onDown"
@@ -37,20 +36,19 @@
         <li
           class="suggestion"
           v-for="(suggestion, i) in suggestions"
-          :key="i"
           :class="{ focused: i === focusIndex }"
           @mousedown="go(i)"
           @mouseenter="focus(i)"
         >
-          <a :href="suggestion.path" @click.prevent>
-            <span class="page-title">{{
-              suggestion.title || suggestion.path
-            }}</span>
+          <router-link :to="suggestion.path">
+            <span class="page-title">
+              {{ suggestion.title || suggestion.path }}
+            </span>
             <span v-if="suggestion.header" class="header">
               <i class="bx bx-chevron-right"></i>
               {{ suggestion.header }}
             </span>
-          </a>
+          </router-link>
         </li>
       </ul>
     </transition>
@@ -59,26 +57,26 @@
 
 <script setup lang="ts">
 import {
-  PageData,
-  RouteLocale,
-  usePageData,
   useRouteLocale,
-  useSiteData,
 } from "@vuepress/client";
+// @ts-ignore
 import { useThemeData } from "@vuepress/plugin-theme-data/client";
+import { ensureLeadingSlash, removeEndingSlash } from "@vuepress/shared";
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 
 import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
 
-const emits = defineEmits(["showSuggestions"]);
+const emits = defineEmits<{
+  (event: "showSuggestions", active: boolean): void;
+  (event: "focus"): void;
+  (event: "blur"): void;
+}>();
 
 const router = useRouter();
 const themeData = useThemeData<VuesaxAlphaThemeOptions>();
 const routeLocale = useRouteLocale();
-const siteData = useSiteData();
 
-/* global SEARCH_MAX_SUGGESTIONS, SEARCH_PATHS, SEARCH_HOTKEYS */
 const SEARCH_MAX_SUGGESTIONS = themeData.value.searchMaxSuggestions || 5;
 const SEARCH_HOTKEYS = ["s", "/"];
 
@@ -90,9 +88,12 @@ const placeholder = ref<string>("");
 const $input = ref<HTMLElement>()!;
 
 const showSuggestions = computed(() => {
-  const active = focused.value && (suggestions.value?.length || 0);
-  return active;
+  const active = focused.value && suggestions.value?.length;
+  return !!active;
 });
+
+const matches = ({ title }: { title: string }) =>
+  title.toLowerCase().indexOf(query.value) > -1;
 
 const suggestions = computed(
   (): {
@@ -101,8 +102,9 @@ const suggestions = computed(
     header?: string;
   }[] => {
     const _query = query.value.trim().toLowerCase();
-    const pages = themeData.value.app?.pages;
-    if (!_query || !pages) {
+    const searchData = themeData.value.searchData?.[routeLocale.value];
+
+    if (!_query || !searchData) {
       return [];
     }
 
@@ -111,32 +113,27 @@ const suggestions = computed(
       path: string;
       header?: string;
     }[] = [];
-    const localePath: RouteLocale = routeLocale.value;
 
-    const matches = ({ title }: { title: string }) =>
-      title.toLowerCase().indexOf(query.value) > -1;
-
-    for (let i = 0; i < pages.length; i++) {
+    for (let i = 0; i < searchData.length; i++) {
       if (res.length >= SEARCH_MAX_SUGGESTIONS) break;
-      const page = pages[i];
-      // filter out results that do not match current locale
-      if (getPageLocalePath(page) !== localePath) {
-        continue;
-      }
 
+      const page = searchData[i];
       if (matches(page)) {
+        const path = removeEndingSlash(ensureLeadingSlash(page.path));
         res.push({
           title: page.title,
-          path: page.path,
+          path,
         });
-      } else if (page.headers) {
+      }
+      if (page.headers) {
         for (let j = 0; j < page.headers.length; j++) {
           if (res.length >= SEARCH_MAX_SUGGESTIONS) break;
           const h = page.headers[j];
           if (matches(h)) {
+            const path = removeEndingSlash(ensureLeadingSlash(page.path));
             res.push({
               title: page.title,
-              path: page.path + "#" + h.slug,
+              path: `${path}#${h.slug}`,
               header: h.title,
             });
           }
@@ -156,17 +153,8 @@ const alignRight = computed(() => {
 
 watch([focused, suggestions], () => {
   const active = focused.value && suggestions.value?.length;
-  emits("showSuggestions", active);
+  emits("showSuggestions", !!active);
 });
-
-const getPageLocalePath = (page: PageData) => {
-  for (const localePath in siteData.value.locales || {}) {
-    if (localePath !== "/" && page.path.indexOf(localePath) === 0) {
-      return localePath;
-    }
-  }
-  return "/";
-};
 
 const onHotkey = (event: KeyboardEvent) => {
   if (
@@ -215,10 +203,6 @@ const unfocus = () => {
   focusIndex.value = -1;
 };
 
-const inputEvent = (evt: Event) => {
-  query.value = (evt.target as HTMLInputElement).value;
-};
-
 onMounted(() => {
   placeholder.value = themeData.value.searchPlaceholder || "";
   document.addEventListener("keydown", onHotkey);
@@ -231,7 +215,6 @@ onBeforeUnmount(() => {
 
 <style scoped lang="scss">
 @import "../styles/use";
-
 
 .fade-enter-active,
 .fade-leave-active {
@@ -253,7 +236,6 @@ onBeforeUnmount(() => {
 .search-box {
   display: inline-block;
   margin-right: 1rem;
-  margin-right: 0px;
   position: relative;
   &.showSuggestions {
     .con-input {
