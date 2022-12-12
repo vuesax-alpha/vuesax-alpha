@@ -99,38 +99,4 @@ const handleRouter = (link?: string) => {
     opacity: 0;
   }
 }
-#Trazado_2429,
-#Trazado_2430,
-#Trazado_2431,
-#Trazado_2432,
-#Trazado_2433,
-#Trazado_2434,
-#Trazado_2435,
-#Trazado_2436,
-#Trazado_2446,
-#Trazado_2593,
-#Trazado_2437,
-#Trazado_2438,
-#Trazado_2441,
-#Trazado_2442,
-#Trazado_2445,
-#Trazado_2428 {
-  animation: 5s svg1 infinite;
-}
-#Trazado_2416,
-#Trazado_2417,
-#Trazado_2418,
-#Trazado_2419,
-#Trazado_2420,
-#Trazado_2587,
-#Trazado_2422,
-#Trazado_2421,
-#Trazado_2423,
-#Trazado_2424,
-#Trazado_2425,
-#Trazado_2426,
-#Trazado_2427,
-#Trazado_2415 {
-  animation: 5s svg1 infinite alternate;
-}
 </style>

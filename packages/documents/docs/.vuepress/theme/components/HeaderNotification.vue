@@ -16,6 +16,7 @@
       </button>
     </div>
   </div>
+  <template v-else></template>
 </template>
 
 <script setup lang="ts">

@@ -27,7 +27,7 @@
               @mouseenter.native="
                 (nativeButtons.vuesax = true), (expand = true)
               "
-              title="Get Started"
+              :title="action.text"
               class="action-button"
               :nav-item="action"
             ></NavLink>
@@ -61,18 +61,18 @@
     </div>
 
     <Illustration1
-      :feature="(pageFrontmatter.features as Array<ThemeHomeFeatureOption>)[0]"
+      :feature="(pageFrontmatter.features as ThemeHomeFeatureOption[])[0]"
     />
     <Illustration2
-      :feature="(pageFrontmatter.features as Array<ThemeHomeFeatureOption>)[1]"
+      :feature="(pageFrontmatter.features as ThemeHomeFeatureOption[])[1]"
     />
 
     <HomeUses />
     <Illustration3
-      :feature="(pageFrontmatter.features as Array<ThemeHomeFeatureOption>)[2]"
+      :feature="(pageFrontmatter.features as ThemeHomeFeatureOption[])[2]"
     />
     <Illustration4
-      :feature="(pageFrontmatter.features as Array<ThemeHomeFeatureOption>)[3]"
+      :feature="(pageFrontmatter.features as ThemeHomeFeatureOption[])[3]"
     />
 
     <HomeTwitter />

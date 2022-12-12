@@ -97,6 +97,7 @@
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
 import { usePageData } from "@vuepress/client";
+// @ts-ignore
 import { useThemeData } from "@vuepress/plugin-theme-data/client";
 
 import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
