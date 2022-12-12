@@ -10,13 +10,6 @@ export interface ThemeHomeActionOption {
    * Action link
    */
   link: string;
-
-  /**
-   * Type of action
-   *
-   * @default 'default'
-   */
-  type?: "primary" | "default";
 }
 
 export interface ThemeHomeFeature {
