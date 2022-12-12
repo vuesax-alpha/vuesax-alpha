@@ -3,4 +3,4 @@ const { cd } = require("shelljs");
 
 cd("./packages/documents");
 
-execSync(`vitepress dev docs`);
+execSync(`vuepress dev docs`);
