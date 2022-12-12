@@ -42,6 +42,7 @@
           isSidebarOpen: isSidebarOpen,
         }"
       />
+      <template v-else></template>
     </ClientOnly>
 
     <Home v-if="pageData.frontmatter.home" />
@@ -69,12 +70,17 @@
     </Page>
 
     <Sidebar :sidebar="sidebarItems">
-      <slot name="sidebar-top" slot="top"></slot>
-      <slot name="sidebar-bottom" slot="bottom"></slot>
+      <template #top>
+        <slot name="sidebar-top"></slot>
+      </template>
+      <template #bottom>
+        <slot name="sidebar-bottom"></slot>
+      </template>
     </Sidebar>
 
     <ClientOnly>
       <Config v-if="!pageData.frontmatter.navbar" />
+      <template v-else></template>
     </ClientOnly>
   </div>
 </template>
