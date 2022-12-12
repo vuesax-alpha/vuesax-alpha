@@ -3,12 +3,6 @@
     class="nav-link"
     :to="navItem.link"
     v-if="!isExternal(navItem.link)"
-    :exact="
-      exact ||
-      ($route.path.indexOf('/guide/') !== -1 &&
-        navItem.text === 'Documentation') ||
-      navItem.text === 'Button'
-    "
   >
     {{ navItem.text }}
     <i v-if="arrow" class="bx bx-chevron-down"></i>
@@ -33,28 +27,14 @@
 </template>
 
 <script lang="ts" setup>
-import { useSiteData } from "@vuepress/client";
 import { isLinkMailto, isLinkTel } from "@vuepress/shared";
-import { computed } from "vue";
 import { NavbarItem } from "vuepress-vite";
 import { isExternal } from "../util";
 
-const props = defineProps<{
+defineProps<{
   navItem: NavbarItem;
   arrow?: boolean;
-  exact?: boolean;
 }>();
-
-const siteData = useSiteData();
-
-const exact = computed(() => {
-  if (siteData.value.locales) {
-    return Object.keys(siteData.value.locales).some(
-      (rootLink) => rootLink === props.navItem.link
-    );
-  }
-  return props.navItem.link === "/";
-});
 </script>
 
 <style lang="scss">
