@@ -38,9 +38,9 @@ export * from "./components";
 export * from "./layout";
 
 export {
-  setColor as vsSetColor,
-  toggleTheme as vsToggleTheme,
-  setTheme as vsSetTheme,
+  setColor,
+  toggleTheme,
+  setTheme,
   getPage,
   getLength,
   toggleSelectAll,
