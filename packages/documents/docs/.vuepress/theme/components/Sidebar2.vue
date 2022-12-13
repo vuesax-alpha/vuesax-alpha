@@ -1,13 +1,7 @@
 <template>
   <aside class="sidebar">
-    <!-- <svg class="effect1" xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
-      <path id="Trazado_200" data-name="Trazado 200" d="M0-10,150,0l10,150S137.643,80.734,100.143,43.234,0-10,0-10Z" transform="translate(0 10)" />
-    </svg> -->
     <div class="content-sidebar">
-      <!-- <NavLinks/> -->
-      <!-- <slot name="top"/> -->
-      <SidebarLinks :fixed="fixed" :depth="1" :links="sidebar" />
-      <!-- <slot name="bottom"/> -->
+      <SidebarLinks :fixed="fixed" :depth="1" :links="sidebarItems" />
     </div>
   </aside>
 </template>
@@ -17,7 +11,7 @@ import { SidebarConfigArray } from "vuepress-vite";
 import SidebarLinks from "./SidebarLinks.vue";
 
 defineProps<{
-  sidebar: SidebarConfigArray,
+  sidebarItems: SidebarConfigArray,
   fixed: boolean
 }>();
 </script>
@@ -25,7 +19,6 @@ defineProps<{
 <style lang="scss">
 @import "../styles/use";
 
-// vuesax-theme
 .effect1 {
   transform: rotate(-90deg);
   position: absolute;
@@ -83,7 +76,6 @@ defineProps<{
   }
 }
 
-// vuesax-theme
 .sidebar {
   padding-right: 5px;
   z-index: 12000 !important;

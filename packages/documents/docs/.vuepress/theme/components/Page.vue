@@ -8,6 +8,7 @@
       >
         <i class="bx bx-left-arrow-alt"></i>
       </router-link>
+      <template v-else></template>
 
       <div class="header__content">
         <div ref="$flex" class="flex-header">
@@ -120,7 +121,7 @@
       </svg>
     </header>
 
-    <Sidebar2 :fixed="true" :sidebar="themeData.sidebar" />
+    <Sidebar2 :fixed="true" :sidebar-items="themeData.sidebar" />
 
     <slot name="top"></slot>
 
@@ -135,6 +136,7 @@
         <span class="prefix">{{ lastUpdatedText }}: </span>
         <span class="time">{{ themeData.lastUpdated }}</span>
       </div>
+      <template v-else></template>
     </footer>
 
     <div class="page-nav" v-if="prev || next">
@@ -148,7 +150,8 @@
             </span>
           </router-link>
         </span>
-
+        <template v-else></template>
+        
         <span v-if="next" class="next">
           <router-link :to="next.link">
             <span>
@@ -157,8 +160,10 @@
             <i class="bx bx-chevron-right"></i>
           </router-link>
         </span>
+        <template v-else></template>
       </p>
     </div>
+    <template v-else></template>
     <slot name="bottom"></slot>
 
     <div ref="$up" @click="handleUp" class="up">
@@ -184,21 +189,22 @@ import {
   outboundRE,
   endingSlashRE,
 } from "../util";
-import Sidebar2 from "./Sidebar2.vue";
-import api from "./Api.vue";
-import Footer from "./Footer.vue";
 import {
   ThemeNormalApiFrontmatter,
   ThemePageFrontmatter,
 } from "../shared/frontmatter/normal";
 import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
 
+import Sidebar2 from "./Sidebar2.vue";
+import api from "./Api.vue";
+import Footer from "./Footer.vue";
+
 const pageData = usePageData<ThemeNormalApiFrontmatter>();
 const themeData = useThemeData<VuesaxAlphaThemeOptions>();
 const pageFrontmatter = usePageFrontmatter<ThemePageFrontmatter>();
 
 const props = defineProps<{
-  sidebar?: SidebarConfigArray;
+  sidebarItems?: SidebarConfigArray;
 }>();
 
 const $page = ref<HTMLElement>()!;
@@ -214,10 +220,10 @@ const lastUpdatedText = computed(() => {
 
 const prev = computed(() => {
   const prev = pageFrontmatter.value.prev;
-  if (!prev || !props.sidebar) {
+  if (!prev || !props.sidebarItems) {
     return;
   }
-  return resolvePage(props.sidebar, -1);
+  return resolvePage(props.sidebarItems, -1);
 });
 
 const next = computed(() => {
@@ -226,10 +232,10 @@ const next = computed(() => {
     link: "/docs/guide/",
     title: "introduction",
   };
-  if (!next || !props.sidebar) {
+  if (!next || !props.sidebarItems) {
     return obj;
   }
-  return resolvePage(props.sidebar, 1) || obj;
+  return resolvePage(props.sidebarItems, 1) || obj;
 });
 
 const editLink = computed(() => {

@@ -13,7 +13,6 @@
 
       <div
         v-for="(item, index) in images"
-        :key="index"
         :class="{ black: item.black }"
         class="con-images"
       >

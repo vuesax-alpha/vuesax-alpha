@@ -1,12 +1,14 @@
 <template>
   <div class="docs-home">
-    <Sidebar :items="sidebarItems" :fixed="true"></Sidebar>
+    <Sidebar2 :sidebar-items="sidebarItems" :fixed="true"></Sidebar2>
     <Footer></Footer>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { SidebarConfigArray } from "vuepress-vite";
+import Sidebar2 from "./Sidebar2.vue";
+import Footer from "./Footer.vue";
 
 defineProps<{ sidebarItems: SidebarConfigArray }>();
 </script>
@@ -80,7 +82,7 @@ defineProps<{ sidebarItems: SidebarConfigArray }>();
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1080px) {
   .docs-home {
     & ~ .sidebar {
       display: block;
