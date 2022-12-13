@@ -16,13 +16,6 @@
     ],
     "rootDir": "."
   },
-  "include": [
-    "**/*",
-    "./src/**/*"
-  ],
-  "types": [
-    "@types/lodash"
-  ],
   "rules": {
     "interface-name": [
       true,
