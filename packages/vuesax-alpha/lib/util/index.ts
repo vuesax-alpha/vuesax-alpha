@@ -1,29 +1,5 @@
 import { ComponentPublicInstance } from "vue";
 
-// const ElementId: string[] = [];
-
-// const randomElementId = (): string => {
-//   let e: string = '';
-//   do {
-//     e = `vs-id-${Math.floor(Math.random() * 2000)}-${
-//         Math.floor(Math.random() * 2000) % Math.floor(Math.random() * 745)
-//     }`
-//     if (ElementId.includes(e)) {
-//       continue;
-//     }
-//     ElementId.push(e);
-//     break;
-//   } while(true);
-//   return e;
-// }
-
-// const removeElementId = (id: string): void => {
-//   let isContain = ElementId.indexOf(id);
-//   if (isContain !== -1) {
-//     ElementId.splice(isContain, 1);
-//   }
-// }
-
 const isTouch = (('ontouchstart' in window) || ((navigator as any).msMaxTouchPoints > 0));
 
 const passParamsToData = (vm: ComponentPublicInstance, params: any = {}, _params: string[]) => {
@@ -81,7 +57,7 @@ const setVar = (propertyName: string, value: string, el: any) => {
   }
 }
 
-function hexToRgb(hex: string) {
+const hexToRgb = (hex: string) => {
   const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
   hex = hex.replace(shorthandRegex, (m: any, r: string, g: string, b: string) => {
     return r + r + g + g + b + b;
@@ -308,8 +284,6 @@ export {
   removeBody,
   setCords,
   setCordsPosition,
-  // removeElementId,
-  // randomElementId,
   passParamsToData,
   getPropertyHasOwn,
   
