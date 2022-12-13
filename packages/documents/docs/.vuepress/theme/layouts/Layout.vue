@@ -45,6 +45,11 @@
       <template v-else></template>
     </ClientOnly>
 
+    <div
+      class="sidebar-mask"
+      @click="toggleSidebar(false)"
+    ></div>
+
     <Home v-if="pageData.frontmatter.home" />
 
     <DocsHome
@@ -52,21 +57,19 @@
       v-else-if="pageData.frontmatter.docsHome"
     />
 
-    <License
-      :sidebar-items="sidebarItems"
-      v-else-if="pageData.frontmatter.license"
-    />
+    <License v-else-if="pageData.frontmatter.license" />
 
-    <Branding
-      :sidebar-items="sidebarItems"
-      v-else-if="pageData.frontmatter.branding"
-    />
+    <Branding v-else-if="pageData.frontmatter.branding" />
 
     <Navbar v-else-if="pageData.frontmatter.navbar" />
 
-    <Page v-else :sidebar="sidebarItems">
-      <slot name="page-top" slot="top"></slot>
-      <slot name="page-bottom" slot="bottom"></slot>
+    <Page v-else :sidebar-items="sidebarItems">
+      <template #top>
+        <slot name="page-top"></slot>
+      </template>
+      <template #bottom>
+        <slot name="page-bottom"></slot>
+      </template>
     </Page>
 
     <Sidebar :sidebar="sidebarItems">
@@ -88,9 +91,15 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { usePageData, usePageHeadTitle, useRouteLocale } from "@vuepress/client";
-// @ts-ignore
-import { useThemeData, useThemeLocaleData,  } from '@vuepress/plugin-theme-data/client';
+import {
+  usePageData,
+  usePageHeadTitle,
+  useRouteLocale,
+} from "@vuepress/client";
+import {
+  useThemeData,
+  useThemeLocaleData,
+} from "@vuepress/plugin-theme-data/client";
 import { codesandboxContext } from "../type";
 import { resolveSidebarItems } from "../util";
 
@@ -120,17 +129,13 @@ const codesandbox = ref<codesandboxContext>({});
 let touchStart = reactive<{ x: number; y: number }>({ x: NaN, y: NaN });
 
 const shouldShowNavbar = computed(() => {
-  const { logo, repo, navbar }  = themeData.value;
+  const { logo, repo, navbar } = themeData.value;
   const { frontmatter } = pageData.value;
   if (frontmatter.navbar === false || navbar === false) {
     return false;
   }
   return (
-    pageTitle.value ||
-    logo ||
-    repo ||
-    navbar ||
-    themeLocaleData.value.navbar
+    pageTitle.value || logo || repo || navbar || themeLocaleData.value.navbar
   );
 });
 
@@ -149,7 +154,6 @@ const sidebarItems = computed(() => {
     themeData.value,
     routeLocale.value
   );
-  // return themeData.value.sidebar
 });
 
 const pageClasses = computed(() => {
@@ -159,7 +163,7 @@ const pageClasses = computed(() => {
     {
       "no-navbar": !shouldShowNavbar.value,
       "sidebar-open": isSidebarOpen.value,
-      "no-sidebar": !shouldShowSidebar.value || frontmatter.layout == 'Layout',
+      "no-sidebar": !shouldShowSidebar.value || frontmatter.layout == "Layout",
     },
     userPageClass,
   ];
@@ -169,7 +173,7 @@ onMounted(() => {
   router.afterEach(() => {
     isSidebarOpen.value = false;
   });
-  loadDarkModeFavicon();
+  // loadDarkModeFavicon();
 });
 
 const loadDarkModeFavicon = () => {

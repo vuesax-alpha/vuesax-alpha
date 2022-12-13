@@ -4,16 +4,18 @@
       v-for="(item, i) in links"
       :class="{ active: item.link === $route.path }"
     >
-      <template v-if="!isString(item) && ('children' in item)">
+      <template v-if="!isString(item)">
         <SidebarGroup
+          v-if="('children' in item)"
           :item="item"
           :open="fixed || i === openGroupIndex || vsTheme?.sidebarCollapseOpen || false"
           :collapsable="true"
           :depth="depth"
           @toggle="toggleGroup(i)"
         />
+
+        <SidebarLink v-else :sidebarDepth="sidebarDepth" :link="item" />
       </template>
-      <SidebarLink v-else :sidebarDepth="sidebarDepth" :link="item" />
     </li>
   </ul>
 </template>
@@ -75,6 +77,8 @@ const toggleGroup = (index: number) => {
 };
 
 const resolveOpenGroupIndex = (route: RouteLocationNormalizedLoaded, sidebar: SidebarConfigArray) => {
+  console.log(sidebar);
+  
   for (let i = 0; i < sidebar.length; i++) {
     const item = sidebar[i];
     if (isString(item)) continue;
