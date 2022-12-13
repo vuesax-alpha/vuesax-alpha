@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref, watch } from "vue";
+import { onBeforeUnmount, onMounted, reactive, ref, watch } from "vue";
 
 const speed = 0.08;
 const notPulse = ref<boolean>(true);
@@ -41,6 +41,7 @@ const mousex = ref<number>(0);
 const moving = ref<boolean>(false);
 const notScrolling = ref<boolean>(false);
 const offset = ref<number>(0);
+const requestAnimationId = ref<number>();
 
 const $ul = ref<HTMLElement>()!;
 const $twits = ref<HTMLElement>()!;
@@ -138,6 +139,10 @@ onMounted(() => {
   document.addEventListener("keydown", keydownx);
 });
 
+onBeforeUnmount(() => {
+  cancelAnimationFrame(requestAnimationId.value!);
+})
+
 const smooth = () => {
   const smoothScroll = () => {
     offset.value += (translatex.value - offset.value) * speed;
@@ -145,7 +150,7 @@ const smooth = () => {
     const scroll = `translateX(-${offset.value}px) translateZ(0)`;
     $ul.value!.style.transform = scroll;
 
-    requestAnimationFrame(smoothScroll);
+    requestAnimationId.value = requestAnimationFrame(smoothScroll);
   };
   smoothScroll();
 };
