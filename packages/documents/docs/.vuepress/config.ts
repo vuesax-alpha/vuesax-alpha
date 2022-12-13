@@ -87,6 +87,7 @@ export default defineUserConfig({
     lastUpdated: true,
     logo: "/logos/logo-vuesax-svg-3.svg",
     logoDark: "/logos/logo-vuesax-svg-4.svg",
+    prevVersion: "v4.x",
     linkPrevVersion: "https://vuesax.com/",
     searchPlaceholder: "Vuesax Search",
     locales: {

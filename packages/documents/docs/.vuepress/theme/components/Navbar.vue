@@ -61,9 +61,7 @@
         class="v-old"
         target="_blank"
         :href="themeData.linkPrevVersion"
-      >
-        v4.x
-      </a>
+      >{{ themeData.prevVersion }}</a>
 
       <div class="con-links">
         <a
@@ -261,7 +259,7 @@ const handleShowSuggestions = (active: boolean) => {
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1080px) {
   .navbar {
     padding: 9px;
     padding-top: 8px;
