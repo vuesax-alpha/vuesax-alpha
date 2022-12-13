@@ -1,28 +1,34 @@
-import { setColor } from './index'
+import { setColor } from "./index";
 
-export interface VuetuiOptions {
-  colors?: VuetuiColors
+export type VuesaxOptions = {
+  colors?: VuesaxColors;
 }
 
-export interface VuetuiColors {
-  [item: string]: any
-  primary: string
-  success: string
-  danger: string
-  warn: string
-  dark: string
+export type VuesaxColors = {
+  [P in VuesaxColorOptions]?: string;
 }
 
-const defineColors = (colors: VuetuiColors) => {
-  Object.keys(colors).forEach((item) => {
+export type VuesaxColorOptions = typeof vuesaxColorOptions[number];
+
+const vuesaxColorOptions = [ 
+  "primary",
+  "success",
+  "danger",
+  "warn",
+  "dark",
+] as const;
+
+const defineColors = (colors: VuesaxColors) => {
+  const options = Object.keys(colors) as (keyof VuesaxColors)[];
+  options.forEach((item) => {
     if (document.body) {
-      setColor(item, colors[item], document.body)
+      setColor(item, colors[item]!, document.body);
     }
-  })
-}
+  });
+};
 
-export const defineVuetuiOptions = (options: VuetuiOptions) => {
-  if (!!options.colors) {
-    defineColors(options.colors)
+export const defineVuesaxOptions = (options: VuesaxOptions) => {
+  if (options.colors) {
+    defineColors(options.colors);
   }
-}
+};
