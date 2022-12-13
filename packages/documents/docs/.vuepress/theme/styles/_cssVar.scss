@@ -1,33 +1,33 @@
 
 :root {
-  --vs-primary: 26, 92, 255;
-  --vs-theme-bg: 244, 247, 248;
-  --vs-theme-color: 44, 62, 80;
-  --vs-theme-layout: 255, 255, 255;
-  --vs-theme-bg2: 238, 242, 245;
-  --vs-theme-code: 63, 61, 86;
-  --vs-theme-code2: 54, 52, 73;
+  --vsd-primary: 26, 92, 255;
+  --vsd-theme-bg: 244, 247, 248;
+  --vsd-theme-color: 44, 62, 80;
+  --vsd-theme-layout: 255, 255, 255;
+  --vsd-theme-bg2: 238, 242, 245;
+  --vsd-theme-code: 63, 61, 86;
+  --vsd-theme-code2: 54, 52, 73;
 
-  --vs-border-color: 234, 236, 239;
-  --vs-accent-color: 37, 100, 255;
-  --vs-text-color: 176, 180, 190;
-  --vs-code-bg-color: 63, 61, 86;
-  --vs-arrow-bg-color: 204, 204, 204;
-  --vs-badge-tip-color: 66, 185, 131;
+  --vsd-border-color: 234, 236, 239;
+  --vsd-accent-color: 37, 100, 255;
+  --vsd-text-color: 176, 180, 190;
+  --vsd-code-bg-color: 63, 61, 86;
+  --vsd-arrow-bg-color: 204, 204, 204;
+  --vsd-badge-tip-color: 66, 185, 131;
   // vuesax-theme vars
-  --vs-bg-color: 222, 231, 234;
-  --vs-layout-color: 255, 255, 255;
+  --vsd-bg-color: 222, 231, 234;
+  --vsd-layout-color: 255, 255, 255;
 
   // layout
-  --vs-navbar-height: 3.6rem;
-  --vs-sidebar-width: 20rem;
-  --vs-content-width: 740px;
-  --vs-home-page-width: 960px;
+  --vsd-navbar-height: 3.6rem;
+  --vsd-sidebar-width: 20rem;
+  --vsd-content-width: 740px;
+  --vsd-home-page-width: 960px;
 
   // responsive breakpoints
-  --vs-mq-not-arrow: 959px;
-  --vs-mq-mobile: 719px;
-  --vs-mq-mobile-not-arrow: 419px;
+  --vsd-mq-not-arrow: 959px;
+  --vsd-mq-mobile: 719px;
+  --vsd-mq-mobile-not-arrow: 419px;
 
-  --vs-line-numbers-wrapper-width: 3.5rem;
+  --vsd-line-numbers-wrapper-width: 3.5rem;
 }

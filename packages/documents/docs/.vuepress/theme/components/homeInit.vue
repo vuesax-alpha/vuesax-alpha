@@ -457,13 +457,13 @@
                 id="Case"
                 d="M23.794,0h128.99a23.794,23.794,0,0,1,23.794,23.794V335.206A23.794,23.794,0,0,1,152.784,359H23.794A23.794,23.794,0,0,1,0,335.206V23.794A23.794,23.794,0,0,1,23.794,0Z"
                 transform="translate(1.252 0)"
-                fill="var(--vs-theme-layout)"
+                fill="var(--vsd-theme-layout)"
               />
               <path
                 id="Glass"
                 d="M18.552,0H149.677a18.5,18.5,0,0,1,18.552,18.455V332.2a18.5,18.5,0,0,1-18.552,18.455H18.552A18.5,18.5,0,0,1,0,332.2V18.455A18.5,18.5,0,0,1,18.552,0Z"
                 transform="translate(5.427 4.174)"
-                fill="var(--vs-theme-layout)"
+                fill="var(--vsd-theme-layout)"
               />
               <g id="Button" transform="translate(177.79 83.767)">
                 <g
@@ -476,14 +476,14 @@
                     data-name="Rectángulo 21"
                     d="M0,0H0A2,2,0,0,1,2,2V38a2,2,0,0,1-2,2H0a0,0,0,0,1,0,0V0A0,0,0,0,1,0,0Z"
                     transform="translate(0.21 0.233)"
-                    fill="var(--vs-theme-layout)"
+                    fill="var(--vsd-theme-layout)"
                   />
                   <path
                     id="Rectángulo_101"
                     data-name="Rectángulo 101"
                     d="M0,0H0A2,2,0,0,1,2,2V38a2,2,0,0,1-2,2H0a0,0,0,0,1,0,0V0A0,0,0,0,1,0,0Z"
                     transform="translate(0.21 0.233)"
-                    fill="var(--vs-theme-layout)"
+                    fill="var(--vsd-theme-layout)"
                   />
                 </g>
               </g>
@@ -497,14 +497,14 @@
                   data-name="Rectángulo 28"
                   d="M2,0H2A0,0,0,0,1,2,0V25a0,0,0,0,1,0,0H2a2,2,0,0,1-2-2V2A2,2,0,0,1,2,0Z"
                   transform="translate(0 -0.219)"
-                  fill="var(--vs-theme-layout)"
+                  fill="var(--vsd-theme-layout)"
                 />
                 <path
                   id="Rectángulo_103"
                   data-name="Rectángulo 103"
                   d="M0,0H0A2,2,0,0,1,2,2V23a2,2,0,0,1-2,2H0a0,0,0,0,1,0,0V0A0,0,0,0,1,0,0Z"
                   transform="translate(2 24.781) rotate(180)"
-                  fill="var(--vs-theme-layout)"
+                  fill="var(--vsd-theme-layout)"
                 />
               </g>
               <g
@@ -517,14 +517,14 @@
                   data-name="Rectángulo 29"
                   d="M2,0H2A0,0,0,0,1,2,0V24a0,0,0,0,1,0,0H2a2,2,0,0,1-2-2V2A2,2,0,0,1,2,0Z"
                   transform="translate(0 0.3)"
-                  fill="var(--vs-theme-layout)"
+                  fill="var(--vsd-theme-layout)"
                 />
                 <path
                   id="Rectángulo_104"
                   data-name="Rectángulo 104"
                   d="M0,0H0A2,2,0,0,1,2,2V22a2,2,0,0,1-2,2H0a0,0,0,0,1,0,0V0A0,0,0,0,1,0,0Z"
                   transform="translate(2 24.3) rotate(180)"
-                  fill="var(--vs-theme-layout)"
+                  fill="var(--vsd-theme-layout)"
                 />
               </g>
               <g
@@ -537,14 +537,14 @@
                   data-name="Rectángulo 31"
                   d="M1,0H2A0,0,0,0,1,2,0V13a0,0,0,0,1,0,0H1a1,1,0,0,1-1-1V1A1,1,0,0,1,1,0Z"
                   transform="translate(0 0.279)"
-                  fill="var(--vs-theme-layout)"
+                  fill="var(--vsd-theme-layout)"
                 />
                 <path
                   id="Rectángulo_149"
                   data-name="Rectángulo 149"
                   d="M0,0H1A1,1,0,0,1,2,1V12a1,1,0,0,1-1,1H0a0,0,0,0,1,0,0V0A0,0,0,0,1,0,0Z"
                   transform="translate(2 13.279) rotate(180)"
-                  fill="var(--vs-theme-layout)"
+                  fill="var(--vsd-theme-layout)"
                 />
               </g>
               <g id="Camera" transform="translate(107.7 10.257)">
@@ -555,7 +555,7 @@
                   cy="3"
                   r="3"
                   transform="translate(0.3 -0.257)"
-                  fill="var(--vs-theme-bg2)"
+                  fill="var(--vsd-theme-bg2)"
                 />
                 <circle
                   id="Elipse_8"
@@ -564,7 +564,7 @@
                   cy="2.5"
                   r="2.5"
                   transform="translate(0.3 0.743)"
-                  fill="var(--vs-theme-bg2)"
+                  fill="var(--vsd-theme-bg2)"
                 />
                 <circle
                   id="Elipse_10"
@@ -573,7 +573,7 @@
                   cy="1.5"
                   r="1.5"
                   transform="translate(1.3 1.743)"
-                  fill="var(--vs-theme-bg2)"
+                  fill="var(--vsd-theme-bg2)"
                 />
                 <circle
                   id="Elipse_9"
@@ -582,7 +582,7 @@
                   cy="0.5"
                   r="0.5"
                   transform="translate(2.3 1.743)"
-                  fill="var(--vs-theme-bg2)"
+                  fill="var(--vsd-theme-bg2)"
                 />
               </g>
               <path
@@ -590,20 +590,20 @@
                 data-name="Ear Piece"
                 d="M1.961.5H24.92a1.461,1.461,0,1,1,0,2.922H1.961A1.461,1.461,0,0,1,1.961.5Z"
                 transform="translate(76.101 11.815)"
-                fill="var(--vs-theme-bg2)"
+                fill="var(--vsd-theme-bg2)"
                 stroke-width="1"
               />
               <path
                 id="Screen"
                 d="M140.678,338.963H15.863A15.881,15.881,0,0,1,0,323.1V15.863A15.881,15.881,0,0,1,15.863,0H32.67a2.844,2.844,0,0,1,2.183,2.158c.069.3.14.7.223,1.155.16.88.358,1.972.654,3.076a7.914,7.914,0,0,0,7.735,6.148c2.137.022,15.464.027,26.267.027,19.873,0,42.675-.016,43.742-.027a7.914,7.914,0,0,0,7.735-6.148c.3-1.106.495-2.2.654-3.078.084-.46.155-.852.223-1.153A2.752,2.752,0,0,1,124.25,0h16.427A15.881,15.881,0,0,1,156.54,15.863V323.1A15.881,15.881,0,0,1,140.678,338.963Z"
                 transform="translate(11.271 10.019)"
-                fill="var(--vs-theme-bg)"
+                fill="var(--vsd-theme-bg)"
               />
               <path
                 id="Home"
                 d="M1.044,0h52.18a1.044,1.044,0,1,1,0,2.087H1.044A1.044,1.044,0,0,1,1.044,0Z"
                 transform="translate(62.616 341.885)"
-                fill="var(--vs-theme-layout)"
+                fill="var(--vsd-theme-layout)"
               />
             </g>
           </g>
