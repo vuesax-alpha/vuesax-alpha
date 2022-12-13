@@ -20,8 +20,8 @@
       @click.native="$emit('toggle')"
     >
       <span>{{ item.text }}</span>
-      <span class="arrow" v-if="collapsable" :class="open ? 'down' : 'right'">
-      </span>
+      <span class="arrow" v-if="collapsable" :class="open ? 'down' : 'right'"></span>
+      <template v-else></template>
     </router-link>
 
     <p
@@ -31,11 +31,6 @@
       @click="$emit('toggle')"
     >
       <span>{{ item.text }}</span>
-      <!-- <span
-        class="arrow"
-        v-if="collapsable"
-        :class="open ? 'down' : 'right'">
-      </span> -->
       <i class="bx bx-chevron-right"></i>
     </p>
 
@@ -56,6 +51,10 @@ import { SidebarGroupCollapsible } from "vuepress-vite";
 import { isActive } from "../util";
 import DropdownTransition from "./DropdownTransition.vue";
 import SidebarLinks from "./SidebarLinks.vue";
+
+defineEmits<{
+  (event: 'toggle'): void
+}>();
 
 defineProps<{
   open: boolean;
