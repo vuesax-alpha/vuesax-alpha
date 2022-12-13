@@ -1,5 +1,5 @@
 <template>
-  <div class="config">
+  <div class="config" ref="$el">
     <button class="config-btn">
       <i class="bx bx-cog"></i>
       <svg
@@ -109,8 +109,7 @@
 
       <ul class="lang">
         <li
-          v-for="(item, i) in lang[0]?.items"
-          :key="i"
+          v-for="(item) in lang[0]?.items"
           v-show="item.link !== pageData.path"
         >
           <router-link :to="item.link">
@@ -128,7 +127,6 @@
     >
       <div class="switch-con">
         <span class="circle">
-          <!-- <i v-if="$vsTheme.themeDarken" class="bx bx-brightness"></i> -->
           <i v-if="$vsTheme.themeDarken" class="bx bxs-sun"></i>
           <i v-else class="bx bxs-moon"></i>
         </span>
@@ -140,10 +138,10 @@
 <script setup lang="ts">
 import { usePageData, usePageLang, useSiteData } from "@vuepress/client";
 import { useThemeData } from "@vuepress/plugin-theme-data/client";
-import { computed, inject, onActivated, onMounted, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { computed, inject, onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 import { vsThemeContext, vsThemeKey } from "../type";
-import { vsSetTheme, vsToggleTheme } from "vuesax-alpha";
+import { setTheme, toggleTheme } from "vuesax-alpha";
 
 const router = useRouter();
 const themeData = useThemeData();
@@ -201,15 +199,15 @@ const reloadConfig = () => {
     ".header-page > .effect1"
   ) as HTMLElement;
 
-  sidebar?.style.removeProperty(`--vs-theme-layout`);
-  navbar?.style.removeProperty(`--vs-theme-layout`);
-  navbar?.style.removeProperty(`--vs-theme-bg2`);
-  config?.style.removeProperty(`--vs-theme-layout`);
-  sidebar?.style.removeProperty(`--vs-theme-color`);
-  navbar?.style.removeProperty(`--vs-theme-color`);
-  config?.style.removeProperty(`--vs-theme-color`);
+  sidebar?.style.removeProperty(`--vsd-theme-layout`);
+  navbar?.style.removeProperty(`--vsd-theme-layout`);
+  navbar?.style.removeProperty(`--vsd-theme-bg2`);
+  config?.style.removeProperty(`--vsd-theme-layout`);
+  sidebar?.style.removeProperty(`--vsd-theme-color`);
+  navbar?.style.removeProperty(`--vsd-theme-color`);
+  config?.style.removeProperty(`--vsd-theme-color`);
   document.body.classList.remove("hidden-sidebar");
-  document.body.style.setProperty(`--vs-primary`, "26, 92, 255");
+  document.body.style.setProperty(`--vsd-primary`, "26, 92, 255");
   $vsTheme.mobileActive = false;
   localStorage.mobile = false;
 
@@ -218,8 +216,7 @@ const reloadConfig = () => {
 
   $vsTheme.openCode = false;
 
-  localStorage.vsTheme = "dark";
-  const returnTheme = vsSetTheme("dark");
+  const returnTheme = setTheme("dark");
   $vsTheme.themeDarken = returnTheme == "dark";
   if (returnTheme == "dark") {
     document.body.classList.add("darken");
@@ -251,16 +248,14 @@ const hexToRgb = (hex: string) => {
     : null;
 };
 const contrastColor = (element: string) => {
-  let c = element;
-  if (/[#]/g.test(element)) {
-    let rgb = hexToRgb(element);
-    c = `rgb(${rgb?.r},${rgb?.g},${rgb?.b})`;
-  }
+  const c = `rgb(${element})`;
+  
   const rgb = c
     .replace(/^(rgb|rgba)\(/, "")
     .replace(/\)$/, "")
     .replace(/\s/g, "")
     .split(",");
+    console.log({rgb})
   const yiq =
     (Number(rgb[0]) * 299 + Number(rgb[1]) * 587 + Number(rgb[2]) * 114) / 1000;
   if (yiq >= 128) {
@@ -270,6 +265,11 @@ const contrastColor = (element: string) => {
   }
 };
 const changeColorLayout = (colorBase: string) => {
+  let colour: string = colorBase;
+  if (/[#]/g.test(colour)) {
+    let rgb = hexToRgb(colour);
+    colour = `${rgb?.r}, ${rgb?.g}, ${rgb?.b}`;
+  }
   document.body.classList.add("all-transition");
   $el.value!.focus();
 
@@ -286,19 +286,19 @@ const changeColorLayout = (colorBase: string) => {
     ".header-page > .effect1"
   )! as HTMLElement;
 
-  sidebar.style.setProperty(`--vs-theme-layout`, colorBase);
-  navbar.style.setProperty(`--vs-theme-layout`, colorBase);
-  navbar.style.setProperty(`--vs-theme-bg2`, colorBase);
-  config.style.setProperty(`--vs-theme-layout`, colorBase);
+  sidebar.style.setProperty(`--vsd-theme-layout`, colour);
+  navbar.style.setProperty(`--vsd-theme-layout`, colour);
+  navbar.style.setProperty(`--vsd-theme-bg2`, colour);
+  config.style.setProperty(`--vsd-theme-layout`, colour);
 
-  if (contrastColor(colorBase)) {
-    sidebar.style.setProperty(`--vs-theme-color`, "#2c3e50");
-    navbar.style.setProperty(`--vs-theme-color`, "#2c3e50");
-    config.style.setProperty(`--vs-theme-color`, "#2c3e50");
+  if (contrastColor(colour)) {
+    sidebar.style.setProperty(`--vsd-theme-color`, "44, 62, 80");
+    navbar.style.setProperty(`--vsd-theme-color`, "44, 62, 80");
+    config.style.setProperty(`--vsd-theme-color`, "44, 62, 80");
   } else {
-    sidebar.style.setProperty(`--vs-theme-color`, "#fff");
-    navbar.style.setProperty(`--vs-theme-color`, "#fff");
-    config.style.setProperty(`--vs-theme-color`, "#fff");
+    sidebar.style.setProperty(`--vsd-theme-color`, "0, 0, 0");
+    navbar.style.setProperty(`--vsd-theme-color`, "0, 0, 0");
+    config.style.setProperty(`--vsd-theme-color`, "0, 0, 0");
   }
 
   setTimeout(() => {
@@ -311,7 +311,7 @@ const changeColor = (evt: Event) => {
   // @ts-ignore
   const rgb = hexToRgb(evt.target.value);
   const color = `${rgb?.r},${rgb?.g},${rgb?.b}`;
-  document.body.style.setProperty(`--vs-primary`, color);
+  document.body.style.setProperty(`--vsd-primary`, color);
 };
 const changeMenu = () => {
   $vsTheme.sidebarCollapseOpen = !$vsTheme?.sidebarCollapseOpen;
@@ -325,7 +325,7 @@ const changeOpenCode = () => {
   $vsTheme.openCode = !$vsTheme.openCode;
 };
 const changeTheme = () => {
-  const returnTheme = vsToggleTheme("dark");
+  const returnTheme = toggleTheme('dark');
   $vsTheme.themeDarken = returnTheme == "dark";
   if (returnTheme == "dark") {
     document.body.classList.add("darken");
@@ -335,7 +335,7 @@ const changeTheme = () => {
 };
 
 onMounted(() => {
-  const returnTheme = vsSetTheme(localStorage.vsTheme);
+  const returnTheme = setTheme(localStorage.vsTheme);
   $vsTheme.themeDarken = returnTheme == "dark";
   if (returnTheme == "dark") {
     document.body.classList.add("darken");
@@ -349,12 +349,12 @@ onMounted(() => {
 @import "../styles/use";
 
 [vs-theme="dark"] {
-  --vs-theme-bg: #18191c;
-  --vs-theme-color: #fff;
-  --vs-theme-layout: #1e2023;
-  --vs-theme-bg2: #141417;
-  --vs-theme-code: #141417;
-  --vs-theme-code2: #161619;
+  --vsd-theme-bg: 24, 25, 28;
+  --vsd-theme-color: 255, 255, 255;
+  --vsd-theme-layout: 30, 32, 35;
+  --vsd-theme-bg2: 20, 20, 23;
+  --vsd-theme-code: 20, 20, 23;
+  --vsd-theme-code2: 22, 22, 25;
 }
 .switch-dark {
   position: relative;
@@ -616,7 +616,7 @@ onMounted(() => {
   transform: translate(0px, calc(-100% - 25px));
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1080px) {
   .config {
     left: 0px;
   }
