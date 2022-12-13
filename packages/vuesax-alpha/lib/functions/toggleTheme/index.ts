@@ -1,4 +1,4 @@
-const setTheme = (forceTheme: string) => {
+const setTheme = (forceTheme?: "dark" | "light") => {
   document.body.classList.add("vs-remove-transition");
   const media = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -6,30 +6,24 @@ const setTheme = (forceTheme: string) => {
 
   if (localStorage.vsTheme) {
     isThemeDark = localStorage.vsTheme == "dark";
+  } else if (forceTheme) {
+    isThemeDark = forceTheme == 'dark';
   }
 
-  if (isThemeDark) {
-    document.body.setAttribute("vs-theme", "dark");
-  } else {
-    document.body.removeAttribute("vs-theme");
-  }
+  const theme = isThemeDark ? "dark" : "light";
 
-  if (forceTheme == "dark") {
-    document.body.setAttribute("vs-theme", "dark");
-  } else if (forceTheme == "light") {
-    document.body.removeAttribute("vs-theme");
-  }
+  document.body.setAttribute("vs-theme", theme);
 
-  localStorage.vsTheme = isThemeDark ? "dark" : "light";
+  localStorage.vsTheme = theme;
 
   setTimeout(() => {
     document.body.classList.remove("vs-remove-transition");
   }, 100);
 
-  return isThemeDark ? "dark" : "light";
+  return theme;
 };
 
-const toggleTheme = (forceTheme: string) => {
+const toggleTheme = (forceTheme?: "dark" | "light") => {
   document.body.classList.add("vs-remove-transition");
   const media = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -37,27 +31,18 @@ const toggleTheme = (forceTheme: string) => {
 
   if (localStorage.vsTheme) {
     isThemeDark = localStorage.vsTheme == "dark";
+  } else if (forceTheme) {
+    isThemeDark = forceTheme != 'dark';
   }
+  const nextTheme = !isThemeDark ? "dark" : "light";
 
-  if (!isThemeDark) {
-    document.body.setAttribute("vs-theme", "dark");
-  } else {
-    document.body.removeAttribute("vs-theme");
-  }
-
-  if (forceTheme == "dark") {
-    document.body.removeAttribute("vs-theme");
-  } else if (forceTheme == "light") {
-    document.body.setAttribute("vs-theme", "dark");
-  }
-
-  localStorage.vsTheme = !isThemeDark ? "dark" : "light";
-
+  document.body.setAttribute("vs-theme", nextTheme);
+  localStorage.vsTheme = nextTheme;
   setTimeout(() => {
     document.body.classList.remove("vs-remove-transition");
   }, 100);
 
-  return !isThemeDark ? "dark" : "light";
+  return nextTheme;
 };
 
 export { toggleTheme, setTheme };
