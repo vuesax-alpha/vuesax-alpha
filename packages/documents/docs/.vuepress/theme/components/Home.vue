@@ -152,7 +152,7 @@ const time = (variable: PageButtonKeys) => {
 </script>
 
 <style lang="scss">
-@import "../styles/use";
+@import "../styles/_use.scss";
 
 .darken {
   .init {
@@ -662,7 +662,7 @@ const time = (variable: PageButtonKeys) => {
   .home .hero {
     margin-top: 180px;
     align-items: flex-start;
-    z-index: 1000;
+    // z-index: 1000;
   }
 }
 </style>

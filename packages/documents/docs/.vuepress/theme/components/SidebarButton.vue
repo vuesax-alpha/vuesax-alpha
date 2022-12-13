@@ -47,7 +47,7 @@ defineProps<{ openSidebar?: boolean }>();
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1080px) {
   .sidebar-button {
     display: block;
   }

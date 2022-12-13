@@ -24,7 +24,6 @@
       <div class="con-cards">
         <div
           v-for="(card, index) in pageFrontmatter.cards?.cards"
-          :key="index"
           class="card"
         >
           <h3 v-html="card.title"></h3>
@@ -107,7 +106,9 @@
 import { usePageFrontmatter } from "@vuepress/client";
 import { nextTick } from "vue";
 import { useRouter } from "vue-router";
+
 import { ThemeLicenseFrontmatter } from "../shared/frontmatter/license";
+import Footer from "./Footer.vue";
 
 const router = useRouter();
 const pageFrontmatter = usePageFrontmatter<ThemeLicenseFrontmatter>();

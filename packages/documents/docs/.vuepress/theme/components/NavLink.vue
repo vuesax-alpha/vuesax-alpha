@@ -6,6 +6,7 @@
   >
     {{ navItem.text }}
     <i v-if="arrow" class="bx bx-chevron-down"></i>
+    <template v-else></template>
   </router-link>
   <a
     v-else

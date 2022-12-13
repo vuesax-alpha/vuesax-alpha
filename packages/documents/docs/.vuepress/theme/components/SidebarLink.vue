@@ -8,7 +8,7 @@
   <template v-if="link.children">
     <RenderChildren
       :children="link.children"
-      :link="link.basePath"
+      :link="link.link"
       :route="route"
       :max-depth="maxDepth"
       :depth="1"
@@ -42,7 +42,7 @@ import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
 import RenderLink from "./SidebarLink/RenderLink.vue";
 import RenderChildren from "./SidebarLink/RenderChildren.vue";
 import { computed } from "@vue/reactivity";
-import { SidebarConfig, SidebarGroup, SidebarItem } from "vuepress-vite";
+import { SidebarGroup } from "vuepress-vite";
 
 const props = defineProps<{
   link: SidebarGroup;

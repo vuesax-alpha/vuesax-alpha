@@ -8,6 +8,7 @@
         <i v-else class="bx bx-dots-horizontal-rounded"> </i>
 
         <i v-if="hasFle" class="bx bx-chevron-down not-remove"></i>
+        <template v-else></template>
       </span>
     </a>
 

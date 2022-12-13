@@ -1,16 +1,18 @@
 <template>
   <nav class="nav-links" v-if="userNav.length || repoLink">
-    <!-- user links -->
     <div class="nav-item" v-for="item in userNav">
       <template v-if="!isString(item)">
         <DropdownLink v-if="('children' in item)" :item="item" />
         <NavLink v-else :nav-item="item" />
       </template>
+      <template v-else></template>
     </div>
   </nav>
+  <template v-else></template>
 </template>
 
 <script lang="ts" setup>
+// @ts-nocheck
 import DropdownLink from "./DropdownLink.vue";
 import NavLink from "./NavLink.vue";
 import { computed } from "@vue/reactivity";

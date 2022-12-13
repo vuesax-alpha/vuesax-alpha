@@ -6,11 +6,14 @@
         <DropdownLink v-if="('children' in navItem)" :item="navItem" :has-fle="true" />
         <NavLink v-else :nav-item="navItem" />
       </template>
+      <template v-else></template>
     </div>
   </nav>
+  <template v-else></template>
 </template>
 
 <script lang="ts" setup>
+// @ts-nocheck
 import { computed } from "@vue/reactivity";
 import { isLinkHttp, isString } from "@vuepress/shared";
 import {

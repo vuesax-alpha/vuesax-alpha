@@ -94,8 +94,6 @@ defineProps<{
   }
 }
 
-// vuesax-theme
-
 .sidebar {
   padding-right: 5px;
   z-index: 18000 !important;
@@ -159,7 +157,7 @@ defineProps<{
   padding: 0.5rem 0 0.5rem 1.5rem;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1080px) {
   .sidebar {
     .nav-links {
       display: block !important;
@@ -193,10 +191,8 @@ defineProps<{
         }
       }
     }
-    .content-sidebar {
-      & > .sidebar-links {
-        padding: 1rem 0;
-      }
+    & .content-sidebar > .sidebar-links {
+      padding: 1rem 0;
     }
   }
 }

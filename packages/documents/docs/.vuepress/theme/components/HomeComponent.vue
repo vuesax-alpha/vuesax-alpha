@@ -443,7 +443,7 @@ const handleBurDrop = () => {
   position: absolute;
   right: 0px;
   height: 80vh;
-
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -454,6 +454,7 @@ const handleBurDrop = () => {
     position: relative;
     width: 1100px;
     height: 100%;
+    margin-top: 250px;
     .component13 {
       width: 300px;
       padding: 15px;
@@ -1518,6 +1519,7 @@ const handleBurDrop = () => {
 }
 @media (max-width: 960px) {
   .con-components {
+    top: 280px;
     width: 100%;
     .content-components {
       transform: scale(0.7);
@@ -1525,7 +1527,7 @@ const handleBurDrop = () => {
       right: auto;
       bottom: 0px;
       width: 100% !important;
-      margin-top: 250px;
+      margin-top: 0;
     }
   }
 }
