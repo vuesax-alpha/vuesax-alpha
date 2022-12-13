@@ -1,10 +1,11 @@
 {
   "name": "vuesax-alpha",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "Vuesax-next component for Vue 3",
   "files": [
     "dist"
   ],
+  "keywords": ["vue", "components", "vuesax", "vuesax-alpha"],
   "repository": "https://github.com/tranthinh-coding/vuesax-alpha",
   "main": "./dist/vuesax-alpha.cjs",
   "module": "./dist/vuesax-alpha.js",
@@ -13,10 +14,10 @@
       "import": "./dist/vuesax-alpha.js",
       "require": "./dist/vuesax-alpha.cjs"
     },
-    "./dist/style.css": "./dist/style.css"
+    "./dist/vuesax.css": "./dist/style.css"
   },
   "browser": {
-    "./style.css": "./dist/style.css"
+    "./vuesax.css": "./dist/style.css"
   },
   "type": "module",
   "types": "./dist/VuesaxAlpha.d.ts",

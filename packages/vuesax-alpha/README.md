@@ -15,7 +15,7 @@
 
   import Vuesax from "vuesax-alpha";
   // vuesax style
-  import "vuesax-alpha/dist/style.css";
+  import "vuesax-alpha/dist/vuesax.css";
 
   const app = createApp(App);
   app.use(Vuesax);
