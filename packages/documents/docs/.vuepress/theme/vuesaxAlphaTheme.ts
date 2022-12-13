@@ -5,6 +5,7 @@ export declare interface VuesaxAlphaThemeOptions extends DefaultThemeOptions {
   /**
    * Prev Version: Vuesax-next
    */
+  prevVersion?: string;
   linkPrevVersion?: string;
   searchPlaceholder?: string;
   search?: boolean;

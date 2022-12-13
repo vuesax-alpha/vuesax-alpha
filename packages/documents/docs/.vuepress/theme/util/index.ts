@@ -1,31 +1,18 @@
 import { MarkdownItHeader } from "@mdit-vue/types";
 import { RouteLocale } from "@vuepress/client";
 import {
-  ThemeData,
-  useThemeData,
-} from "@vuepress/plugin-theme-data/lib/client";
-import {
   ensureEndingSlash,
-  ensureLeadingSlash,
-  SiteData,
 } from "@vuepress/shared";
 import {
   RouteLocationNormalizedLoaded,
-  RouteLocationPathRaw,
 } from "vue-router";
 import {
-  DefaultThemeLocaleData,
   NavbarGroup,
   NavbarItem,
-  NavGroup,
-  NavItem,
-  NavLink,
   PageData,
   SidebarConfig,
   SidebarConfigArray,
-  SidebarConfigObject,
   SidebarGroup,
-  SidebarGroupCollapsible,
   SidebarItem,
 } from "vuepress-vite";
 import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
@@ -83,24 +70,6 @@ export function isActive(route: RouteLocationNormalizedLoaded, path: string) {
   return routePath === pagePath;
 }
 
-// export function resolvePage(pages, rawPath: string, base: string) {
-//   if (base) {
-//     rawPath = resolvePath(rawPath, base);
-//   }
-//   const path = normalize(rawPath);
-//   for (let i = 0; i < pages.length; i++) {
-//     if (normalize(pages[i].regularPath) === path) {
-//       return Object.assign({}, pages[i], {
-//         type: "page",
-//         path: ensureExt(pages[i].path),
-//       });
-//     }
-//   }
-//   console.error(
-//     `[vitepress] No matching page found for sidebar item "${rawPath}"`
-//   );
-//   return {};
-// }
 
 /**
  * @param relative: route locale
@@ -235,42 +204,3 @@ export function resolveMatchingConfig(
   }
   return {};
 }
-
-/**
- * resolve sidebar item
- */
-// function resolveItem(
-//   item: string | SidebarItem | SidebarGroupCollapsible,
-//   pages: PageData,
-//   base: string,
-//   groupDepth: number = 1
-//  ): (SidebarItem | SidebarGroupCollapsible) {
-//   if (typeof item === "string") {
-//     return resolvePage(pages, item, base);
-//   } else if (Array.isArray(item)) {
-//     return Object.assign(resolvePage(pages, item[0], base), {
-//       title: item[1],
-//     });
-//   } else {
-//     if (groupDepth > 3) {
-//       console.error(
-//         "[vuepress] detected a too deep nested sidebar group ( > 3)."
-//       );
-//     }
-//     const children = item.children || [];
-//     if (children.length === 0 && item.path) {
-//       return Object.assign(resolvePage(pages, item.path, base), {
-//         title: item.title,
-//       });
-//     }
-//     return {
-//       path: item.path,
-//       title: item.title,
-//       sidebarDepth: item.sidebarDepth,
-//       children: children.map((child) =>
-//         resolveItem(child, pages, base, groupDepth + 1)
-//       ),
-//       collapsable: item.collapsable !== false,
-//     };
-//   }
-// }
