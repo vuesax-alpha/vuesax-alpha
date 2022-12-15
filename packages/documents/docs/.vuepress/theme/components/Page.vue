@@ -121,12 +121,12 @@
       </svg>
     </header>
 
-    <Sidebar2 :fixed="true" :sidebar-items="themeData.sidebar" />
-
+    <Sidebar2 :fixed="true" :sidebar-items="sidebarItems" />
+    
     <slot name="top"></slot>
 
     <transition name="fade">
-      <Content />
+      <Content class="content__default" />
     </transition>
 
     <api />
@@ -134,7 +134,7 @@
     <footer class="page-edit">
       <div class="last-updated" v-if="themeData.lastUpdated">
         <span class="prefix">{{ lastUpdatedText }}: </span>
-        <span class="time">{{ themeData.lastUpdated }}</span>
+        <span class="time">{{ lastUpdatedTime }}</span>
       </div>
       <template v-else></template>
     </footer>
@@ -181,6 +181,7 @@ import {
   usePageData,
   usePageFrontmatter,
 } from "@vuepress/client";
+// @ts-ignore
 import { useThemeData } from '@vuepress/plugin-theme-data/client';
 import { SidebarConfigArray } from "vuepress-vite";
 
@@ -193,18 +194,20 @@ import {
   ThemeNormalApiFrontmatter,
   ThemePageFrontmatter,
 } from "../shared/frontmatter/normal";
+import type { GitPluginPageData } from '@vuepress/plugin-git'
+
 import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
 
 import Sidebar2 from "./Sidebar2.vue";
 import api from "./Api.vue";
 import Footer from "./Footer.vue";
 
-const pageData = usePageData<ThemeNormalApiFrontmatter>();
+const pageData = usePageData<ThemeNormalApiFrontmatter & GitPluginPageData>();
 const themeData = useThemeData<VuesaxAlphaThemeOptions>();
 const pageFrontmatter = usePageFrontmatter<ThemePageFrontmatter>();
 
 const props = defineProps<{
-  sidebarItems?: SidebarConfigArray;
+  sidebarItems: SidebarConfigArray;
 }>();
 
 const $page = ref<HTMLElement>()!;
@@ -218,10 +221,19 @@ const lastUpdatedText = computed(() => {
   return themeData.value.lastUpdatedText || "Last Updated";
 });
 
+const lastUpdatedTime = computed(() => {
+  if (pageData.value.git.updatedTime) {
+    const date = new Date(pageData.value.git.updatedTime);
+    console.log(date)
+    return date.toLocaleString('en-US');
+  }
+  return ''
+});
+
 const prev = computed(() => {
   const prev = pageFrontmatter.value.prev;
   if (!prev || !props.sidebarItems) {
-    return;
+    return null;
   }
   return resolvePage(props.sidebarItems, -1);
 });
@@ -239,9 +251,6 @@ const next = computed(() => {
 });
 
 const editLink = computed(() => {
-  // if (this.$page.frontmatter.editLink === false) {
-  //   return
-  // }
   const {
     repo,
     editLink,
@@ -392,7 +401,8 @@ const flattenSidebar = (
 </script>
 
 <style lang="scss">
-@import "../styles/use";
+@import "../styles/_use.scss";
+@import "../styles/_mixin.scss";
 
 .back-link {
   position: absolute;
@@ -435,7 +445,7 @@ const flattenSidebar = (
 .up {
   position: fixed;
   bottom: 0px;
-  right: 150px;
+  right: 0;
   width: 40px;
   height: 40px;
   background: -color("theme-layout");
@@ -760,7 +770,7 @@ const flattenSidebar = (
     }
   }
   .content__default {
-    // @include "wrapper";
+    @include wrapper;
     margin: 0 auto;
     h1 {
       display: none !important;
@@ -775,14 +785,15 @@ const flattenSidebar = (
 .page-edit {
   margin-top: 50px;
   font-size: 0.85rem;
-  // @extend $wrapper;
+  @include wrapper;
   padding-top: 1rem;
   padding-bottom: 1rem;
   overflow: auto;
   .edit-link {
     display: inline-block;
     a {
-      color: -color('text-color'); // lighten 25%
+      color: lighten($textColor, 25%);
+      // color: -color('text-color'); // lighten 25%
       margin-right: 0.25rem;
     }
   }
@@ -793,7 +804,7 @@ const flattenSidebar = (
     .prefix {
       padding-left: 10px;
       font-weight: 600;
-      // color lighten($textColor, 25%);
+      // color: lighten($textColor, 25%);
     }
     .time {
       padding-left: 10px;
@@ -805,7 +816,6 @@ const flattenSidebar = (
 }
 
 .page-nav {
-  // @extend $wrapper
   @include wrapper;
 
   padding-top: 1rem;
