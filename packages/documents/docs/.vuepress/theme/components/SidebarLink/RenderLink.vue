@@ -1,7 +1,7 @@
 <template>
-  <router-link
+  <a
     :title="title"
-    :to="to"
+    :href="link"
     :class="[
       {
         active,
@@ -12,16 +12,16 @@
     ]"
   >
     {{ text }}
-  </router-link>
+  </a>
 </template>
 
 <script setup lang="ts">
 import { computed } from "@vue/reactivity";
 
 const props = defineProps<{
-  to: string;
   text: string;
-  active: boolean;
+  link?: string;
+  active?: boolean;
   NEW?: boolean;
   UPDATE?: boolean;
 }>();

@@ -4,44 +4,47 @@
       <li class="sidebar-sub-header">
         <render-link
           :active="active"
-          :to="`${link}#${link.slug}`"
+          :link="`${link}#${link.slug}`"
           :text="link.title"
-          :n-e-w="news.includes(link.slug)"
-          :u-p-d-a-t-e="updates.includes(link.slug)"
+          :n-e-w="news?.includes(link.slug)"
+          :u-p-d-a-t-e="updates?.includes(link.slug)"
         ></render-link>
 
-        <render-children
-          :children="link.children"
-          :route="route"
-          :link="link.link"
-          :max-depth="maxDepth"
-          :depth="depth + 1"
-          :news="news"
-          :updates="updates"
-        ></render-children>
+        <template v-if="'children' in link">
+          <render-children
+            :children="link.children"
+            :link="link.link"
+            :max-depth="maxDepth"
+            :depth="depth + 1"
+            :news="news"
+            :updates="updates"
+          ></render-children>
+        </template>
+        <template v-else></template>
       </li>
     </template>
   </ul>
 </template>
 
 <script setup lang="ts">
-import type { RouteLocationNormalizedLoaded } from "vue-router";
-import { MarkdownItHeader } from "@mdit-vue/types";
-import RenderLink from "./RenderLink.vue";
+import { useRoute } from "vue-router";
 import { isActive } from "../../util";
+import { MarkdownItHeader } from "@mdit-vue/types";
+
+import RenderLink from "./RenderLink.vue";
 
 type SidebarLinkChildrenProps = {
-  children?: [];
-  route: RouteLocationNormalizedLoaded | any;
-  link: string;
-  depth: number;
-  maxDepth: number;
-  news: string[];
-  updates: string[];
-}
+  link?: string;
+  children?: MarkdownItHeader[];
+  depth?: number;
+  maxDepth?: number;
+  news?: string[];
+  updates?: string[];
+};
 
+const route = useRoute();
 const props = withDefaults(defineProps<SidebarLinkChildrenProps>(), {
   depth: 1,
 });
-const active = isActive(props.route, props.link);
+const active = props.link ? isActive(route, props.link) : false;
 </script>

@@ -214,8 +214,8 @@ import {
 } from "../type";
 
 const props = defineProps<{
-  codepen: string;
-  codesandbox: string;
+  codepen?: string;
+  codesandbox?: string;
 }>();
 
 const route = useRoute();

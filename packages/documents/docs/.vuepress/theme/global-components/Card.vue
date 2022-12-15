@@ -17,7 +17,7 @@
       v-if="$slots.template || $slots.script || $slots.style"
       class="slotcode"
     >
-      <codex :codesandbox="codesandbox" :codepen="codepen">
+      <Codex :codesandbox="codesandbox" :codepen="codepen">
         <div v-if="$slots.template" slot="template">
           <slot name="template"></slot>
         </div>
@@ -30,7 +30,7 @@
           <slot name="style"></slot>
         </div>
         <template v-else></template>
-      </codex>
+      </Codex>
     </div>
     <template v-else></template>
   </div>
@@ -40,11 +40,11 @@
 import { inject } from "vue";
 import { vsThemeKey } from "../type";
 
-import codex from "./codex.vue";
+import Codex from "./Codex.vue";
 
-const props = defineProps<{
-  codepen: string;
-  codesandbox: string;
+defineProps<{
+  codepen?: string;
+  codesandbox?: string;
 }>();
 
 const $vsTheme = inject(vsThemeKey)!;
@@ -53,9 +53,8 @@ const $vsTheme = inject(vsThemeKey)!;
 <style lang="scss">
 @import "../styles/use";
 
-
 h1 {
-  & + .card {
+  + .card {
     .text {
       h2 {
         padding-top: 20px !important;
@@ -66,9 +65,7 @@ h1 {
 .card {
   border-radius: 20px;
   overflow: hidden;
-  margin: 20px 0px;
-  margin-top: 20px;
-  margin-bottom: -50px;
+  margin: 20px 0 -50px;
   width: 100%;
   &:last-of-type {
     margin-bottom: 0px;
@@ -93,25 +90,7 @@ h1 {
       display: block;
       border-radius: 20px;
     }
-    h2 {
-      padding-top: 120px;
-      font-size: 1.3rem;
-      padding-top: 80px;
-      padding-left: 10px;
-      padding-bottom: 0px;
-    }
-    p {
-      padding: 5px 20px;
-      margin: 0px;
-      font-size: 0.85rem;
-      z-index: 200;
-      position: relative;
-      padding-left: 10px;
-      padding-top: 10px;
-    }
-    li {
-      font-size: 0.85rem;
-    }
+
   }
   .example {
     position: relative;
@@ -120,7 +99,7 @@ h1 {
     margin-top: 10px;
     border-radius: 5px 20px 0px 0px;
     border-bottom: 0px solid rgba(0, 0, 0, 0.03);
-    background: -color('theme-layout');
+    background: -color("theme-layout");
     position: relative;
     overflow: hidden;
     transition: all 0.25s ease;
@@ -132,7 +111,7 @@ h1 {
       height: 100%;
       content: "";
       position: absolute;
-      border: 8px solid -color('theme-bg2');
+      border: 8px solid -color("theme-bg2");
       box-sizing: border-box;
       top: 0px;
       left: 0px;
@@ -149,7 +128,7 @@ h1 {
       height: 25px;
       content: "";
       position: absolute;
-      background: -color('theme-bg2');
+      background: -color("theme-bg2");
       box-sizing: border-box;
       top: 0px;
       left: 50%;
@@ -182,30 +161,54 @@ h1 {
       }
     }
   }
-}
-.card .text h2,
-.card .text h3,
-.card .text h4,
-.card .text h5,
-.card .text h6 {
-  padding: 15px 20px;
-  margin: 0px;
-  border-bottom: 0px;
-  padding-bottom: 10px;
-  transition: all 0.25s ease;
-  z-index: 200;
-  position: relative;
-}
-.card .text h2:hover,
-.card .text h3:hover,
-.card .text h4:hover,
-.card .text h5:hover,
-.card .text h6:hover {
-  padding-left: 40px;
+  .text {
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      padding: 15px 20px;
+      margin: 0px;
+      border-bottom: 0px;
+      padding-bottom: 10px;
+      transition: all 0.25s ease;
+      z-index: 200;
+      position: relative;
+
+      &:hover {
+        padding-left: 40px;
+      }
+    }
+    h2 {
+      padding-top: 120px;
+    }    
+    p {
+      padding: 5px 20px;
+      margin: 0px;
+      font-size: 0.85rem;
+      z-index: 200;
+      position: relative;
+    }
+    li {
+      font-size: 0.85rem;
+    }
+  }
 }
 @media (max-width: 500px) {
-  .card .text {
-    padding: 10px;
+  .card {
+    .text {
+      padding: 10px;
+      h2 {
+        font-size: 1.3rem;
+        padding-top: 80px;
+        padding-left: 10px;
+        padding-bottom: 0px;
+      }
+      p {
+        padding-left: 10px;
+        padding-top: 10px;
+      }
+    }
   }
 }
 </style>
