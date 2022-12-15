@@ -191,7 +191,7 @@ defineProps<{
         }
       }
     }
-    & .content-sidebar > .sidebar-links {
+    .content-sidebar > .sidebar-links {
       padding: 1rem 0;
     }
   }
