@@ -1,27 +1,14 @@
 <template>
   <RenderLink 
-    :to="link.link!"
-    :text="(link.text || link.link || '')"
+    :link="link.link"
+    :text="link.text"
     :active="active"
   ></RenderLink>
 
-  <template v-if="link.children">
-    <RenderChildren
-      :children="link.children"
-      :link="link.link"
-      :route="route"
-      :max-depth="maxDepth"
-      :depth="1"
-      :news="news"
-      :updates="updates"
-    ></RenderChildren>
-  </template>
-
-  <template v-else-if="isActiveHeaders">
+  <template v-if="isActiveHeaders">
     <RenderChildren
       :children="link.headers"
-      :link="link.path"
-      :route="route"
+      :link="link.link"
       :max-depth="maxDepth"
       :depth="1"
       :news="news"
@@ -32,25 +19,25 @@
 
 <script lang="ts" setup>
 import { usePageData, usePageFrontmatter } from "@vuepress/client";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import { isActive, hashRE, groupHeaders } from "../util";
 
 import { ThemeNormalApiFrontmatter } from "../shared/frontmatter/normal";
+// @ts-ignore
 import { useThemeData, useThemeLocaleData } from "@vuepress/plugin-theme-data/client";
 import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
 
 import RenderLink from "./SidebarLink/RenderLink.vue";
 import RenderChildren from "./SidebarLink/RenderChildren.vue";
 import { computed } from "@vue/reactivity";
-import { SidebarGroup } from "vuepress-vite";
+import { SidebarItem } from "vuepress-vite";
 
 const props = defineProps<{
-  link: SidebarGroup;
+  link: SidebarItem;
   sidebarDepth?: number;
 }>();
 
 const route = useRoute();
-const router = useRouter();
 const pageData = usePageData();
 const themeData = useThemeData<VuesaxAlphaThemeOptions>();
 const themeLocaleData = useThemeLocaleData<VuesaxAlphaThemeOptions>();
@@ -60,19 +47,24 @@ const headers = groupHeaders(pageData.value.headers);
 const news = pageFrontmatter.value.news || [];
 const updates = pageFrontmatter.value.updates || [];
 
-// console.log(NEWS)
+const link = computed(() => {
+  return {
+    link: props.link.link || '',
+    text: props.link.text,
+    headers: headers,
+  }
+})
+
 // use custom active class matching logic
 // due to edge case of paths ending with / + hash
-const selfActive = isActive(route, props.link.link);
+const selfActive = props.link.link ? isActive(route, props.link.link) : false;
 // for sidebar: auto pages, a hash link should be active if one of its child
 // matches
-const active =
-  props.link.type === "auto"
-    ? selfActive ||
-      props.link.children.some((c: any) =>
-        isActive(route, props.link.basePath + "#" + c.slug)
-      )
-    : selfActive;
+const active = 
+  selfActive ||
+  link.value.headers.some((c) =>
+    isActive(route, link.value.link + "#" + c.slug)
+  );
 
 const maxDepth = props.sidebarDepth ||
   themeLocaleData.value.sidebarDepth ||
@@ -85,8 +77,8 @@ const displayAllHeaders =
 
 const isActiveHeaders = computed(() => {
   return (active || displayAllHeaders) &&
-  props.link.headers &&
-  !hashRE.test(props.link.path)
+  link.value.headers &&
+  !hashRE.test(link.value.link)
 })
 </script>
 
