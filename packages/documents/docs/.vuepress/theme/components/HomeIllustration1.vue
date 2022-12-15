@@ -40,12 +40,10 @@ const handleRouter = (link?: string) => {
   display: inline-block;
   font-size: 1rem;
   color: #fff;
-  background: transparent;
   padding: 13px 25px;
   border-radius: 15px;
-  transition: background-color 0.1s ease;
   box-sizing: border-box;
-  transition: all 0.25s ease;
+  transition: all 0.25s ease,  background-color 0.1s ease;
   box-shadow: 0px 0px 0px 0px -color("primary", 0.6);
   font-size: 0.8rem;
   background: -color("primary");

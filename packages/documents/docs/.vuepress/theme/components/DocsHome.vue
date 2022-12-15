@@ -30,6 +30,7 @@ defineProps<{ sidebarItems: SidebarConfigArray }>();
     background: transparent;
     padding: 20px;
     padding-bottom: 100px !important;
+    display: block !important;
     & > svg {
       display: none;
     }
@@ -62,7 +63,7 @@ defineProps<{ sidebarItems: SidebarConfigArray }>();
         a {
           width: 200px;
           height: 200px;
-          background: -color('theme-bg');
+          background: -color('theme-bg', 0.8);
           margin: 10px;
           display: block;
           border-radius: 30px;

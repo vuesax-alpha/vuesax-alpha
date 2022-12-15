@@ -22,10 +22,7 @@
       <h2 v-html="pageFrontmatter.cards?.title"></h2>
 
       <div class="con-cards">
-        <div
-          v-for="(card, index) in pageFrontmatter.cards?.cards"
-          class="card"
-        >
+        <div v-for="card in pageFrontmatter.cards?.cards" class="card">
           <h3 v-html="card.title"></h3>
           <p v-html="card.description"></p>
           <button
@@ -150,6 +147,7 @@ const openContact = () => {
   h2 {
     text-align: center;
     width: 100%;
+    margin: 24px 0;
     border: 0px;
   }
   ul {
@@ -209,11 +207,12 @@ const openContact = () => {
     width: 100%;
     max-width: 1000px;
     padding: 0px 30px;
+    margin: 24px 0;
   }
   .con-tabla {
     width: 100%;
     max-width: 1000px;
-    background: -color("theme-bg");
+    background: -color("theme-bg", 0.6);
     padding: 20px;
     border-radius: 30px;
   }
@@ -233,6 +232,7 @@ const openContact = () => {
       border: 0px;
       transition: all 0.25s ease;
       border-radius: 20px;
+      overflow: hidden;
       td {
         border: 0px;
         text-align: center;
@@ -363,6 +363,7 @@ const openContact = () => {
     border: 0px;
     padding: 20px;
     font-weight: normal;
+    margin: 24px 0;
   }
   .con-cards {
     display: flex;
@@ -370,7 +371,7 @@ const openContact = () => {
     justify-content: center;
     .card {
       width: 30%;
-      background: -color("theme-bg");
+      background: -color("theme-bg", 0.6);
       max-width: 350px;
       margin: 20px;
       border-radius: 25px;
