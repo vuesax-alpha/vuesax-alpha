@@ -2,24 +2,24 @@
 license: true
 header:
   title: License of <b>Vuesax</b>
-  text: Check the licenses to be able to use <b>vuesax</b> in your projects
-  button: See more
+  description: Check the licenses to be able to use <b>vuesax</b> in your projects
+  buttonText: See more
 
 cards:
   title: <b>Vuesax</b> Framework License
-  items:
+  cards:
     -
       title: Open Source
-      text: Vuesax v4 is Open Source and has the GPLv3 license, you can use vuesax in your open source projects that have the same GPLv3 license
-      button: Start
+      description: Vuesax v4 is Open Source and has the GPLv3 license, you can use vuesax in your open source projects that have the same GPLv3 license
+      buttonText: Start
     -
       title: Personal or Commercial Project
-      text: If you want to use vuesax in personal or commercial projects other than (Saas / OEM) you can do it without any problem. If you run a business and you are using Vuesax in a project or page that generates income, it makes commercial sense to sponsor the development of Vuesax
-      button: Start
+      description: If you want to use vuesax in personal or commercial projects other than (Saas / OEM) you can do it without any problem. If you run a business and you are using Vuesax in a project or page that generates income, it makes commercial sense to sponsor the development of Vuesax
+      buttonText: Start
     -
       title: SaaS / OEM
-      text: If you want to include Vuesax in downloadable or installable products such as Wordpress themes, HTML templates, as part of a commercial interface creator, SDK or toolkit, choose the commercial OEM license. Commercial OEM licenses are customized for each customer.
-      button: Contact Us
+      description: If you want to include Vuesax in downloadable or installable products such as Wordpress themes, HTML templates, as part of a commercial interface creator, SDK or toolkit, choose the commercial OEM license. Commercial OEM licenses are customized for each customer.
+      buttonText: Contact Us
       contact: true
 
 table:
