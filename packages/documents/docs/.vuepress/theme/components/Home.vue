@@ -519,7 +519,7 @@ const time = (variable: PageButtonKeys) => {
     }
   }
 }
-@media (max-width: 1000px) {
+@media (max-width: 1080px) {
   .home {
     .content-i {
       .con-text {

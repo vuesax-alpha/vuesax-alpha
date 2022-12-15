@@ -139,7 +139,7 @@ defineProps<{
   padding: 0.5rem 0 0.5rem 1.5rem;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1080px) {
   .no-sidebar {
     .sidebar {
       .nav-links {

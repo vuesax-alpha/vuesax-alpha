@@ -684,7 +684,7 @@ const getCode = (str: string) => {
 //         width 100%
 //       .bugx,.val
 //         display none
-@media (max-width: 1000px) {
+@media (max-width: 1080px) {
   .con-api {
     padding: 1rem 10px !important;
     .content-api {
