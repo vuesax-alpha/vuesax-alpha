@@ -122,7 +122,7 @@
     </header>
 
     <Sidebar2 :fixed="true" :sidebar-items="sidebarItems" />
-    
+
     <slot name="top"></slot>
 
     <transition name="fade">
@@ -151,7 +151,7 @@
           </router-link>
         </span>
         <template v-else></template>
-        
+
         <span v-if="next" class="next">
           <router-link :to="next.link">
             <span>
@@ -177,24 +177,17 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { computed } from "@vue/reactivity";
-import {
-  usePageData,
-  usePageFrontmatter,
-} from "@vuepress/client";
+import { usePageData, usePageFrontmatter } from "@vuepress/client";
 // @ts-ignore
-import { useThemeData } from '@vuepress/plugin-theme-data/client';
+import { useThemeData } from "@vuepress/plugin-theme-data/client";
 import { SidebarConfigArray } from "vuepress-vite";
 
-import {
-  normalize,
-  outboundRE,
-  endingSlashRE,
-} from "../util";
+import { normalize, outboundRE, endingSlashRE } from "../util";
 import {
   ThemeNormalApiFrontmatter,
   ThemePageFrontmatter,
 } from "../shared/frontmatter/normal";
-import type { GitPluginPageData } from '@vuepress/plugin-git'
+import type { GitPluginPageData } from "@vuepress/plugin-git";
 
 import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
 
@@ -224,10 +217,10 @@ const lastUpdatedText = computed(() => {
 const lastUpdatedTime = computed(() => {
   if (pageData.value.git.updatedTime) {
     const date = new Date(pageData.value.git.updatedTime);
-    console.log(date)
-    return date.toLocaleString('en-US');
+    console.log(date);
+    return date.toLocaleString("en-US");
   }
-  return ''
+  return "";
 });
 
 const prev = computed(() => {
@@ -377,7 +370,7 @@ const resolvePage = (sidebar: SidebarConfigArray, offset: number) => {
   );
   if (indexCurrentSidebar !== -1)
     return sidebarFlatten[indexCurrentSidebar + offset];
-  return null
+  return null;
 };
 
 const flattenSidebar = (
@@ -464,7 +457,7 @@ const flattenSidebar = (
     opacity: 0.7;
   }
   &:hover {
-    color: -color('accent-color');
+    color: -color("accent-color");
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
   }
   &.active {
@@ -489,35 +482,35 @@ const flattenSidebar = (
     background: -color("theme-bg2");
     width: 100%;
     height: 60px;
-    &.fixed {
-      position: fixed;
-      top: 57px;
-      z-index: 9999;
-      border-radius: 0px;
-      background: -color("theme-bg");
-      margin: 0px;
-      .back-link {
-        margin: 10px 15px;
-      }
-      .header__content {
-        height: 58px;
-        &:after {
-          content: "";
-          position: absolute;
-          bottom: 0px;
-          left: 50%;
-          transform: translate(-50%);
-          width: 110%;
-          height: 100%;
-          z-index: -1;
-          box-shadow: 0px 25px 20px -25px rgba(0, 0, 0, 0.1);
-        }
+  }
+  &.fixed {
+    position: fixed;
+    top: 57px;
+    z-index: 9999;
+    border-radius: 0px;
+    background: -color("theme-bg");
+    margin: 0px;
+    .back-link {
+      margin: 10px 15px;
+    }
+    .header__content {
+      height: 58px;
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0px;
+        left: 50%;
+        transform: translate(-50%);
+        width: 110%;
+        height: 100%;
+        z-index: -1;
+        box-shadow: 0px 25px 20px -25px rgba(0, 0, 0, 0.1);
       }
     }
+  }
 
-    .header-effect {
-      opacity: 0;
-    }
+  .header-effect {
+    opacity: 0;
   }
   table {
     margin: 0px;
@@ -537,7 +530,7 @@ const flattenSidebar = (
   }
 
   .header__content {
-    // @include "wrapper";
+    @include wrapper;
 
     position: relative;
     display: flex;
