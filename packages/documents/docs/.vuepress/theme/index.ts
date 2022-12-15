@@ -5,6 +5,7 @@ import { activeHeaderLinksPlugin } from "@vuepress/plugin-active-header-links";
 import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
 import { themeDataPlugin } from "@vuepress/plugin-theme-data";
 import {containerPlugin} from "@vuepress/plugin-container";
+import { gitPlugin } from '@vuepress/plugin-git'
 
 import { VuesaxAlphaThemeOptions } from "./vuesaxAlphaTheme";
 
@@ -41,6 +42,12 @@ export const vuesaxAlphaTheme = (options?: VuesaxAlphaThemeOptions): Theme => {
       registerComponentsPlugin({
         componentsDir: path.resolve(__dirname, "global-components"),
       }),
+      registerComponentsPlugin({
+        componentsDir: path.resolve(__dirname, "../components")
+      }),
+      gitPlugin({
+        updatedTime: true
+      })
     ],
   };
 };
