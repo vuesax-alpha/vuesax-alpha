@@ -99,6 +99,7 @@ import {
 import {
   useThemeData,
   useThemeLocaleData,
+  // @ts-ignore
 } from "@vuepress/plugin-theme-data/client";
 import { codesandboxContext } from "../type";
 import { resolveSidebarItems } from "../util";
@@ -173,79 +174,8 @@ onMounted(() => {
   router.afterEach(() => {
     isSidebarOpen.value = false;
   });
-  // loadDarkModeFavicon();
 });
 
-const loadDarkModeFavicon = () => {
-  (() => {
-    const collectLinks = (): HTMLLinkElement[] => {
-      return Array.prototype.slice.apply(
-        document.head.querySelectorAll('link[rel*="icon"]')
-      );
-    };
-
-    const applyLink = (source: HTMLLinkElement, target: HTMLLinkElement) => {
-      const type = source.getAttribute("type");
-      const href = source.getAttribute("href");
-      if (type !== null) {
-        target.setAttribute("type", type);
-      }
-      if (href !== null) {
-        target.setAttribute("href", href);
-      }
-    };
-
-    const initSwitcher = (delay: number = 300) => {
-      // Exit if media queries aren't supported
-      if (typeof window.matchMedia !== "function") {
-        return function noop() {};
-      }
-
-      const links = collectLinks();
-      const linkElement = document.createElement("link");
-      let prevMatch: string;
-
-      linkElement.setAttribute("rel", "shortcut icon");
-      document.head.appendChild(linkElement);
-
-      const faviconApplyLoop = () => {
-        let matched: HTMLLinkElement | undefined = undefined;
-        links.forEach((link) => {
-          if (window.matchMedia(link.media).matches) {
-            matched = link;
-          }
-        });
-
-        if (!matched) {
-          return;
-        }
-
-        if ((matched as HTMLLinkElement).media !== prevMatch) {
-          prevMatch = (matched as HTMLLinkElement).media;
-          applyLink(matched, linkElement);
-        }
-      };
-
-      let intervalId = setInterval(faviconApplyLoop, delay);
-
-      const unsubscribe = () => {
-        clearInterval(intervalId);
-        links.forEach((link) => {
-          document.head.appendChild(link);
-        });
-      };
-
-      faviconApplyLoop();
-      links.forEach((link) => {
-        document.head.removeChild(link);
-      });
-
-      return unsubscribe;
-    };
-
-    initSwitcher();
-  })();
-};
 const handleClickCodeSandbox = () => {
   document.body.style.overflow = "";
   codesandbox.value.url = undefined;
@@ -276,7 +206,7 @@ const onTouchEnd = (e: TouchEvent) => {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .fade-code-enter-active,
 .fade-code-leave-active {
   transition: opacity 0.5s;
@@ -311,4 +241,4 @@ const onTouchEnd = (e: TouchEvent) => {
 </style>
 
 <style src="prismjs/themes/prism-tomorrow.css"></style>
-<style src="../styles/_theme.scss" lang="scss"></style>
+ 

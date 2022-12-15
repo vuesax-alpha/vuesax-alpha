@@ -21,10 +21,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onActivated, inject } from "vue";
-import { SidebarConfigArray, SidebarGroup as SidebarGroupType, SidebarItem } from "vuepress-vite";
-import { RouteLocationNormalizedLoaded, useRoute, useRouter } from "vue-router";
+import { ref, watch, onBeforeMount, inject } from "vue";
+import { SidebarConfigArray } from "vuepress-vite";
+import { RouteLocationNormalizedLoaded, useRoute } from "vue-router";
 import { isString } from "@vue/shared";
+
 import SidebarGroup from "./SidebarGroup.vue";
 import SidebarLink from "./SidebarLink.vue";
 import { isActive } from "../util";
@@ -44,26 +45,19 @@ const props = defineProps<{
 }>();
 
 const route = useRoute();
-const router = useRouter();
 
 const vsTheme = inject(vsThemeKey, null);
 
 const openGroupIndex = ref<number>(0);
 const allOpen = ref<boolean>(false);
 
-onActivated(() => {
+onBeforeMount(() => {
   refreshIndex();
 });
 
 watch(route, () => {
-  refreshIndex();
+  // refreshIndex();
 });
-
-const isSidebarGroup = (item: string | SidebarGroupType | SidebarItem) => {
-  if (typeof item === 'string') return false;
-  if ('children' in item) return true;
-  return false;
-}
 
 const refreshIndex = () => {
   const index = resolveOpenGroupIndex(route, props.links);
