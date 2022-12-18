@@ -1,34 +1,46 @@
 <template>
-  <a
+  <router-link
     :title="title"
-    :href="link"
+    :to="link || ''"
     :class="[
       {
         active,
-        'sidebar-new': NEW,
-        'sidebar-UPDATE': UPDATE,
+        'sidebar-new': isNew,
+        'sidebar-UPDATE': isUpdate,
       },
       'sidebar-link',
     ]"
   >
     {{ text }}
-  </a>
+  </router-link>
 </template>
 
 <script setup lang="ts">
 import { computed } from "@vue/reactivity";
+import { useRoute } from "vue-router";
+import { isActive } from "../../util";
 
 const props = defineProps<{
   text: string;
   link?: string;
-  active?: boolean;
-  NEW?: boolean;
-  UPDATE?: boolean;
+  isNew?: boolean;
+  isUpdate?: boolean;
 }>();
 
+const route = useRoute();
+
 const title = computed(() => {
-  if (props.NEW) return "New";
-  if (props.UPDATE) return "Update";
+  if (props.isNew) return "New";
+  if (props.isUpdate) return "Update";
   return "";
 });
+
+const active = computed(() => {
+  const a = props.link ? isActive(route, props.link) : false;
+  console.log(a)
+  if (a == true) {
+    console.log(props.link)
+  }
+  return props.link ? isActive(route, props.link) : false;
+})
 </script>

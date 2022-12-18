@@ -28,13 +28,7 @@
                       !isString(childSubItem) && !('children' in childSubItem)
                     "
                   >
-                    <NavLink
-                      :exact="
-                        $route.path.indexOf('/guide/components/') !== -1 ||
-                        childSubItem.text === 'Button'
-                      "
-                      :nav-item="childSubItem"
-                    />
+                    <NavLink :nav-item="childSubItem"/>
                   </template>
                 </li>
               </ul>

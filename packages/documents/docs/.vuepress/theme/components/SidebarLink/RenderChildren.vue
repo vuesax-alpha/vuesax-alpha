@@ -3,11 +3,10 @@
     <template v-for="link in children">
       <li class="sidebar-sub-header">
         <render-link
-          :active="active"
-          :link="`${link}#${link.slug}`"
+          :link="`#${link.slug}`"
           :text="link.title"
-          :n-e-w="news?.includes(link.slug)"
-          :u-p-d-a-t-e="updates?.includes(link.slug)"
+          :is-new="news?.includes(link.slug)"
+          :is-update="updates?.includes(link.slug)"
         ></render-link>
 
         <template v-if="'children' in link">
@@ -27,8 +26,6 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from "vue-router";
-import { isActive } from "../../util";
 import { MarkdownItHeader } from "@mdit-vue/types";
 
 import RenderLink from "./RenderLink.vue";
@@ -42,9 +39,7 @@ type SidebarLinkChildrenProps = {
   updates?: string[];
 };
 
-const route = useRoute();
-const props = withDefaults(defineProps<SidebarLinkChildrenProps>(), {
+withDefaults(defineProps<SidebarLinkChildrenProps>(), {
   depth: 1,
 });
-const active = props.link ? isActive(route, props.link) : false;
 </script>
