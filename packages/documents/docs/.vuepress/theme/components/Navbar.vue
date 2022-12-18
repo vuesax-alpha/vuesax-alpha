@@ -2,7 +2,7 @@
   <header class="navbar" ref="$el">
     <SidebarButton @toggle-sidebar="emits('toggle-sidebar')" />
 
-    <router-link :to="pageData.path" class="home-link">
+    <router-link :to="themeData.home || themeData.locales?.[siteLocaleData.base].home || siteLocaleData.base || pageData.path" class="home-link">
       <svg
         class="logo-nav"
         xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +94,7 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
-import { usePageData } from "@vuepress/client";
+import { usePageData, useSiteLocaleData } from "@vuepress/client";
 // @ts-ignore
 import { useThemeData } from "@vuepress/plugin-theme-data/client";
 
@@ -108,6 +108,7 @@ const emits = defineEmits<{
 }>();
 
 const themeData = useThemeData<VuesaxAlphaThemeOptions>();
+const siteLocaleData = useSiteLocaleData();
 const pageData = usePageData();
 
 const linksWrapMaxWidth = ref<number | null>(null);
