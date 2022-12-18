@@ -7,7 +7,7 @@
     <div ref="$loadings" class="con-loadings">
       <div
         v-for="(type, i) in types"
-        :ref="`box${i}`"
+        :ref="el => $refs.push(el)"
         @click="handleClickLoading(type)"
         class="box-loading"
       ></div>
@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, reactive, Ref, ref, watch } from "vue";
+import { onMounted, reactive, onBeforeUpdate, ref, watch } from "vue";
 import { loading } from "vuesax-alpha";
 
 const color = ref("#d5397b");
@@ -38,13 +38,7 @@ const types = [
   "scale",
 ];
 
-const refs = reactive<{
-  [x: string]: Ref<HTMLElement>;
-}>({});
-
-types.forEach((_, i) => {
-  refs[`box${i}`] = ref<HTMLElement>();
-});
+let $refs = reactive([]);
 
 const handleClickLoading = (type) => {
   const loadingInstance = loading({
@@ -58,9 +52,9 @@ const handleClickLoading = (type) => {
   }, 3000);
 };
 
-const openLoading = (type, ref) => {
+const openLoading = (type: string, ref: Element) => {
   loading({
-    target: refs[ref].value,
+    target: ref,
     text: type,
     type,
     color: color.value,
@@ -72,13 +66,17 @@ watch(color, () => {
     item.innerHTML = "";
   });
   types.forEach((type, i) => {
-    openLoading(type, `box${i}`);
+    openLoading(type, $refs[i]);
   });
 });
 
+onBeforeUpdate(() => {
+  $refs = [];
+})
+
 onMounted(() => {
   types.forEach((type, i) => {
-    openLoading(type, `box${i}`);
+    openLoading(type, $refs[i]);
   });
 });
 </script>
