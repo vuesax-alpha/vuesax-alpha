@@ -224,7 +224,7 @@ NEWS:
 Add a checkbox type input easily and with a beautiful animation
 
 <div slot="example">
-  <Checkbox-default />
+  <checkbox-default />
 </div>
 
 <div slot="template">
@@ -264,7 +264,7 @@ Add a checkbox type input easily and with a beautiful animation
 Change the color of the component with the `color` property, the allowed values ​​are (main colors of vuesax, RGB, HEX)
 
 <div slot="example">
-  <Checkbox-color />
+  <checkbox-color />
 </div>
 
 <div slot="template">
@@ -328,7 +328,7 @@ Change the color of the component with the `color` property, the allowed values 
 By default the component is used with a boolean value that when being checked returns `true` and when not being checked returns `false`
 
 <div slot="example">
-  <Checkbox-boolean />
+  <checkbox-boolean />
 </div>
 
 <div slot="template">
@@ -372,7 +372,7 @@ By default the component is used with a boolean value that when being checked re
 You may need to return a string when the component is checked for it use the `val` property with the `string` you want to return
 
 <div slot="example">
-  <Checkbox-string />
+  <checkbox-string />
 </div>
 
 <div slot="template">
@@ -416,7 +416,7 @@ You may need to return a string when the component is checked for it use the `va
 You may need to return a string when the component is checked for it use the `val` property with the `string` you want to return
 
 <div slot="example">
-  <Checkbox-array />
+  <checkbox-array />
 </div>
 
 <div slot="template">
@@ -475,7 +475,7 @@ You may need to return a string when the component is checked for it use the `va
 the `val` property of a checkbox component can be an `object`
 
 <div slot="example">
-  <Checkbox-object />
+  <checkbox-object />
 </div>
 
 <div slot="template">
@@ -534,7 +534,7 @@ Change the icon inside the checkbox component with the`slot="icon"`
 <utils-icon />
 
 <div slot="example">
-  <Checkbox-icon />
+  <checkbox-icon />
 </div>
 
 <div slot="template">
@@ -612,7 +612,7 @@ Change the icon inside the checkbox component with the`slot="icon"`
 Add a label to the checkbox with the default slot of the component
 
 <div slot="example">
-  <Checkbox-label />
+  <checkbox-label />
 </div>
 
 <div slot="template">
@@ -657,7 +657,7 @@ Add a loading status to the component with the property `loading`
 
 
 <div slot="example">
-  <Checkbox-loading />
+  <checkbox-loading />
 </div>
 
 <div slot="template">
@@ -701,7 +701,7 @@ Add a loading status to the component with the property `loading`
 Add a line in the middle of the label when the checkbox is checked with the property `line-through`
 
 <div slot="example">
-  <Checkbox-linethrough />
+  <checkbox-linethrough />
 </div>
 
 <div slot="template">
@@ -741,7 +741,7 @@ Add a line in the middle of the label when the checkbox is checked with the prop
 There are some cases where you have several checkboxes and you need one that manages all the others for this you can do it with the indeterminate property that adds a different style to the checkbox
 
 <div slot="example">
-  <Checkbox-indeterminate />
+  <checkbox-indeterminate />
 </div>
 
 <div slot="template">

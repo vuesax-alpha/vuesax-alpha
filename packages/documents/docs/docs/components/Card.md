@@ -126,7 +126,7 @@ Add a card with the `vs-card` component for the structure of this component we h
  - img
 
 <div slot="example">
-  <Card-default />
+  <card-default />
 </div>
 
 <div slot="template">
@@ -169,7 +169,7 @@ Add a card with the `vs-card` component for the structure of this component we h
 Completely change the style of the letter with the property `type` and the value` 2`
 
 <div slot="example">
-  <Card-type2 />
+  <card-type2 />
 </div>
 
 <div slot="template">
@@ -212,7 +212,7 @@ Completely change the style of the letter with the property `type` and the value
 Completely change the style of the letter with the property `type` and the value` 3`
 
 <div slot="example">
-  <Card-type3 />
+  <card-type3 />
 </div>
 
 <div slot="template">
@@ -255,7 +255,7 @@ Completely change the style of the letter with the property `type` and the value
 Completely change the style of the letter with the `type` property and the value` 4`
 
 <div slot="example">
-  <Card-type4 />
+  <card-type4 />
 </div>
 
 <div slot="template">
@@ -298,7 +298,7 @@ Completely change the style of the letter with the `type` property and the value
 Change the style of the letter completely with the `type` property and the value` 5`
 
 <div slot="example">
-  <Card-type5 />
+  <card-type5 />
 </div>
 
 <div slot="template">
@@ -341,7 +341,7 @@ Change the style of the letter completely with the `type` property and the value
 To have a group of scrolling cards you can use the `vs-card-group` component
 
 <div slot="example">
-  <Card-group />
+  <card-group />
 </div>
 
 <div slot="template">

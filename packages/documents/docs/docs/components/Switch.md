@@ -245,7 +245,7 @@ NEWS:
 Generate a switch element easily with beautiful animations and functionality
 
 <div slot="example">
-  <Switch-default />
+  <switch-default />
 </div>
 
 <div slot="template">
@@ -287,7 +287,7 @@ Generate a switch element easily with beautiful animations and functionality
 Change the color of the component when it is in active state, the allowed values ​​are (main colors of vuesax, RGB, HEX)
 
 <div slot="example">
-  <Switch-color />
+  <switch-color />
 </div>
 
 <div slot="template">
@@ -341,7 +341,7 @@ Add a text to the switch with the default slot or if you need a different text f
 :::
 
 <div slot="example">
-  <Switch-text />
+  <switch-text />
 </div>
 
 <div slot="template">
@@ -399,7 +399,7 @@ Add a text to the switch with the default slot or if you need a different text f
 Add icons to the component in the default slot or the `on` or `off` status slots
 
 <div slot="example">
-  <Switch-icons />
+  <switch-icons />
 </div>
 
 <div slot="template">
@@ -481,7 +481,7 @@ Add icons to the component in the default slot or the `on` or `off` status slots
 You can use the checkbox to add or remove a value from an array, that value is the `val` property
 
 <div slot="example">
-  <Switch-array />
+  <switch-array />
 </div>
 
 <div slot="template">
@@ -540,7 +540,7 @@ You can use the checkbox to add or remove a value from an array, that value is t
 Add a loading animation to the component with the `loading` property, the property is a` boolean` so you can add it without any value.
 
 <div slot="example">
-  <Switch-loading />
+  <switch-loading />
 </div>
 
 <div slot="template">
@@ -582,7 +582,7 @@ Add a loading animation to the component with the `loading` property, the proper
 Add an undetermined state to the compound with the `indeterminate` property, the property is a` boolean` so you can add it without any value.
 
 <div slot="example">
-  <Switch-indeterminate />
+  <switch-indeterminate />
 </div>
 
 <div slot="template">
@@ -624,7 +624,7 @@ Add an undetermined state to the compound with the `indeterminate` property, the
 Change the circular style to square with the `square` property, the property is a` boolean` so you can add it without any value.
 
 <div slot="example">
-  <Switch-square />
+  <switch-square />
 </div>
 
 <div slot="template">
@@ -666,7 +666,7 @@ Change the circular style to square with the `square` property, the property is 
 A usual example when using the switch component
 
 <div slot="example">
-  <Switch-example />
+  <switch-example />
 </div>
 
 <div slot="template">

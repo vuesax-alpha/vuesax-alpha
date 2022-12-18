@@ -307,7 +307,7 @@ NEWS:
 Generate a loading with the vuesax function `$vs.loading(options)`
 
 <div slot="example">
-  <Loading-default />
+  <loading-default />
 </div>
 
 <div slot="template">
@@ -364,7 +364,7 @@ Tipos de loading:
 :::
 
 <div slot="example">
-  <Loading-type />
+  <loading-type />
 </div>
 
 <div slot="template">
@@ -472,7 +472,7 @@ Tipos de loading:
 Change the color of the loading animation with the property `color`, the colors can be the main ones of vuesax or (**RGB**, **HEX**)
 
 <div slot="example">
-  <Loading-color />
+  <loading-color />
 </div>
 
 <div slot="template">
@@ -639,7 +639,7 @@ Change the color of the loading animation with the property `color`, the colors 
 You can change the loading background with the property `loading`
 
 <div slot="example">
-  <Loading-background />
+  <loading-background />
 </div>
 
 <div slot="template">
@@ -690,7 +690,7 @@ You can change the loading background with the property `loading`
 Add a descriptive text of the loading or informing the user that it is loading or that it is missing to load with the property `text`
 
 <div slot="example">
-  <Loading-text />
+  <loading-text />
 </div>
 
 <div slot="template">
@@ -735,7 +735,7 @@ Add a descriptive text of the loading or informing the user that it is loading o
 You can add a string of the percentage of load with the `percent` property, if you need to change that value use the `changePercent` function in the loading instance.
 
 <div slot="example">
-  <Loading-percent />
+  <loading-percent />
 </div>
 
 <div slot="template">
@@ -791,7 +791,7 @@ You can add a string of the percentage of load with the `percent` property, if y
 Add a progress bar at the top to indicate the loading progress of the loading with the `progress` property, the value is a number that determines the percentage and the allowed value is (0 - 100)
 
 <div slot="example">
-  <Loading-progress />
+  <loading-progress />
 </div>
 
 <div slot="template">
@@ -847,7 +847,7 @@ Add a progress bar at the top to indicate the loading progress of the loading wi
 Use the loading on a specific dom element using the `target` property and the value can be a string with the `id` or the `class` only if it is unique for the element, you can also use the element itself as per example using `$refs`
 
 <div slot="example">
-  <Loading-target />
+  <loading-target />
 </div>
 
 <div slot="template">

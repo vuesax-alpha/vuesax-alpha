@@ -181,7 +181,7 @@ NEWS:
 It generates a Dialog with the `vs-dialog` component, this component is very customizable since it provides a slot to put and make any type of interface to the user's need
 
 <div slot="example">
-  <Dialog-default />
+  <dialog-default />
 </div>
 
 <div slot="template">
@@ -314,7 +314,7 @@ It generates a Dialog with the `vs-dialog` component, this component is very cus
 You can easily create the most common types of dialogs such as **Alert**, **Confirm** or **Prompt** using the different slots for the structure of the `header`,`default`, `footer` dialog
 
 <div slot="example">
-  <Dialog-type />
+  <dialog-type />
 </div>
 
 <div slot="template">
@@ -493,7 +493,7 @@ You can easily create the most common types of dialogs such as **Alert**, **Conf
 Add a loading animation to the dialog with the `loading` property
 
 <div slot="example">
-  <Dialog-loading />
+  <dialog-loading />
 </div>
 
 <div slot="template">
@@ -626,7 +626,7 @@ Add a loading animation to the dialog with the `loading` property
 You can remove the close button with the `not-close` property
 
 <div slot="example">
-  <Dialog-notClose />
+  <dialog-notClose />
 </div>
 
 <div slot="template">
@@ -759,7 +759,7 @@ You can remove the close button with the `not-close` property
 There are cases where you need a scroll because there is a lot of information within the dialog for this you can use the `scroll` property
 
 <div slot="example">
-  <Dialog-scroll />
+  <dialog-scroll />
 </div>
 
 <div slot="template">
@@ -876,7 +876,7 @@ There are cases where you need a scroll because there is a lot of information wi
 If you need to remove the page scroll when opening the dialog you can do it with the `overflow-hidden` property
 
 <div slot="example">
-  <Dialog-overflowHidden />
+  <dialog-overflowHidden />
 </div>
 
 <div slot="template">
@@ -1009,7 +1009,7 @@ If you need to remove the page scroll when opening the dialog you can do it with
 If you need to remove the padding from the dialog to make a more personalized interface you can do it with the `not-padding` property
 
 <div slot="example">
-  <Dialog-notPadding />
+  <dialog-notPadding />
 </div>
 
 <div slot="template">
@@ -1070,7 +1070,7 @@ If you need to remove the padding from the dialog to make a more personalized in
 You can nest as many `vs-dialog` as you need without problem
 
 <div slot="example">
-  <Dialog-nested />
+  <dialog-nested />
 </div>
 
 <div slot="template">
@@ -1226,7 +1226,7 @@ You can nest as many `vs-dialog` as you need without problem
 If you need the dialog to be the total window size you can do it with the `full-screen` property
 
 <div slot="example">
-  <Dialog-fullScreen />
+  <dialog-fullScreen />
 </div>
 
 <div slot="template">
@@ -1359,7 +1359,7 @@ If you need the dialog to be the total window size you can do it with the `full-
 You can add a blur style to all the elements behind the dialog with the `blur` property, this functionality depends on the css property [backdrop-filter](https://caniuse.com/#feat=css-backdrop-filter)
 
 <div slot="example">
-  <Dialog-blur />
+  <dialog-blur />
 </div>
 
 <div slot="template">
@@ -1492,7 +1492,7 @@ You can add a blur style to all the elements behind the dialog with the `blur` p
 Change the dialog style by removing the border radius and making it rectangular
 
 <div slot="example">
-  <Dialog-square />
+  <dialog-square />
 </div>
 
 <div slot="template">
@@ -1625,7 +1625,7 @@ Change the dialog style by removing the border radius and making it rectangular
 With the `prevent-close` property you do not close the dialog by clicking outside or pressing the **esc** key
 
 <div slot="example">
-  <Dialog-preventClose />
+  <dialog-preventClose />
 </div>
 
 <div slot="template">

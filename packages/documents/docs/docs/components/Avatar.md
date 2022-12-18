@@ -334,7 +334,7 @@ NEWS:
 Add an avatar easily and with functionality with the component `<vs-avatar>`
 
 <div slot="example">
-  <Avatar-default />
+  <avatar-default />
 </div>
 
 <div slot="template">
@@ -376,7 +376,7 @@ Add an avatar easily and with functionality with the component `<vs-avatar>`
 Change the color of the compound with the `color` property, the colors allowed are the main colors of vuesax and (`HEX`, `RGB`)
 
 <div slot="example">
-  <Avatar-color />
+  <avatar-color />
 </div>
 
 <div slot="template">
@@ -434,7 +434,7 @@ Change the color of the compound with the `color` property, the colors allowed a
 Change the size of the component to the number provided if for example the size value is `60` equivalent to `60px` in height and width
 
 <div slot="example">
-  <Avatar-size />
+  <avatar-size />
 </div>
 
 <div slot="template">
@@ -480,7 +480,7 @@ You can also change the color to represent a user status as disconnected or conn
 There are times when you need to use the avatar in a chat environment and for this you can add the `writing` property that adds a writing animation
 
 <div slot="example">
-  <Avatar-badge />
+  <avatar-badge />
 </div>
 
 <div slot="template">
@@ -537,7 +537,7 @@ The maximum length of characters is **5**. When that limit is exceeded, changes 
 :::
 
 <div slot="example">
-  <Avatar-autoFont />
+  <avatar-autoFont />
 </div>
 
 <div slot="template">
@@ -590,7 +590,7 @@ The maximum length of characters is **5**. When that limit is exceeded, changes 
 Change the border-radius of the entire component to `50%` with the `circle` property making it fully circular
 
 <div slot="example">
-  <Avatar-circle />
+  <avatar-circle />
 </div>
 
 <div slot="template">
@@ -638,7 +638,7 @@ Change the border-radius of the entire component to `50%` with the `circle` prop
 Change the border-radius of the entire component to `0%` with the `square` property making it completely square
 
 <div slot="example">
-  <Avatar-square />
+  <avatar-square />
 </div>
 
 <div slot="template">
@@ -690,7 +690,7 @@ You can make the border a gradient like instagram with the property `history-gra
 :::
 
 <div slot="example">
-  <Avatar-history />
+  <avatar-history />
 </div>
 
 <div slot="template">
@@ -728,7 +728,7 @@ You can make the border a gradient like instagram with the property `history-gra
 You can put an icon inside an avatar when for example an image is not yet added or is a new user, for this you can simply use the default slot
 
 <div slot="example">
-  <Avatar-icon />
+  <avatar-icon />
 </div>
 
 <div slot="template">
@@ -769,7 +769,7 @@ You can put an icon inside an avatar when for example an image is not yet added 
 Add a loading animation to the component, this property is a `boolean` so you can add it without any value
 
 <div slot="example">
-  <Avatar-loading />
+  <avatar-loading />
 </div>
 
 <div slot="template">
@@ -816,7 +816,7 @@ Add a loading animation to the component, this property is a `boolean` so you ca
 Add a space next to the avatar with the slot `icons` where you can put icons for some dynamic action of that user in specific
 
 <div slot="example">
-  <Avatar-icons />
+  <avatar-icons />
 </div>
 
 <div slot="template">
@@ -867,7 +867,7 @@ You can group several avatar with the parent component `vs-avatar-group`, this c
 
 
 <div slot="example">
-  <Avatar-group />
+  <avatar-group />
 </div>
 
 <div slot="template">

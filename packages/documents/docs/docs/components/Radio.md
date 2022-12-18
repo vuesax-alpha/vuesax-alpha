@@ -92,7 +92,7 @@ NEWS:
 Add the radio type input with the component `<vs-radio />`
 
 <div slot="example">
-  <Radio-default />
+  <radio-default />
 </div>
 
 <div slot="template">
@@ -141,7 +141,7 @@ Add the radio type input with the component `<vs-radio />`
 <coloren />
 
 <div slot="example">
-  <Radio-color />
+  <radio-color />
 </div>
 
 <div slot="template">
@@ -199,7 +199,7 @@ Add the radio type input with the component `<vs-radio />`
 Add a label to the radio with the `default` slot, if you need the label to be before the radio you can use the `label-before` property
 
 <div slot="example">
-  <Radio-label />
+  <radio-label />
 </div>
 
 <div slot="template">
@@ -242,7 +242,7 @@ Add a label to the radio with the `default` slot, if you need the label to be be
 Add a loading animation to the component, when the radio has this property active it is as if it were in `disabled`
 
 <div slot="example">
-  <Radio-loading />
+  <radio-loading />
 </div>
 
 <div slot="template">
@@ -285,7 +285,7 @@ Add a loading animation to the component, when the radio has this property activ
 Add an icon inside the radio with the `icon` slot
 
 <div slot="example">
-  <Radio-icons />
+  <radio-icons />
 </div>
 
 <div slot="template">

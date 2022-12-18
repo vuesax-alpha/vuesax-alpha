@@ -432,7 +432,7 @@ It generates a notification with the vuesax function (`$vs.notification`), to us
 :::
 
 <div slot="example">
-  <Notification-default />
+  <notification-default />
 </div>
 
 <div slot="template">
@@ -488,7 +488,7 @@ supported values
 - `bottom-center`
 
 <div slot="example">
-  <Notification-position />
+  <notification-position />
 </div>
 
 <div slot="template">
@@ -583,7 +583,7 @@ Allowed values ​​are:
 - HEX
 
 <div slot="example">
-  <Notification-color />
+  <notification-color />
 </div>
 
 <div slot="template">
@@ -651,7 +651,7 @@ Allowed values ​​are:
 Add the icon provided as the value of the `icon` property to the notification
 
 <div slot="example">
-  <Notification-icons />
+  <notification-icons />
 </div>
 
 <div slot="template">
@@ -751,7 +751,7 @@ Add the icon provided as the value of the `icon` property to the notification
 Add a progress bar to the notification, if the value of the `progress` property is `auto` be determined by the `duration` property to reach 100%, if you want the value to be manual you can add a number of the (0 - 100) being 100 100% and use the function in the `changeProgress` instance and change the value to the one provided as the first parameter
 
 <div slot="example">
-  <Notification-progress />
+  <notification-progress />
 </div>
 
 <div slot="template">
@@ -848,7 +848,7 @@ Change the duration of the notification with the `duration` property, the value 
 if you need the notification to never be hidden, the duration value would be `none`
 
 <div slot="example">
-  <Notification-duration />
+  <notification-duration />
 </div>
 
 <div slot="template">
@@ -928,7 +928,7 @@ if you need the notification to never be hidden, the duration value would be `no
 Change the style of the notification with the `square` property so as not to have `border-radius` making it a rectangle
 
 <div slot="example">
-  <Notification-square />
+  <notification-square />
 </div>
 
 <div slot="template">
@@ -1020,7 +1020,7 @@ Change the style of the notification with the `square` property so as not to hav
 Change the notification style with the `border` property by adding a border of the color provided as the value
 
 <div slot="example">
-  <Notification-border />
+  <notification-border />
 </div>
 
 <div slot="template">
@@ -1120,7 +1120,7 @@ Change the notification style with the `border` property by adding a border of t
 Change the style of the notification with the `flat` property, having this property changes to lighter colors and the text of the color of the `color` property, this property is a boolean so you can only use the value `true`
 
 <div slot="example">
-  <Notification-flat />
+  <notification-flat />
 </div>
 
 <div slot="template">
@@ -1237,7 +1237,7 @@ Change the style of the notification with the `flat` property, having this prope
 Add a loading animation to the notification, having this property will only show the animation and the content will be hidden
 
 <div slot="example">
-  <Notification-loading />
+  <notification-loading />
 </div>
 
 <div slot="template">
@@ -1334,7 +1334,7 @@ Change the size of the notification to the total screen with the property `width
 If you need the notification to have an automatic size to your content you can do it with the value `auto`
 
 <div slot="example">
-  <Notification-allWidth />
+  <notification-allWidth />
 </div>
 
 <div slot="template">
@@ -1400,7 +1400,7 @@ If you need the notification to have an automatic size to your content you can d
 You can add a style to the paste component to the nearest corner with the `sticky` property, this property is a `boolean` po which can only have the value `true`
 
 <div slot="example">
-  <Notification-sticky />
+  <notification-sticky />
 </div>
 
 <div slot="template">
@@ -1494,7 +1494,7 @@ You can add a style to the paste component to the nearest corner with the `stick
 You can do great things with this component and some others from vuesax, to add any element within the notification we have the property `content` this property can only receive an imported component and that is what it will generate within the notification
 
 <div slot="example">
-  <Notification-example />
+  <notification-example />
 </div>
 
 <div slot="template">

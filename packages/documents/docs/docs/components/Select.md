@@ -502,7 +502,7 @@ NEWS:
 Add a select element with the `vs-select` component and the `vs-option` sub component
 
 <div slot="example">
-  <Select-default />
+  <select-default />
 </div>
 
 <div slot="template">
@@ -562,7 +562,7 @@ Add a select element with the `vs-select` component and the `vs-option` sub comp
 Change the color of the component with the `color` property, the allowed values ​​are the main colors of vuesax and the colors (**RGB** and **HEX**)
 
 <div slot="example">
-  <Select-color />
+  <select-color />
 </div>
 
 <div slot="template">
@@ -655,7 +655,7 @@ Change the color of the component with the `color` property, the allowed values 
 Add a label to the select easily with the `label` property, you can also add a `label-placeholder` which as its name says is a placeholder that encourages label, and finally the placeholder with the `placeholder` property
 
 <div slot="example">
-  <Select-label />
+  <select-label />
 </div>
 
 <div slot="template">
@@ -775,7 +775,7 @@ Add a label to the select easily with the `label` property, you can also add a `
 Group options within the select with the sub-component `vs-option-group`, as the required slot is the `title` to add a title to the item group
 
 <div slot="example">
-  <Select-group />
+  <select-group />
 </div>
 
 <div slot="template">
@@ -930,7 +930,7 @@ Group options within the select with the sub-component `vs-option-group`, as the
 You can add the functionality of filtering options with the `filter` property, this property is a `boolean` so you can add it without any value
 
 <div slot="example">
-  <Select-filter />
+  <select-filter />
 </div>
 
 <div slot="template">
@@ -1027,7 +1027,7 @@ The value of the select must be an array
 :::
 
 <div slot="example">
-  <Select-multiple />
+  <select-multiple />
 </div>
 
 <div slot="template">
@@ -1154,7 +1154,7 @@ The value of the select must be an array
 Add a loading animation to the select with the `loading` property, this property is a `boolean` so you can add it without any value
 
 <div slot="example">
-  <Select-loading />
+  <select-loading />
 </div>
 
 <div slot="template">
@@ -1252,7 +1252,7 @@ This property can be used to indicate a missing field to the user or when someth
 :::
 
 <div slot="example">
-  <Select-state />
+  <select-state />
 </div>
 
 <div slot="template">
@@ -1340,7 +1340,7 @@ This property can be used to indicate a missing field to the user or when someth
 Add an item below the select showing a message to the user
 
 <div slot="example">
-  <Select-message />
+  <select-message />
 </div>
 
 <div slot="template">

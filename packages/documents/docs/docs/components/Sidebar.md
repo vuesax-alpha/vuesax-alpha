@@ -239,7 +239,7 @@ NEWS:
 Add a sidebar menu with the `vs-sidebar` component, there are two subcomponents `vs-sidebar-item` and `vs-sidebar-group`
 
 <div slot="example">
-  <Sidebar-default />
+  <sidebar-default />
 </div>
 
 <div slot="template">
@@ -346,7 +346,7 @@ You can group items and hide them with the `vs-sidebar-group` sub-component.
 :::
 
 <div slot="example">
-  <Sidebar-group />
+  <sidebar-group />
 </div>
 
 <div slot="template">
@@ -523,7 +523,7 @@ You can make the component 50px wide and only show the icons with the property `
 :::
 
 <div slot="example">
-  <Sidebar-reduce />
+  <sidebar-reduce />
 </div>
 
 <div slot="template">
@@ -697,7 +697,7 @@ You can make the component 50px wide and only show the icons with the property `
 You can add the functionality to expand and collapse the sidebar with the mouse, with the property `hoverExpand`
 
 <div slot="example">
-  <Sidebar-reduceExpand />
+  <sidebar-reduceExpand />
 </div>
 
 <div slot="template">
@@ -872,7 +872,7 @@ You can add the functionality to expand and collapse the sidebar with the mouse,
 Change the color of the sidebar, if necessary you can also change the color of the text to white with the `textWhite` property
 
 <div slot="example">
-  <Sidebar-color />
+  <sidebar-color />
 </div>
 
 <div slot="template">
@@ -1029,7 +1029,7 @@ Change the color of the sidebar, if necessary you can also change the color of t
 You can define if the sidebar is visible or hidden with the open property, this property by default is `false`
 
 <div slot="example">
-  <Sidebar-open />
+  <sidebar-open />
 </div>
 
 <div slot="template">
@@ -1226,7 +1226,7 @@ You can define if the sidebar is visible or hidden with the open property, this 
 Change the position of the sidebar to the right and its animation with the `right` property
 
 <div slot="example">
-  <Sidebar-right />
+  <sidebar-right />
 </div>
 
 <div slot="template">

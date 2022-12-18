@@ -307,7 +307,7 @@ Easily add a tooltip with the `vs-tooltip` component, the content within the `de
 The `tooltip` slot is the content inside the tooltip
 
 <div slot="example">
-  <Tooltip-default />
+  <tooltip-default />
 </div>
 
 <div slot="template">
@@ -343,7 +343,7 @@ Change the position of the tooltip with the properties
 - right
 
 <div slot="example">
-  <Tooltip-position />
+  <tooltip-position />
 </div>
 
 <div slot="template">
@@ -398,7 +398,7 @@ Change the position of the tooltip with the properties
 <coloren />
 
 <div slot="example">
-  <Tooltip-color />
+  <tooltip-color />
 </div>
 
 <div slot="template">
@@ -489,7 +489,7 @@ Now the color property would change the color of the border
 :::
 
 <div slot="example">
-  <Tooltip-border />
+  <tooltip-border />
 </div>
 
 <div slot="template">
@@ -536,7 +536,7 @@ Now the color property would change the color of the border
 Change the `border-radius` of the tooltip so that it is completely a rectangle
 
 <div slot="example">
-  <Tooltip-square />
+  <tooltip-square />
 </div>
 
 <div slot="template">
@@ -571,7 +571,7 @@ This property only applies when the tooltip has less than one line of text.
 :::
 
 <div slot="example">
-  <Tooltip-circle />
+  <tooltip-circle />
 </div>
 
 <div slot="template">
@@ -602,7 +602,7 @@ This property only applies when the tooltip has less than one line of text.
 Change the style of the tooltip to have a shadow and the background color
 
 <div slot="example">
-  <Tooltip-shadow />
+  <tooltip-shadow />
 </div>
 
 <div slot="template">
@@ -634,7 +634,7 @@ Change the style of the tooltip to have a shadow and the background color
 In some cases you may need to remove the arrow from the tooltip for this you can use the `not-arrow` property
 
 <div slot="example">
-  <Tooltip-notArrow />
+  <tooltip-notArrow />
 </div>
 
 <div slot="template">
@@ -689,7 +689,7 @@ In some cases you may need to remove the arrow from the tooltip for this you can
 Add an animation and loading style to the tooltip
 
 <div slot="example">
-  <Tooltip-loading />
+  <tooltip-loading />
 </div>
 
 <div slot="template">
@@ -726,7 +726,7 @@ Add an animation and loading style to the tooltip
 We create the tooltip component in such a way that you have a lot of freedom to add anything and create all kinds of interface inside it.
 
 <div slot="example">
-  <Tooltip-content />
+  <tooltip-content />
 </div>
 
 <div slot="template">

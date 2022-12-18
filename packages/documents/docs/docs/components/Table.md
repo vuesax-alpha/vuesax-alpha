@@ -208,7 +208,7 @@ Create a table simply with the `vs-table` component and its`vs-tr`, `vs-td`,`vs-
 This component has a different logic for better data management and freer customization according to needs.
 
 <div slot="example">
-  <Table-default />
+  <table-default />
 </div>
 
 <div slot="template">
@@ -344,7 +344,7 @@ This component has a different logic for better data management and freer custom
 You can easily strip the table with the `striped` property
 
 <div slot="example">
-  <Table-striped />
+  <table-striped />
 </div>
 
 <div slot="template">
@@ -484,7 +484,7 @@ You can easily strip the table with the `striped` property
 Change the state of a tr by adding the color property to the component `vs-tr`
 
 <div slot="example">
-  <Table-state />
+  <table-state />
 </div>
 
 <div slot="template">
@@ -632,7 +632,7 @@ To make the development easier you can use the vuesax function that generates th
 This way of handling data is to improve the freedom of customization without losing the ease of implementation
 
 <div slot="example">
-  <Table-pagination />
+  <table-pagination />
 </div>
 
 <div slot="template">
@@ -781,7 +781,7 @@ Using the `data` property in the `tr` is important as that is the data to be add
 :::
 
 <div slot="example">
-  <Table-selected />
+  <table-selected />
 </div>
 
 <div slot="template">
@@ -931,7 +931,7 @@ You can do multiple select functionality in the table with the `v-model` propert
 for this functionality you can use for example the vuesax checkboxes and the global function `$vs.checkAll` in the checkbox of th
 
 <div slot="example">
-  <Table-multiple />
+  <table-multiple />
 </div>
 
 <div slot="template">
@@ -1090,7 +1090,7 @@ for this functionality you can use for example the vuesax checkboxes and the glo
 To add a `tr` that can display expanded data use the`#expand` slot inside the `vs-tr` component.
 
 <div slot="example">
-  <Table-expand />
+  <table-expand />
 </div>
 
 <div slot="template">
@@ -1262,7 +1262,7 @@ To add a `tr` that can display expanded data use the`#expand` slot inside the `v
 You can edit the data inside the table easily using the `vs-dialog` component and the magic of vuejs
 
 <div slot="example">
-  <Table-edit />
+  <table-edit />
 </div>
 
 <div slot="template">
@@ -1447,7 +1447,7 @@ The `$vs.sortData` function needs 3 parameters: the event, the data of the table
 :::
 
 <div slot="example">
-  <Table-search />
+  <table-search />
 </div>
 
 <div slot="template">
@@ -1595,7 +1595,7 @@ This component is created for much freer customization regarding data handling, 
 :::
 
 <div slot="example">
-  <Table-miscellaneous />
+  <table-miscellaneous />
 </div>
 
 <div slot="template">

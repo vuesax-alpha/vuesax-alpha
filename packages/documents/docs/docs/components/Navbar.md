@@ -247,7 +247,7 @@ You can see a complete example and change the properties in real time [Here](/ex
 :::
 
 <div slot="example">
-  <Navbar-default />
+  <navbar-default />
 </div>
 
 <div slot="template">
@@ -318,7 +318,7 @@ Change the component's color with the `color` property or by directly adding one
 if you want to change the text color to white you can do it with the property `text-white`
 
 <div slot="example">
-  <Navbar-color />
+  <navbar-color />
 </div>
 
 <div slot="template">
@@ -394,7 +394,7 @@ if you want to change the text color to white you can do it with the property `t
 Add functionality to hide navbar when user scroll down and show when upload
 
 <div slot="example">
-  <Navbar-hideScroll />
+  <navbar-hideScroll />
 </div>
 
 <div slot="template">
@@ -463,7 +463,7 @@ Add functionality to hide navbar when user scroll down and show when upload
 You can add a list of elements within an item with the `vs-navbar-group` component and within it add the `vs-navbar-item` components
 
 <div slot="example">
-  <Navbar-group />
+  <navbar-group />
 </div>
 
 <div slot="template">
@@ -562,7 +562,7 @@ You can add a list of elements within an item with the `vs-navbar-group` compone
 Add the functionality that the component has a padding up and down that when it is lowered the scroll is eliminated giving a pleasant effect
 
 <div slot="example">
-  <Navbar-paddingScroll />
+  <navbar-paddingScroll />
 </div>
 
 <div slot="template">
@@ -631,7 +631,7 @@ Add the functionality that the component has a padding up and down that when it 
 Remove the border-radius property by making the component square
 
 <div slot="example">
-  <Navbar-square />
+  <navbar-square />
 </div>
 
 <div slot="template">
@@ -700,7 +700,7 @@ Remove the border-radius property by making the component square
 Eliminates the active effect line of the component
 
 <div slot="example">
-  <Navbar-notLine />
+  <navbar-notLine />
 </div>
 
 <div slot="template">

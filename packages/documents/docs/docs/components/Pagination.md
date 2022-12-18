@@ -183,7 +183,7 @@ NEWS:
 Easily add a pagination with the `vs-pagination` component, the required properties are `length` and `v-model`
 
 <div slot="example">
-  <Pagination-default />
+  <pagination-default />
 </div>
 
 <div slot="template">
@@ -221,7 +221,7 @@ Easily add a pagination with the `vs-pagination` component, the required propert
 <Color />
 
 <div slot="example">
-  <Pagination-color />
+  <pagination-color />
 </div>
 
 <div slot="template">
@@ -298,7 +298,7 @@ Easily add a pagination with the `vs-pagination` component, the required propert
 Change the disabled state of the component with the `disabled` property, this property is a boolean and you can add it without value
 
 <div slot="example">
-  <Pagination-disabled />
+  <pagination-disabled />
 </div>
 
 <div slot="template">
@@ -336,7 +336,7 @@ Change the disabled state of the component with the `disabled` property, this pr
 You can remove the back and next arrows with the `not-arrows` property
 
 <div slot="example">
-  <Pagination-not-arrows />
+  <pagination-not-arrows />
 </div>
 
 <div slot="template">
@@ -374,7 +374,7 @@ You can remove the back and next arrows with the `not-arrows` property
 You may need in small spaces to remove the buttons and leave only the arrows for it we have the property `only-arrows`
 
 <div slot="example">
-  <Pagination-only-arrow />
+  <pagination-only-arrow />
 </div>
 
 <div slot="template">
@@ -415,7 +415,7 @@ You may need in small spaces to remove the buttons and leave only the arrows for
 Change the radius of all the elements that make up the component by making them circular with the `circle` property, this property is a boolean so it does not need value
 
 <div slot="example">
-  <Pagination-circle />
+  <pagination-circle />
 </div>
 
 <div slot="template">
@@ -453,7 +453,7 @@ Change the radius of all the elements that make up the component by making them 
 Change the radius of all the elements that make up the component making them square with the `square` property, this property is a boolean so it does not need value
 
 <div slot="example">
-  <Pagination-square />
+  <pagination-square />
 </div>
 
 <div slot="template">
@@ -491,7 +491,7 @@ Change the radius of all the elements that make up the component making them squ
 Cambia por completo el estilo de el componente y elimina los números internos en cada botón con la propiedad `buttons-dotted`
 
 <div slot="example">
-  <Pagination-buttons-dotted />
+  <pagination-buttons-dotted />
 </div>
 
 <div slot="template">
@@ -533,7 +533,7 @@ The buttons that are in disabled will skip when changing the value for example o
 :::
 
 <div slot="example">
-  <Pagination-disabledItems />
+  <pagination-disabledItems />
 </div>
 
 <div slot="template">
@@ -575,7 +575,7 @@ The buttons that are in loading will skip when changing the value for example in
 :::
 
 <div slot="example">
-  <Pagination-loadingItems />
+  <pagination-loadingItems />
 </div>
 
 <div slot="template">
@@ -613,7 +613,7 @@ The buttons that are in loading will skip when changing the value for example in
 Change the style of the entire component by removing the margin between the buttons and changing the radius with the `not-margin` property
 
 <div slot="example">
-  <Pagination-not-margin />
+  <pagination-not-margin />
 </div>
 
 <div slot="template">
@@ -651,7 +651,7 @@ Change the style of the entire component by removing the margin between the butt
 You may need to customize your pagination and for this you can use the `default` slot between the arrows and replace the items on the pages
 
 <div slot="example">
-  <Pagination-slot />
+  <pagination-slot />
 </div>
 
 <div slot="template">
@@ -713,7 +713,7 @@ You may need to customize your pagination and for this you can use the `default`
 Add a progress bar to the pagination by referencing where you find the last page with the `progress` property
 
 <div slot="example">
-  <Pagination-progress />
+  <pagination-progress />
 </div>
 
 <div slot="template">
@@ -751,7 +751,7 @@ Add a progress bar to the pagination by referencing where you find the last page
 You can change the number of pages that are added when the user clicks on the points to advance more pages quickly, this can be done with the `dotted-number` property and the value would be the number of pages that are added or subtracted ( default is **5**)
 
 <div slot="example">
-  <Pagination-dotted-number />
+  <pagination-dotted-number />
 </div>
 
 <div slot="template">
@@ -789,7 +789,7 @@ You can change the number of pages that are added when the user clicks on the po
 You can make the pagination infinite with the `infinite` property, this means that the arrow buttons are no longer in the disabled state
 
 <div slot="example">
-  <Pagination-infinite />
+  <pagination-infinite />
 </div>
 
 <div slot="template">
