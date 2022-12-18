@@ -13,7 +13,8 @@ export default {
   }),
 };
 </script>
-<style scoped lang="stylus">
-.vs-button
-  margin 0px
+<style scoped lang="scss">
+.vs-button {
+  margin: 0px;
+}
 </style>

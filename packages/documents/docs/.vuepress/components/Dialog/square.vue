@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts" setup>
-const { ref } = require("vue");
+import { ref } from "vue";
 
 const active = ref(false);
 const input1 = ref("");

@@ -29,7 +29,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const value = ref("");
 const value2 = ref("");
@@ -45,12 +45,8 @@ const value7 = ref("");
   display: flex;
   align-items: center;
   justify-content: center;
-  & > {
-    & > {
-      & > .vs-input-parent {
-        margin: 10px;
-      }
-    }
+  >>> .vs-input-parent {
+    margin: 10px;
   }
 }
 </style>
