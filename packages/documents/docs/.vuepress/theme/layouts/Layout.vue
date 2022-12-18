@@ -45,10 +45,7 @@
       <template v-else></template>
     </ClientOnly>
 
-    <div
-      class="sidebar-mask"
-      @click="toggleSidebar(false)"
-    ></div>
+    <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
 
     <Home v-if="pageData.frontmatter.home" />
 
@@ -145,7 +142,8 @@ const shouldShowSidebar = computed(() => {
   return (
     !frontmatter.home &&
     frontmatter.sidebar !== false &&
-    (themeData.value.sidebar || []).length
+    sidebarItems.value.length &&
+    frontmatter.layout !== "Layout"
   );
 });
 
@@ -159,12 +157,11 @@ const sidebarItems = computed(() => {
 
 const pageClasses = computed(() => {
   const userPageClass = pageData.value.frontmatter.pageClass;
-  const { frontmatter } = pageData.value;
   return [
     {
       "no-navbar": !shouldShowNavbar.value,
       "sidebar-open": isSidebarOpen.value,
-      "no-sidebar": !shouldShowSidebar.value || frontmatter.layout == "Layout",
+      "no-sidebar": !shouldShowSidebar.value,
     },
     userPageClass,
   ];
@@ -241,4 +238,3 @@ const onTouchEnd = (e: TouchEvent) => {
 </style>
 
 <style src="prismjs/themes/prism-tomorrow.css"></style>
- 
