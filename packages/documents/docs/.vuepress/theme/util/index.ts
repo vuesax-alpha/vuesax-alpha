@@ -23,7 +23,7 @@ export const endingSlashRE = /\/$/;
 export const outboundRE = /^(https?:|mailto:|tel:)/;
 
 export function normalize(path: string) {
-  return decodeURI(path).replace(hashRE, "").replace(extRE, "");
+  return decodeURI(path).replace(hashRE, "").replace(extRE, "").toLocaleLowerCase();
 }
 
 export function getHash(path: string) {
@@ -65,8 +65,9 @@ export function isActive(route: RouteLocationNormalizedLoaded, path: string) {
   if (linkHash && routeHash !== linkHash) {
     return false;
   }
-  const routePath = normalize(route.path);
-  const pagePath = normalize(path);
+  const routePath = ensureEndingSlash(ensureEndingSlash(normalize(route.path)));
+  const pagePath = ensureEndingSlash(ensureEndingSlash(normalize(path)));
+
   return routePath === pagePath;
 }
 
@@ -168,6 +169,9 @@ export function groupHeaders(
       (lastH2.children || (lastH2.children = [])).push(h);
     }
   });
+  console.log({
+    headers
+  })
   return headers.filter((h) => h.level === 2);
 }
 
