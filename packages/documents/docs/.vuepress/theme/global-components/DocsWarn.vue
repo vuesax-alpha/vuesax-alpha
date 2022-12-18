@@ -4,10 +4,10 @@
       <p class="custom-block-title">Documentation Vuesax-alpha</p>
       <p>
         These documents refer to the latest version of
-        <strong>vuesax-alpha</strong>, to see the documents of the previous
+        <strong>Vuesax-alpha</strong>, to see the documents of the previous
         versions you can do it here 👉
         <a target="_blank" href="https://vuesax.com/"
-          >Vuesax-next (4.0+)</a
+          >Vuesax (4.0+)</a
         >
       </p>
     </div>
