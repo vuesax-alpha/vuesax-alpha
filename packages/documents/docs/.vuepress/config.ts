@@ -6,14 +6,13 @@ export default defineUserConfig({
   locales: {
     "/": {
       lang: "en-US",
-      title: "English",
+      title: "Vuejs framework components for Vue 3",
     },
   },
   lang: "en-US",
-  title: "",
+  title: '',
   base: "/",
   head: [
-    // ['link', { rel: 'icon', href: `/logos/logo-vuesax-svg-7.svg`, color: '#2c3e50' }],
     [
       "link",
       {
