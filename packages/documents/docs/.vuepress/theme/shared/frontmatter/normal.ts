@@ -10,14 +10,14 @@ export interface ThemeNormalPropsFrontmatter {
   code: string;
 }
 export interface ThemeNormalApiFrontmatter extends PageFrontmatter {
-  props: ThemeNormalPropsFrontmatter;
-  slots: ThemeNormalPropsFrontmatter;
-  events: ThemeNormalPropsFrontmatter;
-  news: string[];
-  updates: string[];
+  PROPS: ThemeNormalPropsFrontmatter;
+  SLOTS: ThemeNormalPropsFrontmatter;
+  EVENTS: ThemeNormalPropsFrontmatter;
+  NEWS: string[];
+  UPDATES: string[];
 }
 
 export interface ThemePageFrontmatter extends ThemeNormalApiFrontmatter {
-  next: string | false;
-  prev: string | false;
+  next: boolean;
+  prev: boolean;
 }
