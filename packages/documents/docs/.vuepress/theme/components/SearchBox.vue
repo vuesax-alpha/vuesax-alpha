@@ -48,6 +48,7 @@
               <i class="bx bx-chevron-right"></i>
               {{ suggestion.header }}
             </span>
+            <template v-else></template>
           </router-link>
         </li>
       </ul>

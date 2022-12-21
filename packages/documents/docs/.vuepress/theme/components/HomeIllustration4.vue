@@ -10,6 +10,7 @@
           {{ feature.action.text }}
         </button>
       </template>
+      <template v-else></template>
     </div>
     <div class="con-ilus">
       <img class="not-darken" src="/vuesax-white-3.svg" alt="" />

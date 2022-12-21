@@ -88,6 +88,7 @@
           themeData.search !== false && pageData.frontmatter.search !== false
         "
       />
+      <template v-else></template>
     </div>
   </header>
 </template>

@@ -30,12 +30,14 @@
                   >
                     <NavLink :nav-item="childSubItem"/>
                   </template>
+                 <template v-else></template>
                 </li>
               </ul>
             </template>
 
             <NavLink v-else :nav-item="subItem" />
           </template>
+          <template v-else></template>
         </li>
       </ul>
     </DropdownTransition>

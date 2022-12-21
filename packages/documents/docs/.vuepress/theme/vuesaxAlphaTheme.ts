@@ -1,9 +1,9 @@
 import { DefaultThemeOptions } from "vuepress";
-import type { App, Theme } from "@vuepress/core";
+import type { Theme } from "@vuepress/core";
 
 export declare interface VuesaxAlphaThemeOptions extends DefaultThemeOptions {
   /**
-   * Prev Version: Vuesax-next
+   * Prev Version
    */
   prevVersion?: string;
   linkPrevVersion?: string;

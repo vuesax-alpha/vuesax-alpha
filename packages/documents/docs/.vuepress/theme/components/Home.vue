@@ -13,6 +13,7 @@
             "
             id="main-title"
           ></h1>
+          <template v-else></template>
 
           <p
             v-html="

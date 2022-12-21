@@ -137,6 +137,7 @@
 
 <script setup lang="ts">
 import { usePageData, usePageLang, useSiteData } from "@vuepress/client";
+// @ts-ignore
 import { useThemeData } from "@vuepress/plugin-theme-data/client";
 import { computed, inject, onMounted, ref } from "vue";
 import { useRouter } from "vue-router";

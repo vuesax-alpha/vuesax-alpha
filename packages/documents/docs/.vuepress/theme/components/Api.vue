@@ -1,107 +1,108 @@
 <template>
   <div
-    v-if="themeData.props || themeData.slots || themeData.events"
+    v-if="pageFrontmatter.PROPS || pageFrontmatter.SLOTS || pageFrontmatter.EVENTS"
     id="vs-api"
     class="con-api"
   >
-    <!-- <h2 class="h2"><a href="#vs-api">#</a> API</h2> -->
     <div class="content-api">
       <div v-for="(table, key) in getTables" class="content-table">
-        <header>
-          <h3>{{ key }}</h3>
-        </header>
+        <template v-if="table">
+          <header>
+            <h3>{{ key }}</h3>
+          </header>
+          <table>
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Type</th>
+                <th class="val">Values</th>
+                <th class="des">Description</th>
+                <th>default</th>
+                <th class="ex">Example</th>
+                <th class="bugx">
+                  <span> More </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody :id="`api-${tr.name}`" v-for="tr in table">
+              <tr>
+                <td>
+                  <router-link
+                    v-if="tr.link && !isExternal(tr.link)"
+                    :to="tr.link"
+                  >
+                    {{ tr.name }}<i class="bx bx-link"></i>
+                  </router-link>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Property</th>
-              <th>Type</th>
-              <th class="val">Values</th>
-              <th class="des">Description</th>
-              <th>default</th>
-              <th class="ex">Example</th>
-              <th class="bugx">
-                <span> More </span>
-              </th>
-            </tr>
-          </thead>
-          <tbody :id="`api-${tr.name}`" v-for="tr in table">
-            <tr>
-              <td>
-                <router-link
-                  v-if="tr.link && !isExternal(tr.link)"
-                  :to="tr.link"
-                >
-                  {{ tr.name }}<i class="bx bx-link"></i>
-                </router-link>
+                  <a
+                    target="_blank"
+                    :href="tr.link"
+                    v-else-if="tr.link && isExternal(tr.link)"
+                  >
+                    {{ tr.name }} <i class="bx bx-link-external"></i>
+                  </a>
 
-                <a
-                  target="_blank"
-                  :href="tr.link"
-                  v-else-if="tr.link && isExternal(tr.link)"
-                >
-                  {{ tr.name }} <i class="bx bx-link-external"></i>
-                </a>
+                  <span v-else>
+                    {{ tr.name }}
+                  </span>
+                </td>
+                <td>{{ tr.type }}</td>
+                <td class="val" v-html="getValues(tr.values)"></td>
+                <td class="des" v-html="tr.description"></td>
+                <td>{{ tr.default }}</td>
+                <td class="ex">
+                  <a :href="tr.usage" v-if="tr.usage" class="btn-usage">
+                    Usage <i class="bx bx-code-block"></i>
+                  </a>
+                  <a
+                    :href="`#vs-api-${tr.name}`"
+                    v-if="tr.code"
+                    @click="toggleCode($event, tr)"
+                    class="btn-toggle-code"
+                  >
+                    <span class="open">Open <i class="bx bx-code-alt"></i></span>
+                    <span class="close">Close <i class="bx bx-x"></i></span>
+                  </a>
+                </td>
 
-                <span v-else>
-                  {{ tr.name }}
-                </span>
-              </td>
-              <td>{{ tr.type }}</td>
-              <td class="val" v-html="getValues(tr.values)"></td>
-              <td class="des" v-html="tr.description"></td>
-              <td>{{ tr.default }}</td>
-              <td class="ex">
-                <a :href="tr.usage" v-if="tr.usage" class="btn-usage">
-                  Usage <i class="bx bx-code-block"></i>
-                </a>
-                <a
-                  :href="`#vs-api-${tr.name}`"
-                  v-if="tr.code"
-                  @click="toggleCode($event, tr)"
-                  class="btn-toggle-code"
-                >
-                  <span class="open">Open <i class="bx bx-code-alt"></i></span>
-                  <span class="close">Close <i class="bx bx-x"></i></span>
-                </a>
-              </td>
+                <td class="bugx">
+                  <a
+                    arget="_blank"
+                    :href="`https://github.com/tranthinh-coding/vuesax-alpha/issues/new?title=[${pageData.title}] prop 
+                    (${tr.name}) - Your Bug Name&amp;body=**Steps to Reproduce**%0A1. Do something%0A2. Do something else.%0A3. Do one last thing.%0A%0A**Expected**%0AThe ${tr.name} should do this%0A%0A**Result**%0AThe ${tr.name} does not do this%0A%0A**Testcase**%0A(fork this to get started)%0Ahttp://jsfiddle.net/example-bug/1/`"
+                  >
+                    <i class="bx bx-bug"></i>
+                  </a>
 
-              <td class="bugx">
-                <a
-                  arget="_blank"
-                  :href="`https://github.com/tranthinh-coding/vuesax-alpha/issues/new?title=[${pageData.title}] prop 
-                  (${tr.name}) - Your Bug Name&amp;body=**Steps to Reproduce**%0A1. Do something%0A2. Do something else.%0A3. Do one last thing.%0A%0A**Expected**%0AThe ${tr.name} should do this%0A%0A**Result**%0AThe ${tr.name} does not do this%0A%0A**Testcase**%0A(fork this to get started)%0Ahttp://jsfiddle.net/example-bug/1/`"
-                >
-                  <i class="bx bx-bug"></i>
-                </a>
-
-                <a
-                  target="_blank"
-                  :href="`https://github.com/tranthinh-coding/vuesax-alpha/`"
-                >
-                  <i class="bx bx-terminal"></i>
-                </a>
-              </td>
-            </tr>
-            <tr v-if="tr.code" class="tr-code">
-              <td
-                @click="copyCode($event, tr.code)"
-                v-html="getCode(tr.code)"
-                colspan="7"
-              ></td>
-            </tr>
-          </tbody>
-        </table>
+                  <a
+                    target="_blank"
+                    :href="`https://github.com/tranthinh-coding/vuesax-alpha/`"
+                  >
+                    <i class="bx bx-terminal"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr v-if="tr.code" class="tr-code">
+                <td
+                  @click="copyCode($event, tr.code)"
+                  v-html="getCode(tr.code)"
+                  colspan="7"
+                ></td>
+              </tr>
+            </tbody>
+          </table>
+        </template>
+        <template v-else></template>
       </div>
     </div>
   </div>
+  <template v-else></template>
 </template>
 <script setup lang="ts">
 import { computed } from "@vue/reactivity";
-import { usePageData } from "@vuepress/client";
+import { usePageData, usePageFrontmatter } from "@vuepress/client";
 import { onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
-import { useThemeData } from "@vuepress/plugin-theme-data/client";
 import prism from "prismjs";
 
 import { ThemeNormalApiFrontmatter, ThemeNormalPropsFrontmatter } from "../shared/frontmatter/normal";
@@ -109,21 +110,21 @@ import { isExternal } from "../util";
 
 // const prism = require("prismjs");
 
-interface Tables {
-  props: ThemeNormalPropsFrontmatter,
-  slots: ThemeNormalPropsFrontmatter,
-  events: ThemeNormalPropsFrontmatter,
+type Tables = {
+  PROPS?: ThemeNormalPropsFrontmatter,
+  SLOTS?: ThemeNormalPropsFrontmatter,
+  events?: ThemeNormalPropsFrontmatter,
 }
 
 const route = useRoute();
 const pageData = usePageData();
-const themeData = useThemeData<ThemeNormalApiFrontmatter>();
+const pageFrontmatter = usePageFrontmatter<ThemeNormalApiFrontmatter>();
 
 const getTables = computed((): Tables => {
   return {
-    props: themeData.value.props,
-    slots: themeData.value.slots,
-    events: themeData.value.events
+    PROPS: pageFrontmatter.value.PROPS,
+    SLOTS: pageFrontmatter.value.SLOTS,
+    events: pageFrontmatter.value.EVENTS
   }
 })
 
@@ -200,7 +201,7 @@ onMounted(() => {
   });
 });
 
-watch(route.path, () => {
+watch(() => route.path, () => {
   let header = document.querySelector(".header-page .header__content");
   const _table = header?.querySelector("table");
   _table && header?.removeChild(_table);

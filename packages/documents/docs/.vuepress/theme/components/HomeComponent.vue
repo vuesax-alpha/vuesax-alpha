@@ -51,7 +51,7 @@
           @click="switch1 = !switch1"
           class="con-switch"
         >
-          <span class="circle" />
+          <span class="circle"></span>
           <p>
             {{ switch1 ? "on" : "off" }}
           </p>
@@ -61,7 +61,7 @@
           @click="switch2 = !switch2"
           class="con-switch"
         >
-          <span class="circle" />
+          <span class="circle"></span>
           <p>
             {{ switch2 ? "on" : "off" }}
           </p>
@@ -140,7 +140,6 @@
           <img class="has-darken" src="/foto13.png" alt="" />
 
           <div class="play">
-            <!-- <i class='bx bx-play' ></i> -->
             <i class="bx bxs-right-arrow"></i>
           </div>
         </div>
