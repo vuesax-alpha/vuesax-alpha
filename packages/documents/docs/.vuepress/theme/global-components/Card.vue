@@ -18,18 +18,15 @@
       class="slotcode"
     >
       <Codex :codesandbox="codesandbox" :codepen="codepen">
-        <div v-if="$slots.template" slot="template">
-          <slot name="template"></slot>
-        </div>
-        <template v-else></template>
-        <div v-if="$slots.script" slot="script">
+        <template v-if="$slots.template" #template>
+            <slot name="template"></slot>
+        </template>
+        <template v-if="$slots.script" #script>
           <slot name="script"></slot>
-        </div>
-        <template v-else></template>
-        <div v-if="$slots.style" slot="style">
+        </template>
+        <template v-if="$slots.style" #style>
           <slot name="style"></slot>
-        </div>
-        <template v-else></template>
+        </template>
       </Codex>
     </div>
     <template v-else></template>
@@ -90,7 +87,6 @@ h1 {
       display: block;
       border-radius: 20px;
     }
-
   }
   .example {
     position: relative;
@@ -181,7 +177,7 @@ h1 {
     }
     h2 {
       padding-top: 120px;
-    }    
+    }
     p {
       padding: 5px 20px;
       margin: 0px;

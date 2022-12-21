@@ -1,6 +1,6 @@
 <template>
   <div class="code" ref="$el">
-    <div :class="{ copied: check }" class="noti-code">
+    <div :class="{ copied }" class="noti-code">
       <i class="bx bx-check"></i> Code copied
     </div>
     <header class="header-codex">
@@ -13,6 +13,7 @@
         >
           <i class="bx bxl-codepen"></i>
         </li>
+        <template v-else></template>
 
         <li title="Codesandbox" v-if="codesandbox" @click="openCodesandbox">
           <svg
@@ -34,18 +35,12 @@
             ></path>
           </svg>
         </li>
+        <template v-else></template>
 
-        <li title="Copy code" :class="{ copied: check }" @click="copy">
-          <i v-if="!check" class="bx bx-copy"></i>
+        <li title="Copy code" :class="{ copied }" @click="copy">
+          <i v-if="!copied" class="bx bx-copy"></i>
           <i v-else class="bx bx-check"></i>
         </li>
-
-        <!-- <li class="con-api-link">
-          <a href="#vs-api">
-            <!API
-            <i class='bx bx-list-ul' ></i>
-          </a>
-        </li> -->
 
         <li
           :title="active ? 'hide code' : 'View code'"
@@ -60,9 +55,9 @@
       </ul>
     </header>
     <transition
-      v-on:before-enter="beforeEnter"
-      v-on:enter="enter"
-      v-on:leave="leave"
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @leave="leave"
     >
       <div ref="$codex" v-show="active" class="con-code">
         <ul ref="$ul" class="ul-codes">
@@ -73,6 +68,8 @@
           >
             Template
           </li>
+          <template v-else></template>
+
           <li
             v-if="$slots.script"
             :class="{ active: activeSlot == 1 }"
@@ -80,6 +77,8 @@
           >
             Script
           </li>
+          <template v-else></template>
+
           <li
             v-if="$slots.style"
             :class="{ active: activeSlot == 2 }"
@@ -87,6 +86,8 @@
           >
             Style
           </li>
+          <template v-else></template>
+
           <li
             v-if="Object.keys($slots).length > 1"
             :class="{ active: activeSlot == 3 }"
@@ -94,83 +95,54 @@
           >
             All
           </li>
+          <template v-else></template>
         </ul>
         <div class="con-codes">
-          <transition
-            v-on:before-enter="beforeEntercodes"
-            v-on:enter="entercodes"
-            v-on:leave="leavecodes"
-          >
+          <CardTransitionCodes>
             <div
-              ref="$slot0"
+              :ref="(el) => $slotRefs[0] = el"
               key="0"
               v-if="activeSlot == 0"
               class="slot-template slots"
             >
               <slot name="template"></slot>
 
-              <footer
-                @click="toggleCode"
-                :title="active ? 'Hide code' : 'View code'"
-                class="footer-code"
-              >
-                <i class="bx bx-hide"></i>
-              </footer>
+              <CardFooter :active="active" @toggle-code="toggleCode" />
             </div>
-          </transition>
-          <transition
-            @before-enter="beforeEntercodes"
-            @enter="entercodes"
-            @leave="leavecodes"
-          >
+            <template v-else></template>
+          </CardTransitionCodes>
+          <CardTransitionCodes>
             <div
-              ref="$slot1"
+              :ref="(el) => $slotRefs[1] = el"
+
               key="1"
               v-if="activeSlot == 1"
               class="slot-script slots"
             >
               <slot name="script"></slot>
 
-              <footer
-                @click="toggleCode"
-                :title="active ? 'Hide code' : 'View code'"
-                class="footer-code"
-              >
-                <i class="bx bx-hide"></i>
-              </footer>
+              <CardFooter :active="active" @toggle-code="toggleCode" />
             </div>
-          </transition>
+            <template v-else></template>
+          </CardTransitionCodes>
 
-          <transition
-            v-on:before-enter="beforeEntercodes"
-            v-on:enter="entercodes"
-            v-on:leave="leavecodes"
-          >
+          <CardTransitionCodes>
             <div
-              ref="$slot2"
+              :ref="(el) => $slotRefs[2] = el"
               key="2"
               v-if="activeSlot == 2"
               class="slot-style slots"
             >
               <slot name="style"></slot>
 
-              <footer
-                @click="toggleCode"
-                :title="active ? 'Hide code' : 'View code'"
-                class="footer-code"
-              >
-                <i class="bx bx-hide"></i>
-              </footer>
+              <CardFooter :active="active" @toggle-code="toggleCode" />
             </div>
-          </transition>
+            <template v-else></template>
+          </CardTransitionCodes>
 
-          <transition
-            v-on:before-enter="beforeEntercodes"
-            v-on:enter="entercodes"
-            v-on:leave="leavecodes"
-          >
+          <CardTransitionCodes>
             <div
-              ref="$slot3"
+              :ref="(el) => $slotRefs[3] = el"
               key="3"
               v-if="activeSlot == 3"
               class="slot-all slots"
@@ -179,15 +151,10 @@
               <slot name="script"></slot>
               <slot name="style"></slot>
 
-              <footer
-                @click="toggleCode"
-                :title="active ? 'Hide code' : 'View code'"
-                class="footer-code"
-              >
-                <i class="bx bx-hide"></i>
-              </footer>
+              <CardFooter :active="active" @toggle-code="toggleCode" />
             </div>
-          </transition>
+            <template v-else></template>
+          </CardTransitionCodes>
         </div>
       </div>
     </transition>
@@ -199,15 +166,13 @@ import {
   inject,
   nextTick,
   onMounted,
-  Ref,
   ref,
-  useSlots,
   watch,
-  onActivated,
 } from "vue";
-import { useRoute, useRouter } from "vue-router";
+
+import CardFooter from "../components/CardFooter.vue";
+import CardTransitionCodes from "../components/CardTransitionCodes.vue";
 import {
-  activeSlotText,
   activeSlotType,
   codesandboxContextKey,
   vsThemeKey,
@@ -218,51 +183,20 @@ const props = defineProps<{
   codesandbox?: string;
 }>();
 
-const route = useRoute();
-const router = useRouter();
-const slots = useSlots();
-
-const $el = ref<HTMLElement>();
-const $ul = ref<HTMLElement>();
-const $codex = ref<HTMLElement>();
+const $el = ref<HTMLElement>()!;
+const $ul = ref<HTMLElement>()!;
+const $codex = ref<HTMLElement>()!;
+const $slotRefs = ref<any[]>([]);
 
 const active = ref<boolean>(false);
-const check = ref<boolean>(false);
+const copied = ref<boolean>(false);
 const activeSlot = ref<activeSlotType>(0);
 
-const $ij_vsTheme = inject(vsThemeKey)!;
-const $ij_codesandbox = inject(codesandboxContextKey)!;
-
-watch(
-  () => $ij_vsTheme.openCode,
-  (val) => {
-    active.value = val ?? false;
-    localStorage.openCode = val;
-  }
-);
-
-watch(activeSlot, () => {
-  nextTick(() => {
-    let ul = $ul.value?.scrollHeight!;
-    let h = (`$slot${activeSlot.value}` as unknown as Ref<HTMLElement>).value
-      .scrollHeight;
-    $codex.value!.style.height = h + ul - 1 + "px";
-  });
-});
-
-onMounted(() => {
-  $ij_vsTheme.openCode = localStorage.openCode = true;
-});
-
-// created() {
-//   Vue.observable(this.$site.themeConfig);
-// },
-
-onActivated(() => {});
+const $vsTheme = inject(vsThemeKey)!;
+const $codesandbox = inject(codesandboxContextKey)!;
 
 const toggleCode = () => {
   active.value = !active.value;
-  // this.$router.replace(!this.active ? `${this.$route.hash.replace('-view', '')}-hide` : `${this.$route.hash.replace('-hide', '')}-view`)
 };
 
 const openCodepen = () => {
@@ -271,7 +205,7 @@ const openCodepen = () => {
 
 const openCodesandbox = () => {
   document.body.style.overflow = "hidden";
-  $ij_codesandbox.url = props.codesandbox;
+  $codesandbox.url = props.codesandbox;
 };
 
 const clipboard = (text: string) => {
@@ -286,29 +220,14 @@ const clipboard = (text: string) => {
 };
 
 const copy = () => {
-  let slot = activeSlotText[activeSlot.value];
-
-  let text: string = ((slots[slot] as any)[0] as any).elm.innerText;
-  if (activeSlot.value == 3) {
-    text = `
-      ${
-        slots["template"]
-          ? (slots["template"] as any)[0].elm.innerText.trim()
-          : ""
-      }
-      ${slots["script"] ? (slots["script"] as any)[0].elm.innerText.trim() : ""}
-      ${slots["style"] ? (slots["style"] as any)[0].elm.innerText.trim() : ""}
-    `;
-  }
+  const text = $slotRefs.value[activeSlot.value].textContent;
 
   clipboard(text);
 
-  check.value = true;
+  copied.value = true;
   setTimeout(() => {
-    check.value = false;
+    copied.value = false;
   }, 1000);
-
-  router.replace(`${route.hash}-c`);
 };
 
 // animation
@@ -325,24 +244,26 @@ const leave = (el: HTMLElement) => {
   el.style.height = "0px";
 };
 
-const beforeEntercodes = (el: HTMLElement) => {
-  el.style.height = `0`;
-  el.style.opacity = `0`;
-  el.style.position = "absolute";
-};
+watch(
+  () => $vsTheme.openCode,
+  (val) => {
+    active.value = val;
+    localStorage.openCode = val;
+  }
+);
 
-const entercodes = (el: HTMLElement) => {
-  let h = el.scrollHeight;
-  el.style.height = h - 1 + "px";
-  el.style.opacity = `1`;
-  el.style.position = "relative";
-};
+watch(activeSlot, () => {
+  nextTick(() => {
+    let ul = $ul.value?.scrollHeight;
+    let h = $slotRefs.value[activeSlot.value].scrollHeight;
+    $codex.value!.style.height = h + ul - 1 + "px";
+  });
+});
 
-const leavecodes = (el: HTMLElement) => {
-  el.style.height = "0px";
-  el.style.opacity = `0`;
-  el.style.position = "absolute";
-};
+onMounted(() => {
+  $vsTheme.openCode = localStorage.openCode === 'true';
+});
+
 </script>
 
 <style lang="scss">
