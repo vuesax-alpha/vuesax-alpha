@@ -1,8 +1,6 @@
 <template>
   <div class="center">
-    <vs-button @click="active=!active">{{ active ? 'Close Alert' : 'Open Alert' }}</vs-button>
-
-    <vs-alert closeable v-model="active">
+    <vs-alert solid>
       <template #title> Vuesax Framework </template>
       Vuesax (pronounced / vjusacks: /, as view sacks) is a
       <b>UI components framework</b> created with
@@ -13,8 +11,3 @@
     </vs-alert>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const active = ref<boolean>(true);
-</script>

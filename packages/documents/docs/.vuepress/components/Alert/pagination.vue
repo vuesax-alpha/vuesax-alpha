@@ -1,20 +1,20 @@
 <template>
   <div class="center">
-    <vs-alert :page.sync="page" >
+    <vs-alert v-model:page="page" >
       <template #title>
         Vuesax Framework
       </template>
 
       <template #page-1>
-        Pagina 1 - esta pagina es un slot y aquí adentro puedes agregar ya sea texto, elementos html o componentes
+        Page 1 - this page is a slot and in here you can add either text, html elements or components
       </template>
 
       <template #page-2>
-        Pagina 2 - En esta otra pagina puedes poner también lo que necesites y es dinámico osea que puedes agregar cuantas paginas necesites
+        Page 2 - In this other page you can also put what you need and it is dynamic, so you can add as many pages as you need
       </template>
 
       <template #page-3>
-        Pagina 3 - esta es la ultima pagina de el ejemplo
+        Page 3 - this is the last page of the example
       </template>
     </vs-alert>
   </div>

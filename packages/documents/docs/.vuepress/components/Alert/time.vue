@@ -3,12 +3,12 @@
     <vs-button flat @click="active = true">Open Alert 10s</vs-button>
     <vs-alert :progress="progress" v-model="active">
       <template #title> Vuesax Framework </template>
-      Vuesax (pronunciado / vjusacksː /, como view sacks) es un
-      <b>framework de componentes UI</b> creado con
-      <a href="https://vuejs.org/">Vuejs</a> para hacer proyectos fácilmente y
-      con un estilo único y agradable, vuesax esta creado desde cero y pensado
-      para todo tipo de desarrollador desde el amante del frontend hasta el
-      backend que quiere crear fácilmente su enfoque visual al usuario final
+      Vuesax (pronounced / vjusacks: /, as view sacks) is a
+      <b>UI components framework</b> created with
+      <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
+      Unique and pleasant style, Vuesax is created from scratch and designed for
+      all types of developed from the frontend lover to the backend that wants
+      to easily create your visual approach to the end user
     </vs-alert>
   </div>
 </template>
@@ -16,8 +16,8 @@
 <script lang="ts" setup>
 import { ref, watch } from "vue";
 
-const active = ref<boolean>(false);
-const time = ref<number>(6000);
+const active   = ref<boolean>(false);
+const time     = ref<number>(6000);
 const progress = ref<number>(0);
 
 watch(active, (val: boolean) => {

@@ -1,10 +1,13 @@
 <template>
   <div class="center alert-example">
     <vs-alert :color="color">
-      <template #title>
-        Vuesax Framework
-      </template>
-      Vuesax (pronunciado / vjusacksː /, como view sacks) es un <b>framework de componentes UI</b> creado con <a href="https://vuejs.org/">Vuejs</a> para hacer proyectos fácilmente y con un estilo único y agradable, vuesax esta creado desde cero y pensado para todo tipo de desarrollador desde el amante del frontend hasta el backend que quiere crear fácilmente su enfoque visual al usuario final
+      <template #title> Vuesax Framework </template>
+      Vuesax (pronounced / vjusacks: /, as view sacks) is a
+      <b>UI components framework</b> created with
+      <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
+      Unique and pleasant style, Vuesax is created from scratch and designed for
+      all types of developed from the frontend lover to the backend that wants
+      to easily create your visual approach to the end user
     </vs-alert>
 
     <vs-button :active="color == 'primary'" @click="color = 'primary'" flat>
@@ -42,5 +45,4 @@ const color = ref<string>('danger');
 		border-radius: 0px 0px 12px 12px;
 	}
 }
-
 </style>

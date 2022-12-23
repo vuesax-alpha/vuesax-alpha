@@ -8,7 +8,7 @@ PROPS:
     link: null
     code: >
       <template>
-        <vs-button flat @click="active=!active">
+        <vs-button flat @click="active = !active">
           {{ active ? 'Close Alert' : 'Open Alert' }}
         </vs-button>
 
@@ -24,12 +24,10 @@ PROPS:
         </vs-alert>
       </template>
 
-      <script>
-        export default {
-          data:() => ({
-            active: true,
-          })
-        }
+      <script lang="ts" setup>
+        import { ref } from 'vue';
+
+        const active = ref<boolean>(true);
       </script>
     usage: "#closable"
   - name: color
@@ -149,12 +147,10 @@ PROPS:
         </vs-alert>
       </template>
 
-      <script>
-        export default {
-          data:() => ({
-            active: true,
-          })
-        }
+      <script lang="ts" setup>
+        import { ref } from 'vue';
+
+        const active = ref<boolean>(true);
       </script>
 SLOTS:
   - name: icon
@@ -211,7 +207,7 @@ SLOTS:
     usage: "#pagination"
     code: >
       <template>
-        <vs-alert :page.sync="page" >
+        <vs-alert v-model:page="page" >
           <template #title>
             Vuesax Framework
           </template>
@@ -248,18 +244,6 @@ SLOTS:
           </vs-button>
         </template>
       </vs-alert>
-NEWS:
-  - solid
-  - border
-  - shadow
-  - gradient
-  - relief
-  - animate
-  - hidden-content
-  - pagination
-  - footer
-  - progress-bar
-  - time-close
 ---
 
 # Alert
@@ -272,238 +256,105 @@ NEWS:
 
 Easily generate an alert with this component apart from functionalities such as hiding it and showing it color change and title icons among other things
 
-<div slot="example">
-  <div class="center">
-    <vs-alert>
-      <template #title>
-        Vuesax Framework
-      </template>
-      Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-      created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-      Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-      developed from the frontend lover to the backend that wants to easily create
-      your visual approach to the end user
-    </vs-alert>
-  </div>
-</div>
+<template #example>
+<alert-default />
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html
-  <template>
-    <vs-alert>
-      <template #title> Vuesax Framework </template>
-      Vuesax (pronounced / vjusacksː /, as view sacks) is a
-      <b>UI components framework</b> created with
-      <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-      Unique and pleasant style, Vuesax is created from scratch and designed for
-      all types of developed from the frontend lover to the backend that wants to
-      easily create your visual approach to the end user
-    </vs-alert>
-  </template>
-  ```
+@[code html](../../.vuepress/components/alert/default.vue)
 
-</div>
+</template>
 
 </card>
 
 <card>
 
-## Solid <Badge text="New"/>
+## Solid
 
 You can change the style of the component by adding the `solid` property, the property is a` boolean` so you can add it without any value.
 
-<div slot="example">
-  <div class="center">
-    <vs-alert solid>
-      <template #title>
-        Vuesax Framework
-      </template>
-      Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-      created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-      Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-      developed from the frontend lover to the backend that wants to easily create
-      your visual approach to the end user
-    </vs-alert>
-  </div>
-</div>
+<template #example>
+<alert-solid />
+</template>
 
-<div slot="template">
+<template #template>
 
-```html{1}
-  <vs-alert solid>
-    <template #title>
-      Vuesax Framework
-    </template>
-    Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-    created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-    Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-    developed from the frontend lover to the backend that wants to easily create
-    your visual approach to the end user
-  </vs-alert>
-```
+@[code html{3}](../../.vuepress/components/alert/solid.vue)
 
-</div>
+</template>
 
 </card>
 
 <card>
 
-## Border <Badge text="New"/>
+## Border
 
 You can change the style of the component by adding the `border` property, the property is a` boolean` so you can add it without any value.
 
-<div slot="example">
-  <div class="center">
-    <vs-alert border >
-      <template #title>
-        Vuesax Framework
-      </template>
-      Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-      created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-      Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-      developed from the frontend lover to the backend that wants to easily create
-      your visual approach to the end user
-    </vs-alert>
-  </div>
-</div>
+<template #example>
+<alert-border />
+</template>
 
-<div slot="template">
+<template #template>
 
-```html{1}
-  <vs-alert border >
-    <template #title>
-      Vuesax Framework
-    </template>
-    Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-    created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-    Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-    developed from the frontend lover to the backend that wants to easily create
-    your visual approach to the end user
-  </vs-alert>
-```
+@[code html{3}](../../.vuepress/components/alert/border.vue)
 
-</div>
+</template>
 
 </card>
 
 <card>
 
-## Shadow <Badge text="New"/>
+## Shadow
 
 You can change the style of the component by adding the `shadow` property, the property is a` boolean` so you can add it without any value.
 
-<div slot="example">
-  <div class="center">
-    <vs-alert shadow >
-      <template #title>
-        Vuesax Framework
-      </template>
-      Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-      created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-      Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-      developed from the frontend lover to the backend that wants to easily create
-      your visual approach to the end user
-    </vs-alert>
-  </div>
-</div>
+<template #example>
+<alert-shadow />
+</template>
 
-<div slot="template">
+<template #template>
 
-```html{1}
-  <vs-alert shadow >
-    <template #title>
-      Vuesax Framework
-    </template>
-    Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-    created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-    Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-    developed from the frontend lover to the backend that wants to easily create
-    your visual approach to the end user
-  </vs-alert>
-```
+@[code html{3}](../../.vuepress/components/alert/shadow.vue)
 
-</div>
+</template>
 
 </card>
 
 <card>
 
-## Gradient <Badge text="New"/>
+## Gradient
 
 You can change the style of the component by adding the `gradient` property, the property is a` boolean` so you can add it without any value.
 
-<div slot="example">
-  <div class="center">
-    <vs-alert gradient >
-      <template #title>
-        Vuesax Framework
-      </template>
-      Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-      created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-      Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-      developed from the frontend lover to the backend that wants to easily create
-      your visual approach to the end user
-    </vs-alert>
-  </div>
-</div>
+<template #example>
+<alert-gradient />
+</template>
 
-<div slot="template">
+<template #template>
 
-```html{1}
-  <vs-alert gradient >
-    <template #title>
-      Vuesax Framework
-    </template>
-    Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-    created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-    Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-    developed from the frontend lover to the backend that wants to easily create
-    your visual approach to the end user
-  </vs-alert>
-```
+@[code html{3}](../../.vuepress/components/alert/gradient.vue)
 
-</div>
+</template>
 
 </card>
 
 <card>
 
-## Relief <Badge text="New"/>
+## Relief
 
 You can change the style of the component by adding the `relief` property, the property is a` boolean` so you can add it without any value.
 
-<div slot="example">
-  <div class="center">
-    <vs-alert relief >
-      <template #title>
-        Vuesax Framework
-      </template>
-      Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-      created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-      Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-      developed from the frontend lover to the backend that wants to easily create
-      your visual approach to the end user
-    </vs-alert>
-  </div>
-</div>
+<template #example>
+<alert-relief />
+</template>
 
-<div slot="template">
+<template #template>
 
-```html{1}
-  <vs-alert relief >
-    <template #title>
-      Vuesax Framework
-    </template>
-    Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-    created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-    Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-    developed from the frontend lover to the backend that wants to easily create
-    your visual approach to the end user
-  </vs-alert>
-```
+@[code html{3}](../../.vuepress/components/alert/relief.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -513,26 +364,21 @@ You can change the style of the component by adding the `relief` property, the p
 
 A beautiful and simple animation to show and hide the alert to the user
 
-<div slot="example">
-  <alert-animate />
-</div>
+<template #example>
+<alert-animate />
+</template>
 
-<div slot="template">
+<template #template>
 
-```html{1}
-  <vs-alert relief >
-    <template #title>
-      Vuesax Framework
-    </template>
-    Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-    created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-    Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-    developed from the frontend lover to the backend that wants to easily create
-    your visual approach to the end user
-  </vs-alert>
-```
+@[code{1-15} html](../../.vuepress/components/alert/animate.vue)
 
-</div>
+</template>
+
+<template #script>
+
+@[code{16-20} html](../../.vuepress/components/alert/animate.vue)
+
+</template>
 
 </card>
 
@@ -544,77 +390,27 @@ Change the color of the entire alert with the `color` property
 
 In this example you can click on the buttons and dynamically change the color value to display it in the component **vs-alert**
 
-<div slot="example">
-  <alert-color />
-</div>
+<template #example>
+<alert-color />
+</template>
 
-<div slot="template">
+<template #template>
 
-```html{2}
-  <template>
-    <vs-alert :color="color">
-      <template #title>
-        Vuesax Framework
-      </template>
-      Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-      created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-      Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-      developed from the frontend lover to the backend that wants to easily create
-      your visual approach to the end user
-    </vs-alert>
+@[code{1-35} html{3}](../../.vuepress/components/alert/color.vue)
 
-    <vs-button :active="color == 'primary'" @click="color = 'primary'" flat>
-      Primary
-    </vs-button>
-    <vs-button :active="color == 'success'" @click="color = 'success'" success flat>
-      Success
-    </vs-button>
-    <vs-button :active="color == 'danger'" @click="color = 'danger'" danger flat>
-      Danger
-    </vs-button>
-    <vs-button :active="color == 'warn'" @click="color = 'warn'" warn flat>
-      Warn
-    </vs-button>
-    <vs-button :active="color == 'dark'" @click="color = 'dark'" dark flat>
-      Dark
-    </vs-button>
-    <vs-button :active="color == '#7d33ff'" @click="color = '#7d33ff'" color="#7d33ff" flat>
-      HEX
-    </vs-button>
-    <vs-button :active="color == 'rgb(59,222,200)'" @click="color = 'rgb(59,222,200)'" color="rgb(59,222,200)" flat>
-      RGB
-    </vs-button>
-  </template>
-```
+</template>
 
-</div>
+<template #script>
 
-<div slot="script">
+@[code{36-40} html](../../.vuepress/components/alert/color.vue)
 
-```html{4}
-  <script>
-    export default {
-      data: () => ({
-        color: 'danger'
-      })
-    }
-  </script>
-```
+</template>
 
-</div>
+<template #style>
 
-<div slot="style">
+@[code{41-49} html](../../.vuepress/components/alert/color.vue)
 
-```html
-<style scoped lang="stylus">
-  .alert-example
-    .vs-button--active
-      transform translate(0, -5px)
-      border-radius 0px 0px 12px 12px
-</style>
-```
-
-</div>
+</template>
 
 </card>
 
@@ -626,45 +422,17 @@ Add an icon to the alert easily with the slot **icon**
 
 <utils-icon />
 
-<div slot="example">
-  <div class="center">
-    <vs-alert>
-      <template #icon>
-        <i class='bx bxs-chat'></i>
-      </template>
-      <template #title>
-        Vuesax Alert Icon
-      </template>
-      Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-      created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-      Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-      developed from the frontend lover to the backend that wants to easily create
-      your visual approach to the end user
-    </vs-alert>
-  </div>
-</div>
+<template #example>
 
-<div slot="template">
+<alert-icon />
 
-```html{3,4,5}
-  <template>
-    <vs-alert>
-      <template #icon>
-        <i class='bx bxs-chat'></i>
-      </template>
-      <template #title>
-        Vuesax Alert Icon
-      </template>
-      Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-      created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-      Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-      developed from the frontend lover to the backend that wants to easily create
-      your visual approach to the end user
-    </vs-alert>
-  </template>
-```
+</template>
 
-</div>
+<template #template>
+
+@[code html{4-6}](../../.vuepress/components/alert/icon.vue)
+
+</template>
 
 </card>
 
@@ -674,352 +442,149 @@ Add an icon to the alert easily with the slot **icon**
 
 You can add a descriptive title to the alert with the `slot="title"`
 
-<div slot="example">
-  <div class="center">
-    <vs-alert>
-      <template #title>
-        Vuesax Alert Title
-      </template>
-      Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-      created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-      Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-      developed from the frontend lover to the backend that wants to easily create
-      your visual approach to the end user
-    </vs-alert>
-  </div>
-</div>
+<template #example>
+<alert-title />
+</template>
 
-<div slot="template">
+<template #template>
 
-```html{4,5,6}
-  <template>
-    <div class="center">
-      <vs-alert>
-        <template #title>
-          Vuesax Alert Title
-        </template>
-        Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-        created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-        Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-        developed from the frontend lover to the backend that wants to easily create
-        your visual approach to the end user
-      </vs-alert>
-    </div>
-  </template>
-```
+@[code html{4}](../../.vuepress/components/alert/title.vue)
 
-</div>
+</template>
 
 </card>
 
 <card>
 
-## Hidden Content <Badge text="New"/>
+## Hidden Content
 
 You can hide the content of an alert and just leave the title to display the content dynamically
 
-<div slot="example">
-  <alert-hiddenContent />
-</div>
+<template #example>
+<alert-hiddenContent />
+</template>
 
-<div slot="template">
+<template #template>
 
-```html{2}
-  <template>
-    <vs-alert :hidden-content.sync="hidden" >
-      <template #title>
-        Vuesax Framework
-      </template>
-      Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-      created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-      Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-      developed from the frontend lover to the backend that wants to easily create
-      your visual approach to the end user
-    </vs-alert>
-  </template>
-```
+@[code{1-13} html{3}](../../.vuepress/components/alert/hiddenContent.vue)
 
-</div>
+</template>
 
-<div slot="script">
+<template #script>
 
-```html{4}
-  <script>
-    export default {
-      data:() => ({
-        hidden: true
-      })
-    }
-  </script>
-```
+@[code{14-18} html{4}](../../.vuepress/components/alert/hiddenContent.vue)
 
-</div>
+</template>
 
 </card>
 
 <card>
 
-## Pagination <Badge text="New"/>
+## Pagination
 
 There are times when we need to show a lot of content to the user but we don't want to extend the text and make the alert very large and tall
 
-<div slot="example">
+<template #example>
+<alert-pagination />
+</template>
 
-  <alert-pagination />
+<template #template>
 
-</div>
+@[code{1-31} html{3,8,12,16}](../../.vuepress/components/alert/pagination.vue)
 
-<div slot="template">
+</template>
 
-```html{2,7,12,17}
-  <template>
-    <vs-alert :page.sync="page" >
-      <template #title>
-        Vuesax Framework
-      </template>
+<template #script>
 
-      <template #page-1>
-        Pagina 1 - esta pagina es un slot y aquí adentro puedes agregar ya sea texto,
-        elementos html o componentes
-      </template>
+@[code{22-26} html{4}](../../.vuepress/components/alert/pagination.vue)
 
-      <template #page-2>
-        Pagina 2 - En esta otra pagina puedes poner también lo que necesites
-        y es dinámico osea que puedes agregar cuantas paginas necesites
-      </template>
-
-      <template #page-3>
-        Pagina 3 - esta es la ultima pagina de el ejemplo
-      </template>
-    </vs-alert>
-  </template>
-```
-
-</div>
-
-<div slot="script">
-
-```html{4}
-  <script>
-    export default {
-      data:() => ({
-        page: 1
-      })
-    }
-  </script>
-```
-
-</div>
+</template>
 
 </card>
 
 <card>
 
-## footer <Badge text="New"/>
+## footer
 
 Use the `footer` slot to add a footer to the alert where for example you can add interactions with the user such as a button or a checkbox.
 
-<div slot="example">
-  <div class="center">
-    <vs-alert>
-      <template #title>
-        Vuesax Framework
-      </template>
-      Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-      created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-      Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-      developed from the frontend lover to the backend that wants to easily create
-      your visual approach to the end user
-      <template #footer>
-        <vs-button flat>
-          Cancel
-        </vs-button>
-        <vs-button>
-          Accept
-        </vs-button>
-      </template>
-    </vs-alert>
-  </div>
-</div>
+<template #example>
 
-<div slot="template">
+<alert-footer />
 
-```html{10,11,12,13,14,15,16,17}
-  <vs-alert>
-    <template #title>
-      Vuesax Framework
-    </template>
-    Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-    created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-    Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-    developed from the frontend lover to the backend that wants to easily create
-    your visual approach to the end user
-    <template #footer>
-      <vs-button flat>
-        Cancel
-      </vs-button>
-      <vs-button>
-        Accept
-      </vs-button>
-    </template>
-  </vs-alert>
-```
+</template>
 
-</div>
+<template #template>
+
+@[code html{11-18}](../../.vuepress/components/alert/footer.vue)
+
+</template>
 
 </card>
 
 <card>
 
-## Progress bar <Badge text="New"/>
+## Progress bar
 
 You can add a progress bar to the alert with the progress property and a number of (`0 - 100`)
 
-<div slot="example">
-  <vs-alert progress="70">
-    <template #title>
-      Vuesax Framework
-    </template>
-    Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-    created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-    Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-    developed from the frontend lover to the backend that wants to easily create
-    your visual approach to the end user
-  </vs-alert>
-</div>
+<template #example>
+<alert-progress />
+</template>
 
-<div slot="template">
+<template #template>
 
-```html{4,5,6}
-  <vs-alert progress="70">
-    <template #title>
-      Vuesax Framework
-    </template>
-    Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-    created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-    Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-    developed from the frontend lover to the backend that wants to easily create
-    your visual approach to the end user
-  </vs-alert>
-```
+@[code html{3}](../../.vuepress/components/alert/progress.vue)
 
-</div>
+</template>
 
 </card>
 
 <card>
 
-## Closable <Badge text="New"/>
+## Closable
 
 You can add a close alert icon with the `closable` property, the property is a` boolean` so you can add it without any value.
 
-<div slot="example">
-  <alert-closable />
-</div>
+<template #example>
+<alert-closable />
+</template>
 
-<div slot="template">
+<template #template>
 
-```html{6}
-  <template>
-    <vs-button flat @click="active=!active">
-      {{ active ? 'Close Alert' : 'Open Alert' }}
-    </vs-button>
+@[code{1-17} html{7}](../../.vuepress/components/alert/closable.vue)
 
-    <vs-alert closable v-model="active">
-      <template #title>
-        Vuesax Framework
-      </template>
-      Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-      created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-      Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-      developed from the frontend lover to the backend that wants to easily create
-      your visual approach to the end user
-    </vs-alert>
-  </template>
-```
+</template>
 
-</div>
+<template #script>
 
-<div slot="script">
+@[code{18-22} html{4}](../../.vuepress/components/alert/closable.vue)
 
-```html{6}
-  <script>
-    export default {
-      data:() => ({
-        active: true,
-      })
-    }
-  </script>
-```
-
-</div>
+</template>
 
 </card>
 
 <card>
 
-## Time Close <Badge text="New"/>
+## Time Close
 
 If you need an alert to have time to hide, you can do so by joining some properties and few lines of code
 
-<div slot="example">
-  <alert-time />
-</div>
-
-<div slot="template">
-
-```html{6}
-  <template>
-    <div class="center">
-      <vs-button dark flat @click="active=true">
-        Open Alert 10s
-      </vs-button>
-      <vs-alert dark :progress="progress" v-model="active">
-        <template #title>
-          Vuesax Framework
-        </template>
-        Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-        created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-        Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-        developed from the frontend lover to the backend that wants to easily create
-        your visual approach to the end user
-      </vs-alert>
-    </div>
+<template #example>
+<alert-time />
 </template>
-```
 
-</div>
+<template #template>
 
-<div slot="script">
+@[code{1-14} html{4}](../../.vuepress/components/alert/time.vue)
 
-```html{6}
-  <script>
-    export default {
-      data:() => ({
-        active: false,
-        time: 6000,
-        progress: 0
-      }),
-      watch: {
-        active(val) {
-          if(val) {
-            var interval = setInterval(() => {
-              this.progress++
-            }, this.time / 100);
+</template>
 
-            setTimeout(() => {
-              this.active = false
-              clearInterval(interval)
-              this.progress = 0
-            }, this.time);
-          }
-        }
-      }
-    }
-  </script>
-```
+<template #script>
 
-</div>
+@[code{16-36} html{5-6}](../../.vuepress/components/alert/time.vue)
+
+</template>
 
 </card>
 
