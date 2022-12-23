@@ -1,12 +1,12 @@
 <template>
   <div class="center">
     <vs-button
-      @click="handleClick"
-      :icon="success"
-      :upload="sending"
-      :color="success ? 'success' : 'primary'"
+      @click="handleClickMail"
+      :icon="successMail"
+      :upload="sendingMail"
+      :color="successMail ? 'success' : 'primary'"
     >
-      <span v-if="!success">
+      <span v-if="!successMail">
         <i class="bx bx-mail-send"></i>
         Send
       </span>
@@ -30,17 +30,17 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-const sending = ref<boolean>(false);
-const success = ref<boolean>(false);
+const sendingMail = ref<boolean>(false);
+const successMail = ref<boolean>(false);
 const loadingFace = ref<boolean>(false);
 const successFace = ref<boolean>(false);
 
-const handleClick = () => {
-  sending.value = true;
+const handleClickMail = () => {
+  sendingMail.value = true;
 
   setTimeout(() => {
-    sending.value = false;
-    success.value = !success.value;
+    sendingMail.value = false;
+    successMail.value = !successMail.value;
   }, 2000);
 };
 const handleClickFace = () => {
@@ -59,12 +59,8 @@ span {
   align-items: center;
   justify-content: center;
 }
-i {
-  &.bx {
-    &:not(.bx-check) {
-      padding-right: 5px;
-      font-size: 1.1rem;
-    }
-  }
+i.bx:not(.bx-check) {
+  padding-right: 5px;
+  font-size: 1.1rem;
 }
 </style>

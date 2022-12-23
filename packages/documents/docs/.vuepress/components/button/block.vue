@@ -3,7 +3,8 @@
     <vs-button
       block
     >
-      <i class='bx bxs-paint-roll' ></i> Edit Theme
+      <i class='bx bxs-paint-roll' ></i> 
+      Edit Theme
     </vs-button>
   </div>
 </template>
