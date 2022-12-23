@@ -44,7 +44,6 @@ export default defineComponent({
   emits: ['mousedown'],
   props: {
     ripple: String,
-    activeDisabled: Boolean,
     // type Button Style
     flat: Boolean,
     border: Boolean,
@@ -87,7 +86,6 @@ export default defineComponent({
         `vs-button--size-${this.size}`,
         { [`vs-button--fff`]: this.color === "#fff" },
         { [`vs-button--active`]: !!this.active },
-        { [`vs-button--active-disabled`]: !!this.activeDisabled },
         { [`vs-button--icon`]: !!this.icon },
         { [`vs-button--circle`]: !!this.circle },
         { [`vs-button--square`]: !!this.square },
@@ -152,11 +150,11 @@ export default defineComponent({
               !this.active &&
               document.activeElement !== this.$el
               ? "inherit"
-              : null,
+              : undefined,
             this.flat && !this.active && document.activeElement !== this.$el,
           );
         } else {
-          ripple(evs, null, false);
+          ripple(evs, undefined, false);
         }
       }
     },

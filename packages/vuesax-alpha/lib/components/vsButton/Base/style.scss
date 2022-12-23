@@ -35,10 +35,6 @@
     align-items: center;
     justify-content: center;
   }
-  &--active-disabled {
-    pointer-events: none;
-    opacity: .6;
-  }
   &:disabled {
     pointer-events: none;
     opacity: .35;
