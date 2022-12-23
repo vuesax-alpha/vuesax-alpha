@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="warning custom-block">
-      <p class="custom-block-title">Documentation Vuesax-alpha</p>
+    <div class="warning custom-container">
+      <p class="custom-container-title">Documentation Vuesax-alpha</p>
       <p>
         These documents refer to the latest version of
         <strong>Vuesax-alpha</strong>, to see the documents of the previous

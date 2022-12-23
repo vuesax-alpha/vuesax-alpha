@@ -1,4 +1,4 @@
-.custom-block {
+.custom-container {
   border-radius: 0px 15px 15px 0px !important;
   code {
     color: inherit;
@@ -7,7 +7,7 @@
     text-decoration: underline !important;
     color: inherit !important;
   }
-  .custom-block-title {
+  .custom-container-title {
     font-weight: 600;
     margin-bottom: -0.4rem;
   }
@@ -20,7 +20,7 @@
     background-color: rgba(255, 186, 0, 0.09);
     border-color: #ffba00;
     color: #cc9500;
-    .custom-block-title {
+    .custom-container-title {
       color: #b38200;
     }
     a {
@@ -32,7 +32,7 @@
     border-color: #c00;
     border-color: #ff4757;
     color: #ff061b;
-    .custom-block-title {
+    .custom-container-title {
       color: #e40014;
     }
     a {
@@ -40,26 +40,26 @@
     }
   }
 }
-.custom-block.tip,
-.custom-block.warning,
-.custom-block.danger {
+.custom-container.tip,
+.custom-container.warning,
+.custom-container.danger {
   padding: 0.1rem 1rem;
   border-left-width: 0.1rem;
   border-left-style: solid;
   margin: 1rem 0;
   position: relative;
 }
-.custom-block.tip p,
-.custom-block.warning p,
-.custom-block.danger p {
+.custom-container.tip p,
+.custom-container.warning p,
+.custom-container.danger p {
   padding: 0px !important;
   margin: 1rem 0px !important;
 }
-.custom-block.tip p,
-.custom-block.warning p,
-.custom-block.danger p,
-.custom-block.tip li,
-.custom-block.warning li,
-.custom-block.danger li {
+.custom-container.tip p,
+.custom-container.warning p,
+.custom-container.danger p,
+.custom-container.tip li,
+.custom-container.warning li,
+.custom-container.danger li {
   font-size: 0.8rem;
 }

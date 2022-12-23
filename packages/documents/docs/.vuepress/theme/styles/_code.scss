@@ -1,4 +1,5 @@
 @import "./config";
+@import "./mixin";
 
 code {
   // color: -color('text-color');
@@ -40,9 +41,9 @@ div[class*="language-"] {
   position: relative;
   background-color: -color("theme-code");
   border-radius: 6px;
-  .tag {
-    line-height: 1.6;
-  }
+  // .tag {
+    // line-height: 1.6;
+  // }
   .highlight-lines {
     user-select: none;
     padding-top: 1.2rem;
@@ -50,8 +51,8 @@ div[class*="language-"] {
     top: 0;
     left: 0;
     width: 100%;
-    line-height: 1.4;
-    .highlighted {
+    line-height: 1.4009;
+    .highlight-line {
       background-color: rgba(255, 255, 255, 0.05);
       border-left: 6px solid rgba(255, 255, 255, 0.2);
     }
@@ -64,13 +65,14 @@ div[class*="language-"] {
     position: relative;
     z-index: 1;
   }
-  ::before {
+  &::before {
     position: absolute;
     z-index: 3;
     top: 0.8em;
     right: 1em;
     font-size: 0.75rem;
     color: rgba(255, 255, 255, 0.4);
+    content: attr(data-ext);
   }
 
   :not(.line-numbers-mode) {
@@ -80,9 +82,9 @@ div[class*="language-"] {
   }
 
   &.line-numbers-mode {
-    .highlight-lines .highlighted {
+    .highlight-lines .highlight-line {
       position: relative;
-      &:before {
+      &::before {
         content: " ";
         position: absolute;
         z-index: 3;
@@ -132,38 +134,20 @@ div[class*="language-"] {
   }
 }
 
-$codeLang: "javascript", "typescript", "markup", "markdown", "json", "ruby",
-  "python", "bash", "php";
-@each $lang in $codeLang {
-  div[class~="language-' + lang + '"] {
-    &:before {
-      content: ("" + lang);
-    }
-  }
+div[class~="language-javascript"]:before {
+  content: "js";
 }
 
-div[class~="language-javascript"] {
-  &:before {
-    content: "js";
-  }
+div[class~="language-typescript"]:before {
+  content: "ts";
 }
 
-div[class~="language-typescript"] {
-  &:before {
-    content: "ts";
-  }
+div[class~="language-markup"]:before {
+  content: "html";
 }
 
-div[class~="language-markup"] {
-  &:before {
-    content: "html";
-  }
-}
-
-div[class~="language-markdown"] {
-  &:before {
-    content: "md";
-  }
+div[class~="language-markdown"]:before {
+  content: "md";
 }
 
 div[class~="language-json"]:before {
