@@ -30,6 +30,26 @@ PROPS:
         const active = ref<boolean>(true);
       </script>
     usage: "#closable"
+  - name: v-model:hidden-content
+    type: boolean
+    values: boolean
+    description: With this property you can hide the content of the alert. You can bind this with v-model
+    default: false
+    link: null
+    usage: "#hidden-content"
+    code: >
+      <template>
+        <vs-alert hidden-content>
+          <template #title>
+            Vuesax Framework
+          </template>
+          Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
+          created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
+          Unique and pleasant style, Vuesax is created from scratch and designed for all types of
+          developed from the frontend lover to the backend that wants to easily create
+          your visual approach to the end user
+        </vs-alert>
+      </template>
   - name: color
     type: String
     values: primary, success, danger, warning, dark, RGB, HEX
@@ -66,26 +86,6 @@ PROPS:
         developed from the frontend lover to the backend that wants to easily create
         your visual approach to the end user
       </vs-alert>
-  - name: hidden-content
-    type: boolean
-    values: boolean
-    description: With this property you can hide the content of the alert.
-    default: false
-    link: null
-    usage: "#hidden-content"
-    code: >
-      <template>
-        <vs-alert :hidden-content="true" >
-          <template #title>
-            Vuesax Framework
-          </template>
-          Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
-          created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
-          Unique and pleasant style, Vuesax is created from scratch and designed for all types of
-          developed from the frontend lover to the backend that wants to easily create
-          your visual approach to the end user
-        </vs-alert>
-      </template>
   - name: page
     type: Number
     values: Number
@@ -244,6 +244,9 @@ SLOTS:
           </vs-button>
         </template>
       </vs-alert>
+
+UPDATES:
+  - hidden-content
 ---
 
 # Alert
@@ -456,9 +459,11 @@ You can add a descriptive title to the alert with the `slot="title"`
 
 <card>
 
-## Hidden Content
+## Hidden Content <Badge text='Update' type="warn" />
 
-You can hide the content of an alert and just leave the title to display the content dynamically
+You can hide the content of an alert and just leave the title to display the content dynamically.
+
+This prop can bind with `v-model:hidden-content`
 
 <template #example>
 <alert-hiddenContent />
