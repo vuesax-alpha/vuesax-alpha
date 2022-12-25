@@ -21,5 +21,4 @@ const option2 = ref(false);
 	flex-direction: column;
 	align-items: flex-start;
 }
-
 </style>

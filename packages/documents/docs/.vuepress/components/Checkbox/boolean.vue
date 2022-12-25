@@ -19,12 +19,8 @@ const option2 = ref<boolean>(false);
 .con-checkbox {
   flex-direction: column;
   align-items: flex-start;
-  & > {
-    & > {
-      & > .vs-checkbox-content {
-        min-width: 80px;
-      }
-    }
+  > .vs-checkbox-content {
+    min-width: 80px;
   }
 }
 </style>

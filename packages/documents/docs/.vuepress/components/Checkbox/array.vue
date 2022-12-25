@@ -22,12 +22,8 @@ const options = reactive(["javascript", "vue"]);
 .con-checkbox {
   flex-direction: column;
   align-items: flex-start;
-  & > {
-    & > {
-      & > .vs-checkbox-content {
-        min-width: 80px;
-      }
-    }
+  .vs-checkbox-content {
+    min-width: 80px;
   }
   .data-check {
     background: rgba(0, 0, 0, 0.03);

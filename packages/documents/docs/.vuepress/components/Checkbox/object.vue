@@ -6,6 +6,7 @@
     >
       Webpack
     </vs-checkbox>
+
     <vs-checkbox
       :val="{
         github: 'https://github.com/microsoft/TypeScript',
@@ -15,6 +16,7 @@
     >
       Typescript
     </vs-checkbox>
+    
     <vs-checkbox
       :val="{ github: 'https://github.com/sass/sass', name: 'Sass' }"
       v-model="options"
@@ -23,7 +25,7 @@
     </vs-checkbox>
 
     <pre class="data-check">
-  {{ options }}
+      {{ options }}
     </pre>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="center">
-    <vs-checkbox line-through v-model="option">
+    <vs-checkbox :line-through="option" v-model="option">
       Option
     </vs-checkbox>
   </div>

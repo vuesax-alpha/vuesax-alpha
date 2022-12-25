@@ -1,5 +1,5 @@
 <template>
-  <div class="center">
+  <div class="center">  
     <vs-checkbox v-model="option">
       Option
     </vs-checkbox>
