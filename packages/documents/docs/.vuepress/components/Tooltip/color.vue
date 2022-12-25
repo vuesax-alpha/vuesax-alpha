@@ -4,23 +4,23 @@
       <vs-button shadow> Default </vs-button>
       <template #tooltip> This is a beautiful button </template>
     </vs-tooltip>
-    <vs-tooltip primary>
+    <vs-tooltip color="primary">
       <vs-button flat> Primary </vs-button>
       <template #tooltip> This is a beautiful button </template>
     </vs-tooltip>
-    <vs-tooltip success>
+    <vs-tooltip color="success">
       <vs-button success flat> Success </vs-button>
       <template #tooltip> This is a beautiful button </template>
     </vs-tooltip>
-    <vs-tooltip danger>
+    <vs-tooltip color="danger">
       <vs-button danger flat> Danger </vs-button>
       <template #tooltip> This is a beautiful button </template>
     </vs-tooltip>
-    <vs-tooltip warn>
+    <vs-tooltip color="warn">
       <vs-button warn flat> Warning </vs-button>
       <template #tooltip> This is a beautiful button </template>
     </vs-tooltip>
-    <vs-tooltip dark>
+    <vs-tooltip color="dark">
       <vs-button dark flat> Dark </vs-button>
       <template #tooltip> This is a beautiful button </template>
     </vs-tooltip>
@@ -34,12 +34,6 @@
     </vs-tooltip>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { ref } from "vue";
-
-const active = ref(false);
-</script>
 
 <style scoped lang="scss">
 .vs-button {

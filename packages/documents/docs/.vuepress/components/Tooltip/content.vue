@@ -76,8 +76,9 @@ const activeTooltip1 = ref(false);
 </script>
 
 <style lang="scss">
-@import "../../assets/styles/mixin";
-
+@function -color($color, $alpha: 1) {
+  @return unquote("rgba(var(--vsd-#{$color}), #{$alpha})");
+}
 .content-tooltip {
   .body {
     display: flex;

@@ -34,13 +34,6 @@
     </vs-tooltip>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { ref } from "vue";
-
-const active = ref(false);
-</script>
-
 <style scoped lang="scss">
 .vs-button {
   margin: 0px;

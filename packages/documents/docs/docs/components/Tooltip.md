@@ -1,47 +1,39 @@
 ---
 PROPS:
   - name: v-model
-    type: boolean
+    type: Boolean
     values: true,false
     description: Determination if the component is active (visible).
     default: false
     link: null
-    usage: '#content'
+    usage: "#content"
     code: null
 
   - name: color
     type: String
     values: Vuesax colors, RGB, HEX
-    description: Change the color of the tooltip.
+    description: color of the tooltip.
     default: text
     link: null
-    usage: '#color'
+    usage: "#color"
     code: >
-            <vs-tooltip primary>
-              <vs-button flat>
-                Primary
-              </vs-button>
-              <template #tooltip>
-                This is a beautiful button
-              </template>
-            </vs-tooltip>
+      <vs-tooltip primary>
+        <vs-button flat> Primary </vs-button>
+        <template #tooltip> This is a beautiful button </template>
+      </vs-tooltip>
 
   - name: left, right, bottom
     type: Boolean
     values: true,false
-    description: Change the position of the tooltip.
+    description: position of the tooltip.
     default: top
     link: null
-    usage: '#position'
+    usage: "#position"
     code: >
-            <vs-tooltip left>
-              <vs-button border>
-                left
-              </vs-button>
-              <template #tooltip>
-                This is a beautiful button
-              </template>
-            </vs-tooltip>
+      <vs-tooltip left>
+        <vs-button border> left </vs-button>
+        <template #tooltip> This is a beautiful button </template>
+      </vs-tooltip>
 
   - name: border
     type: Boolean
@@ -49,16 +41,12 @@ PROPS:
     description: Change the style of the tooltip by adding a border.
     default: primary
     link: null
-    usage: '#border'
+    usage: "#border"
     code: >
-            <vs-tooltip border>
-              <vs-button transparent>
-                Do hover here
-              </vs-button>
-              <template #tooltip>
-                This is a beautiful button
-              </template>
-            </vs-tooltip>
+      <vs-tooltip border>
+        <vs-button transparent> Do hover here </vs-button>
+        <template #tooltip> This is a beautiful button </template>
+      </vs-tooltip>
 
   - name: border-thick
     type: Boolean
@@ -66,16 +54,12 @@ PROPS:
     description: Change the style of the tooltip by adding a thick border only at the arrow position.
     default: false
     link: null
-    usage: '#border'
+    usage: "#border"
     code: >
-            <vs-tooltip color="#7d33ff" border-thick>
-              <vs-button color="#7d33ff" transparent>
-                Do hover here
-              </vs-button>
-              <template #tooltip>
-                This is a beautiful button
-              </template>
-            </vs-tooltip>
+      <vs-tooltip color="#7d33ff" border-thick>
+        <vs-button color="#7d33ff" transparent> Do hover here </vs-button>
+        <template #tooltip> This is a beautiful button </template>
+      </vs-tooltip>
 
   - name: square
     type: Boolean
@@ -83,172 +67,128 @@ PROPS:
     description: Determine if the tooltip is rectangular without border-radius.
     default: false
     link: null
-    usage: '#square'
+    usage: "#square"
     code: >
-            <vs-tooltip square>
-              <vs-button square flat>
-                Do hover here
-              </vs-button>
-              <template #tooltip>
-                This is a beautiful button
-              </template>
-            </vs-tooltip>
+      <vs-tooltip square>
+        <vs-button square flat> Do hover here </vs-button>
+        <template #tooltip> This is a beautiful button </template>
+      </vs-tooltip>
 
   - name: circle
-    type: boolean
+    type: Boolean
     values: true,false
     description: Change the border radius to 20px so that if it is a single line of text the corners are circular.
     default: false
     link: null
-    usage: '#circle'
+    usage: "#circle"
     code: >
-            <vs-tooltip circle>
-              <vs-button circle flat>
-                Do hover here
-              </vs-button>
-              <template #tooltip>
-                This is a beautiful button
-              </template>
-            </vs-tooltip>
+      <vs-tooltip circle>
+        <vs-button circle flat> Do hover here </vs-button>
+        <template #tooltip> This is a beautiful button </template>
+      </vs-tooltip>
 
   - name: shadow
-    type: boolean
+    type: Boolean
     values: true,false
     description: Change the style of the tooltip by adding a shadow and changing the background.
     default: false
     link: null
-    usage: '#shadow'
+    usage: "#shadow"
     code: >
-            <vs-tooltip shadow>
-              <vs-button flat>
-                Do hover here
-              </vs-button>
-              <template #tooltip>
-                This is a beautiful button
-              </template>
-            </vs-tooltip>
+      <vs-tooltip shadow>
+        <vs-button flat> Do hover here</vs-button>
+        <template #tooltip> This is a beautiful button </template>
+      </vs-tooltip>
 
   - name: not-arrow
-    type: boolean
+    type: Boolean
     values: true,false
     description: Remove the arrow from the tooltip.
     default: false
     link: null
-    usage: '#not-arrow'
+    usage: "#not-arrow"
     code: >
-            <vs-tooltip not-arrow left>
-              <vs-button border>
-                left not-arrow
-              </vs-button>
-              <template #tooltip>
-                This is a beautiful button
-              </template>
-            </vs-tooltip>
+      <vs-tooltip not-arrow left>
+        <vs-button border> left not-arrow </vs-button>
+        <template #tooltip> This is a beautiful button </template>
+      </vs-tooltip>
 
   - name: not-hover
-    type: boolean
+    type: Boolean
     values: true,false
     description: The default tooltip is generated by doing hover on the parent element, that functionality is removed and no longer appears or disappears when doing hover.
     default: false
     link: null
-    usage: '#content'
+    usage: "#content"
     code: >
-            <vs-tooltip bottom shadow not-hover v-model="activeTooltip1">
-              <vs-button danger @click="activeTooltip1=!activeTooltip1">
-                Click Delete User
-              </vs-button>
-              <template #tooltip>
-                <div class="content-tooltip">
-                  <h4 class="center">
-                    Confirm
-                  </h4>
-                  <p>
-                    You are sure to delete this user, by doing so you cannot recover the data
-                  </p>
-                  <footer>
-                    <vs-button @click="activeTooltip1=false" danger block>
-                      Delete
-                    </vs-button>
-                    <vs-button @click="activeTooltip1=false" transparent dark block>
-                      Cancel
-                    </vs-button>
-                  </footer>
-                </div>
-              </template>
-            </vs-tooltip>
+      <vs-tooltip bottom shadow not-hover v-model="activeTooltip1">
+        <vs-button danger @click="activeTooltip1 = !activeTooltip1"> Click Delete User </vs-button>
+        <template #tooltip>
+          <div class="content-tooltip">
+            <h4 class="center"> Confirm </h4>
+            <p> You are sure to delete this user, by doing so you cannot recover the data </p>
+            <footer>
+              <vs-button @click="activeTooltip1=false" danger block> Delete </vs-button>
+              <vs-button @click="activeTooltip1=false" transparent dark block> Cancel </vs-button>
+            </footer>
+          </div>
+        </template>
+      </vs-tooltip>
 
   - name: interactivity
-    type: boolean
+    type: Boolean
     values: true,false
     description: Determine if the tooltip is interactive and makes it possible to click without automatically hiding.
     default: false
     link: null
-    usage: '#content'
+    usage: "#content"
     code: >
-            <vs-tooltip shadow interactivity>
-              <vs-avatar>
+      <vs-tooltip shadow interactivity>
+        <vs-avatar>
+          <img src="/avatars/avatar-5.png" alt="">
+        </vs-avatar>
+        <template #tooltip>
+          <div class="content-tooltip">
+            <div class="body">
+              <div class="text">
+                Cosed Tasks <span> 89 </span>
+              </div>
+              <vs-avatar circle size="80" @click="activeTooltip1=!activeTooltip1">
                 <img src="/avatars/avatar-5.png" alt="">
               </vs-avatar>
-              <template #tooltip>
-                <div class="content-tooltip">
-                  <div class="body">
-                    <div class="text">
-                        Cosed Tasks
-                      <span>
-                      89
-                      </span>
-                    </div>
-                    <vs-avatar circle size="80" @click="activeTooltip1=!activeTooltip1">
-                      <img src="/avatars/avatar-5.png" alt="">
-                    </vs-avatar>
-                    <div class="text">
-                        Open Tasks
-                      <span>
-                      8
-                      </span>
-                    </div>
-                  </div>
-                  <footer>
-                    <vs-button circle icon border>
-                      <i class='bx bxs-share-alt'></i>
-                    </vs-button>
-                    <vs-button circle>
-                      Message
-                    </vs-button>
-                    <vs-button circle icon border>
-                      <i class='bx bx-like' ></i>
-                    </vs-button>
-                  </footer>
-                </div>
-              </template>
-            </vs-tooltip>
+              <div class="text">
+                Open Tasks <span> 8 </span>
+              </div>
+            </div>
+            <footer>
+              <vs-button circle icon border> <i class='bx bxs-share-alt'></i> </vs-button>
+              <vs-button circle> Message </vs-button>
+              <vs-button circle icon border> <i class='bx bx-like' ></i> </vs-button>
+            </footer>
+          </div>
+        </template>
+      </vs-tooltip>
 
   - name: loading
-    type: boolean
+    type: Boolean
     values: true,false
     description: Determine if the tooltip has a loading style and animation.
     default: false
     link: null
-    usage: '#loading'
+    usage: "#loading"
     code: >
-                <template>
-                  <div class="center">
-                    <vs-tooltip loading>
-                      <vs-button flat>
-                        Do hover here loading
-                      </vs-button>
-                      <template #tooltip>
-                        This is a beautiful button
-                      </template>
-                    </vs-tooltip>
-                    <vs-tooltip loading>
-                      <vs-button flat>
-                        Do hover here loading
-                      </vs-button>
-                      <template #tooltip></template>
-                    </vs-tooltip>
-                  </div>
-                </template>
+      <template>
+        <div class="center">
+          <vs-tooltip loading>
+            <vs-button flat> Do hover here loading </vs-button>
+            <template #tooltip> This is a beautiful button </template>
+          </vs-tooltip>
+          <vs-tooltip loading>
+            <vs-button flat> Do hover here loading </vs-button>
+            <template #tooltip></template>
+          </vs-tooltip>
+        </div>
+      </template>
 
 SLOTS:
   - name: default
@@ -257,41 +197,25 @@ SLOTS:
     description: Add the trigger element of the tooltip.
     default: null
     link: null
-    usage: '#default'
+    usage: "#default"
     code: >
-            <vs-tooltip>
-              <vs-button flat>
-                Do hover here
-              </vs-button>
-              <template #tooltip>
-                This is a beautiful button
-              </template>
-            </vs-tooltip>
+      <vs-tooltip>
+        <vs-button flat> Do hover here </vs-button>
+        <template #tooltip> This is a beautiful button </template>
+      </vs-tooltip>
   - name: tooltip
     type: slot
     values: null
     description: It is the content that will go inside the tooltip.
     default: null
     link: null
-    usage: '#default'
+    usage: "#default"
     code: >
-            <vs-tooltip>
-              <vs-button flat>
-                Do hover here
-              </vs-button>
-              <template #tooltip>
-                This is a beautiful button
-              </template>
-            </vs-tooltip>
+      <vs-tooltip>
+        <vs-button flat> Do hover here </vs-button>
+        <template #tooltip> This is a beautiful button </template>
+      </vs-tooltip>
 
-NEWS:
-  - border
-  - square
-  - circle
-  - shadow
-  - not-arrow
-  - loading
-  - content
 ---
 
 # Tooltip
@@ -306,28 +230,15 @@ Easily add a tooltip with the `vs-tooltip` component, the content within the `de
 
 The `tooltip` slot is the content inside the tooltip
 
-<div slot="example">
+<template #example>
   <tooltip-default />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3-10}
-    <template>
-      <div class="center">
-        <vs-tooltip>
-          <vs-button flat>
-            Do hover here
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-      </div>
-    </template>
-  ```
+@[code{1-8}](../../.vuepress/components/tooltip/default.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -337,57 +248,20 @@ The `tooltip` slot is the content inside the tooltip
 
 Change the position of the tooltip with the properties
 
-- top (default)
+- top <Badge text=Default />
 - bottom
 - left
 - right
 
-<div slot="example">
+<template #example>
   <tooltip-position />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center">
-        <vs-tooltip left>
-          <vs-button border>
-            left
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-        <vs-tooltip>
-          <vs-button border>
-            Top
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-        <vs-tooltip bottom>
-          <vs-button border>
-            Bottom
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-        <vs-tooltip right>
-          <vs-button border>
-            right
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-      </div>
-    </template>
-  ```
+@[code{1-20} vue{3,11,15}](../../.vuepress/components/tooltip/position.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -397,84 +271,15 @@ Change the position of the tooltip with the properties
 
 <coloren />
 
-<div slot="example">
+<template #example>
   <tooltip-color />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{11}
-    <template>
-      <div class="center">
-        <vs-tooltip>
-          <vs-button shadow>
-            Default
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-        <vs-tooltip primary>
-          <vs-button flat>
-            Primary
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-        <vs-tooltip success>
-          <vs-button success flat>
-            Success
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-        <vs-tooltip danger>
-          <vs-button danger flat>
-            Danger
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-        <vs-tooltip warn>
-          <vs-button warn flat>
-            Warning
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-        <vs-tooltip dark>
-          <vs-button dark flat>
-            Dark
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-        <vs-tooltip color="#7d33ff">
-          <vs-button color="#7d33ff" flat>
-            HEX
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-        <vs-tooltip color="rgb(59,222,200)">
-          <vs-button color="rgb(59,222,200)" flat>
-            RGB
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-      </div>
-    </template>
-  ```
+@[code{1-36} vue{7,11,15,19,23,27,31}](../../.vuepress/components/tooltip/color.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -488,44 +293,15 @@ Change the style of the tooltip by adding a border and changing the color of the
 Now the color property would change the color of the border
 :::
 
-<div slot="example">
+<template #example>
   <tooltip-border />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3,19}
-    <template>
-      <div class="center">
-        <vs-tooltip border>
-          <vs-button transparent>
-            Do hover here
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-        <vs-tooltip danger border>
-          <vs-button danger transparent>
-            Do hover here
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-        <vs-tooltip color="#7d33ff" border-thick>
-          <vs-button color="#7d33ff" transparent>
-            Do hover here
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-      </div>
-    </template>
-  ```
+@[code{1-16} vue{3,7,11}](../../.vuepress/components/tooltip/border.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -535,28 +311,15 @@ Now the color property would change the color of the border
 
 Change the `border-radius` of the tooltip so that it is completely a rectangle
 
-<div slot="example">
+<template #example>
   <tooltip-square />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center">
-        <vs-tooltip square>
-          <vs-button square flat>
-            Do hover here
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-      </div>
-    </template>
-  ```
+@[code{1-12} vue{3}](../../.vuepress/components/tooltip/square.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -570,28 +333,15 @@ Change the `border-radius` of the tooltip to make it more circular
 This property only applies when the tooltip has less than one line of text.
 :::
 
-<div slot="example">
+<template #example>
   <tooltip-circle />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center">
-        <vs-tooltip circle>
-          <vs-button circle flat>
-            Do hover here
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-      </div>
-    </template>
-  ```
+@[code{1-8} vue{3}](../../.vuepress/components/tooltip/circle.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -601,31 +351,17 @@ This property only applies when the tooltip has less than one line of text.
 
 Change the style of the tooltip to have a shadow and the background color
 
-<div slot="example">
+<template #example>
   <tooltip-shadow />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center">
-        <vs-tooltip shadow>
-          <vs-button flat>
-            Do hover here
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-      </div>
-    </template>
-  ```
+@[code{1-12} vue{3}](../../.vuepress/components/tooltip/shadow.vue)
 
-</div>
+</template>
 
 </card>
-
 
 <card>
 
@@ -633,52 +369,15 @@ Change the style of the tooltip to have a shadow and the background color
 
 In some cases you may need to remove the arrow from the tooltip for this you can use the `not-arrow` property
 
-<div slot="example">
+<template #example>
   <tooltip-notArrow />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center">
-        <vs-tooltip not-arrow left>
-          <vs-button border>
-            left not-arrow
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-        <vs-tooltip not-arrow>
-          <vs-button border>
-            Top not-arrow
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-        <vs-tooltip not-arrow bottom>
-          <vs-button border>
-            Bottom not-arrow
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-        <vs-tooltip not-arrow right>
-          <vs-button border>
-            right not-arrow
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-      </div>
-    </template>
-  ```
+@[code{1-36} vue{3,11,19,27}](../../.vuepress/components/tooltip/notArrow.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -688,34 +387,15 @@ In some cases you may need to remove the arrow from the tooltip for this you can
 
 Add an animation and loading style to the tooltip
 
-<div slot="example">
+<template #example>
   <tooltip-loading />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center">
-        <vs-tooltip loading>
-          <vs-button flat>
-            Do hover here loading
-          </vs-button>
-          <template #tooltip>
-            This is a beautiful button
-          </template>
-        </vs-tooltip>
-        <vs-tooltip loading>
-          <vs-button flat>
-            Do hover here loading
-          </vs-button>
-          <template #tooltip></template>
-        </vs-tooltip>
-      </div>
-    </template>
-  ```
+@[code{1-12} vue{3,7}](../../.vuepress/components/tooltip/loading.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -725,158 +405,27 @@ Add an animation and loading style to the tooltip
 
 We create the tooltip component in such a way that you have a lot of freedom to add anything and create all kinds of interface inside it.
 
-<div slot="example">
+<template #example>
   <tooltip-content />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html
-    <template>
-      <div class="center">
-        <vs-tooltip>
-          <vs-button gradient>
-            Whats is Vuesax?
-          </vs-button>
-          <template #tooltip>
-            <div class="content-tooltip">
-              <h4>
-                Whats is Vuesax?
-              </h4>
-              <p>
-                Vuesax is a framework of UI components created with Vuejs
-              </p>
-            </div>
-          </template>
-        </vs-tooltip>
-        <vs-tooltip bottom shadow not-hover v-model="activeTooltip1">
-          <vs-button danger @click="activeTooltip1=!activeTooltip1">
-            Click Delete User
-          </vs-button>
-          <template #tooltip>
-            <div class="content-tooltip">
-              <h4 class="center">
-                Confirm
-              </h4>
-              <p>
-                You are sure to delete this user, by doing so you cannot recover the data
-              </p>
-              <footer>
-                <vs-button @click="activeTooltip1=false" danger block>
-                  Delete
-                </vs-button>
-                <vs-button @click="activeTooltip1=false" transparent dark block>
-                  Cancel
-                </vs-button>
-              </footer>
-            </div>
-          </template>
-        </vs-tooltip>
-        <vs-tooltip shadow interactivity>
-          <vs-avatar>
-            <img src="/avatars/avatar-5.png" alt="">
-          </vs-avatar>
-          <template #tooltip>
-            <div class="content-tooltip">
-              <div class="body">
-                <div class="text">
-                    Cosed Tasks
-                  <span>
-                  89
-                  </span>
-                </div>
-                <vs-avatar circle size="80" @click="activeTooltip1=!activeTooltip1">
-                  <img src="/avatars/avatar-5.png" alt="">
-                </vs-avatar>
-                <div class="text">
-                    Open Tasks
-                  <span>
-                  8
-                  </span>
-                </div>
-              </div>
-              <footer>
-                <vs-button circle icon border>
-                  <i class='bx bxs-share-alt'></i>
-                </vs-button>
-                <vs-button circle>
-                  Message
-                </vs-button>
-                <vs-button circle icon border>
-                  <i class='bx bx-like' ></i>
-                </vs-button>
-              </footer>
-            </div>
-          </template>
-        </vs-tooltip>
-      </div>
-    </template>
-  ```
+@[code{1-70}](../../.vuepress/components/tooltip/content.vue)
 
-</div>
+</template>
 
-<div slot="script">
+<template #script>
 
-  ```html{4}
-    <script>
-      export default {
-        data:() => ({
-          activeTooltip1: false
-        })
-      }
-    </script>
-  ```
+@[code{71-76}](../../.vuepress/components/tooltip/content.vue)
 
-</div>
+</template>
 
-<div slot="style">
+<template #style>
 
-  ```stylus
-    <style lang="stylus">
-      getColor(colorx, alpha = 1)
-          unquote("rgba(var(--vs-"+colorx+"), "+alpha+")")
-      getVar(var)
-          unquote("var(--vs-"+var+")")
+@[code{78-128}](../../.vuepress/components/tooltip/content.vue)
 
-      .content-tooltip
-        .body
-          display flex
-          align-items flex-start
-          justify-content center
-          .vs-avatar-content
-            margin-top -30px
-            border 3px solid getVar('theme-layout')
-            box-shadow 0px 4px 15px 0px rgba(0,0,0,.1)
-          .text
-            display flex
-            align-items center
-            justify-content center
-            flex-direction column
-            font-size .55rem
-            padding 10px
-            font-weight normal
-            span
-              font-weight bold
-              font-size .7rem
-        footer
-          display flex
-          align-items center
-          justify-content center
-        h4
-          padding 8px
-          margin 0px
-          text-align left
-        p
-          text-align left
-          padding 0px
-          margin 0px
-          line-height 1rem
-          padding-bottom 5px
-          padding-left 8px
-      </style>
-  ```
-
-</div>
+</template>
 
 </card>
 

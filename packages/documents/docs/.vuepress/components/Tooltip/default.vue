@@ -6,13 +6,6 @@
     </vs-tooltip>
   </div>
 </template>
-<script>
-export default {
-  data: () => ({
-    active: false,
-  }),
-};
-</script>
 <style scoped lang="scss">
 .vs-button {
   margin: 0px;
