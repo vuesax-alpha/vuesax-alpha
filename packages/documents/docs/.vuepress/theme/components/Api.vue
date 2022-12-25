@@ -44,7 +44,10 @@
 
                   <span v-else>
                     {{ tr.name }}
-                  </span>
+                  </span> 
+
+                  <Badge style="margin-left: 6px;" v-if="tr.state" :text="tr.state.text" :type="tr.state.type" />
+                  <template v-else></template>
                 </td>
                 <td>{{ tr.type }}</td>
                 <td class="val" v-html="getValues(tr.values)"></td>
@@ -84,7 +87,8 @@
               </tr>
               <tr v-if="tr.code" class="tr-code">
                 <td
-                  @click="copyCode($event, tr.code)"
+                  @click="copy(tr.code)"
+                  :class="{ copied }"
                   v-html="getCode(tr.code)"
                   colspan="7"
                 ></td>
@@ -104,11 +108,11 @@ import { usePageData, usePageFrontmatter } from "@vuepress/client";
 import { onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import prism from "prismjs";
+import { useClipboard } from "@vueuse/core";
 
 import { ThemeNormalApiFrontmatter, ThemeNormalPropsFrontmatter } from "../shared/frontmatter/normal";
 import { isExternal } from "../util";
-
-// const prism = require("prismjs");
+import Badge from "../global-components/Badge.vue";
 
 type Tables = {
   PROPS?: ThemeNormalPropsFrontmatter,
@@ -119,6 +123,8 @@ type Tables = {
 const route = useRoute();
 const pageData = usePageData();
 const pageFrontmatter = usePageFrontmatter<ThemeNormalApiFrontmatter>();
+
+const { copied, copy } = useClipboard({ legacy: true });
 
 const getTables = computed((): Tables => {
   return {
@@ -210,24 +216,6 @@ watch(() => route.path, () => {
     ?.classList.remove("con-table");
 });
 
-const copyCode = (evt: MouseEvent, code: string) => {
-  evt.preventDefault();
-  (evt.target as HTMLElement).classList.add("copied");
-  setTimeout(() => {
-    (evt.target as HTMLElement).classList.remove("copied");
-  }, 1000);
-  clipboard(code);
-};
-const clipboard = (text: string) => {
-  var aux = document.createElement("textarea");
-  aux.value = text;
-  aux.className = "vs-clipboard";
-  document.body.appendChild(aux);
-  aux.focus();
-  aux.select();
-  document.execCommand("copy");
-  document.body.removeChild(aux);
-};
 const getValues = (values: string) => {
   if (!values) return;
   let arrayValues = values.split(",");
