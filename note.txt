@@ -10,4 +10,6 @@
 
 - always show thumb
 
-- vsFuntions not suggest params
+** BUGS **
+- notification function: 
+  - duration: none - not working
