@@ -24,12 +24,8 @@ const options = reactive(["javascript", "vue"]);
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
-  & > {
-    & > {
-      & > .vs-switch {
-        margin: 5px;
-      }
-    }
+  .vs-switch {
+    margin: 5px;
   }
   .data {
     background: rgba(0, 0, 0, 0.03);

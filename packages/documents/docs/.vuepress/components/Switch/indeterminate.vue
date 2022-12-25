@@ -19,12 +19,8 @@ const active3 = ref(false);
   display: flex;
   align-items: center;
   justify-content: center;
-  & > {
-    & > {
-      & > .vs-switch {
-        margin: 10px;
-      }
-    }
+  .vs-switch {
+    margin: 10px;
   }
 }
 </style>

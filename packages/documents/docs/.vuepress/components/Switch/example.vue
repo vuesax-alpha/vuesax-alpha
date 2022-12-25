@@ -72,12 +72,8 @@ const active5 = ref(true);
       }
     }
   }
-  & > {
-    & > {
-      & > .vs-switch {
-        margin: 5px;
-      }
-    }
+  .vs-switch {
+    margin: 5px;
   }
 }
 </style>

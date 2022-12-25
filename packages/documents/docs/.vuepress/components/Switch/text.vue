@@ -6,7 +6,7 @@
       <template #on> On </template>
     </vs-switch>
     <vs-switch v-model="active3">
-      <template #off> default </template>
+      <template #off> Default </template>
       <template #on> Premium </template>
     </vs-switch>
   </div>
@@ -25,12 +25,8 @@ const active3 = ref(false);
   display: flex;
   align-items: center;
   justify-content: center;
-  & > {
-    & > {
-      & > .vs-switch {
-        margin: 10px;
-      }
-    }
+  .vs-switch {
+    margin: 10px;
   }
 }
 </style>
