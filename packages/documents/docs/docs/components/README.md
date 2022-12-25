@@ -186,7 +186,6 @@ SLOTS:
   # _______________________________________
 NEWS:
   - ripple
-  - activeDisabled
 ---
 
 # Button
