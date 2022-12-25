@@ -1,5 +1,12 @@
 <template>
-  <div class="vs-row">
+  <div
+    class="vs-row"
+    :style="{
+      justifyContent: justify,
+      alignItems: align,
+      flexDirection: direction,
+    }"
+  >
     <slot></slot>
   </div>
 </template>
