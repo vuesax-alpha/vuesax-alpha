@@ -3,6 +3,7 @@ import { enNavbar, enSidebar, enSearchData } from "./locale";
 import { vuesaxAlphaTheme } from "./theme/index";
 
 export default defineUserConfig({
+  open: true,
   locales: {
     "/": {
       lang: "en-US",
@@ -79,11 +80,10 @@ export default defineUserConfig({
     docsBranch: "main",
     docsDir: "packages/documents",
     docsRepo:
-      "https://github.com/tranthinh-coding/vuesax-alpha/tree/main/packages/documents/",
+      "https://github.com/tranthinh-coding/vuesax-alpha/",
     editLink: true,
     editLinkPattern:
-      "https://github.com/tranthinh-coding/vuesax-alpha/tree/main/packages/documents/",
-    lastUpdated: true,
+      "https://github.com/tranthinh-coding/vuesax-alpha/",
     logo: "/logos/logo-vuesax-svg-3.svg",
     logoDark: "/logos/logo-vuesax-svg-4.svg",
     prevVersion: "v4.x",
@@ -102,6 +102,7 @@ export default defineUserConfig({
     searchData: {
       '/': enSearchData
     },
+    lastUpdated: true,
     lastUpdatedText: "Last Updated",
   }),
   markdown: {
