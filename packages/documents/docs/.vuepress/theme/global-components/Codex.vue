@@ -1,8 +1,6 @@
 <template>
+  <CodeCopied :copied="copied" />
   <div class="code" ref="$el">
-    <div :class="{ copied }" class="noti-code">
-      <i class="bx bx-check"></i> Code copied
-    </div>
     <header class="header-codex">
       <ul>
         <li
@@ -19,7 +17,6 @@
           <svg
             t="1514359261842"
             class="icon"
-            style=""
             viewBox="0 0 1024 1024"
             version="1.1"
             fill="currentColor"
@@ -37,8 +34,8 @@
         </li>
         <template v-else></template>
 
-        <li title="Copy code" :class="{ copied }" @click="copy">
-          <i v-if="!copied" class="bx bx-copy"></i>
+        <li title="Copy code" :class="{ copied }" @click="copy($slotRefs[activeSlot].textContent)">
+          <i v-if="!copied" class="bx bx-clipboard"></i>
           <i v-else class="bx bx-check"></i>
         </li>
 
@@ -125,7 +122,6 @@
             </div>
             <template v-else></template>
           </CardTransitionCodes>
-
           <CardTransitionCodes>
             <div
               :ref="(el) => $slotRefs[2] = el"
@@ -139,7 +135,6 @@
             </div>
             <template v-else></template>
           </CardTransitionCodes>
-
           <CardTransitionCodes>
             <div
               :ref="(el) => $slotRefs[3] = el"
@@ -169,14 +164,17 @@ import {
   ref,
   watch,
 } from "vue";
+import { useClipboard } from "@vueuse/core";
 
 import CardFooter from "../components/CardFooter.vue";
 import CardTransitionCodes from "../components/CardTransitionCodes.vue";
+import CodeCopied from "../components/CodeCopied.vue";
 import {
   activeSlotType,
   codesandboxContextKey,
   vsThemeKey,
 } from "../type";
+import { clipboard } from "../util";
 
 const props = defineProps<{
   codepen?: string;
@@ -189,11 +187,12 @@ const $codex = ref<HTMLElement>()!;
 const $slotRefs = ref<any[]>([]);
 
 const active = ref<boolean>(false);
-const copied = ref<boolean>(false);
 const activeSlot = ref<activeSlotType>(0);
 
 const $vsTheme = inject(vsThemeKey)!;
 const $codesandbox = inject(codesandboxContextKey)!;
+
+const { copied, copy } = useClipboard({ legacy: true });
 
 const toggleCode = () => {
   active.value = !active.value;
@@ -206,28 +205,6 @@ const openCodepen = () => {
 const openCodesandbox = () => {
   document.body.style.overflow = "hidden";
   $codesandbox.url = props.codesandbox;
-};
-
-const clipboard = (text: string) => {
-  var aux = document.createElement("textarea");
-  aux.value = text;
-  aux.className = "vs-clipboard";
-  document.body.appendChild(aux);
-  aux.focus();
-  aux.select();
-  document.execCommand("copy");
-  document.body.removeChild(aux);
-};
-
-const copy = () => {
-  const text = $slotRefs.value[activeSlot.value].textContent;
-
-  clipboard(text);
-
-  copied.value = true;
-  setTimeout(() => {
-    copied.value = false;
-  }, 1000);
 };
 
 // animation
@@ -269,54 +246,6 @@ onMounted(() => {
 <style lang="scss">
 @import "../styles/use";
 
-
-.noti-code {
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-  max-width: 500px;
-  background: -color('theme-color');
-  left: 50%;
-  transform: translate(-50%, 100%);
-  padding: 10px 20px;
-  text-align: center;
-  color: -color('theme-layout');
-  border-radius: 20px 20px 0px 0px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.25s ease;
-  z-index: 1000;
-  i {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    font-size: 20px;
-    width: 45px;
-    height: 45px;
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 20px 0px 0px 0px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  &.copied {
-    opacity: 1;
-    visibility: visible;
-    transform: translate(-50%, 0%);
-  }
-}
-.footer-code {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  &:hover {
-    opacity: 0.4;
-  }
-}
 .slot-all {
   & > div {
     &:nth-last-child(2) {
