@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="text">
+    <div class="text" ref="$text">
       <slot></slot>
     </div>
 
@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-import { inject } from "vue";
+import { inject, ref } from "vue";
 import { vsThemeKey } from "../type";
 
 import Codex from "./Codex.vue";
@@ -45,6 +45,8 @@ defineProps<{
 }>();
 
 const $vsTheme = inject(vsThemeKey)!;
+
+const $text = ref<HTMLElement>();
 </script>
 
 <style lang="scss">
