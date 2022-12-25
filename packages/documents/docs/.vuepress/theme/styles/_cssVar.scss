@@ -31,3 +31,12 @@
 
   --vsd-line-numbers-wrapper-width: 3.5rem;
 }
+
+[vs-theme="dark"] {
+  --vsd-theme-bg: 24, 25, 28;
+  --vsd-theme-color: 255, 255, 255;
+  --vsd-theme-layout: 30, 32, 35;
+  --vsd-theme-bg2: 20, 20, 23;
+  --vsd-theme-code: 20, 20, 23;
+  --vsd-theme-code2: 22, 22, 25;
+}
