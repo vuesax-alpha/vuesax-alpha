@@ -21,20 +21,20 @@ import call from "./call.vue";
 
 const openNotificationCookie = () => {
   notification({
-    duration: "none",
+    duration: 0,
     content: cookie,
   });
 };
 const openNotificationUser = () => {
   notification({
-    duration: "none",
+    duration: 0,
     width: "auto",
     content: user,
   });
 };
 const openNotificationCall = () => {
   notification({
-    duration: "none",
+    duration: 0,
     width: "auto",
     content: call,
     notPadding: true,

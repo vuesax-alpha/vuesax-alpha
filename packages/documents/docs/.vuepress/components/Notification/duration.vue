@@ -1,20 +1,15 @@
 <template>
   <div class="center con-avatars">
-    <vs-button border @click="openNotification(null)">
-      Duration default (4s)
-    </vs-button>
+    <vs-button border @click="openNotification(null)"> Duration default (4s) </vs-button>
     <vs-button border @click="openNotification(6000)"> Duration 6s </vs-button>
-    <vs-button border @click="openNotification(10000)">
-      Duration 10s
-    </vs-button>
-    <vs-button border @click="openNotification('none')">
-      Duration none
-    </vs-button>
+    <vs-button border @click="openNotification(10000)"> Duration 10s </vs-button>
+    <vs-button border @click="openNotification(0)"> Duration none </vs-button>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { notification } from "vuesax-alpha";
+
 const openNotification = (duration) => {
   notification({
     duration,

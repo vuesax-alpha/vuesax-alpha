@@ -244,18 +244,13 @@
   </div>
 </template>
 
-<script>
-export default {
-  data: () => ({
-    count: 0,
-  }),
-  methods: {
-    accept() {
-      this.$parent.close();
-      // console.log(this.$parent.close())
-    },
-  },
-};
+<script lang="ts" setup>
+const props = defineProps<{
+  close?: () => void;
+}>();
+const accept = () => {
+  props?.close();
+}
 </script>
 
 <style scoped lang="scss">

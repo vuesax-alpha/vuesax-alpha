@@ -5,28 +5,26 @@
       icon
       @click="openNotification(null, null, `<i class='bx bxs-time'></i>`)"
     >
-      <i class="bx bx-border-radius b-r"></i> <i class="bx bxs-time"></i>
+      <i class="bx bx-border-radius b-r"></i> 
+      <i class="bx bxs-time"></i>
     </vs-button>
     <vs-button
       flat
       icon
-      @click="
-        openNotification(null, 'primary', `<i class='bx bxs-user-pin' ></i>`)
-      "
+      @click="openNotification(null, 'primary', `<i class='bx bxs-user-pin'></i>`)"
     >
-      <i class="bx bx-border-radius b-r"></i> <i class="bx bxs-user-pin"></i>
+      <i class="bx bx-border-radius b-r"></i> 
+      <i class="bx bxs-user-pin"></i>
     </vs-button>
     <vs-button
       flat
       success
       icon
-      @click="
-        openNotification(
-          'top-right',
-          'success',
-          `<i class='bx bx-select-multiple' ></i>`
-        )
-      "
+      @click="openNotification(
+        'top-right',
+        'success',
+        `<i class='bx bx-select-multiple' ></i>`
+      )"
     >
       <i class="bx bx-border-radius t-r"></i>
       <i class="bx bx-select-multiple"></i>
@@ -35,35 +33,32 @@
       flat
       danger
       icon
-      @click="
-        openNotification('top-left', 'danger', `<i class='bx bxs-bug' ></i>`)
-      "
+      @click="openNotification('top-left', 'danger', `<i class='bx bxs-bug'></i>`)"
     >
-      <i class="bx bx-border-radius t-l"></i> <i class="bx bxs-bug"></i>
+      <i class="bx bx-border-radius t-l"></i> 
+      <i class="bx bxs-bug"></i>
     </vs-button>
     <vs-button
       flat
       warn
       icon
-      @click="
-        openNotification('bottom-left', 'warn', `<i class='bx bx-error' ></i>`)
-      "
+      @click="openNotification('bottom-left', 'warn', `<i class='bx bx-error' ></i>`)"
     >
-      <i class="bx bx-border-radius b-l"></i> <i class="bx bx-error"></i>
+      <i class="bx bx-border-radius b-l"></i> 
+      <i class="bx bx-error"></i>
     </vs-button>
     <vs-button
       flat
       dark
       icon
-      @click="
-        openNotification(
-          'bottom-center',
-          'dark',
-          `<i class='bx bx-folder-open' ></i>`
-        )
-      "
+      @click="openNotification(
+        'bottom-center',
+        'dark',
+        `<i class='bx bx-folder-open'></i>`
+      )"
     >
-      <i class="bx bx-border-bottom"></i> <i class="bx bx-folder-open"></i>
+      <i class="bx bx-border-bottom"></i>
+      <i class="bx bx-folder-open"></i>
     </vs-button>
     <vs-button
       flat
@@ -73,21 +68,21 @@
         openNotification('top-center', '#7d33ff', `<i class='bx bx-bell' ></i>`)
       "
     >
-      <i class="bx bx-border-top"></i> <i class="bx bx-bell"></i>
+      <i class="bx bx-border-top"></i>
+      <i class="bx bx-bell"></i>
     </vs-button>
     <vs-button
       flat
       color="rgb(59,222,200)"
       icon
-      @click="
-        openNotification(
-          null,
-          'rgb(59,222,200)',
-          `<i class='bx bx-calendar' ></i>`
-        )
-      "
+      @click="openNotification(
+        null,
+        'rgb(59,222,200)',
+        `<i class='bx bx-calendar' ></i>`
+      )"
     >
-      <i class="bx bx-border-radius b-r"></i> <i class="bx bx-calendar"></i>
+      <i class="bx bx-border-radius b-r"></i>
+      <i class="bx bx-calendar"></i>
     </vs-button>
   </div>
 </template>
