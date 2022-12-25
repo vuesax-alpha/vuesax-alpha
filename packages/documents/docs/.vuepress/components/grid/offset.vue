@@ -1,23 +1,23 @@
 <template>
   <div>
     <vs-row vs-w="12">
-      <vs-col offset="5" w="6"> offset = 6 </vs-col>
+      <vs-col sm-o="6" sm="2"> offset = 6 </vs-col>
     </vs-row>
 
     <vs-row>
-      <vs-col offset="0" w="2"> offset = 2 </vs-col>
+      <vs-col sm-o="2" sm="2"> offset = 2 </vs-col>
     </vs-row>
 
     <vs-row>
-      <vs-col offset="2" w="8"> offset = 8 </vs-col>
+      <vs-col sm-o="8" sm="2"> offset = 8 </vs-col>
     </vs-row>
 
     <vs-row>
-      <vs-col offset="9" w="3"> offset = 7 </vs-col>
+      <vs-col sm-o="7" sm="2"> offset = 7 </vs-col>
     </vs-row>
 
     <vs-row>
-      <vs-col offset="4" w="4"> offset = 4 </vs-col>
+      <vs-col sm-o="4" sm="2"> offset = 4 </vs-col>
     </vs-row>
   </div>
 </template>

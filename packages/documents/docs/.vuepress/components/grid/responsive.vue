@@ -1,13 +1,13 @@
 <template>
   <div class="grid">
     <vs-row>
-      <vs-col :w="num">
+      <vs-col :sm="num">
         {{ num }}
       </vs-col>
-      <vs-col :w="num2">
+      <vs-col :sm="num2">
         {{ num2 }}
       </vs-col>
-      <vs-col :w="num">
+      <vs-col :sm="num">
         {{ num }}
       </vs-col>
     </vs-row>

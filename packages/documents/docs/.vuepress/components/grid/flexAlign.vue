@@ -1,38 +1,23 @@
 <template>
   <div class="grid">
     <vs-row justify="center">
-      <vs-col :key="index" v-for="(col, index) in 3" w="2">
-        Default {{ index + 1 }}
-      </vs-col>
+      <vs-col v-for="i in 3" sm="2"> Default {{ i + 1 }} </vs-col>
     </vs-row>
 
     <vs-row align="center" justify="center">
-      <vs-col :key="index" v-for="(col, index) in 3" w="2">
-        Center {{ index + 1 }}
-      </vs-col>
+      <vs-col v-for="i in 3" sm="2"> Center {{ i + 1 }} </vs-col>
     </vs-row>
 
     <vs-row align="flex-end" justify="center">
-      <vs-col :key="index" v-for="(col, index) in 3" w="2">
-        Flex-end {{ index + 1 }}
-      </vs-col>
+      <vs-col v-for="i in 3" sm="2"> Flex-end {{ i + 1 }} </vs-col>
     </vs-row>
 
     <vs-row class="mh" align="center" justify="space-around" direction="column">
-      <vs-col :key="index" v-for="(col, index) in 3" w="2">
-        Space-around {{ index + 1 }}
-      </vs-col>
+      <vs-col v-for="i in 3" sm="2"> Space-around {{ i + 1 }} </vs-col>
     </vs-row>
 
-    <vs-row
-      class="mh"
-      align="center"
-      justify="space-between"
-      direction="column"
-    >
-      <vs-col :key="index" v-for="(col, index) in 3" w="2">
-        Space-between {{ index + 1 }}
-      </vs-col>
+    <vs-row class="mh" align="center" justify="space-between" direction="column">
+      <vs-col v-for="i in 3" sm="2"> Space-between {{ i + 1 }} </vs-col>
     </vs-row>
   </div>
 </template>
