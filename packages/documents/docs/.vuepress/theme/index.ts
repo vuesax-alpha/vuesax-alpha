@@ -6,6 +6,7 @@ import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
 import { themeDataPlugin } from "@vuepress/plugin-theme-data";
 import {containerPlugin} from "@vuepress/plugin-container";
 import { gitPlugin } from '@vuepress/plugin-git'
+import { prismjsPlugin } from '@vuepress/plugin-prismjs'
 
 import { VuesaxAlphaThemeOptions } from "./vuesaxAlphaTheme";
 
@@ -20,25 +21,26 @@ export const vuesaxAlphaTheme = (options?: VuesaxAlphaThemeOptions): Theme => {
       activeHeaderLinksPlugin(),
       containerPlugin({
         type: "tip",
-        before: (): string =>
-          `<div class="custom-container tip">${""}\n`,
+        before: (info: string): string =>
+          `<div class="custom-container tip">${info}\n`,
         after: (): string => "</div>\n",
       }),
       containerPlugin({
         type: "warning",
-        before: (): string =>
-          `<div class="custom-container tip">${""}\n`,
+        before: (info: string): string =>
+          `<div class="custom-container warning">${info}\n`,
         after: (): string => "</div>\n",
       }),
       containerPlugin({
         type: "danger",
-        before: (): string =>
-          `<div class="custom-container tip">${""}\n`,
+        before: (info: string): string =>
+          `<div class="custom-container danger">${info}\n`,
         after: (): string => "</div>\n",
       }),
       themeDataPlugin({
         themeData: options,
       }),
+      prismjsPlugin(),
       registerComponentsPlugin({
         componentsDir: path.resolve(__dirname, "global-components"),
       }),
@@ -46,7 +48,8 @@ export const vuesaxAlphaTheme = (options?: VuesaxAlphaThemeOptions): Theme => {
         componentsDir: path.resolve(__dirname, "../components")
       }),
       gitPlugin({
-        updatedTime: true
+        updatedTime: true,
+        createdTime: true
       })
     ],
   };
