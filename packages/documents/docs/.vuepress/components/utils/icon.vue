@@ -1,23 +1,15 @@
 <template>
   <div>
-    <div class="warning custom-block">
-      <p class="custom-block-title">Iconos por defecto</p>
+    <div class="warning custom-container">
+      <p class="custom-container-title">Default Icons</p>
       <p>
-        Vuesax no usa ninguna librería o fuente de iconos por defecto, con esto
-        damos la libertad de usar la que prefieras Todos los componentes que
-        usen en algún lugar un icono por defecto como el de close en un
-        <b>Alert</b> o un <b>Popup</b> va a ser un <b>svg</b> para no tener que
-        instalar ningún tipo de fuente externa, y se podrá sustituir con un
-        <code>slot="icon"</code> por el icono de su preferencia
+        Vuesax does not use any default library or icon source, with this we give you the freedom to use the one you prefer All the components that use a default icon somewhere like the close icon in an <strong>Alert</strong> or  <strong>Popup</strong> will be an <strong>svg</strong> for not having to install any type of external font, and it can be replaced with a <code>slot="icon"</code> by the icon of your choice
       </p>
     </div>
-    <div class="tip custom-block">
-      <p class="custom-block-title">Vuesax Docs Icons</p>
+    <div class="tip custom-container">
+      <p class="custom-container-title">Vuesax Docs Icons</p>
       <p>
-        Estos documentos y los ejemplos usan la libreria de componentes
-        <a target="_blank" href="https://boxicons.com/">boxicons</a>, no es
-        obligatoria o necesaria para el uso de Vuesax pero la recomendamos por
-        su amplia gama de iconos y como complementan visualmente el framework
+        These documents and examples use the <a target="_blank" href="https://boxicons.com/">boxicons</a> component library, it is not mandatory or necessary for the use of Vuesax but we recommend it for its wide range of icons and how they visually complement the framework
       </p>
     </div>
   </div>
