@@ -2,94 +2,122 @@
 
 <card>
 
-  ## Installation
+## Installation
 
-  Vuesax is a framework of UI components based on Vuejs which means that vuejs has to be in your project so that Vuesax can do the magic.
-
-</card>
-
-<card>
-
-  ## NPM
-
-  You can install vuesax through npm with the command:
-
-  ```bash
-  npm install vuesax@next # OR yarn add vuesax@next
-  ```
+Vuesax is a framework of UI components based on Vuejs which means that vuejs has to be in your project so that Vuesax can do the magic.
 
 </card>
 
 <card>
 
-  ## Uso
+## NPM
 
-  To use vuesax in your vuejs project, add this code:
+You can install vuesax through npm with the command:
 
-  ```js
-    import Vue from 'vue'
-    import Vuesax from 'vuesax'
+<command>
 
-    import 'vuesax/dist/vuesax.css' //Vuesax styles
-    Vue.use(Vuesax, {
-      // options here
-    })
-  ```
+<template #npm>
 
-</card>
+```bash
+npm install vuesax-alpha
+```
 
-<card>
+</template>
 
-  ## Individual components (on demand)
+<template #yarn>
 
-  There are cases that in your project you only need some components of vuesax and for this you can add them as follows
+```bash
+yarn add vuesax-alpha
+```
 
-  ```js
-    import Vue from 'vue'
-    import { vsButton, vsSelect, vsPopup } from 'vuesax'
-    import 'vuesax/dist/vuesax.css'
+</template>
 
-    Vue.use(vsButton)
-    Vue.use(vsSelect)
-    Vue.use(vsPopup)
-  ```
+</command>
 
 </card>
 
 <card>
 
-  ## CDN
+## Uso
 
-  You can use vuesax by loading it via cdn by adding a `<script>` tag to your project
+To use vuesax in your vuejs project, add this code:
 
-  ```html
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    </head>
-    <body>
-      <div id="app">
-        <vs-button>Hello World</vs-button>
-      </div>
+<command>
 
-      <script src="https://unpkg.com/vue/dist/vue.js"></script>
-      <script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
-      <script>
-        new Vue({
-          el: '#app'
-        })
-      </script>
-    </body>
-    </html>
-  ```
+```ts
+import { createApp } from "vue";
+import App from "./App.vue";
+
+import Vuesax from "vuesax";
+import "vuesax/dist/vuesax.css"; // Vuesax styles
+
+const app = createApp(App);
+app.use(Vuesax);
+
+app.mount("#app");
+```
+
+</command>
 
 </card>
 
+<card>
 
-<!-- ### New applications Vue CLI
+## Individual components (on demand)
 
-### Vue UI Install
+There are cases that in your project you only need some components of vuesax and for this you can add them as follows
 
-### Existing applications -->
+<command>
+
+```ts
+import { createApp } from "vue";
+import App from "./App.vue";
+
+import { vsPopup, vsAlert, vsInput } from "vuesax";
+import "vuesax/dist/vuesax.css"; // Vuesax styles
+
+const app = createApp(App);
+app.use(vsPopup).use(vsAlert).use(vsInput);
+
+app.mount("#app");
+```
+
+</command>
+
+</card>
+
+<card>
+
+## CDN
+
+You can use vuesax by loading it via cdn by adding a `<script>` tag to your project
+
+<command>
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://unpkg.com/vuesax-alpha@0.0.20/dist/style.css" rel="stylesheet" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+  </head>
+  <body>
+    <div id="app">
+      <vs-button>Hello World</vs-button>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vuesax-alpha@0.0.20/dist/vuesax-alpha.js"></script>
+
+    <script>
+      const { createApp } = Vue;
+
+      createApp().mount("#app");
+    </script>
+  </body>
+</html>
+```
+
+</command>
+
+</card>
