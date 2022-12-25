@@ -128,7 +128,7 @@ export const enSidebar: SidebarConfig = [
         link: "/docs/guide/gettingStarted/",
       },
       {
-        text: "Vuesax-alpha + Nuxt",
+        text: "Vuesax + Nuxt",
         link: "/docs/guide/nuxt/",
       },
     ],
