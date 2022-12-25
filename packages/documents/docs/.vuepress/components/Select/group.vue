@@ -1,14 +1,12 @@
 <template>
   <div class="center con-selects">
     <vs-select label="Group" placeholder="Group" v-model="value1">
-      <vs-option-group>
-        <div slot="title">Vuejs</div>
+      <vs-option-group title="Vuejs"> <!-- PROP: title is required -->
         <vs-option label="Vuesax" value="1"> Vuesax </vs-option>
         <vs-option label="Vue" value="2"> Vue </vs-option>
         <vs-option label="Javascript" value="3"> Javascript </vs-option>
       </vs-option-group>
-      <vs-option-group>
-        <div slot="title">Others</div>
+      <vs-option-group title="Others">
         <vs-option label="Sass" value="4"> Sass </vs-option>
         <vs-option label="Typescript" value="5"> Typescript </vs-option>
         <vs-option label="Webpack" value="6"> Webpack </vs-option>
@@ -22,14 +20,12 @@
       placeholder="Filter"
       v-model="value2"
     >
-      <vs-option-group>
-        <div slot="title">Vuejs</div>
+      <vs-option-group title="Vuejs">
         <vs-option label="Vuesax" value="1"> Vuesax </vs-option>
         <vs-option label="Vue" value="2"> Vue </vs-option>
         <vs-option label="Javascript" value="3"> Javascript </vs-option>
       </vs-option-group>
-      <vs-option-group>
-        <div slot="title">Others</div>
+      <vs-option-group title="Others">
         <vs-option label="Sass" value="4"> Sass </vs-option>
         <vs-option label="Typescript" value="5"> Typescript </vs-option>
         <vs-option label="Webpack" value="6"> Webpack </vs-option>
@@ -44,14 +40,12 @@
       placeholder="Group Multiple Filter"
       v-model="value3"
     >
-      <vs-option-group>
-        <div slot="title">Vuejs</div>
+      <vs-option-group title="Vuejs">
         <vs-option label="Vuesax" value="1"> Vuesax </vs-option>
         <vs-option label="Vue" value="2"> Vue </vs-option>
         <vs-option label="Javascript" value="3"> Javascript </vs-option>
       </vs-option-group>
-      <vs-option-group>
-        <div slot="title">Others</div>
+      <vs-option-group title="Others">
         <vs-option label="Sass" value="4"> Sass </vs-option>
         <vs-option label="Typescript" value="5"> Typescript </vs-option>
         <vs-option label="Webpack" value="6"> Webpack </vs-option>
@@ -62,11 +56,11 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { ref } from "vue";
 
-const value1 = reactive(["3"]);
-const value2 = reactive(["4"]);
-const value3 = reactive(["1"]);
+const value1 = ref(["3"]);
+const value2 = ref(["4"]);
+const value3 = ref(["1"]);
 </script>
 
 <style scoped lang="scss">

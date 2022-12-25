@@ -1,12 +1,12 @@
 <template>
   <div class="center">
     <vs-radio v-model="picked" val="1"> Primary </vs-radio>
-    <vs-radio success v-model="picked" val="2"> Success </vs-radio>
-    <vs-radio danger v-model="picked" val="3"> Danger </vs-radio>
-    <vs-radio warn v-model="picked" val="4"> Warning </vs-radio>
-    <vs-radio dark v-model="picked" val="5"> Dark </vs-radio>
-    <vs-radio color="#7d33ff" v-model="picked" val="6"> HEX </vs-radio>
-    <vs-radio color="rgb(59,222,200)" v-model="picked" val="7"> RGB </vs-radio>
+    <vs-radio v-model="picked" val="2" success> Success </vs-radio>
+    <vs-radio v-model="picked" val="3" danger> Danger </vs-radio>
+    <vs-radio v-model="picked" val="4" warn> Warning </vs-radio>
+    <vs-radio v-model="picked" val="5" dark> Dark </vs-radio>
+    <vs-radio v-model="picked" val="6" color="#7d33ff"> HEX </vs-radio>
+    <vs-radio v-model="picked" val="7" color="rgb(59,222,200)"> RGB </vs-radio>
   </div>
 </template>
 

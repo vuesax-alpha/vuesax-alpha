@@ -1,11 +1,10 @@
 <template>
   <div class="center con-selects">
     <vs-select
-      v-for="(color, i) in colors"
-      :key="i"
+      v-model="color.value"
+      v-for="color in colors"
       :color="color.color"
       placeholder="Select"
-      v-model="color.value"
     >
       <vs-option label="Vuesax" value="1"> Vuesax </vs-option>
       <vs-option label="Vue" value="2"> Vue </vs-option>

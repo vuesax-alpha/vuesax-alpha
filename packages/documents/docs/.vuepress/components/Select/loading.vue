@@ -23,10 +23,10 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from "vue";
+import { ref } from "vue";
 
 const value1 = ref("3");
-const value2 = reactive(["4", "1", "3"]);
+const value2 = ref(["4", "1", "3"]);
 </script>
 
 <style scoped lang="scss">

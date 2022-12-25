@@ -51,11 +51,11 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { ref } from "vue";
 
-const value = reactive(["1", "2", "3"]);
-const value2 = reactive(["4"]);
-const value3 = reactive(["1", "4", "5", "6"]);
+const value = ref(["1", "2", "3"]);
+const value2 = ref(["4"]);
+const value3 = ref(["1", "4", "5", "6"]);
 </script>
 
 <style scoped lang="scss">
