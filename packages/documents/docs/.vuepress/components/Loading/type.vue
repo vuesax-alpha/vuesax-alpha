@@ -1,7 +1,7 @@
 <template>
   <div :class="{ hasOpenLoading }" class="center">
     <div
-      v-for="(type, i) in types"
+      v-for="(type) in types"
       :ref="el => $refs.push(el)"
       @click="handleClickLoading(type)"
       class="box-loading"
@@ -10,10 +10,9 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, reactive, ref, onBeforeUpdate } from "vue";
-import { loading } from "vuesax-alpha";
+import { onMounted, reactive, ref, onBeforeUpdate } from "vue"
+import { loading } from "vuesax-alpha"
 
-const hasOpenLoading = ref(false);
 const types = [
   "default",
   "waves",
@@ -25,38 +24,39 @@ const types = [
   "rectangle",
   "circles",
   "square-rotate",
-  "scale",
-];
+  "scale"
+]
 
-let $refs = reactive([]);
+const hasOpenLoading = ref(false)
+let   $refs          = reactive([]) // refs HTMLElement
 
 const handleClickLoading = (type: string) => {
   const loadingInstance = loading({
-    type,
-  });
-  hasOpenLoading.value = true;
+    type
+  })
+  hasOpenLoading.value = true
   setTimeout(() => {
-    loadingInstance.close();
-    hasOpenLoading.value = false;
-  }, 3000);
-};
+    loadingInstance.close()
+    hasOpenLoading.value = false
+  }, 3000)
+}
 const openLoading = (type: string, ref: string) => {
   loading({
     target: ref,
     text: type,
-    type,
-  });
-};
+    type
+  })
+}
 
 onBeforeUpdate(() => {
-  $refs = [];
+  $refs = []
 })
 
 onMounted(() => {
   types.forEach((type, i) => {
-    openLoading(type, $refs[i]);
-  });
-});
+    openLoading(type, $refs[i])
+  })
+})
 </script>
 <style scoped lang="scss">
 @import "../../assets/styles/mixin";
@@ -86,18 +86,16 @@ onMounted(() => {
 		transform: translate(0, -5px);
 		box-shadow: 0px 15px 20px -10px rgba(0,0,0,0.09);
 	}
-	& >  {
-		& >  {
-			& > .vs-loading {
-				padding: 0px;
-				background: transparent !important;
-			}
-		}
-	}
-}
-.box-loading >>>.vs-loading.vs-loading--gradient .vs-loading__load__animation__2,
-.box-loading >>>.vs-loading.vs-loading--square .vs-loading__load__animation__2 {
-	background: -color('theme-layout') !important;
-}
+	>>> .vs-loading {
+    padding: 0px;
+    background: transparent !important;
 
+    &.vs-loading--gradient,
+    &.vs-loading--square {
+      .vs-loading__load__animation__2 {
+        background: -color('theme-layout') !important;
+      }
+    }
+  }
+}
 </style>

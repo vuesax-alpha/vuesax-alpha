@@ -1,25 +1,27 @@
 <template>
-  <div id="target" class="center">
-    <vs-button flat @click="openLoading"
-      >Open Loading <b>Progress</b></vs-button
-    >
+  <div class="center">
+    <vs-button flat @click="openLoading">Open Loading <b>Progress</b></vs-button>
   </div>
 </template>
+
 <script lang="ts" setup>
 import { ref } from "vue";
 import { loading } from "vuesax-alpha";
 
-const progress = ref(0);
+const progress = ref<number | string>(0);
 
 const openLoading = () => {
   const loadingInstance = loading({
     progress: 0,
   });
+
   const interval = setInterval(() => {
     if (progress.value <= 100) {
-      loadingInstance.setProgress(progress.value++);
+      progress.value = Number(progress.value) + 1;
+      loadingInstance.setProgress(progress.value);
     }
   }, 40);
+  
   setTimeout(() => {
     loadingInstance.close();
     clearInterval(interval);

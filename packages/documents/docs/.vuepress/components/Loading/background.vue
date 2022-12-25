@@ -1,5 +1,5 @@
 <template>
-  <div ref="target" id="target" class="center">
+  <div class="center">
     <div :style="`background: ${color};`" class="con-input">
       <input v-model="color" type="color" />
       <i class="bx bxs-color-fill"></i>
@@ -17,7 +17,6 @@ const color = ref("#7a76cb");
 const openLoading = () => {
   const loadingInstance = loading({
     background: color.value,
-    // opacity: 1,
     color: "#fff",
   });
   setTimeout(() => {

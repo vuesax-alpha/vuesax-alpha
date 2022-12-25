@@ -1,5 +1,5 @@
 <template>
-  <div id="target" class="center">
+  <div class="center">
     <vs-button flat @click="openLoading">Open Loading</vs-button>
   </div>
 </template>

@@ -1,12 +1,8 @@
 <template>
-  <div ref="$target" id="target" class="center">
+  <div ref="$target" class="center">
     <div class="con-btns">
-      <vs-button ref="button" flat @click="openLoadingButton"
-        >Open Loading <b>Button</b></vs-button
-      >
-      <vs-button border @click="openLoading"
-        >Open Loading <b>Target</b></vs-button
-      >
+      <vs-button ref="$button" flat @click="openLoadingButton">Open Loading <b>Button</b></vs-button>
+      <vs-button border @click="openLoading">Open Loading <b>Target</b></vs-button>
     </div>
 
     <div ref="$content" class="content-div">
@@ -27,18 +23,21 @@ const openLoading = () => {
   const loadingInstance = loading({
     target: $content.value,
   });
+
   setTimeout(() => {
     loadingInstance.close();
   }, 3000);
 };
+
 const openLoadingButton = () => {
   const loadingInstance = loading({
     target: $button.value,
     scale: "0.6",
-    background: "primary",
+    background: 'danger',
     opacity: 1,
     color: "#fff",
   });
+
   setTimeout(() => {
     loadingInstance.close();
   }, 3000);
@@ -50,12 +49,15 @@ const openLoadingButton = () => {
   display: flex;
   align-items: center;
   justify-content: center;
+
   b {
     margin-left: 5px;
   }
 }
+
 .center {
   flex-direction: column;
+
   .content-div {
     width: 200px;
     height: 200px;

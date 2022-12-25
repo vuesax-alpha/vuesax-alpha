@@ -6,8 +6,8 @@
     </div>
     <div ref="$loadings" class="con-loadings">
       <div
-        v-for="(type, i) in types"
-        :ref="el => $refs.push(el)"
+        v-for="type in types"
+        :ref="(el) => $refs.push(el)"
         @click="handleClickLoading(type)"
         class="box-loading"
       ></div>
@@ -18,11 +18,6 @@
 <script lang="ts" setup>
 import { onMounted, reactive, onBeforeUpdate, ref, watch } from "vue";
 import { loading } from "vuesax-alpha";
-
-const color = ref("#d5397b");
-const hasOpenLoading = ref(false);
-
-const $loadings = ref<HTMLElement>()!;
 
 const types = [
   "default",
@@ -38,7 +33,11 @@ const types = [
   "scale",
 ];
 
-let $refs = reactive([]);
+const color = ref("#d5397b");
+const hasOpenLoading = ref(false);
+
+const $loadings = ref<HTMLElement>()!;
+let $refs = reactive([]); // refs HTMLElement
 
 const handleClickLoading = (type) => {
   const loadingInstance = loading({
@@ -72,7 +71,7 @@ watch(color, () => {
 
 onBeforeUpdate(() => {
   $refs = [];
-})
+});
 
 onMounted(() => {
   types.forEach((type, i) => {
@@ -83,6 +82,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 @import "../../assets/styles/mixin";
+
 .con-input {
   border-radius: 10px;
   border: 4px solid -color("theme-layout");
@@ -140,21 +140,16 @@ onMounted(() => {
     transform: translate(0, -5px);
     box-shadow: 0px 15px 20px -10px rgba(0, 0, 0, 0.09);
   }
-  & > {
-    & > {
-      & > .vs-loading {
-        padding: 0px;
-        background: transparent !important;
+  >>> .vs-loading {
+    padding: 0px;
+    background: transparent !important;
+
+    &.vs-loading--gradient,
+    &.vs-loading--square {
+      .vs-loading__load__animation__2 {
+        background: -color("theme-layout") !important;
       }
     }
   }
-}
-.box-loading
-  >>> .vs-loading.vs-loading--gradient
-  .vs-loading__load__animation__2,
-.box-loading
-  >>> .vs-loading.vs-loading--square
-  .vs-loading__load__animation__2 {
-  background: -color("theme-layout") !important;
 }
 </style>
