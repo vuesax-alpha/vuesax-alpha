@@ -1,43 +1,30 @@
 <template>
   <div class="center con-avatars">
     <vs-avatar>
-      <template #text>
-        L
-      </template>
+      <template #text> L </template>
     </vs-avatar>
     <vs-avatar>
-      <template #text>
-        Joel
-      </template>
+      <template #text> Joel </template>
     </vs-avatar>
     <vs-avatar>
-      <template #text>
-        Fanny
-      </template>
+      <template #text> Fanny </template>
     </vs-avatar>
     <vs-avatar>
-      <template #text>
-        Sally Willis
-      </template>
+      <template #text> Sally Willis </template>
     </vs-avatar>
     <vs-avatar>
-      <template #text>
-        Dakota Roche Brown
-      </template>
+      <template #text> Dakota Roche Brown </template>
     </vs-avatar>
     <vs-avatar>
-      <template #text>
-        Garret Reynolds Enarson Hoffman
-      </template>
+      <template #text> Garret Reynolds Enarson Hoffman </template>
     </vs-avatar>
   </div>
 </template>
 
 <style scoped lang="scss">
-  .con-avatars {
-	.vs-avatar-content {
-		margin: 10px;
-	}
+.con-avatars {
+  .vs-avatar-content {
+    margin: 10px;
+  }
 }
-
 </style>
