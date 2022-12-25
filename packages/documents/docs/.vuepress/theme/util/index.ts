@@ -23,7 +23,7 @@ export const endingSlashRE = /\/$/;
 export const outboundRE = /^(https?:|mailto:|tel:)/;
 
 export function normalize(path: string) {
-  return decodeURI(path).replace(hashRE, "").replace(extRE, "").toLocaleLowerCase();
+  return decodeURI(path).replace(hashRE, "").replace(extRE, "");
 }
 
 export function getHash(path: string) {
@@ -65,8 +65,8 @@ export function isActive(route: RouteLocationNormalizedLoaded, path: string) {
   if (linkHash && routeHash !== linkHash) {
     return false;
   }
-  const routePath = ensureEndingSlash(ensureEndingSlash(normalize(route.path)));
-  const pagePath = ensureEndingSlash(ensureEndingSlash(normalize(path)));
+  const routePath = ensureEndingSlash(ensureEndingSlash(normalize(route.path))).toLowerCase();
+  const pagePath = ensureEndingSlash(ensureEndingSlash(normalize(path))).toLowerCase();
 
   return routePath === pagePath;
 }
@@ -147,7 +147,7 @@ function resolveHeaders(
       children: headers.map(
         (h: MarkdownItHeader): SidebarItem | SidebarGroup => ({
           text: h.title,
-          link: page.path + "#" + h.slug,
+          link: "#" + h.slug,
           children: resolveHeaders(h.children, page),
         })
       ),
@@ -169,9 +169,6 @@ export function groupHeaders(
       (lastH2.children || (lastH2.children = [])).push(h);
     }
   });
-  console.log({
-    headers
-  })
   return headers.filter((h) => h.level === 2);
 }
 
@@ -208,3 +205,4 @@ export function resolveMatchingConfig(
   }
   return {};
 }
+
