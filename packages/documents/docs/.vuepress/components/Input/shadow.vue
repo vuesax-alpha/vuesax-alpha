@@ -40,7 +40,7 @@ const value3 = ref("");
   display: flex;
   align-items: center;
   justify-content: center;
-  >>> .vs-input-parent {
+  > .vs-input-parent {
     margin: 10px;
   }
 }

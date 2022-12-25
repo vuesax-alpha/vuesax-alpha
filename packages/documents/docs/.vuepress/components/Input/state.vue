@@ -11,7 +11,7 @@
     <vs-input
       state="danger"
       icon-after
-      v-model="value2"
+      v-model="value3"
       placeholder="Danger icon after"
     >
       <template #icon>
@@ -47,7 +47,7 @@ const value7 = ref("");
   display: flex;
   align-items: center;
   justify-content: center;
-  >>> .vs-input-parent {
+  > .vs-input-parent {
     margin: 10px;
   }
 }

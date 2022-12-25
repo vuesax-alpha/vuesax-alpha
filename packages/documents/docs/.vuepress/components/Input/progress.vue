@@ -5,7 +5,7 @@
       v-model="value"
       label-placeholder="Password"
       :progress="getProgress"
-      :visiblePassword="hasVisiblePassword"
+      :show-password="hasVisiblePassword"
       icon-after
       @click-icon="hasVisiblePassword = !hasVisiblePassword"
     >
@@ -22,8 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from "@vue/reactivity";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 const value = ref("");
 const hasVisiblePassword = ref(false);

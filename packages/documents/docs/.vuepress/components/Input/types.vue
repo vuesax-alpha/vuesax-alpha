@@ -1,6 +1,9 @@
 <template>
   <div class="center content-inputs">
-    <vs-input type="text" v-model="value1" label="Text" />
+    <vs-input 
+      type="text" 
+      v-model="value1" 
+      label="Text" />
     <vs-input type="password" v-model="value2" label="Password" />
     <vs-input type="search" v-model="value3" label="Search" />
     <vs-input type="number" v-model="value4" label="Number" />
@@ -26,7 +29,7 @@ const value7 = ref("");
   display: flex;
   align-items: center;
   justify-content: center;
-  >>> .vs-input-parent {
+  > .vs-input-parent {
     margin: 10px;
   }
 }
