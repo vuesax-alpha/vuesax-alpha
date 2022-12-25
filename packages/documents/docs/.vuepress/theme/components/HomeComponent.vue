@@ -284,7 +284,7 @@ const handleBurDrop = () => {
   }, 100);
 };
 </script>
-<style scoped lang="scss">
+<style  lang="scss">
 @import "../styles/use";
 
 @keyframes waveslogo {
@@ -350,6 +350,15 @@ const handleBurDrop = () => {
       button {
         background: -color("primary");
         color: #fff !important;
+      }
+      input {
+        width: 100%;
+        padding: 12px 14px;
+        border: 0;
+        background: -color(theme-bg);
+        border-radius: 10px;
+        font-size: .7rem;
+        transition: all .25s ease;
       }
     }
   }
@@ -588,7 +597,7 @@ const handleBurDrop = () => {
       transition: all 0.25s ease;
       animation: componentAnimate 20s infinite ease alternate;
       input {
-        background: -color("theme-layout");
+        background: -color("theme-bg2");
         padding: 10px 15px;
         box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.04);
         width: 275px;
