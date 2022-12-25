@@ -14,10 +14,10 @@
     </div>
 
     <div class="copy">
-      <span class="span-copy"> Copyright © 2022 Vuesax-alpha </span>
+      <span class="span-copy"> Copyright © 2020 Vuesax </span>
       <span class="span-lusaxweb">
         <span> Created By </span>
-        <a @click.prevent target="_blank" href="javascript:void(0)">Tranthinh-coding</a>
+        <a target="_blank" href="lusaxweb.net">Lusaxweb</a>
       </span>
     </div>
   </footer>
