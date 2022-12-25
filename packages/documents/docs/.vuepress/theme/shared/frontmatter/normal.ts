@@ -1,7 +1,13 @@
 import { PageFrontmatter } from "vuepress-vite";
 
+export type ApiState = {
+  text: string;
+  type?: string;
+}
+
 export interface ThemeNormalPropsFrontmatter {
   name: string;
+  state: ApiState;
   type: string;
   values: any;
   description: string;
