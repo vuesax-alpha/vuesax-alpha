@@ -129,7 +129,7 @@
       <Content class="content__default" />
     </transition>
 
-    <api />
+    <Api />
 
     <footer class="page-edit">
       <div class="last-updated" v-if="themeData.lastUpdated">
@@ -175,29 +175,35 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch, toRef } from "vue";
 import { computed } from "@vue/reactivity";
 import { usePageData, usePageFrontmatter } from "@vuepress/client";
 // @ts-ignore
 import { useThemeData } from "@vuepress/plugin-theme-data/client";
 import { SidebarConfigArray } from "vuepress-vite";
+import { GitPluginPageData } from "@vuepress/plugin-git";
+import { ensureEndingSlash, ensureLeadingSlash } from "@vuepress/shared";
+import { useRoute } from "vue-router";
+import { useDateFormat } from "@vueuse/core"
+import { upperFirst } from "lodash"
 
 import { normalize, outboundRE, endingSlashRE } from "../util";
 import {
   ThemeNormalApiFrontmatter,
   ThemePageFrontmatter,
 } from "../shared/frontmatter/normal";
-import type { GitPluginPageData } from "@vuepress/plugin-git";
 
 import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
 
 import Sidebar2 from "./Sidebar2.vue";
-import api from "./Api.vue";
+import Api from "./Api.vue";
 import Footer from "./Footer.vue";
 
 const pageData = usePageData<ThemeNormalApiFrontmatter & GitPluginPageData>();
 const themeData = useThemeData<VuesaxAlphaThemeOptions>();
 const pageFrontmatter = usePageFrontmatter<ThemePageFrontmatter>();
+
+const route = useRoute();
 
 const props = defineProps<{
   sidebarItems: SidebarConfigArray;
@@ -210,37 +216,107 @@ const $title = ref<HTMLElement>()!;
 const $titleul = ref<HTMLElement>()!;
 const $up = ref<HTMLElement>()!;
 
+const handleUp = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+const createEditLink = ({
+  repo,
+  docsRepo,
+  docsDir,
+  docsBranch,
+  path,
+}: {
+  repo: string;
+  docsRepo: string;
+  docsDir: string;
+  docsBranch: string;
+  path: string;
+}) => {
+  const bitbucket = /bitbucket.org/;
+  if (bitbucket.test(repo)) {
+    const base = outboundRE.test(docsRepo) ? docsRepo : repo;
+    return (
+      base.replace(endingSlashRE, "") +
+      `/src` +
+      `/${docsBranch}` +
+      (docsDir ? "/" + docsDir.replace(endingSlashRE, "") : "") +
+      path +
+      `?mode=edit&spa=0&at=${docsBranch}&fileviewer=file-view-default`
+    );
+  }
+
+  const base = outboundRE.test(docsRepo)
+    ? docsRepo
+    : `https://github.com/${docsRepo}`;
+
+  return (
+    base.replace(endingSlashRE, "") +
+    `/edit/${docsBranch}` +
+    (docsDir ? "/" + docsDir.replace(endingSlashRE, "") : "") + '/docs' +
+    path
+  );
+};
+
+const resolvePage = (sidebar: SidebarConfigArray, offset: number) => {
+  const sidebarFlatten = flattenSidebar(sidebar);
+
+  const currentPath = ensureEndingSlash(ensureLeadingSlash(normalize(pageData.value.path))).toLocaleLowerCase();
+
+  const indexCurrentSidebar = sidebarFlatten.findIndex(
+    ({ link }) => currentPath === ensureEndingSlash(ensureLeadingSlash(normalize(link))).toLocaleLowerCase()
+  );
+
+  if (indexCurrentSidebar !== -1)
+    return sidebarFlatten[indexCurrentSidebar + offset];
+  return null;
+};
+
+const flattenSidebar = (
+  list: SidebarConfigArray
+): { title: string; link: string }[] => {
+  const res: { title: string; link: string }[] = [];
+  list.forEach((item) => {
+    if (typeof item === "string") {
+      res.push({ title: item, link: item });
+      return;
+    }
+    if (item.link) {
+      res.push({ title: item.text, link: item.link });
+    }
+    if ("children" in item) {
+      res.push(...flattenSidebar(item.children));
+    }
+  });
+  return res;
+};
+
 const lastUpdatedText = computed(() => {
   return themeData.value.lastUpdatedText || "Last Updated";
 });
 
-const lastUpdatedTime = computed(() => {
-  if (pageData.value.git.updatedTime) {
-    const date = new Date(pageData.value.git.updatedTime);
-    console.log(date);
-    return date.toLocaleString("en-US");
-  }
-  return "";
-});
+const lastUpdatedTime = useDateFormat(
+  computed(() => pageData.value.git.updatedTime), 
+  'YYYY-MM-DD, HH:mm:ss',
+);
 
 const prev = computed(() => {
-  const prev = pageFrontmatter.value.prev;
-  if (!prev || !props.sidebarItems) {
-    return null;
-  }
+  const frontmatterPrev = pageFrontmatter.value.prev;
+
+  if (frontmatterPrev === false || !props.sidebarItems) return null;
+
   return resolvePage(props.sidebarItems, -1);
 });
 
 const next = computed(() => {
-  const next = pageFrontmatter.value.next;
+  const frontmatterNext = pageFrontmatter.value.next;
   const obj = {
     link: "/docs/guide/",
     title: "introduction",
   };
-  if (!next || !props.sidebarItems) {
-    return obj;
-  }
-  return resolvePage(props.sidebarItems, 1) || obj;
+  if (frontmatterNext === false || !props.sidebarItems) return obj;
+
+  return resolvePage(props.sidebarItems, 1);
 });
 
 const editLink = computed(() => {
@@ -253,6 +329,8 @@ const editLink = computed(() => {
   } = themeData.value;
 
   let path = normalize(pageData.value.path);
+  path = upperFirst(path);
+  
   if (endingSlashRE.test(path)) {
     path += "README.md";
   } else {
@@ -319,83 +397,10 @@ onMounted(() => {
     }
   });
 });
-
-const handleUp = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-};
-
-const createEditLink = ({
-  repo,
-  docsRepo,
-  docsDir,
-  docsBranch,
-  path,
-}: {
-  repo: string;
-  docsRepo: string;
-  docsDir: string;
-  docsBranch: string;
-  path: string;
-}) => {
-  const bitbucket = /bitbucket.org/;
-  if (bitbucket.test(repo)) {
-    const base = outboundRE.test(docsRepo) ? docsRepo : repo;
-    return (
-      base.replace(endingSlashRE, "") +
-      `/src` +
-      `/${docsBranch}` +
-      (docsDir ? "/" + docsDir.replace(endingSlashRE, "") : "") +
-      path +
-      `?mode=edit&spa=0&at=${docsBranch}&fileviewer=file-view-default`
-    );
-  }
-
-  const base = outboundRE.test(docsRepo)
-    ? docsRepo
-    : `https://github.com/${docsRepo}`;
-
-  return (
-    base.replace(endingSlashRE, "") +
-    `/edit/${docsBranch}` +
-    (docsDir ? "/" + docsDir.replace(endingSlashRE, "") : "") +
-    path
-  );
-};
-
-const resolvePage = (sidebar: SidebarConfigArray, offset: number) => {
-  const sidebarFlatten = flattenSidebar(sidebar);
-
-  const indexCurrentSidebar = sidebarFlatten.findIndex(
-    ({ link }) => pageData.value.path === link
-  );
-  if (indexCurrentSidebar !== -1)
-    return sidebarFlatten[indexCurrentSidebar + offset];
-  return null;
-};
-
-const flattenSidebar = (
-  list: SidebarConfigArray
-): { title: string; link: string }[] => {
-  const res: { title: string; link: string }[] = [];
-  list.forEach((item) => {
-    if (typeof item === "string") {
-      res.push({ title: item, link: item });
-      return;
-    }
-    if (item.link) {
-      res.push({ title: item.text, link: item.link });
-    }
-    if ("children" in item) {
-      res.push(...flattenSidebar(item.children));
-    }
-  });
-  return res;
-};
 </script>
 
 <style lang="scss">
 @import "../styles/_use.scss";
-@import "../styles/_mixin.scss";
 
 .back-link {
   position: absolute;
