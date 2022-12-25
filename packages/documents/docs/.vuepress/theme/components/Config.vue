@@ -136,7 +136,7 @@
 </template>
 
 <script setup lang="ts">
-import { usePageData, usePageLang, useSiteData } from "@vuepress/client";
+import { usePageData, usePageLang, useRouteLocale, useSiteData } from "@vuepress/client";
 // @ts-ignore
 import { useThemeData } from "@vuepress/plugin-theme-data/client";
 import { computed, inject, onMounted, ref } from "vue";
@@ -149,7 +149,7 @@ const themeData = useThemeData();
 const pageData = usePageData();
 const siteData = useSiteData();
 const pageLang = usePageLang();
-
+const siteLocale= useRouteLocale();
 const $vsTheme = inject<vsThemeContext>(vsThemeKey, {} as vsThemeContext)!;
 const $el = ref<HTMLElement>();
 
@@ -161,11 +161,11 @@ const lang = computed(() => {
 
     const languageDropdown = {
       text:
-        (themeData.value.locales![pageLang.value] as any).selectLanguageText ||
+        (themeData.value.locales?.[siteLocale.value] as any)?.selectLanguageText || // undefined
         "Languages",
       items: Object.keys(locales).map((path) => {
         const locale = locales[path];
-        const text = locale.title;
+        const text = (themeData.value.locales?.[path] as any)?.selectLanguageName;
         let link: string;
         // Stay on the current page
         if (locale.lang === pageLang.value) {
@@ -181,6 +181,7 @@ const lang = computed(() => {
         return { text, link };
       }),
     };
+    console.log(languageDropdown)
     return [languageDropdown];
   }
   return [];
@@ -349,14 +350,6 @@ onMounted(() => {
 <style lang="scss">
 @import "../styles/use";
 
-[vs-theme="dark"] {
-  --vsd-theme-bg: 24, 25, 28;
-  --vsd-theme-color: 255, 255, 255;
-  --vsd-theme-layout: 30, 32, 35;
-  --vsd-theme-bg2: 20, 20, 23;
-  --vsd-theme-code: 20, 20, 23;
-  --vsd-theme-code2: 22, 22, 25;
-}
 .switch-dark {
   position: relative;
   width: auto !important;
