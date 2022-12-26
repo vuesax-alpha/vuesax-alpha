@@ -7,7 +7,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-const page = ref(1);
+const page = ref(2);
 </script>
 
 <style lang="scss">

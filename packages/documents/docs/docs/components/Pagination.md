@@ -6,135 +6,135 @@ PROPS:
     description: Determine the page where the user is.
     default: 1
     link: null
-    usage: '#default'
+    usage: "#default"
     code: >
-            <vs-pagination v-model="page" :length="20" />
+      <vs-pagination v-model="page" :length="20" />
   - name: length
     type: Number
     values: Number
     description: It is the total number of pages that the component has.
     default: null
     link: null
-    usage: '#default'
+    usage: "#default"
     code: >
-            <vs-pagination v-model="page" :length="20" />
+      <vs-pagination v-model="page" :length="20" />
   - name: color
     type: Vuesax colors, RGB, HEX
     values: String
     description: Change the base color of the component.
     default: primary
     link: null
-    usage: '#color'
+    usage: "#color"
     code: >
-            <vs-pagination color="danger" v-model="page" :length="20" />
+      <vs-pagination color="danger" v-model="page" :length="20" />
   - name: disabled
     type: Boolean
     values: true, false
     description: Determine if the entire component is in the disabled state.
     default: false
     link: null
-    usage: '#disabled'
+    usage: "#disabled"
     code: >
-            <vs-pagination disabled v-model="page" :length="20" />
+      <vs-pagination disabled v-model="page" :length="20" />
   - name: not-arrows
     type: Boolean
     values: true, false
     description: Remove the arrows (next and back) of the component.
     default: false
     link: null
-    usage: '#not-arrows'
+    usage: "#not-arrows"
     code: >
-            <vs-pagination not-arrows v-model="page" :length="20" />
+      <vs-pagination not-arrows v-model="page" :length="20" />
   - name: only-arrows
     type: Boolean
     values: true, false
     description: Remove the items leaving only the arrows (next and back).
     default: false
-    link: null
-    usage: '#only-arrows'
+    link: nullv
+    usage: "#only-arrows"
     code: >
-            <vs-pagination only-arrows v-model="page" :length="20" />
+      <vs-pagination only-arrows v-model="page" :length="20" />
   - name: circle
     type: Boolean
     values: true, false
     description: Change the style of the buttons making them completely round.
     default: false
     link: null
-    usage: '#circle'
+    usage: "#circle"
     code: >
-            <vs-pagination circle v-model="page" :length="20" />
+      <vs-pagination circle v-model="page" :length="20" />
   - name: square
     type: Boolean
     values: true, false
     description: Change the style of the buttons making them totally square.
     default: false
     link: null
-    usage: '#square'
+    usage: "#square"
     code: >
-            <vs-pagination square v-model="page" :length="20" />
+      <vs-pagination square v-model="page" :length="20" />
   - name: buttons-dotted
     type: Boolean
     values: true, false
     description: Makes the buttons not have the internal number and changes its size.
     default: false
     link: null
-    usage: '#buttons-dotted'
+    usage: "#buttons-dotted"
     code: >
-            <vs-pagination buttons-dotted v-model="page" :length="20" />
+      <vs-pagination buttons-dotted v-model="page" :length="20" />
   - name: disabled-items
     type: Boolean
     values: true, false
     description: Determine which items are in the disabled state.
     default: false
     link: null
-    usage: '#disabled-items'
+    usage: "#disabled-items"
     code: >
-            <vs-pagination :disabled-items="[3,4,9,10,11,12,19]" v-model="page" :length="20" />
+      <vs-pagination :disabled-items="[3,4,9,10,11,12,19]" v-model="page" :length="20" />
   - name: loading-items
     type: Boolean
     values: true, false
     description: Determine which items are in the charging state.
     default: false
     link: null
-    usage: '#loading-items'
+    usage: "#loading-items"
     code: >
-            <vs-pagination :loading-items="[3,4,9,10,11,12,19]" v-model="page" :length="20" />
+      <vs-pagination :loading-items="[3,4,9,10,11,12,19]" v-model="page" :length="20" />
   - name: not-margin
     type: Boolean
     values: true, false
     description: Change the margin between the items causing them to be fully glued and the radius is removed making them square.
     default: false
     link: null
-    usage: '#not-margin'
+    usage: "#not-margin"
     code: >
-            <vs-pagination not-margin v-model="page" :length="20" />
+      <vs-pagination not-margin v-model="page" :length="20" />
   - name: progress
     type: Boolean
     values: true, false
     description: Add a progress bar to the component determined by the current page and the total (length) of pages.
     default: false
     link: null
-    usage: '#progress'
+    usage: "#progress"
     code: >
-            <vs-pagination progress v-model="page" :length="20" />
+      <vs-pagination progress v-model="page" :length="20" />
   - name: dotted-number
     type: Number
     values: Number
     description: Change the total pages to be added or subtracted by clicking on the points.
     default: false
     link: null
-    usage: '#dotted-number'
+    usage: "#dotted-number"
     code: >
-            <vs-pagination :dotted-number="10" v-model="page" :length="100" />
+      <vs-pagination :dotted-number="10" v-model="page" :length="100" />
   - name: infinite
     type: Boolean
     values: true,false
     description: Determine if the pagination is infinite.
     default: false
     link: null
-    usage: '#infinite'
+    usage: "#infinite"
     code: >
-            <vs-pagination infinite v-model="page" :length="100" />
+      <vs-pagination infinite v-model="page" :length="100" />
 
 SLOTS:
   - name: default
@@ -143,33 +143,20 @@ SLOTS:
     description: Space between the two arrows (next and back).
     default: null
     link: null
-    usage: '#slot'
+    usage: "#slot"
     code: >
-            <vs-pagination v-model="page" :length="20">
-              <vs-select v-model="page">
-                <vs-option
-                  v-for="numberPage in 20"
-                  :label="numberPage"
-                  :value="numberPage">
-                  {{ numberPage }}
-                </vs-option>
-              </vs-select>
-            </vs-pagination>
+      <vs-pagination v-model="page" :length="20">
+        <vs-select v-model="page">
+          <vs-option
+            v-for="numberPage in 20"
+            :label="numberPage"
+            :value="numberPage"
+          >
+            {{ numberPage }}
+          </vs-option>
+        </vs-select>
+      </vs-pagination>
 
-NEWS:
-  - disabled
-  - not-arrows
-  - only-arrows
-  - circle
-  - square
-  - buttons-dotted
-  - disabled-items
-  - loading-items
-  - not-margin
-  - slot
-  - progress
-  - dotted-number
-  - infinite
 ---
 
 # Pagination
@@ -182,35 +169,21 @@ NEWS:
 
 Easily add a pagination with the `vs-pagination` component, the required properties are `length` and `v-model`
 
-<div slot="example">
+<template #example>
   <pagination-default />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center">
-        <vs-pagination v-model="page" :length="20" />
-      </div>
-    </template>
-  ```
+@[code{1-5} html{3}](../../.vuepress/components/pagination/default.vue)
 
-</div>
+</template>
 
-<div slot="script">
+<template #script>
 
-  ```html{4}
-    <script>
-    export default {
-      data:() => ({
-        page: 1
-      })
-    }
-    </script>
-  ```
+@[code{7-11}](../../.vuepress/components/pagination/default.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -218,76 +191,29 @@ Easily add a pagination with the `vs-pagination` component, the required propert
 
 ## Color
 
-<Color />
+<coloren />
 
-<div slot="example">
+<template #example>
   <pagination-color />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{4}
-    <template>
-      <div class="center con-pagination">
-        <div class="con-radio">
-          <vs-radio success v-model="color" val="success">
-            Success
-          </vs-radio>
-          <vs-radio danger v-model="color" val="danger">
-            Danger
-          </vs-radio>
-          <vs-radio warn v-model="color" val="warn">
-            Warning
-          </vs-radio>
-          <vs-radio dark v-model="color" val="dark">
-            Dark
-          </vs-radio>
-          <vs-radio color="#7d33ff" v-model="color" val="#7d33ff">
-            HEX
-          </vs-radio>
-          <vs-radio color="rgb(59,222,200)" v-model="color" val="rgb(59,222,200)">
-            RGB
-          </vs-radio>
-        </div>
-        <vs-pagination :color="color" v-model="page" :length="20" />
-      </div>
-    </template>
-  ```
+@[code{1-15} html{4}](../../.vuepress/components/pagination/color.vue)
 
-</div>
+</template>
 
-<div slot="script">
+<template #script>
 
-  ```html{4,5}
-    <script>
-    export default {
-      data:() => ({
-        page: 1,
-        color: 'success'
-      }),
-    }
-    </script>
-  ```
+@[code{17-22}](../../.vuepress/components/pagination/color.vue)
 
-</div>
+</template>
 
-<div slot="style">
+<template #style>
 
-  ```stylus
-    <style lang="stylus">
-    .con-pagination
-      .con-radio
-        display flex
-        align-items center
-        justify-content flex-start
-        .vs-radio-content
-          margin 10px
-      .vs-pagination-content
-        margin 10px 0px
-    </style>
-  ```
+@[code{24-39}](../../.vuepress/components/pagination/color.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -297,35 +223,21 @@ Easily add a pagination with the `vs-pagination` component, the required propert
 
 Change the disabled state of the component with the `disabled` property, this property is a boolean and you can add it without value
 
-<div slot="example">
+<template #example>
   <pagination-disabled />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center con-pagination">
-        <vs-pagination disabled v-model="page" :length="20" />
-      </div>
-    </template>
-  ```
+@[code{1-5} vue{3}](../../.vuepress/components/pagination/disabled.vue)
 
-</div>
+</template>
 
-<div slot="script">
+<template #script>
 
-  ```html{4}
-    <script>
-    export default {
-      data:() => ({
-        page: 1,
-      }),
-    }
-    </script>
-  ```
+@[code{7-11}](../../.vuepress/components/pagination/disabled.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -335,35 +247,21 @@ Change the disabled state of the component with the `disabled` property, this pr
 
 You can remove the back and next arrows with the `not-arrows` property
 
-<div slot="example">
+<template #example>
   <pagination-not-arrows />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center con-pagination">
-        <vs-pagination not-arrows v-model="page" :length="20" />
-      </div>
-    </template>
-  ```
+@[code{1-5} vue{3}](../../.vuepress/components/pagination/not-arrows.vue)
 
-</div>
+</template>
 
-<div slot="script">
+<template #script>
 
-  ```html{4}
-    <script>
-    export default {
-      data:() => ({
-        page: 1,
-      })
-    }
-    </script>
-  ```
+@[code{7-11}](../../.vuepress/components/pagination/not-arrow.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -373,38 +271,21 @@ You can remove the back and next arrows with the `not-arrows` property
 
 You may need in small spaces to remove the buttons and leave only the arrows for it we have the property `only-arrows`
 
-<div slot="example">
+<template #example>
   <pagination-only-arrow />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3,5}
-    <template>
-      <div class="center con-pagination">
-        <vs-pagination only-arrows v-model="page" :length="10" />
-        <code>
-          Page: <b>{{ page }}</b>
-        </code>
-      </div>
-    </template>
-  ```
+@[code{1-8} vue{3}](../../.vuepress/components/pagination/only-arrow.vue)
 
-</div>
+</template>
 
-<div slot="script">
+<template #script>
 
-  ```html{3,4,5}
-    <script>
-    export default {
-      data:() => ({
-        page: 1,
-      }),
-    }
-    </script>
-  ```
+@[code{10-14}](../../.vuepress/components/pagination/only-arrow.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -414,35 +295,21 @@ You may need in small spaces to remove the buttons and leave only the arrows for
 
 Change the radius of all the elements that make up the component by making them circular with the `circle` property, this property is a boolean so it does not need value
 
-<div slot="example">
+<template #example>
   <pagination-circle />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center con-pagination">
-        <vs-pagination circle v-model="page" :length="20" />
-      </div>
-    </template>
-  ```
+@[code{1-5} vue{3}](../../.vuepress/components/pagination/circle.vue)
 
-</div>
+</template>
 
-<div slot="script">
+<template #script>
 
-  ```html{4}
-    <script>
-    export default {
-      data:() => ({
-        page: 1,
-      }),
-    }
-    </script>
-  ```
+@[code{7-11}](../../.vuepress/components/pagination/circle.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -452,35 +319,21 @@ Change the radius of all the elements that make up the component by making them 
 
 Change the radius of all the elements that make up the component making them square with the `square` property, this property is a boolean so it does not need value
 
-<div slot="example">
+<template #example>
   <pagination-square />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center con-pagination">
-        <vs-pagination square v-model="page" :length="20" />
-      </div>
-    </template>
-  ```
+@[code{1-5} vue{3}](../../.vuepress/components/pagination/square.vue)
 
-</div>
+</template>
 
-<div slot="script">
+<template #script>
 
-  ```html{4}
-    <script>
-    export default {
-      data:() => ({
-        page: 1,
-      }),
-    }
-    </script>
-  ```
+@[code{7-11}](../../.vuepress/components/pagination/square.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -490,35 +343,21 @@ Change the radius of all the elements that make up the component making them squ
 
 Cambia por completo el estilo de el componente y elimina los números internos en cada botón con la propiedad `buttons-dotted`
 
-<div slot="example">
+<template #example>
   <pagination-buttons-dotted />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center con-pagination">
-        <vs-pagination buttons-dotted v-model="page" :length="6" />
-      </div>
-    </template>
-  ```
+@[code{1-8} vue{3}](../../.vuepress/components/pagination/buttons-dotted.vue)
 
-</div>
+</template>
 
-<div slot="script">
+<template #script>
 
-  ```html{3,4,5}
-    <script>
-    export default {
-      data:() => ({
-        page: 1,
-      }),
-    }
-    </script>
-  ```
+@[code{11-14}](../../.vuepress/components/pagination/buttons-dotted.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -528,39 +367,25 @@ Cambia por completo el estilo de el componente y elimina los números internos e
 
 You can put disabled buttons specific to the pagination component with the `disabled-items` property, this property is an array with the number of the button you want to put in disabled status
 
-:::tip
+::: tip
 The buttons that are in disabled will skip when changing the value for example on the next or back buttons
 :::
 
-<div slot="example">
+<template #example>
   <pagination-disabledItems />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center con-pagination">
-        <vs-pagination :disabled-items="[3,4,9,10,11,12,19]" v-model="page" :length="20" />
-      </div>
-    </template>
-  ```
+@[code{1-5} vue{3}](../../.vuepress/components/pagination/disabledItems.vue)
 
-</div>
+</template>
 
-<div slot="script">
+<template #script>
 
-  ```html{4}
-    <script>
-    export default {
-      data:() => ({
-        page: 1,
-      }),
-    }
-    </script>
-  ```
+@[code{7-11}](../../.vuepress/components/pagination/disabledItems.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -570,39 +395,25 @@ The buttons that are in disabled will skip when changing the value for example o
 
 You can make a button inside the pagination be in the state of loading with the `loading-items` property, this property is an array with the number of the button that you want to put in the disabled state
 
-:::tip
+::: tip
 The buttons that are in loading will skip when changing the value for example in the next or back buttons
 :::
 
-<div slot="example">
+<template #example>
   <pagination-loadingItems />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center con-pagination">
-        <vs-pagination :loading-items="[3,4,9,10,11,12,19]" v-model="page" :length="20" />
-      </div>
-    </template>
-  ```
+@[code{1-5} vue{3}](../../.vuepress/components/pagination/loadingItems.vue)
 
-</div>
+</template>
 
-<div slot="script">
+<template #script>
 
-  ```html{4}
-    <script>
-    export default {
-      data:() => ({
-        page: 1,
-      }),
-    }
-    </script>
-  ```
+@[code{7-11}](../../.vuepress/components/pagination/loadingItems.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -612,35 +423,21 @@ The buttons that are in loading will skip when changing the value for example in
 
 Change the style of the entire component by removing the margin between the buttons and changing the radius with the `not-margin` property
 
-<div slot="example">
+<template #example>
   <pagination-not-margin />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center con-pagination">
-        <vs-pagination not-margin v-model="page" :length="20" />
-      </div>
-    </template>
-  ```
+@[code{1-5} vue{3}](../../.vuepress/components/pagination/not-margin.vue)
 
-</div>
+</template>
 
-<div slot="script">
+<template #script>
 
-  ```html{4}
-    <script>
-    export default {
-      data:() => ({
-        page: 1,
-      }),
-    }
-    </script>
-  ```
+@[code{7-11}](../../.vuepress/components/pagination/not-margin.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -650,59 +447,27 @@ Change the style of the entire component by removing the margin between the butt
 
 You may need to customize your pagination and for this you can use the `default` slot between the arrows and replace the items on the pages
 
-<div slot="example">
+<template #example>
   <pagination-slot />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center con-pagination">
-        <vs-pagination v-model="page" :length="20">
-          <vs-select v-model="page">
-            <vs-option
-              v-for="numberPage in 20"
-              :label="numberPage"
-              :value="numberPage">
-              {{ numberPage }}
-            </vs-option>
-          </vs-select>
-        </vs-pagination>
-      </div>
-    </template>
-  ```
+@[code{1-15} vue{3}](../../.vuepress/components/pagination/slot.vue)
 
-</div>
+</template>
 
-<div slot="script">
+<template #script>
 
-  ```html{4}
-    <script>
-    export default {
-      data:() => ({
-        page: 1,
-      }),
-    }
-    </script>
-  ```
+@[code{17-21}](../../.vuepress/components/pagination/slot.vue)
 
-</div>
+</template>
 
-<div slot="style">
+<template #style>
 
-  ```stylus
-    <style lang="stylus">
-    .con-pagination
-      .vs-select-content
-        max-width 60px
-        margin 0px 4px
-      .vs-pagination-content
-        margin 10px 0px
-    </style>
-  ```
+@[code{23-33}](../../.vuepress/components/pagination/slot.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -712,35 +477,21 @@ You may need to customize your pagination and for this you can use the `default`
 
 Add a progress bar to the pagination by referencing where you find the last page with the `progress` property
 
-<div slot="example">
+<template #example>
   <pagination-progress />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center con-pagination">
-        <vs-pagination progress v-model="page" :length="20" />
-      </div>
-    </template>
-  ```
+@[code{1-5} vue{3}](../../.vuepress/components/pagination/progress.vue)
 
-</div>
+</template>
 
-<div slot="script">
+<template #script>
 
-  ```html{4}
-    <script>
-    export default {
-      data:() => ({
-        page: 1,
-      }),
-    }
-    </script>
-  ```
+@[code{7-11}](../../.vuepress/components/pagination/progress.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -750,35 +501,21 @@ Add a progress bar to the pagination by referencing where you find the last page
 
 You can change the number of pages that are added when the user clicks on the points to advance more pages quickly, this can be done with the `dotted-number` property and the value would be the number of pages that are added or subtracted ( default is **5**)
 
-<div slot="example">
+<template #example>
   <pagination-dotted-number />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center con-pagination">
-        <vs-pagination :dotted-number="10" v-model="page" :length="100" />
-      </div>
-    </template>
-  ```
+@[code{1-5} vue{3}](../../.vuepress/components/pagination/dotted-number.vue)
 
-</div>
+</template>
 
-<div slot="script">
+<template #script>
 
-  ```html{4}
-    <script>
-    export default {
-      data:() => ({
-        page: 1,
-      }),
-    }
-    </script>
-  ```
+@[code{7-11}](../../.vuepress/components/pagination/dotted-number.vue)
 
-</div>
+</template>
 
 </card>
 
@@ -788,35 +525,21 @@ You can change the number of pages that are added when the user clicks on the po
 
 You can make the pagination infinite with the `infinite` property, this means that the arrow buttons are no longer in the disabled state
 
-<div slot="example">
+<template #example>
   <pagination-infinite />
-</div>
+</template>
 
-<div slot="template">
+<template #template>
 
-  ```html{3}
-    <template>
-      <div class="center">
-        <vs-pagination infinite v-model="page" :length="10" />
-      </div>
-    </template>
-  ```
+@[code{1-5} vue{3}](../../.vuepress/components/pagination/infinite.vue)
 
-</div>
+</template>
 
-<div slot="script">
+<template #script>
 
-  ```html{4}
-    <script>
-    export default {
-      data:() => ({
-        page: 1
-      })
-    }
-    </script>
-  ```
+@[code{7-11}](../../.vuepress/components/pagination/infinite.vue)
 
-</div>
+</template>
 
 </card>
 
