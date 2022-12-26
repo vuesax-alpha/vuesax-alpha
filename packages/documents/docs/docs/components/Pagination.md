@@ -50,7 +50,7 @@ PROPS:
     values: true, false
     description: Remove the items leaving only the arrows (next and back).
     default: false
-    link: nullv
+    link: null
     usage: "#only-arrows"
     code: >
       <vs-pagination only-arrows v-model="page" :length="20" />
