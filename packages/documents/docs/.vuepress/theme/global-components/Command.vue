@@ -68,7 +68,7 @@
 
 <script lang="ts" setup>
 import { useTemplateRefsList, useClipboard } from "@vueuse/core";
-import { ref, useSlots, onBeforeMount, watchPostEffect } from "vue";
+import { ref, useSlots, watchPostEffect } from "vue";
 import CodeCopied from "../components/CodeCopied.vue";
 
 const slots = useSlots();
