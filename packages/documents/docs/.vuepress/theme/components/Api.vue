@@ -57,6 +57,7 @@
                   <a :href="tr.usage" v-if="tr.usage" class="btn-usage">
                     Usage <i class="bx bx-code-block"></i>
                   </a>
+                  <template v-else></template>
                   <a
                     :href="`#vs-api-${tr.name}`"
                     v-if="tr.code"
@@ -66,6 +67,7 @@
                     <span class="open">Open <i class="bx bx-code-alt"></i></span>
                     <span class="close">Close <i class="bx bx-x"></i></span>
                   </a>
+                  <template v-else></template>
                 </td>
 
                 <td class="bugx">
@@ -93,6 +95,7 @@
                   colspan="7"
                 ></td>
               </tr>
+              <template v-else></template>
             </tbody>
           </table>
         </template>
@@ -328,7 +331,8 @@ const getCode = (str: string) => {
   transition: all 0.25s ease;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 4px;
   font-size: 0.7rem;
   color: inherit;
   margin: 3px 0px;
@@ -362,19 +366,16 @@ const getCode = (str: string) => {
   span {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 4px;
   }
   .open {
     position: relative;
     pointer-events: none;
-    align-items: center;
-    justify-content: space-between;
   }
   .close {
     display: none;
     pointer-events: none;
-    align-items: center;
-    justify-content: space-between;
   }
   box-icon {
     margin-left: 6px;
