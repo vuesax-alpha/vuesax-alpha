@@ -29,8 +29,8 @@
     </vs-table>
 
     <span class="data-table">
-      <pre
-        >{{ selected ? selected : "Select an item in the table" }}
+      <pre>
+        {{ selected ? selected : "Select an item in the table" }}
       </pre>
     </span>
   </div>
@@ -39,9 +39,17 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-const selected = ref(null);
+type User = {
+  id: number | string;
+  name: string;
+  username: string;
+  email: string;
+  website: string;
+}
 
-const users = [
+const selected = ref<User>();
+
+const users: User[] = [
   {
     id: 1,
     name: "Leanne Graham",

@@ -46,19 +46,15 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+type User = {
+  id: number | string;
+  name: string;
+  username: string;
+  email: string;
+  website: string;
+}
 
-const editActive = ref(false);
-const edit = ref(null);
-const editProp = ref("");
-const search = ref("");
-const allCheck = ref(false);
-const page = ref(1);
-const max = ref(3);
-const active = ref(0);
-const selected = ref([]);
-
-const users = [
+const users: User[] = [
   {
     id: 1,
     name: "Leanne Graham",

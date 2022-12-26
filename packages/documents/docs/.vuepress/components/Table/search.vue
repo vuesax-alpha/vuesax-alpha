@@ -6,13 +6,13 @@
       </template>
       <template #thead>
         <vs-tr>
-          <vs-th sort @click="users = sortData($event, users, 'esc', 'name')">
+          <vs-th sort @click="users = sortData($event, users, 'name')">
             Name
           </vs-th>
-          <vs-th sort @click="users = sortData($event, users, 'esc', 'email')">
+          <vs-th sort @click="users = sortData($event, users, 'email')">
             Email
           </vs-th>
-          <vs-th sort @click="users = sortData($event, users, 'esc', 'id')">
+          <vs-th sort @click="users = sortData($event, users, 'id')">
             Id
           </vs-th>
         </vs-tr>
@@ -38,9 +38,16 @@
 import { ref } from "vue";
 import { sortData, getSearch } from "vuesax-alpha";
 
-const search = ref("");
+type User = {
+  id: number | string;
+  name: string;
+  username: string;
+  email: string;
+  website: string;
+}
 
-const users = [
+const search = ref("");
+const users = ref<User[]>([
   {
     id: 1,
     name: "Leanne Graham",
@@ -111,5 +118,5 @@ const users = [
     email: "Rey.Padberg@karina.biz",
     website: "ambrose.net",
   },
-];
+]);
 </script>

@@ -5,8 +5,7 @@
         <vs-tr>
           <vs-th>
             <vs-checkbox
-              :indeterminate="selected.length == users.length"
-              v-model="allCheck"
+              :indeterminate="selected.length > 0 && selected.length < users.length"
               @change="selected = toggleSelectAll(selected, users)"
             />
           </vs-th>
@@ -17,12 +16,11 @@
       </template>
       <template #tbody>
         <vs-tr
-          :key="i"
-          v-for="(tr, i) in users"
+          v-for="tr in users"
           :data="tr"
-          :is-selected="!!selected.includes(tr)"
+          :is-selected="selected.includes(tr)"
         >
-          <vs-td checkbox>
+          <vs-td>
             <vs-checkbox :val="tr" v-model="selected" />
           </vs-td>
           <vs-td>
@@ -46,12 +44,20 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { reactive } from "vue";
 import { toggleSelectAll } from "vuesax-alpha";
 
-const allCheck = ref(false);
-const selected = ref([]);
-const users = [
+type User = {
+  id: number | string;
+  name: string;
+  username: string;
+  email: string;
+  website: string;
+}
+
+// const allCheck = ref(false);
+const selected = reactive([]);
+const users: User[] = [
   {
     id: 1,
     name: "Leanne Graham",

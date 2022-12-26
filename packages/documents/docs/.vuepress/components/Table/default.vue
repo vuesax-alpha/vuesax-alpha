@@ -26,7 +26,15 @@
 </template>
 
 <script lang="ts" setup>
-const users = [
+type User = {
+  id: number | string;
+  name: string;
+  username: string;
+  email: string;
+  website: string;
+}
+
+const users: User[] = [
   {
     id: 1,
     name: "Leanne Graham",

@@ -63,11 +63,19 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
+type User = {
+  id: number | string;
+  name: string;
+  username: string;
+  email: string;
+  website: string;
+}
+
 const editActive = ref<boolean>(false);
 const edit = ref<{ name?: string; email?: string }>();
 const editProp = ref<"name" | "email">();
 
-const users = [
+const users: User[] = [
   {
     id: 1,
     name: "Leanne Graham",

@@ -19,13 +19,13 @@
               @change="selected = toggleSelectAll(selected, users)"
             />
           </vs-th>
-          <vs-th sort @click="users = sortData($event, users, 'esc', 'name')">
+          <vs-th sort @click="users = sortData($event, users, 'name')">
             Name
           </vs-th>
-          <vs-th sort @click="users = sortData($event, users, 'esc', 'name')">
+          <vs-th sort @click="users = sortData($event, users, 'email')">
             Email
           </vs-th>
-          <vs-th sort @click="users = sortData($event, users, 'esc', 'name')">
+          <vs-th sort @click="users = sortData($event, users, 'id')">
             Id
           </vs-th>
         </vs-tr>
@@ -124,6 +124,14 @@ import {
   getPage,
 } from "vuesax-alpha";
 
+type User = {
+  id: number | string;
+  name: string;
+  username: string;
+  email: string;
+  website: string;
+}
+
 const editActive = ref(false);
 const edit = ref(null);
 const editProp = ref("");
@@ -131,9 +139,8 @@ const search = ref("");
 const allCheck = ref(false);
 const page = ref(1);
 const max = ref(5);
-const active = ref(0);
 const selected = ref([]);
-const users = [
+const users = ref<User[]>([
   {
     id: 1,
     name: "Leanne Graham",
@@ -204,7 +211,7 @@ const users = [
     email: "Rey.Padberg@karina.biz",
     website: "ambrose.net",
   },
-];
+]);
 </script>
 
 <style lang="scss">
