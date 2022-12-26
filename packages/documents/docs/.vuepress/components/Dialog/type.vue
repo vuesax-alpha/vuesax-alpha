@@ -78,7 +78,9 @@ const input1 = ref("");
 </script>
 
 <style lang="scss">
-@import "../../assets/styles/mixin";
+@function -color($color, $alpha: 1) {
+  @return unquote("rgba(var(--vsd-#{$color}), #{$alpha})");
+}
 .con-footer {
   display: flex;
   align-items: center;
@@ -131,7 +133,7 @@ const input1 = ref("");
     padding: 0px;
     font-size: 0.7rem;
     a {
-      color: -color("primary") !important;
+      color: -color(primary) !important;
       margin-left: 6px;
       &:hover {
         text-decoration: underline;

@@ -10,7 +10,6 @@
         </h4>
       </template>
 
-
       <div class="con-form">
         <vs-input v-model="input1" placeholder="Email">
           <template #icon>
@@ -52,7 +51,9 @@ const checkbox1 = ref(false);
 </script>
 
 <style lang="scss">
-@import "../../assets/styles/mixin";
+@function -color($color, $alpha: 1) {
+  @return unquote("rgba(var(--vsd-#{$color}), #{$alpha})");
+}
 .not-margin {
   margin: 0px;
   font-weight: normal;
@@ -95,7 +96,7 @@ const checkbox1 = ref(false);
     padding: 0px;
     font-size: 0.7rem;
     a {
-      color: -color("primary") !important;
+      color: -color(primary) !important;
       margin-left: 6px;
       &:hover {
         text-decoration: underline;
