@@ -2,9 +2,9 @@
   <main ref="$page" class="page">
     <header ref="$header" class="header-page">
       <router-link
-        v-if="$route.path.indexOf('/docs/') !== -1"
+        v-if="$route.path.indexOf('/') !== -1"
         class="back-link"
-        to="/docs/"
+        to="/"
       >
         <i class="bx bx-left-arrow-alt"></i>
       </router-link>
@@ -24,7 +24,7 @@
                   <li class="tw">
                     <a
                       target="_blank"
-                      :href="`https://twitter.com/intent/tweet?url=https%3A%2F%2Ftranthinh-coding.github.io%2Fvuesax-alpha&text=@vuesax-alpha+framework+components+for+vuejs+/+${pageData.title}&hashtags=${pageData.title},framework,components,vuejs,vuesax,tranthinh-coding,design,developer,frontend`"
+                      :href="`https://twitter.com/intent/tweet?url=https%3A%2F%2Fvuesax-alphax.github.io%2Fvuesax-alpha&text=@vuesax-alpha+framework+components+for+vuejs+/+${pageData.title}&hashtags=${pageData.title},framework,components,vuejs,vuesax,vuesax-alphax,design,developer,frontend`"
                     >
                       <i class="bx bxl-twitter"></i>
                     </a>
@@ -32,7 +32,7 @@
                   <li class="f">
                     <a
                       target="_blank"
-                      :href="`https://www.facebook.com/sharer.php?u=https%3A%2F%2Ftranthinh-coding.github.io%2Fvuesax-alpha%2F`"
+                      :href="`https://www.facebook.com/sharer.php?u=https%3A%2F%2Fvuesax-alphax.github.io%2Fvuesax-alpha%2F`"
                     >
                       <i class="bx bxl-facebook-square"></i>
                     </a>
@@ -40,7 +40,7 @@
                   <li class="in">
                     <a
                       target="_blank"
-                      :href="`https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Ftranthinh-coding.github.io%2Fvuesax-alpha&title=VuesaxAlpha+Framework&summary=framework+components+for+vuejs.&source=VuesaxAlpha`"
+                      :href="`https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fvuesax-alphax.github.io%2Fvuesax-alpha&title=VuesaxAlpha+Framework&summary=framework+components+for+vuejs.&source=VuesaxAlpha`"
                     >
                       <i class="bx bxl-linkedin-square"></i>
                     </a>
@@ -48,7 +48,7 @@
                   <li class="redit">
                     <a
                       target="_blank"
-                      :href="`https://www.reddit.com/submit?url=https%3A%2F%2Ftranthinh-coding.github.io%2Fvuesax-alpha&title=VuesaxAlpha+Framework+components+for+vuejs`"
+                      :href="`https://www.reddit.com/submit?url=https%3A%2F%2Fvuesax-alphax.github.io%2Fvuesax-alpha&title=VuesaxAlpha+Framework+components+for+vuejs`"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +83,7 @@
             <li title="View Code Github">
               <a
                 target="_blank"
-                href="https://github.com/tranthinh-coding/vuesax-alpha"
+                href="https://github.com/vuesax-alphax/vuesax-alpha"
               >
                 <i class="bx bx-code-alt"></i>
               </a>
@@ -96,7 +96,7 @@
             <li title="Report a Bug">
               <a
                 target="_blank"
-                :href="`https://github.com/tranthinh-coding/vuesax-alpha/issues/new?title=[${pageData.title}] - Your Bug Name&amp;body=**Steps to Reproduce**%0A1. Do something%0A2. Do something else.%0A3. Do one last thing.%0A%0A**Expected**%0AThe ${pageData.title} should do this%0A%0A**Result**%0AThe ${pageData.title} does not do this%0A%0A**Testcase**%0A(fork this to get started)%0Ahttp://jsfiddle.net/exmple-bug/1/`"
+                :href="`https://github.com/vuesax-alphax/vuesax-alpha/issues/new?title=[${pageData.title}] - Your Bug Name&amp;body=**Steps to Reproduce**%0A1. Do something%0A2. Do something else.%0A3. Do one last thing.%0A%0A**Expected**%0AThe ${pageData.title} should do this%0A%0A**Result**%0AThe ${pageData.title} does not do this%0A%0A**Testcase**%0A(fork this to get started)%0Ahttp://jsfiddle.net/exmple-bug/1/`"
               >
                 <i class="bx bx-bug"></i>
               </a>
@@ -121,7 +121,7 @@
       </svg>
     </header>
 
-    <Sidebar2 :fixed="true" :sidebar-items="sidebarItems" />
+    <SidebarRight />
 
     <slot name="top"></slot>
 
@@ -164,6 +164,7 @@
       </p>
     </div>
     <template v-else></template>
+
     <slot name="bottom"></slot>
 
     <div ref="$up" @click="handleUp" class="up">
@@ -175,7 +176,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch, toRef } from "vue";
+import { onMounted, ref } from "vue";
 import { computed } from "@vue/reactivity";
 import { usePageData, usePageFrontmatter } from "@vuepress/client";
 // @ts-ignore
@@ -183,9 +184,8 @@ import { useThemeData } from "@vuepress/plugin-theme-data/client";
 import { SidebarConfigArray } from "vuepress-vite";
 import { GitPluginPageData } from "@vuepress/plugin-git";
 import { ensureEndingSlash, ensureLeadingSlash } from "@vuepress/shared";
-import { useRoute } from "vue-router";
-import { useDateFormat } from "@vueuse/core"
-import { upperFirst } from "lodash"
+import { useDateFormat } from "@vueuse/core";
+import lodash from "lodash";
 
 import { normalize, outboundRE, endingSlashRE } from "../util";
 import {
@@ -195,15 +195,15 @@ import {
 
 import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
 
-import Sidebar2 from "./Sidebar2.vue";
+import SidebarRight from "./SidebarRight.vue";
 import Api from "./Api.vue";
 import Footer from "./Footer.vue";
+
+const { upperFirst } = lodash;
 
 const pageData = usePageData<ThemeNormalApiFrontmatter & GitPluginPageData>();
 const themeData = useThemeData<VuesaxAlphaThemeOptions>();
 const pageFrontmatter = usePageFrontmatter<ThemePageFrontmatter>();
-
-const route = useRoute();
 
 const props = defineProps<{
   sidebarItems: SidebarConfigArray;
@@ -253,7 +253,7 @@ const createEditLink = ({
   return (
     base.replace(endingSlashRE, "") +
     `/edit/${docsBranch}` +
-    (docsDir ? "/" + docsDir.replace(endingSlashRE, "") : "") + '/docs' +
+    (docsDir ? "/" + docsDir.replace(endingSlashRE, "") : "") +
     path
   );
 };
@@ -261,10 +261,14 @@ const createEditLink = ({
 const resolvePage = (sidebar: SidebarConfigArray, offset: number) => {
   const sidebarFlatten = flattenSidebar(sidebar);
 
-  const currentPath = ensureEndingSlash(ensureLeadingSlash(normalize(pageData.value.path))).toLocaleLowerCase();
+  const currentPath = ensureEndingSlash(
+    ensureLeadingSlash(normalize(pageData.value.path))
+  ).toLocaleLowerCase();
 
   const indexCurrentSidebar = sidebarFlatten.findIndex(
-    ({ link }) => currentPath === ensureEndingSlash(ensureLeadingSlash(normalize(link))).toLocaleLowerCase()
+    ({ link }) =>
+      currentPath ===
+      ensureEndingSlash(ensureLeadingSlash(normalize(link))).toLocaleLowerCase()
   );
 
   if (indexCurrentSidebar !== -1)
@@ -296,8 +300,8 @@ const lastUpdatedText = computed(() => {
 });
 
 const lastUpdatedTime = useDateFormat(
-  computed(() => pageData.value.git.updatedTime), 
-  'YYYY-MM-DD, HH:mm:ss',
+  computed(() => pageData.value.git.updatedTime),
+  "YYYY-MM-DD, HH:mm:ss"
 );
 
 const prev = computed(() => {
@@ -311,7 +315,7 @@ const prev = computed(() => {
 const next = computed(() => {
   const frontmatterNext = pageFrontmatter.value.next;
   const obj = {
-    link: "/docs/guide/",
+    link: "/guide/",
     title: "introduction",
   };
   if (frontmatterNext === false || !props.sidebarItems) return obj;
@@ -330,7 +334,7 @@ const editLink = computed(() => {
 
   let path = normalize(pageData.value.path);
   path = upperFirst(path);
-  
+
   if (endingSlashRE.test(path)) {
     path += "README.md";
   } else {
