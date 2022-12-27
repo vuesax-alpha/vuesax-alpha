@@ -14,10 +14,10 @@
     </div>
 
     <div class="copy">
-      <span class="span-copy"> Copyright © 2020 Vuesax </span>
+      <span class="span-copy"> </span>
       <span class="span-lusaxweb">
-        <span> Created By </span>
-        <a target="_blank" href="lusaxweb.net">Lusaxweb</a>
+        <span> Created on base </span>
+        <a target="_blank" href="vuesax.com">Vuesax.com</a>
       </span>
     </div>
   </footer>
@@ -30,15 +30,15 @@ const links = [
     items: [
       {
         text: "What is Vuesax?",
-        link: "/docs/guide/#whats-is-vuesax",
+        link: "/guide/#whats-is-vuesax",
       },
       {
         text: "Why Vuesax?",
-        link: "/docs/guide/#why-vuesax",
+        link: "/guide/#why-vuesax",
       },
       {
         text: "What's new in v4",
-        link: "/docs/guide/#features",
+        link: "/guide/#features",
       },
       {
         text: "FAQ",
@@ -55,11 +55,11 @@ const links = [
       // },
       {
         text: "Documentation",
-        link: "/docs/",
+        link: "/",
       },
       {
         text: "Github",
-        link: "https://github.com/tranthinh-coding/vuesax-alpha",
+        link: "https://github.com/vuesax-alphax/vuesax-alpha",
       },
       {
         text: "Privacy Policy",
@@ -72,7 +72,7 @@ const links = [
     items: [
       {
         text: "Github Issues",
-        link: "https://github.com/tranthinh-coding/vuesax-alpha/issues",
+        link: "https://github.com/vuesax-alphax/vuesax-alpha/issues",
       },
       // {
       //   text: 'Latest Releases',
@@ -93,7 +93,7 @@ const links = [
       // },
       {
         text: "Github",
-        link: "https://github.com/tranthinh-coding/vuesax-alpha",
+        link: "https://github.com/vuesax-alphax/vuesax-alpha",
       },
     ],
   },
@@ -209,6 +209,7 @@ const links = [
       opacity: 0.5;
     }
     .span-lusaxweb {
+      margin-right: 48px;
       span {
         opacity: 0.5;
       }

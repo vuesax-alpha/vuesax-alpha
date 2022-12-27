@@ -76,14 +76,14 @@ export default defineUserConfig({
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
   ],
   theme: vuesaxAlphaTheme({
-    repo: "tranthinh-coding/vuesax-alpha",
+    repo: "vuesax-alphax/vuesax-alpha",
     docsBranch: "main",
     docsDir: "packages/documents",
     docsRepo:
-      "https://github.com/tranthinh-coding/vuesax-alpha/",
+      "https://github.com/vuesax-alphax/vuesax-alpha/",
     editLink: true,
     editLinkPattern:
-      "https://github.com/tranthinh-coding/vuesax-alpha/",
+      "https://github.com/vuesax-alphax/vuesax-alpha/",
     logo: "/logos/logo-vuesax-svg-3.svg",
     logoDark: "/logos/logo-vuesax-svg-4.svg",
     prevVersion: "v4.x",

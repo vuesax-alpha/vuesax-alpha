@@ -31,7 +31,19 @@
               :title="action.text"
               class="action-button"
               :nav-item="action"
-            ></NavLink>
+            />
+
+            <a
+              @mouseleave.native="time('install')"
+              @mouseenter.native="
+                (nativeButtons.install = true), (expand = true)
+              "
+              title="install"
+              class="install"
+              href="/guide/gettingStarted.html/#installation"
+            >
+              <img src="/install.png" alt="">
+            </a>
 
             <a
               @mouseleave="time('github')"
@@ -39,7 +51,7 @@
               title="Github"
               class="github"
               target="_blank"
-              href="https://github.com/tranthinh-coding/vuesax-alpha/"
+              href="https://github.com/vuesax-alphax/vuesax-alpha/"
             >
               <i class="bx bxl-github"></i>
               <span title="Stargazers" class="badge-star">
@@ -54,7 +66,7 @@
       <HomeComponent
         :class="{
           'github-hover': nativeButtons.github,
-          'discord-hover': nativeButtons.discord,
+          'install-hover': nativeButtons.install,
           'vuesax-hover': nativeButtons.vuesax,
           'btn-hover': expand,
         }"
@@ -80,18 +92,16 @@
 
     <Content class="custom" />
 
-    <Footer></Footer>
+    <Footer />
   </main>
 </template>
 
 <script lang="ts">
-export type PageButtonKeys = "github" | "discord" | "vuesax";
-
-export type PageButtons<T extends PageButtonKeys = PageButtonKeys> = {
-  [K in T]: boolean;
+export type PageButtons = {
+  github: boolean;
+  install: boolean;
+  vuesax: boolean;
 };
-
-export type NativeButtons<T extends PageButtons = PageButtons> = Required<T>;
 </script>
 
 <script setup lang="ts">
@@ -116,9 +126,9 @@ const pageFrontmatter = usePageFrontmatter<ThemeProjectHomePageFrontmatter>();
 
 const star = ref<number>(0);
 
-const nativeButtons = reactive<NativeButtons>({
+const nativeButtons = reactive<PageButtons>({
   github: false,
-  discord: false,
+  install: false,
   vuesax: false,
 });
 
@@ -139,14 +149,14 @@ const numberWithCommas = computed(() => {
 
 onMounted(async () => {
   const res = await fetch(
-    "https://api.github.com/repos/tranthinh-coding/vuesax-alpha"
+    "https://api.github.com/repos/vuesax-alphax/vuesax-alpha"
   );
 
   const json = await res.json();
   star.value = json.stargazers_count;
 });
 
-const time = (variable: PageButtonKeys) => {
+const time = (variable: keyof PageButtons) => {
   expand.value = false;
   nativeButtons[variable] = false;
 };
@@ -259,26 +269,25 @@ const time = (variable: PageButtonKeys) => {
   align-items: center;
   justify-content: center;
 }
-.discord {
+.install {
   border: 0px;
-  padding: 11px 25px;
-  margin: 0px 10px;
-  font-weight: 600;
+  padding: 10px;
+  margin-left: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   border-radius: 14px;
   transition: all 0.25s ease;
-  font-size: 0.8rem;
   &:after {
     border-radius: inherit;
     content: "";
     position: absolute;
-    top: 0px;
-    left: 0px;
-    width: calc(100% - 4px);
-    height: calc(100% - 4px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
     border: 2px solid -color("theme-color");
     opacity: 0.2;
     transition: all 0.25s ease;
@@ -290,9 +299,10 @@ const time = (variable: PageButtonKeys) => {
       opacity: 1;
     }
   }
-  i {
-    font-size: 1.4rem;
-    margin-right: 3px;
+  img {
+    width: 24px;
+    height: 24px;
+    margin: 0 !important;
   }
 }
 .github {
