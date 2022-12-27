@@ -13,9 +13,9 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue';
+import { ref } from 'vue';
 
-const options = reactive(["javascript", "vue"]);
+const options = ref(["javascript", "vue"]);
 </script>
 
 <style scoped lang="scss">

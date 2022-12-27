@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { ref } from "vue";
 import { toggleSelectAll } from "vuesax-alpha";
 
 type User = {
@@ -56,7 +56,7 @@ type User = {
 }
 
 // const allCheck = ref(false);
-const selected = reactive([]);
+const selected = ref([]);
 const users: User[] = [
   {
     id: 1,

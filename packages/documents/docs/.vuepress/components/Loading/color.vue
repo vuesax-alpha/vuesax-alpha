@@ -140,7 +140,7 @@ onMounted(() => {
     transform: translate(0, -5px);
     box-shadow: 0px 15px 20px -10px rgba(0, 0, 0, 0.09);
   }
-  >>> .vs-loading {
+  .vs-loading {
     padding: 0px;
     background: transparent !important;
 

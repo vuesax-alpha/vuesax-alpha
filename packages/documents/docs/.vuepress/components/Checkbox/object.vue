@@ -30,9 +30,9 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { ref } from "vue";
 
-const options = reactive([
+const options = ref([
   {
     github: "https://github.com/webpack/webpack",
     name: "Webpack",
@@ -43,12 +43,8 @@ const options = reactive([
 .con-checkbox {
   flex-direction: column;
   align-items: flex-start;
-  & > {
-    & > {
-      & > .vs-checkbox-content {
-        min-width: 80px;
-      }
-    }
+  .vs-checkbox-content {
+    min-width: 80px;
   }
   .data-check {
     background: rgba(0, 0, 0, 0.03);
