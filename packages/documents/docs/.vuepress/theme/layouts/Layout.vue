@@ -58,7 +58,7 @@
 
     <Branding v-else-if="pageData.frontmatter.branding" />
 
-    <Navbar v-else-if="pageData.frontmatter.navbar" />
+    <NavbarLayout v-else-if="pageData.frontmatter.navbar" />
 
     <Page v-else :sidebar-items="sidebarItems">
       <template #top>
@@ -112,6 +112,7 @@ import License from "../components/License.vue";
 import Sidebar from "../components/Sidebar.vue";
 import HeaderNotification from "../components/HeaderNotification.vue";
 import Branding from "../components/Branding.vue";
+import NavbarLayout from "./NavbarLayout.vue";
 
 const route = useRoute();
 const router = useRouter();
