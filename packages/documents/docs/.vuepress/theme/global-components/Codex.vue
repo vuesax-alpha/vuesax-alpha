@@ -174,7 +174,6 @@ import {
   codesandboxContextKey,
   vsThemeKey,
 } from "../type";
-import { clipboard } from "../util";
 
 const props = defineProps<{
   codepen?: string;

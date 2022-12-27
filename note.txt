@@ -13,3 +13,9 @@
 ** BUGS **
 - notification function: 
   - duration: none - not working
+
+- radio
+  - name
+
+- checkbox
+  - v-model

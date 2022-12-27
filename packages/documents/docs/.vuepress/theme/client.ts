@@ -24,7 +24,7 @@ export default defineClientConfig({
       sidebarCollapseOpen: true,
     });
     const $codesandbox = reactive<codesandboxContext>({
-      url: null,
+      url: undefined,
     });
     provide(vsThemeKey, $vsTheme);
     provide(codesandboxContextKey, $codesandbox);

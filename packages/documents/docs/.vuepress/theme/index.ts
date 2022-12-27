@@ -10,7 +10,7 @@ import { prismjsPlugin } from '@vuepress/plugin-prismjs'
 
 import { VuesaxAlphaThemeOptions } from "./vuesaxAlphaTheme";
 
-export const vuesaxAlphaTheme = (options?: VuesaxAlphaThemeOptions): Theme => {
+export const vuesaxAlphaTheme = (options: VuesaxAlphaThemeOptions = {}): Theme => {
   return {
     name: "vuepress-theme-vuesax-alpha",
     clientConfigFile: path.resolve(
