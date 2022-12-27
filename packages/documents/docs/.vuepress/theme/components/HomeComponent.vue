@@ -7,8 +7,9 @@
       <div class="github-logo__2"></div>
       <div class="github-logo__3"></div>
     </div>
-    <div class="con-logo discord-logo">
-      <i class="bx bxl-discord"></i>
+    <div class="con-logo install-logo">
+      <img src="/install.png" alt="">
+      
       <div class="github-logo__1"></div>
       <div class="github-logo__2"></div>
       <div class="github-logo__3"></div>
@@ -392,12 +393,13 @@ const handleBurDrop = () => {
       z-index: 100;
     }
   }
-  &.discord-logo {
+  &.install-logo {
     width: 180px;
     height: 180px;
     border-radius: 40px 40px 5px 40px;
-    i {
-      transform: translate(5px);
+    img {
+      width: 50%;
+      z-index: 100;
     }
   }
   i {
@@ -1434,8 +1436,8 @@ const handleBurDrop = () => {
           opacity: 1;
         }
       }
-      &.discord-hover {
-        .discord-logo {
+      &.install-hover {
+        .install-logo {
           transform: scale(1);
           opacity: 1;
         }
