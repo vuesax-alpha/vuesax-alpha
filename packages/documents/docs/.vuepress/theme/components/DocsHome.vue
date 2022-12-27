@@ -1,13 +1,13 @@
 <template>
   <div class="docs-home">
-    <Sidebar2 :sidebar-items="sidebarItems" :fixed="true"></Sidebar2>
+    <Sidebar :sidebar="sidebarItems" />
     <Footer></Footer>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { SidebarConfigArray } from "vuepress-vite";
-import Sidebar2 from "./Sidebar2.vue";
+import Sidebar from "./Sidebar.vue";
 import Footer from "./Footer.vue";
 
 defineProps<{ sidebarItems: SidebarConfigArray }>();
