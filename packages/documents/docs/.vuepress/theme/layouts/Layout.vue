@@ -35,10 +35,10 @@
     <ClientOnly>
       <Navbar
         v-if="shouldShowNavbar"
-        v-show="!pageData.frontmatter.navbar"
+        v-show="!pageFrontmatter.navbar"
         @toggle-sidebar="toggleSidebar"
         :class="{
-          transparent: pageData.frontmatter.branding,
+          transparent: pageFrontmatter.branding,
           isSidebarOpen: isSidebarOpen,
         }"
       />
@@ -47,18 +47,18 @@
 
     <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
 
-    <Home v-if="pageData.frontmatter.home" />
+    <Home v-if="pageFrontmatter.home" />
 
     <DocsHome
       :sidebar-items="sidebarItems"
-      v-else-if="pageData.frontmatter.docsHome"
+      v-else-if="pageFrontmatter.docsHome"
     />
 
-    <License v-else-if="pageData.frontmatter.license" />
+    <License v-else-if="pageFrontmatter.license" />
 
-    <Branding v-else-if="pageData.frontmatter.branding" />
+    <Branding v-else-if="pageFrontmatter.branding" />
 
-    <NavbarLayout v-else-if="pageData.frontmatter.navbar" />
+    <NavbarLayout v-else-if="pageFrontmatter.navbar" />
 
     <Page v-else :sidebar-items="sidebarItems">
       <template #top>
@@ -79,7 +79,7 @@
     </Sidebar>
 
     <ClientOnly>
-      <Config v-if="!pageData.frontmatter.navbar" />
+      <Config v-if="!pageFrontmatter.navbar" />
       <template v-else></template>
     </ClientOnly>
   </div>
@@ -87,9 +87,10 @@
 
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import {
   usePageData,
+  usePageFrontmatter,
   usePageHeadTitle,
   useRouteLocale,
 } from "@vuepress/client";
@@ -113,11 +114,12 @@ import Sidebar from "../components/Sidebar.vue";
 import HeaderNotification from "../components/HeaderNotification.vue";
 import Branding from "../components/Branding.vue";
 import NavbarLayout from "./NavbarLayout.vue";
+import { LayoutFrontmatter } from "../shared/frontmatter/layout";
 
-const route = useRoute();
 const router = useRouter();
 
 const pageData = usePageData();
+const pageFrontmatter = usePageFrontmatter<LayoutFrontmatter>();
 const pageTitle = usePageHeadTitle();
 const themeData = useThemeData<VuesaxAlphaThemeOptions>();
 const themeLocaleData = useThemeLocaleData<VuesaxAlphaThemeOptions>();
@@ -157,7 +159,7 @@ const sidebarItems = computed(() => {
 });
 
 const pageClasses = computed(() => {
-  const userPageClass = pageData.value.frontmatter.pageClass;
+  const userPageClass = pageFrontmatter.value.pageClass;
   return [
     {
       "no-navbar": !shouldShowNavbar.value,
