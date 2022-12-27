@@ -1,7 +1,7 @@
 import { MarkdownItHeader } from "@mdit-vue/types";
 import { RouteLocale } from "@vuepress/client";
 import {
-  ensureEndingSlash,
+  ensureEndingSlash, ensureLeadingSlash,
 } from "@vuepress/shared";
 import {
   RouteLocationNormalizedLoaded,
@@ -59,18 +59,24 @@ export function ensureExt(path: string) {
   return normalized + ".html" + hash;
 }
 
-export function isActive(route: RouteLocationNormalizedLoaded, path: string) {
+export function isMathcedPath(route: RouteLocationNormalizedLoaded, path: string) {
   const routeHash = route.hash;
   const linkHash = getHash(path);
   if (linkHash && routeHash !== linkHash) {
     return false;
   }
-  const routePath = ensureEndingSlash(ensureEndingSlash(normalize(route.path))).toLowerCase();
-  const pagePath = ensureEndingSlash(ensureEndingSlash(normalize(path))).toLowerCase();
+  const routePath = ensureLeadingSlash(ensureEndingSlash(normalize(route.fullPath))).toLowerCase();
+  const pagePath = ensureLeadingSlash(ensureEndingSlash(normalize(path))).toLowerCase();
 
   return routePath === pagePath;
 }
 
+export function isMatchedHeader(route: RouteLocationNormalizedLoaded, path: string) {
+  const routeHash = route.hash;
+  const linkHash = getHash(path);
+  
+  return routeHash === linkHash;
+}
 
 /**
  * @param relative: route locale
