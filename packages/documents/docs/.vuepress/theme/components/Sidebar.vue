@@ -17,7 +17,7 @@
     <div class="content-sidebar">
       <slot name="top"></slot>
       <SidebarLinks :fixed="fixed" :depth="0" :links="sidebar" />
-      <NavLinks2 />
+      <NavLinks />
       <slot name="bottom"></slot>
     </div>
   </aside>
@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import SidebarLinks from "./SidebarLinks.vue";
-import NavLinks2 from "./NavLinks2.vue";
+import NavLinks from "./NavLinks.vue";
 import { SidebarConfigArray } from "vuepress-vite";
 
 defineProps<{

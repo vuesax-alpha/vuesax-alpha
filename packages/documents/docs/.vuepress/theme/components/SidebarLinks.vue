@@ -13,8 +13,7 @@
           :depth="depth"
           @toggle="toggleGroup(i)"
         />
-
-        <SidebarLink v-else :sidebarDepth="sidebarDepth" :link="item" />
+        <SidebarLink v-else :link="item" />
       </template>
     </li>
   </ul>
@@ -28,7 +27,7 @@ import { isString } from "@vue/shared";
 
 import SidebarGroup from "./SidebarGroup.vue";
 import SidebarLink from "./SidebarLink.vue";
-import { isActive } from "../util";
+import { isMathcedPath } from "../util";
 import { vsThemeKey } from "../type";
 
 const props = defineProps<{
@@ -37,10 +36,6 @@ const props = defineProps<{
    * depth of current sidebar links
    */
   depth: number;
-  /**
-   * depth of headers to be extracted
-   */
-  sidebarDepth?: number;
   fixed?: boolean;
 }>();
 
@@ -55,9 +50,9 @@ onBeforeMount(() => {
   refreshIndex();
 });
 
-watch(route, () => {
-  // refreshIndex();
-});
+// watch(route, () => {
+//   // refreshIndex();
+// });
 
 const refreshIndex = () => {
   const index = resolveOpenGroupIndex(route, props.links);
@@ -71,7 +66,7 @@ const toggleGroup = (index: number) => {
 };
 
 const resolveOpenGroupIndex = (route: RouteLocationNormalizedLoaded, sidebar: SidebarConfigArray) => {
-  console.log(sidebar);
+  // console.log(sidebar);
   
   for (let i = 0; i < sidebar.length; i++) {
     const item = sidebar[i];
@@ -79,7 +74,7 @@ const resolveOpenGroupIndex = (route: RouteLocationNormalizedLoaded, sidebar: Si
 
     if (
       'children' in item &&
-      item.children.some((c) => isActive(route, isString(c) ? c : c.link || ''))
+      item.children.some((c) => isMathcedPath(route, isString(c) ? c : c.link || ''))
     ) {
       return i;
     }

@@ -14,13 +14,17 @@
       class="sidebar-heading clickable"
       :class="{
         open,
-        active: isActive($route, item.link),
+        active: isMathcedPath($route, item.link),
       }"
       :to="item.link"
       @click.native="$emit('toggle')"
     >
       <span>{{ item.text }}</span>
-      <span class="arrow" v-if="collapsable" :class="open ? 'down' : 'right'"></span>
+      <span
+        class="arrow"
+        v-if="collapsable"
+        :class="open ? 'down' : 'right'"
+      ></span>
       <template v-else></template>
     </router-link>
 
@@ -39,7 +43,6 @@
         v-if="open || !collapsable"
         class="sidebar-group-items"
         :links="item.children"
-        :sidebarDepth="item.sidebarDepth"
         :depth="depth + 1"
       />
     </DropdownTransition>
@@ -48,12 +51,12 @@
 
 <script lang="ts" setup>
 import { SidebarGroupCollapsible } from "vuepress-vite";
-import { isActive } from "../util";
+import { isMathcedPath } from "../util";
 import DropdownTransition from "./DropdownTransition.vue";
 import SidebarLinks from "./SidebarLinks.vue";
 
 defineEmits<{
-  (event: 'toggle'): void
+  (event: "toggle"): void;
 }>();
 
 defineProps<{
@@ -107,7 +110,7 @@ defineProps<{
   }
 }
 .sidebar-heading {
-  color: -color('theme-color');
+  color: -color("theme-color");
   transition: color 0.15s ease;
   cursor: pointer;
   font-size: 1em;
@@ -138,11 +141,11 @@ defineProps<{
   &.clickable {
     &.active {
       font-weight: 600;
-      color: -color('accent-color');
-      border-left-color: -color('accent-color');
+      color: -color("accent-color");
+      border-left-color: -color("accent-color");
     }
     &:hover {
-      color: -color('accent-color');
+      color: -color("accent-color");
     }
   }
 }
