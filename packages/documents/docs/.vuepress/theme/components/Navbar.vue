@@ -2,7 +2,15 @@
   <header class="navbar" ref="$el">
     <SidebarButton @toggle-sidebar="emits('toggle-sidebar')" />
 
-    <router-link :to="themeData.home || themeData.locales?.[siteLocaleData.base].home || siteLocaleData.base || pageData.path" class="home-link">
+    <router-link
+      :to="
+        themeData.home ||
+        themeData.locales?.[siteLocaleData.base].home ||
+        siteLocaleData.base ||
+        pageData.path
+      "
+      class="home-link"
+    >
       <svg
         class="logo-nav"
         xmlns="http://www.w3.org/2000/svg"
@@ -61,13 +69,14 @@
         class="v-old"
         target="_blank"
         :href="themeData.linkPrevVersion"
-      >{{ themeData.prevVersion }}</a>
+        >{{ themeData.prevVersion }}</a
+      >
 
       <div class="con-links">
         <a
           title="Github"
           target="_blank"
-          href="https://github.com/tranthinh-coding/vuesax-alpha"
+          href="https://github.com/vuesax-alphax/vuesax-alpha"
         >
           <i class="bx bxl-github"></i>
         </a>
@@ -128,9 +137,9 @@ const css = (el: HTMLElement, property: string) => {
 
 onMounted(() => {
   const MOBILE_DESKTOP_BREAKPOINT = 719; // refer to config.styl
-  const NAVBAR_VERTICAL_PADDING = 
+  const NAVBAR_VERTICAL_PADDING =
     parseInt(css($el.value!, "paddingLeft")) +
-    parseInt(css($el.value!, "paddingRight"))
+    parseInt(css($el.value!, "paddingRight"));
 
   const handleLinksWrapWidth = () => {
     if (document.documentElement.clientWidth < MOBILE_DESKTOP_BREAKPOINT) {
@@ -154,14 +163,14 @@ onMounted(() => {
 
 const handleShowSuggestions = (active: boolean) => {
   showSuggestions.value = active;
-}
+};
 </script>
 
 <style lang="scss">
 @import "../styles/use";
 
 .logo-nav {
-  fill: -color('theme-color');
+  fill: -color("theme-color");
   height: 28px;
 }
 .home-link {
@@ -287,7 +296,7 @@ const handleShowSuggestions = (active: boolean) => {
     }
   }
 }
- 
+
 @media (max-width: 500px) {
   .home-link {
     width: 24px !important;

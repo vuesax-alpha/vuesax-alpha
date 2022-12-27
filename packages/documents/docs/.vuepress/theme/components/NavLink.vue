@@ -1,7 +1,12 @@
 <template>
   <router-link
     class="nav-link"
+    :class="{
+      active,
+    }"
     :to="navItem.link"
+    :active-class="''"
+    :exact-active-class="''"
     v-if="!isExternal(navItem.link)"
   >
     {{ navItem.text }}
@@ -23,35 +28,33 @@
         : 'noopener noreferrer'
     "
   >
-    {{ navItem.text }}
+    {{ navItem.text }} <i class='bx bx-link-external'></i>
   </a>
 </template>
 
 <script lang="ts" setup>
 import { isLinkMailto, isLinkTel } from "@vuepress/shared";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
 import { NavbarItem } from "vuepress-vite";
-import { isExternal } from "../util";
+import { isMathcedPath, isExternal } from "../util";
 
-defineProps<{
+const { navItem } = defineProps<{
   navItem: NavbarItem;
   arrow?: boolean;
 }>();
+
+const route = useRoute();
+
+const active = computed(() => {
+  return isMathcedPath(route, navItem.link);
+});
 </script>
 
 <style lang="scss">
 @import "../styles/use";
 
 .nav-item {
-  i {
-    &.bx {
-      &:not(.bx-dots-horizontal-rounded) {
-        display: none;
-      }
-      &.not-remove {
-        display: block !important;
-      }
-    }
-  }
   & > div {
     & > .nav-link {
       display: flex !important;
@@ -69,6 +72,17 @@ defineProps<{
         }
       }
     }
+  }
+}
+
+.nav-link.external {
+  display: flex !important;
+  align-items: center;
+  gap: 4px;
+  i {
+    display: block !important;
+    font-size: 12px;
+    transform: rotate(0deg) !important;
   }
 }
 </style>

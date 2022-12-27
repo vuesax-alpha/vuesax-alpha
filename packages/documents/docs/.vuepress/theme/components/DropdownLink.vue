@@ -149,7 +149,7 @@ const toggle = () => {
         &:hover {
           opacity: 1;
         }
-        &.router-link-active {
+        &.active {
           opacity: 1 !important;
           &::after {
             position: absolute;

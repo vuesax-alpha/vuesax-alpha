@@ -1,6 +1,5 @@
 <template>
   <nav class="nav-links" v-if="userNav.length || repoLink">
-    <!-- user links -->
     <div class="nav-item" v-for="navItem in userNav">
       <template v-if="!isString(navItem)">
         <DropdownLink v-if="('children' in navItem)" :item="navItem" :has-fle="true" />
@@ -93,26 +92,34 @@ const repoLabel = computed(() => {
         transition: all 0.25s ease;
       }
       &.router-link-active {
+        opacity: 1 !important;
+        color: -color(theme-color);
         &:after {
           width: 18px;
         }
+      }
+      &:hover {
+        opacity: 1 !important;
+        color: -color(theme-color);
       }
     }
     &:first-child {
       margin-left: 0;
     }
+    i {
+      &.bx {
+        &:not(.bx-dots-horizontal-rounded) {
+          display: none;
+        }
+        &.not-remove {
+          display: block !important;
+        }
+      }
+    }
   }
   .repo-link {
     margin-left: 1.5rem;
   }
-}
-.nav-links a:hover,
-.nav-links a.router-link-active {
-  color: -color("theme-color");
-}
-.nav-links .nav-item a:hover,
-.nav-links .nav-item a.router-link-active {
-  opacity: 1 !important;
 }
 
 @media (max-width: $MQMobile) {
