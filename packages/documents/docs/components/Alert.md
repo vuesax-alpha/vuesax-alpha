@@ -265,7 +265,7 @@ Easily generate an alert with this component apart from functionalities such as 
 
 <template #template>
 
-@[code html](../../.vuepress/components/alert/default.vue)
+@[code html](../.vuepress/components/alert/default.vue)
 
 </template>
 
@@ -283,7 +283,7 @@ You can change the style of the component by adding the `solid` property, the pr
 
 <template #template>
 
-@[code html{3}](../../.vuepress/components/alert/solid.vue)
+@[code html{3}](../.vuepress/components/alert/solid.vue)
 
 </template>
 
@@ -301,7 +301,7 @@ You can change the style of the component by adding the `border` property, the p
 
 <template #template>
 
-@[code html{3}](../../.vuepress/components/alert/border.vue)
+@[code html{3}](../.vuepress/components/alert/border.vue)
 
 </template>
 
@@ -319,7 +319,7 @@ You can change the style of the component by adding the `shadow` property, the p
 
 <template #template>
 
-@[code html{3}](../../.vuepress/components/alert/shadow.vue)
+@[code html{3}](../.vuepress/components/alert/shadow.vue)
 
 </template>
 
@@ -337,7 +337,7 @@ You can change the style of the component by adding the `gradient` property, the
 
 <template #template>
 
-@[code html{3}](../../.vuepress/components/alert/gradient.vue)
+@[code html{3}](../.vuepress/components/alert/gradient.vue)
 
 </template>
 
@@ -355,7 +355,7 @@ You can change the style of the component by adding the `relief` property, the p
 
 <template #template>
 
-@[code html{3}](../../.vuepress/components/alert/relief.vue)
+@[code html{3}](../.vuepress/components/alert/relief.vue)
 
 </template>
 
@@ -373,13 +373,13 @@ A beautiful and simple animation to show and hide the alert to the user
 
 <template #template>
 
-@[code{1-15} html](../../.vuepress/components/alert/animate.vue)
+@[code{1-15} html](../.vuepress/components/alert/animate.vue)
 
 </template>
 
 <template #script>
 
-@[code{16-20} html](../../.vuepress/components/alert/animate.vue)
+@[code{16-20} html](../.vuepress/components/alert/animate.vue)
 
 </template>
 
@@ -399,19 +399,19 @@ In this example you can click on the buttons and dynamically change the color va
 
 <template #template>
 
-@[code{1-35} html{3}](../../.vuepress/components/alert/color.vue)
+@[code{1-35} html{3}](../.vuepress/components/alert/color.vue)
 
 </template>
 
 <template #script>
 
-@[code{36-40} html](../../.vuepress/components/alert/color.vue)
+@[code{36-40} html](../.vuepress/components/alert/color.vue)
 
 </template>
 
 <template #style>
 
-@[code{41-49} html](../../.vuepress/components/alert/color.vue)
+@[code{41-49} html](../.vuepress/components/alert/color.vue)
 
 </template>
 
@@ -433,7 +433,7 @@ Add an icon to the alert easily with the slot **icon**
 
 <template #template>
 
-@[code html{4-6}](../../.vuepress/components/alert/icon.vue)
+@[code html{4-6}](../.vuepress/components/alert/icon.vue)
 
 </template>
 
@@ -451,7 +451,7 @@ You can add a descriptive title to the alert with the `slot="title"`
 
 <template #template>
 
-@[code html{4}](../../.vuepress/components/alert/title.vue)
+@[code html{4}](../.vuepress/components/alert/title.vue)
 
 </template>
 
@@ -471,13 +471,13 @@ This prop can bind with `v-model:hidden-content`
 
 <template #template>
 
-@[code{1-13} html{3}](../../.vuepress/components/alert/hiddenContent.vue)
+@[code{1-13} html{3}](../.vuepress/components/alert/hiddenContent.vue)
 
 </template>
 
 <template #script>
 
-@[code{14-18} html{4}](../../.vuepress/components/alert/hiddenContent.vue)
+@[code{14-18} html{4}](../.vuepress/components/alert/hiddenContent.vue)
 
 </template>
 
@@ -495,13 +495,13 @@ There are times when we need to show a lot of content to the user but we don't w
 
 <template #template>
 
-@[code{1-31} html{3,8,12,16}](../../.vuepress/components/alert/pagination.vue)
+@[code{1-31} html{3,8,12,16}](../.vuepress/components/alert/pagination.vue)
 
 </template>
 
 <template #script>
 
-@[code{22-26} html{4}](../../.vuepress/components/alert/pagination.vue)
+@[code{22-26} html{4}](../.vuepress/components/alert/pagination.vue)
 
 </template>
 
@@ -521,7 +521,7 @@ Use the `footer` slot to add a footer to the alert where for example you can add
 
 <template #template>
 
-@[code html{11-18}](../../.vuepress/components/alert/footer.vue)
+@[code html{11-18}](../.vuepress/components/alert/footer.vue)
 
 </template>
 
@@ -539,7 +539,7 @@ You can add a progress bar to the alert with the progress property and a number 
 
 <template #template>
 
-@[code html{3}](../../.vuepress/components/alert/progress.vue)
+@[code html{3}](../.vuepress/components/alert/progress.vue)
 
 </template>
 
@@ -557,13 +557,13 @@ You can add a close alert icon with the `closable` property, the property is a` 
 
 <template #template>
 
-@[code{1-17} html{7}](../../.vuepress/components/alert/closable.vue)
+@[code{1-17} html{7}](../.vuepress/components/alert/closable.vue)
 
 </template>
 
 <template #script>
 
-@[code{18-22} html{4}](../../.vuepress/components/alert/closable.vue)
+@[code{18-22} html{4}](../.vuepress/components/alert/closable.vue)
 
 </template>
 
@@ -581,13 +581,13 @@ If you need an alert to have time to hide, you can do so by joining some propert
 
 <template #template>
 
-@[code{1-14} html{4}](../../.vuepress/components/alert/time.vue)
+@[code{1-14} html{4}](../.vuepress/components/alert/time.vue)
 
 </template>
 
 <template #script>
 
-@[code{16-36} html{5-6}](../../.vuepress/components/alert/time.vue)
+@[code{16-36} html{5-6}](../.vuepress/components/alert/time.vue)
 
 </template>
 

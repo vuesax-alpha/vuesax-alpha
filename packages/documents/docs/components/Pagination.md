@@ -175,13 +175,13 @@ Easily add a pagination with the `vs-pagination` component, the required propert
 
 <template #template>
 
-@[code{1-5} html{3}](../../.vuepress/components/pagination/default.vue)
+@[code{1-5} html{3}](../.vuepress/components/pagination/default.vue)
 
 </template>
 
 <template #script>
 
-@[code{7-11}](../../.vuepress/components/pagination/default.vue)
+@[code{7-11}](../.vuepress/components/pagination/default.vue)
 
 </template>
 
@@ -199,19 +199,19 @@ Easily add a pagination with the `vs-pagination` component, the required propert
 
 <template #template>
 
-@[code{1-15} html{4}](../../.vuepress/components/pagination/color.vue)
+@[code{1-15} html{4}](../.vuepress/components/pagination/color.vue)
 
 </template>
 
 <template #script>
 
-@[code{17-22}](../../.vuepress/components/pagination/color.vue)
+@[code{17-22}](../.vuepress/components/pagination/color.vue)
 
 </template>
 
 <template #style>
 
-@[code{24-39}](../../.vuepress/components/pagination/color.vue)
+@[code{24-39}](../.vuepress/components/pagination/color.vue)
 
 </template>
 
@@ -229,13 +229,13 @@ Change the disabled state of the component with the `disabled` property, this pr
 
 <template #template>
 
-@[code{1-5} vue{3}](../../.vuepress/components/pagination/disabled.vue)
+@[code{1-5} vue{3}](../.vuepress/components/pagination/disabled.vue)
 
 </template>
 
 <template #script>
 
-@[code{7-11}](../../.vuepress/components/pagination/disabled.vue)
+@[code{7-11}](../.vuepress/components/pagination/disabled.vue)
 
 </template>
 
@@ -253,13 +253,13 @@ You can remove the back and next arrows with the `not-arrows` property
 
 <template #template>
 
-@[code{1-5} vue{3}](../../.vuepress/components/pagination/not-arrows.vue)
+@[code{1-5} vue{3}](../.vuepress/components/pagination/not-arrows.vue)
 
 </template>
 
 <template #script>
 
-@[code{7-11}](../../.vuepress/components/pagination/not-arrow.vue)
+@[code{7-11}](../.vuepress/components/pagination/not-arrow.vue)
 
 </template>
 
@@ -277,13 +277,13 @@ You may need in small spaces to remove the buttons and leave only the arrows for
 
 <template #template>
 
-@[code{1-8} vue{3}](../../.vuepress/components/pagination/only-arrow.vue)
+@[code{1-8} vue{3}](../.vuepress/components/pagination/only-arrow.vue)
 
 </template>
 
 <template #script>
 
-@[code{10-14}](../../.vuepress/components/pagination/only-arrow.vue)
+@[code{10-14}](../.vuepress/components/pagination/only-arrow.vue)
 
 </template>
 
@@ -301,13 +301,13 @@ Change the radius of all the elements that make up the component by making them 
 
 <template #template>
 
-@[code{1-5} vue{3}](../../.vuepress/components/pagination/circle.vue)
+@[code{1-5} vue{3}](../.vuepress/components/pagination/circle.vue)
 
 </template>
 
 <template #script>
 
-@[code{7-11}](../../.vuepress/components/pagination/circle.vue)
+@[code{7-11}](../.vuepress/components/pagination/circle.vue)
 
 </template>
 
@@ -325,13 +325,13 @@ Change the radius of all the elements that make up the component making them squ
 
 <template #template>
 
-@[code{1-5} vue{3}](../../.vuepress/components/pagination/square.vue)
+@[code{1-5} vue{3}](../.vuepress/components/pagination/square.vue)
 
 </template>
 
 <template #script>
 
-@[code{7-11}](../../.vuepress/components/pagination/square.vue)
+@[code{7-11}](../.vuepress/components/pagination/square.vue)
 
 </template>
 
@@ -349,13 +349,13 @@ Cambia por completo el estilo de el componente y elimina los números internos e
 
 <template #template>
 
-@[code{1-8} vue{3}](../../.vuepress/components/pagination/buttons-dotted.vue)
+@[code{1-8} vue{3}](../.vuepress/components/pagination/buttons-dotted.vue)
 
 </template>
 
 <template #script>
 
-@[code{11-14}](../../.vuepress/components/pagination/buttons-dotted.vue)
+@[code{11-14}](../.vuepress/components/pagination/buttons-dotted.vue)
 
 </template>
 
@@ -377,13 +377,13 @@ The buttons that are in disabled will skip when changing the value for example o
 
 <template #template>
 
-@[code{1-5} vue{3}](../../.vuepress/components/pagination/disabledItems.vue)
+@[code{1-5} vue{3}](../.vuepress/components/pagination/disabledItems.vue)
 
 </template>
 
 <template #script>
 
-@[code{7-11}](../../.vuepress/components/pagination/disabledItems.vue)
+@[code{7-11}](../.vuepress/components/pagination/disabledItems.vue)
 
 </template>
 
@@ -405,13 +405,13 @@ The buttons that are in loading will skip when changing the value for example in
 
 <template #template>
 
-@[code{1-5} vue{3}](../../.vuepress/components/pagination/loadingItems.vue)
+@[code{1-5} vue{3}](../.vuepress/components/pagination/loadingItems.vue)
 
 </template>
 
 <template #script>
 
-@[code{7-11}](../../.vuepress/components/pagination/loadingItems.vue)
+@[code{7-11}](../.vuepress/components/pagination/loadingItems.vue)
 
 </template>
 
@@ -429,13 +429,13 @@ Change the style of the entire component by removing the margin between the butt
 
 <template #template>
 
-@[code{1-5} vue{3}](../../.vuepress/components/pagination/not-margin.vue)
+@[code{1-5} vue{3}](../.vuepress/components/pagination/not-margin.vue)
 
 </template>
 
 <template #script>
 
-@[code{7-11}](../../.vuepress/components/pagination/not-margin.vue)
+@[code{7-11}](../.vuepress/components/pagination/not-margin.vue)
 
 </template>
 
@@ -453,19 +453,19 @@ You may need to customize your pagination and for this you can use the `default`
 
 <template #template>
 
-@[code{1-15} vue{3}](../../.vuepress/components/pagination/slot.vue)
+@[code{1-15} vue{3}](../.vuepress/components/pagination/slot.vue)
 
 </template>
 
 <template #script>
 
-@[code{17-21}](../../.vuepress/components/pagination/slot.vue)
+@[code{17-21}](../.vuepress/components/pagination/slot.vue)
 
 </template>
 
 <template #style>
 
-@[code{23-33}](../../.vuepress/components/pagination/slot.vue)
+@[code{23-33}](../.vuepress/components/pagination/slot.vue)
 
 </template>
 
@@ -483,13 +483,13 @@ Add a progress bar to the pagination by referencing where you find the last page
 
 <template #template>
 
-@[code{1-5} vue{3}](../../.vuepress/components/pagination/progress.vue)
+@[code{1-5} vue{3}](../.vuepress/components/pagination/progress.vue)
 
 </template>
 
 <template #script>
 
-@[code{7-11}](../../.vuepress/components/pagination/progress.vue)
+@[code{7-11}](../.vuepress/components/pagination/progress.vue)
 
 </template>
 
@@ -507,13 +507,13 @@ You can change the number of pages that are added when the user clicks on the po
 
 <template #template>
 
-@[code{1-5} vue{3}](../../.vuepress/components/pagination/dotted-number.vue)
+@[code{1-5} vue{3}](../.vuepress/components/pagination/dotted-number.vue)
 
 </template>
 
 <template #script>
 
-@[code{7-11}](../../.vuepress/components/pagination/dotted-number.vue)
+@[code{7-11}](../.vuepress/components/pagination/dotted-number.vue)
 
 </template>
 
@@ -531,13 +531,13 @@ You can make the pagination infinite with the `infinite` property, this means th
 
 <template #template>
 
-@[code{1-5} vue{3}](../../.vuepress/components/pagination/infinite.vue)
+@[code{1-5} vue{3}](../.vuepress/components/pagination/infinite.vue)
 
 </template>
 
 <template #script>
 
-@[code{7-11}](../../.vuepress/components/pagination/infinite.vue)
+@[code{7-11}](../.vuepress/components/pagination/infinite.vue)
 
 </template>
 

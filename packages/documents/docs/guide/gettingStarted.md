@@ -48,8 +48,8 @@ To use vuesax in your vuejs project, add this code:
 import { createApp } from "vue";
 import App from "./App.vue";
 
-import Vuesax from "vuesax";
-import "vuesax/dist/vuesax.css"; // Vuesax styles
+import Vuesax from "vuesax-alpha";
+import "vuesax-alpha/dist/vuesax.css"; // Vuesax styles
 
 const app = createApp(App);
 app.use(Vuesax);
@@ -73,8 +73,8 @@ There are cases that in your project you only need some components of vuesax and
 import { createApp } from "vue";
 import App from "./App.vue";
 
-import { vsPopup, vsAlert, vsInput } from "vuesax";
-import "vuesax/dist/vuesax.css"; // Vuesax styles
+import { vsPopup, vsAlert, vsInput } from "vuesax-alpha";
+import "vuesax-alpha/dist/vuesax.css"; // Vuesax styles
 
 const app = createApp(App);
 app.use(vsPopup).use(vsAlert).use(vsInput);
@@ -98,8 +98,14 @@ You can use vuesax by loading it via cdn by adding a `<script>` tag to your proj
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="https://unpkg.com/vuesax-alpha@0.0.20/dist/style.css" rel="stylesheet" />
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link
+      href="https://unpkg.com/vuesax-alpha@0.0.20/dist/style.css"
+      rel="stylesheet"
+    />
+    <meta
+      name="viewport"
+      content="initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
   </head>
   <body>
     <div id="app">

@@ -249,13 +249,13 @@ You can see a complete example and change the properties in real time
 
 <template #template>
 
-@[code{1-30}](../../.vuepress/components/navbar/default.vue)
+@[code{1-30}](../.vuepress/components/navbar/default.vue)
 
 </template>
 
 <template #script>
 
-@[code{32-36}](../../.vuepress/components/navbar/default.vue)
+@[code{32-36}](../.vuepress/components/navbar/default.vue)
 
 </template>
 
@@ -275,13 +275,13 @@ if you want to change the text color to white you can do it with the property `t
 
 <template #template>
 
-@[code{1-40}](../../.vuepress/components/navbar/color.vue)
+@[code{1-40}](../.vuepress/components/navbar/color.vue)
 
 </template>
 
 <template #script>
 
-@[code{41-45}](../../.vuepress/components/navbar/color.vue)
+@[code{41-45}](../.vuepress/components/navbar/color.vue)
 
 </template>
 
@@ -299,13 +299,13 @@ Add functionality to hide navbar when user scroll down and show when upload
 
 <template #template>
 
-@[code{1-35}](../../.vuepress/components/navbar/hideScroll.vue)
+@[code{1-35}](../.vuepress/components/navbar/hideScroll.vue)
 
 </template>
 
 <template #script>
 
-@[code{37-41}](../../.vuepress/components/navbar/hideScroll.vue)
+@[code{37-41}](../.vuepress/components/navbar/hideScroll.vue)
 
 </template>
 
@@ -323,13 +323,13 @@ You can add a list of elements within an item with the `vs-navbar-group` compone
 
 <template #template>
 
-@[code{1-58}](../../.vuepress/components/navbar/group.vue)
+@[code{1-58}](../.vuepress/components/navbar/group.vue)
 
 </template>
 
 <template #script>
 
-@[code{60-64}](../../.vuepress/components/navbar/group.vue)
+@[code{60-64}](../.vuepress/components/navbar/group.vue)
 
 </template>
 
@@ -347,13 +347,13 @@ Add the functionality that the component has a padding up and down that when it 
 
 <template #template>
 
-@[code{1-36}](../../.vuepress/components/navbar/paddingScroll.vue)
+@[code{1-36}](../.vuepress/components/navbar/paddingScroll.vue)
 
 </template>
 
 <template #script>
 
-@[code{38-42}](../../.vuepress/components/navbar/paddingScroll.vue)
+@[code{38-42}](../.vuepress/components/navbar/paddingScroll.vue)
 
 </template>
 
@@ -371,13 +371,13 @@ Remove the border-radius property by making the component square
 
 <template #template>
 
-@[code{1-36}](../../.vuepress/components/navbar/square.vue)
+@[code{1-36}](../.vuepress/components/navbar/square.vue)
 
 </template>
 
 <template #script>
 
-@[code{38-42}](../../.vuepress/components/navbar/square.vue)
+@[code{38-42}](../.vuepress/components/navbar/square.vue)
 
 </template>
 
@@ -395,13 +395,13 @@ Eliminates the active effect line of the component
 
 <template #template>
 
-@[code{1-30}](../../.vuepress/components/navbar/notLine.vue)
+@[code{1-30}](../.vuepress/components/navbar/notLine.vue)
 
 </template>
 
 <template #script>
 
-@[code{32-36}](../../.vuepress/components/navbar/notLine.vue)
+@[code{32-36}](../.vuepress/components/navbar/notLine.vue)
 
 </template>
 

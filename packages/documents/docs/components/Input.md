@@ -456,13 +456,13 @@ Add an elements input facilitate with the component `<vs-input>`
 
 <template #template>
 
-@[code{1-5} html{3}](../../.vuepress/components/input/default.vue)
+@[code{1-5} html{3}](../.vuepress/components/input/default.vue)
 
 </template>
 
 <template #script>
 
-@[code{7-11}](../../.vuepress/components/input/default.vue)
+@[code{7-11}](../.vuepress/components/input/default.vue)
 
 </template>
 
@@ -480,13 +480,13 @@ Add a label to the input with the property `label`
 
 <template #template>
 
-@[code{1-9} html{4}](../../.vuepress/components/input/label.vue)
+@[code{1-9} html{4}](../.vuepress/components/input/label.vue)
 
 </template>
 
 <template #script>
 
-@[code{10-14}](../../.vuepress/components/input/label.vue)
+@[code{10-14}](../.vuepress/components/input/label.vue)
 
 </template>
 
@@ -504,13 +504,13 @@ You can have a placeholder with a great animation when being or in focus or with
 
 <template #template>
 
-@[code{1-5} html{3}](../../.vuepress/components/input/labelPlaceholder.vue)
+@[code{1-5} html{3}](../.vuepress/components/input/labelPlaceholder.vue)
 
 </template>
 
 <template #script>
 
-@[code{7-11}](../../.vuepress/components/input/labelPlaceholder.vue)
+@[code{7-11}](../.vuepress/components/input/labelPlaceholder.vue)
 
 </template>
 
@@ -528,13 +528,13 @@ Change the color of the component and add a border below with the `color` proper
 
 <template #template>
 
-@[code{1-50} html{4,9,19,30,36,41,46}](../../.vuepress/components/input/color.vue)
+@[code{1-50} html{4,9,19,30,36,41,46}](../.vuepress/components/input/color.vue)
 
 </template>
 
 <template #script>
 
-@[code{51-61}](../../.vuepress/components/input/color.vue)
+@[code{51-61}](../.vuepress/components/input/color.vue)
 
 </template>
 
@@ -554,13 +554,13 @@ Add an icon to the input easily with the slot icon if you want the icon to be be
 
 <template #template>
 
-@[code{1-20} html{4,15}](../../.vuepress/components/input/icon.vue)
+@[code{1-20} html{4,15}](../.vuepress/components/input/icon.vue)
 
 </template>
 
 <template #script>
 
-@[code{21-26}](../../.vuepress/components/input/icon.vue)
+@[code{21-26}](../.vuepress/components/input/icon.vue)
 
 </template>
 
@@ -578,13 +578,13 @@ You can add a message below the input with the `slot="message- {vuesax color}"` 
 
 <template #template>
 
-@[code{1-26} html{4,8,12,20-21}](../../.vuepress/components/input/message.vue)
+@[code{1-26} html{4,8,12,20-21}](../.vuepress/components/input/message.vue)
 
 </template>
 
 <template #script>
 
-@[code{28-39}](../../.vuepress/components/input/message.vue)
+@[code{28-39}](../.vuepress/components/input/message.vue)
 
 </template>
 
@@ -602,13 +602,13 @@ Change the color of the input for some state, the allowed states are (primary, s
 
 <template #template>
 
-@[code{1-31} html{12}](../../.vuepress/components/input/state.vue)
+@[code{1-31} html{12}](../.vuepress/components/input/state.vue)
 
 </template>
 
 <template #script>
 
-@[code{33-43}](../../.vuepress/components/input/state.vue)
+@[code{33-43}](../.vuepress/components/input/state.vue)
 
 </template>
 
@@ -636,13 +636,13 @@ The example validates that the password has at least
 
 <template #template>
 
-@[code{1-22} html{7}](../../.vuepress/components/input/progress.vue)
+@[code{1-22} html{7}](../.vuepress/components/input/progress.vue)
 
 </template>
 
 <template #script>
 
-@[code{24-54}](../../.vuepress/components/input/progress.vue)
+@[code{24-54}](../.vuepress/components/input/progress.vue)
 
 </template>
 
@@ -660,13 +660,13 @@ Add a loading animation to the input with the `loading` property, the property i
 
 <template #template>
 
-@[code{1-5} html{3}](../../.vuepress/components/input/loading.vue)
+@[code{1-5} html{3}](../.vuepress/components/input/loading.vue)
 
 </template>
 
 <template #script>
 
-@[code{7-11}](../../.vuepress/components/input/loading.vue)
+@[code{7-11}](../.vuepress/components/input/loading.vue)
 
 </template>
 
@@ -684,13 +684,13 @@ Change the type of input with the `type` property as a native html input, the de
 
 <template #template>
  
-@[code{1-14} html{4}](../../.vuepress/components/input/types.vue)
+@[code{1-14} html{4}](../.vuepress/components/input/types.vue)
 
 </template>
 
 <template #script>
 
-@[code{15-25}](../../.vuepress/components/input/types.vue)
+@[code{15-25}](../.vuepress/components/input/types.vue)
 
 </template>
 
@@ -708,13 +708,13 @@ Change everything is style of the component with the `border` property, the prop
 
 <template #template>
 
-@[code{1-30} html{7}](../../.vuepress/components/input/border.vue)
+@[code{1-30} html{7}](../.vuepress/components/input/border.vue)
 
 </template>
 
 <template #script>
 
-@[code{32-38}](../../.vuepress/components/input/border.vue)
+@[code{32-38}](../.vuepress/components/input/border.vue)
 
 </template>
 
@@ -732,13 +732,13 @@ Change everything is style of the component with the `shadow` property, the prop
 
 <template #template>
 
-@[code{1-30} html{7}](../../.vuepress/components/input/shadow.vue)
+@[code{1-30} html{7}](../.vuepress/components/input/shadow.vue)
 
 </template>
 
 <template #script>
 
-@[code{31-37}](../../.vuepress/components/input/shadow.vue)
+@[code{31-37}](../.vuepress/components/input/shadow.vue)
 
 </template>
 

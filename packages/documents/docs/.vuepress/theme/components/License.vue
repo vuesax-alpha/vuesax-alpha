@@ -29,7 +29,7 @@
             @click="
               card.contact
                 ? openContact()
-                : $router.push('/docs/guide/gettingStarted')
+                : $router.push('/guide/gettingStarted')
             "
           >
             {{ card.buttonText }}

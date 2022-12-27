@@ -93,13 +93,13 @@ Add the radio type input with the component `<vs-radio />`
 
 <template #template>
 
-@[code{1-8}](../../.vuepress/components/radio/default.vue)
+@[code{1-8}](../.vuepress/components/radio/default.vue)
 
 </template>
 
 <template #script>
 
-@[code{10-14}](../../.vuepress/components/radio/default.vue)
+@[code{10-14}](../.vuepress/components/radio/default.vue)
 
 </template>
 
@@ -117,13 +117,13 @@ Add the radio type input with the component `<vs-radio />`
 
 <template #template>
 
-@[code{1-11} vue{4-9}](../../.vuepress/components/radio/color.vue)
+@[code{1-11} vue{4-9}](../.vuepress/components/radio/color.vue)
 
 </template>
 
 <template #script>
 
-@[code{13-17}](../../.vuepress/components/radio/color.vue)
+@[code{13-17}](../.vuepress/components/radio/color.vue)
 
 </template>
 
@@ -141,13 +141,13 @@ Add a label to the radio with the `default` slot, if you need the label to be be
 
 <template #template>
 
-@[code{1-10} vue{6}](../../.vuepress/components/radio/label.vue)
+@[code{1-10} vue{6}](../.vuepress/components/radio/label.vue)
 
 </template>
 
 <template #script>
 
-@[code{12-16}](../../.vuepress/components/radio/label.vue)
+@[code{12-16}](../.vuepress/components/radio/label.vue)
 
 </template>
 
@@ -165,13 +165,13 @@ Add a loading animation to the component, when the radio has this property activ
 
 <template #template>
 
-@[code{1-6} vue{3,4}](../../.vuepress/components/radio/loading.vue)
+@[code{1-6} vue{3,4}](../.vuepress/components/radio/loading.vue)
 
 </template>
 
 <template #script>
 
-@[code{8-12}](../../.vuepress/components/radio/loading.vue)
+@[code{8-12}](../.vuepress/components/radio/loading.vue)
 
 </template>
 
@@ -189,13 +189,13 @@ Add an icon inside the radio with the `icon` slot
 
 <template #template>
 
-@[code{1-46} vue{5-7}](../../.vuepress/components/radio/icons.vue)
+@[code{1-46} vue{5-7}](../.vuepress/components/radio/icons.vue)
 
 </template>
 
 <template #script>
 
-@[code{48-52}](../../.vuepress/components/radio/icons.vue)
+@[code{48-52}](../.vuepress/components/radio/icons.vue)
 
 </template>
 

@@ -232,13 +232,13 @@ Generate a switch element easily with beautiful animations and functionality
 
 <template #template>
 
-@[code{1-7} html{3}](../../.vuepress/components/switch/default.vue)
+@[code{1-7} html{3}](../.vuepress/components/switch/default.vue)
 
 </template>
 
 <template #script>
 
-@[code{9-15}](../../.vuepress/components/switch/default.vue)
+@[code{9-15}](../.vuepress/components/switch/default.vue)
 
 </template>
 
@@ -256,13 +256,13 @@ Change the color of the component when it is in active state, the allowed values
 
 <template #template>
 
-@[code{1-11}](../../.vuepress/components/switch/color.vue)
+@[code{1-11}](../.vuepress/components/switch/color.vue)
 
 </template>
 
 <template #script>
 
-@[code{13-23}](../../.vuepress/components/switch/color.vue)
+@[code{13-23}](../.vuepress/components/switch/color.vue)
 
 </template>
 
@@ -284,13 +284,13 @@ The component conforms to the text to be displayed by the state in which it is l
 
 <template #template>
 
-@[code{1-13} html{5,6,9,10}](../../.vuepress/components/switch/text.vue)
+@[code{1-13} html{5,6,9,10}](../.vuepress/components/switch/text.vue)
 
 </template>
 
 <template #script>
 
-@[code{15-21}](../../.vuepress/components/switch/text.vue)
+@[code{15-21}](../.vuepress/components/switch/text.vue)
 
 </template>
 
@@ -308,13 +308,13 @@ Add icons to the component in the default slot or the `on` or `off` status slots
 
 <template #template>
 
-@[code{1-41} html{4-9,29-32,35-38}](../../.vuepress/components/switch/icons.vue)
+@[code{1-41} html{4-9,29-32,35-38}](../.vuepress/components/switch/icons.vue)
 
 </template>
 
 <template #script>
 
-@[code{43-52}](../../.vuepress/components/switch/icons.vue)
+@[code{43-52}](../.vuepress/components/switch/icons.vue)
 
 </template>
 
@@ -332,13 +332,13 @@ You can use the checkbox to add or remove a value from an array, that value is t
 
 <template #template>
 
-@[code{1-13}](../../.vuepress/components/switch/array.vue)
+@[code{1-13}](../.vuepress/components/switch/array.vue)
 
 </template>
 
 <template #script>
 
-@[code{15-19}](../../.vuepress/components/switch/array.vue)
+@[code{15-19}](../.vuepress/components/switch/array.vue)
 
 </template>
 
@@ -356,13 +356,13 @@ Add a loading animation to the component with the `loading` property, the proper
 
 <template #template>
 
-@[code{1-6} html{4}](../../.vuepress/components/switch/loading.vue)
+@[code{1-6} html{4}](../.vuepress/components/switch/loading.vue)
 
 </template>
 
 <template #script>
 
-@[code{8-13}](../../.vuepress/components/switch/loading.vue)
+@[code{8-13}](../.vuepress/components/switch/loading.vue)
 
 </template>
 
@@ -380,13 +380,13 @@ Add an undetermined state to the compound with the `indeterminate` property, the
 
 <template #template>
 
-@[code{1-7} html{3}](../../.vuepress/components/switch/indeterminate.vue)
+@[code{1-7} html{3}](../.vuepress/components/switch/indeterminate.vue)
 
 </template>
 
 <template #script>
 
-@[code{9-15}](../../.vuepress/components/switch/indeterminate.vue)
+@[code{9-15}](../.vuepress/components/switch/indeterminate.vue)
 
 </template>
 
@@ -404,13 +404,13 @@ Change the circular style to square with the `square` property, the property is 
 
 <template #template>
 
-@[code{1-7} html{3}](../../.vuepress/components/switch/square.vue)
+@[code{1-7} html{3}](../.vuepress/components/switch/square.vue)
 
 </template>
 
 <template #script>
 
-@[code{9-15}](../../.vuepress/components/switch/square.vue)
+@[code{9-15}](../.vuepress/components/switch/square.vue)
 
 </template>
 
@@ -428,19 +428,19 @@ A usual example when using the switch component
 
 <template #template>
 
-@[code{1-43}](../../.vuepress/components/switch/example.vue)
+@[code{1-43}](../.vuepress/components/switch/example.vue)
 
 </template>
 
 <template #script>
 
-@[code{45-53}](../../.vuepress/components/switch/example.vue)
+@[code{45-53}](../.vuepress/components/switch/example.vue)
 
 </template>
 
 <template #style>
 
-@[code{55-79}](../../.vuepress/components/switch/example.vue)
+@[code{55-79}](../.vuepress/components/switch/example.vue)
 
 </template>
 

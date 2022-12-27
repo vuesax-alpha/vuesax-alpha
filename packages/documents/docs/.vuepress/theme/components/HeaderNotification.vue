@@ -29,7 +29,7 @@ const active = ref<number>(0);
 const number = ref<number>(12);
 
 const handleClick = () => {
-  router.push("/docs/components/Card");
+  router.push("/components/Card");
   active.value = 0;
 
   localStorage.notificationHidden = number.value;

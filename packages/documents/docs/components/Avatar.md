@@ -313,7 +313,7 @@ Add an avatar easily and with functionality with the component `<vs-avatar>`
 
 <template #template>
 
-@[code{1-19} html{3-5}](../../.vuepress/components/avatar/default.vue)
+@[code{1-19} html{3-5}](../.vuepress/components/avatar/default.vue)
 
 </template>
 
@@ -331,7 +331,7 @@ Change the color of the compound with the `color` property, the colors allowed a
 
 <template #template>
 
-@[code{1-25} html{3}](../../.vuepress/components/avatar/color.vue)
+@[code{1-25} html{3}](../.vuepress/components/avatar/color.vue)
 
 </template>
 
@@ -349,7 +349,7 @@ Change the size of the component to the number provided if for example the size 
 
 <template #template>
 
-@[code{1-19} html{3}](../../.vuepress/components/avatar/size.vue)
+@[code{1-19} html{3}](../.vuepress/components/avatar/size.vue)
 
 </template>
 
@@ -371,7 +371,7 @@ There are times when you need to use the avatar in a chat environment and for th
 
 <template #template>
 
-@[code{1-30} html{3}](../../.vuepress/components/avatar/badge.vue)
+@[code{1-30} html{3}](../.vuepress/components/avatar/badge.vue)
 
 </template>
 
@@ -393,7 +393,7 @@ The maximum length of characters is **5**. When that limit is exceeded, changes 
 
 <template #template>
 
-@[code{1-22}](../../.vuepress/components/avatar/autoFont.vue)
+@[code{1-22}](../.vuepress/components/avatar/autoFont.vue)
 
 </template>
 
@@ -411,7 +411,7 @@ Change the border-radius of the entire component to `50%` with the `circle` prop
 
 <template #template>
 
-@[code{1-25} html{3}](../../.vuepress/components/avatar/circle.vue)
+@[code{1-25} html{3}](../.vuepress/components/avatar/circle.vue)
 
 </template>
 
@@ -429,7 +429,7 @@ Change the border-radius of the entire component to `0%` with the `square` prope
 
 <template #template>
 
-@[code{1-25} html{3}](../../.vuepress/components/avatar/square.vue)
+@[code{1-25} html{3}](../.vuepress/components/avatar/square.vue)
 
 </template>
 
@@ -451,7 +451,7 @@ You can make the border a gradient like instagram with the property `history-gra
 
 <template #template>
 
-@[code{1-19} html{3}](../../.vuepress/components/avatar/history.vue)
+@[code{1-19} html{3}](../.vuepress/components/avatar/history.vue)
 
 </template>
 
@@ -469,7 +469,7 @@ You can put an icon inside an avatar when for example an image is not yet added 
 
 <template #template>
 
-@[code{1-22} html{3}](../../.vuepress/components/avatar/icon.vue)
+@[code{1-22} html{3}](../.vuepress/components/avatar/icon.vue)
 
 </template>
 
@@ -487,7 +487,7 @@ Add a loading animation to the component, this property is a `boolean` so you ca
 
 <template #template>
 
-@[code{1-25} html{3}](../../.vuepress/components/avatar/square.vue)
+@[code{1-25} html{3}](../.vuepress/components/avatar/square.vue)
 
 </template>
 
@@ -505,7 +505,7 @@ Add a space next to the avatar with the slot `icons` where you can put icons for
 
 <template #template>
 
-@[code{1-27} html{5-9}](../../.vuepress/components/avatar/icons.vue)
+@[code{1-27} html{5-9}](../.vuepress/components/avatar/icons.vue)
 
 </template>
 
@@ -527,7 +527,7 @@ You can group several avatar with the parent component `vs-avatar-group`, this c
 
 <template #template>
 
-@[code{1-69} html{3,36}](../../.vuepress/components/avatar/group.vue)
+@[code{1-69} html{3,36}](../.vuepress/components/avatar/group.vue)
 
 </template>
 

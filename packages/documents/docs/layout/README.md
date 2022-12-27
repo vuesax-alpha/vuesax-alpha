@@ -23,7 +23,7 @@ With the `w` directive define the column width (vs-col) its value is **1-12**, a
 
 <template #template>
 
-@[code{1-27}](../../.vuepress/components/grid/default.vue)
+@[code{1-27}](../.vuepress/components/grid/default.vue)
 
 </template>
 
@@ -41,7 +41,7 @@ To give a distance from the left we have the offset property that with the same 
 
 <template #template>
 
-@[code{1-23}](../../.vuepress/components/grid/offset.vue)
+@[code{1-23}](../.vuepress/components/grid/offset.vue)
 
 </template>
 
@@ -59,7 +59,7 @@ If we have to align the elements horizontally, use the `justify` directive that 
 
 <template #template>
 
-@[code{1-23}](../../.vuepress/components/grid/flexJustify.vue)
+@[code{1-23}](../.vuepress/components/grid/flexJustify.vue)
 
 </template>
 
@@ -79,7 +79,7 @@ We also have the `direction` property that refers to the css` flex-direction` pr
 
 <template #template>
 
-@[code{1-23}](../../.vuepress/components/grid/flexAlign.vue)
+@[code{1-23}](../.vuepress/components/grid/flexAlign.vue)
 
 </template>
 
@@ -106,13 +106,13 @@ There are some measures that can only be added in a specific device size, the di
 
 <template #template>
 
-@[code{1-15}](../../.vuepress/components/grid/responsive.vue)
+@[code{1-15}](../.vuepress/components/grid/responsive.vue)
 
 </template>
 
 <template #script>
 
-@[code{17-40}](../../.vuepress/components/grid/responsive.vue)
+@[code{17-40}](../.vuepress/components/grid/responsive.vue)
 
 </template>
 

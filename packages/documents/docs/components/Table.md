@@ -184,13 +184,13 @@ This component has a different logic for better data management and freer custom
 
 <template #template>
 
-@[code{3-24} html{1}](../../.vuepress/components/table/default.vue)
+@[code{3-24} html{1}](../.vuepress/components/table/default.vue)
 
 </template>
 
 <template #script>
 
-@[code{28-109}](../../.vuepress/components/table/default.vue)
+@[code{28-109}](../.vuepress/components/table/default.vue)
 
 </template>
 
@@ -208,13 +208,13 @@ You can easily strip the table with the `striped` property
 
 <template #template>
 
-@[code{3-24} html{1}](../../.vuepress/components/table/striped.vue)
+@[code{3-24} html{1}](../.vuepress/components/table/striped.vue)
 
 </template>
 
 <template #script>
 
-@[code{28-109}](../../.vuepress/components/table/default.vue)
+@[code{28-109}](../.vuepress/components/table/default.vue)
 
 </template>
 
@@ -232,13 +232,13 @@ Change the state of a tr by adding the color property to the component `vs-tr`
 
 <template #template>
 
-@[code{3-32} vue{14-17}](../../.vuepress/components/table/state.vue)
+@[code{3-32} vue{14-17}](../.vuepress/components/table/state.vue)
 
 </template>
 
 <template #script>
 
-@[code{36-117}](../../.vuepress/components/table/state.vue)
+@[code{36-117}](../.vuepress/components/table/state.vue)
 
 </template>
 
@@ -262,13 +262,13 @@ See the example
 
 <template #template>
 
-@[code{1-29} vue{12,25}](../../.vuepress/components/table/pagination.vue)
+@[code{1-29} vue{12,25}](../.vuepress/components/table/pagination.vue)
 
 </template>
 
 <template #script>
 
-@[code{31-117}](../../.vuepress/components/table/pagination.vue)
+@[code{31-117}](../.vuepress/components/table/pagination.vue)
 
 </template>
 
@@ -290,13 +290,13 @@ Using the `data` property in the `tr` is important as that is the data to be add
 
 <template #template>
 
-@[code{1-37} vue{3,15}](../../.vuepress/components/table/selected.vue)
+@[code{1-37} vue{3,15}](../.vuepress/components/table/selected.vue)
 
 </template>
 
 <template #script>
 
-@[code{39-124}](../../.vuepress/components/table/selected.vue)
+@[code{39-124}](../.vuepress/components/table/selected.vue)
 
 </template>
 
@@ -316,13 +316,13 @@ for this functionality you can use for example the vuesax checkboxes and the fun
 
 <template #template>
 
-@[code{1-44} vue{3}](../../.vuepress/components/table/multiple.vue)
+@[code{1-44} vue{3}](../.vuepress/components/table/multiple.vue)
 
 </template>
 
 <template #script>
 
-@[code{46-150}](../../.vuepress/components/table/multiple.vue)
+@[code{46-150}](../.vuepress/components/table/multiple.vue)
 
 </template>
 
@@ -340,13 +340,13 @@ To add a `tr` that can display expanded data use the`#expand` slot inside the `v
 
 <template #template>
 
-@[code{1-46} vue{23-41}](../../.vuepress/components/table/expand.vue)
+@[code{1-46} vue{23-41}](../.vuepress/components/table/expand.vue)
 
 </template>
 
 <template #script>
 
-@[code{48-129}](../../.vuepress/components/table/expand.vue)
+@[code{48-129}](../.vuepress/components/table/expand.vue)
 
 </template>
 
@@ -364,13 +364,13 @@ You can edit the data inside the table easily using the `vs-dialog` component an
 
 <template #template>
 
-@[code{1-61} vue{15,21,32}](../../.vuepress/components/table/edit.vue)
+@[code{1-61} vue{15,21,32}](../.vuepress/components/table/edit.vue)
 
 </template>
 
 <template #script>
 
-@[code{63-150} vue{23-41}](../../.vuepress/components/table/edit.vue)
+@[code{63-150} vue{23-41}](../.vuepress/components/table/edit.vue)
 
 </template>
 
@@ -400,13 +400,13 @@ The `sortData` function needs 3 parameters: the event, the data of the table and
 
 <template #template>
 
-@[code{1-35} vue{5,21}](../../.vuepress/components/table/search.vue)
+@[code{1-35} vue{5,21}](../.vuepress/components/table/search.vue)
 
 </template>
 
 <template #script>
 
-@[code{37-122} vue{15,21,32}](../../.vuepress/components/table/search.vue)
+@[code{37-122} vue{15,21,32}](../.vuepress/components/table/search.vue)
 
 </template>
 
@@ -428,13 +428,13 @@ This component is created for much freer customization regarding data handling, 
 
 <template #template>
 
-@[code{1-115}](../../.vuepress/components/table/miscellaneous.vue)
+@[code{1-115}](../.vuepress/components/table/miscellaneous.vue)
 
 </template>
 
 <template #script>
 
-@[code{117-215}](../../.vuepress/components/table/miscellaneous.vue)
+@[code{117-215}](../.vuepress/components/table/miscellaneous.vue)
 
 </template>
 

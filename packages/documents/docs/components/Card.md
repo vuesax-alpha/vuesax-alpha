@@ -121,7 +121,7 @@ Add a card with the `vs-card` component for the structure of this component we h
 
 <template #template>
 
-@[code{1-24}](../../.vuepress/components/card/default.vue)
+@[code{1-24}](../.vuepress/components/card/default.vue)
 
 </template>
 
@@ -139,7 +139,7 @@ Completely change the style of the letter with the property `type` and the value
 
 <template #template>
 
-@[code{1-24} vue{3}](../../.vuepress/components/card/type2.vue)
+@[code{1-24} vue{3}](../.vuepress/components/card/type2.vue)
 
 </template>
 
@@ -157,7 +157,7 @@ Completely change the style of the letter with the property `type` and the value
 
 <template #template>
 
-@[code{1-24} vue{3}](../../.vuepress/components/card/type3.vue)
+@[code{1-24} vue{3}](../.vuepress/components/card/type3.vue)
 
 </template>
 
@@ -175,7 +175,7 @@ Completely change the style of the letter with the `type` property and the value
 
 <template #template>
 
-@[code{1-24} vue{3}](../../.vuepress/components/card/type4.vue)
+@[code{1-24} vue{3}](../.vuepress/components/card/type4.vue)
 
 </template>
 
@@ -193,7 +193,7 @@ Change the style of the letter completely with the `type` property and the value
 
 <template #template>
 
-@[code{1-24} vue{3}](../../.vuepress/components/card/type5.vue)
+@[code{1-24} vue{3}](../.vuepress/components/card/type5.vue)
 
 </template>
 
@@ -211,13 +211,13 @@ To have a group of scrolling cards you can use the `vs-card-group` component
 
 <template #template>
 
-@[code{1-26} vue{3}](../../.vuepress/components/card/group.vue)
+@[code{1-26} vue{3}](../.vuepress/components/card/group.vue)
 
 </template>
 
 <template #script>
 
-@[code{28-32}](../../.vuepress/components/card/group.vue)
+@[code{28-32}](../.vuepress/components/card/group.vue)
 
 </template>
 

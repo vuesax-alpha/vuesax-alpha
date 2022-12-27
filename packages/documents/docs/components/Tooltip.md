@@ -236,7 +236,7 @@ The `tooltip` slot is the content inside the tooltip
 
 <template #template>
 
-@[code{1-8}](../../.vuepress/components/tooltip/default.vue)
+@[code{1-8}](../.vuepress/components/tooltip/default.vue)
 
 </template>
 
@@ -259,7 +259,7 @@ Change the position of the tooltip with the properties
 
 <template #template>
 
-@[code{1-20} vue{3,11,15}](../../.vuepress/components/tooltip/position.vue)
+@[code{1-20} vue{3,11,15}](../.vuepress/components/tooltip/position.vue)
 
 </template>
 
@@ -277,7 +277,7 @@ Change the position of the tooltip with the properties
 
 <template #template>
 
-@[code{1-36} vue{7,11,15,19,23,27,31}](../../.vuepress/components/tooltip/color.vue)
+@[code{1-36} vue{7,11,15,19,23,27,31}](../.vuepress/components/tooltip/color.vue)
 
 </template>
 
@@ -299,7 +299,7 @@ Now the color property would change the color of the border
 
 <template #template>
 
-@[code{1-16} vue{3,7,11}](../../.vuepress/components/tooltip/border.vue)
+@[code{1-16} vue{3,7,11}](../.vuepress/components/tooltip/border.vue)
 
 </template>
 
@@ -317,7 +317,7 @@ Change the `border-radius` of the tooltip so that it is completely a rectangle
 
 <template #template>
 
-@[code{1-12} vue{3}](../../.vuepress/components/tooltip/square.vue)
+@[code{1-12} vue{3}](../.vuepress/components/tooltip/square.vue)
 
 </template>
 
@@ -339,7 +339,7 @@ This property only applies when the tooltip has less than one line of text.
 
 <template #template>
 
-@[code{1-8} vue{3}](../../.vuepress/components/tooltip/circle.vue)
+@[code{1-8} vue{3}](../.vuepress/components/tooltip/circle.vue)
 
 </template>
 
@@ -357,7 +357,7 @@ Change the style of the tooltip to have a shadow and the background color
 
 <template #template>
 
-@[code{1-12} vue{3}](../../.vuepress/components/tooltip/shadow.vue)
+@[code{1-12} vue{3}](../.vuepress/components/tooltip/shadow.vue)
 
 </template>
 
@@ -375,7 +375,7 @@ In some cases you may need to remove the arrow from the tooltip for this you can
 
 <template #template>
 
-@[code{1-36} vue{3,11,19,27}](../../.vuepress/components/tooltip/notArrow.vue)
+@[code{1-36} vue{3,11,19,27}](../.vuepress/components/tooltip/notArrow.vue)
 
 </template>
 
@@ -393,7 +393,7 @@ Add an animation and loading style to the tooltip
 
 <template #template>
 
-@[code{1-12} vue{3,7}](../../.vuepress/components/tooltip/loading.vue)
+@[code{1-12} vue{3,7}](../.vuepress/components/tooltip/loading.vue)
 
 </template>
 
@@ -411,19 +411,19 @@ We create the tooltip component in such a way that you have a lot of freedom to 
 
 <template #template>
 
-@[code{1-70}](../../.vuepress/components/tooltip/content.vue)
+@[code{1-70}](../.vuepress/components/tooltip/content.vue)
 
 </template>
 
 <template #script>
 
-@[code{71-76}](../../.vuepress/components/tooltip/content.vue)
+@[code{71-76}](../.vuepress/components/tooltip/content.vue)
 
 </template>
 
 <template #style>
 
-@[code{78-128}](../../.vuepress/components/tooltip/content.vue)
+@[code{78-128}](../.vuepress/components/tooltip/content.vue)
 
 </template>
 

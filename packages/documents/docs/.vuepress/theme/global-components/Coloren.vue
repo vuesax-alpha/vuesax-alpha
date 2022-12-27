@@ -4,11 +4,11 @@
       Use the <code>color</code> property to change the base color of the
       component and some of the child components, to better understand the
       handling of colors and themes you can see it
-      <router-link to="/docs/theme/">here</router-link>
+      <router-link to="/theme/">here</router-link>
       <br />
       <br />
     </p>
-    <p>Allowed values ​​are:</p>
+    <p>Allowed values are:</p>
     <ul>
       <li><code>primary</code></li>
       <li><code>success</code></li>

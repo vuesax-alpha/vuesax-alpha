@@ -28,9 +28,9 @@ Now that we have everything correct we are going to test and verify that everyth
 
 for this you can enter the pages folder and add a new test call or choose the `index.vue` that represents the main page of our project.
 
-### Add a component
+#### Add a component
 
-Let's try adding a simple component like [vsButton](/docs/components/) the final code could be something like this
+Let's try adding a simple component like [vsButton](/components/) the final code could be something like this
 
 ```html
 <template>
@@ -39,9 +39,7 @@ Let's try adding a simple component like [vsButton](/docs/components/) the final
   </div>
 </template>
 
-<script>
-  export default {};
-</script>
+<script setup lang="ts"></script>
 
 <style>
   .app {

@@ -213,13 +213,13 @@ Add a checkbox type input easily and with a beautiful animation
 
 <template #template>
 
-@[code{1-7}](../../.vuepress/components/checkbox/default.vue)
+@[code{1-7}](../.vuepress/components/checkbox/default.vue)
 
 </template>
 
 <template #script>
 
-@[code{8-12}](../../.vuepress/components/checkbox/default.vue)
+@[code{8-12}](../.vuepress/components/checkbox/default.vue)
 
 </template>
 
@@ -237,13 +237,13 @@ Change the color of the component with the `color` property, the allowed values 
 
 <template #template>
 
-@[code{1-11}](../../.vuepress/components/checkbox/color.vue)
+@[code{1-11}](../.vuepress/components/checkbox/color.vue)
 
 </template>
 
 <template #script>
 
-@[code{12-22}](../../.vuepress/components/checkbox/color.vue)
+@[code{12-22}](../.vuepress/components/checkbox/color.vue)
 
 </template>
 
@@ -261,13 +261,13 @@ By default the component is used with a boolean value that when being checked re
 
 <template #template>
 
-@[code{1-10}](../../.vuepress/components/checkbox/boolean.vue)
+@[code{1-10}](../.vuepress/components/checkbox/boolean.vue)
 
 </template>
 
 <template #script>
 
-@[code{11-16}](../../.vuepress/components/checkbox/boolean.vue)
+@[code{11-16}](../.vuepress/components/checkbox/boolean.vue)
 
 </template>
 
@@ -285,13 +285,13 @@ You may need to return a string when the component is checked for it use the `va
 
 <template #template>
 
-@[code{1-11}](../../.vuepress/components/checkbox/string.vue)
+@[code{1-11}](../.vuepress/components/checkbox/string.vue)
 
 </template>
 
 <template #script>
 
-@[code{13-17}](../../.vuepress/components/checkbox/string.vue)
+@[code{13-17}](../.vuepress/components/checkbox/string.vue)
 
 </template>
 
@@ -309,13 +309,13 @@ You may need to return a string when the component is checked for it use the `va
 
 <template #template>
 
-@[code{1-13}](../../.vuepress/components/checkbox/array.vue)
+@[code{1-13}](../.vuepress/components/checkbox/array.vue)
 
 </template>
 
 <template #script>
 
-@[code{15-19}](../../.vuepress/components/checkbox/array.vue)
+@[code{15-19}](../.vuepress/components/checkbox/array.vue)
 
 </template>
 
@@ -333,13 +333,13 @@ the `val` property of a checkbox component can be an `object`
 
 <template #template>
 
-@[code{1-31}](../../.vuepress/components/checkbox/object.vue)
+@[code{1-31}](../.vuepress/components/checkbox/object.vue)
 
 </template>
 
 <template #script>
 
-@[code{33-41}](../../.vuepress/components/checkbox/object.vue)
+@[code{33-41}](../.vuepress/components/checkbox/object.vue)
 
 </template>
 
@@ -359,13 +359,13 @@ Change the icon inside the checkbox component with the`slot="icon"`
 
 <template #template>
 
-@[code{1-39}](../../.vuepress/components/checkbox/icon.vue)
+@[code{1-39}](../.vuepress/components/checkbox/icon.vue)
 
 </template>
 
 <template #script>
 
-@[code{41-51}](../../.vuepress/components/checkbox/icon.vue)
+@[code{41-51}](../.vuepress/components/checkbox/icon.vue)
 
 </template>
 
@@ -383,13 +383,13 @@ Add a label to the checkbox with the default slot of the component
 
 <template #template>
 
-@[code{1-6}](../../.vuepress/components/checkbox/label.vue)
+@[code{1-6}](../.vuepress/components/checkbox/label.vue)
 
 </template>
 
 <template #script>
 
-@[code{7-12}](../../.vuepress/components/checkbox/label.vue)
+@[code{7-12}](../.vuepress/components/checkbox/label.vue)
 
 </template>
 
@@ -407,13 +407,13 @@ Add a loading status to the component with the property `loading`
 
 <template #template>
 
-@[code{1-10}](../../.vuepress/components/checkbox/loading.vue)
+@[code{1-10}](../.vuepress/components/checkbox/loading.vue)
 
 </template>
 
 <template #script>
 
-@[code{12-17}](../../.vuepress/components/checkbox/loading.vue)
+@[code{12-17}](../.vuepress/components/checkbox/loading.vue)
 
 </template>
 
@@ -431,13 +431,13 @@ Add a line in the middle of the label when the checkbox is checked with the prop
 
 <template #template>
 
-@[code{1-7}](../../.vuepress/components/checkbox/linethrough.vue)
+@[code{1-7}](../.vuepress/components/checkbox/linethrough.vue)
 
 </template>
 
 <template #script>
 
-@[code{8-12}](../../.vuepress/components/checkbox/linethrough.vue)
+@[code{8-12}](../.vuepress/components/checkbox/linethrough.vue)
 
 </template>
 
@@ -455,13 +455,13 @@ There are some cases where you have several checkboxes and you need one that man
 
 <template #template>
 
-@[code{1-7}](../../.vuepress/components/checkbox/indeterminate.vue)
+@[code{1-7}](../.vuepress/components/checkbox/indeterminate.vue)
 
 </template>
 
 <template #script>
 
-@[code{1-7}](../../.vuepress/components/checkbox/indeterminate.vue)
+@[code{1-7}](../.vuepress/components/checkbox/indeterminate.vue)
 
 </template>
 
