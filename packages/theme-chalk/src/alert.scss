@@ -1,0 +1,308 @@
+@use 'sass:map';
+
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@include b('alert') {
+  @include set-component-var('alert', $alert);
+
+  background: getCssVar(alert, bg-light);
+  color: getColor(color);
+  width: 100%;
+  padding: 0px 20px;
+  border-radius: getCssVar(alert, border-radius);
+  position: relative;
+  font-size: getCssVar(alert, font-size);
+  z-index: 10;
+  transition: getCssVar(transition-ease);
+  overflow: hidden;
+
+  &::selection {
+    background: getColor(color, 0.15);
+  }
+  *::selection {
+    background: getColor(color, 0.15);
+  }
+  b {
+    font-weight: 600;
+  }
+  a {
+    color: inherit !important;
+    text-decoration: underline;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+  &::after {
+    content: '';
+    background: getColor(color);
+    left: 0px;
+    top: 0px;
+    width: 2px;
+    height: 100%;
+    position: absolute;
+  }
+  @include m(solid) {
+    background: getColor(color);
+    color: $color-white;
+    .#{$namespace}-alert__icon {
+      i {
+        color: $color-white;
+      }
+      svg {
+        fill: $color-white;
+      }
+    }
+    .#{$namespace}-alert__close {
+      color: $color-white;
+      box-shadow: getCssVar(alert, shadow--icon-close);
+
+      &:hover {
+        transform: translate(0, -2px);
+        box-shadow: getCssVar(alert, shadow--icon-close-hover);
+      }
+      svg {
+        fill: $color-white;
+      }
+    }
+    &::after {
+      background: rgba($color-white, 0.4);
+    }
+  }
+  @include m(border) {
+    background: transparent;
+
+    &::before {
+      border: 1px solid getColor(color);
+      border-left: 0px;
+      width: getCssVar(alert, alert-with-border-width);
+      content: '';
+      position: absolute;
+      height: getCssVar(alert, alert-with-border-height);
+      top: 0px;
+      left: 0px;
+      z-index: -1;
+      border-radius: inherit;
+    }
+  }
+  @include m(shadow) {
+    background: transparent;
+    box-shadow: 0px 4px 15px 0px getColor(color, 0.12);
+  }
+  @include m(gradient) {
+    background: getColor(color);
+    color: $color-white;
+    border-radius: 12px;
+
+    .#{$namespace}-alert__icon {
+      i {
+        color: $color-white;
+      }
+      svg {
+        fill: $color-white;
+      }
+    }
+    .#{$namespace}-alert__close {
+      color: $color-white;
+      box-shadow: getCssVar(alert, shadow--icon-close);
+      &:hover {
+        transform: translate(0, -2px);
+        box-shadow: getCssVar(alert, shadow--icon-close-hover);
+      }
+      svg {
+        fill: $color-white;
+      }
+    }
+    &::after {
+      display: none;
+    }
+    &::before {
+      background: linear-gradient(
+        30deg,
+        getColor(color, 0) 33%,
+        getColor(color) 100%
+      );
+      filter: hue-rotate(-50deg);
+      width: 100%;
+      content: '';
+      position: absolute;
+      height: 100%;
+      top: 0px;
+      left: 0px;
+      z-index: -1;
+      border-radius: inherit;
+    }
+  }
+  @include m(flat) {
+    background: rgba(0, 0, 0, 0.03);
+  }
+  @include m(relief) {
+    background: getColor(color);
+    color: $color-white;
+    border-radius: 12px;
+    margin-bottom: 7px;
+    box-shadow: 6px 6px 0px 0px getColor(color, 0.3);
+
+    .#{$namespace}-alert__icon {
+      i {
+        color: $color-white;
+      }
+      svg {
+        fill: $color-white;
+      }
+    }
+    .#{$namespace}-alert__close {
+      color: $color-white;
+      box-shadow: getCssVar(alert, shadow--icon-close);
+      &:hover {
+        transform: translate(0, -2px);
+        background: rgba($color-black, 0.2);
+        box-shadow: getCssVar(alert, shadow--icon-close-hover);
+      }
+      svg {
+        fill: $color-white;
+      }
+    }
+    &::after {
+      display: none;
+    }
+  }
+
+  @include e(title) {
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 15px;
+    @include flex(space-between, center);
+
+    @include m(click__hidden) {
+      cursor: pointer;
+      padding-right: 0px;
+    }
+    ~ .#{$namespace}-alert__content {
+      .#{$namespace}-alert__content__text {
+        padding-top: 0px;
+      }
+    }
+  }
+
+  @include e(content) {
+    transition: getCssVar(transition-ease);
+    overflow: hidden;
+
+    @include m(text) {
+      padding: getCssVar(alert, content-text-padding);
+    }
+  }
+
+  @include e(close) {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: 0px;
+    color: getColor(color);
+    width: getCssVar(alert, icon-close-width);
+    height: getCssVar(alert, icon-close-height);
+    @include flex(center, center);
+    transition: getCssVar(transition-ease);
+    box-shadow: 0px 0px 0px 0px getColor(color, 0.3);
+    border-radius: 10px;
+    padding: 0px;
+
+    &:hover {
+      transform: translate(0, -2px);
+      box-shadow: 0px 5px 18px 0px getColor(color, 0.3);
+    }
+    &:active {
+      transform: translate(0, -1px);
+    }
+    svg {
+      fill: getColor(color);
+    }
+  }
+
+  @include e(footer) {
+    @include flex(flex-end, center);
+    position: relative;
+    width: 100%;
+    padding: 10px 15px;
+    padding-top: 0px;
+  }
+
+  @include e(icon) {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    @include flex(center, center);
+    width: 50px;
+    height: 100%;
+    padding-left: 2px;
+
+    i {
+      font-size: 1.3rem;
+      color: getColor(color);
+    }
+    svg {
+      width: 24px;
+      height: 24px;
+      fill: getColor(color);
+    }
+    & ~ .#{$namespace}-alert__footer {
+      padding-left: 35px;
+    }
+    & ~ .#{$namespace}-alert__content {
+      padding-left: 20px;
+    }
+    & ~ .#{$namespace}-alert__title {
+      padding-left: 35px;
+    }
+  }
+
+  @include e(progress) {
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 2px;
+    background: getColor(color, 0.2);
+
+    @include m(bar) {
+      left: 0px;
+      position: relative;
+      height: 100%;
+      background: getColor(color);
+      transition: getCssVar(transition-ease);
+    }
+  }
+
+  @include e(pagination) {
+    position: relative;
+    padding: 0px 20px;
+    @include flex(flex-start, center);
+    margin-bottom: 10px;
+
+    span {
+      font-size: 0.8rem;
+      margin: 0px 8px;
+      min-width: 28px;
+      text-align: center;
+    }
+    button {
+      border: 0px;
+      background: transparent;
+      color: getColor(color);
+      padding: 0px 7px;
+      font-size: 1rem;
+      background: getCssVar(alert, bg-light);
+      border-radius: 8px;
+      transition: getCssVar(transition-ease);
+
+      &:hover {
+        background: getColor(color);
+        color: $color-white;
+      }
+    }
+  }
+}

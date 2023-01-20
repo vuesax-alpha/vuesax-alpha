@@ -1,0 +1,258 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@keyframes rotating {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@include b(checkbox) {
+  @include set-component-var('checkbox', $checkbox);
+  @include set-var-value('color', getCssVar(primary));
+}
+
+@include b(checkbox) {
+  @include flex(center, center);
+  position: relative;
+
+  @include pseudo(active) {
+    @include e(input) {
+      @include m(mask) {
+        background: getColor('gray-4') !important;
+      }
+    }
+  }
+  @include pseudo(hover) {
+    @include e(input) {
+      @include m(mask) {
+        background: getColor('gray-3');
+
+        &:before {
+          border: 2px solid getColor('gray-4', 0);
+          // border: 2px solid getColor('gray-3');
+        }
+      }
+    }
+  }
+
+  @include when(disabled) {
+    @include e(label) {
+      opacity: 0.5;
+    }
+    @include e(input) {
+      @include m(mask) {
+        opacity: 0.6;
+        background: transparent !important;
+      }
+    }
+    @include e(original) {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  @include when(checked) {
+    @include e(label) {
+      @include when(line-through) {
+        opacity: 0.4;
+        &:before {
+          width: calc(100% - 10px);
+        }
+      }
+    }
+    @include pseudo(hover) {
+      @include e(input) {
+        @include m(mask) {
+          box-shadow: 0px 3px 15px 0px getColor('color', 0.35);
+        }
+      }
+    }
+    @include e(input) {
+      @include m(mask) {
+        // border: 2px solid getColor('color', 1) !important;
+        box-shadow: 0px 0px 0px 0px getColor('color', 0.35);
+
+        i:not(.#{$namespace}-icon-check) {
+          opacity: 1;
+          transform: scale(1);
+          transition: getCssVar(transition-ease) 0.15s;
+        }
+        .#{$namespace}-icon-check {
+          opacity: 1;
+          span {
+            .line1 {
+              &:after {
+                width: 100%;
+                transition: getCssVar(transition-ease) 0.1s;
+                left: 0;
+                right: auto;
+              }
+            }
+            .line2 {
+              &:after {
+                transition: all 0.2s ease 0.25s;
+                height: 100%;
+              }
+            }
+            &:after {
+              width: 10px;
+            }
+          }
+        }
+        &:after {
+          opacity: 1;
+          transform: scale(1);
+        }
+        &:before {
+          opacity: 0;
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+
+  @include when(label-before) {
+    @include e(label) {
+      order: -1;
+    }
+  }
+
+  @include when(loading) {
+    pointer-events: none;
+
+    // Icon loading: unchecked
+    &:not(.is-checked) {
+      .#{$namespace}-icon-loading {
+        // class of component icon check
+        color: getColor('divider') !important;
+      }
+    }
+
+    @include when(checked) {
+      @include e(input) {
+        @include m(mask) {
+          opacity: 0;
+          transition: all 0.2s linear;
+          background: transparent !important;
+
+          &:after {
+            transition: all 0.2s linear, opacity 0.6s linear;
+            transform: scale(0.5);
+          }
+        }
+      }
+    }
+
+    @include e(input) {
+      @include m(mask) {
+        background: transparent !important;
+
+        &:before {
+          opacity: 0 !important;
+          border-radius: 50%;
+          // transition: opacity .08s linear;
+        }
+        &:after {
+          opacity: 0 !important;
+          border-radius: 50%;
+          transform: scale(0.5);
+        }
+      }
+    }
+  }
+
+  @include e(input) {
+    width: getCssVar(checkbox-width);
+    height: getCssVar(checkbox-height);
+    border-radius: 9px;
+    position: relative;
+    z-index: 1;
+
+    @include m(mask) {
+      position: absolute;
+      z-index: -1;
+      // z-index: 50;
+      width: 100%;
+      height: 100%;
+      border-radius: 32%;
+      @include flex(center, center);
+      // border: 2px solid transparent;
+      cursor: pointer;
+      pointer-events: none;
+      transition: getCssVar(transition-ease);
+
+      i:not(.#{$namespace}-icon-check) {
+        opacity: 0;
+        transition: getCssVar(transition-ease);
+        color: $color-white;
+        font-size: 1.1em;
+        transform: scale(0.5);
+      }
+      &:after {
+        content: '';
+        // position: absolute;
+        // top: 0px;
+        // left: 0px;
+        // width: 100%;
+        // height: 100%;
+        @include absolute-full;
+        background: getColor('color', 1);
+        transform: scale(0.5);
+        border-radius: inherit;
+        opacity: 0;
+        transition: getCssVar(transition-ease);
+        z-index: -1;
+      }
+      &:before {
+        content: '';
+        // position: absolute;
+        // top: 0px;
+        // left: 0px;
+        // width: 100%;
+        // height: 100%;
+        @include absolute-full;
+        border-radius: inherit;
+        transition: getCssVar(transition-ease);
+        z-index: -1;
+        border: 2px solid getColor('gray-4', 1);
+      }
+      .#{$namespace}-icon-check {
+        opacity: 0;
+        z-index: 200;
+      }
+    }
+  }
+
+  // native input here
+  @include e(original) {
+    @include absolute-full;
+    margin: 0px;
+    padding: 0px;
+    opacity: 0;
+    z-index: 100;
+    cursor: pointer;
+  }
+
+  @include e(label) {
+    user-select: none;
+    cursor: pointer;
+    padding: 7px;
+    transition: getCssVar(transition-ease);
+    position: relative;
+    @include flex(center, center);
+    font-size: 0.9rem;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 0px;
+      height: 2px;
+      border-radius: 4px;
+      background: getColor('text', 0.6);
+      transition: getCssVar(transition-ease);
+    }
+  }
+}

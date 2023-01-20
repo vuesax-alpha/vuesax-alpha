@@ -1,0 +1,35 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@include b(button) {
+  @include e(group) {
+    @include flex(center, center);
+    @include b(button) {
+      margin: 0px;
+
+      &:not(:last-of-type):not(:first-of-type) {
+        border-radius: 0px;
+        border: 0px;
+        &.#{$namespace}-button--border {
+          &:before {
+            border-left: 0px;
+            width: 100%;
+          }
+          + .#{$namespace}-button--border:not(:last-of-type) {
+            &:before {
+              border-right: 0px;
+              width: calc(100%);
+            }
+          }
+        }
+      }
+      @include pseudo(last-of-type) {
+        border-radius: 0px 12px 12px 0px;
+      }
+      @include pseudo(first-of-type) {
+        border-radius: 12px 0px 0px 12px;
+      }
+    }
+  }
+}

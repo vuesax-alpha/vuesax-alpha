@@ -1,0 +1,14 @@
+{
+  "name": "@vuesax-alpha/hooks",
+  "version": "0.0.1",
+  "description": "Vuesax Alpha composables",
+  "license": "MIT",
+  "main": "index.ts",
+  "module": "index.ts",
+  "unpkg": "index.js",
+  "jsdelivr": "index.js",
+  "types": "index.d.ts",
+  "peerDependencies": {
+    "vue": "^3.2.0"
+  }
+}

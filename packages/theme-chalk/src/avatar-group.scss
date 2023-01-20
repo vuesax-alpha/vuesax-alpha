@@ -1,0 +1,64 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@include b(avatar__group) {
+  @include flex(center, center);
+  padding-left: 18px;
+
+  &.float {
+    @include flex(flex-start, flex-start);
+    flex-wrap: wrap;
+    padding-left: 0px;
+
+    .#{$namespace}-avatar-content {
+      position: relative;
+      z-index: 2;
+      border: 3px solid getColor(background);
+      margin: 0px;
+      background: getColor(color);
+    }
+  }
+
+  &:not(.float) {
+    .#{$namespace}-avatar-content {
+      margin-left: -18px;
+      position: relative;
+      z-index: 2;
+      border: 3px solid getColor(gray-1);
+      background-color: getColor(gray-1);
+
+      &:hover {
+        .#{$namespace}-avatar {
+          box-shadow: inset 0px 0px 0px 0px getColor(black, 0.1);
+        }
+        img {
+          transform: scale(1);
+        }
+      }
+      // .#{$namespace}-avatar__latest {
+      //   width: calc(100% - 6px);
+      //   height: calc(100% - 6px);
+      //   margin: 3px;
+      // }
+      &:not(.#{$namespace}-component--is-color) {
+        .#{$namespace}-avatar {
+          background: getColor(divider);
+          color: getColor(text);
+        }
+      }
+      &:hover:not(.#{$namespace}-avatar-content--hasIcons) {
+        transform: translate(-10px);
+        .#{$namespace}-avatar {
+          transform: scale(1);
+        }
+      }
+      &--hasIcons {
+        margin-right: 0px;
+        &:hover {
+          transform: translate(-34px) !important;
+        }
+      }
+    }
+  }
+}

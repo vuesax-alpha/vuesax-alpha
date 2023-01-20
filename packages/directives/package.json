@@ -1,0 +1,13 @@
+{
+  "name": "@vuesax-alpha/directives",
+  "version": "0.0.1",
+  "description": "Vuesax Alpha directives",
+  "license": "MIT",
+  "main": "index.ts",
+  "module": "index.ts",
+  "unpkg": "index.js",
+  "jsdelivr": "index.js",
+  "peerDependencies": {
+    "vue": "^3.2.0"
+  }
+}

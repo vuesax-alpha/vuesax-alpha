@@ -1,0 +1,76 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@include b(card) {
+  @include e(group) {
+    width: 100%;
+    @include flex(flex-start, center);
+    position: relative;
+
+    @include m(space) {
+      min-width: 20px;
+      position: relative;
+      height: 20px;
+    }
+    @include m(cards) {
+      @include flex(flex-start, center);
+      position: relative;
+      z-index: 1;
+      scroll-behavior: smooth;
+      padding-top: 20px;
+      padding-bottom: 36px;
+      border-radius: 20px;
+      .#{$namespace}-card-content {
+        min-width: 350px;
+        margin-left: 20px;
+      }
+    }
+    @include m(prev) {
+      @include flex(center, center);
+      z-index: 2;
+      position: relative;
+      left: 0px;
+      width: 50px;
+      height: 50px;
+      min-width: 50px;
+      background: transparent;
+      border: 0px;
+      .#{$namespace}-icon-arrow {
+        width: 15px;
+        height: 15px;
+        display: block;
+        transform: rotate(-45deg);
+        &:before {
+          width: 2px;
+        }
+        &:after {
+          height: 2px;
+        }
+      }
+    }
+    @include m(next) {
+      border: 0px;
+      z-index: 2;
+      position: relative;
+      left: 0px;
+      width: 50px;
+      height: 50px;
+      min-width: 50px;
+      @include flex(center, center);
+      background: transparent;
+      .#{$namespace}-icon-arrow {
+        width: 15px;
+        height: 15px;
+        display: block;
+        transform: rotate(135deg);
+        &:before {
+          width: 2px;
+        }
+        &:after {
+          height: 2px;
+        }
+      }
+    }
+  }
+}

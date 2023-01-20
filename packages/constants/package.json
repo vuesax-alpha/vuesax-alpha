@@ -1,0 +1,6 @@
+{
+  "name": "@vuesax-alpha/constants",
+  "private": true,
+  "license": "MIT",
+  "main": "index.ts"
+}

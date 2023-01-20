@@ -1,0 +1,81 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@include b(ripple) {
+  // @include set-var-value(color, inherit);
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  width: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  height: 100%;
+  top: 0px;
+  right: 0px;
+  border-radius: inherit;
+  z-index: -1;
+
+  @include m(default) {
+    width: 0px;
+    height: 0px;
+    border-radius: 50%;
+    opacity: 0;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+    background: radial-gradient(
+      circle,
+      getColor(color, 0.05),
+      getColor(color, 0.6)
+    );
+  }
+  @include m(solid) {
+    background: getColor(color);
+    opacity: 1;
+  }
+
+  @include m(invert) {
+    @include set-var-value(color, getCssVar(light));
+    width: 0px;
+    height: 0px;
+    border-radius: 50%;
+    opacity: 0;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+    background-image: radial-gradient(
+      circle,
+      getColor(color, 0.7),
+      getColor(color, 0)
+    );
+  }
+
+  @include m(cut-1) {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    position: absolute;
+    transform: translate(-100%, -50%) skew(20deg);
+    transition: all 0.6s ease;
+    background-image: linear-gradient(
+      270deg,
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  @include m(cut-2) {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    position: absolute;
+    transform: translate(0%, -50%) skew(20deg);
+    transition: all 0.6s ease;
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+}

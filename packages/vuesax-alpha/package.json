@@ -1,0 +1,87 @@
+{
+  "name": "vuesax-alpha",
+  "version": "0.0.1",
+  "description": "A Component Library for Vue 3",
+  "keywords": [
+    "vuesax-alpha",
+    "vuesax",
+    "component library",
+    "ui framework",
+    "ui",
+    "vue"
+  ],
+  "homepage": "https://vuesax.space/",
+  "bugs": {
+    "url": "https://github.com/vuesax-alphax/vuesax-alpha/issues"
+  },
+  "license": "MIT",
+  "main": "lib/index.js",
+  "module": "es/index.mjs",
+  "types": "es/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./es/index.d.ts",
+      "import": "./es/index.mjs",
+      "require": "./lib/index.js"
+    },
+    "./es": "./es/index.mjs",
+    "./lib": "./lib/index.js",
+    "./es/*.mjs": "./es/*.mjs",
+    "./es/*": "./es/*.mjs",
+    "./lib/*.js": "./lib/*.js",
+    "./lib/*": "./lib/*.js",
+    "./*": "./*"
+  },
+  "unpkg": "dist/index.full.js",
+  "jsdelivr": "dist/index.full.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuesax-alphax/vuesax-alpha.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "style": "dist/index.css",
+  "sideEffects": [
+    "dist/*",
+    "theme-chalk/**/*.css",
+    "theme-chalk/src/**/*.scss",
+    "es/components/*/style/*",
+    "lib/components/*/style/*"
+  ],
+  "peerDependencies": {
+    "vue": "^3.2.0"
+  },
+  "dependencies": {
+    "@ctrl/tinycolor": "^3.4.1",
+    "@floating-ui/dom": "^1.0.1",
+    "@popperjs/core": "npm:@sxzz/popperjs-es@^2.11.7",
+    "@types/lodash": "^4.14.182",
+    "@types/lodash-es": "^4.17.6",
+    "@vueuse/core": "^9.1.0",
+    "async-validator": "^4.2.5",
+    "dayjs": "^1.11.3",
+    "escape-html": "^1.0.3",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
+    "lodash-unified": "^1.0.2",
+    "memoize-one": "^6.0.0",
+    "normalize-wheel-es": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "*",
+    "csstype": "^2.6.20",
+    "vue": "^3.2.37",
+    "vue-router": "^4.0.16"
+  },
+  "vetur": {
+    "tags": "tags.json",
+    "attributes": "attributes.json"
+  },
+  "web-types": "web-types.json",
+  "browserslist": [
+    "> 1%",
+    "not ie 11",
+    "not op_mini all"
+  ]
+}

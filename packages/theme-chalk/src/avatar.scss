@@ -1,0 +1,303 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@include b(avatar-content) {
+  @include set-component-var(avatar, $avatar);
+  @include css-var-from-global(color, gray-2);
+}
+
+@include b(avatar-content) {
+  border-radius: 35%;
+  z-index: 1;
+  width: getCssVar(avatar, width);
+  height: getCssVar(avatar, height);
+  position: relative;
+  transition: getCssVar(transition, ease);
+  user-select: none;
+
+  // &.#{$namespace}__badge--change-color {
+  //   .#{$namespace}-avatar__badge {
+  //     .#{$namespace}-avatar__points--item {
+  //       background: getColor(background);
+  //     }
+  //   }
+  // }
+  @include e(badge) {
+    @include m(change-color) {
+      &:hover {
+        .#{$namespace}-avatar {
+          box-shadow: inset 0px 0px 40px 0px getColor(black, 0.1);
+        }
+      }
+    }
+  }
+  &:hover {
+    .#{$namespace}-avatar {
+      box-shadow: inset 0px 0px 40px 0px getColor(black, 0.04);
+    }
+    img {
+      transform: scale(1.1);
+    }
+  }
+  // &--size {
+  //   &.history {
+  //     &:after {
+  //       top: -2px !important;
+  //     }
+  //   }
+  // }
+  @include e(hasIcons) {
+    margin-right: 20px;
+  }
+  @include e(hidden) {
+    display: none !important;
+  }
+  @include e(circle) {
+    border-radius: 50% !important;
+
+    .#{$namespace}-avatar__badge {
+      right: getCssVar(avatar, circle-badge-position-right);
+      bottom: getCssVar(avatar, circle-badge-position-bottom);
+      &.top-right {
+        top: getCssVar(avatar, circle-badge-position-top);
+        bottom: auto;
+      }
+      &.top-left {
+        top: getCssVar(avatar, circle-badge-position-top);
+        left: getCssVar(avatar, circle-badge-position-left);
+        bottom: auto;
+        right: auto;
+      }
+      &.bottom-left {
+        left: getCssVar(avatar, circle-badge-position-left);
+        right: auto;
+      }
+    }
+  }
+  @include e(square) {
+    border-radius: 0% !important;
+  }
+  &.history {
+    @include flex(center, center);
+
+    @include m(gradient) {
+      &:after {
+        background-image: linear-gradient(
+          40deg,
+          #f99b4a 0%,
+          #df376b 74%,
+          #c52d91 74%
+        ) !important;
+      }
+    }
+    .#{$namespace}-avatar {
+      width: calc(100% - 4px);
+      height: calc(100% - 4px);
+      border: 2px solid getColor(background);
+      margin: 2px;
+    }
+    &:not(.#{$namespace}-component--is-color) {
+      &::after {
+        background-color: getColor(divider);
+      }
+    }
+    &:after {
+      content: '';
+      @include absolute-full;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      // background-color: #ffe53b;
+      z-index: -1;
+      background: getColor(color);
+    }
+  }
+  &.#{$namespace}-component--is-color {
+    .#{$namespace}-avatar {
+      color: getColor(background);
+    }
+    .#{$namespace}-avatar__points {
+      .#{$namespace}-avatar__points--item {
+        background: getColor(background);
+      }
+    }
+  }
+}
+
+@include b(avatar) {
+  @include flex(center, center);
+  background: getColor(color);
+  color: $color-white;
+  overflow: hidden;
+  color: getColor(text);
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+  transition: getCssVar(transition, ease);
+  box-shadow: inset 0px 0px 0px 0px getColor(black, 0.05);
+  i {
+    font-size: 1.4rem;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: getCssVar(transition, ease);
+    border-radius: inherit;
+  }
+  @include e(loading) {
+    @include flex(center, center);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    border-radius: inherit;
+
+    background: getColor(black, 0.5);
+    @include m(animate) {
+      @include set-var-value(color, getCssVar(light));
+      @include flex(center, center);
+      height: 60%;
+      width: 60%;
+      border-radius: 50%;
+      position: relative;
+    }
+  }
+  @include e(letter) {
+    @include m(3) {
+      font-size: getCssVar(avatar, three-letter-font-size);
+    }
+    @include m(4) {
+      font-size: getCssVar(avatar, four-letter-font-size);
+    }
+    @include m(5) {
+      font-size: getCssVar(avatar, five-letter-font-size);
+    }
+    @include m(6) {
+      font-size: getCssVar(avatar, six-letter-font-size);
+    }
+  }
+  @include e(badge) {
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    background: getColor(avatar-badge);
+    border-radius: 50%;
+    border: 2px solid getColor(background) !important;
+    right: getCssVar(avatar, badge-position-right);
+    bottom: getCssVar(avatar, badge-position-bottom);
+    font-size: 0.6rem;
+    font-weight: bold;
+    z-index: 200;
+    color: getColor(text);
+
+    &.is-slot,
+    &.is-writing {
+      width: auto;
+      height: auto;
+      border-radius: 7px;
+      min-width: 18px;
+      @include flex(center, center);
+      color: getColor(background);
+      line-height: 0.9rem;
+      padding: 0px 3px;
+      min-height: 18px;
+    }
+    &.top-right {
+      top: getCssVar(avatar, badge-position-top);
+      bottom: auto;
+    }
+    &.top-left {
+      top: getCssVar(avatar, badge-position-top);
+      left: getCssVar(avatar, badge-position-left);
+      bottom: auto;
+      right: auto;
+    }
+    &.bottom-left {
+      left: getCssVar(avatar, badge-position-left);
+      right: auto;
+    }
+  }
+  @include e(points) {
+    @include flex(center, center);
+    position: relative;
+    @include m(item) {
+      width: getCssVar(avatar, point-width);
+      height: getCssVar(avatar, point-width);
+      background: getColor(text);
+      margin: 0px 2px;
+      border-radius: 50%;
+      &:nth-child(1) {
+        animation: point 1.2s ease infinite;
+      }
+      &:nth-child(2) {
+        animation: point 1.2s ease infinite 0.4s;
+      }
+      &:nth-child(3) {
+        animation: point 1.2s ease infinite 0.8s;
+      }
+    }
+  }
+  @include e(lastest) {
+    @include flex(center, center);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 300;
+
+    border-radius: inherit;
+    user-select: none;
+    font-weight: 600;
+    color: $color-white;
+    background: getColor(black, 0.5);
+  }
+  @include e(icons) {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    width: auto;
+    height: auto;
+    min-height: 90%;
+    padding: 3px;
+    padding-left: 5px;
+    background: getColor(gray-3);
+    transform: translate(0, -50%);
+    @include flex(center, flex-end);
+    flex-direction: column;
+    z-index: -1;
+    border-radius: 5px;
+    font-size: 1rem;
+    i {
+      cursor: pointer;
+      transition: getCssVar(transition, ease);
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+@keyframes point {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rotateInputLoading {
+  100% {
+    transform: rotate(1turn);
+  }
+}

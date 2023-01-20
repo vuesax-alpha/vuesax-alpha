@@ -1,0 +1,250 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@include b(tooltip) {
+  @include set-var-value(color, text);
+
+  &-enter-active,
+  &-leave-active {
+    transition: getCssVar(transition-ease);
+  }
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+    // &.top {
+    //   transform: translate(0, 5px);
+    // }
+    // &.bottom {
+    //   transform: translate(0, -5px);
+    // }
+    // &.left {
+    //   transform: translate(5px);
+    // }
+    // &.right {
+    //   transform: translate(-5px);
+    // }
+  }
+
+  @include e(inner) {
+    background: getColor('color');
+    color: getColor('background');
+    position: absolute;
+    z-index: 1000000;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    max-width: 350px;
+    min-width: 30px;
+    min-height: 30px;
+
+    &.loading {
+      color: getColor('background', 0.2);
+      * {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+    }
+    &__loading {
+      width: 22px;
+      height: 22px;
+      position: absolute;
+      display: block;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      opacity: 1 !important;
+
+      &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        border: 2px solid getColor('background', 1);
+        border-top: 2px solid getColor('background', 0);
+        border-left: 2px solid getColor('background', 0);
+        border-bottom: 2px solid getColor('background', 0);
+        box-sizing: border-box;
+        transition: all 0.25s ease;
+        display: block;
+        box-shadow: 0px 0px 0px 0px getColor('color', 1);
+        animation: loadingTooltip 0.6s ease infinite;
+      }
+      &:before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        border: 2px dashed getColor('background', 1);
+        border-top: 2px solid getColor('background', 0);
+        border-left: 2px solid getColor('background', 0);
+        border-bottom: 2px solid getColor('background', 0);
+        box-sizing: border-box;
+        transition: all 0.25s ease;
+        display: block;
+        box-shadow: 0px 0px 0px 0px getColor('color', 1);
+        animation: loadingTooltip 0.6s linear infinite;
+      }
+    }
+    &.borderThick {
+      background: getColor('background');
+      color: getColor('color');
+      box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, getCssVar(shadow-opacity));
+      &.top {
+        border-bottom: 4px solid getColor('color');
+        &:after {
+          bottom: -7px;
+        }
+      }
+      &.left {
+        border-right: 4px solid getColor('color');
+        &:after {
+          right: -7px;
+        }
+      }
+      &.right {
+        border-left: 4px solid getColor('color');
+        &:after {
+          left: -7px;
+        }
+      }
+      &.bottom {
+        border-top: 4px solid getColor('color');
+        &:after {
+          top: -7px;
+        }
+      }
+
+      &:before {
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: inherit;
+        border-radius: inherit;
+        top: 0px;
+        left: 0px;
+        content: '';
+        position: absolute;
+      }
+      &:after {
+        background: getColor('color') !important;
+      }
+    }
+    &.border {
+      background: getColor('background');
+      color: getColor('color');
+      border: 2px solid getColor('color');
+      &:before {
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: inherit;
+        border-radius: inherit;
+        top: 0px;
+        left: 0px;
+        content: '';
+        position: absolute;
+      }
+      &:after {
+        border: 2px solid getColor('color');
+        width: 12px !important;
+        height: 12px !important;
+      }
+    }
+    &.circle {
+      border-radius: 20px;
+    }
+    &.square {
+      border-radius: 0px;
+    }
+    &.notArrow {
+      &:after {
+        display: none;
+      }
+    }
+    &.shadow {
+      background: getColor('background');
+      color: getColor('color');
+      box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, getCssVar(shadow-opacity));
+
+      &:before {
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: inherit;
+        border-radius: inherit;
+        top: 0px;
+        left: 0px;
+        content: '';
+        position: absolute;
+      }
+      &:after {
+        box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, getCssVar(shadow-opacity));
+      }
+    }
+    &.isDark {
+      --vs-color: var(--vs-gray-3);
+      color: #fff;
+    }
+    &.top {
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        background: inherit;
+        width: 10px;
+        height: 10px;
+        left: 50%;
+        transform: translate(-50%) rotate(45deg);
+        z-index: -2;
+        border-radius: 0px 0px 2px 0px;
+      }
+    }
+    &.bottom {
+      &:after {
+        content: '';
+        position: absolute;
+        top: -3px;
+        background: inherit;
+        width: 10px;
+        height: 10px;
+        left: 50%;
+        transform: translate(-50%) rotate(45deg);
+        z-index: -2;
+        border-radius: 2px 0px 0px 0px;
+      }
+    }
+    &.left {
+      &:after {
+        content: '';
+        position: absolute;
+        right: -3px;
+        background: inherit;
+        width: 10px;
+        height: 10px;
+        top: 50%;
+        transform: translate(0, -50%) rotate(45deg);
+        z-index: -2;
+        border-radius: 0px 2px 0px 0px;
+      }
+    }
+    &.right {
+      &:after {
+        content: '';
+        position: absolute;
+        left: -3px;
+        background: inherit;
+        width: 10px;
+        height: 10px;
+        top: 50%;
+        transform: translate(0, -50%) rotate(45deg);
+        z-index: -2;
+        border-radius: 0px 0px 0px 2px;
+      }
+    }
+  }
+}
