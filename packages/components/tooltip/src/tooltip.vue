@@ -1,24 +1,56 @@
 <template>
-  <tooltip-trigger
-    :disabled="disabled"
-    :trigger="trigger"
-    :trigger-keys="triggerKeys"
-    :virtual-ref="virtualRef"
-    :virtual-triggering="virtualTriggering"
-  >
-    <slot v-if="$slots.default" />
-  </tooltip-trigger>
-
-  <tooltip-content>
-    <slot name="content" />
-    <div v-if="!notArrow" :class="ns.e('arrow')" />
-  </tooltip-content>
+  <vs-popper ref="popperRef" :role="role">
+    <vs-tooltip-trigger
+      :disabled="disabled"
+      :trigger="trigger"
+      :trigger-keys="triggerKeys"
+      :virtual-ref="virtualRef"
+      :virtual-triggering="virtualTriggering"
+    >
+      <slot v-if="$slots.default" />
+    </vs-tooltip-trigger>
+    <vs-tooltip-content
+      ref="contentRef"
+      :aria-label="ariaLabel"
+      :boundaries-padding="boundariesPadding"
+      :content="content"
+      :disabled="disabled"
+      :effect="effect"
+      :enterable="enterable"
+      :fallback-placements="fallbackPlacements"
+      :hide-after="hideAfter"
+      :gpu-acceleration="gpuAcceleration"
+      :offset="offset"
+      :persistent="persistent"
+      :popper-class="popperClass"
+      :popper-style="popperStyle"
+      :placement="placement"
+      :popper-options="popperOptions"
+      :pure="pure"
+      :raw-content="rawContent"
+      :reference-el="referenceEl"
+      :trigger-target-el="triggerTargetEl"
+      :show-after="showAfter"
+      :strategy="strategy"
+      :teleported="teleported"
+      :transition="transition"
+      :virtual-triggering="virtualTriggering"
+      :z-index="zIndex"
+      :append-to="appendTo"
+    >
+      <slot name="content">
+        <span v-if="rawContent" v-html="content" />
+        <span v-else>{{ content }}</span>
+      </slot>
+      <vs-popper-arrow v-if="showArrow" :arrow-offset="arrowOffset" />
+    </vs-tooltip-content>
+  </vs-popper>
 </template>
 
 <script lang="ts" setup>
 import {
   computed,
-  onBeforeUnmount,
+  onDeactivated,
   provide,
   readonly,
   ref,
@@ -26,37 +58,43 @@ import {
   unref,
   watch,
 } from 'vue'
-import { isBoolean } from 'lodash-unified'
-import { onClickOutside } from '@vueuse/core'
+import { VsPopper, VsPopperArrow } from '@vuesax-alpha/components/popper'
+import { isBoolean } from '@vuesax-alpha/utils'
 import {
   useDelayedToggle,
   useId,
-  useNamespace,
   usePopperContainer,
-  usePopperContainerId,
 } from '@vuesax-alpha/hooks'
-// import { IconLoading } from '@vuesax-alpha/components/icon'
-import { TOOLTIP_INJECTION_KEY } from '@vuesax-alpha/tokens'
-import { composeEventHandlers } from '@vuesax-alpha/utils'
-import { tooltipEmits, tooltipProps, useTooltipModelToggle } from './tooltip'
-import tooltipContent from './content.vue'
-import tooltipTrigger from './trigger.vue'
-import type { Instance as TooltipInstance } from '@popperjs/core'
+import { tooltipInjectionKey } from '@vuesax-alpha/tokens'
+import { tooltipEmits, useTooltipModelToggle, useTooltipProps } from './tooltip'
+import VsTooltipTrigger from './trigger.vue'
+import VsTooltipContent from './content.vue'
+import { useTooltipDeprecated } from './useTooltipDeprecated'
+import type { TooltipContentInstance } from './content'
+import type { PopperInstance } from '@vuesax-alpha/components/popper'
 
 defineOptions({
   name: 'VsTooltip',
 })
 
-const props = defineProps(tooltipProps)
+const props = defineProps(useTooltipProps)
 const emit = defineEmits(tooltipEmits)
+
+useTooltipDeprecated(props)
 
 usePopperContainer()
 
-const { selector } = usePopperContainerId()
-
 const id = useId()
 
-const ns = useNamespace('tooltip')
+const popperRef = ref<PopperInstance | null>()
+const contentRef = ref<TooltipContentInstance | null>()
+
+const updateTooltip = () => {
+  const popperComponent = unref(popperRef)
+  if (popperComponent) {
+    popperComponent.popperInstanceRef?.update()
+  }
+}
 
 const open = ref(false)
 const toggleReason = ref<Event>()
@@ -73,69 +111,9 @@ const { onOpen, onClose } = useDelayedToggle({
   close: hide,
 })
 
-const tooltipInstance = ref<TooltipInstance>()
-const contentRef = ref<HTMLElement>()
-const referenceRef = ref<HTMLElement>()
-const triggerRef = ref<HTMLElement>()
-
-const destroyed = ref(false)
-const appendTo = computed(() => props.appendTo || selector.value)
-
 const controlled = computed(
   () => isBoolean(props.visible) && !hasUpdateHandler.value
 )
-
-const updateTooltip = () => {
-  tooltipInstance.value?.update()
-}
-
-const onShow = () => {
-  emit('show', toggleReason.value)
-}
-const onHide = () => {
-  emit('hide', toggleReason.value)
-}
-const onBeforeShow = () => {
-  emit('before-show', toggleReason.value)
-}
-const onBeforeHide = () => {
-  emit('before-hide', toggleReason.value)
-}
-const onTransitionLeave = () => {
-  onHide()
-}
-
-const onBeforeEnter = () => {
-  updateTooltip()
-  onBeforeShow?.()
-}
-
-let stopHandle: ReturnType<typeof onClickOutside>
-
-const onAfterShow = () => {
-  onShow()
-  stopHandle = onClickOutside(
-    computed(() => {
-      return contentRef.value
-    }),
-    () => {
-      if (unref(controlled)) return
-      if (props.trigger !== 'hover') {
-        onClose()
-      }
-    }
-  )
-}
-
-const onBlur = () => {
-  if (!props.virtualTriggering) {
-    onClose()
-  }
-}
-
-onBeforeUnmount(() => {
-  destroyed.value = true
-})
 
 watch(
   () => props.disabled,
@@ -146,92 +124,75 @@ watch(
   }
 )
 
-watch(
-  open,
-  (val) => {
-    if (!val) {
-      stopHandle?.()
-    }
-  },
-  {
-    flush: 'post',
-  }
-)
-
-const onToggle = (event?: Event) => {
-  if (unref(open)) {
-    onClose(event)
-  } else {
-    onOpen(event)
-  }
+const isFocusInsideContent = () => {
+  const popperContent: HTMLElement | undefined =
+    contentRef.value?.contentRef?.popperContentRef
+  return popperContent && popperContent.contains(document.activeElement)
 }
 
-provide(TOOLTIP_INJECTION_KEY, {
-  contentRef,
-  referenceRef,
-  triggerRef,
-  tooltipInstance,
+onDeactivated(() => open.value && hide())
+
+provide(tooltipInjectionKey, {
   controlled,
   id,
   open: readonly(open),
   trigger: toRef(props, 'trigger'),
-  onOpen,
-  onClose,
-  onToggle,
-  onShow,
-  onHide,
-  onBeforeShow,
-  onBeforeHide,
+  onOpen: (event?: Event) => {
+    onOpen(event)
+  },
+  onClose: (event?: Event) => {
+    onClose(event)
+  },
+  onToggle: (event?: Event) => {
+    if (unref(open)) {
+      onClose(event)
+    } else {
+      onOpen(event)
+    }
+  },
+  onShow: () => {
+    emit('show', toggleReason.value)
+  },
+  onHide: () => {
+    emit('hide', toggleReason.value)
+  },
+  onBeforeShow: () => {
+    emit('before-show', toggleReason.value)
+  },
+  onBeforeHide: () => {
+    emit('before-hide', toggleReason.value)
+  },
   updateTooltip,
 })
+
+defineExpose({
+  /**
+   * @description vs-popper component instance
+   */
+  popperRef,
+  /**
+   * @description vs-tooltip-content component instance
+   */
+  contentRef,
+  /**
+   * @description validate current focus event is trigger inside vs-tooltip-content
+   */
+  isFocusInsideContent,
+  /**
+   * @description update vs-popper component instance
+   */
+  updateTooltip,
+  /**
+   * @description expose onOpen function to mange vs-tooltip open state
+   */
+  onOpen,
+  /**
+   * @description expose onOpen function to mange vs-tooltip open state
+   */
+  onClose,
+  /**
+   * @description expose hide function
+   */
+  hide,
+})
 </script>
-
-<style>
-#tooltip {
-  background: #333;
-  color: white;
-  font-weight: bold;
-  padding: 4px 8px;
-  font-size: 13px;
-  border-radius: 4px;
-  display: none;
-}
-
-#tooltip[data-show] {
-  display: block;
-}
-
-#arrow,
-#arrow::before {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: inherit;
-}
-
-#arrow {
-  visibility: hidden;
-}
-
-#arrow::before {
-  visibility: visible;
-  content: '';
-  transform: rotate(45deg);
-}
-
-#tooltip[data-popper-placement^='top'] > #arrow {
-  bottom: -4px;
-}
-
-#tooltip[data-popper-placement^='bottom'] > #arrow {
-  top: -4px;
-}
-
-#tooltip[data-popper-placement^='left'] > #arrow {
-  right: -4px;
-}
-
-#tooltip[data-popper-placement^='right'] > #arrow {
-  left: -4px;
-}
-</style>

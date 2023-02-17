@@ -1,12 +1,10 @@
 <template>
-  <vs-only-child
-    v-if="!virtualTriggering"
-    v-bind="$attrs"
+  <vs-popper-trigger
     :id="id"
-    :class="ns.e('trigger')"
     :virtual-ref="virtualRef"
     :open="open"
     :virtual-triggering="virtualTriggering"
+    :class="ns.e('trigger')"
     @blur="onBlur"
     @click="onClick"
     @contextmenu="onContextMenu"
@@ -16,32 +14,31 @@
     @keydown="onKeydown"
   >
     <slot />
-  </vs-only-child>
+  </vs-popper-trigger>
 </template>
 <script lang="ts" setup>
-import { inject, toRef, unref } from 'vue'
+import { inject, ref, toRef, unref } from 'vue'
+import { VsPopperTrigger } from '@vuesax-alpha/components/popper'
 import { composeEventHandlers } from '@vuesax-alpha/utils'
-import { useForwardRef, useNamespace } from '@vuesax-alpha/hooks'
-import { TOOLTIP_INJECTION_KEY } from '@vuesax-alpha/tokens'
-import { VsOnlyChild } from '@vuesax-alpha/components/slot'
+import { useNamespace } from '@vuesax-alpha/hooks'
+import { tooltipInjectionKey } from '@vuesax-alpha/tokens'
 import { tooltipTriggerProps } from './trigger'
 import { whenTrigger } from './utils'
+import type { OnlyChildExpose } from '@vuesax-alpha/components/slot'
 
 defineOptions({
-  name: 'ElTooltipTrigger',
+  name: 'VsTooltipTrigger',
 })
-const props = defineProps(tooltipTriggerProps)
 
+const props = defineProps(tooltipTriggerProps)
 const ns = useNamespace('tooltip')
 
 const { controlled, id, open, onOpen, onClose, onToggle } = inject(
-  TOOLTIP_INJECTION_KEY,
+  tooltipInjectionKey,
   undefined
 )!
 
-const { triggerRef } = inject(TOOLTIP_INJECTION_KEY, undefined)!
-
-useForwardRef(triggerRef)
+const triggerRef = ref<OnlyChildExpose | null>(null)
 
 const stopWhenControlledOrDisabled = () => {
   if (unref(controlled) || props.disabled) {
@@ -91,7 +88,6 @@ const onKeydown = composeEventHandlers(
     }
   }
 )
-
 defineExpose({
   /**
    * @description trigger element

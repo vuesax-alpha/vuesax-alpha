@@ -1,23 +1,20 @@
 import type { Arrayable } from '../utils/typescript'
 import type { InjectionKey, Ref } from 'vue'
 import type { TooltipTriggerType } from '@vuesax-alpha/components/tooltip'
-import type { Instance } from '@popperjs/core'
 
-export type Measurable = {
-  getBoundingClientRect: () => DOMRect
+export type BasePlacement = 'top' | 'bottom' | 'right' | 'left'
+
+export type Placement = BasePlacement
+
+export type TooltipOption = {
+  placement?: Placement
+  windowResize?: boolean
+  windowScroll?: boolean
+  flip?: boolean
+  notArrow?: boolean
 }
 
-/**
- * triggerRef indicates the element that triggers tooltip
- * contentRef indicates the element of tooltip content
- * referenceRef indicates the element that tooltip content relative with
- */
 export type TooltipInjectionContext = {
-  triggerRef: Ref<Measurable | undefined>
-  contentRef: Ref<HTMLElement | undefined>
-  referenceRef: Ref<Measurable | undefined>
-  tooltipInstance: Ref<Instance | undefined>
-
   controlled: Ref<boolean>
   id: Ref<string>
   open: Ref<boolean>
@@ -25,15 +22,12 @@ export type TooltipInjectionContext = {
   onOpen: (e?: Event) => void
   onClose: (e?: Event) => void
   onToggle: (e: Event) => void
+  onShow: () => void
+  onHide: () => void
+  onBeforeShow: () => void
+  onBeforeHide: () => void
+  updateTooltip: () => void
 }
 
-export type TooltipContentInjectionContext = {
-  arrowRef: Ref<HTMLElement | undefined>
-  arrowOffset: Ref<number | undefined>
-}
-
-export const TOOLTIP_INJECTION_KEY: InjectionKey<TooltipInjectionContext> =
+export const tooltipInjectionKey: InjectionKey<TooltipInjectionContext> =
   Symbol('Tooltip')
-
-export const POPPER_CONTENT_INJECTION_KEY: InjectionKey<TooltipContentInjectionContext> =
-  Symbol('TooltipContent')

@@ -1,96 +1,14 @@
-import { placements } from '@popperjs/core'
 import { buildProps, definePropType } from '@vuesax-alpha/utils'
+import { popperContentProps } from '@vuesax-alpha/components/popper'
 import { useDelayedToggleProps, useNamespace } from '@vuesax-alpha/hooks'
-import type { StyleValue } from 'vue'
-import type { Options, Placement } from '@popperjs/core'
-import type { ExtractPropType } from '@vuesax-alpha/utils'
+import type Content from './content.vue'
+import type { ExtractPropTypes } from 'vue'
 
-const ns = useNamespace('tooltip')
-
-type ClassObjectType = Record<string, boolean>
-type ClassType = string | ClassObjectType | ClassType[]
-
-const POSITIONING_STRATEGIES = ['fixed', 'absolute'] as const
+const ns = useNamespace('popper')
 
 export const tooltipContentProps = buildProps({
   ...useDelayedToggleProps,
-  boundariesPadding: {
-    type: Number,
-    default: 0,
-  },
-  fallbackPlacements: {
-    type: definePropType<Placement[]>(Array),
-    default: undefined,
-  },
-  gpuAcceleration: {
-    type: Boolean,
-    default: true,
-  },
-  offset: {
-    type: Number,
-    default: 12,
-  },
-  placement: {
-    type: String,
-    values: placements,
-    default: 'bottom',
-  },
-  popperOptions: {
-    type: definePropType<Partial<Options>>(Object),
-    default: () => ({}),
-  },
-  strategy: {
-    type: String,
-    values: POSITIONING_STRATEGIES,
-    default: 'absolute',
-  },
-  id: String,
-  style: {
-    type: definePropType<StyleValue>([String, Array, Object]),
-  },
-  className: {
-    type: definePropType<ClassType>([String, Array, Object]),
-  },
-  effect: {
-    type: String,
-    default: 'dark',
-  },
-  enterable: {
-    type: Boolean,
-    default: true,
-  },
-  pure: Boolean,
-  focusOnShow: {
-    type: Boolean,
-    default: false,
-  },
-  trapping: {
-    type: Boolean,
-    default: false,
-  },
-  popperClass: {
-    type: definePropType<ClassType>([String, Array, Object]),
-  },
-  popperStyle: {
-    type: definePropType<StyleValue>([String, Array, Object]),
-  },
-  referenceEl: {
-    type: definePropType<HTMLElement>(Object),
-  },
-  triggerTargetEl: {
-    type: definePropType<HTMLElement>(Object),
-  },
-  stopPopperMouseEvent: {
-    type: Boolean,
-    default: true,
-  },
-  ariaLabel: {
-    type: String,
-    default: undefined,
-  },
-  virtualTriggering: Boolean,
-  zIndex: Number,
-
+  ...popperContentProps,
   appendTo: {
     type: definePropType<string | HTMLElement>([String, Object]),
   },
@@ -103,7 +21,11 @@ export const tooltipContentProps = buildProps({
     default: false,
   },
   persistent: Boolean,
-
+  ariaLabel: String,
+  // because model toggle prop is generated dynamically
+  // so the typing cannot be evaluated by typescript as type:
+  // [name]: { type: Boolean, default: null }
+  // so we need to declare that again for type checking.
   visible: {
     type: definePropType<boolean | null>(Boolean),
     default: null,
@@ -119,15 +41,8 @@ export const tooltipContentProps = buildProps({
   disabled: {
     type: Boolean,
   },
-})
+} as const)
 
-export const tooltipContentEmits = {
-  mouseenter: (evt: MouseEvent) => evt instanceof MouseEvent,
-  mouseleave: (evt: MouseEvent) => evt instanceof MouseEvent,
-  focus: () => true,
-  blur: () => true,
-  close: () => true,
-}
+export type TooltipContentProps = ExtractPropTypes<typeof tooltipContentProps>
 
-export type TooltipContentEmits = typeof tooltipContentEmits
-export type TooltipContentProps = ExtractPropType<typeof tooltipContentProps>
+export type TooltipContentInstance = InstanceType<typeof Content>

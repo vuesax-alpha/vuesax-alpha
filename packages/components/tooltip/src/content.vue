@@ -7,11 +7,30 @@
       @after-enter="onAfterShow"
       @before-leave="onBeforeLeave"
     >
-      <div
-        v-if="!shouldRender"
+      <vs-popper-content
+        v-if="shouldRender"
         v-show="shouldShow"
+        :id="id"
         ref="contentRef"
-        :class="ns.b()"
+        v-bind="$attrs"
+        :aria-label="ariaLabel"
+        :aria-hidden="ariaHidden"
+        :boundaries-padding="boundariesPadding"
+        :fallback-placements="fallbackPlacements"
+        :gpu-acceleration="gpuAcceleration"
+        :offset="offset"
+        :placement="placement"
+        :popper-options="popperOptions"
+        :strategy="strategy"
+        :effect="effect"
+        :enterable="enterable"
+        :pure="pure"
+        :popper-class="popperClass"
+        :popper-style="[popperStyle, contentStyle]"
+        :reference-el="referenceEl"
+        :trigger-target-el="triggerTargetEl"
+        :visible="shouldShow"
+        :z-index="zIndex"
         @mouseenter="onContentEnter"
         @mouseleave="onContentLeave"
         @blur="onBlur"
@@ -20,39 +39,44 @@
         <template v-if="!destroyed">
           <slot />
         </template>
-      </div>
+      </vs-popper-content>
     </transition>
   </teleport>
 </template>
 
-<script setup lang="ts">
-import { computed, inject, ref, unref, watch } from 'vue'
+<script lang="ts" setup>
+import { computed, inject, onBeforeUnmount, ref, watch } from 'vue'
 import { onClickOutside } from '@vueuse/core'
-import { createPopper } from '@popperjs/core'
-import { TOOLTIP_INJECTION_KEY } from '@vuesax-alpha/tokens'
-import { useNamespace, usePopperContainerId } from '@vuesax-alpha/hooks'
+import { usePopperContainerId } from '@vuesax-alpha/hooks'
 import { composeEventHandlers } from '@vuesax-alpha/utils'
+import { VsPopperContent } from '@vuesax-alpha/components/popper'
+import { tooltipInjectionKey } from '@vuesax-alpha/tokens'
 import { tooltipContentProps } from './content'
+import type { PopperContentInstance } from '@vuesax-alpha/components/popper'
 
-const ns = useNamespace('tooltip')
+defineOptions({
+  name: 'VsTooltipContent',
+  inheritAttrs: false,
+})
 
 const props = defineProps(tooltipContentProps)
 const { selector } = usePopperContainerId()
 
-const contentRef = ref<any>(null)
+const contentRef = ref<PopperContentInstance | null>(null)
+
 const destroyed = ref(false)
 const {
   controlled,
+  id,
   open,
   trigger,
-  tooltipInstance,
   onClose,
   onOpen,
   onShow,
   onHide,
   onBeforeShow,
   onBeforeHide,
-} = inject(TOOLTIP_INJECTION_KEY, undefined)!
+} = inject(tooltipInjectionKey, undefined)!
 
 const persistentRef = computed(() => {
   // For testing, we would always want the content to be rendered
@@ -64,55 +88,50 @@ const persistentRef = computed(() => {
 })
 
 const shouldRender = computed(() => {
-  return unref(persistentRef) ? true : unref(open)
+  return persistentRef.value ? true : open.value
 })
+
 const shouldShow = computed(() => {
-  return props.disabled ? false : unref(open)
+  return props.disabled ? false : open.value
 })
 
-const createTooltipInstance = ({
-  referenceEl,
-  popperContentEl,
-  arrowEl,
-}: CreateTooltipInstanceParams) => {
-  const options = buildPopperOptions(props, {
-    arrowEl,
-    arrowOffset: unref(arrowOffset),
-  })
-  return createPopper(referenceEl, popperContentEl, options)
-}
+const appendTo = computed(() => {
+  return props.appendTo || selector.value
+})
 
-const updateTooltip = (shouldUpdateZIndex = true) => {
-  unref(tooltipInstance)?.update()
-  shouldUpdateZIndex && (contentZIndex.value = props.zIndex || nextZIndex())
-}
+const contentStyle = computed(() => (props.style ?? {}) as any)
+
+const ariaHidden = computed(() => !open.value)
 
 const onTransitionLeave = () => {
   onHide()
 }
 
 const stopWhenControlled = () => {
-  if (unref(controlled)) return true
+  if (controlled.value) return true
 }
 
 const onContentEnter = composeEventHandlers(stopWhenControlled, () => {
-  if (props.enterable && unref(trigger) === 'hover') {
+  if (props.enterable && trigger.value === 'hover') {
     onOpen()
   }
 })
+
 const onContentLeave = composeEventHandlers(stopWhenControlled, () => {
-  if (unref(trigger) === 'hover') {
+  if (trigger.value === 'hover') {
     onClose()
   }
 })
 
 const onBeforeEnter = () => {
-  updateTooltip()
+  contentRef.value?.updatePopper?.()
   onBeforeShow?.()
 }
+
 const onBeforeLeave = () => {
   onBeforeHide?.()
 }
+
 const onAfterShow = () => {
   onShow()
   stopHandle = onClickOutside(
@@ -120,22 +139,24 @@ const onAfterShow = () => {
       return contentRef.value?.popperContentRef
     }),
     () => {
-      if (unref(controlled)) return
-      const $trigger = unref(trigger)
-      if ($trigger !== 'hover') {
+      if (controlled.value) return
+      if (trigger.value !== 'hover') {
         onClose()
       }
     }
   )
 }
+
 const onBlur = () => {
   if (!props.virtualTriggering) {
     onClose()
   }
 }
+
 let stopHandle: ReturnType<typeof onClickOutside>
+
 watch(
-  () => unref(open),
+  open,
   (val) => {
     if (!val) {
       stopHandle?.()
@@ -145,14 +166,22 @@ watch(
     flush: 'post',
   }
 )
+
 watch(
   () => props.content,
   () => {
-    updateTooltip()
+    contentRef.value?.updatePopper?.()
   }
 )
 
+onBeforeUnmount(() => {
+  destroyed.value = true
+})
+
 defineExpose({
-  updateTooltip,
+  /**
+   * @description vs-popper-content component instance
+   */
+  contentRef,
 })
 </script>

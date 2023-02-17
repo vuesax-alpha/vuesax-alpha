@@ -1,9 +1,11 @@
-import { createModelToggleComposable } from '@vuesax-alpha/hooks'
 import { buildProps } from '@vuesax-alpha/utils'
+import { createModelToggleComposable } from '@vuesax-alpha/hooks'
+import { popperArrowProps, popperProps } from '@vuesax-alpha/components/popper'
 import { tooltipContentProps } from './content'
 import { tooltipTriggerProps } from './trigger'
-import type { ExtractPropTypes } from 'vue'
 import type Tooltip from './tooltip.vue'
+
+import type { ExtractPropTypes } from 'vue'
 
 export const {
   useModelToggleProps: useTooltipModelToggleProps,
@@ -11,25 +13,20 @@ export const {
   useModelToggle: useTooltipModelToggle,
 } = createModelToggleComposable('visible' as const)
 
-export type TooltipTriggerType = 'hover' | 'focus' | 'click' | 'contextmenu'
-
-export const tooltipProps = buildProps({
-  ...tooltipTriggerProps,
+export const useTooltipProps = buildProps({
+  ...popperProps,
+  ...useTooltipModelToggleProps,
   ...tooltipContentProps,
+  ...tooltipTriggerProps,
+  ...popperArrowProps,
+
+  showArrow: {
+    type: Boolean,
+    default: true,
+  },
 
   /** @description tooltip is loading */
   loading: Boolean,
-
-  /**
-   * @description position of Tooltip
-   * @enum `top` | `right` | `bottom` | `left`
-   * @default `top`
-   * */
-  placement: {
-    type: String,
-    values: ['top', 'right', 'bottom', 'left'] as const,
-    default: 'top',
-  },
 
   /**
    * @description Change the border radius
@@ -51,16 +48,7 @@ export const tooltipProps = buildProps({
     default: '',
   },
 
-  showAfter: {
-    type: Number,
-    default: 0,
-  },
-  hideAfter: {
-    type: Number,
-    default: 0,
-  },
-
-  /** @description Remove the arrow from the tooltip. */
+  /** @deprecated use showArraw instead. */
   notArrow: Boolean,
 
   /** @deprecated use visible instead */
@@ -93,8 +81,6 @@ export const tooltipProps = buildProps({
   circle: Boolean,
 })
 
-export type TooltipProps = ExtractPropTypes<typeof tooltipProps>
-
 export const tooltipEmits = [
   ...useTooltipModelToggleEmits,
   'before-show',
@@ -104,6 +90,7 @@ export const tooltipEmits = [
   'open',
   'close',
 ]
-export type TooltipEmits = typeof tooltipEmits
+
+export type TooltipProps = ExtractPropTypes<typeof useTooltipProps>
 
 export type TooltipInstance = InstanceType<typeof Tooltip>
