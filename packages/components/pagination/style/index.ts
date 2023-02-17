@@ -1,0 +1,7 @@
+import '@vuesax-alpha/components/base/style'
+import '@vuesax-alpha/theme-chalk/src/popper.scss'
+import '@vuesax-alpha/theme-chalk/src/tooltip.scss'
+import '@vuesax-alpha/theme-chalk/src/scrollbar.scss'
+import '@vuesax-alpha/theme-chalk/src/select.scss'
+import '@vuesax-alpha/theme-chalk/src/input.scss'
+import '@vuesax-alpha/theme-chalk/src/pagination.scss'
