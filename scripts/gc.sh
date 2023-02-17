@@ -51,7 +51,7 @@ const props = defineProps(${INPUT_NAME}Props)
 EOF
 
 cat > $DIRNAME/src/$INPUT_NAME.ts <<EOF
-import { buildProps } from '@vuesax-x/utils'
+import { buildProps } from '@vuesax-alpha/utils'
 
 import type { ExtractPropTypes } from 'vue'
 import type $NAME from './$INPUT_NAME.vue'
@@ -63,7 +63,7 @@ export type ${NAME}Instance = InstanceType<typeof $NAME>
 EOF
 
 cat <<EOF >"$DIRNAME/index.ts"
-import { withInstall } from '@vuesax-x/utils'
+import { withInstall } from '@vuesax-alpha/utils'
 import $NAME from './src/$INPUT_NAME.vue'
 
 export const Vs$NAME = withInstall($NAME)
