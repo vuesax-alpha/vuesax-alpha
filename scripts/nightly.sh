@@ -1,1 +1,1 @@
-sed -i 's/"name": "vuesax-plus",/"name": "@vuesax-plus\/nightly",/' packages/vuesax-plus/package.json
+sed -i 's/"name": "vuesax-alpha",/"name": "@vuesax-alpha\/nightly",/' packages/vuesax-alpha/package.json

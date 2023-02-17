@@ -7,17 +7,17 @@ pnpm update:version
 
 pnpm build
 
-cd dist/vuesax-plus
+cd dist/vuesax-alpha
 npm publish
-cd -
+cd ../..
 
 cd internal/eslint-config
 npm publish
-cd -
+cd ../..
 
 cd internal/metadata
 pnpm build
 npm publish
-cd -
+cd ../..
 
 echo "✅ Publish completed"
