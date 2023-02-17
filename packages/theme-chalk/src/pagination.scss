@@ -236,6 +236,10 @@
     width: getCssVar(pagination-button-width);
     height: getCssVar(pagination-button-height);
 
+    &:active {
+      transform: scale(1.05);
+    }
+
     @include when(change) {
       transform: scale(1.1);
     }
