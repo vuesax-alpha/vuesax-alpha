@@ -5,7 +5,7 @@ async function main() {
   const threshold = process.env.THRESHOLD || 40
   let output: string
   const diffOutput = await fs.readFile(
-    path.resolve(__dirname, '..', 'tmp/diff.txt'),
+    path.resolve(__dirname, '..', 'scripts/tmp/diff.txt'),
     'utf-8'
   )
   const fileDiffs = diffOutput
@@ -48,7 +48,10 @@ ${table}
 </details>`
   }
 
-  await fs.writeFile(path.resolve(__dirname, '..', 'tmp/diff.md'), output)
+  await fs.writeFile(
+    path.resolve(__dirname, '..', 'scripts/tmp/diff.md'),
+    output
+  )
 }
 
 main()
