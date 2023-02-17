@@ -25,11 +25,6 @@ export type TooltipInjectionContext = {
   onOpen: (e?: Event) => void
   onClose: (e?: Event) => void
   onToggle: (e: Event) => void
-  onShow: () => void
-  onHide: () => void
-  onBeforeShow: () => void
-  onBeforeHide: () => void
-  updateTooltip: () => void
 }
 
 export type TooltipContentInjectionContext = {
