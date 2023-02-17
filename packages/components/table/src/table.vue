@@ -11,7 +11,7 @@ defineOptions({
   name: 'VsTable',
 })
 
-const props = defineProps(tableProps)
+defineProps(tableProps)
 
 // init here
 </script>

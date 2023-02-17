@@ -11,7 +11,7 @@ defineOptions({
   name: 'VsRow',
 })
 
-const props = defineProps(rowProps)
+defineProps(rowProps)
 
 // init here
 </script>

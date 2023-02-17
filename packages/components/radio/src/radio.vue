@@ -11,7 +11,7 @@ defineOptions({
   name: 'VsRadio',
 })
 
-const props = defineProps(radioProps)
+defineProps(radioProps)
 
 // init here
 </script>

@@ -11,7 +11,7 @@ defineOptions({
   name: 'VsSwitch',
 })
 
-const props = defineProps(switchProps)
+defineProps(switchProps)
 
 // init here
 </script>

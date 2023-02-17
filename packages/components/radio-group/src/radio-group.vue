@@ -11,7 +11,7 @@ defineOptions({
   name: 'VsRadioGroup',
 })
 
-const props = defineProps(radioGroupProps)
+defineProps(radioGroupProps)
 
 // init here
 </script>

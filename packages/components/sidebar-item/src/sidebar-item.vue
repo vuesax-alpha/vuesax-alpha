@@ -11,7 +11,7 @@ defineOptions({
   name: 'VsSidebarItem',
 })
 
-const props = defineProps(sidebarItemProps)
+defineProps(sidebarItemProps)
 
 // init here
 </script>

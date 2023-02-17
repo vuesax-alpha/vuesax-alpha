@@ -11,7 +11,7 @@ defineOptions({
   name: 'VsSidebarGroup',
 })
 
-const props = defineProps(sidebarGroupProps)
+defineProps(sidebarGroupProps)
 
 // init here
 </script>
