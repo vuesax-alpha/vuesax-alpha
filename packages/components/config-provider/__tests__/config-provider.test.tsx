@@ -6,6 +6,8 @@
 // import { rAF } from '@vuesax-alpha/test-utils/tick'
 // import ConfigProvider from '../src/config-provider'
 
+import { describe, expect, test } from 'vitest'
+
 // import type { PropType } from 'vue'
 // import type { ConfigProviderProps } from '../src/config-provider'
 
@@ -162,3 +164,7 @@
 //     )
 //   })
 // })
+
+describe('config-provider', () => {
+  test('truthy', () => expect(1 + 1).toEqual(2))
+})

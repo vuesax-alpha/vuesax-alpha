@@ -168,7 +168,9 @@ describe('ScrollBar', () => {
       </Scrollbar>
     ))
 
-    expect(wrapper.find('.vs-scrollbar__bar').attributes('style')).toBeFalsy()
+    expect(wrapper.find('.vs-scrollbar__bar').attributes('style')).toContain(
+      'height: 5px;'
+    )
   })
 
   test('set scrollTop & scrollLeft', async () => {
