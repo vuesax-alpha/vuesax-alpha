@@ -1,10 +1,5 @@
 <template>
-  <div
-    ref="pagerRef"
-    :class="nsPager.b()"
-    @click="onPagerClick"
-    @keyup.enter="onEnter"
-  >
+  <div ref="pagerRef" :class="nsPager.b()">
     <div
       v-if="pageCount > 0"
       :class="[
@@ -15,6 +10,8 @@
       :aria-current="currentPage === 1"
       aria-label="1"
       :tabindex="tabindex"
+      @click="onPageClick(1)"
+      @keyup.enter="onPageClick(1)"
     >
       1
     </div>
@@ -31,6 +28,8 @@
       @mouseleave="quickPrevHover = false"
       @focus="onFocus(true)"
       @blur="quickPrevFocus = false"
+      @click="onMoreClick('prev')"
+      @keyup.enter="onMoreClick('prev')"
     >
       <chevron-left v-if="(quickPrevHover || quickPrevFocus) && !disabled" />
       <span v-else>...</span>
@@ -46,6 +45,8 @@
       :aria-label="`${pager}`"
       :aria-current="currentPage === pager"
       :tabindex="tabindex"
+      @click="onPageClick(pager)"
+      @keyup.enter="onPageClick(pager)"
     >
       {{ pager }}
     </div>
@@ -62,6 +63,8 @@
       @mouseleave="quickNextHover = false"
       @focus="onFocus()"
       @blur="quickNextFocus = false"
+      @click="onMoreClick('next')"
+      @keyup.enter="onMoreClick('next')"
     >
       <chevron-right v-if="(quickNextHover || quickNextFocus) && !disabled" />
       <span v-else>...</span>
@@ -76,6 +79,8 @@
       :aria-current="currentPage === pageCount"
       :aria-label="`${pageCount}`"
       :tabindex="tabindex"
+      @click="onPageClick(pageCount)"
+      @keyup.enter="onPageClick(pageCount)"
     >
       {{ pageCount }}
     </div>
@@ -222,48 +227,73 @@ function onFocus(forward = false) {
     quickNextFocus.value = true
   }
 }
-function onEnter(e: UIEvent) {
-  const target = e.target as HTMLElement
-  if (
-    target.tagName.toLowerCase() === 'li' &&
-    Array.from(target.classList).includes('number')
-  ) {
-    const newPage = Number(target.textContent)
-    if (newPage !== currentPage.value) {
-      emit('change', newPage)
-    }
-  } else if (
-    target.tagName.toLowerCase() === 'li' &&
-    Array.from(target.classList).includes('more')
-  ) {
-    onPagerClick(e)
-  }
-}
-function onPagerClick(event: UIEvent) {
-  const target = event.target as HTMLElement
-  if (target.tagName.toLowerCase() === 'ul' || disabled.value) {
-    return
-  }
-  let newPage = Number(target.textContent)
+// function onEnter(e: UIEvent) {
+//   const target = e.target as HTMLElement
+//   if (
+//     target.tagName.toLowerCase() === 'li' &&
+//     Array.from(target.classList).includes('number')
+//   ) {
+//     const newPage = Number(target.textContent)
+//     if (newPage !== currentPage.value) {
+//       emit('change', newPage)
+//     }
+//   } else if (
+//     target.tagName.toLowerCase() === 'li' &&
+//     Array.from(target.classList).includes('more')
+//   ) {
+//     onPagerClick(e)
+//   }
+// }
+// function onPagerClick(event: UIEvent) {
+//   const target = event.target as HTMLElement
+//   if (target.tagName.toLowerCase() === 'ul' || disabled.value) {
+//     return
+//   }
+//   let newPage = Number(target.textContent)
 
+//   const pagerCountOffset = props.pagerCount - 2
+//   if (target.className.includes('more')) {
+//     if (target.className.includes('quickprev')) {
+//       newPage = currentPage.value - pagerCountOffset
+//     } else if (target.className.includes('quicknext')) {
+//       newPage = currentPage.value + pagerCountOffset
+//     }
+//   }
+//   if (!Number.isNaN(+newPage)) {
+//     if (newPage < 1) {
+//       newPage = 1
+//     }
+//     if (newPage > pageCount.value) {
+//       newPage = pageCount.value
+//     }
+//   }
+//   if (newPage !== currentPage.value) {
+//     emit('change', newPage)
+//   }
+// }
+
+function onMoreClick(key: 'prev' | 'next') {
+  let newPage: number = currentPage.value
   const pagerCountOffset = props.pagerCount - 2
-  if (target.className.includes('more')) {
-    if (target.className.includes('quickprev')) {
-      newPage = currentPage.value - pagerCountOffset
-    } else if (target.className.includes('quicknext')) {
-      newPage = currentPage.value + pagerCountOffset
-    }
+
+  if (key == 'prev') {
+    newPage = currentPage.value - pagerCountOffset
+  } else if (key == 'next') {
+    newPage = currentPage.value + pagerCountOffset
   }
-  if (!Number.isNaN(+newPage)) {
-    if (newPage < 1) {
-      newPage = 1
-    }
-    if (newPage > pageCount.value) {
-      newPage = pageCount.value
-    }
+  emitChange(newPage)
+}
+
+function onPageClick(page: number) {
+  if (!Number.isNaN(+page)) {
+    if (page < 1) page = 1
+    if (page > pageCount.value) page = pageCount.value
   }
-  if (newPage !== currentPage.value) {
-    emit('change', newPage)
-  }
+  if (page != currentPage.value) emitChange(page)
+}
+
+function emitChange(page: number) {
+  if (disabled.value || Number.isNaN(+page)) return
+  emit('change', page)
 }
 </script>
