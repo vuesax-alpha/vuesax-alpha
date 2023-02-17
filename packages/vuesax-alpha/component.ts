@@ -20,7 +20,7 @@ import {
   VsNavbarGroup,
   VsNavbarItem,
 } from '@vuesax-alpha/components/navbar'
-// import { VsPagination } from '@vuesax-alpha/components/pagination'
+import { VsPagination } from '@vuesax-alpha/components/pagination'
 // import {
 //   VsRadio,
 //   VsRadioGroup,
@@ -28,11 +28,11 @@ import {
 import { VsRate } from '@vuesax-alpha/components/rate'
 // import { VsRow } from '@vuesax-alpha/components/row'
 import { VsScrollbar } from '@vuesax-alpha/components/scrollbar'
-// import {
-//   VsOption,
-//   VsOptionGroup,
-//   VsSelect,
-// } from '@vuesax-alpha/components/select'
+import {
+  VsOption,
+  VsOptionGroup,
+  VsSelect,
+} from '@vuesax-alpha/components/select'
 // import { VsSwitch } from '@vuesax-alpha/components/switch'
 // import { VsTable } from '@vuesax-alpha/components/table'
 import { VsTooltip } from '@vuesax-alpha/components/tooltip'
@@ -54,18 +54,18 @@ export default [
   VsDialog,
   VsIcon,
   VsInput,
-  // VsOptionGroup,
-  // VsOption,
+  VsOptionGroup,
+  VsOption,
   VsNavbar,
   VsNavbarGroup,
   VsNavbarItem,
-  // VsPagination,
+  VsPagination,
   // VsRadio,
   // VsRadioGroup,
   VsRate,
   // VsRow,
   VsScrollbar,
-  // VsSelect,
+  VsSelect,
   // VsSwitch,
   // VsTable,
   VsTooltip,
