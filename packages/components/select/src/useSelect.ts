@@ -494,7 +494,7 @@ export const useSelect = (
     event.stopPropagation()
   }
 
-  const deleteSelected = (event: Event) => {
+  const deleteSelected = (/** event: Event */) => {
     // event.stopPropagation()
     const value: string | any[] = props.multiple ? [] : ''
     if (!isString(value)) {
