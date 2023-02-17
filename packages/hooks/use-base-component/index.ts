@@ -1,5 +1,5 @@
 import { computed, unref } from 'vue'
-import { useNamespace } from '@vuesax-alpha/hooks'
+import { useNamespace } from '@vuesax-alpha/hooks/use-namespace'
 import { vuesaxColors } from '@vuesax-alpha/constants'
 import type { MaybeRef } from '@vueuse/core'
 
