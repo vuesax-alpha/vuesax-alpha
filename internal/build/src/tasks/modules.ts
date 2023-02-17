@@ -25,6 +25,7 @@ export const buildModules = async () => {
     input,
     plugins: [
       VuesaxAlphaAlias(),
+      // @ts-ignore
       VueMacros({
         setupComponent: false,
         setupSFC: false,

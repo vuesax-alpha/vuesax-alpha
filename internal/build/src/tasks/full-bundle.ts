@@ -28,6 +28,7 @@ const banner = `/*! ${PKG_BRAND_NAME} v${version} */\n`
 async function buildFullEntry(minify: boolean) {
   const plugins: Plugin[] = [
     VuesaxAlphaAlias(),
+    // @ts-ignore
     VueMacros({
       setupComponent: false,
       setupSFC: false,
