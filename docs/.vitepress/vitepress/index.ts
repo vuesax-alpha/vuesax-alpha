@@ -1,5 +1,5 @@
 import 'normalize.css'
-// import 'vuesax-plus/dist/index.css'
+// import 'vuesax-alpha/dist/index.css'
 
 // for dev
 // reset

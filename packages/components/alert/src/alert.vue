@@ -65,11 +65,8 @@
 import { computed, useSlots } from 'vue'
 import { isBoolean } from 'lodash-unified'
 import { getVsColor } from '@vuesax-alpha/utils'
-import {
-  IconClose,
-  IconPlus,
-  VsCollapseTransition,
-} from '@vuesax-alpha/components'
+import { IconClose, IconPlus } from '@vuesax-alpha/components/icon'
+import { VsCollapseTransition } from '@vuesax-alpha/components/collapse-transition'
 import { useBaseComponent, useNamespace } from '@vuesax-alpha/hooks'
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import { alertEmits, alertProps } from './alert'

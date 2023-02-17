@@ -1,5 +1,5 @@
 <template>
-  <i :class="ns.b()" :style="style" v-bind="$attrs">
+  <i :class="ns.b()" :style="style">
     <slot />
   </i>
 </template>
@@ -13,8 +13,8 @@ import type { CSSProperties } from 'vue'
 
 defineOptions({
   name: 'VsIcon',
-  inheritAttrs: false,
 })
+
 const props = defineProps(iconProps)
 const ns = useNamespace('icon')
 

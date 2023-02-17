@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { vpRoot } from '@vuesax-plus/build-utils'
+import { vpRoot } from '@vuesax-alpha/build-utils'
 import { languages } from '../utils/lang'
 
 import type { HeadConfig } from 'vitepress'
@@ -10,7 +10,7 @@ export const head: HeadConfig[] = [
     'link',
     {
       rel: 'icon',
-      href: '/images/vuesax-plus-logo-small.svg',
+      href: '/images/vuesax-alpha-logo-small.svg',
       type: 'image/svg+xm',
     },
   ],

@@ -22,7 +22,8 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { IconArrow, VsScrollbar } from '@vuesax-alpha/components'
+import { IconArrow } from '@vuesax-alpha/components/icon'
+import { VsScrollbar } from '@vuesax-alpha/components/scrollbar'
 import { useNamespace } from '@vuesax-alpha/hooks'
 import type {
   ScrollEmitParams,

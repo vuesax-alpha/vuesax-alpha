@@ -1,8 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 import glob from 'fast-glob'
-import { docRoot, docsDirName, projRoot } from '@vuesax-plus/build-utils'
-import { REPO_BRANCH, REPO_PATH } from '@vuesax-plus/build-constants'
+import { docRoot, docsDirName, projRoot } from '@vuesax-alpha/build-utils'
+import { REPO_BRANCH, REPO_PATH } from '@vuesax-alpha/build-constants'
 import { getLang, languages } from '../utils/lang'
 import footerLocale from '../i18n/component/footer.json'
 
@@ -12,7 +12,7 @@ type Append = Record<'headers' | 'footers' | 'scriptSetups', string[]>
 
 export function MarkdownTransform(): Plugin {
   return {
-    name: 'vuesax-plus-md-transform',
+    name: 'vuesax-alpha-md-transform',
     enforce: 'pre',
     async transform(code, id) {
       if (!id.endsWith('.md')) return

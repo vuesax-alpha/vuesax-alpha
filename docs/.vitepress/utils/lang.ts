@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { docRoot } from '@vuesax-plus/build-utils'
+import { docRoot } from '@vuesax-alpha/build-utils'
 
 export const languages = fs.readdirSync(path.resolve(__dirname, '../crowdin'))
 

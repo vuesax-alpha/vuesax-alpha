@@ -1,4 +1,4 @@
-import VuesaxPlus from 'vuesax-plus'
+import VuesaxPlus from 'vuesax-alpha'
 
 import VPApp, { NotFound, globals } from '../vitepress'
 import { define } from '../utils/types'

@@ -108,6 +108,6 @@
     @include css-var-from-global(color, $type);
   }
 }
-[class*=component--default] {
+[class*='component--default'] {
   @include css-var-from-global(color, primary);
 }

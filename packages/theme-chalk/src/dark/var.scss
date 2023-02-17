@@ -34,7 +34,7 @@ $colors: () !default;
             $mix-color,
             map.get($colors, $type, 'base'),
             math.percentage(math.div($number, 10))
-          )
+          ),
       ),
     ),
     $colors
@@ -186,8 +186,8 @@ $mask-color: map.merge(
 $scrollbar: () !default;
 $scrollbar: map.merge(
   (
-    'thumb-color':  '241, 245, 249',
-    'bar-color':  '30, 41, 59',
+    'thumb-color': '241, 245, 249',
+    'bar-color': '30, 41, 59',
   ),
   $scrollbar
 );

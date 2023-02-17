@@ -68,7 +68,7 @@ const offsetRatio = computed(
 
 const clickThumbHandler = (e: MouseEvent) => {
   // prevent click event of middle and right button
-  e.stopPropagation()
+  // e.stopPropagation()
   if (e.ctrlKey || [1, 2].includes(e.button)) return
 
   window.getSelection()?.removeAllRanges()

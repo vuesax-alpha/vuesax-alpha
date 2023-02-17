@@ -46,7 +46,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { IconClose, IconLoading } from '@vuesax-alpha/components'
+import { IconClose, IconLoading } from '@vuesax-alpha/components/icon'
 import {
   useDeprecated,
   useModal,

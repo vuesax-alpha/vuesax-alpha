@@ -1,6 +1,6 @@
 {
   "name": "@vuesax-alpha/build",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "description": "Build Toolchain for Vuesax Alpha",
   "main": "./dist/index.cjs",

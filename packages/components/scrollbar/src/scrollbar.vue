@@ -190,6 +190,7 @@ onMounted(() => {
       update()
     })
 })
+
 onUpdated(() => update())
 
 defineExpose({

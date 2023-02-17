@@ -1,4 +1,4 @@
-import { IconStar, IconStarFilled } from '@vuesax-alpha/components'
+import { IconStar, IconStarFilled } from '@vuesax-alpha/components/icon'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import {
   buildProps,

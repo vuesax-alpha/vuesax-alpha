@@ -48,7 +48,7 @@
 import { computed, markRaw, ref, watch } from 'vue'
 import { EVENT_CODE, UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import { hasClass, isArray, isObject, isString } from '@vuesax-alpha/utils'
-import { VsIcon } from '@vuesax-alpha/components'
+import { VsIcon } from '@vuesax-alpha/components/icon'
 import { useNamespace, useSize } from '@vuesax-alpha/hooks'
 import { rateEmits, rateProps } from './rate'
 import type { iconPropType } from '@vuesax-alpha/utils'

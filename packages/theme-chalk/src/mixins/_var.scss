@@ -32,10 +32,7 @@
     );
   }
 
-  @include set-color(
-    ($type, 'dark-2'),
-    map.get($colors, $type, 'dark-2')
-  );
+  @include set-color(($type, 'dark-2'), map.get($colors, $type, 'dark-2'));
 }
 
 // set all css var for component by map
@@ -50,10 +47,10 @@
 }
 
 @mixin set-component-color($component, $variables) {
-  @each $name, $color in $variables { 
+  @each $name, $color in $variables {
     $separator: '';
     @if $component != '' and $name != '' {
-      $separator: '-'
+      $separator: '-';
     }
     @include set-color($component + $separator + $name, $color);
   }

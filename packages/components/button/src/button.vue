@@ -27,7 +27,7 @@
 <script lang="ts" setup>
 import { computed, ref, useSlots } from 'vue'
 import { useBaseComponent, useNamespace } from '@vuesax-alpha/hooks'
-import { IconLoading } from '@vuesax-alpha/components'
+import { IconLoading } from '@vuesax-alpha/components/icon'
 import {
   getVsColor,
   ripple,

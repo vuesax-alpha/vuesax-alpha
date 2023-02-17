@@ -81,5 +81,5 @@ export function createCrowdinUrl(targetLang: string) {
   } else {
     translateLang = targetLang.split('-').shift()!.toLocaleLowerCase()
   }
-  return `https://crowdin.com/translate/vuesax-plus/all/en-${translateLang}`
+  return `https://crowdin.com/translate/vuesax-alpha/all/en-${translateLang}`
 }

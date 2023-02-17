@@ -23,7 +23,7 @@ button {
   cursor: pointer;
 }
 
-[disabled],
+[disabled='true'],
 .disabled {
   opacity: 0.65;
   cursor: default;

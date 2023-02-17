@@ -1,6 +1,6 @@
 {
   "name": "@vuesax-alpha/directives",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Vuesax Alpha directives",
   "license": "MIT",
   "main": "index.ts",

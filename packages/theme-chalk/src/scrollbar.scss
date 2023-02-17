@@ -51,8 +51,7 @@
     z-index: 1;
     border-radius: 4px;
     // padding: 2px;
-    
-    
+
     &:hover,
     &.highlight {
       background-color: getColor(scrollbar-thumb-color, 0.15);
@@ -69,7 +68,7 @@
 
     @include when(horizontal) {
       left: 2px;
-      
+
       > div {
         height: 100%;
       }

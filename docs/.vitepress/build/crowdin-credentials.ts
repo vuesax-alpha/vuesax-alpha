@@ -2,7 +2,7 @@ import path from 'path'
 import fs from 'fs/promises'
 import chalk from 'chalk'
 import consola from 'consola'
-import { docRoot, errorAndExit } from '@vuesax-plus/build-utils'
+import { docRoot, errorAndExit } from '@vuesax-alpha/build-utils'
 
 const credentialPlaceholder = 'API_TOKEN_PLACEHOLDER'
 

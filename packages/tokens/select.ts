@@ -1,56 +1,92 @@
-import type { InjectionKey, Ref } from 'vue'
+// import type { InjectionKey } from 'vue'
+// import type { SelectProps } from '@vuesax-alpha/components/select'
 
-interface SelectGroupContext {
-  disabled: boolean
-}
+// export type SelectOptionValue = string | number | Record<any, unknown>
 
-export interface QueryChangeCtx {
-  query: string
-}
+// export type SelectOptionStates = {
+//   index: number
+//   groupDisabled: boolean
+//   visible: boolean
+//   hitState: boolean
+//   hover: boolean
+//   userCreated: boolean
+// }
 
-export interface SelectContext {
-  props: {
-    multiple?: boolean
-    multipleLimit?: number
-    valueKey?: string
-    modelValue?: string | number | unknown | unknown[]
-    popperClass?: string
-    remote?: boolean
-    fitInputWidth?: boolean
-  }
-  queryChange: Ref<QueryChangeCtx>
-  groupQueryChange: Ref<string>
-  selectWrapper: HTMLElement
-  cachedOptions: Map<any, any>
-  hoverIndex: number
-  optionsCount: number
-  filteredOptionsCount: number
-  options: Map<any, any>
-  optionsArray: any[]
-  selected: any | any[]
-  setSelected(): void
-  onOptionCreate(vm: SelectOptionProxy): void
-  onOptionDestroy(key: number | string | Record<string, any>): void
-  handleOptionSelect(vm: unknown, byClick: boolean): void
-}
+// export type SelectValue = SelectOptionValue | SelectOptionValue[]
 
-// For individual build sharing injection key, we had to make `Symbol` to string
-export const selectGroupKey =
-  'SelectGroup' as unknown as InjectionKey<SelectGroupContext>
+// export type SelectStates = {
+//   options: Map<SelectOptionValue, SelectOptionContext>
+//   cachedOptions: Map<SelectOptionValue, SelectOptionContext>
+//   selected: SelectOptionContext[]
+//   createdLabel: string | null
+//   createdSelected: boolean
+//   inputLength: number
+//   inputWidth: number
+//   optionsCount: number
+//   filteredOptionsCount: number
+//   visible: boolean
+//   softFocus: boolean
+//   selectedLabel: string | null
+//   hoverIndex: number
+//   query: string | null
+//   previousQuery: string | null
+//   inputHovering: boolean
+//   cachedPlaceHolder: string | null
+//   currentPlaceholder: string | null
+//   menuVisibleOnFocus: boolean
+//   isOnComposition: boolean
+//   isSilentBlur: boolean
+//   prefixWidth: number
+//   tagInMultiLine: boolean
+//   mouseEnter: boolean
+// }
 
-export const selectKey = 'Select' as unknown as InjectionKey<SelectContext>
+// interface SelectGroupContext {
+//   disabled: boolean
+// }
 
-export interface SelectOptionProxy {
-  value: string | number | Record<string, string>
-  label: string | number
-  created: boolean
-  disabled: boolean
-  currentLabel: string
-  itemSelected: boolean
-  isDisabled: boolean
-  select: SelectContext
-  hoverItem: () => void
-  visible: boolean
-  hover: boolean
-  selectOptionClick: () => void
-}
+// export interface QueryChangeCtx {
+//   query: string
+// }
+
+// export interface SelectContext {
+//   props: SelectProps
+//   states: SelectStates
+//   queryChange: QueryChangeCtx
+//   groupQueryChange: string
+//   selectWrapper: HTMLElement
+//   cachedOptions: Map<SelectOptionValue, SelectOptionContext>
+//   hoverIndex: number
+//   optionsCount: number
+//   filteredOptionsCount: number
+//   options: Map<SelectOptionValue, SelectOptionContext>
+//   optionsArray: SelectOptionContext[]
+//   selected: SelectOptionContext[]
+//   setSelected(): void
+//   onOptionCreate(vm: SelectOptionContext): void
+//   onOptionDestroy(key: SelectOptionValue, vm: SelectOptionContext): void
+//   handleOptionSelect(vm: SelectOptionContext, byClick: boolean): void
+// }
+
+// export const selectGroupContextKey: InjectionKey<SelectGroupContext> =
+//   Symbol('SelectGroup')
+
+// export const selectContextKey: InjectionKey<SelectContext> = Symbol('Select')
+
+// export interface SelectOptionContext {
+//   el: HTMLElement | undefined
+//   value: SelectOptionValue
+//   label?: string
+//   disabled: boolean
+//   index: number
+//   groupDisabled: boolean
+//   visible: boolean
+//   hitState: boolean
+//   hover: boolean
+//   userCreated: boolean
+//   currentLabel: string
+//   isSelected: boolean
+//   isDisabled: boolean
+//   hoverItem: () => void
+//   selectOptionClick: () => void
+// }

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="dropdown-wrapper" :class="{ open }">
     <a class="dropdown-title" @click="toggle">
       <span :class="item.text" class="title">
@@ -52,7 +52,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { isString } from '@vue/shared'
-import { VsCollapseTransition } from '@vuesax-alpha/vuesax-alpha'
+import { VsCollapseTransition } from '@vuesax-alpha/components'
 import NavbarItem from './navbar-item.vue'
 import type { NavbarGroup } from '@vuesax-alpha/utils'
 
@@ -260,4 +260,11 @@ const toggle = () => {
     }
   }
 }
-</style>
+</style> -->
+<template>
+  <div>a</div>
+</template>
+
+<script lang="ts" setup></script>
+
+<style lang="scss" scoped></style>

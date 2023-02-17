@@ -79,7 +79,7 @@ export const scrollbarProps = buildProps({
    */
   thickness: {
     type: [Number, String],
-    default: 8,
+    default: 5,
   },
 } as const)
 export type ScrollbarProps = ExtractPropTypes<typeof scrollbarProps>

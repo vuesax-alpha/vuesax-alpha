@@ -54,7 +54,7 @@
 import { computed, onMounted, ref, useSlots, watch } from 'vue'
 import { useBaseComponent, useNamespace } from '@vuesax-alpha/hooks'
 import { getVsColor, setVsCssVar } from '@vuesax-alpha/utils'
-import { IconLoading } from '@vuesax-alpha/components'
+import { IconLoading } from '@vuesax-alpha/components/icon'
 import { avatarProps } from './avatar'
 import { useAvatarStatus } from './composables'
 import type { CSSProperties } from 'vue'

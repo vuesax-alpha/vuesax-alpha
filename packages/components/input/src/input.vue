@@ -113,11 +113,8 @@
 
 <script lang="ts" setup>
 import { computed, useSlots } from 'vue'
-import {
-  IconClose,
-  IconLoading,
-  VsCollapseTransition,
-} from '@vuesax-alpha/components'
+import { IconClose, IconLoading } from '@vuesax-alpha/components/icon'
+import { VsCollapseTransition } from '@vuesax-alpha/components/collapse-transition'
 import {
   useBaseComponent,
   useDeprecated,

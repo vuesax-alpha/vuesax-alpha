@@ -36,7 +36,7 @@
 import { computed, useSlots } from 'vue'
 import { useBaseComponent, useId, useNamespace } from '@vuesax-alpha/hooks'
 import { getVsColor } from '@vuesax-alpha/utils'
-import { IconCheck, IconLoading } from '@vuesax-alpha/components'
+import { IconCheck, IconLoading } from '@vuesax-alpha/components/icon'
 import { checkboxEmits, checkboxProps } from './checkbox'
 import { useCheckbox } from './composables'
 

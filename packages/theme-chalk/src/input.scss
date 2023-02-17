@@ -4,6 +4,18 @@
 
 $inputState: 'success', 'danger', 'dark', 'primary', 'warn';
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
 // vue transition
 .clearable-transition {
   &-enter-active {

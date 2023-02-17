@@ -1,6 +1,6 @@
 import consola from 'consola'
-import { REPO_BRANCH, REPO_PATH } from '@vuesax-plus/build-constants'
-import { docsDirName } from '@vuesax-plus/build-utils'
+import { REPO_BRANCH, REPO_PATH } from '@vuesax-alpha/build-constants'
+import { docsDirName } from '@vuesax-alpha/build-utils'
 import { languages } from './utils/lang'
 import { features, head, mdPlugin, nav, sidebars } from './config'
 import type { UserConfig } from 'vitepress'
@@ -55,8 +55,8 @@ export const config: UserConfig = {
     editLinkText: 'Edit this page on GitHub',
     lastUpdated: 'Last Updated',
 
-    logo: '/images/vuesax-plus-logo.svg',
-    logoSmall: '/images/vuesax-plus-logo-small.svg',
+    logo: '/images/vuesax-alpha-logo.svg',
+    logoSmall: '/images/vuesax-alpha-logo-small.svg',
     sidebars,
     nav,
     agolia: {

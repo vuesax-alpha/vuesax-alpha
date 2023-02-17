@@ -25,9 +25,9 @@
 
 @include b(icon) {
   --color: inherit;
-  height: 1em;
-  width: 1em;
-  line-height: 1em;
+  height: 24px;
+  width: 24px;
+  line-height: 24px;
   @include flex(center, center);
   position: relative;
   fill: currentColor;
@@ -39,8 +39,8 @@
   }
 
   svg {
-    height: 1em;
-    width: 1em;
+    height: 24px;
+    width: 24px;
   }
 }
 

@@ -6,7 +6,7 @@ import {
   getStyle,
   hasClass,
   removeClass,
-} from '@vuesax-plus/utils'
+} from '@vuesax-alpha/utils'
 
 export const useLockScreen = () => {
   let scrollBarWidth = 0
@@ -36,7 +36,7 @@ export const useLockScreen = () => {
         10
       )
     }
-    scrollBarWidth = getScrollBarWidth()
+    scrollBarWidth = getScrollBarWidth('vs')
     const bodyHasOverflow =
       document.documentElement.clientHeight < document.body.scrollHeight
     const bodyOverflowY = getStyle(document.body, 'overflowY')
