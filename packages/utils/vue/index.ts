@@ -1,3 +1,4 @@
+export * from './emits'
 export * from './global-node'
 export * from './icon'
 export * from './install'
