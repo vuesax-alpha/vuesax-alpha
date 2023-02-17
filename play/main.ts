@@ -13,7 +13,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
     routes: [
       {
         path: '',
-        component: apps
+        component: apps,
       },
     ],
     history: createWebHashHistory(),
