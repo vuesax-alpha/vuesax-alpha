@@ -187,7 +187,7 @@ defineExpose({
 </script>
 
 <script lang="ts">
-export type TooltipContentExpose = {
-  popperContentComponent: PopperContentExpose
+export interface TooltipContentExpose {
+  readonly popperContentComponent: PopperContentExpose
 }
 </script>

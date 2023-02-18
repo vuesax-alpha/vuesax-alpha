@@ -198,13 +198,13 @@ defineExpose({
 </script>
 
 <script lang="ts">
-export type TooltipExpose = Readonly<{
-  popperComponent: PopperExpose
-  contentComponent: TooltipContentExpose
-  isFocusInsideContent: () => boolean | undefined
-  updateTooltip: () => void
-  onOpen: (event?: Event | undefined) => void
-  onClose: (event?: Event | undefined) => void
-  hide: (event?: Event | undefined) => void
-}>
+export interface TooltipExpose {
+  readonly popperComponent: PopperExpose
+  readonly contentComponent: TooltipContentExpose
+  readonly isFocusInsideContent: () => boolean | undefined
+  readonly updateTooltip: () => void
+  readonly onOpen: (event?: Event | undefined) => void
+  readonly onClose: (event?: Event | undefined) => void
+  readonly hide: (event?: Event | undefined) => void
+}
 </script>

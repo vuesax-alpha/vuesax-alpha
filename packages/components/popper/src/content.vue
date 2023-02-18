@@ -262,10 +262,10 @@ defineExpose({
 </script>
 
 <script lang="ts">
-export type PopperContentExpose = Readonly<{
-  popperContentRef: HTMLElement | undefined
-  popperInstance: Instance
-  updatePopper: (shouldUpdateZIndex?: boolean) => void
-  contentStyle: any
-}>
+export interface PopperContentExpose {
+  readonly popperContentRef: HTMLElement | undefined
+  readonly popperInstance: Instance
+  readonly updatePopper: (shouldUpdateZIndex?: boolean) => void
+  readonly contentStyle: any
+}
 </script>

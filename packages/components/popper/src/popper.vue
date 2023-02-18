@@ -6,9 +6,8 @@
 import { computed, provide, ref } from 'vue'
 import { popperInjectionKey } from '@vuesax-alpha/tokens'
 import { popperProps } from './popper'
-import type { UnwrapNestedRefs } from 'vue'
 import type { Instance } from '@popperjs/core'
-import type { PopperInjectionContext } from '@vuesax-alpha/tokens'
+import type { Measurable, PopperInjectionContext } from '@vuesax-alpha/tokens'
 
 defineOptions({
   name: 'VsPopperRoot',
@@ -51,5 +50,11 @@ provide(popperInjectionKey, popperProvides)
 </script>
 
 <script lang="ts">
-export type PopperExpose = Readonly<UnwrapNestedRefs<PopperInjectionContext>>
+export interface PopperExpose {
+  readonly triggerRef: Measurable | undefined
+  readonly popperInstance: Instance | undefined
+  readonly contentRef: HTMLElement | undefined
+  readonly referenceRef: Measurable | undefined
+  readonly role: string
+}
 </script>

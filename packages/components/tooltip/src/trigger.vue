@@ -99,10 +99,10 @@ defineExpose({
 </script>
 
 <script lang="ts">
-export type TooltipTriggerExpose = Readonly<{
+export interface TooltipTriggerExpose {
   /**
    * @description trigger element
    */
-  triggerRef: OnlyChildExpose | null
-}>
+  readonly triggerRef: OnlyChildExpose | null
+}
 </script>

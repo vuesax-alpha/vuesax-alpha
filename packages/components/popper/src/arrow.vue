@@ -38,7 +38,7 @@ defineExpose({
 </script>
 
 <script lang="ts">
-export type PopperArrowExpose = Readonly<{
-  arrowRef: HTMLElement | undefined
-}>
+export interface PopperArrowExpose {
+  readonly arrowRef: HTMLElement | undefined
+}
 </script>

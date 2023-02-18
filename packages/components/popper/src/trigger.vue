@@ -143,7 +143,7 @@ defineExpose({
 </script>
 
 <script lang="ts">
-export type PopperTriggerExpose = Readonly<{
-  triggerRef: Measurable | undefined
-}>
+export interface PopperTriggerExpose {
+  readonly triggerRef: Measurable | undefined
+}
 </script>
