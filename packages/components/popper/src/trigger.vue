@@ -20,6 +20,7 @@ import { useForwardRef } from '@vuesax-alpha/hooks'
 import { popperInjectionKey } from '@vuesax-alpha/tokens'
 import { isElement } from '@vuesax-alpha/utils'
 import { popperTriggerProps } from './trigger'
+import type { Measurable } from '@vuesax-alpha/tokens'
 import type { WatchStopHandle } from 'vue'
 
 defineOptions({
@@ -139,4 +140,10 @@ defineExpose({
    */
   triggerRef,
 })
+</script>
+
+<script lang="ts">
+export type PopperTriggerExpose = Readonly<{
+  triggerRef: Measurable | undefined
+}>
 </script>

@@ -45,6 +45,7 @@ import {
 import { isElement } from '@vuesax-alpha/utils'
 import { popperContentEmits, popperContentProps } from './content'
 import { buildPopperOptions, unwrapMeasurableEl } from './utils'
+import type { Instance } from '@popperjs/core'
 import type { WatchStopHandle } from 'vue'
 import type { CreatePopperInstanceParams } from './content'
 
@@ -55,7 +56,7 @@ defineOptions({
 const emit = defineEmits(popperContentEmits)
 const props = defineProps(popperContentProps)
 
-const { popperInstanceRef, contentRef, triggerRef, role } = inject(
+const { popperInstance, contentRef, triggerRef, role } = inject(
   popperInjectionKey,
   undefined
 )!
@@ -110,13 +111,13 @@ const createPopperInstance = ({
 }
 
 const updatePopper = (shouldUpdateZIndex = true) => {
-  unref(popperInstanceRef)?.update()
+  unref(popperInstance)?.update()
   shouldUpdateZIndex && (contentZIndex.value = props.zIndex || nextZIndex())
 }
 
 const togglePopperAlive = () => {
   const monitorable = { name: 'eventListeners', enabled: props.visible }
-  unref(popperInstanceRef)?.setOptions?.((options) => ({
+  unref(popperInstance)?.setOptions?.((options) => ({
     ...options,
     modifiers: [...(options.modifiers || []), monitorable],
   }))
@@ -169,12 +170,11 @@ onMounted(() => {
     computedReference,
     (referenceEl) => {
       updateHandle?.()
-      const popperInstance = unref(popperInstanceRef)
-      popperInstance?.destroy?.()
+      popperInstance.value?.destroy?.()
       if (referenceEl) {
         const popperContentEl = unref(popperContentRef)!
         contentRef.value = popperContentEl
-        popperInstanceRef.value = createPopperInstance({
+        popperInstance.value = createPopperInstance({
           referenceEl,
           popperContentEl,
           arrowEl: unref(arrowRef),
@@ -187,7 +187,7 @@ onMounted(() => {
           }
         )
       } else {
-        popperInstanceRef.value = undefined
+        popperInstance.value = undefined
       }
     },
     {
@@ -232,7 +232,7 @@ onMounted(() => {
         arrowEl: unref(arrowRef),
         arrowOffset: unref(arrowOffset),
       }),
-    (option) => popperInstanceRef.value?.setOptions(option)
+    (option) => popperInstance.value?.setOptions(option)
   )
 })
 
@@ -249,7 +249,7 @@ defineExpose({
   /**
    * @description popperjs instance
    */
-  popperInstanceRef,
+  popperInstance,
   /**
    * @description method for updating popper
    */
@@ -259,4 +259,13 @@ defineExpose({
    */
   contentStyle,
 })
+</script>
+
+<script lang="ts">
+export type PopperContentExpose = Readonly<{
+  popperContentRef: HTMLElement | undefined
+  popperInstance: Instance
+  updatePopper: (shouldUpdateZIndex?: boolean) => void
+  contentStyle: any
+}>
 </script>

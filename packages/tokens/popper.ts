@@ -13,7 +13,7 @@ export type Measurable = {
 export type PopperInjectionContext = {
   triggerRef: Ref<Measurable | undefined>
   contentRef: Ref<HTMLElement | undefined>
-  popperInstanceRef: Ref<Instance | undefined>
+  popperInstance: Ref<Instance | undefined>
   referenceRef: Ref<Measurable | undefined>
   role: ComputedRef<string>
 }

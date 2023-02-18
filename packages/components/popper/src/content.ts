@@ -49,6 +49,7 @@ export const popperCoreConfigProps = buildProps({
     default: 'absolute',
   },
 } as const)
+
 export type PopperCoreConfigProps = ExtractPropTypes<
   typeof popperCoreConfigProps
 >

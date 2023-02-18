@@ -6,7 +6,8 @@
 import { computed, provide, ref } from 'vue'
 import { popperInjectionKey } from '@vuesax-alpha/tokens'
 import { popperProps } from './popper'
-import type { Instance as PopperInstance } from '@popperjs/core'
+import type { UnwrapNestedRefs } from 'vue'
+import type { Instance } from '@popperjs/core'
 import type { PopperInjectionContext } from '@vuesax-alpha/tokens'
 
 defineOptions({
@@ -16,7 +17,7 @@ defineOptions({
 
 const props = defineProps(popperProps)
 const triggerRef = ref<HTMLElement>()
-const popperInstanceRef = ref<PopperInstance>()
+const popperInstance = ref<Instance>()
 const contentRef = ref<HTMLElement>()
 const referenceRef = ref<HTMLElement>()
 const role = computed(() => props.role)
@@ -29,7 +30,7 @@ const popperProvides = {
   /**
    * @description popperjs instance
    */
-  popperInstanceRef,
+  popperInstance,
   /**
    * @description popper content element
    */
@@ -47,4 +48,8 @@ const popperProvides = {
 defineExpose(popperProvides)
 
 provide(popperInjectionKey, popperProvides)
+</script>
+
+<script lang="ts">
+export type PopperExpose = Readonly<UnwrapNestedRefs<PopperInjectionContext>>
 </script>
