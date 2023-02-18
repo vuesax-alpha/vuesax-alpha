@@ -41,76 +41,45 @@ export const selectProps = buildProps({
     type: Boolean,
     default: true,
   },
-  allowCreate: {
-    type: Boolean,
-    default: false,
-  },
+  allowCreate: Boolean,
   multiple: Boolean,
   multipleLimit: {
     type: Number,
     default: 0,
   },
-  filter: {
-    type: Boolean,
-    default: false,
-  },
+  filter: Boolean,
   filterMethod: {
     type: definePropType<(val: string) => void>(Function),
   },
-  collapseTags: {
-    type: Boolean,
-    default: false,
-  },
+  collapseChips: Boolean,
   /**
    * @description set default select is firt option
    */
-  defaultFirstOption: {
-    type: Boolean,
-    default: false,
-  },
+  defaultFirstOption: Boolean,
   /**
    * @description whether Select is disabled
    */
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  collapseChips: {
-    type: Boolean,
-    default: false,
-  },
+  disabled: Boolean,
 
   /**
    * @description Add a loading animation to the input.
    */
-  loading: {
-    type: Boolean,
-    default: false,
-  },
+  loading: Boolean,
 
   /**
    * @description State color - Accept Vuesax's color, Hex, rgb
    */
   state: useColorProp,
-  block: {
-    type: Boolean,
-    default: false,
-  },
+  block: Boolean,
   /**
    * @description hide scrollbar
    */
-  hideScrollbar: {
-    type: Boolean,
-    default: false,
-  },
+  hideScrollbar: Boolean,
 
   /**
    * @description label is placeholder when input empty
    */
-  labelFloat: {
-    type: Boolean,
-    default: false,
-  },
+  labelFloat: Boolean,
 
   /**
    * @description a label above the component.
@@ -133,17 +102,11 @@ export const selectProps = buildProps({
   /**
    * @description show native scrollbar
    */
-  nativeScrollbar: {
-    type: Boolean,
-    default: false,
-  },
+  nativeScrollbar: Boolean,
   /**
    * @description native input readonly
    */
-  clearable: {
-    type: Boolean,
-    default: false,
-  },
+  clearable: Boolean,
 } as const)
 
 export type SelectProps = ExtractPropTypes<typeof selectProps>

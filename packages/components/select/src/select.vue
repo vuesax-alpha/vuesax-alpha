@@ -86,7 +86,7 @@ import { VsTooltip } from '@vuesax-alpha/components/tooltip'
 import { ChevronDown } from '@vuesax-alpha/icons-vue'
 import { useNamespace } from '@vuesax-alpha/hooks'
 import { selectContextKey } from './tokens'
-import { selectEmits, selectProps } from './select'
+import { selectProps } from './select'
 import { useSelect, useSelectStates } from './useSelect'
 import type { SelectContext } from './tokens'
 
@@ -95,7 +95,15 @@ defineOptions({
 })
 
 const props = defineProps(selectProps)
-const emit = defineEmits(selectEmits)
+const emit = defineEmits([
+  'update:modelValue',
+  'visible-change',
+  'remove-tag',
+  'focus',
+  'change',
+  'clear',
+  'blur',
+])
 
 const ns = useNamespace('select')
 
@@ -114,8 +122,8 @@ const {
   navigateOptions,
   handleKeydownEscape,
   dropMenuVisible,
-  queryChange,
-  groupQueryChange,
+  query,
+  groupQuery,
   debouncedOnInputChange,
   optionsArray,
   handleFocus,
@@ -141,7 +149,7 @@ const {
 
 // @ts-ignore - directive: v-click-outside element
 const popperPaneRef = computed(() => {
-  return tooltipRef.value?.popperRef?.contentRef
+  return tooltipRef.value?.popperComponent?.contentRef
 })
 
 if (props.multiple && !Array.isArray(props.modelValue)) {
@@ -183,8 +191,8 @@ provide(
     selectWrapper,
     selected,
     setSelected,
-    queryChange,
-    groupQueryChange,
+    query,
+    groupQuery,
   }) as SelectContext
 )
 </script>

@@ -1,5 +1,4 @@
 import type { InjectionKey } from 'vue'
-import type { SelectProps } from './select'
 
 export type SelectOptionValue = string | number | Record<any, unknown>
 
@@ -31,8 +30,8 @@ export type SelectStates = {
   query: string | null
   previousQuery: string | null
   inputHovering: boolean
-  cachedPlaceHolder: string | null
-  currentPlaceholder: string | null
+  cachedPlaceHolder: string | undefined
+  currentPlaceholder: string | undefined
   menuVisibleOnFocus: boolean
   isOnComposition: boolean
   isSilentBlur: boolean
@@ -41,19 +40,21 @@ export type SelectStates = {
   mouseEnter: boolean
 }
 
-interface SelectGroupContext {
+export type SelectGroupContext = {
   disabled: boolean
 }
 
-export interface QueryChangeCtx {
-  query: string
-}
-
-export interface SelectContext {
-  props: SelectProps
+export type SelectContext = {
+  props: {
+    multiple?: boolean
+    multipleLimit?: number
+    modelKey: string
+    modelValue?: SelectValue
+    popperClass?: string
+  }
   states: SelectStates
-  queryChange: QueryChangeCtx
-  groupQueryChange: string
+  query: string
+  groupQuery: string
   selectWrapper: HTMLElement
   cachedOptions: Map<SelectOptionValue, SelectOptionContext>
   hoverIndex: number

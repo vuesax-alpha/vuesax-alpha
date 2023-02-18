@@ -24,7 +24,6 @@ import {
   ref,
   toRaw,
   toRefs,
-  unref,
   watch,
 } from 'vue'
 import { isObject as _isObject, get, toArray } from 'lodash-unified'
@@ -33,7 +32,6 @@ import { escapeStringRegexp, throwError } from '@vuesax-alpha/utils'
 import { selectContextKey, selectGroupContextKey } from './tokens'
 import { optionProps } from './option'
 import type {
-  QueryChangeCtx,
   SelectOptionContext,
   SelectOptionStates,
   SelectValue,
@@ -49,7 +47,7 @@ const selectGroup = inject(selectGroupContextKey, { disabled: false })
 if (!select) {
   throwError(
     'Select Option',
-    'Option component must be called inside select | option-group component'
+    '`Option` component must be called inside `select` or `option-group` component'
   )
 }
 
@@ -195,10 +193,8 @@ watch(
 )
 
 watch(
-  () => select.queryChange,
-  (changes: QueryChangeCtx) => {
-    const { query } = unref(changes)
-
+  () => select.query,
+  (query: string) => {
     const regexp = new RegExp(escapeStringRegexp(query), 'i')
     states.visible = regexp.test(`${currentLabel.value}`)
     if (!states.visible) {

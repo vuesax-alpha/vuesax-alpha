@@ -1,13 +1,11 @@
-// @ts-nocheck
-import { computed, inject, toRaw, unref, watch } from 'vue'
+import { computed, inject, toRaw, watch } from 'vue'
 import { isObject as _isObject } from '@vue/shared'
 import { get } from 'lodash-unified'
 import { escapeStringRegexp, throwError } from '@vuesax-alpha/utils'
 import { selectContextKey, selectGroupContextKey } from './tokens'
 
 import type { OptionProps } from './option'
-import type { Ref } from 'vue'
-import type { QueryChangeCtx, SelectOptionStates, SelectValue } from './tokens'
+import type { SelectOptionStates, SelectValue } from './tokens'
 
 export function useOption(props: OptionProps, states: SelectOptionStates) {
   const select = inject(selectContextKey)
@@ -26,6 +24,7 @@ export function useOption(props: OptionProps, states: SelectOptionStates) {
     if (!select.props.multiple) {
       return isEqual(props.value, select.props.modelValue)
     } else {
+      // @ts-ignore
       return contains(select.props.modelValue, props.value)
     }
   })
@@ -95,30 +94,30 @@ export function useOption(props: OptionProps, states: SelectOptionStates) {
     }
   )
 
-  watch(
-    () => props.value,
-    (val, oldVal) => {
-      const { modelKey } = select.props
+  // watch(
+  //   () => props.value,
+  //   (val, oldVal) => {
+  //     const { modelKey } = select.props
 
-      if (!Object.is(val, oldVal)) {
-        select.onOptionDestroy(oldVal, vm)
-        select.onOptionCreate(vm)
-      }
+  //     if (!Object.is(val, oldVal)) {
+  //       select.onOptionDestroy(oldVal, vm)
+  //       select.onOptionCreate(vm)
+  //     }
 
-      // !remote
-      if (!vm.userCreated) {
-        if (
-          modelKey &&
-          typeof val === 'object' &&
-          typeof oldVal === 'object' &&
-          val[modelKey] === oldVal[modelKey]
-        ) {
-          return
-        }
-        select.setSelected()
-      }
-    }
-  )
+  //     // !remote
+  //     if (!vm.userCreated) {
+  //       if (
+  //         modelKey &&
+  //         typeof val === 'object' &&
+  //         typeof oldVal === 'object' &&
+  //         val[modelKey] === oldVal[modelKey]
+  //       ) {
+  //         return
+  //       }
+  //       select.setSelected()
+  //     }
+  //   }
+  // )
 
   watch(
     () => selectGroup.disabled,
@@ -129,10 +128,8 @@ export function useOption(props: OptionProps, states: SelectOptionStates) {
   )
 
   watch(
-    () => select.queryChange,
-    (changes: Ref<QueryChangeCtx>) => {
-      const { query } = unref(changes)
-
+    () => select.query,
+    (query: string) => {
       const regexp = new RegExp(escapeStringRegexp(query), 'i')
       states.visible = regexp.test(`${currentLabel.value}`)
       if (!states.visible) {

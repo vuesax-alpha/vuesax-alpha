@@ -29,12 +29,11 @@ import {
   scrollIntoView,
 } from '@vuesax-alpha/utils'
 import { useId, useNamespace } from '@vuesax-alpha/hooks'
+import type { TooltipExpose } from '@vuesax-alpha/components/tooltip/src/tooltip.vue'
 import type { SelectEmitsFn, SelectProps } from './select'
 
-import type { TooltipInstance } from '@vuesax-alpha/components'
 import type { ComponentPublicInstance } from 'vue'
 import type {
-  QueryChangeCtx,
   SelectOptionContext,
   SelectOptionValue,
   SelectStates,
@@ -70,11 +69,9 @@ export function useSelectStates(props: SelectProps): SelectStates {
   })
 }
 
-type States = ReturnType<typeof useSelectStates>
-
 export const useSelect = (
   props: SelectProps,
-  states: States,
+  states: SelectStates,
   emit: SelectEmitsFn
 ) => {
   const ns = useNamespace('select')
@@ -86,16 +83,16 @@ export const useSelect = (
     input: HTMLInputElement
   }> | null>(null)
   const input = ref<HTMLInputElement | null>(null)
-  const tooltipRef = ref<TooltipInstance | null>(null)
+  const tooltipRef = ref<TooltipExpose | null>(null)
   const tags = ref<HTMLElement | null>(null)
   const selectWrapper = ref<HTMLElement | null>(null)
   const scrollbar = ref<{
     handleScroll: () => void
   } | null>(null)
   const hoverOption = ref<SelectOptionContext | null>()
-  const queryChange = shallowRef<QueryChangeCtx>({ query: '' })
+  const query = shallowRef<string>('')
   const inputId = useId(props.id)
-  const groupQueryChange = shallowRef('')
+  const groupQuery = shallowRef('')
   const debounce = ref(300)
   const readonly = computed(
     () => !props.filter || props.multiple || !states.visible
@@ -164,6 +161,7 @@ export const useSelect = (
     () => props.modelValue,
     (val) => {
       if (props.multiple) {
+        // @ts-ignore
         if ((val && val.length > 0) || (input.value && states.query !== '')) {
           states.currentPlaceholder = ''
         } else {
@@ -243,10 +241,10 @@ export const useSelect = (
 
           states.query && handleQueryChange(states.query)
           if (!props.multiple) {
-            queryChange.value.query = ''
+            query.value = ''
 
-            triggerRef(queryChange)
-            triggerRef(groupQueryChange)
+            triggerRef(query)
+            triggerRef(groupQuery)
           }
         }
       }
@@ -315,13 +313,13 @@ export const useSelect = (
     }
     if (isFunction(props.filterMethod)) {
       props.filterMethod(val)
-      triggerRef(groupQueryChange)
+      triggerRef(groupQuery)
     } else {
       states.filteredOptionsCount = states.optionsCount
-      queryChange.value.query = val
+      query.value = val
 
-      triggerRef(queryChange)
-      triggerRef(groupQueryChange)
+      triggerRef(query)
+      triggerRef(groupQuery)
     }
     if (
       props.defaultFirstOption &&
@@ -469,12 +467,14 @@ export const useSelect = (
     const value = (e.target as HTMLInputElement).value
 
     if (value.length <= 0 && !toggleLastOptionHitState()) {
+      // @ts-ignore
       const value = props.modelValue.slice()
       value.pop()
       emit(UPDATE_MODEL_EVENT, value)
       emitChange(value)
     }
 
+    // @ts-ignore
     if (value.length === 1 && props.modelValue.length === 0) {
       states.currentPlaceholder = states.cachedPlaceHolder
     }
@@ -571,7 +571,7 @@ export const useSelect = (
   }
 
   const scrollToOption = (option: SelectOptionContext) => {
-    let target = null
+    let target
 
     if (option.value) {
       const options = optionsArray.value.filter(
@@ -672,8 +672,8 @@ export const useSelect = (
     states.softFocus = false
   }
 
-  const handleClearClick = (event: Event) => {
-    deleteSelected(event)
+  const handleClearClick = () => {
+    deleteSelected()
   }
 
   const handleClose = () => {
@@ -802,8 +802,8 @@ export const useSelect = (
     getValueKey,
     navigateOptions,
     dropMenuVisible,
-    queryChange,
-    groupQueryChange,
+    query,
+    groupQuery,
 
     // DOM ref
     reference,
