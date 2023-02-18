@@ -1,5 +1,5 @@
 <template>
-  <vs-popper ref="popperRef" :role="role">
+  <vs-popper ref="popperInstance" :role="role">
     <vs-tooltip-trigger
       :disabled="disabled"
       :trigger="trigger"
@@ -10,7 +10,7 @@
       <slot v-if="$slots.default" />
     </vs-tooltip-trigger>
     <vs-tooltip-content
-      ref="contentRef"
+      ref="contentInstance"
       :aria-label="ariaLabel"
       :boundaries-padding="boundariesPadding"
       :content="content"
@@ -70,8 +70,8 @@ import { tooltipEmits, useTooltipModelToggle, useTooltipProps } from './tooltip'
 import VsTooltipTrigger from './trigger.vue'
 import VsTooltipContent from './content.vue'
 import { useTooltipDeprecated } from './useTooltipDeprecated'
-import type { TooltipContentInstance } from './content'
-import type { PopperInstance } from '@vuesax-alpha/components/popper'
+import type { TooltipContentExpose } from './content.vue'
+import type { PopperExpose } from '@vuesax-alpha/components/popper/src/popper.vue'
 
 defineOptions({
   name: 'VsTooltip',
@@ -86,13 +86,13 @@ usePopperContainer()
 
 const id = useId()
 
-const popperRef = ref<PopperInstance | null>()
-const contentRef = ref<TooltipContentInstance | null>()
+const popperComponent = ref<PopperExpose>()
+const contentComponent = ref<TooltipContentExpose>()
 
 const updateTooltip = () => {
-  const popperComponent = unref(popperRef)
-  if (popperComponent) {
-    popperComponent.popperInstanceRef?.update()
+  const _popperComponent = unref(popperComponent)
+  if (_popperComponent) {
+    _popperComponent.popperInstance?.update()
   }
 }
 
@@ -126,7 +126,7 @@ watch(
 
 const isFocusInsideContent = () => {
   const popperContent: HTMLElement | undefined =
-    contentRef.value?.contentRef?.popperContentRef
+    contentComponent.value?.popperContentComponent?.popperContentRef
   return popperContent && popperContent.contains(document.activeElement)
 }
 
@@ -167,19 +167,19 @@ provide(tooltipInjectionKey, {
 
 defineExpose({
   /**
-   * @description vs-popper component instance
+   * @description popper component instance
    */
-  popperRef,
+  popperComponent,
   /**
-   * @description vs-tooltip-content component instance
+   * @description tooltip-content component instance
    */
-  contentRef,
+  contentComponent,
   /**
-   * @description validate current focus event is trigger inside vs-tooltip-content
+   * @description validate current focus event is trigger inside tooltip-content
    */
   isFocusInsideContent,
   /**
-   * @description update vs-popper component instance
+   * @description update popper component instance
    */
   updateTooltip,
   /**
@@ -187,7 +187,7 @@ defineExpose({
    */
   onOpen,
   /**
-   * @description expose onOpen function to mange vs-tooltip open state
+   * @description expose onOpen function to mange vs-tooltip close state
    */
   onClose,
   /**
@@ -195,4 +195,16 @@ defineExpose({
    */
   hide,
 })
+</script>
+
+<script lang="ts">
+export type TooltipExpose = Readonly<{
+  popperComponent: PopperExpose
+  contentComponent: TooltipContentExpose
+  isFocusInsideContent: () => boolean | undefined
+  updateTooltip: () => void
+  onOpen: (event?: Event | undefined) => void
+  onClose: (event?: Event | undefined) => void
+  hide: (event?: Event | undefined) => void
+}>
 </script>

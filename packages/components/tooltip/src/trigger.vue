@@ -16,6 +16,7 @@
     <slot />
   </vs-popper-trigger>
 </template>
+
 <script lang="ts" setup>
 import { inject, ref, toRef, unref } from 'vue'
 import { VsPopperTrigger } from '@vuesax-alpha/components/popper'
@@ -88,10 +89,20 @@ const onKeydown = composeEventHandlers(
     }
   }
 )
+
 defineExpose({
   /**
    * @description trigger element
    */
   triggerRef,
 })
+</script>
+
+<script lang="ts">
+export type TooltipTriggerExpose = Readonly<{
+  /**
+   * @description trigger element
+   */
+  triggerRef: OnlyChildExpose | null
+}>
 </script>

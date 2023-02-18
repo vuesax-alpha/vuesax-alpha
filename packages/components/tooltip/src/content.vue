@@ -11,7 +11,7 @@
         v-if="shouldRender"
         v-show="shouldShow"
         :id="id"
-        ref="contentRef"
+        ref="popperContentComponent"
         v-bind="$attrs"
         :aria-label="ariaLabel"
         :aria-hidden="ariaHidden"
@@ -52,7 +52,7 @@ import { composeEventHandlers } from '@vuesax-alpha/utils'
 import { VsPopperContent } from '@vuesax-alpha/components/popper'
 import { tooltipInjectionKey } from '@vuesax-alpha/tokens'
 import { tooltipContentProps } from './content'
-import type { PopperContentInstance } from '@vuesax-alpha/components/popper'
+import type { PopperContentExpose } from '@vuesax-alpha/components/popper/src/content.vue'
 
 defineOptions({
   name: 'VsTooltipContent',
@@ -62,7 +62,7 @@ defineOptions({
 const props = defineProps(tooltipContentProps)
 const { selector } = usePopperContainerId()
 
-const contentRef = ref<PopperContentInstance | null>(null)
+const popperContentComponent = ref<PopperContentExpose>()
 
 const destroyed = ref(false)
 const {
@@ -124,7 +124,7 @@ const onContentLeave = composeEventHandlers(stopWhenControlled, () => {
 })
 
 const onBeforeEnter = () => {
-  contentRef.value?.updatePopper?.()
+  popperContentComponent.value?.updatePopper?.()
   onBeforeShow?.()
 }
 
@@ -136,7 +136,7 @@ const onAfterShow = () => {
   onShow()
   stopHandle = onClickOutside(
     computed(() => {
-      return contentRef.value?.popperContentRef
+      return popperContentComponent.value?.popperContentRef
     }),
     () => {
       if (controlled.value) return
@@ -170,7 +170,7 @@ watch(
 watch(
   () => props.content,
   () => {
-    contentRef.value?.updatePopper?.()
+    popperContentComponent.value?.updatePopper?.()
   }
 )
 
@@ -180,8 +180,14 @@ onBeforeUnmount(() => {
 
 defineExpose({
   /**
-   * @description vs-popper-content component instance
+   * @description popper-content component instance
    */
-  contentRef,
+  popperContentComponent,
 })
+</script>
+
+<script lang="ts">
+export type TooltipContentExpose = {
+  popperContentComponent: PopperContentExpose
+}
 </script>
