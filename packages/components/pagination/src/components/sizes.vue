@@ -18,7 +18,7 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
 import { isEqual } from 'lodash-unified'
-import { VsOption, VsSelect } from '@vuesax-alpha/components/select'
+import VsSelect, { VsOption } from '@vuesax-alpha/components/select'
 import { useNamespace } from '@vuesax-alpha/hooks'
 import { usePagination } from '../usePagination'
 import { paginationSizesEmits, paginationSizesProps } from './sizes'
