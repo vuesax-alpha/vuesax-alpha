@@ -1,6 +1,6 @@
 export default {
   name: 'he',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'אישור',
       clear: 'נקה',

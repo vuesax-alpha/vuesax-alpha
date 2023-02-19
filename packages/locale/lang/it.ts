@@ -1,6 +1,6 @@
 export default {
   name: 'it',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'OK',
       clear: 'Pulisci',

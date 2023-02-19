@@ -1,6 +1,6 @@
 export default {
   name: 'af',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'Bevestig',
       clear: 'Maak skoon',

@@ -1,6 +1,6 @@
 export default {
   name: 'ja',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'OK',
       clear: 'クリア',

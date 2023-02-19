@@ -1,6 +1,6 @@
 export default {
   name: 'uz-uz',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'Qabul qilish',
       clear: 'Tozalash',

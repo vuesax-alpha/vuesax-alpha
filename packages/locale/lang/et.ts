@@ -1,6 +1,6 @@
 export default {
   name: 'et',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'OK',
       clear: 'Tühjenda',

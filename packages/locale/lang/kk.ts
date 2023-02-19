@@ -1,6 +1,6 @@
 export default {
   name: 'kk',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'Қабылдау',
       clear: 'Тазалау',

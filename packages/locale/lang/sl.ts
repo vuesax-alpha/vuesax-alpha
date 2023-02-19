@@ -1,6 +1,6 @@
 export default {
   name: 'sl',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'V redu',
       clear: 'Počisti',

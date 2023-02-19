@@ -1,6 +1,6 @@
 export default {
   name: 'ug-cn',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'جەزملەش',
       clear: 'قۇرۇقداش',

@@ -1,6 +1,6 @@
 export default {
   name: 'vi',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'OK',
       clear: 'Xóa',

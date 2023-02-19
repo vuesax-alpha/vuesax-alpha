@@ -1,6 +1,6 @@
 export default {
   name: 'th',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'ตกลง',
       clear: 'ล้างข้อมูล',

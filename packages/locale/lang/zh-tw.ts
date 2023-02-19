@@ -1,6 +1,6 @@
 export default {
   name: 'zh-tw',
-  el: {
+  vs: {
     colorpicker: {
       confirm: '確認',
       clear: '清空',

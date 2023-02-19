@@ -60,5 +60,5 @@ export type TranslatePair = {
 
 export type Language = {
   name: string
-  el: TranslatePair
+  vs: TranslatePair
 }

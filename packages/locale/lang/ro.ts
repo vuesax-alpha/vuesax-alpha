@@ -1,6 +1,6 @@
 export default {
   name: 'ro',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'OK',
       clear: 'Șterge',

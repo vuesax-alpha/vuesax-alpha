@@ -1,6 +1,6 @@
 export default {
   name: 'sv',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'OK',
       clear: 'Töm',

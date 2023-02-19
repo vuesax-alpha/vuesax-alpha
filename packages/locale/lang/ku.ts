@@ -1,6 +1,6 @@
 export default {
   name: 'ku',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'Temam',
       clear: 'Paqij bike',

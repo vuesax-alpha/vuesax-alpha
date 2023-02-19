@@ -1,6 +1,6 @@
 export default {
   name: 'hy-am',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'Լաւ',
       clear: 'Մաքրել',

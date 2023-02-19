@@ -1,6 +1,6 @@
 export default {
   name: 'lv',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'Labi',
       clear: 'Notīrīt',

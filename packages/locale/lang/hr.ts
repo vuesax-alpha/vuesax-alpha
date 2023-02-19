@@ -1,6 +1,6 @@
 export default {
   name: 'hr',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'OK',
       clear: 'Očisti',

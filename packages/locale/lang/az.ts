@@ -1,6 +1,6 @@
 export default {
   name: 'az',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'Təsdiqlə',
       clear: 'Təmizlə',

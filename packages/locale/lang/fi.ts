@@ -1,6 +1,6 @@
 export default {
   name: 'fi',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'OK',
       clear: 'Tyhjennä',

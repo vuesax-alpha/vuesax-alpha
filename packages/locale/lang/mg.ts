@@ -1,6 +1,6 @@
 export default {
   name: 'mg',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'ENY',
       clear: 'Fafana',

@@ -1,6 +1,6 @@
 export default {
   name: 'ta',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'உறுதி செய்',
       clear: 'தெளிவாக்கு',

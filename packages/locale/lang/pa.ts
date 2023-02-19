@@ -1,6 +1,6 @@
 export default {
   name: 'pa',
-  el: {
+  vs: {
     colorpicker: {
       confirm: 'تایید',
       clear: 'پاکول',
