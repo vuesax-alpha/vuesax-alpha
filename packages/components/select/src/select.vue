@@ -8,7 +8,7 @@
     :teleported="teleported"
     :persistent="persistent"
     :show-arrow="false"
-    :offset="-12"
+    :offset="0"
     @show="handleMenuEnter"
   >
     <template #default>
