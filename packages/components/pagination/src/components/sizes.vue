@@ -3,6 +3,7 @@
     <vs-select
       :model-value="innerPageSize"
       :disabled="disabled"
+      :popper-options="popperOptions"
       @change="handleChange"
     >
       <vs-option

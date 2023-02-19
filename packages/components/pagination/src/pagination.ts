@@ -19,6 +19,7 @@ import {
 import { useColorProp, useNamespace } from '@vuesax-alpha/hooks'
 import { paginationContextKey } from '@vuesax-alpha/tokens'
 import { ChevronLeft, ChevronRight } from '@vuesax-alpha/icons-vue'
+import { popperCoreConfigProps } from '@vuesax-alpha/components/popper/src/content'
 
 import Next from './components/next.vue'
 import Prev from './components/prev.vue'
@@ -110,6 +111,8 @@ export const paginationProps = buildProps({
     type: definePropType<number[]>(Array),
     default: () => mutable([10, 20, 30, 40, 50, 100] as const),
   },
+
+  popperOptions: popperCoreConfigProps.popperOptions,
 
   /** @description */
   hideOnSinglePage: Boolean,
