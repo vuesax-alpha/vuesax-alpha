@@ -106,20 +106,24 @@ export const buttonProps = buildProps({
   upload: {
     type: Boolean,
   },
-  /** @deprecated */
+  /** @deprecated @description use prop `type` instead */
   border: { type: Boolean },
-  /** @deprecated */
+  /** @deprecated @description use prop `type` instead */
   flat: { type: Boolean },
-  /** @deprecated */
+  /** @deprecated @description use prop `type` instead */
   floating: { type: Boolean },
-  /** @deprecated */
+  /** @deprecated @description use prop `type` instead */
   gradient: { type: Boolean },
-  /** @deprecated */
+  /** @deprecated @description use prop `type` instead */
   shadow: { type: Boolean },
-  /** @deprecated */
+  /** @deprecated @description use prop `type` instead */
   relief: { type: Boolean },
-  /** @deprecated */
+  /** @deprecated @description use prop `type` instead */
   transparent: { type: Boolean },
+  /** @deprecated @description use prop `shape` instead */
+  square: { type: Boolean },
+  /** @deprecated @description use prop `shape` instead */
+  circle: { type: Boolean },
   /** @deprecated */
   to: { type: [String, Object] },
   /** @deprecated */
