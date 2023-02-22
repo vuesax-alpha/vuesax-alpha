@@ -1,0 +1,65 @@
+.custom-container {
+  border-radius: 10px 15px 15px 10px !important;
+  code {
+    color: inherit;
+  }
+  a {
+    text-decoration: underline !important;
+    color: inherit !important;
+  }
+  .custom-container-title {
+    font-weight: 600;
+    margin-bottom: -0.4rem;
+  }
+  &.tip {
+    background-color: rgba(70, 201, 58, 0.04);
+    border-color: #42b983;
+    color: #2e825c;
+  }
+  &.warning {
+    background-color: rgba(255, 186, 0, 0.09);
+    border-color: #ffba00;
+    color: #cc9500;
+    .custom-container-title {
+      color: #b38200;
+    }
+    a {
+      color: -color('text-color');
+    }
+  }
+  &.danger {
+    background-color: rgba(255, 71, 87, 0.05);
+    border-color: #c00;
+    border-color: #ff4757;
+    color: #ff061b;
+    .custom-container-title {
+      color: #e40014;
+    }
+    a {
+      color: -color('text-color');
+    }
+  }
+}
+.custom-container.tip,
+.custom-container.warning,
+.custom-container.danger {
+  padding: 0.1rem 1rem;
+  border-left-width: 0.1rem;
+  border-left-style: solid;
+  margin: 1rem 0;
+  position: relative;
+}
+.custom-container.tip p,
+.custom-container.warning p,
+.custom-container.danger p {
+  padding: 0px !important;
+  margin: 1rem 0px !important;
+}
+.custom-container.tip p,
+.custom-container.warning p,
+.custom-container.danger p,
+.custom-container.tip li,
+.custom-container.warning li,
+.custom-container.danger li {
+  font-size: 0.8rem;
+}
