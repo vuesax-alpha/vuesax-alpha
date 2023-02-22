@@ -146,7 +146,8 @@
           v-for="contributor in pageData.git.contributors"
           :key="contributor.email"
         >
-          {{ contributor.name }}
+          <h3>{{ contributor.name }}</h3>
+          <h4>{{ contributor.email }}</h4>
         </li>
       </ul>
     </div>
@@ -406,6 +407,19 @@ onMounted(() => {
       headerRef.value?.classList.remove('fixed')
     }
   })
+
+  const githubAPI = 'https://api.github.com'
+  const commitsEndpoint = '/repos/vuesax-alphax/vuesax-alpha/commits'
+  const commitsURL = githubAPI + commitsEndpoint
+  const filepath = 'docs/.vuepress/components/page.vue'
+  fetch(`${commitsURL}?path=${filepath}`)
+    .then((response) => response.json())
+    .then((commits) => {
+      // for (const commit of commits) {
+      //   console.log(commit.commit.author.name)
+      // }
+      console.log(commits)
+    })
 })
 </script>
 

@@ -283,11 +283,11 @@ const time = (variable: keyof PageButtons) => {
     transform: translate(-50%, -50%);
     width: calc(100% - 2px);
     height: calc(100% - 2px);
-    border: 2px solid -color('theme-color');
-    opacity: 0.2;
+    border: 2px solid #ea657d;
+    opacity: 0.3;
     transition: all 0.25s ease;
     background: transparent;
-    box-shadow: 0px 0px 0px 0px -color('theme-color');
+    box-shadow: 0px 0px 0px 0px #ea657d;
   }
   &:hover {
     &:after {
