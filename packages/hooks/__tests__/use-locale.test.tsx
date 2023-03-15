@@ -13,7 +13,7 @@ const TestComp = defineComponent({
   setup() {
     const { t } = useLocale()
     return () => (
-      <div class="locale-manifest">{t('el.popconfirm.confirmButtonText')}</div>
+      <div class="locale-manifest">{t('vs.popconfirm.confirmButtonText')}</div>
     )
   },
 })
@@ -45,26 +45,26 @@ describe('use-locale', () => {
   it('should provide locale correctly', async () => {
     await nextTick()
     expect(wrapper.find('.locale-manifest').text()).toBe(
-      Chinese.el.popconfirm.confirmButtonText
+      Chinese.vs.popconfirm.confirmButtonText
     )
   })
 
   it('should update the text reactively', async () => {
     await nextTick()
     expect(wrapper.find('.locale-manifest').text()).toBe(
-      Chinese.el.popconfirm.confirmButtonText
+      Chinese.vs.popconfirm.confirmButtonText
     )
     await wrapper.setProps({
       locale: English,
     })
 
     expect(wrapper.find('.locale-manifest').text()).toBe(
-      English.el.popconfirm.confirmButtonText
+      English.vs.popconfirm.confirmButtonText
     )
   })
 
   it('return key name if not defined', () => {
     const t = buildTranslator(English)
-    expect(t('el.popconfirm.someThing')).toBe('el.popconfirm.someThing')
+    expect(t('vs.popconfirm.someThing')).toBe('vs.popconfirm.someThing')
   })
 })
