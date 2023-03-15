@@ -38,8 +38,6 @@ const value2 = ref('')
 const value3 = ref('')
 const value4 = ref('')
 const value5 = ref('')
-const value6 = ref('')
-const value7 = ref('')
 </script>
 
 <style lang="scss" scoped>
