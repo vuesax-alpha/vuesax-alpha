@@ -17,6 +17,7 @@ html.dark {
   @include set-component-var('box-shadow', $box-shadow);
 
   // color-scheme
+  @include set-component-color('', $moreColor);
   // Background --vs-bg-color-#{$type}
   @include set-component-color('bg-color', $bg-color);
   // --vs-text-color-#{$type}

@@ -6,6 +6,17 @@
 @use '../color/index.scss' as *;
 
 $colors: () !default;
+$colors: map.deep-merge(
+  (
+    'dark': (
+      'base': #000000,
+    ),
+    'light': (
+      'base': #181b22
+    )
+  ),
+  $colors,
+);
 @each $type in common.$types {
   $colors: map.deep-merge(
     (
@@ -119,6 +130,22 @@ $box-shadow: map.merge(
     ),
   ),
   $box-shadow
+);
+
+$moreColor: () !default;
+$moreColor: map.merge(
+  (
+    'gray-1': #18191c,
+    'gray-2': #141417,
+    'gray-3': #0f1013,
+    'gray-4': #0a0b0e,
+    'divider': #3e4042,
+    'text': #ffffff,
+    'background': #1e2023,
+    'dark': #000000,
+    'light': #181b22
+  ),
+  $moreColor
 );
 
 // fill
