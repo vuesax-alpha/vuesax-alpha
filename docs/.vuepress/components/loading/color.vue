@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div :class="{ hasOpenLoading }" class="center">
     <div :style="`background: ${color};`" class="con-input">
       <input v-model="color" type="color" />
@@ -153,4 +153,8 @@ onMounted(() => {
     }
   }
 }
-</style>
+</style> -->
+
+<template>
+  <div>a</div>
+</template>

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="center">
     <vs-button flat @click="openLoading"
       >Open Loading <b>Progress</b></vs-button
@@ -35,4 +35,8 @@ const openLoading = () => {
 b {
   margin-left: 5px;
 }
-</style>
+</style> -->
+
+<template>
+  <div>a</div>
+</template>

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div ref="$target" class="center">
     <div class="con-btns">
       <vs-button ref="$button" flat @click="openLoadingButton"
@@ -76,4 +76,8 @@ const openLoadingButton = () => {
     font-size: 0.6rem;
   }
 }
-</style>
+</style> -->
+
+<template>
+  <div>a</div>
+</template>

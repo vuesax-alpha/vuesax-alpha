@@ -1,9 +1,14 @@
+import { resolve } from 'path'
 import { defineUserConfig } from 'vuepress'
-import { enNavbar, enSearchData, enSidebar } from './locale'
+import { enNavbar, enSearchData, enSidebar } from './metadata'
+
 import { vuesaxAlphaTheme } from './theme/index'
 
 export default defineUserConfig({
   open: true,
+  alias: {
+    '~/*': resolve(__dirname, 'theme'),
+  },
   locales: {
     '/': {
       lang: 'en-US',

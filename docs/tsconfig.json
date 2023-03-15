@@ -21,7 +21,8 @@
     "types": ["vite/client", "@vuepress/client/types", "../typings/components"],
     "paths": {
       "vuesax-alpha": ["../packages/vuesax-alpha"],
-      "~/*": ["./.vitepress/vitepress/*"]
+      "~/*": ["./.vuepress/theme/*"],
+      "@vuesax-alpha/docs": ["./.vuepress"]
     }
   },
   "include": ["**/*", ".vuepress/**/*"],

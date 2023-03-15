@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="center">
     <vs-button flat @click="openLoading">Open Loading</vs-button>
   </div>
@@ -13,4 +13,8 @@ const openLoading = () => {
     loadingInstance.close()
   }, 3000)
 }
-</script>
+</script> -->
+
+<template>
+  <div>a</div>
+</template>

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="center">
     <div :style="`background: ${color};`" class="con-input">
       <input v-model="color" type="color" />
@@ -52,4 +52,8 @@ const openLoading = () => {
     pointer-events: none;
   }
 }
-</style>
+</style> -->
+
+<template>
+  <div>a</div>
+</template>

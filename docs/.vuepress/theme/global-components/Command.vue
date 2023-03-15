@@ -1,5 +1,5 @@
 <template>
-  <CodeCopied :copied="copied" :text="'Copied'" />
+  <code-copied :copied="copied" :text="'Copied'" />
   <div class="command">
     <div v-if="isMultipleSlot" class="tabs">
       <svg
@@ -69,7 +69,7 @@
 <script lang="ts" setup>
 import { ref, useSlots, watchPostEffect } from 'vue'
 import { useClipboard, useTemplateRefsList } from '@vueuse/core'
-import CodeCopied from '../components/CodeCopied.vue'
+import CodeCopied from '../components/code-copied.vue'
 
 const slots = useSlots()
 

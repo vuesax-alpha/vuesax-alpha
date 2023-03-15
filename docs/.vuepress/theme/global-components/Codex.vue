@@ -1,5 +1,5 @@
 <template>
-  <CodeCopied :copied="copied" />
+  <code-copied :copied="copied" />
   <div ref="$el" class="code">
     <header class="header-codex">
       <ul>
@@ -95,7 +95,7 @@
           <template v-else />
         </ul>
         <div class="con-codes">
-          <CardTransitionCodes>
+          <card-transition-codes>
             <div
               v-if="activeSlot == 0"
               :ref="(el) => ($slotRefs[0] = el)"
@@ -104,11 +104,11 @@
             >
               <slot name="template" />
 
-              <CardFooter :active="active" @toggle-code="toggleCode" />
+              <card-footer :active="active" @toggle-code="toggleCode" />
             </div>
             <template v-else />
-          </CardTransitionCodes>
-          <CardTransitionCodes>
+          </card-transition-codes>
+          <card-transition-codes>
             <div
               v-if="activeSlot == 1"
               :ref="(el) => ($slotRefs[1] = el)"
@@ -117,11 +117,11 @@
             >
               <slot name="script" />
 
-              <CardFooter :active="active" @toggle-code="toggleCode" />
+              <card-footer :active="active" @toggle-code="toggleCode" />
             </div>
             <template v-else />
-          </CardTransitionCodes>
-          <CardTransitionCodes>
+          </card-transition-codes>
+          <card-transition-codes>
             <div
               v-if="activeSlot == 2"
               :ref="(el) => ($slotRefs[2] = el)"
@@ -130,11 +130,11 @@
             >
               <slot name="style" />
 
-              <CardFooter :active="active" @toggle-code="toggleCode" />
+              <card-footer :active="active" @toggle-code="toggleCode" />
             </div>
             <template v-else />
-          </CardTransitionCodes>
-          <CardTransitionCodes>
+          </card-transition-codes>
+          <card-transition-codes>
             <div
               v-if="activeSlot == 3"
               :ref="(el) => ($slotRefs[3] = el)"
@@ -145,10 +145,10 @@
               <slot name="script" />
               <slot name="style" />
 
-              <CardFooter :active="active" @toggle-code="toggleCode" />
+              <card-footer :active="active" @toggle-code="toggleCode" />
             </div>
             <template v-else />
-          </CardTransitionCodes>
+          </card-transition-codes>
         </div>
       </div>
     </transition>
@@ -159,9 +159,9 @@
 import { inject, nextTick, onMounted, ref, watch } from 'vue'
 import { useClipboard } from '@vueuse/core'
 
-import CardFooter from '../components/CardFooter.vue'
-import CardTransitionCodes from '../components/CardTransitionCodes.vue'
-import CodeCopied from '../components/CodeCopied.vue'
+import CardFooter from '../components/card-footer.vue'
+import CardTransitionCodes from '../components/card-transition-codes.vue'
+import CodeCopied from '../components/code-copied.vue'
 import { codesandboxContextKey, vsThemeKey } from '../type'
 import type { activeSlotType } from '../type'
 

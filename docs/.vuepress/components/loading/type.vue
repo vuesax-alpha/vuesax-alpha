@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div :class="{ hasOpenLoading }" class="center">
     <div
       v-for="type in types"
@@ -99,4 +99,8 @@ onMounted(() => {
     }
   }
 }
-</style>
+</style> -->
+
+<template>
+  <div>a</div>
+</template>
