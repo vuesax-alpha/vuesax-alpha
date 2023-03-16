@@ -61,7 +61,6 @@ jobs:
           branch: gh-pages
           folder: docs/.vuepress/dist
           git-config-name: VuesaxAlphaBot
-          git-config-email: hello@vuesax.space
           commit-message: website deploy
 
       - name: Sync
