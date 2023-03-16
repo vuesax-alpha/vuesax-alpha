@@ -132,7 +132,7 @@ defineOptions({
 })
 
 const props = defineProps(inputProps)
-defineEmits(inputEmits)
+const emit = defineEmits(inputEmits)
 const slots = useSlots()
 
 useDeprecated(
@@ -236,7 +236,7 @@ const {
   /** clearable */
   showClear,
   clear,
-} = useInput(props)
+} = useInput(props, emit)
 
 const inputKls = computed(() => [
   useBaseComponent(props.color),

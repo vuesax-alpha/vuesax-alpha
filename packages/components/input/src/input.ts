@@ -3,6 +3,7 @@ import { useColorProp } from '@vuesax-alpha/hooks'
 import { buildProps, definePropType, isString } from '@vuesax-alpha/utils'
 
 import type { ExtractPropTypes, StyleValue } from 'vue'
+import type { EmitFn } from '@vuesax-alpha/utils'
 import type Input from './input.vue'
 
 type InputValue = string | number | null | undefined
@@ -154,7 +155,7 @@ export const inputEmits = {
   /**
    * @description triggers when clicking the icon
    */
-  clickIcon: () => true,
+  clickIcon: (evt: Event) => evt instanceof Event,
   /**
    * @description triggers when the Input is cleared by clicking the clear button
    */
@@ -171,5 +172,6 @@ export const inputEmits = {
 }
 
 export type InputEmits = typeof inputEmits
+export type InputEmitsFn = EmitFn<InputEmits>
 export type InputProps = ExtractPropTypes<typeof inputProps>
 export type InputInstance = InstanceType<typeof Input>

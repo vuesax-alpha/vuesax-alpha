@@ -1,12 +1,10 @@
-import { computed, getCurrentInstance, ref, shallowRef } from 'vue'
+import { computed, ref, shallowRef } from 'vue'
 import { useVModel } from '@vueuse/core'
 import { useInputEvent } from './use-input-event'
 import { useInputClearable } from './use-input-clearable'
-import type { InputProps } from '../input'
+import type { InputEmitsFn, InputProps } from '../input'
 
-export const useInput = (props: InputProps) => {
-  const { emit } = getCurrentInstance()!
-
+export const useInput = (props: InputProps, emit: InputEmitsFn) => {
   const model = useVModel(props, 'modelValue', emit)
 
   const hovering = ref(false)
@@ -48,7 +46,7 @@ export const useInput = (props: InputProps) => {
     return props.type
   })
 
-  const clickIcon = (evs: any) => {
+  const clickIcon = (evs: Event) => {
     focus()
     emit('clickIcon', evs)
   }
