@@ -1,0 +1,13 @@
+---
+autoAssignWhenPRCreated: true
+firstTimePRLabels:
+  - 1st contribution
+labelsWhenPROpened:
+  - Needs Review
+firstTimePRGreetings: |
+  👋 @{user}, seems like this is your first time contribution to {repo}.
+  - Please make sure that you have read our [guidelines](#{guideline_url}) and [code of conduct]({coc_url}) before making a contribution.
+  - You can comment with `/label Components:[component_name]` to add a label for which component you are working on.
+PRGreetings: |
+  👋 @{user}, thank you for contributing {repo}.
+  - You can comment with `/label Components:[component_name]` to add a label for which component you are working on.
