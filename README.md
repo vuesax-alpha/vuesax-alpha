@@ -28,3 +28,6 @@ You can find the breaking change list here: [Breaking Change List (Updating)](#)
 
 Vuesax Alpha is open source software licensed as
 [MIT](https://github.com/vuesax-alphax/vuesax-alpha/blob/main/LICENSE).
+
+--- 
+This project is built based on the [Element Plus :heart: ](https://github.com/element-plus/element-plus) project template.
