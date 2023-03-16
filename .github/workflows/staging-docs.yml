@@ -63,5 +63,5 @@ jobs:
           token: ${{ secrets.VS_BOT_TOKEN }}
           branch: main
           folder: docs/.vuepress/dist
-          repository-name: vuesax-alpha/staging
+          repository-name: vuesax-alphax/staging
           git-config-name: VuesaxAlphaBot
