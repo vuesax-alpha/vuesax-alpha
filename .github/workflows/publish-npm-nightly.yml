@@ -78,3 +78,4 @@ jobs:
           GIT_HEAD: ${{env.GIT_HEAD}}
           REGISTRY: https://registry.npmjs.com/
           NODE_OPTIONS: --max-old-space-size=4096
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
