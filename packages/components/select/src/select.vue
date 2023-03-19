@@ -18,6 +18,7 @@
           ns.b(),
           ns.is('open', dropMenuVisible),
           ns.is('hovering', states.mouseEnter),
+          { [ns.m('has-label')]: props.label || props.labelFloat },
         ]"
         @mouseenter="handleMouseEnter"
         @mouseleave="handleMouseLeave"

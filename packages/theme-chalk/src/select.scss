@@ -312,6 +312,9 @@ $iconActiveMargin: -4px;
       }
     }
   }
+  @include m(has-label) {
+    margin-top: 24px !important;
+  }
   @include e(options) {
     @include set-var-value(color, getCssVar(primary));
     background: getColor('background') !important;
