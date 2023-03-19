@@ -53,6 +53,21 @@ app.use(Vuesax)
 app.mount('#app')
 ```
 
+#### Dark theme
+To enable it, you can create a switch to toggle `dark` class of html.
+
+If you only need dark mode, just add dark class for html.
+
+```html
+<html class="dark">
+  <head></head>
+  <body></body>
+</html>
+```
+
+If you want to toggle it, i recommend [useDark | VueUse](https://vueuse.org/core/usedark/).
+
+
 #### Volar support
 If you use volar, please add the global component type definition to compilerOptions.types in tsconfig.json.
 
