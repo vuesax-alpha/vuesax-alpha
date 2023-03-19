@@ -25,10 +25,6 @@ export const selectProps = buildProps({
     type: definePropType<SelectValue>([Array, String, Number, Object]),
     default: '',
   },
-  modelKey: {
-    type: String,
-    default: 'value',
-  },
   popperOptions: popperCoreConfigProps.popperOptions,
   placement: {
     type: String,

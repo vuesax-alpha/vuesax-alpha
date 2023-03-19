@@ -1,6 +1,6 @@
-import { computed, inject, toRaw, watch } from 'vue'
+import { computed, inject, watch } from 'vue'
 import { isObject as _isObject } from '@vue/shared'
-import { get } from 'lodash-unified'
+import { includes, isEqual } from 'lodash-unified'
 import { escapeStringRegexp, throwError } from '@vuesax-alpha/utils'
 import { selectContextKey, selectGroupContextKey } from './tokens'
 
@@ -25,7 +25,7 @@ export function useOption(props: OptionProps, states: SelectOptionStates) {
       return isEqual(props.value, select.props.modelValue)
     } else {
       // @ts-ignore
-      return contains(select.props.modelValue, props.value)
+      return includes(select.props.modelValue, props.value)
     }
   })
 
@@ -54,29 +54,6 @@ export function useOption(props: OptionProps, states: SelectOptionStates) {
   const isDisabled = computed(() => {
     return props.disabled || states.groupDisabled || limitReached.value
   })
-
-  const contains = (arr: unknown[], target: unknown) => {
-    if (!isObject.value) {
-      return arr && arr.includes(target)
-    } else {
-      const modelKey = select.props.modelKey
-      return (
-        arr &&
-        arr.some((item) => {
-          return toRaw(get(item, modelKey)) === get(target, modelKey)
-        })
-      )
-    }
-  }
-
-  const isEqual = (a: unknown, b: unknown) => {
-    if (!isObject.value) {
-      return a === b
-    } else {
-      const { modelKey } = select.props
-      return get(a, modelKey) === get(b, modelKey)
-    }
-  }
 
   const hoverItem = () => {
     if (!props.disabled && !selectGroup.disabled) {

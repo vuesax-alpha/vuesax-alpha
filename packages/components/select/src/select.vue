@@ -48,7 +48,10 @@
           :for="inputId"
           :class="[
             ns.e('label'),
-            ns.is('placeholder', !modelValue && !dropMenuVisible),
+            ns.is(
+              'placeholder',
+              !modelValue && modelValue !== 0 && !dropMenuVisible
+            ),
           ]"
         >
           {{ label }}

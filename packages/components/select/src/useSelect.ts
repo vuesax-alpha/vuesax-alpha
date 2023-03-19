@@ -393,7 +393,7 @@ export const useSelect = (
       const cachedOption = cachedOptionsArray.value[i]
 
       const isEqualValue = isObject(value)
-        ? get(cachedOption.value, props.modelKey) === get(value, props.modelKey)
+        ? isEqual(cachedOption.value, value)
         : cachedOption.value === value
       if (isEqualValue) {
         option = cachedOption

@@ -48,7 +48,6 @@ export type SelectContext = {
   props: {
     multiple?: boolean
     multipleLimit?: number
-    modelKey: string
     modelValue?: SelectValue
     popperClass?: string
   }
