@@ -22,7 +22,6 @@
 
 @include b(button) {
   @include flex(center, center);
-  margin: getCssVar(margin);
   border-radius: getCssVar(border-radius);
   transition: getCssVar(transition-ease);
   border: 0;
