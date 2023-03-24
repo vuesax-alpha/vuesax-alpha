@@ -81,7 +81,6 @@ jobs:
           NODE_OPTIONS: --max-old-space-size=4096
 
   changelog:
-    needs: publish
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
