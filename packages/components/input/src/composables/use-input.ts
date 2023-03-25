@@ -1,4 +1,5 @@
 import { computed, ref, shallowRef } from 'vue'
+import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import { useInputEvent } from './use-input-event'
 import { useInputClearable } from './use-input-clearable'
 import type { InputEmitsFn, InputProps } from '../input'
@@ -6,9 +7,9 @@ import type { InputEmitsFn, InputProps } from '../input'
 export const useInput = (props: InputProps, emit: InputEmitsFn) => {
   const model = computed({
     get: () => props.modelValue,
-    set: (value) => {
+    set: (value: string | number | null | undefined) => {
       if (props.disabled || props.loading) return
-      model.value = value
+      emit(UPDATE_MODEL_EVENT, value)
     },
   })
 
