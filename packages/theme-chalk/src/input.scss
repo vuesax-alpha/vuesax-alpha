@@ -407,6 +407,13 @@ input[class*='#{$namespace}'][type='search']::-webkit-search-results-decoration 
       )
     );
 
+    @include when(disabled) {
+      & > * {
+        cursor: default;
+        user-select: none;
+      }
+    }
+
     @include flex(flex-start, center);
     position: relative;
     border-radius: 12px;

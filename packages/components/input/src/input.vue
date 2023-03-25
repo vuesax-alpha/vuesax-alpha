@@ -1,7 +1,7 @@
 <template>
   <div :class="inputKls" :style="inputStyle">
     <div
-      :class="ns.e('wrapper')"
+      :class="[ns.e('wrapper'), ns.is('disabled', disabled)]"
       @mouseenter="handleMouseEnter"
       @mouseleave="handleMouseLeave"
     >
@@ -11,7 +11,8 @@
         ref="inputRef"
         v-model="model"
         :type="inputType"
-        :class="[ns.e('original')]"
+        :disabled="disabled"
+        :class="[ns.e('original'), ns.is('disabled', disabled)]"
         placeholder=""
         @focus="handleFocus"
         @blur="handleBlur"

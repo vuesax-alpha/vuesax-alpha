@@ -1,11 +1,16 @@
 import { computed, ref, shallowRef } from 'vue'
-import { useVModel } from '@vueuse/core'
 import { useInputEvent } from './use-input-event'
 import { useInputClearable } from './use-input-clearable'
 import type { InputEmitsFn, InputProps } from '../input'
 
 export const useInput = (props: InputProps, emit: InputEmitsFn) => {
-  const model = useVModel(props, 'modelValue', emit)
+  const model = computed({
+    get: () => props.modelValue,
+    set: (value) => {
+      if (props.disabled || props.loading) return
+      model.value = value
+    },
+  })
 
   const hovering = ref(false)
   const inputRef = shallowRef<HTMLInputElement>()
