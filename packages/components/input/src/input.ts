@@ -75,7 +75,7 @@ export const inputProps = buildProps({
    * @description binding value
    */
   modelValue: {
-    type: definePropType<InputValue>([String, Number, Object]),
+    type: definePropType<InputValue>([String, Number]),
     default: '',
   },
 
@@ -151,7 +151,7 @@ export const inputProps = buildProps({
 } as const)
 
 export const inputEmits = {
-  [UPDATE_MODEL_EVENT]: (text: string) => isString(text),
+  [UPDATE_MODEL_EVENT]: (text: InputValue) => text,
   /**
    * @description triggers when clicking the icon
    */
