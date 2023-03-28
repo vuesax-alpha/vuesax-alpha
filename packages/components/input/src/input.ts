@@ -1,6 +1,12 @@
+import { isNil } from 'lodash-unified'
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import { useColorProp } from '@vuesax-alpha/hooks'
-import { buildProps, definePropType, isString } from '@vuesax-alpha/utils'
+import {
+  buildProps,
+  definePropType,
+  isNumber,
+  isString,
+} from '@vuesax-alpha/utils'
 
 import type { ExtractPropTypes, StyleValue } from 'vue'
 import type { EmitFn } from '@vuesax-alpha/utils'
@@ -151,7 +157,8 @@ export const inputProps = buildProps({
 } as const)
 
 export const inputEmits = {
-  [UPDATE_MODEL_EVENT]: (text: InputValue) => text,
+  [UPDATE_MODEL_EVENT]: (text: InputValue) =>
+    isString(text) || isNumber(text) || isNil(text),
   /**
    * @description triggers when clicking the icon
    */
