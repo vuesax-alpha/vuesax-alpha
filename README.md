@@ -81,6 +81,46 @@ If you use volar, please add the global component type definition to compilerOpt
 }
 ```
 
+## Components vuesax-next vs vuesax-alpha
+
+- [x] Alert
+- [x] Avatar
+- [ ] Badge
+- [ ] Breadcrumb
+- [x] Button
+- [x] Card
+- [x] Checkbox
+- [ ] Chip
+- [ ] Collapse
+- [ ] Date picker
+- [ ] Datetime picker
+- [x] Dialogs
+- [ ] Divider
+- [ ] Dropdown
+- [ ] Images
+- [x] Input
+- [ ] List
+- [x] Loading
+- [x] Navbar
+- [x] Notification
+- [ ] Number Input
+- [x] Pagination
+- [x] Popup
+- [ ] Progress
+- [x] Radio
+- [x] Select
+- [x] Sidebar
+- [ ] Slider
+- [ ] Steps
+- [x] Switch
+- [x] Table
+- [ ] Tabs
+- [ ] Textarea
+- [x] Tooltip
+- [ ] Upload
+- [ ] Time picker
+- [ ] Time select
+
 ## Breaking change list
 
 Some APIs is not stable right now, and here's also a full list about how to get upgraded from [Vuesax](https://vuesax.com) to Vuesax Alpha.
