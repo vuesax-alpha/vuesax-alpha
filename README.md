@@ -13,11 +13,41 @@
 - 💪 Vue 3 Composition API
 - 🔥 Written in TypeScript
 
-## Getting Started
+# Getting Started
 
-### First, install it from npm:
+## Api with vuesax-next
 
-With NPM
+About 90% of the api in vuesax-next version works fine. But that's just the `make it work with vue 3` part. And this version does not support `typescript`
+
+You can test with tag `old` from npm
+
+```sh
+# Choose a package manager you like.
+
+# NPM
+$ npm install vuesax-alpha@old
+
+# Yarn
+$ yarn add vuesax-alpha@old
+
+# pnpm
+$ pnpm install vuesax-alpha@old
+```
+
+And import it to use
+```js
+import { createApp } from 'vue'
+import './style.css'
+import App from './App.vue'
+
+import vuesax from 'vuesax-alpha'
+import 'vuesax-alpha/dist/vuesax.css'
+
+createApp(App).use(vuesax).mount('#app')
+```
+
+## New version, Typescript support
+
 ```sh
 # Choose a package manager you like.
 
