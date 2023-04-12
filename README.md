@@ -38,10 +38,10 @@ And import it to use
 ```js
 import { createApp } from 'vue'
 import './style.css'
-import App from './App.vue'
-
 import vuesax from 'vuesax-alpha'
 import 'vuesax-alpha/dist/vuesax.css'
+
+import App from './App.vue'
 
 createApp(App).use(vuesax).mount('#app')
 ```
