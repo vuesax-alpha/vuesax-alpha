@@ -6,7 +6,7 @@ $clearableRight: 34px;
 $iconActiveMargin: -4px;
 
 @mixin state($color) {
-  .vs-select__input {
+  .#{namespace}-select__input {
     // border: 2px solid getColor($color,.5);
     background: getColor($color, 0.05);
     color: getColor($color, 1);
@@ -15,7 +15,7 @@ $iconActiveMargin: -4px;
       color: getColor('text', 1);
     }
   }
-  .vs-select__chips {
+  .#{namespace}-select__chips {
     background: getColor($color, 0.05);
     color: getColor($color, 1);
     &:hover {
@@ -36,15 +36,15 @@ $iconActiveMargin: -4px;
       transition: all 0.25s ease;
     }
   }
-  .vs-select__label {
+  .#{namespace}-select__label {
     color: getColor($color, 1);
   }
-  .vs-select__icon {
+  .#{namespace}-select__icon {
     color: getColor($color, 1);
     background: getColor($color, 0.1);
     box-shadow: -15px 10px 10px -10px getColor($color, 0.1);
   }
-  .vs-icon-arrow {
+  .#{namespace}-icon-arrow {
     &:after {
       background: getColor($color);
     }
@@ -52,7 +52,7 @@ $iconActiveMargin: -4px;
       background: getColor($color);
     }
   }
-  ~ div .vs-select__message--#{$color} {
+  ~ div .#{namespace}-select__message--#{$color} {
     color: getColor($color, 1);
     // opacity: 1;
     // visibility: visible;
@@ -92,17 +92,17 @@ $iconActiveMargin: -4px;
 
   &.loading {
     pointer-events: none;
-    *:not(.vs-select__loading):not(.vs-select__label) {
+    *:not(.#{namespace}-select__loading):not(.#{namespace}-select__label) {
       opacity: 0.6;
     }
-    .vs-select__label {
+    .#{namespace}-select__label {
       pointer-events: none !important;
     }
   }
   &.top {
     &.activeOptions {
-      .vs-select__input,
-      .vs-select__chips {
+      .#{namespace}-select__input,
+      .#{namespace}-select__chips {
         border-radius: 0px 0px 12px 12px !important;
         box-shadow: 0px -5px 25px -4px
           rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity)) !important;
@@ -122,15 +122,17 @@ $iconActiveMargin: -4px;
   }
   @include e(arrow) {
     position: absolute;
-    color: getColor(text, 0.8);
+    color: getColor(text, 0.6);
     right: 10px;
     top: 20px;
     transform: translateY(-50%) scale(0.67);
     transition: all 0.25s ease;
     cursor: pointer;
   }
-  .vs-select__clearable {
-    --vs-color: var(--vs-text);
+  @include e(clearable) {
+    @include set-var-value(color, getCssVar(text));
+    @include flex(center, center);
+
     position: absolute;
     right: 10px;
     margin-top: 0;
@@ -139,9 +141,6 @@ $iconActiveMargin: -4px;
     transform: translateY(-50%);
     width: 22px;
     height: 22px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border-radius: 9999px;
     // z-index: 100000;
     cursor: pointer;
@@ -149,20 +148,20 @@ $iconActiveMargin: -4px;
     transition: all 0.25s ease;
     z-index: 99998;
 
-    .vs-icon-close {
+    .#{namespace}-icon-close {
       transform: scale(0.7);
     }
   }
   &.activeOptions {
-    .vs-select__arrow {
+    .#{namespace}-select__arrow {
       transform: rotate(180deg) translateY(50%);
       margin-top: -2px !important;
     }
-    .vs-select__clearable {
+    .#{namespace}-select__clearable {
       margin-top: $iconActiveMargin;
       right: $clearableRight;
     }
-    .vs-select__input {
+    .#{namespace}-select__input {
       border-radius: 12px 12px 0px 0px;
       background: getColor('background');
       box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity));
@@ -172,7 +171,7 @@ $iconActiveMargin: -4px;
       color: getColor('text');
       padding-left: 10px;
     }
-    .vs-select__chips {
+    .#{namespace}-select__chips {
       border-radius: 12px 12px 0px 0px;
       background: getColor('background');
       box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity));
@@ -182,10 +181,10 @@ $iconActiveMargin: -4px;
         opacity: 0;
       }
     }
-    .vs-select__label {
+    .#{namespace}-select__label {
       margin-top: -4px;
       &--label,
-      &.vs-select__label--placeholder {
+      &.#{namespace}-select__label--placeholder {
         margin-top: -30px;
         opacity: 1;
         font-size: 0.75rem;
@@ -201,7 +200,7 @@ $iconActiveMargin: -4px;
     background: getColor('gray-2');
     color: getColor('text');
     min-height: 38px;
-    padding: 7px 30px 7px 13px;
+    padding: 7px 30px 7px 10px;
     width: 100%;
 
     @include when(multiple) {
@@ -214,8 +213,20 @@ $iconActiveMargin: -4px;
       cursor: pointer;
       user-select: none;
     }
+
+    &-filter {
+      position: absolute;
+      z-index: 1;
+      background: transparent;
+      box-shadow: none;
+      color: transparent;
+
+      &::placeholder {
+        font-weight: 100;
+      }
+    }
   }
-  &__chips {
+  @include e(chips) {
     width: 100%;
     height: max-content;
     position: absolute;
@@ -293,8 +304,8 @@ $iconActiveMargin: -4px;
         &:hover {
           background: getColor('danger');
 
-          .vs-icon-close {
-            --vs-color: var(--vs-background);
+          .#{namespace}-icon-close {
+            @include set-var-value(color, getCssVar(background));
             &:after {
               width: 12px;
               transform: rotate(180deg);
@@ -305,8 +316,8 @@ $iconActiveMargin: -4px;
             }
           }
         }
-        .vs-icon-close {
-          --vs-color: var(--vs-text);
+        .#{namespace}-icon-close {
+          @include set-var-value(color, getCssVar(text));
           transform: scale(0.5);
         }
       }
@@ -344,7 +355,7 @@ $iconActiveMargin: -4px;
     background: transparent;
     transition: all 0.25s ease;
     color: getColor('text');
-    border-radius: 5px;
+    border-radius: 8px;
     box-shadow: 0px 0px 0px 0px
       rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity));
     margin: 2px 0px;
@@ -378,6 +389,12 @@ $iconActiveMargin: -4px;
       color: getColor('color');
       padding-left: 14px;
     }
+
+    @include when(disabled) {
+      opacity: 0.6212;
+      background: transparent;
+      cursor: default;
+    }
   }
   @include when(hovering) {
     @include e(arrow) {
@@ -407,8 +424,17 @@ $iconActiveMargin: -4px;
       transition: all 0.25s ease, height 0s;
       border: 2px solid transparent;
       color: getColor('text');
-      padding-left: 10px;
+      padding-left: 13px;
       transform: translateY(-4px);
+
+      &-filter {
+        background: transparent;
+        box-shadow: none;
+
+        &::placeholder {
+          font-weight: 400;
+        }
+      }
     }
     @include e(label) {
       @include when(placeholder) {
@@ -491,7 +517,7 @@ $iconActiveMargin: -4px;
       visibility: hidden;
     }
   }
-  &__loading {
+  @include e(loading) {
     position: absolute;
     width: 20px;
     height: 20px;
@@ -508,18 +534,17 @@ $iconActiveMargin: -4px;
       opacity: 1 !important;
     }
 
-    ~ .vs-select__arrow,
-    ~ .vs-select__clearable {
+    ~ .#{namespace}-select__arrow,
+    ~ .#{namespace}-select__clearable {
       opacity: 0 !important;
     }
   }
-  &__message {
+  @include e(message) {
     font-size: 0.7rem;
     padding: 0px 7px;
     overflow: hidden;
     height: auto;
     transition: all 0.25s ease;
-    // margin-bottom: auto;
 
     &--success {
       color: getColor('success');

@@ -1,21 +1,22 @@
 <template>
-  <el-button type="text" @click="dialogVisible = true"
-    >click to open the Dialog</el-button
-  >
+  <vs-button @click="dialogVisible = true">click to open the Dialog</vs-button>
 
-  <el-dialog v-model="dialogVisible" title="Tips" width="30%">
+  <vs-dialog v-model="dialogVisible" title="Tips" width="30%">
     <span>This is a message</span>
     <template #footer>
       <span class="dialog-footer">
-        <el-button style="margin-right: 10px" @click="dialogVisible = false"
-          >Cancel</el-button
+        <vs-button
+          color="danger"
+          style="margin-right: 10px"
+          @click="dialogVisible = false"
+          >Cancel</vs-button
         >
-        <el-button type="primary" @click="dialogVisible = false"
-          >Confirm</el-button
-        >
+        <vs-button color="primary" @click="dialogVisible = false">
+          Confirm
+        </vs-button>
       </span>
     </template>
-  </el-dialog>
+  </vs-dialog>
 </template>
 
 <script lang="ts" setup>

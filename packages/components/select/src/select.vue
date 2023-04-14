@@ -25,6 +25,27 @@
         @click.prevent="toggleMenu"
       >
         <input
+          v-if="filter"
+          ref="input"
+          v-model="query"
+          type="text"
+          :class="[ns.e('input'), ns.is('disabled', selectDisabled)]"
+          :disabled="selectDisabled"
+          @focus="handleFocus"
+          @blur="handleBlur"
+          @keyup="managePlaceholder"
+          @keydown.down.prevent="navigateOptions('next')"
+          @keydown.up.prevent="navigateOptions('prev')"
+          @keydown.esc="handleKeydownEscape"
+          @keydown.enter.stop.prevent="selectOption"
+          @keydown.delete="deletePrevTag"
+          @keydown.tab="visible = false"
+          @compositionstart="handleComposition"
+          @compositionupdate="handleComposition"
+          @compositionend="handleComposition"
+          @input="debouncedQueryChange"
+        />
+        <input
           :id="inputId"
           ref="reference"
           :class="[ns.e('input'), ns.is('multiple', multiple)]"
@@ -114,10 +135,15 @@ const ns = useNamespace('select')
 const states = useSelectStates(props)
 
 const {
+  debouncedQueryChange,
+  managePlaceholder,
+  deletePrevTag,
+  input,
   inputId,
   readonly,
   reference,
   tooltipRef,
+  selectDisabled,
   selectWrapper,
   handleMouseEnter,
   handleMouseLeave,
@@ -143,6 +169,7 @@ const {
 } = useSelect(props, states, emit)
 
 const {
+  visible,
   selected,
   filteredOptionsCount,
   hoverIndex,
