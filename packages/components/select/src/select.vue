@@ -98,7 +98,7 @@
 
         <transition name="v-clearable">
           <span v-if="showClose" class="vs-select__clearable">
-            <span @click="handleClearClick">X</span>
+            <span @click="handleClearClick"><icon-close /></span>
           </span>
         </transition>
       </div>
@@ -106,7 +106,7 @@
 
     <template #content>
       <div :class="ns.e('content')">
-        <vs-scrollbar max-height="200" :native="nativeScrollbar">
+        <vs-scrollbar thickness="3" max-height="200" :native="nativeScrollbar">
           <slot />
         </vs-scrollbar>
       </div>
@@ -120,7 +120,7 @@ import { useResizeObserver } from '@vueuse/core'
 import { isEqual } from 'lodash-unified'
 import { ClickOutside as vClickOutside } from '@vuesax-alpha/directives'
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
-import { VsIcon } from '@vuesax-alpha/components/icon'
+import { IconClose, VsIcon } from '@vuesax-alpha/components/icon'
 import { VsInput } from '@vuesax-alpha/components/input'
 import { VsScrollbar } from '@vuesax-alpha/components/scrollbar'
 import { VsTooltip } from '@vuesax-alpha/components/tooltip'

@@ -100,10 +100,7 @@ export const useSelect = (
         props.modelValue !== ''
 
     const criteria =
-      props.clearable &&
-      !selectDisabled.value &&
-      states.inputHovering &&
-      hasValue
+      props.clearable && !selectDisabled.value && states.mouseEnter && hasValue
     return criteria
   })
 
