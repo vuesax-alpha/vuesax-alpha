@@ -77,11 +77,7 @@ export const useSelect = (
   const ns = useNamespace('select')
 
   // template refs
-  const reference = ref<ComponentPublicInstance<{
-    focus: () => void
-    blur: () => void
-    input: HTMLInputElement
-  }> | null>(null)
+  const reference = ref<HTMLInputElement | null>(null)
   const input = ref<HTMLInputElement | null>(null)
   const tooltipRef = ref<TooltipExpose | null>(null)
   const tags = ref<HTMLElement | null>(null)
@@ -93,7 +89,7 @@ export const useSelect = (
   const query = shallowRef<string>('')
   const inputId = useId(props.id)
   const groupQuery = shallowRef('')
-  const debounce = ref(300)
+  const debounce = ref(0)
   const readonly = computed(
     () => !props.filter || props.multiple || !states.visible
   )
