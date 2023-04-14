@@ -200,7 +200,7 @@ $iconActiveMargin: -4px;
     background: getColor('gray-2');
     color: getColor('text');
     min-height: 38px;
-    padding: 7px 30px 7px 13px;
+    padding: 7px 30px 7px 10px;
     width: 100%;
 
     @include when(multiple) {
@@ -212,6 +212,18 @@ $iconActiveMargin: -4px;
     @include when(simple) {
       cursor: pointer;
       user-select: none;
+    }
+
+    &-filter {
+      position: absolute;
+      z-index: 1;
+      background: transparent;
+      box-shadow: none;
+      color: transparent;
+
+      &::placeholder {
+        font-weight: 100;
+      }
     }
   }
   @include e(chips) {
@@ -343,7 +355,7 @@ $iconActiveMargin: -4px;
     background: transparent;
     transition: all 0.25s ease;
     color: getColor('text');
-    border-radius: 5px;
+    border-radius: 8px;
     box-shadow: 0px 0px 0px 0px
       rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity));
     margin: 2px 0px;
@@ -377,6 +389,12 @@ $iconActiveMargin: -4px;
       color: getColor('color');
       padding-left: 14px;
     }
+
+    @include when(disabled) {
+      opacity: 0.6212;
+      background: transparent;
+      cursor: default;
+    }
   }
   @include when(hovering) {
     @include e(arrow) {
@@ -406,8 +424,17 @@ $iconActiveMargin: -4px;
       transition: all 0.25s ease, height 0s;
       border: 2px solid transparent;
       color: getColor('text');
-      padding-left: 10px;
+      padding-left: 13px;
       transform: translateY(-4px);
+
+      &-filter {
+        background: transparent;
+        box-shadow: none;
+
+        &::placeholder {
+          font-weight: 400;
+        }
+      }
     }
     @include e(label) {
       @include when(placeholder) {
