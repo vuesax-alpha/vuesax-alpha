@@ -1,18 +1,16 @@
-// @ts-nocheck
 import {
   computed,
   nextTick,
   reactive,
   ref,
   shallowRef,
-  toRaw,
   triggerRef,
   watch,
 } from 'vue'
 import { isObject } from '@vue/shared'
 import {
-  get,
   indexOf,
+  isArray,
   isEqual,
   isNil,
   last,
@@ -25,14 +23,12 @@ import {
   isBoolean,
   isFunction,
   isKorean,
-  isString,
   scrollIntoView,
 } from '@vuesax-alpha/utils'
 import { useId, useNamespace } from '@vuesax-alpha/hooks'
 import type { TooltipExpose } from '@vuesax-alpha/components/tooltip/src/tooltip.vue'
 import type { SelectEmitsFn, SelectProps } from './select'
 
-import type { ComponentPublicInstance } from 'vue'
 import type {
   SelectOptionContext,
   SelectOptionValue,
@@ -104,10 +100,7 @@ export const useSelect = (
         props.modelValue !== ''
 
     const criteria =
-      props.clearable &&
-      !selectDisabled.value &&
-      states.inputHovering &&
-      hasValue
+      props.clearable && !selectDisabled.value && states.mouseEnter && hasValue
     return criteria
   })
 
@@ -303,7 +296,7 @@ export const useSelect = (
     if (props.multiple && props.filter) {
       nextTick(() => {
         const length = input.value!.value.length * 15 + 20
-        states.inputLength = props.collapseTags ? Math.min(50, length) : length
+        states.inputLength = props.collapseChips ? Math.min(50, length) : length
         managePlaceholder()
       })
     }
@@ -370,9 +363,9 @@ export const useSelect = (
       states.selected = [option]
       if (props.filter) states.query = states.selectedLabel
       return
-    } else {
-      states.selectedLabel = ''
     }
+
+    states.selectedLabel = ''
     const result: SelectOptionContext[] = []
     if (Array.isArray(props.modelValue)) {
       props.modelValue.forEach((value) => {
@@ -383,7 +376,7 @@ export const useSelect = (
   }
 
   const getOption = (value: SelectOptionValue): SelectOptionContext => {
-    let option
+    let option: SelectOptionContext | null = null
 
     for (let i = states.cachedOptions.size - 1; i >= 0; i--) {
       const cachedOption = cachedOptionsArray.value[i]
@@ -396,39 +389,52 @@ export const useSelect = (
         break
       }
     }
+
     if (option) return option
-    const label = isObject(value) ? value.label : !isNil(value) ? value : ''
-    const newOption: SelectOptionContext = {
+
+    const label: string | any[] = isObject(value)
+      ? ''
+      : !isNil(value)
+      ? String(value)
+      : ''
+
+    const newOption: Pick<
+      SelectOptionContext,
+      'value' | 'currentLabel' | 'hitState' | 'label'
+    > = {
       value,
       currentLabel: label,
-    } as any
+      label,
+      hitState: true,
+    }
     if (props.multiple) {
       newOption.hitState = false
     }
-    return newOption
+    return newOption as SelectOptionContext
   }
 
   const resetHoverIndex = () => {
     setTimeout(() => {
-      const modelKey = props.modelKey
       if (!props.multiple) {
         states.hoverIndex = optionsArray.value.findIndex((item) => {
-          return getValueKey(item) === getValueKey(selectedArray.value[0])
+          return isEqual(item, selectedArray.value[0])
         })
-      } else {
-        if (selectedArray.value.length > 0) {
-          states.hoverIndex = Math.min.apply(
-            null,
-            selectedArray.value.map((selected) => {
-              return optionsArray.value.findIndex((item) => {
-                return get(item, modelKey) === get(selected, modelKey)
-              })
-            })
-          )
-        } else {
-          states.hoverIndex = -1
-        }
+        return
       }
+
+      if (selectedArray.value.length > 0) {
+        states.hoverIndex = Math.min.apply(
+          null,
+          selectedArray.value.map((selected) => {
+            return optionsArray.value.findIndex((item) => {
+              return isEqual(item.value, selected.value)
+            })
+          })
+        )
+        return
+      }
+
+      states.hoverIndex = -1
     }, 300)
   }
 
@@ -491,8 +497,10 @@ export const useSelect = (
   }
 
   const deleteSelected = () => {
-    const value: string | any[] = props.multiple ? [] : ''
-    if (!isString(value)) {
+    const value: SelectOptionValue | any[] = props.multiple
+      ? []
+      : props.notValue
+    if (isArray(value)) {
       for (const item of selectedArray.value) {
         if (item.isDisabled) value.push(item.value)
       }
@@ -546,10 +554,9 @@ export const useSelect = (
   ) => {
     if (!isObject(option.value)) return arr.indexOf(option)
 
-    const modelKey = props.modelKey
     let index = -1
     arr.some((item, i) => {
-      if (toRaw(get(item.value, modelKey)) === get(option.value, modelKey)) {
+      if (isEqual(item.value, option.value)) {
         index = i
         return true
       }
@@ -579,9 +586,10 @@ export const useSelect = (
     }
 
     if (tooltipRef.value && target) {
-      const menu = tooltipRef.value?.popperRef?.contentRef?.querySelector?.(
-        `.${ns.be('dropdown', 'wrap')}`
-      )
+      const menu =
+        tooltipRef.value?.popperComponent?.contentRef?.querySelector?.(
+          `.${ns.be('dropdown', 'wrap')}`
+        )
       if (menu) {
         scrollIntoView(menu as HTMLElement, target)
       }
@@ -637,6 +645,11 @@ export const useSelect = (
     nextTick(() => scrollToOption(selectedArray.value[0]))
   }
 
+  const focus = () => {
+    states.visible = true
+    reference.value?.focus()
+  }
+
   const handleFocus = (event: FocusEvent) => {
     if (!states.softFocus) {
       if (props.filter) {
@@ -672,11 +685,23 @@ export const useSelect = (
     deleteSelected()
   }
 
+  const showClearable = computed(() => {
+    if (!props.clearable || props.disabled || props.loading) return false
+    if (optionsArray.value.length === 0) return false
+
+    const ignoreDisabledOptions = optionsArray.value.filter(
+      (e) => e.disabled === false
+    )
+    if (ignoreDisabledOptions.length === 0) return false
+
+    return states.mouseEnter
+  })
+
   const handleClose = () => {
     states.visible = false
   }
 
-  const handleKeydownEscape = (event: KeyboardEvent) => {
+  const handleKeydownEscape = (event: Event | KeyboardEvent) => {
     if (states.visible) {
       event.preventDefault()
       event.stopPropagation()
@@ -709,10 +734,6 @@ export const useSelect = (
         handleOptionSelect(optionsArray.value[states.hoverIndex], false)
       }
     }
-  }
-
-  const getValueKey = (item: SelectOptionContext) => {
-    return isObject(item.value) ? get(item.value, props.modelKey) : item.value
   }
 
   const optionsAllDisabled = computed(() =>
@@ -787,15 +808,16 @@ export const useSelect = (
     onOptionCreate,
     onOptionDestroy,
     handleMenuEnter,
+    focus,
     handleFocus,
     blur,
     handleBlur,
     handleClearClick,
+    showClearable,
     handleClose,
     handleKeydownEscape,
     toggleMenu,
     selectOption,
-    getValueKey,
     navigateOptions,
     dropMenuVisible,
     query,
