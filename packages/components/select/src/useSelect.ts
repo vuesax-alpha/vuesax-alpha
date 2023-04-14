@@ -810,7 +810,6 @@ export const useSelect = (
     handleMenuEnter,
     focus,
     handleFocus,
-    focus,
     blur,
     handleBlur,
     handleClearClick,
