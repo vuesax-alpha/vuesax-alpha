@@ -1,22 +1,15 @@
 <template>
   <div class="demo-type">
     <div>
-      <el-avatar :icon="UserFilled" />
-    </div>
-    <div>
-      <el-avatar
+      <vs-avatar
         src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
       />
     </div>
     <div>
-      <el-avatar> user </el-avatar>
+      <vs-avatar> user </vs-avatar>
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { UserFilled } from '@vuesax-alpha/icons-vue'
-</script>
 
 <style scoped>
 .demo-type {
@@ -28,6 +21,6 @@ import { UserFilled } from '@vuesax-alpha/icons-vue'
 }
 
 .demo-type > div:not(:last-child) {
-  border-right: 1px solid var(--el-border-color);
+  border-right: 1px solid var(--vs-border-color);
 }
 </style>
