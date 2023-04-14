@@ -808,6 +808,7 @@ export const useSelect = (
     onOptionCreate,
     onOptionDestroy,
     handleMenuEnter,
+    focus,
     handleFocus,
     focus,
     blur,
