@@ -31,6 +31,7 @@ declare module '@vue/runtime-core' {
     VsSelect: typeof import('../packages/vuesax-alpha')['VsSelect']
     // VsSwitch: typeof import('../packages/vuesax-alpha')['VsSwitch']
     // VsTable: typeof import('../packages/vuesax-alpha')['VsTable']
+    VsTimeSelect: typeof import('../packages/vuesax-alpha')['VsTimeSelect']
     VsTooltip: typeof import('../packages/vuesax-alpha')['VsTooltip']
   }
 

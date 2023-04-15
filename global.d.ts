@@ -28,6 +28,7 @@ declare module '@vue/runtime-core' {
     VsScrollbar: typeof import('vuesax-alpha')['VsScrollbar']
     // VsSwitch            : typeof import('vuesax-alpha')['VsSwitch']
     // VsTable             : typeof import('vuesax-alpha')['VsTable']
+    VsTimeSelect: typeof import('vuesax-alpha')['VsTimeSelect']
     VsTooltip: typeof import('vuesax-alpha')['VsTooltip']
   }
 
