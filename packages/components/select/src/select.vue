@@ -78,9 +78,10 @@
             ns.e('label'),
             ns.is(
               'placeholder',
-              !dropMenuVisible &&
-                (isEqual(modelValue, notValue) || !modelValue) &&
-                modelValue != 0
+              labelFloat &&
+                !dropMenuVisible &&
+                (isEqual(modelValue, notValue) ||
+                  (!modelValue && modelValue != 0))
             ),
           ]"
         >
@@ -94,11 +95,15 @@
           {{ states.currentPlaceholder }}
         </span>
 
-        <vs-icon :class="ns.e('arrow')"><chevron-down /></vs-icon>
+        <vs-icon :class="ns.e('arrow')" size="14"><chevron-down /></vs-icon>
 
         <transition name="v-clearable">
-          <span v-if="showClose" class="vs-select__clearable">
-            <span @click="handleClearClick"><icon-close /></span>
+          <span
+            v-if="showClose"
+            class="vs-select__clearable"
+            @click="handleClearClick"
+          >
+            <icon-close hover="less" scale="0.675" />
           </span>
         </transition>
       </div>
