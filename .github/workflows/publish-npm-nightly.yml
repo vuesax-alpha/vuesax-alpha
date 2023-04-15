@@ -8,7 +8,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    if: ${{ github.repository_owner == 'vuesax-alphax' }}
+    if: ${{ github.repository_owner == 'vuesax-alpha' }}
 
     steps:
       - uses: actions/checkout@v3
@@ -46,7 +46,7 @@ jobs:
   publish:
     needs: test
     runs-on: ubuntu-latest
-    if: ${{ github.repository_owner == 'vuesax-alphax' }}
+    if: ${{ github.repository_owner == 'vuesax-alpha' }}
     steps:
       - uses: actions/checkout@v3
 
