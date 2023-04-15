@@ -32,7 +32,7 @@ importers:
       '@vuesax-alpha/directives': workspace:*
       '@vuesax-alpha/eslint-config': workspace:*
       '@vuesax-alpha/hooks': workspace:*
-      '@vuesax-alpha/icons-vue': 0.0.2-beta.2
+      '@vuesax-alpha/icons-vue': 0.0.2-beta.8
       '@vuesax-alpha/locale': workspace:*
       '@vuesax-alpha/test-utils': workspace:*
       '@vuesax-alpha/theme-chalk': workspace:*
@@ -88,7 +88,7 @@ importers:
       '@vuesax-alpha/constants': link:packages/constants
       '@vuesax-alpha/directives': link:packages/directives
       '@vuesax-alpha/hooks': link:packages/hooks
-      '@vuesax-alpha/icons-vue': 0.0.2-beta.2_vue@3.2.45
+      '@vuesax-alpha/icons-vue': 0.0.2-beta.8_vue@3.2.45
       '@vuesax-alpha/locale': link:packages/locale
       '@vuesax-alpha/test-utils': link:packages/test-utils
       '@vuesax-alpha/theme-chalk': link:packages/theme-chalk
@@ -4733,8 +4733,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@vuesax-alpha/icons-vue/0.0.2-beta.2_vue@3.2.45:
-    resolution: {integrity: sha512-PJ9KalPQa3aKo5RN414dbHKKuvyhdQ9i+Kj3hYQccfCxX8juvH57/NsorVHNt+d0m5C2YCEwdlIX4wuPT2RXPA==}
+  /@vuesax-alpha/icons-vue/0.0.2-beta.8_vue@3.2.45:
+    resolution: {integrity: sha512-OIYwt1J6A80B6x2OmEyp+UdbXW3BQJOhzDetx6J8VuVSXp8uqbGcIDzsYv0AZSlUAitzCqRBJ2gkLbtTi0u0hw==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
