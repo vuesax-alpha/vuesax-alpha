@@ -1,5 +1,8 @@
 <template>
-  <i :class="[ns.b(), hover && ns.bm('hover', hover)]" />
+  <i
+    :class="[ns.b(), hover && ns.bm('hover', hover)]"
+    :style="{ transform: `scale(${scale})` }"
+  />
 </template>
 
 <script lang="ts" setup>
