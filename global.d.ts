@@ -14,6 +14,7 @@ declare module '@vue/runtime-core' {
     VsCol: typeof import('vuesax-alpha')['VsCol']
     VsCollapseTransition: typeof import('vuesax-alpha')['VsCollapseTransition']
     VsDialog: typeof import('vuesax-alpha')['VsDialog']
+    VsIcon: typeof import('vuesax-alpha')['VsIcon']
     VsInput: typeof import('vuesax-alpha')['VsInput']
     VsNavbar: typeof import('vuesax-alpha')['VsNavbar']
     VsNavbarItem: typeof import('vuesax-alpha')['VsNavbarItem']
