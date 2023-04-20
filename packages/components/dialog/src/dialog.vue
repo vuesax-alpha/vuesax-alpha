@@ -53,7 +53,7 @@ import {
   useNamespace,
   useSameTarget,
 } from '@vuesax-alpha/hooks'
-import { dialogProps } from './dialog'
+import { dialogEmits, dialogProps } from './dialog'
 import { useDialog } from './composables'
 
 defineOptions({
@@ -73,6 +73,7 @@ useDeprecated(
   },
   computed(() => !!props.overflowHidden)
 )
+const emit = defineEmits(dialogEmits)
 
 const ns = useNamespace('dialog')
 
@@ -86,7 +87,7 @@ const {
   afterLeave,
   beforeLeave,
   handleClose,
-} = useDialog(props)
+} = useDialog(props, emit)
 
 useModal({ handleClose }, visible)
 

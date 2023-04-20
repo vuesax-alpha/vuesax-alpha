@@ -1,11 +1,4 @@
-import {
-  computed,
-  getCurrentInstance,
-  nextTick,
-  onMounted,
-  ref,
-  watch,
-} from 'vue'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { isClient, useTimeoutFn } from '@vueuse/core'
 import {
   useBaseComponent,
@@ -15,10 +8,9 @@ import {
 } from '@vuesax-alpha/hooks'
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import { getVsColor } from '@vuesax-alpha/utils'
-import type { SetupContext } from 'vue'
-import type { DialogEmits, DialogProps } from './../dialog'
+import type { DialogEmitFn, DialogProps } from './../dialog'
 
-export const useDialog = (props: DialogProps) => {
+export const useDialog = (props: DialogProps, emit: DialogEmitFn) => {
   const rebound = ref(false)
   const visible = ref(false)
   const closed = ref(false)
@@ -26,9 +18,6 @@ export const useDialog = (props: DialogProps) => {
   const { nextZIndex } = useZIndex()
 
   const zIndex = ref(nextZIndex())
-
-  const instance = getCurrentInstance()!
-  const emit = instance.emit as SetupContext<DialogEmits>['emit']
 
   const afterEnter = () => {
     emit('opened')
