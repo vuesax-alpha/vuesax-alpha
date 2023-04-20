@@ -6,7 +6,7 @@ PROPS:
     description: Determine the page where the user is.
     default: 1
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <vs-pagination v-model="page" :length="20" />
   - name: length
@@ -15,7 +15,7 @@ PROPS:
     description: It is the total number of pages that the component has.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <vs-pagination v-model="page" :length="20" />
   - name: color
@@ -24,7 +24,7 @@ PROPS:
     description: Change the base color of the component.
     default: primary
     link: null
-    usage: "#color"
+    usage: '#color'
     code: >
       <vs-pagination color="danger" v-model="page" :length="20" />
   - name: disabled
@@ -33,7 +33,7 @@ PROPS:
     description: Determine if the entire component is in the disabled state.
     default: false
     link: null
-    usage: "#disabled"
+    usage: '#disabled'
     code: >
       <vs-pagination disabled v-model="page" :length="20" />
   - name: not-arrows
@@ -42,7 +42,7 @@ PROPS:
     description: Remove the arrows (next and back) of the component.
     default: false
     link: null
-    usage: "#not-arrows"
+    usage: '#not-arrows'
     code: >
       <vs-pagination not-arrows v-model="page" :length="20" />
   - name: only-arrows
@@ -51,7 +51,7 @@ PROPS:
     description: Remove the items leaving only the arrows (next and back).
     default: false
     link: null
-    usage: "#only-arrows"
+    usage: '#only-arrows'
     code: >
       <vs-pagination only-arrows v-model="page" :length="20" />
   - name: circle
@@ -60,7 +60,7 @@ PROPS:
     description: Change the style of the buttons making them completely round.
     default: false
     link: null
-    usage: "#circle"
+    usage: '#circle'
     code: >
       <vs-pagination circle v-model="page" :length="20" />
   - name: square
@@ -69,7 +69,7 @@ PROPS:
     description: Change the style of the buttons making them totally square.
     default: false
     link: null
-    usage: "#square"
+    usage: '#square'
     code: >
       <vs-pagination square v-model="page" :length="20" />
   - name: buttons-dotted
@@ -78,7 +78,7 @@ PROPS:
     description: Makes the buttons not have the internal number and changes its size.
     default: false
     link: null
-    usage: "#buttons-dotted"
+    usage: '#buttons-dotted'
     code: >
       <vs-pagination buttons-dotted v-model="page" :length="20" />
   - name: disabled-items
@@ -87,7 +87,7 @@ PROPS:
     description: Determine which items are in the disabled state.
     default: false
     link: null
-    usage: "#disabled-items"
+    usage: '#disabled-items'
     code: >
       <vs-pagination :disabled-items="[3,4,9,10,11,12,19]" v-model="page" :length="20" />
   - name: loading-items
@@ -96,7 +96,7 @@ PROPS:
     description: Determine which items are in the charging state.
     default: false
     link: null
-    usage: "#loading-items"
+    usage: '#loading-items'
     code: >
       <vs-pagination :loading-items="[3,4,9,10,11,12,19]" v-model="page" :length="20" />
   - name: not-margin
@@ -105,7 +105,7 @@ PROPS:
     description: Change the margin between the items causing them to be fully glued and the radius is removed making them square.
     default: false
     link: null
-    usage: "#not-margin"
+    usage: '#not-margin'
     code: >
       <vs-pagination not-margin v-model="page" :length="20" />
   - name: progress
@@ -114,7 +114,7 @@ PROPS:
     description: Add a progress bar to the component determined by the current page and the total (length) of pages.
     default: false
     link: null
-    usage: "#progress"
+    usage: '#progress'
     code: >
       <vs-pagination progress v-model="page" :length="20" />
   - name: dotted-number
@@ -123,7 +123,7 @@ PROPS:
     description: Change the total pages to be added or subtracted by clicking on the points.
     default: false
     link: null
-    usage: "#dotted-number"
+    usage: '#dotted-number'
     code: >
       <vs-pagination :dotted-number="10" v-model="page" :length="100" />
   - name: infinite
@@ -132,7 +132,7 @@ PROPS:
     description: Determine if the pagination is infinite.
     default: false
     link: null
-    usage: "#infinite"
+    usage: '#infinite'
     code: >
       <vs-pagination infinite v-model="page" :length="100" />
 
@@ -143,7 +143,7 @@ SLOTS:
     description: Space between the two arrows (next and back).
     default: null
     link: null
-    usage: "#slot"
+    usage: '#slot'
     code: >
       <vs-pagination v-model="page" :length="20">
         <vs-select v-model="page">
@@ -156,7 +156,6 @@ SLOTS:
           </vs-option>
         </vs-select>
       </vs-pagination>
-
 ---
 
 # Pagination
@@ -170,7 +169,7 @@ SLOTS:
 Easily add a pagination with the `vs-pagination` component, the required properties are `length` and `v-model`
 
 <template #example>
-  <pagination-default />
+<pagination-default />
 </template>
 
 <template #template>
@@ -194,7 +193,7 @@ Easily add a pagination with the `vs-pagination` component, the required propert
 <coloren />
 
 <template #example>
-  <pagination-color />
+<pagination-color />
 </template>
 
 <template #template>
@@ -224,7 +223,7 @@ Easily add a pagination with the `vs-pagination` component, the required propert
 Change the disabled state of the component with the `disabled` property, this property is a boolean and you can add it without value
 
 <template #example>
-  <pagination-disabled />
+<pagination-disabled />
 </template>
 
 <template #template>
@@ -248,7 +247,7 @@ Change the disabled state of the component with the `disabled` property, this pr
 You can remove the back and next arrows with the `not-arrows` property
 
 <template #example>
-  <pagination-not-arrows />
+<pagination-not-arrows />
 </template>
 
 <template #template>
@@ -272,7 +271,7 @@ You can remove the back and next arrows with the `not-arrows` property
 You may need in small spaces to remove the buttons and leave only the arrows for it we have the property `only-arrows`
 
 <template #example>
-  <pagination-only-arrow />
+<pagination-only-arrow />
 </template>
 
 <template #template>
@@ -296,7 +295,7 @@ You may need in small spaces to remove the buttons and leave only the arrows for
 Change the radius of all the elements that make up the component by making them circular with the `circle` property, this property is a boolean so it does not need value
 
 <template #example>
-  <pagination-circle />
+<pagination-circle />
 </template>
 
 <template #template>
@@ -320,7 +319,7 @@ Change the radius of all the elements that make up the component by making them 
 Change the radius of all the elements that make up the component making them square with the `square` property, this property is a boolean so it does not need value
 
 <template #example>
-  <pagination-square />
+<pagination-square />
 </template>
 
 <template #template>
@@ -344,7 +343,7 @@ Change the radius of all the elements that make up the component making them squ
 Cambia por completo el estilo de el componente y elimina los números internos en cada botón con la propiedad `buttons-dotted`
 
 <template #example>
-  <pagination-buttons-dotted />
+<pagination-buttons-dotted />
 </template>
 
 <template #template>
@@ -372,7 +371,7 @@ The buttons that are in disabled will skip when changing the value for example o
 :::
 
 <template #example>
-  <pagination-disabledItems />
+<pagination-disabledItems />
 </template>
 
 <template #template>
@@ -400,7 +399,7 @@ The buttons that are in loading will skip when changing the value for example in
 :::
 
 <template #example>
-  <pagination-loadingItems />
+<pagination-loadingItems />
 </template>
 
 <template #template>
@@ -424,7 +423,7 @@ The buttons that are in loading will skip when changing the value for example in
 Change the style of the entire component by removing the margin between the buttons and changing the radius with the `not-margin` property
 
 <template #example>
-  <pagination-not-margin />
+<pagination-not-margin />
 </template>
 
 <template #template>
@@ -448,7 +447,7 @@ Change the style of the entire component by removing the margin between the butt
 You may need to customize your pagination and for this you can use the `default` slot between the arrows and replace the items on the pages
 
 <template #example>
-  <pagination-slot />
+<pagination-slot />
 </template>
 
 <template #template>
@@ -478,7 +477,7 @@ You may need to customize your pagination and for this you can use the `default`
 Add a progress bar to the pagination by referencing where you find the last page with the `progress` property
 
 <template #example>
-  <pagination-progress />
+<pagination-progress />
 </template>
 
 <template #template>
@@ -502,7 +501,7 @@ Add a progress bar to the pagination by referencing where you find the last page
 You can change the number of pages that are added when the user clicks on the points to advance more pages quickly, this can be done with the `dotted-number` property and the value would be the number of pages that are added or subtracted ( default is **5**)
 
 <template #example>
-  <pagination-dotted-number />
+<pagination-dotted-number />
 </template>
 
 <template #template>
@@ -526,7 +525,7 @@ You can change the number of pages that are added when the user clicks on the po
 You can make the pagination infinite with the `infinite` property, this means that the arrow buttons are no longer in the disabled state
 
 <template #example>
-  <pagination-infinite />
+<pagination-infinite />
 </template>
 
 <template #template>

@@ -12,10 +12,10 @@ $colors: map.deep-merge(
       'base': #000000,
     ),
     'light': (
-      'base': #181b22
-    )
+      'base': #181b22,
+    ),
   ),
-  $colors,
+  $colors
 );
 @each $type in common.$types {
   $colors: map.deep-merge(
@@ -143,7 +143,7 @@ $moreColor: map.merge(
     'text': #ffffff,
     'background': #1e2023,
     'dark': #000000,
-    'light': #181b22
+    'light': #181b22,
   ),
   $moreColor
 );

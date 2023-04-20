@@ -6,7 +6,7 @@ PROPS:
     description: Change the color of the component and some of its sub components.
     default: primary
     link: /api/color
-    usage: "#color"
+    usage: '#color'
     code: >
       <vs-button color="success"> Success </vs-button>
   # _______________________________________
@@ -16,7 +16,7 @@ PROPS:
     description: Change the style of the component and its states.
     default: null
     link: null
-    usage: "#flat"
+    usage: '#flat'
     code: >
       <vs-button flat> Flat </vs-button>
   # _______________________________________
@@ -26,7 +26,7 @@ PROPS:
     description: Determine if the component is active and change its style to that state.
     default: false
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <vs-button active> Default </vs-button>
   # _______________________________________
@@ -36,7 +36,7 @@ PROPS:
     description: Determine if the component has the upload status active by changing the style and adding the animation.
     default: false
     link: null
-    usage: "#upload"
+    usage: '#upload'
     code: >
       <vs-button upload >
         <i class='bx bxs-wallet'></i> Wallet
@@ -48,7 +48,7 @@ PROPS:
     description: Add the functionality of vue-router to the button, clicking it will redirect to the last route.
     default: false
     link: null
-    usage: "#to-href"
+    usage: '#to-href'
     code: >
       <vs-button to="/">
         Example prop - to
@@ -60,7 +60,7 @@ PROPS:
     description: Add an href of an external link to add the functionality by clicking on the component.
     default: false
     link: null
-    usage: "#to-href"
+    usage: '#to-href'
     code: >
       <vs-button href="https://tranthinh-coding.github.io/vuesax-alpha/">
         Example prop - url
@@ -72,7 +72,7 @@ PROPS:
     description: as in an html element `a` determines whether a new window is opened or the current one is replaced.
     default: false
     link: null
-    usage: "#to-href"
+    usage: '#to-href'
     code: >
       <vs-button blank href="https://tranthinh-coding.github.io/vuesax-alpha/">
         Example prop - url
@@ -84,7 +84,7 @@ PROPS:
     description: Determine if the component contains only one icon, by adding this property the component has an equal width and height.
     default: false
     link: null
-    usage: "#icon"
+    usage: '#icon'
     code: >
       <vs-button icon >
         <i class='bx bx-home-alt'></i>
@@ -96,7 +96,7 @@ PROPS:
     description: Change the border radius to give a circle style.
     default: false
     link: null
-    usage: "#circle"
+    usage: '#circle'
     code: >
       <vs-button icon circle>
         <i class='bx bx-home-alt'></i>
@@ -108,7 +108,7 @@ PROPS:
     description: Change the border radius to give a rectangle style.
     default: false
     link: null
-    usage: "#square"
+    usage: '#square'
     code: >
       <vs-button icon square> // <------
         <i class='bx bx-home-alt'></i>
@@ -120,7 +120,7 @@ PROPS:
     description: Change the width of the component to the possible total determined by the parent element.
     default: false
     link: null
-    usage: "#block"
+    usage: '#block'
     code: >
       <vs-button block>
         <i class='bx bxs-paint-roll'></i> Edit Theme
@@ -132,7 +132,7 @@ PROPS:
     description: Change the type of animation, this property only works if you have the <code> slot </code> animate.
     default: false
     link: null
-    usage: "#animate"
+    usage: '#animate'
     code: >
       <vs-button flat color="success" animation-type="vertical">
         Message
@@ -147,7 +147,7 @@ PROPS:
     description: Determine if the animation is active for the user when hovering.
     default: false
     link: null
-    usage: "#toggle"
+    usage: '#toggle'
     code: >
       <vs-button :animate-inactive="successFace" @click="handleClickFace" :loading="loadingFace" color="facebook">
         <i class='bx bxl-facebook-square'></i>
@@ -162,7 +162,7 @@ PROPS:
     values: reverse, cut
     description: Change ripple style of a button with the `ripple` property
     default: undefined
-    usage: "#ripple"
+    usage: '#ripple'
     code: >
       <template>
         <vs-button ripple="reverse"> Reverse </vs-button>
@@ -182,7 +182,7 @@ SLOTS:
           <i class='bx bx-home-alt'></i>
         </template>
       </vs-button>
-    usage: "#animated"
+    usage: '#animated'
   # _______________________________________
 NEWS:
   - ripple
@@ -721,6 +721,7 @@ If you need to use a button such as a vue-router link or an external link you ca
 ## Ripple <Badge text="New" />
 
 You can change ripple style of a button with the `ripple` property and the allowed values are
+
 - `reverse`
 - `cut`
 

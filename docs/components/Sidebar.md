@@ -6,7 +6,7 @@ PROPS:
     description: Determines if the component is visible.
     default: false
     link: null
-    usage: "#open"
+    usage: '#open'
     code: >
       :open.sync="activeSidebar"
   - name: v-model
@@ -15,7 +15,7 @@ PROPS:
     description: Determines the item that is in active status.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       v-model="active"
   - name: absolute
@@ -24,7 +24,7 @@ PROPS:
     description: Determine if the component is of absolute position.
     default: false
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <vs-sidebar
         absolute
@@ -37,7 +37,7 @@ PROPS:
     description: Determine if the component is relative position.
     default: false
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <vs-sidebar
         relative
@@ -50,7 +50,7 @@ PROPS:
     description: Determine if the component is in a reduced state with a width of 50px.
     default: false
     link: null
-    usage: "#reduce"
+    usage: '#reduce'
     code: >
       <vs-sidebar
         absolute
@@ -64,7 +64,7 @@ PROPS:
     description: Adds the functionality to expand when the user enters inside the sidebar and vice versa.
     default: false
     link: null
-    usage: "#hover-expand"
+    usage: '#hover-expand'
     code: >
       <vs-sidebar
         absolute
@@ -107,7 +107,7 @@ PROPS:
     description: Change the background color of the sidebar
     default: false
     link: null
-    usage: "#color"
+    usage: '#color'
     code: >
       <vs-sidebar
         background="primary"
@@ -121,7 +121,7 @@ PROPS:
     description: Change the text color to white
     default: false
     link: null
-    usage: "#color"
+    usage: '#color'
     code: >
       <vs-sidebar
         text-white
@@ -185,7 +185,7 @@ SLOTS:
     description: Add elements on top of the entire sidebar.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <template #logo>
         ...
@@ -196,7 +196,7 @@ SLOTS:
     description: Add the elements at the bottom of the sidebar.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <template #footer>
         ...
@@ -218,7 +218,7 @@ SLOTS:
     description: It is the space to add the icon or a representative letter.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <template #icon>
         <i class='bx bx-home' ></i>
@@ -1306,9 +1306,9 @@ Change the position of the sidebar to the right and its animation with the `righ
 <script>
   export default {
     data: () => ({
-      active: "home",
+      active: 'home',
     }),
-  };
+  }
 </script>
 ```
 

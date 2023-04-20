@@ -23,7 +23,7 @@ PROPS:
     description: placeholder of Input
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <template>
         <vs-input placeholder="Name" />
@@ -34,7 +34,7 @@ PROPS:
     description: a label above the component.
     default: null
     link: null
-    usage: "#label"
+    usage: '#label'
     code: >
       <template>
         <vs-input
@@ -48,7 +48,7 @@ PROPS:
     description: Add a placeholder converts to focus on a label.
     default: null
     link: null
-    usage: "#label-placeholder"
+    usage: '#label-placeholder'
     code: >
       <template>
         <vs-input
@@ -62,7 +62,7 @@ PROPS:
     description: Change component color.
     default: null
     link: null
-    usage: "#color"
+    usage: '#color'
     code: >
       <template>
         <vs-input
@@ -101,7 +101,7 @@ PROPS:
     description: Change the background color of the component by changing its status.
     default: null
     link: null
-    usage: "#state"
+    usage: '#state'
     code: >
       <template>
         <vs-input
@@ -150,7 +150,7 @@ PROPS:
     description: progress bar starting in red and ending in green.
     default: null
     link: null
-    usage: "#progress"
+    usage: '#progress'
     code: >
       <template>
         <vs-input
@@ -210,7 +210,7 @@ PROPS:
     description: Add a loading animation to the input.
     default: null
     link: null
-    usage: "#loading"
+    usage: '#loading'
     code: >
       <template>
         <div class="center content-inputs">
@@ -224,7 +224,7 @@ PROPS:
     description: Change the type of input (html values).
     default: null
     link: null
-    usage: "#input-types"
+    usage: '#input-types'
     code: >
       <template>
         <vs-input
@@ -263,7 +263,7 @@ PROPS:
     description: Change the style of the component.
     default: false
     link: null
-    usage: "#border"
+    usage: '#border'
     code: >
       <template>
         <vs-input border v-model="value" placeholder="Name" />
@@ -298,7 +298,7 @@ PROPS:
     description: Change the style of the component.
     default: false
     link: null
-    usage: "#shadow"
+    usage: '#shadow'
     code: >
       <template>
         <vs-input 
@@ -331,12 +331,12 @@ PROPS:
       </template>
 
   - name: icon-after
-    type: Boolean 
+    type: Boolean
     values: Boolean
     description: suffix icon component
     default: false
     link: null
-    usage: "#icon"
+    usage: '#icon'
     code: >
       <template>
         <vs-input 
@@ -356,7 +356,7 @@ PROPS:
     description: If the input is of the password type, it is modified to show the password.
     default: false
     link: null
-    usage: "#progress"
+    usage: '#progress'
     code: >
       <template>
         <vs-input
@@ -385,7 +385,7 @@ SLOTS:
     description: Add an icon to the input.
     default: null
     link: null
-    usage: "#icon"
+    usage: '#icon'
     code: >
       <template>
         <vs-input placeholder="User name">
@@ -407,7 +407,7 @@ SLOTS:
     description: Add an informative text below the input.
     default: null
     link: null
-    usage: "#message"
+    usage: '#message'
     code: >
       <template>
         <vs-input placeholder="Email">
@@ -437,7 +437,6 @@ SLOTS:
           </template>
         </vs-input>
       </template>
-
 ---
 
 # Input
@@ -683,7 +682,7 @@ Change the type of input with the `type` property as a native html input, the de
 </template>
 
 <template #template>
- 
+
 @[code{1-14} html{4}](../.vuepress/components/input/types.vue)
 
 </template>

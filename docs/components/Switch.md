@@ -6,7 +6,7 @@ PROPS:
     description: Determine the value of the component and if it is an array add or remove the value.
     default: null
     link: null
-    usage: "#dafault"
+    usage: '#dafault'
     code: >
       <template>
         <vs-switch v-model="active" />
@@ -19,7 +19,7 @@ PROPS:
     description: Change the default value of boolean to the string to use it being an array on v-model.
     default: null
     link: null
-    usage: "#array-value"
+    usage: '#array-value'
     code: >
       <template>
         <vs-switch val="html" v-model="options">
@@ -49,7 +49,7 @@ PROPS:
     description: Change the color of the component when it is in active state.
     default: primary
     link: null
-    usage: "#color"
+    usage: '#color'
     code: >
       <template>
         <vs-switch v-model="active1" />
@@ -67,7 +67,7 @@ PROPS:
     description: Add a loading animation to the component.
     default: false
     link: null
-    usage: "#loading"
+    usage: '#loading'
     code: >
       <template>
         <vs-switch v-model="activeLoading">
@@ -89,7 +89,7 @@ PROPS:
     description: Determine if the component is in an undetermined state (being in this state is disabled).
     default: false
     link: null
-    usage: "#indeterminate"
+    usage: '#indeterminate'
     code: >
       <template>
         <vs-switch indeterminate v-model="active" />
@@ -103,7 +103,7 @@ PROPS:
     description: Change the style of the component from circular to square.
     default: false
     link: null
-    usage: "#square"
+    usage: '#square'
     code: >
       <template>
         <vs-switch square v-model="active" />
@@ -117,7 +117,7 @@ PROPS:
     description: Change the style of the circle by making it transparent (used when adding the slot = "circle").
     default: false
     link: null
-    usage: "#icons"
+    usage: '#icons'
     code: >
       <template>
         <vs-switch color="#7d33ff" icon v-model="active6">
@@ -144,7 +144,7 @@ SLOTS:
     description: Add text within the component.
     default: null
     link: null
-    usage: "#text"
+    usage: '#text'
     code: >
       <template>
         <vs-switch v-model="active">
@@ -173,7 +173,7 @@ SLOTS:
     description: Add text within the component when it is in active state.
     default: null
     link: null
-    usage: "#icons"
+    usage: '#icons'
     code: >
       <vs-switch v-model="active1">
         <template #off>
@@ -189,7 +189,7 @@ SLOTS:
     description: Add text within the component when it is in idle state.
     default: null
     link: null
-    usage: "#icons"
+    usage: '#icons'
     code: >
       <vs-switch v-model="active1">
         <template #off>
@@ -205,7 +205,7 @@ SLOTS:
     description: Add an icon to the circle within the component.
     default: null
     link: null
-    usage: "#icons"
+    usage: '#icons'
     code: >
       <vs-switch color="#7d33ff" icon v-model="active6">
         <template #circle>
@@ -213,7 +213,6 @@ SLOTS:
             <i v-else class='bx bxl-instagram' ></i>
         </template>
       </vs-switch>
-
 ---
 
 # Switch
@@ -227,7 +226,7 @@ SLOTS:
 Generate a switch element easily with beautiful animations and functionality
 
 <template #example>
-  <switch-default />
+<switch-default />
 </template>
 
 <template #template>
@@ -251,7 +250,7 @@ Generate a switch element easily with beautiful animations and functionality
 Change the color of the component when it is in active state, the allowed values ​​are (main colors of vuesax, RGB, HEX)
 
 <template #example>
-  <switch-color />
+<switch-color />
 </template>
 
 <template #template>
@@ -279,7 +278,7 @@ The component conforms to the text to be displayed by the state in which it is l
 :::
 
 <template #example>
-  <switch-text />
+<switch-text />
 </template>
 
 <template #template>
@@ -303,7 +302,7 @@ The component conforms to the text to be displayed by the state in which it is l
 Add icons to the component in the default slot or the `on` or `off` status slots, and in the `circle`
 
 <template #example>
-  <switch-icons />
+<switch-icons />
 </template>
 
 <template #template>
@@ -327,7 +326,7 @@ Add icons to the component in the default slot or the `on` or `off` status slots
 You can use the checkbox to add or remove a value from an array, that value is the `val` property
 
 <template #example>
-  <switch-array />
+<switch-array />
 </template>
 
 <template #template>
@@ -351,7 +350,7 @@ You can use the checkbox to add or remove a value from an array, that value is t
 Add a loading animation to the component with the `loading` property, the property is a` boolean` so you can add it without any value.
 
 <template #example>
-  <switch-loading />
+<switch-loading />
 </template>
 
 <template #template>
@@ -375,7 +374,7 @@ Add a loading animation to the component with the `loading` property, the proper
 Add an undetermined state to the compound with the `indeterminate` property, the property is a` boolean` so you can add it without any value.
 
 <template #example>
-  <switch-indeterminate />
+<switch-indeterminate />
 </template>
 
 <template #template>
@@ -399,7 +398,7 @@ Add an undetermined state to the compound with the `indeterminate` property, the
 Change the circular style to square with the `square` property, the property is a` boolean` so you can add it without any value.
 
 <template #example>
-  <switch-square />
+<switch-square />
 </template>
 
 <template #template>
@@ -423,7 +422,7 @@ Change the circular style to square with the `square` property, the property is 
 A usual example when using the switch component
 
 <template #example>
-  <switch-example />
+<switch-example />
 </template>
 
 <template #template>

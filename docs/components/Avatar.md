@@ -6,7 +6,7 @@ PROPS:
     description: color of the component.
     default: --vs-gray-2
     link: null
-    usage: "#color"
+    usage: '#color'
     code: >
       <vs-avatar color="#7d33ff">
         <template #text> HEX </template>
@@ -21,7 +21,7 @@ PROPS:
     description: size of the avatar component.
     default: 44
     link: null
-    usage: "#size"
+    usage: '#size'
     code: >
       <vs-avatar size="30">
         <template #text> Lily </template>
@@ -45,7 +45,7 @@ PROPS:
     description: Determine if the badge is active.
     default: false
     link: null
-    usage: "#badge"
+    usage: '#badge'
     code: >
       <vs-avatar badge>
         <img src="/avatars/avatar-5.png" alt="" />
@@ -80,7 +80,7 @@ PROPS:
     description: Change the color of the badge inside the avatar.
     default: primary
     link: null
-    usage: "#badge"
+    usage: '#badge'
     code: >
       <vs-avatar badge badge-color="danger">
         <img src="/avatars/avatar-6.png" alt="">
@@ -92,7 +92,7 @@ PROPS:
     description: Change the style of the avatar by circulating it.
     default: false
     link: null
-    usage: "#circle"
+    usage: '#circle'
     code: >
       <vs-avatar circle>
         <template #text> Joel </template>
@@ -104,7 +104,7 @@ PROPS:
     description: Change the style of the avatar by making it square.
     default: false
     link: null
-    usage: "#square"
+    usage: '#square'
     code: >
       <vs-avatar square>
         <template #text> Joel </template>
@@ -116,7 +116,7 @@ PROPS:
     description: Add an animation to the writing badge.
     default: false
     link: null
-    usage: "#badge"
+    usage: '#badge'
     code: >
       <vs-avatar writing badge badge-color="primary">
         <img src="/avatars/avatar-3.png" alt="">
@@ -128,7 +128,7 @@ PROPS:
     description: Add a border to the avatar.
     default: gray-2
     link: null
-    usage: "#history"
+    usage: '#history'
     code: >
       <vs-avatar history history-gradient>
         <img src="/avatars/avatar-5.png" alt="">
@@ -140,7 +140,7 @@ PROPS:
     description: Change the color of the border to a gradient.
     default: false
     link: null
-    usage: "#history"
+    usage: '#history'
     code: >
       <vs-avatar history history-gradient>
         <img src="/avatars/avatar-5.png" alt="">
@@ -151,7 +151,7 @@ PROPS:
     description: Add a loading animation to the avatar.
     default: false
     link: null
-    usage: "#loading"
+    usage: '#loading'
     code: >
       <vs-avatar loading badge>
         <img src="/avatars/avatar-5.png" alt="">
@@ -162,7 +162,7 @@ PROPS:
     description: (vs-avatar-group) determine how many avatars are visible.
     default: null
     link: null
-    usage: "#group"
+    usage: '#group'
     code: >
       <vs-avatar-group max="7">
         <vs-avatar>
@@ -202,7 +202,7 @@ PROPS:
     description: (vs-avatar-group) change the way the avatar is composed by placing one next to the other.
     default: false
     link: null
-    usage: "#group"
+    usage: '#group'
     code: >
       <vs-avatar-group float max="8">
         <vs-avatar>
@@ -255,7 +255,7 @@ SLOTS:
     description: Add text within the avatar component.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <vs-avatar>
         <template #text>
@@ -269,7 +269,7 @@ SLOTS:
     description: Add to the badge everything that is inside the slot, commonly used for numbers and an icon.
     default: null
     link: null
-    usage: "#badge"
+    usage: '#badge'
     code: >
       <vs-avatar badge badge-color="success">
         <img src="/avatars/avatar-2.png" alt="">
@@ -284,7 +284,7 @@ SLOTS:
     description: Add a space to put icons next to the avatar.
     default: null
     link: null
-    usage: "#icons"
+    usage: '#icons'
     code: >
       <vs-avatar>
         <img src="/avatars/avatar-1.png" alt="">
@@ -294,7 +294,6 @@ SLOTS:
           <i class='bx bxl-twitter' ></i>
         </template>
       </vs-avatar>
-
 ---
 
 # Avatar
@@ -308,7 +307,7 @@ SLOTS:
 Add an avatar easily and with functionality with the component `<vs-avatar>`
 
 <template #example>
-  <avatar-default />
+<avatar-default />
 </template>
 
 <template #template>
@@ -326,7 +325,7 @@ Add an avatar easily and with functionality with the component `<vs-avatar>`
 Change the color of the compound with the `color` property, the colors allowed are the main colors of vuesax and (`HEX`, `RGB`)
 
 <template #example>
-  <avatar-color />
+<avatar-color />
 </template>
 
 <template #template>
@@ -344,7 +343,7 @@ Change the color of the compound with the `color` property, the colors allowed a
 Change the size of the component to the number provided if for example the size value is `60` equivalent to `60px` in height and width
 
 <template #example>
-  <avatar-size />
+<avatar-size />
 </template>
 
 <template #template>
@@ -366,7 +365,7 @@ You can also change the color to represent a user status as disconnected or conn
 There are times when you need to use the avatar in a chat environment and for this you can add the `writing` property that adds a writing animation
 
 <template #example>
-  <avatar-badge />
+<avatar-badge />
 </template>
 
 <template #template>
@@ -388,7 +387,7 @@ The maximum length of characters is **5**. When that limit is exceeded, changes 
 :::
 
 <template #example>
-  <avatar-autoFont />
+<avatar-autoFont />
 </template>
 
 <template #template>
@@ -406,7 +405,7 @@ The maximum length of characters is **5**. When that limit is exceeded, changes 
 Change the border-radius of the entire component to `50%` with the `circle` property making it fully circular
 
 <template #example>
-  <avatar-circle />
+<avatar-circle />
 </template>
 
 <template #template>
@@ -424,7 +423,7 @@ Change the border-radius of the entire component to `50%` with the `circle` prop
 Change the border-radius of the entire component to `0%` with the `square` property making it completely square
 
 <template #example>
-  <avatar-square />
+<avatar-square />
 </template>
 
 <template #template>
@@ -446,7 +445,7 @@ You can make the border a gradient like instagram with the property `history-gra
 :::
 
 <template #example>
-  <avatar-history />
+<avatar-history />
 </template>
 
 <template #template>
@@ -464,7 +463,7 @@ You can make the border a gradient like instagram with the property `history-gra
 You can put an icon inside an avatar when for example an image is not yet added or is a new user, for this you can simply use the default slot
 
 <template #example>
-  <avatar-icon />
+<avatar-icon />
 </template>
 
 <template #template>
@@ -482,7 +481,7 @@ You can put an icon inside an avatar when for example an image is not yet added 
 Add a loading animation to the component, this property is a `boolean` so you can add it without any value
 
 <template #example>
-  <avatar-loading />
+<avatar-loading />
 </template>
 
 <template #template>
@@ -500,7 +499,7 @@ Add a loading animation to the component, this property is a `boolean` so you ca
 Add a space next to the avatar with the slot `icons` where you can put icons for some dynamic action of that user in specific
 
 <template #example>
-  <avatar-icons />
+<avatar-icons />
 </template>
 
 <template #template>
@@ -522,7 +521,7 @@ You can group several avatar with the parent component `vs-avatar-group`, this c
 - **float**: causes the avatar components to be placed on each other and the grouping of one on top of the other is eliminated
 
 <template #example>
-  <avatar-group />
+<avatar-group />
 </template>
 
 <template #template>

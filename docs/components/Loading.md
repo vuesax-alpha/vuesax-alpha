@@ -7,7 +7,7 @@ PROPS:
     description: Change the animation of the loading.
     default: default
     link: null
-    usage: "#type"
+    usage: '#type'
     code: >
       <script lang="ts" setup>
         const openLoading = () => {
@@ -26,7 +26,7 @@ PROPS:
     description: Change the color of the loading animation.
     default: primary
     link: /theme/
-    usage: "#color"
+    usage: '#color'
     code: >
       <script lang="ts" setup>
         const openLoading = () => {
@@ -43,9 +43,9 @@ PROPS:
     type: String
     values: All colors of vuesax (RGB y HEX)
     description: Change the background color of the loading.
-    default: "#fff"
+    default: '#fff'
     link: /theme/
-    usage: "#background"
+    usage: '#background'
     code: >
       <script lang="ts" setup>
         const openLoading = () => {
@@ -65,7 +65,7 @@ PROPS:
     description: Add a text below the loading animation.
     default: null
     link: null
-    usage: "#text"
+    usage: '#text'
     code: >
       <script lang="ts" setup>
         const openLoading = () => {
@@ -84,7 +84,7 @@ PROPS:
     description: Add a percentage text inside the loading.
     default: null
     link: null
-    usage: "#percent"
+    usage: '#percent'
     code: >
       <script lang="ts" setup>
         const openLoading = () => {
@@ -103,7 +103,7 @@ PROPS:
     description: Add a progress bar to the loading and the progress would be the value.
     default: null
     link: null
-    usage: "#progress"
+    usage: '#progress'
     code: >
       <script lang="ts" setup>
         const openLoading = () => {
@@ -122,7 +122,7 @@ PROPS:
     description: Determine the parent of the loading where it will be instantiated.
     default: null
     link: null
-    usage: "#target"
+    usage: '#target'
     code: >
       <template>
         <div class="center">
@@ -155,9 +155,9 @@ PROPS:
     type: String | Number
     values: 0 - 1
     description: Change the opacity of the background.
-    default: "0.6"
+    default: '0.6'
     link: null
-    usage: "#target"
+    usage: '#target'
     code: >
       <script lang="ts" setup>
         const openLoading = () => {
@@ -175,9 +175,9 @@ PROPS:
     type: String | Number
     values: 0 - 1
     description: Change the size of the loading animation.
-    default: "1"
+    default: '1'
     link: null
-    usage: "#target"
+    usage: '#target'
     code: >
       <script lang="ts" setup>
         const openLoading = () => {
@@ -197,7 +197,7 @@ PROPS:
     description: Change the value of the percent after instantiating the loading.
     default: null
     link: null
-    usage: "#percent"
+    usage: '#percent'
     code: >
       <script lang="ts" setup>
         import { ref } from "vue";
@@ -220,7 +220,7 @@ PROPS:
             percent.value = 0
           }, 4800);
         };
-      </script> 
+      </script>
   #__________________________________
   - name: setProgress
     type: Function
@@ -228,7 +228,7 @@ PROPS:
     description: Change the value of the progress after instantiating the loading.
     default: null
     link: null
-    usage: "#progress"
+    usage: '#progress'
     code: >
       <script lang="ts" setup>
         import { ref } from "vue";
@@ -259,7 +259,7 @@ PROPS:
     description: Change the value of the text property after instantiating the loading.
     default: null
     link: null
-    usage: "#text"
+    usage: '#text'
     code: >
       <script lang="ts" setup>
         const openLoading = () => {
@@ -275,7 +275,6 @@ PROPS:
 
 UPDATES:
   - type
-
 ---
 
 # Loading
@@ -291,9 +290,9 @@ Generate a loading with the vuesax function
 <Command>
 
 ```ts
-import { loading } from "vuesax-alpha";
+import { loading } from 'vuesax-alpha'
 
-loading(options);
+loading(options)
 ```
 
 </Command>

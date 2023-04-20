@@ -6,7 +6,7 @@ PROPS:
     description: determine the value of the checkbox and data anchor.
     default: false
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <template>
         <vs-checkbox v-model="option">
@@ -19,7 +19,7 @@ PROPS:
     description: Change the color of the component.
     default: false
     link: null
-    usage: "#color"
+    usage: '#color'
     code: >
       <template>
         <vs-checkbox v-model="option1">
@@ -50,7 +50,7 @@ PROPS:
     description: Determine the value of the input when being checked.
     default: true
     link: null
-    usage: "#string-value"
+    usage: '#string-value'
     code: >
       <template>
         <vs-checkbox val="automatically" v-model="option">
@@ -68,7 +68,7 @@ PROPS:
     description: Add a loading animation and disable the input.
     default: false
     link: null
-    usage: "#loading"
+    usage: '#loading'
     code: >
       <template>
         <vs-checkbox loading v-model="option">
@@ -85,7 +85,7 @@ PROPS:
     description: Add a line in the center of the label when checked.
     default: false
     link: null
-    usage: "#linethrough"
+    usage: '#linethrough'
     code: >
       <template>
         <vs-checkbox line-through v-model="option">
@@ -99,7 +99,7 @@ PROPS:
     description: Change the default checkbox icon to a line that represents undetermined data.
     default: false
     link: null
-    usage: "#Indeterminate"
+    usage: '#Indeterminate'
     code: >
       <template>
         <vs-checkbox indeterminate v-model="option">
@@ -113,7 +113,7 @@ PROPS:
     description: Change the position of the label.
     default: false
     link: null
-    usage: "#label"
+    usage: '#label'
     code: >
       <template>
         <vs-checkbox label-before v-model="option2">
@@ -142,7 +142,7 @@ SLOTS:
     description: Change the component icon.
     default: null
     link: null
-    usage: "#icon"
+    usage: '#icon'
     code: >
       <template>
         <vs-checkbox v-model="option1">
@@ -188,7 +188,7 @@ SLOTS:
     description: Add a label to the component.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <template>
         <vs-checkbox v-model="option">
@@ -208,7 +208,7 @@ SLOTS:
 Add a checkbox type input easily and with a beautiful animation
 
 <template #example>
-  <checkbox-default />
+<checkbox-default />
 </template>
 
 <template #template>
@@ -232,7 +232,7 @@ Add a checkbox type input easily and with a beautiful animation
 Change the color of the component with the `color` property, the allowed values ​​are (main colors of vuesax, RGB, HEX)
 
 <template #example>
-  <checkbox-color />
+<checkbox-color />
 </template>
 
 <template #template>
@@ -256,7 +256,7 @@ Change the color of the component with the `color` property, the allowed values 
 By default the component is used with a boolean value that when being checked returns `true` and when not being checked returns `false`
 
 <template #example>
-  <checkbox-boolean />
+<checkbox-boolean />
 </template>
 
 <template #template>
@@ -280,7 +280,7 @@ By default the component is used with a boolean value that when being checked re
 You may need to return a string when the component is checked for it use the `val` property with the `string` you want to return
 
 <template #example>
-  <checkbox-string />
+<checkbox-string />
 </template>
 
 <template #template>
@@ -304,7 +304,7 @@ You may need to return a string when the component is checked for it use the `va
 You may need to return a string when the component is checked for it use the `val` property with the `string` you want to return
 
 <template #example>
-  <checkbox-array />
+<checkbox-array />
 </template>
 
 <template #template>
@@ -328,7 +328,7 @@ You may need to return a string when the component is checked for it use the `va
 the `val` property of a checkbox component can be an `object`
 
 <template #example>
-  <checkbox-object />
+<checkbox-object />
 </template>
 
 <template #template>
@@ -354,7 +354,7 @@ Change the icon inside the checkbox component with the`slot="icon"`
 <utils-icon />
 
 <template #example>
-  <checkbox-icon />
+<checkbox-icon />
 </template>
 
 <template #template>
@@ -378,7 +378,7 @@ Change the icon inside the checkbox component with the`slot="icon"`
 Add a label to the checkbox with the default slot of the component
 
 <template #example>
-  <checkbox-label />
+<checkbox-label />
 </template>
 
 <template #template>
@@ -402,7 +402,7 @@ Add a label to the checkbox with the default slot of the component
 Add a loading status to the component with the property `loading`
 
 <template #example>
-  <checkbox-loading />
+<checkbox-loading />
 </template>
 
 <template #template>
@@ -426,7 +426,7 @@ Add a loading status to the component with the property `loading`
 Add a line in the middle of the label when the checkbox is checked with the property `line-through`
 
 <template #example>
-  <checkbox-linethrough />
+<checkbox-linethrough />
 </template>
 
 <template #template>
@@ -450,7 +450,7 @@ Add a line in the middle of the label when the checkbox is checked with the prop
 There are some cases where you have several checkboxes and you need one that manages all the others for this you can do it with the indeterminate property that adds a different style to the checkbox
 
 <template #example>
-  <checkbox-indeterminate />
+<checkbox-indeterminate />
 </template>
 
 <template #template>
