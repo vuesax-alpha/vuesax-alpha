@@ -45,37 +45,22 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
 import { IconClose, IconLoading } from '@vuesax-alpha/components/icon'
-import {
-  useDeprecated,
-  useModal,
-  useNamespace,
-  useSameTarget,
-} from '@vuesax-alpha/hooks'
+import { useModal, useNamespace, useSameTarget } from '@vuesax-alpha/hooks'
 import { dialogEmits, dialogProps } from './dialog'
 import { useDialog } from './composables'
+import { dialogDeprecated } from './deprecated'
 
 defineOptions({
   name: 'VsDialog',
 })
 
 const props = defineProps(dialogProps)
-
-useDeprecated(
-  {
-    from: 'overflowHidden',
-    scope: 'vs-dialog',
-    version: 'VuesaxAlpha',
-    type: 'Prop',
-    ref: 'https://vuesax.space/components/dialog#lockScroll',
-    replacement: 'lockScroll',
-  },
-  computed(() => !!props.overflowHidden)
-)
 const emit = defineEmits(dialogEmits)
 
 const ns = useNamespace('dialog')
+
+dialogDeprecated(props)
 
 const {
   visible,
