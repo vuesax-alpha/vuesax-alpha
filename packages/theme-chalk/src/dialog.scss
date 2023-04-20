@@ -5,7 +5,7 @@
 .#{$namespace}-dialog-enter-active {
   transition: getCssVar(transition-ease);
   .#{$namespace}-dialog-original {
-    &:not(.#{$namespace}-dialog--fullScreen) {
+    &:not(.#{$namespace}-dialog--full-screen) {
       animation: rebound 0.43s;
     }
   }
@@ -22,7 +22,7 @@
   .#{$namespace}-dialog-original {
     transform: scale(0.7);
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, getCssVar('shadow-opacity'));
-    &--fullScreen {
+    &--full-screen {
       transform: translate(0, 8%) !important;
     }
   }
@@ -80,7 +80,7 @@
   overflow-x: hidden;
   padding-top: 80px;
   padding-bottom: 80px;
-  &.fullScreen {
+  &.full-screen {
     padding: 0px;
     overflow: hidden;
   }
@@ -99,7 +99,7 @@
     max-width: 800px;
     margin: auto;
   }
-  @include m(notCenter) {
+  @include m(not-center) {
     @include e(header) {
       display: block;
     }
@@ -110,7 +110,7 @@
       overflow: auto;
     }
   }
-  @include m(autoWidth) {
+  @include m(auto-width) {
     width: auto !important;
     min-width: auto !important;
     max-width: auto !important;
@@ -121,7 +121,7 @@
       border-radius: 0px;
     }
   }
-  @include m(notPadding) {
+  @include m(not-padding) {
     @include e(footer) {
       padding: 0px;
     }
@@ -136,7 +136,7 @@
   @include m(rebound) {
     animation: reboundClick 0.43s !important;
   }
-  @include m(fullScreen) {
+  @include m(full-screen) {
     width: calc(100% - 30px) !important;
     height: calc(100% - 30px) !important;
     max-width: none !important;

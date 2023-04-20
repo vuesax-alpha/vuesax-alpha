@@ -6,7 +6,7 @@ PROPS:
     description: Change the color of the component.
     default: primary
     link: null
-    usage: "#color"
+    usage: '#color'
     code: >
       <template>
         <vs-select
@@ -59,7 +59,7 @@ PROPS:
     description: Determine if the component is in the loading state and add an animation.
     default: false
     link: null
-    usage: "#loading"
+    usage: '#loading'
     code: >
       <vs-select placeholder="Success" loading>
         <vs-option label="Vuesax" value="1"> Vuesax </vs-option>
@@ -76,7 +76,7 @@ PROPS:
     description: Add a placeholder to the component.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <vs-select placeholder="Select" v-model="value">
         <vs-option label="Vuesax" value="1">
@@ -108,7 +108,7 @@ PROPS:
     description: Add a label to the composite select.
     default: null
     link: null
-    usage: "#label"
+    usage: '#label'
     code: >
       <vs-select
         label="Label"
@@ -142,7 +142,7 @@ PROPS:
     description: Add a placeholder that when in focus or with value becomes a label.
     default: null
     link: null
-    usage: "#label"
+    usage: '#label'
     code: >
       <vs-select
         label-placeholder="Label-placeholder"
@@ -177,7 +177,7 @@ PROPS:
     description: Add the functionality to filter the select options.
     default: false
     link: null
-    usage: "#filter"
+    usage: '#filter'
     code: >
       <vs-select
         filter
@@ -213,7 +213,7 @@ PROPS:
     description: Add the functionality of being able to select several options from a select.
     default: false
     link: null
-    usage: "#multiple"
+    usage: '#multiple'
     code: >
       <vs-select
         label="Multiple"
@@ -250,7 +250,7 @@ PROPS:
     description: Change the state of the component to the color provided.
     default: false
     link: null
-    usage: "#state"
+    usage: '#state'
     code: >
       <vs-select
         v-model="color.value"
@@ -353,7 +353,7 @@ PROPS:
     description: Determine if the chips in multiple are reduced to 2 elements.
     default: false
     link: null
-    usage: "#multiple"
+    usage: '#multiple'
     code: >
       <vs-select
         label="Multiple collapse chips"
@@ -394,7 +394,7 @@ PROPS:
     description: Set title for select group (required)
     default: null
     link: null
-    usage: "#group"
+    usage: '#group'
     code: >
       <vs-select label="Group" placeholder="Group" v-model="value">
         <vs-option-group title="Vuejs"> <!-- PROP: title is required -->
@@ -417,7 +417,7 @@ SLOTS:
     description: Add a message below the select.
     default: null
     link: null
-    usage: "#message"
+    usage: '#message'
     code: >
       <vs-select
         placeholder="Success"
@@ -449,7 +449,7 @@ SLOTS:
         </vs-option>
       </vs-select>
   - name: title
-    state: 
+    state:
       text: Removed
       type: warn
     type: slot
@@ -457,7 +457,7 @@ SLOTS:
     description: The vs-option-group component adds a title to the option group.
     default: null
     link: null
-    usage: "#group"
+    usage: '#group'
     code: >
       <vs-select
         label="Group"
@@ -496,7 +496,6 @@ SLOTS:
           </vs-option>
         </vs-option-group>
       </vs-select>
-
 ---
 
 # Select
@@ -510,7 +509,7 @@ SLOTS:
 Add a select element with the `vs-select` component and the `vs-option` sub component
 
 <template #example>
-  <select-default />
+<select-default />
 </template>
 
 <template #template>
@@ -534,7 +533,7 @@ Add a select element with the `vs-select` component and the `vs-option` sub comp
 Change the color of the component with the `color` property, the allowed values ​​are the main colors of vuesax and the colors (**RGB** and **HEX**)
 
 <template #example>
-  <select-color />
+<select-color />
 </template>
 
 <template #template>
@@ -558,7 +557,7 @@ Change the color of the component with the `color` property, the allowed values 
 Add a label to the select easily with the `label` property, you can also add a `label-placeholder` which as its name says is a placeholder that encourages label, and finally the placeholder with the `placeholder` property
 
 <template #example>
-  <select-label />
+<select-label />
 </template>
 
 <template #template>
@@ -582,7 +581,7 @@ Add a label to the select easily with the `label` property, you can also add a `
 Group options within the select with the sub-component `vs-option-group`, as the required prop is the `title` to add a title to the item group
 
 <template #example>
-  <select-group />
+<select-group />
 </template>
 
 <template #template>
@@ -606,7 +605,7 @@ Group options within the select with the sub-component `vs-option-group`, as the
 You can add the functionality of filtering options with the `filter` property, this property is a `boolean` so you can add it without any value
 
 <template #example>
-  <select-filter />
+<select-filter />
 </template>
 
 <template #template>
@@ -634,7 +633,7 @@ The value of the select must be an array
 :::
 
 <template #example>
-  <select-multiple />
+<select-multiple />
 </template>
 
 <template #template>
@@ -658,7 +657,7 @@ The value of the select must be an array
 Add a loading animation to the select with the `loading` property, this property is a `boolean` so you can add it without any value
 
 <template #example>
-  <select-loading />
+<select-loading />
 </template>
 
 <template #template>
@@ -686,7 +685,7 @@ This property can be used to indicate a missing field to the user or when someth
 :::
 
 <template #example>
-  <select-state />
+<select-state />
 </template>
 
 <template #template>
@@ -710,7 +709,7 @@ This property can be used to indicate a missing field to the user or when someth
 Add an item below the select showing a message to the user
 
 <template #example>
-  <select-message />
+<select-message />
 </template>
 
 <template #template>

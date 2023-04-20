@@ -39,7 +39,7 @@ PROPS:
     description: Add the functionality to hide and show the component based on whether the scroll is lowered or raised.
     default: false
     link: null
-    usage: "#hide-scroll"
+    usage: '#hide-scroll'
     code: >
       <vs-navbar hide-scroll>
         ...
@@ -50,7 +50,7 @@ PROPS:
     description: Change the text color of items to white.
     default: false
     link: null
-    usage: "#color"
+    usage: '#color'
     code: >
       <vs-navbar text-white>
         ...
@@ -61,7 +61,7 @@ PROPS:
     description: Change the border radius to 0 by making the component square.
     default: false
     link: null
-    usage: "#square"
+    usage: '#square'
     code: >
       <vs-navbar square>
         ...
@@ -72,7 +72,7 @@ PROPS:
     description: Determines if the component has padding and the user scrolling is removed making an effect.
     default: false
     link: null
-    usage: "#padding-scroll"
+    usage: '#padding-scroll'
     code: >
       <vs-navbar padding-scroll>
         ...
@@ -83,7 +83,7 @@ PROPS:
     description: Delete the active line in the component.
     default: false
     link: null
-    usage: "#not-line"
+    usage: '#not-line'
     code: >
       <vs-navbar not-line>
         ...
@@ -94,7 +94,7 @@ PROPS:
     description: Add the functionality that when the elements of this slot cannot be correctly they are visually removed.
     default: false
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <vs-navbar left-collapsed>
         ...
@@ -105,7 +105,7 @@ PROPS:
     description: Add the functionality that when the elements of this slot cannot be correctly they are visually removed.
     default: false
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <vs-navbar center-collapsed>
         ...
@@ -116,7 +116,7 @@ PROPS:
     description: Add the functionality that when the elements of this slot cannot be correctly they are visually removed.
     default: false
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <vs-navbar right-collapsed>
         ...
@@ -127,7 +127,7 @@ PROPS:
     description: Determines the element to which the scroll event will be requested.
     default: document
     link: null
-    usage: "#padding-scroll"
+    usage: '#padding-scroll'
     code: >
       <vs-navbar padding-scroll="#my-element">
         ...
@@ -138,7 +138,7 @@ PROPS:
     description: Determines if the component is in active status.
     default: false
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <vs-navbar-item active>
         ...
@@ -180,7 +180,7 @@ PROPS:
     type: String
     values: html-target
     description: Determine if the tab is a new one or if it replaces the current one.
-    default: "_blank"
+    default: '_blank'
     link: null
     usage: null
     code: >
@@ -195,7 +195,7 @@ SLOTS:
     description: Add the elements in the center of the component.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <vs-navbar v-model="active">
         <vs-navbar-item :active="active == 'guide'" id="guide">
@@ -208,7 +208,7 @@ SLOTS:
     description: Add the elements on the left side of the component.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <template #left>
         <img src="/logo2.png" alt="">
@@ -219,13 +219,12 @@ SLOTS:
     description: Add the elements on the right side of the component.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <template #right>
         <vs-button flat> Login </vs-button>
         <vs-button> Get Started </vs-button>
       </template>
-
 ---
 
 # Navbar
@@ -239,12 +238,12 @@ SLOTS:
 Quickly generate a menu with the `vs-navbar` component, as such the component is divided into 3 slots (**left**, **center** (default), **right**) with which you can determine the location of the elements, as sub components we have `vs-navbar-item` and` vs-navbar-group`
 
 ::: tip
-You can see a complete example and change the properties in real time 
+You can see a complete example and change the properties in real time
 [Here](/examples/navbar.html)
 :::
 
 <template #example>
-  <navbar-default />
+<navbar-default />
 </template>
 
 <template #template>
@@ -270,7 +269,7 @@ Change the component's color with the `color` property or by directly adding one
 if you want to change the text color to white you can do it with the property `text-white`
 
 <template #example>
-  <navbar-color />
+<navbar-color />
 </template>
 
 <template #template>
@@ -294,7 +293,7 @@ if you want to change the text color to white you can do it with the property `t
 Add functionality to hide navbar when user scroll down and show when upload
 
 <template #example>
-  <navbar-hideScroll />
+<navbar-hideScroll />
 </template>
 
 <template #template>
@@ -318,7 +317,7 @@ Add functionality to hide navbar when user scroll down and show when upload
 You can add a list of elements within an item with the `vs-navbar-group` component and within it add the `vs-navbar-item` components
 
 <template #example>
-  <navbar-group />
+<navbar-group />
 </template>
 
 <template #template>
@@ -342,7 +341,7 @@ You can add a list of elements within an item with the `vs-navbar-group` compone
 Add the functionality that the component has a padding up and down that when it is lowered the scroll is eliminated giving a pleasant effect
 
 <template #example>
-  <navbar-paddingScroll />
+<navbar-paddingScroll />
 </template>
 
 <template #template>
@@ -366,7 +365,7 @@ Add the functionality that the component has a padding up and down that when it 
 Remove the border-radius property by making the component square
 
 <template #example>
-  <navbar-square />
+<navbar-square />
 </template>
 
 <template #template>
@@ -390,7 +389,7 @@ Remove the border-radius property by making the component square
 Eliminates the active effect line of the component
 
 <template #example>
-  <navbar-notLine />
+<navbar-notLine />
 </template>
 
 <template #template>

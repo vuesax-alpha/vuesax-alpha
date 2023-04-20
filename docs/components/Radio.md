@@ -6,7 +6,7 @@ PROPS:
     description: Change the color of the radio.
     default: primary
     link: null
-    usage: "#color"
+    usage: '#color'
     code: >
       <vs-radio success v-model="picked" val="2">
         Success
@@ -18,7 +18,7 @@ PROPS:
     description: Determine if the component is in the disabled state.
     default: false
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <vs-radio disabled v-model="picked" val="3">
         Option C
@@ -30,7 +30,7 @@ PROPS:
     description: Determine if the component has a loading animation and is disabled.
     default: false
     link: null
-    usage: "#loading"
+    usage: '#loading'
     code: >
       <vs-radio loading v-model="picked" val="1">
         Option 1
@@ -42,7 +42,7 @@ PROPS:
     description: Determine the value of the radio input.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <vs-radio v-model="picked" val="1">
         Option A
@@ -55,7 +55,7 @@ SLOTS:
     description: Add a label to the component.
     default: null
     link: null
-    usage: "#label"
+    usage: '#label'
     code: >
       <vs-radio v-model="picked" val="1">
         Label
@@ -66,7 +66,7 @@ SLOTS:
     description: Add an icon inside the radio.
     default: null
     link: null
-    usage: "#icon"
+    usage: '#icon'
     code: >
       <vs-radio v-model="picked" val="1">
         Yen
@@ -74,7 +74,6 @@ SLOTS:
           <i class='bx bx-yen' ></i>
         </template>
       </vs-radio>
-
 ---
 
 # Radio
@@ -88,7 +87,7 @@ SLOTS:
 Add the radio type input with the component `<vs-radio />`
 
 <template #example>
-  <radio-default />
+<radio-default />
 </template>
 
 <template #template>
@@ -112,7 +111,7 @@ Add the radio type input with the component `<vs-radio />`
 <coloren />
 
 <template #example>
-  <radio-color />
+<radio-color />
 </template>
 
 <template #template>
@@ -136,7 +135,7 @@ Add the radio type input with the component `<vs-radio />`
 Add a label to the radio with the `default` slot, if you need the label to be before the radio you can use the `label-before` property
 
 <template #example>
-  <radio-label />
+<radio-label />
 </template>
 
 <template #template>
@@ -160,7 +159,7 @@ Add a label to the radio with the `default` slot, if you need the label to be be
 Add a loading animation to the component, when the radio has this property active it is as if it were in `disabled`
 
 <template #example>
-  <radio-loading />
+<radio-loading />
 </template>
 
 <template #template>
@@ -184,7 +183,7 @@ Add a loading animation to the component, when the radio has this property activ
 Add an icon inside the radio with the `icon` slot
 
 <template #example>
-  <radio-icons />
+<radio-icons />
 </template>
 
 <template #template>

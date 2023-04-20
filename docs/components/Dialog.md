@@ -6,7 +6,7 @@ PROPS:
     description: Determine if the dialogue is visible or hidden.
     default: false
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <vs-dialog v-model="active">
         ...
@@ -17,7 +17,7 @@ PROPS:
     description: By default the header centers the elements, with this property the centering is eliminated.
     default: false
     link: null
-    usage: "#type"
+    usage: '#type'
     code: >
       <vs-dialog not-center v-model="active">
         ...
@@ -28,7 +28,7 @@ PROPS:
     description: Determine the width of the dialog.
     default: null
     link: null
-    usage: "#type"
+    usage: '#type'
     code: >
       <vs-dialog width="550px" v-model="active">
         ...
@@ -39,7 +39,7 @@ PROPS:
     description: Add a loading animation to the dialog.
     default: false
     link: null
-    usage: "#loading"
+    usage: '#loading'
     code: >
       <vs-dialog loading v-model="active">
         ...
@@ -50,7 +50,7 @@ PROPS:
     description: Remove the close button from the dialog.
     default: false
     link: null
-    usage: "#not-close"
+    usage: '#not-close'
     code: >
       <vs-dialog not-close v-model="active">
         ...
@@ -61,7 +61,7 @@ PROPS:
     description: Makes the content a maximum high and gives the possibility to overflow the content add scroll.
     default: false
     link: null
-    usage: "#scroll"
+    usage: '#scroll'
     code: >
       <vs-dialog scroll v-model="active">
         ...
@@ -72,7 +72,7 @@ PROPS:
     description: When the dialog is opened, the page scroll is deleted.
     default: false
     link: null
-    usage: "#overflow-hidden-body"
+    usage: '#overflow-hidden-body'
     code: >
       <vs-dialog overflow-hidden v-model="active">
         ...
@@ -83,7 +83,7 @@ PROPS:
     description: It makes the dialog have an automatic width to its content.
     default: false
     link: null
-    usage: "#scroll"
+    usage: '#scroll'
     code: >
       <vs-dialog auto-width v-model="active">
         ...
@@ -94,7 +94,7 @@ PROPS:
     description: Eliminates the padding of the base elements of the dialog.
     default: false
     link: null
-    usage: "#not-padding"
+    usage: '#not-padding'
     code: >
       <vs-dialog not-padding v-model="active">
         ...
@@ -105,7 +105,7 @@ PROPS:
     description: Makes the dialog the size of the window.
     default: false
     link: null
-    usage: "#full-screen"
+    usage: '#full-screen'
     code: >
       <vs-dialog full-screen v-model="active">
         ...
@@ -116,7 +116,7 @@ PROPS:
     description: Makes all elements blur when the dialog opens.
     default: false
     link: null
-    usage: "#blur"
+    usage: '#blur'
     code: >
       <vs-dialog blur v-model="active">
         ...
@@ -127,7 +127,7 @@ PROPS:
     description: Remove the border radius from the dialog.
     default: false
     link: null
-    usage: "#square"
+    usage: '#square'
     code: >
       <vs-dialog square v-model="active">
         ...
@@ -143,16 +143,16 @@ PROPS:
       <vs-dialog prevent-close v-model="active">
         ...
       </vs-dialog>
-      
+
 EVENTS:
   - name: close
     type: Function
     values: null
-    description:	triggers when the Dialog closes
+    description: triggers when the Dialog closes
     default: null
     link: null
     usage: null
-    code: > 
+    code: >
       <vs-dialog @close="handleClose" v-model="active">
         ...
       </vs-dialog>
@@ -164,7 +164,7 @@ SLOTS:
     description: slot default of Dialog
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <vs-dialog>
         ...
@@ -175,7 +175,7 @@ SLOTS:
     description: slot header of Dialog
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <vs-dialog>
         <template #header>
@@ -188,14 +188,13 @@ SLOTS:
     description: slot footer of Dialog
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <vs-dialog>
         <template #footer>
           <h1>This is slot footer</h1>
         </template>
       </vs-dialog>
-
 ---
 
 # Dialog
@@ -209,7 +208,7 @@ SLOTS:
 It generates a Dialog with the `vs-dialog` component, this component is very customizable since it provides a slot to put and make any type of interface to the user's need
 
 <template #example>
-  <dialog-default />
+<dialog-default />
 </template>
 
 <template #template>
@@ -239,7 +238,7 @@ It generates a Dialog with the `vs-dialog` component, this component is very cus
 You can easily create the most common types of dialogs such as **Alert**, **Confirm** or **Prompt** using the different slots for the structure of the `header`,`default`, `footer` dialog
 
 <template #example>
-  <dialog-type />
+<dialog-type />
 </template>
 
 <template #template>
@@ -269,7 +268,7 @@ You can easily create the most common types of dialogs such as **Alert**, **Conf
 Add a loading animation to the dialog with the `loading` property
 
 <template #example>
-  <dialog-loading />
+<dialog-loading />
 </template>
 
 <template #template>
@@ -299,7 +298,7 @@ Add a loading animation to the dialog with the `loading` property
 You can remove the close button with the `not-close` property
 
 <template #example>
-  <dialog-notClose />
+<dialog-notClose />
 </template>
 
 <template #template>
@@ -329,7 +328,7 @@ You can remove the close button with the `not-close` property
 There are cases where you need a scroll because there is a lot of information within the dialog for this you can use the `scroll` property
 
 <template #example>
-  <dialog-scroll />
+<dialog-scroll />
 </template>
 
 <template #template>
@@ -359,7 +358,7 @@ There are cases where you need a scroll because there is a lot of information wi
 If you need to remove the page scroll when opening the dialog you can do it with the `overflow-hidden` property
 
 <template #example>
-  <dialog-overflowHidden />
+<dialog-overflowHidden />
 </template>
 
 <template #template>
@@ -389,7 +388,7 @@ If you need to remove the page scroll when opening the dialog you can do it with
 If you need to remove the padding from the dialog to make a more personalized interface you can do it with the `not-padding` property
 
 <template #example>
-  <dialog-notPadding />
+<dialog-notPadding />
 </template>
 
 <template #template>
@@ -419,7 +418,7 @@ If you need to remove the padding from the dialog to make a more personalized in
 You can nest as many `vs-dialog` as you need without problem
 
 <template #example>
-  <dialog-nested />
+<dialog-nested />
 </template>
 
 <template #template>
@@ -449,7 +448,7 @@ You can nest as many `vs-dialog` as you need without problem
 If you need the dialog to be the total window size you can do it with the `full-screen` property
 
 <template #example>
-  <dialog-fullScreen />
+<dialog-fullScreen />
 </template>
 
 <template #template>
@@ -479,7 +478,7 @@ If you need the dialog to be the total window size you can do it with the `full-
 You can add a blur style to all the elements behind the dialog with the `blur` property, this functionality depends on the css property [backdrop-filter](https://caniuse.com/#feat=css-backdrop-filter)
 
 <template #example>
-  <dialog-blur />
+<dialog-blur />
 </template>
 
 <template #template>
@@ -509,7 +508,7 @@ You can add a blur style to all the elements behind the dialog with the `blur` p
 Change the dialog style by removing the border radius and making it rectangular
 
 <template #example>
-  <dialog-square />
+<dialog-square />
 </template>
 
 <template #template>
@@ -539,7 +538,7 @@ Change the dialog style by removing the border radius and making it rectangular
 With the `prevent-close` property you do not close the dialog by clicking outside or pressing the **esc** key
 
 <template #example>
-  <dialog-preventClose />
+<dialog-preventClose />
 </template>
 
 <template #template>

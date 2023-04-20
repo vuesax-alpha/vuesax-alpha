@@ -6,7 +6,7 @@ PROPS:
     description: Determines the table values ​​that are selected.
     default: null
     link: null
-    usage: "#single-selected"
+    usage: '#single-selected'
     code: null
   - name: striped
     type: Boolean
@@ -14,7 +14,7 @@ PROPS:
     description: Add stripes to the gray tr.
     default: null
     link: null
-    usage: "#striped"
+    usage: '#striped'
     code: null
   - name: vs-tr:data
     type: Object
@@ -22,7 +22,7 @@ PROPS:
     description: when the functionality of selected is needed this property is needed since it is the object that is passed to the v-model.
     default: null
     link: null
-    usage: "#single-selected"
+    usage: '#single-selected'
     code: >
       <vs-tr
         v-for="tr in users"
@@ -37,7 +37,7 @@ PROPS:
     description: Determines if the component is in the selected state.
     default: false
     link: null
-    usage: "#single-selected"
+    usage: '#single-selected'
     code: >
       <vs-tr
         v-for="tr in users"
@@ -52,7 +52,7 @@ PROPS:
     description: Determine if the element is editable by adding underline and the pointer cursor.
     default: false
     link: null
-    usage: "#edit-data"
+    usage: '#edit-data'
     code: >
       <vs-td edit @click="edit = tr, editProp = 'name', editActive = true">
         {{ tr.name }}
@@ -63,7 +63,7 @@ PROPS:
     description: Add the sort arrows to the corresponding th.
     default: false
     link: null
-    usage: "#search-and-sort"
+    usage: '#search-and-sort'
     code: >
       <vs-th sort @click="users = sortData($event, users, 'name')">
         Name
@@ -74,7 +74,7 @@ PROPS:
     description: Change the color of the tr.
     default: null
     link: null
-    usage: "#state"
+    usage: '#state'
     code: >
       <vs-tr
         v-for="tr in users"
@@ -94,7 +94,7 @@ SLOTS:
     description: Space to put an element at the top of the table such as the input search.
     default: null
     link: null
-    usage: "#search-and-sort"
+    usage: '#search-and-sort'
     code: >
       <template #header>
         ...
@@ -105,7 +105,7 @@ SLOTS:
     description: Space representing thead element of the table where the `vs-th` components will be placed.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <template #thead>
         <vs-tr>
@@ -120,7 +120,7 @@ SLOTS:
     description: Represents the tbody element in the table and here we will put the `vs-tr` components.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <template #tbody>
         <vs-tr
@@ -138,7 +138,7 @@ SLOTS:
     description: Represents the interior of the tr when it is expanded.
     default: null
     link: null
-    usage: "#expand"
+    usage: '#expand'
     code: >
       <template #expand>
         <div class="con-content">
@@ -161,7 +161,7 @@ SLOTS:
     description: Change the item to display when there are no items in the table.
     default: null
     link: null
-    usage: "#search"
+    usage: '#search'
     code: >
       <template #notFound> Not Found </template>
 ---
@@ -456,10 +456,10 @@ See the [Example](#miscellaneous):
 ```ts
 /**
  * return [] if all items are in selected, otherwise return originalData
- * 
+ *
  * @param selected Array
  * @param originalData Array
- * 
+ *
  * @returns Array
  */
 export declare function toggleSelectAll<Source>(
@@ -477,22 +477,23 @@ See the [Example](#search-and-sort):
 
 ```ts
 type SortDataOptions<Source> = {
-  target: Ref<Element> | Element;
-  source: Source[];
-  key: keyof Source;
-  sortType?: "desc" | "esc";
+  target: Ref<Element> | Element
+  source: Source[]
+  key: keyof Source
+  sortType?: 'desc' | 'esc'
 }
 /**
  * return array was sorted
- * 
+ *
  * @param options SortDataOptions
- * 
+ *
  * @returns Array
  */
 export declare function sortData<Source>(
   options?: SortDataOptions<Source>
-): Source[];
+): Source[]
 ```
+
 </command>
 
 #### getSearch
@@ -503,14 +504,14 @@ See the [Example](#search-and-sort)
 ```ts
 /**
  * return the items that match the `search` in the entire array
- * 
+ *
  * @param source Array
  * @param search String
- * 
+ *
  * @returns Array
  */
 export declare function getSearch<Source>(
-  source: Source[], 
+  source: Source[],
   search: string
 ): Source[]
 ```
@@ -525,19 +526,20 @@ See the [Example](#pagination)
 ```ts
 /**
  * Pagination array - the elements of the page
- * 
+ *
  * @param source Array
  * @param page Number
  * @param maxItems Number maximum number of elements in a page
- * 
+ *
  * @returns Array
  */
 export declare function getPage<Source>(
-  source: Source[], 
+  source: Source[],
   page: number,
   maxItems: number
 ): Source[]
 ```
+
 </command>
 
 #### getLength
@@ -548,10 +550,10 @@ See the [Example](#pagination)
 ```ts
 /**
  * Pagination array - return the maximum length for pagination
- * 
+ *
  * @param source Array
  * @param maxItems Number
- * 
+ *
  * @returns Number
  */
 export declare function getLength<Source>(
@@ -559,6 +561,7 @@ export declare function getLength<Source>(
   maxItems: number
 ): number
 ```
+
 </command>
 </card>
 

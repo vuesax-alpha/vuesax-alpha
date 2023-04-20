@@ -6,7 +6,7 @@ PROPS:
     description: Add a title to the notification.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       this.$vs.notification({
         title: 'Documentation Vuesax 4.0+',
@@ -19,7 +19,7 @@ PROPS:
     description: Add the text to the notification.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       this.$vs.notification({
         title: 'Documentation Vuesax 4.0+',
@@ -32,7 +32,7 @@ PROPS:
     description: Change the position of the component.
     default: bottom-right
     link: null
-    usage: "#position"
+    usage: '#position'
     code: >
       const noti = this.$vs.notification({
         position: 'top-right',
@@ -46,7 +46,7 @@ PROPS:
     description: Change the base color of the entire component.
     default: null
     link: null
-    usage: "#color"
+    usage: '#color'
     code: >
       const noti = this.$vs.notification({
         color: 'primary',
@@ -60,7 +60,7 @@ PROPS:
     description: Add a color border to the notification.
     default: null
     link: null
-    usage: "#border"
+    usage: '#border'
     code: >
       const noti = this.$vs.notification({
         border: 'success',
@@ -74,7 +74,7 @@ PROPS:
     description: Add an icon to the notification.
     default: null
     link: null
-    usage: "#icons"
+    usage: '#icons'
     code: >
       const noti = this.$vs.notification({
         icon: `<i class='bx bxs-time'></i>`,
@@ -88,7 +88,7 @@ PROPS:
     description: Determine the time until the notification is hidden (none determines not to hide).
     default: 4000 (4s)
     link: null
-    usage: "#duration"
+    usage: '#duration'
     code: >
       const noti = this.$vs.notification({
         duration: 10000,
@@ -132,7 +132,7 @@ PROPS:
     description: Change the notification style to flat.
     default: false
     link: null
-    usage: "#flat"
+    usage: '#flat'
     code: >
       const noti = this.$vs.notification({
         title: 'Documentation Vuesax 4.0+',
@@ -162,7 +162,7 @@ PROPS:
     description: Change the position of the notification attached to the nearest corner.
     default: false
     link: null
-    usage: "#sticky"
+    usage: '#sticky'
     code: >
       const noti = this.$vs.notification({
         title: 'Documentation Vuesax 4.0+',
@@ -176,7 +176,7 @@ PROPS:
     description: Determine if the notification is square and remove the border-radius.
     default: false
     link: null
-    usage: "#square"
+    usage: '#square'
     code: >
       const noti = this.$vs.notification({
         title: 'Documentation Vuesax 4.0+',
@@ -190,7 +190,7 @@ PROPS:
     description: Determine the width of the notification.
     default: 340px
     link: null
-    usage: "#width"
+    usage: '#width'
     code: >
       const noti = this.$vs.notification({
         title: 'Documentation Vuesax 4.0+',
@@ -204,7 +204,7 @@ PROPS:
     description: Determine if the notification has a loading animation.
     default: false
     link: null
-    usage: "#loading"
+    usage: '#loading'
     code: >
       const noti = this.$vs.notification({
         title: 'Documentation Vuesax 4.0+',
@@ -218,7 +218,7 @@ PROPS:
     description: Add a progress bar to the notification.
     default: null
     link: null
-    usage: "#progress"
+    usage: '#progress'
     code: >
       const noti = this.$vs.notification({
         title: 'Documentation Vuesax 4.0+',
@@ -232,7 +232,7 @@ PROPS:
     description: Remove padding from notification.
     default: 20px
     link: null
-    usage: "#example"
+    usage: '#example'
     code: >
       const noti = this.$vs.notification({
         title: 'Documentation Vuesax 4.0+',
@@ -260,7 +260,7 @@ PROPS:
     description: Change the content of the notification to the one provided as a value (something similar to a vue slot).
     default: null
     link: null
-    usage: "#example"
+    usage: '#example'
     code: >
       <script>
         import user from './user.vue'
@@ -419,7 +419,7 @@ It generates a notification with the vuesax function (`notification`), to use th
 <command>
 
 ```js
-import { notification } from "vuesax-alpha"
+import { notification } from 'vuesax-alpha'
 
 notification({ ...options })
 ```
@@ -431,7 +431,7 @@ The necessary properties are the `title` and the` text` or failing the `content`
 :::
 
 <template #example>
-  <notification-default />
+<notification-default />
 </template>
 
 <template #template>
@@ -464,7 +464,7 @@ supported values
 - `bottom-center`
 
 <template #example>
-  <notification-position />
+<notification-position />
 </template>
 
 <template #template>
@@ -504,7 +504,7 @@ Allowed values ​​are:
 - HEX
 
 <template #example>
-  <notification-color />
+<notification-color />
 </template>
 
 <template #template>
@@ -528,7 +528,7 @@ Allowed values ​​are:
 Add the icon provided as the value of the `icon` property to the notification
 
 <template #example>
-  <notification-icons />
+<notification-icons />
 </template>
 
 <template #template>
@@ -558,7 +558,7 @@ Add the icon provided as the value of the `icon` property to the notification
 Add a progress bar to the notification, if the value of the `progress` property is `auto` be determined by the `duration` property to reach 100%, if you want the value to be manual you can add a number of the (0 - 100) being 100 100% and use the function in the `changeProgress` instance and change the value to the one provided as the first parameter
 
 <template #example>
-  <notification-progress />
+<notification-progress />
 </template>
 
 <template #template>
@@ -590,7 +590,7 @@ Change the duration of the notification with the `duration` property, the value 
 if you need the notification to never be hidden, the duration value would be `none`
 
 <template #example>
-  <notification-duration />
+<notification-duration />
 </template>
 
 <template #template>
@@ -620,7 +620,7 @@ if you need the notification to never be hidden, the duration value would be `no
 Change the style of the notification with the `square` property so as not to have `border-radius` making it a rectangle
 
 <template #example>
-  <notification-square />
+<notification-square />
 </template>
 
 <template #template>
@@ -650,7 +650,7 @@ Change the style of the notification with the `square` property so as not to hav
 Change the notification style with the `border` property by adding a border of the color provided as the value
 
 <template #example>
-  <notification-border />
+<notification-border />
 </template>
 
 <template #template>
@@ -680,7 +680,7 @@ Change the notification style with the `border` property by adding a border of t
 Change the style of the notification with the `flat` property, having this property changes to lighter colors and the text of the color of the `color` property, this property is a boolean so you can only use the value `true`
 
 <template #example>
-  <notification-flat />
+<notification-flat />
 </template>
 
 <template #template>
@@ -710,7 +710,7 @@ Change the style of the notification with the `flat` property, having this prope
 Add a loading animation to the notification, having this property will only show the animation and the content will be hidden
 
 <template #example>
-  <notification-loading />
+<notification-loading />
 </template>
 
 <template #template>
@@ -742,7 +742,7 @@ Change the size of the notification to the total screen with the property `width
 If you need the notification to have an automatic size to your content you can do it with the value `auto`
 
 <template #example>
-  <notification-allWidth />
+<notification-allWidth />
 </template>
 
 <template #template>
@@ -759,7 +759,7 @@ If you need the notification to have an automatic size to your content you can d
 
 <template #style>
 
-@[code{28-39  }](../.vuepress/components/notification/allWidth.vue)
+@[code{28-39 }](../.vuepress/components/notification/allWidth.vue)
 
 </template>
 
@@ -772,7 +772,7 @@ If you need the notification to have an automatic size to your content you can d
 You can add a style to the paste component to the nearest corner with the `sticky` property, this property is a `boolean` po which can only have the value `true`
 
 <template #example>
-  <notification-sticky />
+<notification-sticky />
 </template>
 
 <template #template>
@@ -802,7 +802,7 @@ You can add a style to the paste component to the nearest corner with the `stick
 You can do great things with this component and some others from vuesax, to add any element within the notification we have the property `content` this property can only receive an imported component and that is what it will generate within the notification
 
 <template #example>
-  <notification-example />
+<notification-example />
 </template>
 
 <template #template>

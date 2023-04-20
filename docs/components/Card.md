@@ -6,7 +6,7 @@ PROPS:
     description: Change the style of the letter and the position of the internals.
     default: null
     link: null
-    usage: "#type-5"
+    usage: '#type-5'
     code: >
       <vs-card type="5">
         <template #title>
@@ -36,7 +36,7 @@ SLOTS:
     description: Add text to the card in the section determined by the card type.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <template #text>
         <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. </p>
@@ -47,7 +47,7 @@ SLOTS:
     description: Add the title to the card in the section determined by the type of card.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <template #title>
         <h3>Pot with a plant</h3>
@@ -58,7 +58,7 @@ SLOTS:
     description: Add the buttons to the card in the section determined by the type of card.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <template #buttons>
         <vs-button class="btn-chat" shadow primary>
@@ -72,7 +72,7 @@ SLOTS:
     description: Add the interactions to the card in the section determined by the card type.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <template #interactions>
         <vs-button danger icon>
@@ -89,7 +89,7 @@ SLOTS:
     description: Add the image or video to the card in the section determined by the type of card.
     default: null
     link: null
-    usage: "#default"
+    usage: '#default'
     code: >
       <template #img>
         <img src="/foto5.png" alt="">
@@ -116,7 +116,7 @@ Add a card with the `vs-card` component for the structure of this component we h
 - img
 
 <template #example>
-  <card-default />
+<card-default />
 </template>
 
 <template #template>
@@ -134,7 +134,7 @@ Add a card with the `vs-card` component for the structure of this component we h
 Completely change the style of the letter with the property `type` and the value` 2`
 
 <template #example>
-  <card-type2 />
+<card-type2 />
 </template>
 
 <template #template>
@@ -152,7 +152,7 @@ Completely change the style of the letter with the property `type` and the value
 Completely change the style of the letter with the property `type` and the value` 3`
 
 <template #example>
-  <card-type3 />
+<card-type3 />
 </template>
 
 <template #template>
@@ -170,7 +170,7 @@ Completely change the style of the letter with the property `type` and the value
 Completely change the style of the letter with the `type` property and the value` 4`
 
 <template #example>
-  <card-type4 />
+<card-type4 />
 </template>
 
 <template #template>
@@ -188,7 +188,7 @@ Completely change the style of the letter with the `type` property and the value
 Change the style of the letter completely with the `type` property and the value` 5`
 
 <template #example>
-  <card-type5 />
+<card-type5 />
 </template>
 
 <template #template>
@@ -206,7 +206,7 @@ Change the style of the letter completely with the `type` property and the value
 To have a group of scrolling cards you can use the `vs-card-group` component
 
 <template #example>
-  <card-group />
+<card-group />
 </template>
 
 <template #template>

@@ -35,6 +35,7 @@ $ pnpm install vuesax-alpha@old
 ```
 
 And import it to use
+
 ```js
 import { createApp } from 'vue'
 import './style.css'
@@ -84,6 +85,7 @@ app.mount('#app')
 ```
 
 #### Dark theme
+
 To enable it, you can create a switch to toggle `dark` class of html.
 
 If you only need dark mode, just add dark class for html.
@@ -97,8 +99,8 @@ If you only need dark mode, just add dark class for html.
 
 If you want to toggle it, i recommend [useDark | VueUse](https://vueuse.org/core/usedark/).
 
-
 #### Volar support
+
 If you use volar, please add the global component type definition to compilerOptions.types in tsconfig.json.
 
 ```json
@@ -163,4 +165,5 @@ Vuesax Alpha is open source software licensed as
 [MIT](https://github.com/vuesax-alphax/vuesax-alpha/blob/main/LICENSE).
 
 ---
+
 This project is built based on the [Element Plus :heart: ](https://github.com/element-plus/element-plus) project template.
