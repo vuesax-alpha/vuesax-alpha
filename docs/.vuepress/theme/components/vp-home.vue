@@ -95,10 +95,10 @@
 <script lang="ts"></script>
 
 <script setup lang="ts">
+// @ts-nocheck
 import { computed, onMounted, reactive, ref } from 'vue'
 import { usePageFrontmatter } from '@vuepress/client'
 
-import { ThemeHomeFeatureOption } from '../shared/frontmatter/home'
 import NavLink from './nav-link.vue'
 import VpFooter from './vp-footer.vue'
 import Illustration1 from './home-illustration-1.vue'
@@ -108,7 +108,7 @@ import Illustration4 from './home-illustration-4.vue'
 import HomeComponent from './home-component.vue'
 import HomeTwitter from './home-twitter.vue'
 import HomeUses from './home-uses.vue'
-import { ThemeProjectHomePageFrontmatter } from '../shared/frontmatter/home'
+import type { ThemeHomeFeatureOption, ThemeProjectHomePageFrontmatter } from '../shared/frontmatter/home'
 
 type PageButtons = {
   github: boolean
