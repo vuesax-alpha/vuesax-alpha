@@ -105,15 +105,15 @@ export const useDialog = (props: DialogProps, emit: DialogEmitFn) => {
   const dialogKls = computed(() => [
     ns.b('original'),
     useBaseComponent(props.color),
+    ns.m(props.shape),
     {
-      [ns.m('fullScreen')]: props.fullScreen,
+      [ns.m('full-screen')]: props.fullScreen,
       [ns.m('rebound')]: rebound.value,
-      [ns.m('notPadding')]: props.notPadding,
-      [ns.m('square')]: props.shape === 'square',
-      [ns.m('autoWidth')]: props.autoWidth,
+      [ns.m('not-padding')]: props.notPadding,
+      [ns.m('auto-width')]: props.autoWidth,
       [ns.m('scroll')]: props.scroll,
       [ns.m('loading')]: props.loading,
-      [ns.m('notCenter')]: props.notCenter,
+      [ns.m('not-center')]: props.notCenter,
     },
   ])
 
