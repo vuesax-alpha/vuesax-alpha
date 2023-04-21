@@ -48,7 +48,11 @@
       <i class="bx bxl-dribbble" />
     </vs-button>
 
-    <vs-button icon color="google-plus">
+    <vs-button
+      icon
+      color="google-plu
+    s"
+    >
       <i class="bx bxl-google-plus" />
     </vs-button>
 

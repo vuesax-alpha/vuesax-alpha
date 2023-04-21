@@ -12,7 +12,7 @@
   ],
   "homepage": "https://vuesax.space/",
   "bugs": {
-    "url": "https://github.com/vuesax-alphax/vuesax-alpha/issues"
+    "url": "https://github.com/vuesax-alpha/vuesax-alpha/issues"
   },
   "license": "MIT",
   "main": "lib/index.js",
@@ -36,7 +36,7 @@
   "jsdelivr": "dist/index.full.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vuesax-alphax/vuesax-alpha.git"
+    "url": "git+https://github.com/vuesax-alpha/vuesax-alpha.git"
   },
   "publishConfig": {
     "access": "public"

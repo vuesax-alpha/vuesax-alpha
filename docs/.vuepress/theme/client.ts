@@ -3,8 +3,8 @@ import { defineClientConfig } from '@vuepress/client'
 
 import { codesandboxContextKey, vsThemeKey } from './type'
 
-import Layout from './layouts/layout.vue'
-import NotFound from './layouts/not-found.vue'
+import Layout from './layouts/Layout.vue'
+import NotFound from './layouts/NotFound.vue'
 import type { codesandboxContext, vsThemeContext } from './type'
 // import Sidebar from "./layouts/Sidebar.vue";
 

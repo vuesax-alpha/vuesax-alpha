@@ -29,14 +29,14 @@ PROPS:
 
         const active = ref<boolean>(true);
       </script>
-    usage: "#closable"
+    usage: '#closable'
   - name: v-model:hidden-content
     type: boolean
     values: boolean
     description: With this property you can hide the content of the alert. You can bind this with v-model
     default: false
     link: null
-    usage: "#hidden-content"
+    usage: '#hidden-content'
     code: >
       <template>
         <vs-alert hidden-content>
@@ -56,7 +56,7 @@ PROPS:
     description: Change the color of the component and some of its sub components.
     default: primary
     link: null
-    usage: "#color"
+    usage: '#color'
     code: >
       <vs-alert color="success">
         <template #title>
@@ -74,7 +74,7 @@ PROPS:
     description: Change the style of all the alert.
     default: default
     link: null
-    usage: "#solid"
+    usage: '#solid'
     code: >
       <vs-alert solid>
         <template #title>
@@ -92,7 +92,7 @@ PROPS:
     description: Determine the page that is active (this property is linked to the slots="page-{n}").
     default: null
     link: null
-    usage: "#pagination"
+    usage: '#pagination'
     code: >
       <template>
         <vs-alert :page="1" >
@@ -110,7 +110,7 @@ PROPS:
     description: Add a progress bar to the alert and the value is the percentage of width.
     default: null
     link: null
-    usage: "#progress-bar"
+    usage: '#progress-bar'
     code: >
       <vs-alert progress="70">
         <template #title>
@@ -128,7 +128,7 @@ PROPS:
     description: Add a button to close the alert (it is necessary to use v-model).
     default: false
     link: null
-    usage: "#closable"
+    usage: '#closable'
     code: >
       <template>
         <vs-button flat @click="active=!active">
@@ -159,7 +159,7 @@ SLOTS:
     description: Add an icon to the alert.
     default: null
     link: null
-    usage: "#icon"
+    usage: '#icon'
     code: >
       <template>
         <vs-alert>
@@ -182,7 +182,7 @@ SLOTS:
     description: Add a title to the alert.
     default: null
     link: null
-    usage: "#title"
+    usage: '#title'
     code: >
       <template>
         <div class="center">
@@ -204,7 +204,7 @@ SLOTS:
     description: Add the pages to the alert component if it is page one would be (slot="page-1").
     default: null
     link: null
-    usage: "#pagination"
+    usage: '#pagination'
     code: >
       <template>
         <vs-alert v-model:page="page" >
@@ -224,7 +224,7 @@ SLOTS:
     description: Add a footer to the alert component.
     default: null
     link: null
-    usage: "#footer"
+    usage: '#footer'
     code: >
       <vs-alert>
         <template #title>

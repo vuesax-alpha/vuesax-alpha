@@ -1,7 +1,7 @@
 <template>
   <div class="center">
     <vs-card-group>
-      <vs-card v-for="card in 6" :key="card">
+      <vs-card v-for="card in 6" :key="card" @click="handleClick">
         <template #title>
           <h3>Pot with a plant</h3>
         </template>
@@ -25,8 +25,11 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
-
+<script lang="ts" setup>
+const handleClick = () => {
+  // console.log('click')
+}
+</script>
 <style lang="scss" scoped>
 .btn-chat {
   i {

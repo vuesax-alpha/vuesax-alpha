@@ -1,5 +1,5 @@
 <template>
-  <code-copied :copied="copied" :text="'Copied'" />
+  <CodeCopied :copied="copied" :text="'Copied'" />
   <div class="command">
     <div v-if="isMultipleSlot" class="tabs">
       <svg
@@ -32,11 +32,15 @@
       </svg>
 
       <div ref="$tab" class="active" />
-      <template v-for="(slot, index) of slotsNames" :key="index">
-        <div :ref="slotRefs.set" class="tab" @click="activeSlot = index">
-          {{ slot }}
-        </div>
-      </template>
+      <div
+        v-for="(slot, index) of slotsNames"
+        :key="index"
+        :ref="slotRefs.set"
+        class="tab"
+        @click="activeSlot = index"
+      >
+        {{ slot }}
+      </div>
     </div>
     <div class="copy">
       <div
@@ -69,7 +73,7 @@
 <script lang="ts" setup>
 import { ref, useSlots, watchPostEffect } from 'vue'
 import { useClipboard, useTemplateRefsList } from '@vueuse/core'
-import CodeCopied from '../components/code-copied.vue'
+import CodeCopied from '../components/CodeCopied.vue'
 
 const slots = useSlots()
 

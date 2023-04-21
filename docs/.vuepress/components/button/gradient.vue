@@ -1,12 +1,12 @@
 <template>
   <div class="center">
-    <vs-button type="gradient" :active="active == 0" @click="active = 0">
+    <vs-button gradient :active="active == 0" @click="active = 0">
       Active
     </vs-button>
-    <vs-button type="gradient" :active="active == 1" @click="active = 1">
+    <vs-button gradient :active="active == 1" @click="active = 1">
       Default
     </vs-button>
-    <vs-button type="gradient" disabled> Disabled </vs-button>
+    <vs-button gradient disabled> Disabled </vs-button>
   </div>
 </template>
 

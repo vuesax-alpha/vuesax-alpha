@@ -5,26 +5,22 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "strict": true,
-    "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "lib": ["ESNext", "DOM", "WebWorker"],
-    "skipLibCheck": true,
-    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
-    "outDir": "dist",
-    "declaration": true,
-    "types": ["vite/client", "@vuepress/client/types", "../typings/components"],
+    "skipLibCheck": true,
+    "lib": ["WebWorker"],
     "paths": {
       "vuesax-alpha": ["../packages/vuesax-alpha"],
-      "~/*": ["./.vuepress/theme/*"],
-      "@vuesax-alpha/docs": ["./.vuepress"]
+      "~/*": ["./.vuepress/theme/*"]
     }
   },
-  "include": ["**/*", ".vuepress/**/*"],
+  "types": ["../typings/components"],
+  "jsx": "preserve",
+  "include": ["**/*", ".vitepress/**/*"],
   "exclude": ["node_modules"]
 }

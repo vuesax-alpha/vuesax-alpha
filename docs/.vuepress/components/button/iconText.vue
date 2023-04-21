@@ -4,30 +4,15 @@
       <i class="bx bx-home-alt" /> Home
     </vs-button>
 
-    <vs-button
-      color="success"
-      type="flat"
-      :active="active == 1"
-      @click="active = 1"
-    >
+    <vs-button success flat :active="active == 1" @click="active = 1">
       <i class="bx bxs-phone-call" /> Call
     </vs-button>
 
-    <vs-button
-      color="danger"
-      type="border"
-      :active="active == 2"
-      @click="active = 2"
-    >
+    <vs-button danger border :active="active == 2" @click="active = 2">
       <i class="bx bxs-heart" /> Like
     </vs-button>
 
-    <vs-button
-      color="warn"
-      type="gradient"
-      :active="active == 3"
-      @click="active = 3"
-    >
+    <vs-button warn gradient :active="active == 3" @click="active = 3">
       <i class="bx bxs-bell-ring" /> Notifications
     </vs-button>
 

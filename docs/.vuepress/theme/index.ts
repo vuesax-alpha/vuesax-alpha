@@ -49,7 +49,6 @@ export const vuesaxAlphaTheme = (
       gitPlugin({
         updatedTime: true,
         createdTime: true,
-        contributors: true,
       }),
     ],
   }

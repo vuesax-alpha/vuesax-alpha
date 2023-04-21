@@ -45,16 +45,16 @@ To use vuesax in your vuejs project, add this code:
 <command>
 
 ```ts
-import { createApp } from "vue";
-import Vuesax from "vuesax-alpha";
-import App from "./App.vue";
+import { createApp } from 'vue'
+import Vuesax from 'vuesax-alpha'
+import App from './App.vue'
 
-import "vuesax-alpha/dist/vuesax.css"; // Vuesax styles
+import 'vuesax-alpha/dist/vuesax.css' // Vuesax styles
 
-const app = createApp(App);
-app.use(Vuesax);
+const app = createApp(App)
+app.use(Vuesax)
 
-app.mount("#app");
+app.mount('#app')
 ```
 
 </command>
@@ -70,16 +70,16 @@ There are cases that in your project you only need some components of vuesax and
 <command>
 
 ```ts
-import { createApp } from "vue";
-import { vsAlert, vsInput, vsPopup } from "vuesax-alpha";
-import App from "./App.vue";
+import { createApp } from 'vue'
+import { vsAlert, vsInput, vsPopup } from 'vuesax-alpha'
+import App from './App.vue'
 
-import "vuesax-alpha/dist/vuesax.css"; // Vuesax styles
+import 'vuesax-alpha/dist/vuesax.css' // Vuesax styles
 
-const app = createApp(App);
-app.use(vsPopup).use(vsAlert).use(vsInput);
+const app = createApp(App)
+app.use(vsPopup).use(vsAlert).use(vsInput)
 
-app.mount("#app");
+app.mount('#app')
 ```
 
 </command>
@@ -116,9 +116,9 @@ You can use vuesax by loading it via cdn by adding a `<script>` tag to your proj
     <script src="https://unpkg.com/vuesax-alpha@0.0.20/dist/vuesax-alpha.js"></script>
 
     <script>
-      const { createApp } = Vue;
+      const { createApp } = Vue
 
-      createApp().mount("#app");
+      createApp().mount('#app')
     </script>
   </body>
 </html>

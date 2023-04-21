@@ -30,10 +30,10 @@
       </div>
     </transition>
 
-    <header-notification />
+    <HeaderNotification />
 
-    <client-only>
-      <vp-navbar
+    <ClientOnly>
+      <Navbar
         v-if="shouldShowNavbar"
         v-show="!pageFrontmatter.navbar"
         :class="{
@@ -43,44 +43,45 @@
         @toggle-sidebar="toggleSidebar"
       />
       <template v-else />
-    </client-only>
+    </ClientOnly>
 
     <div class="sidebar-mask" @click="toggleSidebar(false)" />
 
-    <vp-home v-if="pageFrontmatter.home" />
+    <Home v-if="pageFrontmatter.home" />
 
-    <docs-home
+    <DocsHome
       v-else-if="pageFrontmatter.docsHome"
       :sidebar-items="sidebarItems"
     />
 
-    <vp-license v-else-if="pageFrontmatter.license" />
+    <License v-else-if="pageFrontmatter.license" />
 
-    <vp-branding v-else-if="pageFrontmatter.branding" />
+    <Branding v-else-if="pageFrontmatter.branding" />
 
-    <navbar-layout v-else-if="pageFrontmatter.navbar" />
+    <NavbarLayout v-else-if="pageFrontmatter.navbar" />
 
-    <vp-page v-else :sidebar-items="sidebarItems">
+    <Page v-else :sidebar-items="sidebarItems">
       <template #top>
         <slot name="page-top" />
       </template>
       <template #bottom>
         <slot name="page-bottom" />
       </template>
-    </vp-page>
+    </Page>
 
-    <vp-sidebar :sidebar="sidebarItems">
+    <Sidebar :sidebar="sidebarItems">
       <template #top>
         <slot name="sidebar-top" />
       </template>
       <template #bottom>
         <slot name="sidebar-bottom" />
       </template>
-    </vp-sidebar>
+    </Sidebar>
 
-    <client-only>
-      <vp-config v-if="!pageFrontmatter.navbar" />
-    </client-only>
+    <ClientOnly>
+      <Config v-if="!pageFrontmatter.navbar" />
+      <template v-else />
+    </ClientOnly>
   </div>
 </template>
 
@@ -88,7 +89,6 @@
 import { computed, onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import {
-  ClientOnly,
   usePageData,
   usePageFrontmatter,
   usePageHeadTitle,
@@ -101,16 +101,16 @@ import {
 } from '@vuepress/plugin-theme-data/client'
 import { resolveSidebarItems } from '../util'
 
-import VpHome from '../components/vp-home.vue'
-import VpNavbar from '../components/vp-navbar.vue'
-import VpPage from '../components/vp-page.vue'
-import DocsHome from '../components/docs-home.vue'
-import VpConfig from '../components/vp-config.vue'
-import VpLicense from '../components/vp-license.vue'
-import VpSidebar from '../components/vp-sidebar.vue'
-import HeaderNotification from '../components/header-notification.vue'
-import VpBranding from '../components/vp-branding.vue'
-import NavbarLayout from './navbar-layout.vue'
+import Home from '../components/Home.vue'
+import Navbar from '../components/Navbar.vue'
+import Page from '../components/Page.vue'
+import DocsHome from '../components/DocsHome.vue'
+import Config from '../components/Config.vue'
+import License from '../components/License.vue'
+import Sidebar from '../components/Sidebar.vue'
+import HeaderNotification from '../components/HeaderNotification.vue'
+import Branding from '../components/Branding.vue'
+import NavbarLayout from './NavbarLayout.vue'
 import type { LayoutFrontmatter } from '../shared/frontmatter/layout'
 import type { VuesaxAlphaThemeOptions } from '../vuesaxAlphaTheme'
 import type { codesandboxContext } from '../type'

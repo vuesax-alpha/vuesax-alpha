@@ -1,14 +1,9 @@
-import { resolve } from 'path'
 import { defineUserConfig } from 'vuepress'
-import { enNavbar, enSearchData, enSidebar } from './metadata'
-
+import { enNavbar, enSearchData, enSidebar } from './locale'
 import { vuesaxAlphaTheme } from './theme/index'
 
 export default defineUserConfig({
   open: true,
-  alias: {
-    '~/*': resolve(__dirname, 'theme'),
-  },
   locales: {
     '/': {
       lang: 'en-US',
@@ -81,9 +76,9 @@ export default defineUserConfig({
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
   ],
   theme: vuesaxAlphaTheme({
-    repo: 'vuesax-alphax/vuesax-alpha',
-    docsBranch: 'dev',
-    docsDir: 'docs',
+    repo: 'vuesax-alpha/vuesax-alpha',
+    docsBranch: 'main',
+    docsDir: 'packages/documents',
     docsRepo: 'https://github.com/vuesax-alphax/vuesax-alpha/',
     editLink: true,
     editLinkPattern: 'https://github.com/vuesax-alphax/vuesax-alpha/',
@@ -107,7 +102,6 @@ export default defineUserConfig({
     },
     lastUpdated: true,
     lastUpdatedText: 'Last Updated',
-    contributors: true,
   }),
   markdown: {
     html: true,

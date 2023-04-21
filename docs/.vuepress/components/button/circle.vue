@@ -1,34 +1,28 @@
 <template>
   <div class="center">
-    <vs-button shape="circle" :active="active == 0" @click="active = 0">
+    <vs-button circle :active="active == 0" @click="active = 0">
       Home
     </vs-button>
 
     <vs-button
-      shape="circle"
+      circle
       icon
-      color="success"
-      type="flat"
+      success
+      flat
       :active="active == 1"
       @click="active = 1"
     >
       <i class="bx bxs-phone-call" />
     </vs-button>
 
-    <vs-button
-      shape="circle"
-      color="danger"
-      type="border"
-      :active="active == 2"
-      @click="active = 2"
-    >
+    <vs-button circle danger border :active="active == 2" @click="active = 2">
       <i class="bx bxs-heart" /> Like
     </vs-button>
 
     <vs-button
-      shape="circle"
+      circle
       color="warn"
-      type="gradient"
+      gradient
       :active="active == 3"
       @click="active = 3"
     >
@@ -36,10 +30,10 @@
     </vs-button>
 
     <vs-button
-      shape="circle"
+      circle
       icon
       color="#7d33ff"
-      type="relief"
+      relief
       :active="active == 5"
       @click="active = 5"
     >
@@ -47,10 +41,10 @@
     </vs-button>
 
     <vs-button
-      shape="circle"
+      circle
       icon
       color="rgb(59,222,200)"
-      type="gradient"
+      gradient
       :active="active == 6"
       @click="active = 6"
     >

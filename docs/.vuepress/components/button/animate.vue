@@ -7,22 +7,17 @@
       </template>
     </vs-button>
 
-    <vs-button type="flat" color="success" animation-type="vertical">
+    <vs-button flat success animation-type="vertical">
       Message
       <template #animate> <i class="bx bx-mail-send" /> Send </template>
     </vs-button>
 
-    <vs-button
-      type="gradient"
-      style="min-width: 60px"
-      warn
-      animation-type="scale"
-    >
+    <vs-button gradient style="min-width: 60px" warn animation-type="scale">
       <i class="bx bxs-shopping-bag" />
       <template #animate> Store </template>
     </vs-button>
 
-    <vs-button icon type="relief" color="danger" animation-type="rotate">
+    <vs-button icon relief danger animation-type="rotate">
       <i class="bx bx-like" />
       <template #animate>
         <i class="bx bxs-like" />

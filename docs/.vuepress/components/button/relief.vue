@@ -1,12 +1,12 @@
 <template>
   <div class="center">
-    <vs-button type="relief" :active="active == 0" @click="active = 0">
+    <vs-button relief :active="active == 0" @click="active = 0">
       Active
     </vs-button>
-    <vs-button type="relief" :active="active == 1" @click="active = 1">
+    <vs-button relief :active="active == 1" @click="active = 1">
       Default
     </vs-button>
-    <vs-button type="relief" disabled> Disabled </vs-button>
+    <vs-button relief disabled> Disabled </vs-button>
   </div>
 </template>
 

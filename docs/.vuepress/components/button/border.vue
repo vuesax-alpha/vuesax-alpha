@@ -1,12 +1,12 @@
 <template>
   <div class="center">
-    <vs-button type="border" :active="active == 0" @click="active = 0">
+    <vs-button border :active="active == 0" @click="active = 0">
       Active
     </vs-button>
-    <vs-button type="border" :active="active == 1" @click="active = 1">
+    <vs-button border :active="active == 1" @click="active = 1">
       Default
     </vs-button>
-    <vs-button type="border" disabled> Disabled </vs-button>
+    <vs-button border disabled> Disabled </vs-button>
   </div>
 </template>
 

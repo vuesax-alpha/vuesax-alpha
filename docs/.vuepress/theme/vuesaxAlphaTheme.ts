@@ -1,4 +1,4 @@
-import type { DefaultThemeOptions } from 'vuepress'
+import type { DefaultThemeOptions } from '@vuepress/theme-default'
 import type { Theme } from '@vuepress/core'
 
 export declare interface VuesaxAlphaThemeOptions extends DefaultThemeOptions {
