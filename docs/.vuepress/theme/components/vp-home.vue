@@ -108,7 +108,49 @@ import Illustration4 from './home-illustration-4.vue'
 import HomeComponent from './home-component.vue'
 import HomeTwitter from './home-twitter.vue'
 import HomeUses from './home-uses.vue'
-import type { ThemeHomeFeatureOption, ThemeProjectHomePageFrontmatter } from '../shared/frontmatter/home'
+import type { PageFrontmatter } from 'vuepress-vite'
+
+type ThemeHomeActionOption = {
+  /**
+   * Action name
+   */
+  text: string
+
+  /**
+   * Action link
+   */
+  link: string
+}
+
+type ThemeHomeFeature = {
+  /**
+   * Feature name
+   */
+  title: string
+
+  /**
+   * Feature description
+   */
+  details: string
+}
+
+type ThemeHomeFeatureOption = ThemeHomeFeature & {
+  /**
+   * Feature actions
+   */
+  action?: ThemeHomeActionOption
+}
+
+type ThemeProjectHomePageFrontmatter = PageFrontmatter & {
+  home: true
+  heroText?: string
+  tagline?: string
+
+  action: ThemeHomeActionOption
+  features?: ThemeHomeFeatureOption[]
+  suscribe?: string
+  premiumThemes?: ThemeHomeFeature
+}
 
 type PageButtons = {
   github: boolean
