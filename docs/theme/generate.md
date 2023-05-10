@@ -1,3 +1,0 @@
-# Generate
-
-## change default Colors
