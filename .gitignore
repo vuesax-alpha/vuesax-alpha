@@ -19,3 +19,5 @@ packages/vuesax-alpha/version.ts
 cypress/screenshots/*
 cypress/videos/*
 tmp
+cache
+temp

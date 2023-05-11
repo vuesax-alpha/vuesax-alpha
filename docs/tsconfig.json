@@ -1,26 +1,23 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "useDefineForClassFields": true,
     "module": "ESNext",
     "moduleResolution": "Node",
-    "strict": true,
-    "sourceMap": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "noImplicitAny": false,
     "skipLibCheck": true,
     "lib": ["WebWorker"],
     "paths": {
       "vuesax-alpha": ["../packages/vuesax-alpha"],
-      "~/*": ["./.vuepress/theme/*"]
-    }
+      "~/*": ["./.vitepress/vitepress/*"]
+    },
+    "types": ["../typings/components"],
+    "jsx": "preserve"
   },
-  "types": ["../typings/components"],
-  "jsx": "preserve",
   "include": ["**/*", ".vitepress/**/*"],
   "exclude": ["node_modules"]
 }

@@ -1,3 +1,0 @@
----
-docsHome: true
----
