@@ -125,7 +125,7 @@ export const getVsColor = (color?: string, namespace = 'vs'): string => {
     const rgb = hexToRgb(color)
     newColor = `${rgb?.r}, ${rgb?.g}, ${rgb?.b}`
   } else if (isVsColor(color as VuesaxColor)) {
-    newColor = `--${namespace}-${color}`
+    newColor = `var(--${namespace}-${color})`
   } else if (isRGBNumbers) {
     newColor = color
   }
@@ -138,14 +138,14 @@ export const setVsCssVar = (
   el?: HTMLElement,
   namespace = 'vs'
 ) => {
-  if (!el) {
+  if (!el && document?.documentElement) {
     document.documentElement.style.setProperty(
       `--${namespace}-${propertyName}`,
       value
     )
   } else {
-    if (el.nodeName !== '#comment') {
-      el.style.setProperty(`--${namespace}-${propertyName}`, value)
+    if (el?.nodeName !== '#comment') {
+      el?.style.setProperty(`--${namespace}-${propertyName}`, value)
     }
   }
 }
