@@ -1,20 +1,20 @@
 <template>
   <footer
-    @click="$emit('toggleCode')"
     :title="active ? 'Hide code' : 'View code'"
     class="footer-code"
+    @click="$emit('toggleCode')"
   >
-    <i class="bx bx-hide"></i>
+    <i class="bx bx-hide" />
   </footer>
 </template>
 
 <script setup lang="ts">
 defineProps<{
   active?: boolean
-}>();
+}>()
 defineEmits<{
-  (event: 'toggleCode'): void;
-}>();
+  (event: 'toggleCode'): void
+}>()
 </script>
 
 <style lang="scss">

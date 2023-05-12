@@ -2,18 +2,18 @@
   <div class="search-box" :class="{ focused, showSuggestions }">
     <div class="con-input">
       <input
-        aria-label="Search"
+        ref="$input"
         v-model="query"
+        aria-label="Search"
         :class="{ focused: focused }"
         :placeholder="placeholder"
         autocomplete="off"
-        spellcheck="false" 
-        @focus="(focused = true), emits('focus')"
-        @blur="(focused = false), emits('blur')"
+        spellcheck="false"
+        @focus=";(focused = true), emits('focus')"
+        @blur=";(focused = false), emits('blur')"
         @keyup.enter="go(focusIndex)"
         @keyup.up="onUp"
         @keyup.down="onDown"
-        ref="$input"
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -34,8 +34,9 @@
         @mouseleave="unfocus"
       >
         <li
-          class="suggestion"
           v-for="(suggestion, i) in suggestions"
+          :key="i"
+          class="suggestion"
           :class="{ focused: i === focusIndex }"
           @mousedown="go(i)"
           @mouseenter="focus(i)"
@@ -45,10 +46,10 @@
               {{ suggestion.title || suggestion.path }}
             </span>
             <span v-if="suggestion.header" class="header">
-              <i class="bx bx-chevron-right"></i>
+              <i class="bx bx-chevron-right" />
               {{ suggestion.header }}
             </span>
-            <template v-else></template>
+            <template v-else />
           </router-link>
         </li>
       </ul>
@@ -57,165 +58,162 @@
 </template>
 
 <script setup lang="ts">
-import {
-  useRouteLocale,
-} from "@vuepress/client";
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { useRouteLocale } from '@vuepress/client'
 // @ts-ignore
-import { useThemeData } from "@vuepress/plugin-theme-data/client";
-import { ensureLeadingSlash, removeEndingSlash } from "@vuepress/shared";
-import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
-import { useRouter } from "vue-router";
+import { useThemeData } from '@vuepress/plugin-theme-data/client'
+import { ensureLeadingSlash, removeEndingSlash } from '@vuepress/shared'
+import { useRouter } from 'vue-router'
 
-import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
+import type { VuesaxAlphaThemeOptions } from '../vuesaxAlphaTheme'
 
 const emits = defineEmits<{
-  (event: "showSuggestions", active: boolean): void;
-  (event: "focus"): void;
-  (event: "blur"): void;
-}>();
+  (event: 'showSuggestions', active: boolean): void
+  (event: 'focus'): void
+  (event: 'blur'): void
+}>()
 
-const router = useRouter();
-const themeData = useThemeData<VuesaxAlphaThemeOptions>();
-const routeLocale = useRouteLocale();
+const router = useRouter()
+const themeData = useThemeData<VuesaxAlphaThemeOptions>()
+const routeLocale = useRouteLocale()
 
-const SEARCH_MAX_SUGGESTIONS = themeData.value.searchMaxSuggestions || 5;
-const SEARCH_HOTKEYS = ["s", "/"];
+const SEARCH_MAX_SUGGESTIONS = themeData.value.searchMaxSuggestions || 5
+const SEARCH_HOTKEYS = ['s', '/']
 
-const query = ref<string>("");
-const focused = ref<boolean>(false);
-const focusIndex = ref<number>(0);
-const placeholder = ref<string>("");
+const query = ref<string>('')
+const focused = ref<boolean>(false)
+const focusIndex = ref<number>(0)
+const placeholder = ref<string>('')
 
-const $input = ref<HTMLElement>()!;
+const $input = ref<HTMLElement>()!
 
 const showSuggestions = computed(() => {
-  const active = focused.value && suggestions.value?.length;
-  return !!active;
-});
+  const active = focused.value && suggestions.value?.length
+  return !!active
+})
 
 const matches = ({ title }: { title: string }) =>
-  title.toLowerCase().indexOf(query.value) > -1;
+  title.toLowerCase().includes(query.value)
 
 const suggestions = computed(
   (): {
-    title: string;
-    path: string;
-    header?: string;
+    title: string
+    path: string
+    header?: string
   }[] => {
-    const _query = query.value.trim().toLowerCase();
-    const searchData = themeData.value.searchData?.[routeLocale.value];
+    const _query = query.value.trim().toLowerCase()
+    const searchData = themeData.value.searchData?.[routeLocale.value]
 
     if (!_query || !searchData) {
-      return [];
+      return []
     }
 
     const res: {
-      title: string;
-      path: string;
-      header?: string;
-    }[] = [];
+      title: string
+      path: string
+      header?: string
+    }[] = []
 
-    for (let i = 0; i < searchData.length; i++) {
-      if (res.length >= SEARCH_MAX_SUGGESTIONS) break;
+    for (const page of searchData) {
+      if (res.length >= SEARCH_MAX_SUGGESTIONS) break
 
-      const page = searchData[i];
       if (matches(page)) {
-        const path = removeEndingSlash(ensureLeadingSlash(page.path));
+        const path = removeEndingSlash(ensureLeadingSlash(page.path))
         res.push({
           title: page.title,
           path,
-        });
+        })
       }
       if (page.headers) {
         for (let j = 0; j < page.headers.length; j++) {
-          if (res.length >= SEARCH_MAX_SUGGESTIONS) break;
-          const h = page.headers[j];
+          if (res.length >= SEARCH_MAX_SUGGESTIONS) break
+          const h = page.headers[j]
           if (matches(h)) {
-            const path = removeEndingSlash(ensureLeadingSlash(page.path));
+            const path = removeEndingSlash(ensureLeadingSlash(page.path))
             res.push({
               title: page.title,
               path: `${path}#${h.slug}`,
               header: h.title,
-            });
+            })
           }
         }
       }
     }
-    return res;
+    return res
   }
-);
+)
 
 // make suggestions align right when there are not enough items
 const alignRight = computed(() => {
-  const navCount = (themeData.value.navbar || []).length;
-  const repo = themeData.value.repo ? 1 : 0;
-  return navCount + repo <= 2;
-});
+  const navCount = (themeData.value.navbar || []).length
+  const repo = themeData.value.repo ? 1 : 0
+  return navCount + repo <= 2
+})
 
 watch([focused, suggestions], () => {
-  const active = focused.value && suggestions.value?.length;
-  emits("showSuggestions", !!active);
-});
+  const active = focused.value && suggestions.value?.length
+  emits('showSuggestions', !!active)
+})
 
 const onHotkey = (event: KeyboardEvent) => {
   if (
     event.srcElement === document.body &&
     SEARCH_HOTKEYS.includes(event.key)
   ) {
-    $input.value!.focus();
-    event.preventDefault();
+    $input.value!.focus()
+    event.preventDefault()
   }
-};
+}
 
 const onUp = () => {
   if (showSuggestions.value) {
     if (focusIndex.value > 0) {
-      focusIndex.value--;
+      focusIndex.value--
     } else {
-      focusIndex.value = suggestions.value.length - 1;
+      focusIndex.value = suggestions.value.length - 1
     }
   }
-};
+}
 
 const onDown = () => {
   if (showSuggestions.value) {
     if (focusIndex.value < suggestions.value.length - 1) {
-      focusIndex.value++;
+      focusIndex.value++
     } else {
-      focusIndex.value = 0;
+      focusIndex.value = 0
     }
   }
-};
+}
 
 const go = (i: number) => {
   if (!showSuggestions.value) {
-    return;
+    return
   }
-  router.push(suggestions.value[i].path);
-  query.value = "";
-  focusIndex.value = 0;
-};
+  router.push(suggestions.value[i].path)
+  query.value = ''
+  focusIndex.value = 0
+}
 
 const focus = (index: number) => {
-  focusIndex.value = index;
-};
+  focusIndex.value = index
+}
 
 const unfocus = () => {
-  focusIndex.value = -1;
-};
+  focusIndex.value = -1
+}
 
 onMounted(() => {
-  placeholder.value = themeData.value.searchPlaceholder || "";
-  document.addEventListener("keydown", onHotkey);
-});
+  placeholder.value = themeData.value.searchPlaceholder || ''
+  document.addEventListener('keydown', onHotkey)
+})
 
 onBeforeUnmount(() => {
-  document.removeEventListener("keydown", onHotkey);
-});
+  document.removeEventListener('keydown', onHotkey)
+})
 </script>
 
 <style scoped lang="scss">
-@import "../styles/use";
+@import '../styles/use';
 
 .fade-enter-active,
 .fade-leave-active {
@@ -241,7 +239,7 @@ onBeforeUnmount(() => {
   &.showSuggestions {
     .con-input {
       input {
-        background: -color("theme-bg2");
+        background: -color('theme-bg2');
       }
     }
   }
@@ -255,13 +253,13 @@ onBeforeUnmount(() => {
       width: 20px;
       pointer-events: none;
       transition: all 0.2s ease;
-      fill: -color("theme-color");
+      fill: -color('theme-color');
     }
   }
   input {
     cursor: text;
     width: 15rem;
-    color: -color("theme-color");
+    color: -color('theme-color');
     border: 1px solid darken($borderColor, 10%);
     display: inline-block;
     border-radius: 2rem;
@@ -280,7 +278,7 @@ onBeforeUnmount(() => {
     opacity: 1;
     border-radius: 14px 5px 14px 14px;
     &::placeholder {
-      color: -color("theme-color");
+      color: -color('theme-color');
     }
     &:focus {
       width: 25rem;
@@ -291,7 +289,7 @@ onBeforeUnmount(() => {
     }
   }
   .suggestions {
-    background: -color("theme-layout");
+    background: -color('theme-layout');
     width: 100%;
     position: absolute;
     bottom: 0px;
@@ -317,18 +315,18 @@ onBeforeUnmount(() => {
     cursor: pointer;
     transition: all 0.25s ease;
     &:hover {
-      background: -color("theme-bg") !important;
+      background: -color('theme-bg') !important;
     }
     a {
       display: flex;
       align-items: center;
       justify-content: flex-start;
       white-space: normal;
-      color: -color("theme-color");
+      color: -color('theme-color');
       box-icon {
         width: 17px;
         height: 17px;
-        fill: -color("theme-color");
+        fill: -color('theme-color');
         margin-right: 5px;
       }
       .page-title {
@@ -346,7 +344,7 @@ onBeforeUnmount(() => {
     }
     &.focused {
       a {
-        color: -color("theme-color");
+        color: -color('theme-color');
       }
     }
   }

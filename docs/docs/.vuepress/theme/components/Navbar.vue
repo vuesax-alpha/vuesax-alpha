@@ -1,5 +1,5 @@
 <template>
-  <header class="navbar" ref="$el">
+  <header ref="$el" class="navbar">
     <SidebarButton @toggle-sidebar="emits('toggle-sidebar')" />
 
     <router-link
@@ -78,99 +78,98 @@
           target="_blank"
           href="https://github.com/vuesax-alphax/vuesax-alpha"
         >
-          <i class="bx bxl-github"></i>
+          <i class="bx bxl-github" />
         </a>
         <a
           title="Facebook"
           target="_blank"
           href="https://www.facebook.com/thinh.onichan"
         >
-          <i class="bx bxl-facebook"></i>
+          <i class="bx bxl-facebook" />
         </a>
       </div>
 
       <SearchBox
-        @focus="focused = true"
-        @blur="focused = false"
-        @showSuggestions="handleShowSuggestions"
         v-if="
           themeData.search !== false && pageData.frontmatter.search !== false
         "
+        @focus="focused = true"
+        @blur="focused = false"
+        @show-suggestions="handleShowSuggestions"
       />
-      <template v-else></template>
+      <template v-else />
     </div>
   </header>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
-import { usePageData, useSiteLocaleData } from "@vuepress/client";
+import { onMounted, ref } from 'vue'
+import { usePageData, useSiteLocaleData } from '@vuepress/client'
 // @ts-ignore
-import { useThemeData } from "@vuepress/plugin-theme-data/client";
+import { useThemeData } from '@vuepress/plugin-theme-data/client'
 
-import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
-import SidebarButton from "./SidebarButton.vue";
-import NavLinks from "./NavLinks.vue";
-import SearchBox from "./SearchBox.vue";
+import SidebarButton from './SidebarButton.vue'
+import NavLinks from './NavLinks.vue'
+import SearchBox from './SearchBox.vue'
+import type { VuesaxAlphaThemeOptions } from '../vuesaxAlphaTheme'
 
 const emits = defineEmits<{
-  (event: "toggle-sidebar"): void;
-}>();
+  (event: 'toggle-sidebar'): void
+}>()
 
-const themeData = useThemeData<VuesaxAlphaThemeOptions>();
-const siteLocaleData = useSiteLocaleData();
-const pageData = usePageData();
+const themeData = useThemeData<VuesaxAlphaThemeOptions>()
+const siteLocaleData = useSiteLocaleData()
+const pageData = usePageData()
 
-const linksWrapMaxWidth = ref<number | null>(null);
-const showSuggestions = ref<boolean>(false);
-const focused = ref<boolean>(false);
+const linksWrapMaxWidth = ref<number | null>(null)
+const showSuggestions = ref<boolean>(false)
+const focused = ref<boolean>(false)
 
-const $el = ref<HTMLElement>()!;
+const $el = ref<HTMLElement>()!
 
 const css = (el: HTMLElement, property: string) => {
   // NOTE: Known bug, will return 'auto' if style value is 'auto'
-  const win = el.ownerDocument.defaultView;
+  const win = el.ownerDocument.defaultView
   // null means not to return pseudo styles
   // @ts-ignore
-  return win?.getComputedStyle(el)[property];
-};
+  return win?.getComputedStyle(el)[property]
+}
 
 onMounted(() => {
-  const MOBILE_DESKTOP_BREAKPOINT = 719; // refer to config.styl
+  const MOBILE_DESKTOP_BREAKPOINT = 719 // refer to config.styl
   const NAVBAR_VERTICAL_PADDING =
-    parseInt(css($el.value!, "paddingLeft")) +
-    parseInt(css($el.value!, "paddingRight"));
+    Number.parseInt(css($el.value!, 'paddingLeft')) +
+    Number.parseInt(css($el.value!, 'paddingRight'))
 
   const handleLinksWrapWidth = () => {
     if (document.documentElement.clientWidth < MOBILE_DESKTOP_BREAKPOINT) {
-      linksWrapMaxWidth.value = null;
+      linksWrapMaxWidth.value = null
     } else {
-      linksWrapMaxWidth.value =
-        $el.value!.offsetWidth - NAVBAR_VERTICAL_PADDING;
+      linksWrapMaxWidth.value = $el.value!.offsetWidth - NAVBAR_VERTICAL_PADDING
     }
-  };
-  handleLinksWrapWidth();
-  window.addEventListener("resize", handleLinksWrapWidth, false);
+  }
+  handleLinksWrapWidth()
+  window.addEventListener('resize', handleLinksWrapWidth, false)
 
-  window.addEventListener("scroll", () => {
+  window.addEventListener('scroll', () => {
     if (window.pageYOffset > 0) {
-      $el.value?.classList.add("fixed");
+      $el.value?.classList.add('fixed')
     } else {
-      $el.value?.classList.remove("fixed");
+      $el.value?.classList.remove('fixed')
     }
-  });
-});
+  })
+})
 
 const handleShowSuggestions = (active: boolean) => {
-  showSuggestions.value = active;
-};
+  showSuggestions.value = active
+}
 </script>
 
 <style lang="scss">
-@import "../styles/use";
+@import '../styles/use';
 
 .logo-nav {
-  fill: -color("theme-color");
+  fill: -color('theme-color');
   height: 28px;
 }
 .home-link {
@@ -225,7 +224,7 @@ const handleShowSuggestions = (active: boolean) => {
   }
   &.fixed {
     border-radius: 0px;
-    background: -color("theme-layout");
+    background: -color('theme-layout');
   }
   .logo {
     height: $navbarHeight - 1.4rem;
@@ -236,7 +235,7 @@ const handleShowSuggestions = (active: boolean) => {
   .site-name {
     font-size: 1.3rem;
     font-weight: 600;
-    color: -color("theme-color");
+    color: -color('theme-color');
     position: relative;
   }
   .links {

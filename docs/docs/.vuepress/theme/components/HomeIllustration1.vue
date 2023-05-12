@@ -6,36 +6,36 @@
     </div>
 
     <div class="con-text">
-      <h2 v-html="feature.title"></h2>
+      <h2 v-html="feature.title" />
 
-      <p v-html="feature.details"></p>
+      <p v-html="feature.details" />
 
       <template v-if="feature.action">
-        <button @click="handleRouter(feature.action?.link)" class="btn-action">
+        <button class="btn-action" @click="handleRouter(feature.action?.link)">
           {{ feature.action.text }}
         </button>
       </template>
-      <template v-else></template>
+      <template v-else />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useRouter } from "vue-router";
-import { ThemeHomeFeatureOption } from "../shared/frontmatter/home";
+import { useRouter } from 'vue-router'
+import type { ThemeHomeFeatureOption } from '../shared/frontmatter/home'
 
-defineProps<{ feature: ThemeHomeFeatureOption }>();
+defineProps<{ feature: ThemeHomeFeatureOption }>()
 
-const router = useRouter();
+const router = useRouter()
 
 const handleRouter = (link?: string) => {
-	if (!link) return;
-	router.push(link);
+  if (!link) return
+  router.push(link)
 }
 </script>
 
 <style scoped lang="scss">
-@import "../styles/use";
+@import '../styles/use';
 
 .btn-action {
   display: inline-block;
@@ -44,17 +44,17 @@ const handleRouter = (link?: string) => {
   padding: 13px 25px;
   border-radius: 15px;
   box-sizing: border-box;
-  transition: all 0.25s ease,  background-color 0.1s ease;
-  box-shadow: 0px 0px 0px 0px -color("primary", 0.6);
+  transition: all 0.25s ease, background-color 0.1s ease;
+  box-shadow: 0px 0px 0px 0px -color('primary', 0.6);
   font-size: 0.8rem;
-  background: -color("primary");
+  background: -color('primary');
   border: 0px;
   margin-top: 10px;
   i {
     display: none;
   }
   &:hover {
-    box-shadow: 0px 10px 20px -10px -color("primary", 0.6);
+    box-shadow: 0px 10px 20px -10px -color('primary', 0.6);
     transform: translate(0, -5px);
   }
 }

@@ -19,7 +19,7 @@
         target="_blank"
         href="https://www.patreon.com/bePatron?c=1567892"
       >
-        <i class="bx bx-plus"></i>
+        <i class="bx bx-plus" />
       </a>
     </div>
     <p>
@@ -35,13 +35,12 @@
 
 <script setup lang="ts">
 const openUrl = () => {
-  open("https://www.patreon.com/bePatron?c=1567892");
-};
+  open('https://www.patreon.com/bePatron?c=1567892')
+}
 </script>
 
 <style lang="scss">
-@import "../styles/use";
-
+@import '../styles/use';
 
 .darken {
   .con-patrons {

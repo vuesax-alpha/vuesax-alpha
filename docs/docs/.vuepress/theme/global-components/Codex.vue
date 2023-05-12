@@ -1,19 +1,19 @@
 <template>
   <CodeCopied :copied="copied" />
-  <div class="code" ref="$el">
+  <div ref="$el" class="code">
     <header class="header-codex">
       <ul>
         <li
-          title="Codepen"
           v-if="codepen"
-          @click="openCodepen"
+          title="Codepen"
           class="con-link"
+          @click="openCodepen"
         >
-          <i class="bx bxl-codepen"></i>
+          <i class="bx bxl-codepen" />
         </li>
-        <template v-else></template>
+        <template v-else />
 
-        <li title="Codesandbox" v-if="codesandbox" @click="openCodesandbox">
+        <li v-if="codesandbox" title="Codesandbox" @click="openCodesandbox">
           <svg
             t="1514359261842"
             class="icon"
@@ -29,14 +29,18 @@
             <path
               d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z"
               p-id="9198"
-            ></path>
+            />
           </svg>
         </li>
-        <template v-else></template>
+        <template v-else />
 
-        <li title="Copy code" :class="{ copied }" @click="copy($slotRefs[activeSlot].textContent)">
-          <i v-if="!copied" class="bx bx-clipboard"></i>
-          <i v-else class="bx bx-check"></i>
+        <li
+          title="Copy code"
+          :class="{ copied }"
+          @click="copy($slotRefs[activeSlot].textContent)"
+        >
+          <i v-if="!copied" class="bx bx-clipboard" />
+          <i v-else class="bx bx-check" />
         </li>
 
         <li
@@ -45,18 +49,14 @@
           class="not-a con-link"
           @click="toggleCode"
         >
-          <i v-if="!active" class="bx bx-code-alt"></i>
+          <i v-if="!active" class="bx bx-code-alt" />
 
-          <i v-else class="bx bx-hide"></i>
+          <i v-else class="bx bx-hide" />
         </li>
       </ul>
     </header>
-    <transition
-      @before-enter="beforeEnter"
-      @enter="enter"
-      @leave="leave"
-    >
-      <div ref="$codex" v-show="active" class="con-code">
+    <transition @before-enter="beforeEnter" @enter="enter" @leave="leave">
+      <div v-show="active" ref="$codex" class="con-code">
         <ul ref="$ul" class="ul-codes">
           <li
             v-if="$slots.template"
@@ -65,7 +65,7 @@
           >
             Template
           </li>
-          <template v-else></template>
+          <template v-else />
 
           <li
             v-if="$slots.script"
@@ -74,7 +74,7 @@
           >
             Script
           </li>
-          <template v-else></template>
+          <template v-else />
 
           <li
             v-if="$slots.style"
@@ -83,7 +83,7 @@
           >
             Style
           </li>
-          <template v-else></template>
+          <template v-else />
 
           <li
             v-if="Object.keys($slots).length > 1"
@@ -92,63 +92,62 @@
           >
             All
           </li>
-          <template v-else></template>
+          <template v-else />
         </ul>
         <div class="con-codes">
           <CardTransitionCodes>
             <div
-              :ref="(el) => $slotRefs[0] = el"
-              key="0"
               v-if="activeSlot == 0"
+              :ref="(el) => ($slotRefs[0] = el)"
+              key="0"
               class="slot-template slots"
             >
-              <slot name="template"></slot>
+              <slot name="template" />
 
               <CardFooter :active="active" @toggle-code="toggleCode" />
             </div>
-            <template v-else></template>
+            <template v-else />
           </CardTransitionCodes>
           <CardTransitionCodes>
             <div
-              :ref="(el) => $slotRefs[1] = el"
-
-              key="1"
               v-if="activeSlot == 1"
+              :ref="(el) => ($slotRefs[1] = el)"
+              key="1"
               class="slot-script slots"
             >
-              <slot name="script"></slot>
+              <slot name="script" />
 
               <CardFooter :active="active" @toggle-code="toggleCode" />
             </div>
-            <template v-else></template>
+            <template v-else />
           </CardTransitionCodes>
           <CardTransitionCodes>
             <div
-              :ref="(el) => $slotRefs[2] = el"
-              key="2"
               v-if="activeSlot == 2"
+              :ref="(el) => ($slotRefs[2] = el)"
+              key="2"
               class="slot-style slots"
             >
-              <slot name="style"></slot>
+              <slot name="style" />
 
               <CardFooter :active="active" @toggle-code="toggleCode" />
             </div>
-            <template v-else></template>
+            <template v-else />
           </CardTransitionCodes>
           <CardTransitionCodes>
             <div
-              :ref="(el) => $slotRefs[3] = el"
-              key="3"
               v-if="activeSlot == 3"
+              :ref="(el) => ($slotRefs[3] = el)"
+              key="3"
               class="slot-all slots"
             >
-              <slot name="template"></slot>
-              <slot name="script"></slot>
-              <slot name="style"></slot>
+              <slot name="template" />
+              <slot name="script" />
+              <slot name="style" />
 
               <CardFooter :active="active" @toggle-code="toggleCode" />
             </div>
-            <template v-else></template>
+            <template v-else />
           </CardTransitionCodes>
         </div>
       </div>
@@ -157,93 +156,83 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  inject,
-  nextTick,
-  onMounted,
-  ref,
-  watch,
-} from "vue";
-import { useClipboard } from "@vueuse/core";
+import { inject, nextTick, onMounted, ref, watch } from 'vue'
+import { useClipboard } from '@vueuse/core'
 
-import CardFooter from "../components/CardFooter.vue";
-import CardTransitionCodes from "../components/CardTransitionCodes.vue";
-import CodeCopied from "../components/CodeCopied.vue";
-import {
-  activeSlotType,
-  codesandboxContextKey,
-  vsThemeKey,
-} from "../type";
+import CardFooter from '../components/CardFooter.vue'
+import CardTransitionCodes from '../components/CardTransitionCodes.vue'
+import CodeCopied from '../components/CodeCopied.vue'
+import { codesandboxContextKey, vsThemeKey } from '../type'
+import type { activeSlotType } from '../type'
 
 const props = defineProps<{
-  codepen?: string;
-  codesandbox?: string;
-}>();
+  codepen?: string
+  codesandbox?: string
+}>()
 
-const $el = ref<HTMLElement>()!;
-const $ul = ref<HTMLElement>()!;
-const $codex = ref<HTMLElement>()!;
-const $slotRefs = ref<any[]>([]);
+const $el = ref<HTMLElement>()!
+const $ul = ref<HTMLElement>()!
+const $codex = ref<HTMLElement>()!
+const $slotRefs = ref<any[]>([])
 
-const active = ref<boolean>(false);
-const activeSlot = ref<activeSlotType>(0);
+const active = ref<boolean>(false)
+const activeSlot = ref<activeSlotType>(0)
 
-const $vsTheme = inject(vsThemeKey)!;
-const $codesandbox = inject(codesandboxContextKey)!;
+const $vsTheme = inject(vsThemeKey)!
+const $codesandbox = inject(codesandboxContextKey)!
 
-const { copied, copy } = useClipboard({ legacy: true });
+const { copied, copy } = useClipboard({ legacy: true })
 
 const toggleCode = () => {
-  active.value = !active.value;
-};
+  active.value = !active.value
+}
 
 const openCodepen = () => {
-  window.open(props.codepen);
-};
+  window.open(props.codepen)
+}
 
 const openCodesandbox = () => {
-  document.body.style.overflow = "hidden";
-  $codesandbox.url = props.codesandbox;
-};
+  document.body.style.overflow = 'hidden'
+  $codesandbox.url = props.codesandbox
+}
 
 // animation
 const beforeEnter = (el: HTMLElement) => {
-  el.style.height = `0`;
-};
+  el.style.height = `0`
+}
 
 const enter = (el: HTMLElement) => {
-  let h = el.scrollHeight;
-  el.style.height = h - 1 + "px";
-};
+  const h = el.scrollHeight
+  el.style.height = `${h - 1}px`
+}
 
 const leave = (el: HTMLElement) => {
-  el.style.height = "0px";
-};
+  el.style.height = '0px'
+}
 
 watch(
   () => $vsTheme.openCode,
   (val) => {
-    active.value = val;
-    localStorage.openCode = val;
+    active.value = val
+    localStorage.openCode = val
   }
-);
+)
 
 watch(activeSlot, () => {
   nextTick(() => {
-    let ul = $ul.value?.scrollHeight;
-    let h = $slotRefs.value[activeSlot.value].scrollHeight;
-    $codex.value!.style.height = h + ul - 1 + "px";
-  });
-});
+    const ul = $ul.value?.scrollHeight
+    const h = $slotRefs.value[activeSlot.value].scrollHeight
+    $codex.value!.style.height = `${h + ul - 1}px`
+  })
+})
 
 onMounted(() => {
-  $vsTheme.openCode = localStorage.openCode === 'true';
-});
-
+  $vsTheme.openCode = localStorage.openCode === 'true'
+})
 </script>
 
 <style lang="scss">
-@import "../styles/use";
+@import '../styles/use';
 
 .slot-all {
   & > div {
@@ -253,7 +242,7 @@ onMounted(() => {
       }
     }
     &:last-child {
-      div[class*="language-"] {
+      div[class*='language-'] {
         border-radius: 0px 0px 20px 20px;
         pre {
           margin-bottom: 0px !important;
@@ -280,7 +269,7 @@ onMounted(() => {
   }
   & > div {
     &:last-child {
-      div[class*="language-"] {
+      div[class*='language-'] {
         border-radius: 0px 0px 20px 20px;
       }
     }
@@ -304,7 +293,7 @@ onMounted(() => {
     color: #fff;
     user-select: none;
     &:after {
-      content: "";
+      content: '';
       position: absolute;
       bottom: 0px;
       left: 50%;
@@ -346,7 +335,7 @@ onMounted(() => {
   border-radius: 20px;
   width: calc(100% - 20px);
   margin: 0px 10px;
-  div[class*="language-"] {
+  div[class*='language-'] {
     border-radius: 0px;
   }
   pre {
@@ -394,7 +383,7 @@ onMounted(() => {
         margin-right: 5px;
       }
       &:nth-last-child(3):after {
-        content: "";
+        content: '';
         position: absolute;
         right: 0px;
         height: 60%;

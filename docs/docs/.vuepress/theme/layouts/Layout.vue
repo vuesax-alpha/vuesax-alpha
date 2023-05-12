@@ -8,9 +8,9 @@
   >
     <transition name="fade-code">
       <div
-        @click="handleClickCodeSandbox"
         v-if="codesandbox.url"
         class="con-codesandbox"
+        @click="handleClickCodeSandbox"
       >
         <div class="con-iframe">
           <iframe
@@ -25,7 +25,7 @@
             title="vuesax-buttons-default"
             allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
             sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-          ></iframe>
+          />
         </div>
       </div>
     </transition>
@@ -36,22 +36,22 @@
       <Navbar
         v-if="shouldShowNavbar"
         v-show="!pageFrontmatter.navbar"
-        @toggle-sidebar="toggleSidebar"
         :class="{
           transparent: pageFrontmatter.branding,
           isSidebarOpen: isSidebarOpen,
         }"
+        @toggle-sidebar="toggleSidebar"
       />
-      <template v-else></template>
+      <template v-else />
     </ClientOnly>
 
-    <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
+    <div class="sidebar-mask" @click="toggleSidebar(false)" />
 
     <Home v-if="pageFrontmatter.home" />
 
     <DocsHome
-      :sidebar-items="sidebarItems"
       v-else-if="pageFrontmatter.docsHome"
+      :sidebar-items="sidebarItems"
     />
 
     <License v-else-if="pageFrontmatter.license" />
@@ -62,25 +62,25 @@
 
     <Page v-else :sidebar-items="sidebarItems">
       <template #top>
-        <slot name="page-top"></slot>
+        <slot name="page-top" />
       </template>
       <template #bottom>
-        <slot name="page-bottom"></slot>
+        <slot name="page-bottom" />
       </template>
     </Page>
 
     <Sidebar :sidebar="sidebarItems">
       <template #top>
-        <slot name="sidebar-top"></slot>
+        <slot name="sidebar-top" />
       </template>
       <template #bottom>
-        <slot name="sidebar-bottom"></slot>
+        <slot name="sidebar-bottom" />
       </template>
     </Sidebar>
 
     <ClientOnly>
       <Config v-if="!pageFrontmatter.navbar" />
-      <template v-else></template>
+      <template v-else />
     </ClientOnly>
   </div>
 </template>
@@ -98,10 +98,7 @@ import {
   useThemeLocaleData,
   // @ts-ignore
 } from '@vuepress/plugin-theme-data/client'
-import { codesandboxContext } from '../type'
 import { resolveSidebarItems } from '../util'
-
-import { VuesaxAlphaThemeOptions } from '../vuesaxAlphaTheme'
 
 import Home from '../components/Home.vue'
 import Navbar from '../components/Navbar.vue'
@@ -113,7 +110,9 @@ import Sidebar from '../components/Sidebar.vue'
 import HeaderNotification from '../components/HeaderNotification.vue'
 import Branding from '../components/Branding.vue'
 import NavbarLayout from './NavbarLayout.vue'
-import { LayoutFrontmatter } from '../shared/frontmatter/layout'
+import type { LayoutFrontmatter } from '../shared/frontmatter/layout'
+import type { VuesaxAlphaThemeOptions } from '../vuesaxAlphaTheme'
+import type { codesandboxContext } from '../type'
 
 const router = useRouter()
 
@@ -126,7 +125,10 @@ const routeLocale = useRouteLocale()
 
 const isSidebarOpen = ref<boolean>(false)
 const codesandbox = ref<codesandboxContext>({})
-let touchStart = reactive<{ x: number; y: number }>({ x: NaN, y: NaN })
+let touchStart = reactive<{ x: number; y: number }>({
+  x: Number.NaN,
+  y: Number.NaN,
+})
 
 const shouldShowNavbar = computed(() => {
   const { logo, repo, navbar } = themeData.value
@@ -134,9 +136,7 @@ const shouldShowNavbar = computed(() => {
   if (frontmatter.navbar === false || navbar === false) {
     return false
   }
-  return (
-    logo || repo || navbar || themeLocaleData.value?.navbar
-  )
+  return logo || repo || navbar || themeLocaleData.value?.navbar
 })
 
 const shouldShowSidebar = computed(() => {

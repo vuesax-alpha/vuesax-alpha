@@ -1,24 +1,24 @@
 <template>
   <div class="center">
     <vs-button
-      @click="handleClickMail"
       :icon="successMail"
       :upload="sendingMail"
       :color="successMail ? 'success' : 'primary'"
+      @click="handleClickMail"
     >
       <span v-if="!successMail">
         <i class="bx bx-mail-send" />
         Send
       </span>
 
-      <i class="bx bx-check" v-else />
+      <i v-else class="bx bx-check" />
     </vs-button>
 
     <vs-button
       :animate-inactive="successFace"
-      @click="handleClickFace"
       :loading="loadingFace"
       color="facebook"
+      @click="handleClickFace"
     >
       <i class="bx bxl-facebook-square" />
       {{ successFace ? 'Logout' : 'Facebook' }}

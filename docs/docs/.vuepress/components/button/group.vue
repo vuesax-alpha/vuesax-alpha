@@ -7,7 +7,7 @@
       <vs-button> four </vs-button>
     </vs-button-group>
 
-    <span class="divider"></span>
+    <span class="divider" />
 
     <vs-button-group>
       <vs-button flat icon>
@@ -24,7 +24,7 @@
       </vs-button>
     </vs-button-group>
 
-    <span class="divider"></span>
+    <span class="divider" />
 
     <vs-button-group>
       <vs-button border> <i class="bx bxs-pencil" /> Edit </vs-button>
@@ -37,7 +37,7 @@
       <vs-button border> <i class="bx bx-font-size" /> Font size </vs-button>
     </vs-button-group>
 
-    <span class="divider"></span>
+    <span class="divider" />
 
     <vs-button-group>
       <vs-button relief> <i class="bx bx-home-alt" /> Home </vs-button>
@@ -53,6 +53,7 @@
 <style lang="scss" scoped>
 .center {
   flex-wrap: wrap;
+
   .vs-button__group {
     margin: 20px 20px;
   }

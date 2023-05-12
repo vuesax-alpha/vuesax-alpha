@@ -1,4 +1,3 @@
-
 :root {
   --vsd-primary: 26, 92, 255;
   --vsd-theme-bg: 244, 247, 248;
@@ -32,7 +31,7 @@
   --vsd-line-numbers-wrapper-width: 3.5rem;
 }
 
-[vs-theme="dark"] {
+.dark {
   --vsd-theme-bg: 24, 25, 28;
   --vsd-theme-color: 255, 255, 255;
   --vsd-theme-layout: 30, 32, 35;

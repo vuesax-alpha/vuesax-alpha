@@ -1,16 +1,16 @@
 <template>
   <div class="content-i">
     <div class="con-text">
-      <h2 v-html="feature.title"></h2>
+      <h2 v-html="feature.title" />
 
-      <p v-html="feature.details"></p>
+      <p v-html="feature.details" />
 
       <template v-if="feature.action">
-        <button @click="handleRouter(feature.action?.link)" class="btn-action">
+        <button class="btn-action" @click="handleRouter(feature.action?.link)">
           {{ feature.action.text }}
         </button>
       </template>
-      <template v-else></template>
+      <template v-else />
     </div>
     <div class="con-ilus">
       <img class="not-darken" src="/vuesax-white-3.svg" alt="" />
@@ -20,16 +20,16 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from "vue-router";
-import { ThemeHomeFeatureOption } from "../shared/frontmatter/home";
+import { useRouter } from 'vue-router'
+import type { ThemeHomeFeatureOption } from '../shared/frontmatter/home'
 
-defineProps<{ feature: ThemeHomeFeatureOption }>();
+defineProps<{ feature: ThemeHomeFeatureOption }>()
 
-const router = useRouter();
+const router = useRouter()
 
 const handleRouter = (link?: string) => {
-	if (!link) return;
-	router.push(link);
+  if (!link) return
+  router.push(link)
 }
 </script>
 

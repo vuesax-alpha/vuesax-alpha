@@ -13,6 +13,7 @@
 
       <div
         v-for="(item, index) in images"
+        :key="index"
         :class="{ black: item.black }"
         class="con-images"
       >
@@ -25,10 +26,10 @@
           </div>
           <footer>
             <a :href="item.normal.svg" :download="`vuesax-${item.mini.title}`">
-              <i class="bx bx-download"></i> .Svg
+              <i class="bx bx-download" /> .Svg
             </a>
             <a :href="item.normal.png" :download="`vuesax-${item.mini.title}`">
-              <i class="bx bx-download"></i> .Png
+              <i class="bx bx-download" /> .Png
             </a>
           </footer>
         </div>
@@ -42,87 +43,87 @@
           </div>
           <footer>
             <a :href="item.normal.svg" :download="`vuesax-${item.mini.title}`">
-              <i class="bx bx-download"></i> .Svg
+              <i class="bx bx-download" /> .Svg
             </a>
             <a :href="item.normal.png" :download="`vuesax-${item.mini.title}`">
-              <i class="bx bx-download"></i> .Png
+              <i class="bx bx-download" /> .Png
             </a>
           </footer>
         </div>
       </div>
     </div>
 
-    <Footer></Footer>
+    <Footer />
   </div>
 </template>
 
 <script setup lang="ts">
-import Footer from "./Footer.vue";
+import Footer from './Footer.vue'
 
 const images = [
   {
     mini: {
-      img: "/logos/logo-vuesax-svg-1.svg",
-      title: "Imagotipo black vertical",
-      svg: "/logos/logo-vuesax-svg-1.svg",
-      png: "/logos/logo-vuesax-logotipo-vuesax-png-1.png",
+      img: '/logos/logo-vuesax-svg-1.svg',
+      title: 'Imagotipo black vertical',
+      svg: '/logos/logo-vuesax-svg-1.svg',
+      png: '/logos/logo-vuesax-logotipo-vuesax-png-1.png',
     },
     normal: {
-      img: "/logos/logo-vuesax-svg-3.svg",
-      title: "Imagotipo black vertical",
-      svg: "/logos/logo-vuesax-svg-3.svg",
-      png: "/logos/logo-vuesax-logotipo-vuesax-png-3.png",
+      img: '/logos/logo-vuesax-svg-3.svg',
+      title: 'Imagotipo black vertical',
+      svg: '/logos/logo-vuesax-svg-3.svg',
+      png: '/logos/logo-vuesax-logotipo-vuesax-png-3.png',
     },
   },
   {
     black: true,
     mini: {
-      img: "/logos/logo-vuesax-svg-2.svg",
-      title: "Imagotipo black vertical",
-      svg: "/logos/logo-vuesax-svg-2.svg",
-      png: "/logos/logo-vuesax-logotipo-vuesax-png-2.png",
+      img: '/logos/logo-vuesax-svg-2.svg',
+      title: 'Imagotipo black vertical',
+      svg: '/logos/logo-vuesax-svg-2.svg',
+      png: '/logos/logo-vuesax-logotipo-vuesax-png-2.png',
     },
     normal: {
-      img: "/logos/logo-vuesax-svg-4.svg",
-      title: "Imagotipo black vertical",
-      svg: "/logos/logo-vuesax-svg-4.svg",
-      png: "/logos/logo-vuesax-logotipo-vuesax-png-4.png",
+      img: '/logos/logo-vuesax-svg-4.svg',
+      title: 'Imagotipo black vertical',
+      svg: '/logos/logo-vuesax-svg-4.svg',
+      png: '/logos/logo-vuesax-logotipo-vuesax-png-4.png',
     },
   },
   {
     mini: {
-      img: "/logos/logo-vuesax-svg-7.svg",
-      title: "Imagotipo black vertical",
-      svg: "/logos/logo-vuesax-svg-7.svg",
-      png: "/logos/logo-vuesax-logotipo-vuesax-png-7.png",
+      img: '/logos/logo-vuesax-svg-7.svg',
+      title: 'Imagotipo black vertical',
+      svg: '/logos/logo-vuesax-svg-7.svg',
+      png: '/logos/logo-vuesax-logotipo-vuesax-png-7.png',
     },
     normal: {
-      img: "/logos/logo-vuesax-svg-5.svg",
-      title: "Imagotipo black vertical",
-      svg: "/logos/logo-vuesax-svg-5.svg",
-      png: "/logos/logo-vuesax-logotipo-vuesax-png-5.png",
+      img: '/logos/logo-vuesax-svg-5.svg',
+      title: 'Imagotipo black vertical',
+      svg: '/logos/logo-vuesax-svg-5.svg',
+      png: '/logos/logo-vuesax-logotipo-vuesax-png-5.png',
     },
   },
   {
     black: true,
     mini: {
-      img: "/logos/logo-vuesax-svg-8.svg",
-      title: "Imagotipo black vertical",
-      svg: "/logos/logo-vuesax-svg-8.svg",
-      png: "/logos/logo-vuesax-logotipo-vuesax-png-8.png",
+      img: '/logos/logo-vuesax-svg-8.svg',
+      title: 'Imagotipo black vertical',
+      svg: '/logos/logo-vuesax-svg-8.svg',
+      png: '/logos/logo-vuesax-logotipo-vuesax-png-8.png',
     },
     normal: {
-      img: "/logos/logo-vuesax-svg-6.svg",
-      title: "Imagotipo black vertical",
-      svg: "/logos/logo-vuesax-svg-6.svg",
-      png: "/logos/logo-vuesax-logotipo-vuesax-png-6.png",
+      img: '/logos/logo-vuesax-svg-6.svg',
+      title: 'Imagotipo black vertical',
+      svg: '/logos/logo-vuesax-svg-6.svg',
+      png: '/logos/logo-vuesax-logotipo-vuesax-png-6.png',
     },
   },
-];
+]
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/use";
+@import '../styles/use';
 
 .darken {
   .con-branding {
@@ -141,7 +142,7 @@ const images = [
   .config {
     left: 0px;
   }
-  
+
   .con-images {
     display: flex;
     align-items: flex-start;
@@ -236,7 +237,7 @@ const images = [
       max-width: 800px;
       position: relative;
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         top: 0px;
         left: 0px;

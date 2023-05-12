@@ -16,39 +16,39 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from "vue";
-import { computed, ref } from "@vue/reactivity";
-import { useRoute } from "vue-router";
+import { watch } from 'vue'
+import { computed, ref } from '@vue/reactivity'
+import { useRoute } from 'vue-router'
 
-import { isMathcedPath, isMatchedHeader } from "../../util";
+import { isMatchedHeader, isMathcedPath } from '../../util'
 
 const props = defineProps<{
-  text: string;
-  link: string;
-  isNew?: boolean;
-  isUpdate?: boolean;
+  text: string
+  link: string
+  isNew?: boolean
+  isUpdate?: boolean
 
-  isHeaderLink?: boolean;
-}>();
+  isHeaderLink?: boolean
+}>()
 
-const route = useRoute();
+const route = useRoute()
 
 const title = computed(() => {
-  if (props.isNew) return props.text + "New";
-  if (props.isUpdate) return props.text + "Update";
-  return props.text;
-});
+  if (props.isNew) return `${props.text}New`
+  if (props.isUpdate) return `${props.text}Update`
+  return props.text
+})
 
-const active = ref<boolean>();
+const active = ref<boolean>()
 
-const watchRoute = props.isHeaderLink ? () => route.hash : () => route.path;
-const handleRoute = props.isHeaderLink ? isMatchedHeader : isMathcedPath;
+const watchRoute = props.isHeaderLink ? () => route.hash : () => route.path
+const handleRoute = props.isHeaderLink ? isMatchedHeader : isMathcedPath
 
-watch(watchRoute, () => active.value = handleRoute(route, props.link));
+watch(watchRoute, () => (active.value = handleRoute(route, props.link)))
 </script>
 
 <style lang="scss">
-@import "../../styles/use";
+@import '../../styles/use';
 
 .sidebar-new {
   position: relative;
@@ -77,7 +77,7 @@ a {
     font-size: 0.95rem;
     font-weight: 400;
     display: inline-block;
-    color: -color("theme-color");
+    color: -color('theme-color');
     padding: 0.3rem 1rem 0.3rem 1.25rem;
     width: 100%;
     box-sizing: border-box;
@@ -87,13 +87,13 @@ a {
     position: relative;
     margin-left: 0px;
     &:after {
-      content: "";
+      content: '';
       position: absolute;
       top: 50%;
       transform: translate(0, -50%);
       left: 0px;
       width: 5px;
-      background: -color("theme-color");
+      background: -color('theme-color');
       height: 0px;
       transition: all 0.25s ease;
       border-radius: 0px 5px 5px 0px;

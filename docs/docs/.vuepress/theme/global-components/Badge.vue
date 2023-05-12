@@ -7,19 +7,19 @@
 <script lang="ts" setup>
 withDefaults(
   defineProps<{
-    type?: string;
-    text?: string;
-    vertical?: string;
+    type?: string
+    text?: string
+    vertical?: string
   }>(),
   {
-    type: "tip",
-    vertical: "top",
+    type: 'tip',
+    vertical: 'top',
   }
-);
+)
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/use";
+@import '../styles/use';
 .badge {
   display: inline-block;
   font-size: 0.7rem;

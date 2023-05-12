@@ -12,12 +12,12 @@
 <script setup lang="ts">
 const setHeight = (el: HTMLElement) => {
   // explicitly set height so that it can be transitioned
-  el.style.height = el.scrollHeight + "px";
-};
+  el.style.height = `${el.scrollHeight}px`
+}
 
 const unsetHeight = (el: HTMLElement) => {
-  el.style.height = "";
-};
+  el.style.height = ''
+}
 </script>
 
 <style lang="scss">

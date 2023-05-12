@@ -1,31 +1,27 @@
 <template>
-  <i 
-    ref="icon" 
-    class="vs-icon-arrow" 
-    :class="less && 'less'"
-  ></i>
+  <i ref="icon" class="vs-icon-arrow" :class="less && 'less'" />
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: "iconArrow",
+  name: 'IconArrow',
   props: {
     less: Boolean,
   },
-});
+})
 </script>
 
 <style lang="scss">
-@import "../../styles/_use.scss";
+@import '../../styles/_use.scss';
 
 .vs-icon-arrow {
   pointer-events: none;
   width: 7px;
   height: 7px;
   transform: rotate(-135deg);
-  transition: all .25s ease;
+  transition: all 0.25s ease;
   transform-origin: center;
 
   &::after {

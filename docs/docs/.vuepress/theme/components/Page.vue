@@ -6,49 +6,49 @@
         class="back-link"
         to="/"
       >
-        <i class="bx bx-left-arrow-alt"></i>
+        <i class="bx bx-left-arrow-alt" />
       </router-link>
-      <template v-else></template>
+      <template v-else />
 
       <div class="header__content">
         <div ref="$flex" class="flex-header">
-          <h1 ref="$title" id="header-title">
+          <h1 id="header-title" ref="$title">
             {{ pageData.title }}
           </h1>
 
           <ul ref="$titleul" class="interactive-links">
             <li title="Share">
               <button>
-                <i class="bx bx-share-alt"></i>
+                <i class="bx bx-share-alt" />
                 <ul class="options">
                   <li class="tw">
                     <a
                       target="_blank"
-                      :href="`https://twitter.com/intent/tweet?url=https%3A%2F%2Fvuesax-alphax.github.io%2Fvuesax-alpha&text=@vuesax-alpha+framework+components+for+vuejs+/+${pageData.title}&hashtags=${pageData.title},framework,components,vuejs,vuesax,vuesax-alphax,design,developer,frontend`"
+                      :href="`https://twitter.com/intent/tweet?url=https%3A%2F%2Fvuesax-alpha.github.io%2Fvuesax-alpha&text=@vuesax-alpha+framework+components+for+vuejs+/+${pageData.title}&hashtags=${pageData.title},framework,components,vuejs,vuesax,vuesax-alpha,design,developer,frontend`"
                     >
-                      <i class="bx bxl-twitter"></i>
+                      <i class="bx bxl-twitter" />
                     </a>
                   </li>
                   <li class="f">
                     <a
                       target="_blank"
-                      :href="`https://www.facebook.com/sharer.php?u=https%3A%2F%2Fvuesax-alphax.github.io%2Fvuesax-alpha%2F`"
+                      :href="`https://www.facebook.com/sharer.php?u=https%3A%2F%2Fvuesax-alpha.github.io%2Fvuesax-alpha%2F`"
                     >
-                      <i class="bx bxl-facebook-square"></i>
+                      <i class="bx bxl-facebook-square" />
                     </a>
                   </li>
                   <li class="in">
                     <a
                       target="_blank"
-                      :href="`https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fvuesax-alphax.github.io%2Fvuesax-alpha&title=VuesaxAlpha+Framework&summary=framework+components+for+vuejs.&source=VuesaxAlpha`"
+                      :href="`https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fvuesax-alpha.github.io%2Fvuesax-alpha&title=VuesaxAlpha+Framework&summary=framework+components+for+vuejs.&source=VuesaxAlpha`"
                     >
-                      <i class="bx bxl-linkedin-square"></i>
+                      <i class="bx bxl-linkedin-square" />
                     </a>
                   </li>
                   <li class="redit">
                     <a
                       target="_blank"
-                      :href="`https://www.reddit.com/submit?url=https%3A%2F%2Fvuesax-alphax.github.io%2Fvuesax-alpha&title=VuesaxAlpha+Framework+components+for+vuejs`"
+                      :href="`https://www.reddit.com/submit?url=https%3A%2F%2Fvuesax-alpha.github.io%2Fvuesax-alpha&title=VuesaxAlpha+Framework+components+for+vuejs`"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -71,34 +71,34 @@
                 </ul>
               </button>
             </li>
-            <li class="divider"></li>
+            <li class="divider" />
             <li title="Package NPM">
               <a
                 target="_blank"
                 href="https://www.npmjs.com/package/vuesax-alpha"
               >
-                <i class="bx bx-package"></i>
+                <i class="bx bx-package" />
               </a>
             </li>
             <li title="View Code Github">
               <a
                 target="_blank"
-                href="https://github.com/vuesax-alphax/vuesax-alpha"
+                href="https://github.com/vuesax-alpha/vuesax-alpha"
               >
-                <i class="bx bx-code-alt"></i>
+                <i class="bx bx-code-alt" />
               </a>
             </li>
             <li title="Edit Page">
               <a target="_blank" :href="editLink">
-                <i class="bx bx-edit"></i>
+                <i class="bx bx-edit" />
               </a>
             </li>
             <li title="Report a Bug">
               <a
                 target="_blank"
-                :href="`https://github.com/vuesax-alphax/vuesax-alpha/issues/new?title=[${pageData.title}] - Your Bug Name&amp;body=**Steps to Reproduce**%0A1. Do something%0A2. Do something else.%0A3. Do one last thing.%0A%0A**Expected**%0AThe ${pageData.title} should do this%0A%0A**Result**%0AThe ${pageData.title} does not do this%0A%0A**Testcase**%0A(fork this to get started)%0Ahttp://jsfiddle.net/exmple-bug/1/`"
+                :href="`https://github.com/vuesax-alpha/vuesax-alpha/issues/new?title=[${pageData.title}] - Your Bug Name&amp;body=**Steps to Reproduce**%0A1. Do something%0A2. Do something else.%0A3. Do one last thing.%0A%0A**Expected**%0AThe ${pageData.title} should do this%0A%0A**Result**%0AThe ${pageData.title} does not do this%0A%0A**Testcase**%0A(fork this to get started)%0Ahttp://jsfiddle.net/exmple-bug/1/`"
               >
-                <i class="bx bx-bug"></i>
+                <i class="bx bx-bug" />
               </a>
             </li>
           </ul>
@@ -123,7 +123,7 @@
 
     <SidebarRight />
 
-    <slot name="top"></slot>
+    <slot name="top" />
 
     <transition name="fade">
       <Content class="content__default" />
@@ -132,93 +132,92 @@
     <Api />
 
     <footer class="page-edit">
-      <div class="last-updated" v-if="themeData.lastUpdated">
+      <div v-if="themeData.lastUpdated" class="last-updated">
         <span class="prefix">{{ lastUpdatedText }}: </span>
         <span class="time">{{ lastUpdatedTime }}</span>
       </div>
-      <template v-else></template>
+      <template v-else />
     </footer>
 
-    <div class="page-nav" v-if="prev || next">
+    <div v-if="prev || next" class="page-nav">
       <p class="inner">
         <!-- v-show="prev" -->
-        <span class="prev" v-if="prev">
+        <span v-if="prev" class="prev">
           <router-link class="prev" :to="prev.link">
-            <i class="bx bx-chevron-left"></i>
+            <i class="bx bx-chevron-left" />
             <span>
               {{ prev.title || prev.link }}
             </span>
           </router-link>
         </span>
-        <template v-else></template>
+        <template v-else />
 
         <span v-if="next" class="next">
           <router-link :to="next.link">
             <span>
               {{ next.title || next.link }}
             </span>
-            <i class="bx bx-chevron-right"></i>
+            <i class="bx bx-chevron-right" />
           </router-link>
         </span>
-        <template v-else></template>
+        <template v-else />
       </p>
     </div>
-    <template v-else></template>
+    <template v-else />
 
-    <slot name="bottom"></slot>
+    <slot name="bottom" />
 
-    <div ref="$up" @click="handleUp" class="up">
-      <i class="bx bx-chevron-up"></i>
+    <div ref="$up" class="up" @click="handleUp">
+      <i class="bx bx-chevron-up" />
     </div>
 
-    <Footer></Footer>
+    <Footer />
   </main>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { computed } from "@vue/reactivity";
-import { usePageData, usePageFrontmatter } from "@vuepress/client";
+import { onMounted, ref } from 'vue'
+import { computed } from '@vue/reactivity'
+import { usePageData, usePageFrontmatter } from '@vuepress/client'
 // @ts-ignore
-import { useThemeData } from "@vuepress/plugin-theme-data/client";
-import { SidebarConfigArray } from "vuepress-vite";
-import { GitPluginPageData } from "@vuepress/plugin-git";
-import { ensureEndingSlash, ensureLeadingSlash } from "@vuepress/shared";
-import { useDateFormat } from "@vueuse/core";
-import lodash from "lodash";
+import { useThemeData } from '@vuepress/plugin-theme-data/client'
+import { ensureEndingSlash, ensureLeadingSlash } from '@vuepress/shared'
+import { useDateFormat } from '@vueuse/core'
+import lodash from 'lodash'
 
-import { normalize, outboundRE, endingSlashRE } from "../util";
-import {
+import { endingSlashRE, normalize, outboundRE } from '../util'
+
+import SidebarRight from './SidebarRight.vue'
+import Api from './Api.vue'
+import Footer from './Footer.vue'
+import type { VuesaxAlphaThemeOptions } from '../vuesaxAlphaTheme'
+import type {
   ThemeNormalApiFrontmatter,
   ThemePageFrontmatter,
-} from "../shared/frontmatter/normal";
+} from '../shared/frontmatter/normal'
+import type { GitPluginPageData } from '@vuepress/plugin-git'
+import type { SidebarConfigArray } from 'vuepress-vite'
 
-import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
+const { upperFirst } = lodash
 
-import SidebarRight from "./SidebarRight.vue";
-import Api from "./Api.vue";
-import Footer from "./Footer.vue";
-
-const { upperFirst } = lodash;
-
-const pageData = usePageData<ThemeNormalApiFrontmatter & GitPluginPageData>();
-const themeData = useThemeData<VuesaxAlphaThemeOptions>();
-const pageFrontmatter = usePageFrontmatter<ThemePageFrontmatter>();
+const pageData = usePageData<ThemeNormalApiFrontmatter & GitPluginPageData>()
+const themeData = useThemeData<VuesaxAlphaThemeOptions>()
+const pageFrontmatter = usePageFrontmatter<ThemePageFrontmatter>()
 
 const props = defineProps<{
-  sidebarItems: SidebarConfigArray;
-}>();
+  sidebarItems: SidebarConfigArray
+}>()
 
-const $page = ref<HTMLElement>()!;
-const $header = ref<HTMLElement>()!;
-const $flex = ref<HTMLElement>()!;
-const $title = ref<HTMLElement>()!;
-const $titleul = ref<HTMLElement>()!;
-const $up = ref<HTMLElement>()!;
+const $page = ref<HTMLElement>()!
+const $header = ref<HTMLElement>()!
+const $flex = ref<HTMLElement>()!
+const $title = ref<HTMLElement>()!
+const $titleul = ref<HTMLElement>()!
+const $up = ref<HTMLElement>()!
 
 const handleUp = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-};
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
 
 const createEditLink = ({
   repo,
@@ -227,118 +226,113 @@ const createEditLink = ({
   docsBranch,
   path,
 }: {
-  repo: string;
-  docsRepo: string;
-  docsDir: string;
-  docsBranch: string;
-  path: string;
+  repo: string
+  docsRepo: string
+  docsDir: string
+  docsBranch: string
+  path: string
 }) => {
-  const bitbucket = /bitbucket.org/;
+  const bitbucket = /bitbucket.org/
   if (bitbucket.test(repo)) {
-    const base = outboundRE.test(docsRepo) ? docsRepo : repo;
+    const base = outboundRE.test(docsRepo) ? docsRepo : repo
     return (
-      base.replace(endingSlashRE, "") +
-      `/src` +
-      `/${docsBranch}` +
-      (docsDir ? "/" + docsDir.replace(endingSlashRE, "") : "") +
-      path +
-      `?mode=edit&spa=0&at=${docsBranch}&fileviewer=file-view-default`
-    );
+      `${base.replace(endingSlashRE, '')}/src` +
+      `/${docsBranch}${
+        docsDir ? `/${docsDir.replace(endingSlashRE, '')}` : ''
+      }${path}?mode=edit&spa=0&at=${docsBranch}&fileviewer=file-view-default`
+    )
   }
 
   const base = outboundRE.test(docsRepo)
     ? docsRepo
-    : `https://github.com/${docsRepo}`;
+    : `https://github.com/${docsRepo}`
 
-  return (
-    base.replace(endingSlashRE, "") +
-    `/edit/${docsBranch}` +
-    (docsDir ? "/" + docsDir.replace(endingSlashRE, "") : "") +
-    path
-  );
-};
+  return `${base.replace(endingSlashRE, '')}/edit/${docsBranch}${
+    docsDir ? `/${docsDir.replace(endingSlashRE, '')}` : ''
+  }${path}`
+}
 
 const resolvePage = (sidebar: SidebarConfigArray, offset: number) => {
-  const sidebarFlatten = flattenSidebar(sidebar);
+  const sidebarFlatten = flattenSidebar(sidebar)
 
   const currentPath = ensureEndingSlash(
     ensureLeadingSlash(normalize(pageData.value.path))
-  ).toLocaleLowerCase();
+  ).toLocaleLowerCase()
 
   const indexCurrentSidebar = sidebarFlatten.findIndex(
     ({ link }) =>
       currentPath ===
       ensureEndingSlash(ensureLeadingSlash(normalize(link))).toLocaleLowerCase()
-  );
+  )
 
   if (indexCurrentSidebar !== -1)
-    return sidebarFlatten[indexCurrentSidebar + offset];
-  return null;
-};
+    return sidebarFlatten[indexCurrentSidebar + offset]
+  return null
+}
 
 const flattenSidebar = (
   list: SidebarConfigArray
 ): { title: string; link: string }[] => {
-  const res: { title: string; link: string }[] = [];
+  const res: { title: string; link: string }[] = []
   list.forEach((item) => {
-    if (typeof item === "string") {
-      res.push({ title: item, link: item });
-      return;
+    if (typeof item === 'string') {
+      res.push({ title: item, link: item })
+      return
     }
     if (item.link) {
-      res.push({ title: item.text, link: item.link });
+      res.push({ title: item.text, link: item.link })
     }
-    if ("children" in item) {
-      res.push(...flattenSidebar(item.children));
+    if ('children' in item) {
+      res.push(...flattenSidebar(item.children))
     }
-  });
-  return res;
-};
+  })
+  return res
+}
 
 const lastUpdatedText = computed(() => {
-  return themeData.value.lastUpdatedText || "Last Updated";
-});
+  return themeData.value.lastUpdatedText || 'Last Updated'
+})
 
 const lastUpdatedTime = useDateFormat(
   computed(() => pageData.value.git.updatedTime),
-  "YYYY-MM-DD, HH:mm:ss"
-);
+  'YYYY-MM-DD, HH:mm:ss'
+)
 
 const prev = computed(() => {
-  const frontmatterPrev = pageFrontmatter.value.prev;
+  const frontmatterPrev = pageFrontmatter.value.prev
 
-  if (frontmatterPrev === false || !props.sidebarItems) return null;
+  if (frontmatterPrev === false || !props.sidebarItems) return null
 
-  return resolvePage(props.sidebarItems, -1);
-});
+  return resolvePage(props.sidebarItems, -1)
+})
 
 const next = computed(() => {
-  const frontmatterNext = pageFrontmatter.value.next;
+  const frontmatterNext = pageFrontmatter.value.next
   const obj = {
-    link: "/guide/",
-    title: "introduction",
-  };
-  if (frontmatterNext === false || !props.sidebarItems) return obj;
+    link: '/guide/',
+    title: 'introduction',
+  }
+  if (frontmatterNext === false || !props.sidebarItems) return obj
 
-  return resolvePage(props.sidebarItems, 1);
-});
+  return resolvePage(props.sidebarItems, 1)
+})
 
 const editLink = computed(() => {
   const {
     repo,
     editLink,
-    docsDir = "",
-    docsBranch = "main",
+    docsDir = '',
+    docsBranch = 'main',
     docsRepo = repo,
-  } = themeData.value;
+  } = themeData.value
 
-  let path = normalize(pageData.value.path);
-  path = upperFirst(path);
+  let path = normalize(pageData.value.path)
+  path = upperFirst(path)
 
   if (endingSlashRE.test(path)) {
-    path += "README.md";
+    path += 'README.md'
   } else {
-    path += ".md";
+    path += '.md'
   }
   if (repo && docsRepo && editLink) {
     return createEditLink({
@@ -347,64 +341,64 @@ const editLink = computed(() => {
       docsDir,
       docsBranch,
       path,
-    });
+    })
   }
-});
+})
 
-const editLinkText = computed(() => {
-  return themeData.value.editLinkText || `Edit this page`;
-});
+// const editLinkText = computed(() => {
+//   return themeData.value.editLinkText || `Edit this page`
+// })
 
 onMounted(() => {
-  window.addEventListener("scroll", () => {
+  window.addEventListener('scroll', () => {
     if ($up.value) {
       if (window.pageYOffset > 300) {
-        $up.value.classList.add("active");
+        $up.value.classList.add('active')
       } else {
-        $up.value.classList.remove("active");
+        $up.value.classList.remove('active')
       }
     }
 
     if (window.pageYOffset > 200) {
-      $page.value?.querySelector(".sidebar")?.classList.add("fixed");
+      $page.value?.querySelector('.sidebar')?.classList.add('fixed')
     } else {
-      $page.value?.querySelector(".sidebar")?.classList.remove("fixed");
+      $page.value?.querySelector('.sidebar')?.classList.remove('fixed')
     }
 
     if ($title.value && $flex.value) {
       $title.value.style.fontSize = `${
         35 - window.pageYOffset / 7 > 24 ? 35 - window.pageYOffset / 8 : 20
-      }px`;
+      }px`
 
       $flex.value.style.marginBottom = `${
         70 - window.pageYOffset / 2 > 0 ? 70 - window.pageYOffset / 2 : 0
-      }px`;
+      }px`
     }
     if ($header.value) {
       if (window.pageYOffset > 140) {
-        $header.value.classList.add("fixed");
-        $header.value.style.width = `${$page.value?.offsetWidth}px`;
+        $header.value.classList.add('fixed')
+        $header.value.style.width = `${$page.value?.offsetWidth}px`
       } else {
-        $header.value.style.width = `100%`;
-        $header.value.classList.remove("fixed");
+        $header.value.style.width = `100%`
+        $header.value.classList.remove('fixed')
       }
     }
-  });
+  })
 
-  window.addEventListener("resize", () => {
+  window.addEventListener('resize', () => {
     if (window.pageYOffset > 140) {
-      $header.value?.classList.add("fixed");
-      $header.value!.style.width = `${$page.value?.offsetWidth}px`;
+      $header.value?.classList.add('fixed')
+      $header.value!.style.width = `${$page.value?.offsetWidth}px`
     } else {
-      $header.value!.style.width = `100%`;
-      $header.value?.classList.remove("fixed");
+      $header.value!.style.width = `100%`
+      $header.value?.classList.remove('fixed')
     }
-  });
-});
+  })
+})
 </script>
 
 <style lang="scss">
-@import "../styles/_use.scss";
+@import '../styles/_use.scss';
 
 .back-link {
   position: absolute;
@@ -422,7 +416,7 @@ onMounted(() => {
   padding-top: 8px;
   padding-left: 8px;
   &:hover {
-    background: -color("theme-layout");
+    background: -color('theme-layout');
     box-shadow: 0px 6px 10px -5px rgba(0, 0, 0, 0.1);
     transform: translate(0, -3px);
   }
@@ -450,7 +444,7 @@ onMounted(() => {
   right: 0;
   width: 40px;
   height: 40px;
-  background: -color("theme-layout");
+  background: -color('theme-layout');
   display: flex;
   align-items: center;
   justify-content: center;
@@ -466,7 +460,7 @@ onMounted(() => {
     opacity: 0.7;
   }
   &:hover {
-    color: -color("accent-color");
+    color: -color('accent-color');
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
   }
   &.active {
@@ -477,7 +471,7 @@ onMounted(() => {
 .header-page {
   width: 100%;
   position: absolute;
-  background: -color("theme-bg2");
+  background: -color('theme-bg2');
   height: auto;
   border-radius: 0px 0px 0px 30px;
   transition: background 0.25s ease, border-radius 0.25s ease;
@@ -487,8 +481,8 @@ onMounted(() => {
     position: absolute;
     top: -59px;
     left: 0px;
-    content: "";
-    background: -color("theme-bg2");
+    content: '';
+    background: -color('theme-bg2');
     width: 100%;
     height: 60px;
   }
@@ -497,7 +491,7 @@ onMounted(() => {
     top: 57px;
     z-index: 9999;
     border-radius: 0px;
-    background: -color("theme-bg");
+    background: -color('theme-bg');
     margin: 0px;
     .back-link {
       margin: 10px 15px;
@@ -505,7 +499,7 @@ onMounted(() => {
     .header__content {
       height: 58px;
       &:after {
-        content: "";
+        content: '';
         position: absolute;
         bottom: 0px;
         left: 50%;
@@ -565,7 +559,7 @@ onMounted(() => {
     }
 
     &:after {
-      content: "";
+      content: '';
       position: absolute;
       bottom: 0px;
       left: 50%;
@@ -596,7 +590,7 @@ onMounted(() => {
         position: relative;
         width: 1px;
         height: 25px;
-        background: -color("theme-color");
+        background: -color('theme-color');
         margin: 0px 10px;
       }
       li {
@@ -611,7 +605,7 @@ onMounted(() => {
           align-items: center;
           justify-content: center;
           transition: all 0.25s ease;
-          color: -color("theme-color");
+          color: -color('theme-color');
           &:hover {
             ul {
               opacity: 1;
@@ -625,7 +619,7 @@ onMounted(() => {
             bottom: 0px;
             position: absolute;
             transform: translate(0, calc(100% - 15px));
-            background: -color("theme-layout");
+            background: -color('theme-layout');
             border-radius: 10px;
             opacity: 0;
             visibility: hidden;
@@ -650,7 +644,7 @@ onMounted(() => {
           margin: 0px 1px;
           transition: all 0.25s ease;
           &:hover {
-            background: -color("theme-layout");
+            background: -color('theme-layout');
             transform: translate(0, -2px);
             box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.1);
           }
@@ -659,7 +653,7 @@ onMounted(() => {
     }
     .interactive-links li box-icon,
     .interactive-links li svg {
-      fill: -color("theme-color");
+      fill: -color('theme-color');
       max-width: 18px;
     }
   }
@@ -674,8 +668,8 @@ onMounted(() => {
     bottom: -38px;
     transition: all 0.25s ease;
     #Trazado_200 {
-      fill: -color("theme-bg2") !important;
-      stroke: -color("theme-bg2") !important;
+      fill: -color('theme-bg2') !important;
+      stroke: -color('theme-bg2') !important;
     }
   }
 }
@@ -744,14 +738,14 @@ onMounted(() => {
           opacity: 0.6;
           max-width: 200px;
           &:after {
-            content: "";
+            content: '';
             position: absolute;
             top: 50%;
             transform: translate(0, -50%);
             right: 25px;
             left: auto;
             width: 5px !important;
-            background: -color("theme-color");
+            background: -color('theme-color');
             height: 5px !important;
             transition: all 0.25s ease;
             border-radius: 10px;
@@ -837,7 +831,7 @@ onMounted(() => {
     border-radius: 12px;
     transition: all 0.25s ease;
     &:hover {
-      background: -color("theme-layout");
+      background: -color('theme-layout');
       transform: translate(0px);
     }
   }
@@ -897,7 +891,7 @@ onMounted(() => {
       width: 100%;
       padding: 10px 0px;
       span {
-        background: -color("theme-layout");
+        background: -color('theme-layout');
         margin: 0px;
         border-radius: 0px 10px 10px 0px;
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);

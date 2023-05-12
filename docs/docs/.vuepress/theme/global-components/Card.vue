@@ -1,7 +1,7 @@
 <template>
   <div class="card">
-    <div class="text" ref="$text">
-      <slot></slot>
+    <div ref="$text" class="text">
+      <slot />
     </div>
 
     <div
@@ -9,9 +9,9 @@
       class="example"
       :class="{ mobile: $vsTheme.mobileActive }"
     >
-      <slot name="example"></slot>
+      <slot name="example" />
     </div>
-    <template v-else></template>
+    <template v-else />
 
     <div
       v-if="$slots.template || $slots.script || $slots.style"
@@ -19,38 +19,38 @@
     >
       <Codex :codesandbox="codesandbox" :codepen="codepen">
         <template v-if="$slots.template" #template>
-            <slot name="template"></slot>
+          <slot name="template" />
         </template>
         <template v-if="$slots.script" #script>
-          <slot name="script"></slot>
+          <slot name="script" />
         </template>
         <template v-if="$slots.style" #style>
-          <slot name="style"></slot>
+          <slot name="style" />
         </template>
       </Codex>
     </div>
-    <template v-else></template>
+    <template v-else />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { inject, ref } from "vue";
-import { vsThemeKey } from "../type";
+import { inject, ref } from 'vue'
+import { vsThemeKey } from '../type'
 
-import Codex from "./Codex.vue";
+import Codex from './Codex.vue'
 
 defineProps<{
-  codepen?: string;
-  codesandbox?: string;
-}>();
+  codepen?: string
+  codesandbox?: string
+}>()
 
-const $vsTheme = inject(vsThemeKey)!;
+const $vsTheme = inject(vsThemeKey)!
 
-const $text = ref<HTMLElement>();
+const $text = ref<HTMLElement>()
 </script>
 
 <style lang="scss">
-@import "../styles/use";
+@import '../styles/use';
 
 h1 {
   + .card {
@@ -97,7 +97,7 @@ h1 {
     margin-top: 10px;
     border-radius: 5px 20px 0px 0px;
     border-bottom: 0px solid rgba(0, 0, 0, 0.03);
-    background: -color("theme-layout");
+    background: -color('theme-layout');
     position: relative;
     overflow: hidden;
     transition: all 0.25s ease;
@@ -107,9 +107,9 @@ h1 {
       transition: all 0.25s ease;
       width: 100%;
       height: 100%;
-      content: "";
+      content: '';
       position: absolute;
-      border: 8px solid -color("theme-bg2");
+      border: 8px solid -color('theme-bg2');
       box-sizing: border-box;
       top: 0px;
       left: 0px;
@@ -124,9 +124,9 @@ h1 {
       pointer-events: none;
       width: 60px;
       height: 25px;
-      content: "";
+      content: '';
       position: absolute;
-      background: -color("theme-bg2");
+      background: -color('theme-bg2');
       box-sizing: border-box;
       top: 0px;
       left: 50%;

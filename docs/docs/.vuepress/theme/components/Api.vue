@@ -1,11 +1,13 @@
 <template>
   <div
-    v-if="pageFrontmatter.PROPS || pageFrontmatter.SLOTS || pageFrontmatter.EVENTS"
+    v-if="
+      pageFrontmatter.PROPS || pageFrontmatter.SLOTS || pageFrontmatter.EVENTS
+    "
     id="vs-api"
     class="con-api"
   >
     <div class="content-api">
-      <div v-for="(table, key) in getTables" class="content-table">
+      <div v-for="(table, key) in getTables" :key="key" class="content-table">
         <template v-if="table">
           <header>
             <h3>{{ key }}</h3>
@@ -24,50 +26,59 @@
                 </th>
               </tr>
             </thead>
-            <tbody :id="`api-${tr.name}`" v-for="tr in table">
+            <tbody
+              v-for="(tr, trKey) in table"
+              :id="`api-${tr.name}`"
+              :key="trKey"
+            >
               <tr>
                 <td>
                   <router-link
                     v-if="tr.link && !isExternal(tr.link)"
                     :to="tr.link"
                   >
-                    {{ tr.name }}<i class="bx bx-link"></i>
+                    {{ tr.name }}<i class="bx bx-link" />
                   </router-link>
 
                   <a
+                    v-else-if="tr.link && isExternal(tr.link)"
                     target="_blank"
                     :href="tr.link"
-                    v-else-if="tr.link && isExternal(tr.link)"
                   >
-                    {{ tr.name }} <i class="bx bx-link-external"></i>
+                    {{ tr.name }} <i class="bx bx-link-external" />
                   </a>
 
                   <span v-else>
                     {{ tr.name }}
-                  </span> 
+                  </span>
 
-                  <Badge style="margin-left: 6px;" v-if="tr.state" :text="tr.state.text" :type="tr.state.type" />
-                  <template v-else></template>
+                  <Badge
+                    v-if="tr.state"
+                    style="margin-left: 6px"
+                    :text="tr.state.text"
+                    :type="tr.state.type"
+                  />
+                  <template v-else />
                 </td>
                 <td>{{ tr.type }}</td>
-                <td class="val" v-html="getValues(tr.values)"></td>
-                <td class="des" v-html="tr.description"></td>
+                <td class="val" v-html="getValues(tr.values)" />
+                <td class="des" v-html="tr.description" />
                 <td>{{ tr.default }}</td>
                 <td class="ex">
-                  <a :href="tr.usage" v-if="tr.usage" class="btn-usage">
-                    Usage <i class="bx bx-code-block"></i>
+                  <a v-if="tr.usage" :href="tr.usage" class="btn-usage">
+                    Usage <i class="bx bx-code-block" />
                   </a>
-                  <template v-else></template>
+                  <template v-else />
                   <a
-                    :href="`#vs-api-${tr.name}`"
                     v-if="tr.code"
-                    @click="toggleCode($event, tr)"
+                    :href="`#vs-api-${tr.name}`"
                     class="btn-toggle-code"
+                    @click="toggleCode($event, tr)"
                   >
-                    <span class="open">Open <i class="bx bx-code-alt"></i></span>
-                    <span class="close">Close <i class="bx bx-x"></i></span>
+                    <span class="open">Open <i class="bx bx-code-alt" /></span>
+                    <span class="close">Close <i class="bx bx-x" /></span>
                   </a>
-                  <template v-else></template>
+                  <template v-else />
                 </td>
 
                 <td class="bugx">
@@ -76,199 +87,205 @@
                     :href="`https://github.com/vuesax-alphax/vuesax-alpha/issues/new?title=[${pageData.title}] prop 
                     (${tr.name}) - Your Bug Name&amp;body=**Steps to Reproduce**%0A1. Do something%0A2. Do something else.%0A3. Do one last thing.%0A%0A**Expected**%0AThe ${tr.name} should do this%0A%0A**Result**%0AThe ${tr.name} does not do this%0A%0A**Testcase**%0A(fork this to get started)%0Ahttp://jsfiddle.net/example-bug/1/`"
                   >
-                    <i class="bx bx-bug"></i>
+                    <i class="bx bx-bug" />
                   </a>
 
                   <a
                     target="_blank"
                     :href="`https://github.com/vuesax-alphax/vuesax-alpha/`"
                   >
-                    <i class="bx bx-terminal"></i>
+                    <i class="bx bx-terminal" />
                   </a>
                 </td>
               </tr>
               <tr v-if="tr.code" class="tr-code">
                 <td
-                  @click="copy(tr.code)"
                   :class="{ copied }"
-                  v-html="getCode(tr.code)"
                   colspan="7"
-                ></td>
+                  @click="copy(tr.code)"
+                  v-html="getCode(tr.code)"
+                />
               </tr>
-              <template v-else></template>
+              <template v-else />
             </tbody>
           </table>
         </template>
-        <template v-else></template>
+        <template v-else />
       </div>
     </div>
   </div>
-  <template v-else></template>
+  <template v-else />
 </template>
 <script setup lang="ts">
-import { computed } from "@vue/reactivity";
-import { usePageData, usePageFrontmatter } from "@vuepress/client";
-import { onMounted, watch } from "vue";
-import { useRoute } from "vue-router";
-import prism from "prismjs";
-import { useClipboard } from "@vueuse/core";
+import { onMounted, watch } from 'vue'
+import { computed } from '@vue/reactivity'
+import { usePageData, usePageFrontmatter } from '@vuepress/client'
+import { useRoute } from 'vue-router'
+import prism from 'prismjs'
+import { useClipboard } from '@vueuse/core'
 
-import { ThemeNormalApiFrontmatter, ThemeNormalPropsFrontmatter } from "../shared/frontmatter/normal";
-import { isExternal } from "../util";
-import Badge from "../global-components/Badge.vue";
+import { isExternal } from '../util'
+import Badge from '../global-components/Badge.vue'
+import type {
+  ThemeNormalApiFrontmatter,
+  ThemeNormalPropsFrontmatter,
+} from '../shared/frontmatter/normal'
 
 type Tables = {
-  PROPS?: ThemeNormalPropsFrontmatter,
-  SLOTS?: ThemeNormalPropsFrontmatter,
-  events?: ThemeNormalPropsFrontmatter,
+  PROPS?: ThemeNormalPropsFrontmatter
+  SLOTS?: ThemeNormalPropsFrontmatter
+  events?: ThemeNormalPropsFrontmatter
 }
 
-const route = useRoute();
-const pageData = usePageData();
-const pageFrontmatter = usePageFrontmatter<ThemeNormalApiFrontmatter>();
+const route = useRoute()
+const pageData = usePageData()
+const pageFrontmatter = usePageFrontmatter<ThemeNormalApiFrontmatter>()
 
-const { copied, copy } = useClipboard({ legacy: true });
+const { copied, copy } = useClipboard({ legacy: true })
 
 const getTables = computed((): Tables => {
   return {
     PROPS: pageFrontmatter.value.PROPS,
     SLOTS: pageFrontmatter.value.SLOTS,
-    events: pageFrontmatter.value.EVENTS
+    events: pageFrontmatter.value.EVENTS,
   }
 })
 
 onMounted(() => {
-  document.addEventListener("scroll", () => {
-    const pageYOffset = Number(window.pageYOffset);
+  document.addEventListener('scroll', () => {
+    const pageYOffset = Number(window.pageYOffset)
     const tables = document.querySelectorAll(
-      ".content-api table"
-    ) as unknown as HTMLElement[] | null;
+      '.content-api table'
+    ) as unknown as HTMLElement[] | null
     tables?.forEach((table: HTMLElement, index: number) => {
       if (
         pageYOffset + 52 >= table.offsetTop &&
         pageYOffset + 100 < table.offsetTop + table.offsetHeight
       ) {
-        const clone: Element = table.cloneNode(true) as unknown as Element;
-        const tbodys = clone.querySelectorAll("tbody");
+        const clone: Element = table.cloneNode(true) as unknown as Element
+        const tbodys = clone.querySelectorAll('tbody')
         tbodys.forEach((tbody) => {
-          clone.removeChild(tbody);
-        });
+          clone.removeChild(tbody)
+        })
 
-        const ths = table.querySelectorAll("thead th") as unknown as
+        const ths = table.querySelectorAll('thead th') as unknown as
           | HTMLElement[]
-          | null;
-        const thsNew = clone.querySelectorAll("thead th") as unknown as
+          | null
+        const thsNew = clone.querySelectorAll('thead th') as unknown as
           | HTMLElement[]
-          | null;
+          | null
 
         ths?.forEach((th, index) => {
-          thsNew && thsNew[index].setAttribute("width", `${th.offsetWidth}`);
-        });
+          thsNew && thsNew[index].setAttribute('width', `${th.offsetWidth}`)
+        })
 
-        clone.classList.add(`table-${index}`);
+        clone.classList.add(`table-${index}`)
 
         if (!document.querySelector(`.header-page .table-${index}`)) {
           if (
             document.querySelector(`.header-page table:not(.table-${index})`)
           ) {
             const header = document.querySelector(
-              ".header-page .header__content"
-            );
+              '.header-page .header__content'
+            )
             const tableRemove = document.querySelector(
               `.header-page table:not(.table-${index})`
-            );
-            tableRemove && header?.removeChild(tableRemove);
+            )
+            tableRemove && header?.removeChild(tableRemove)
           }
           document
-            .querySelector(".header-page .header__content")
-            ?.appendChild(clone);
+            .querySelector('.header-page .header__content')
+            ?.appendChild(clone)
           document
-            .querySelector(".header-page .header__content")
-            ?.classList.add("con-table");
+            .querySelector('.header-page .header__content')
+            ?.classList.add('con-table')
         }
       } else {
-        const header = document.querySelector(".header-page .header__content");
+        const header = document.querySelector('.header-page .header__content')
         if (document.querySelector(`.header-page .table-${index}`)) {
-          const tableRemove = header?.querySelector(`.table-${index}`);
-          tableRemove && header?.removeChild(tableRemove);
+          const tableRemove = header?.querySelector(`.table-${index}`)
+          tableRemove && header?.removeChild(tableRemove)
           document
-            .querySelector(".header-page .header__content")
-            ?.classList.remove("con-table");
+            .querySelector('.header-page .header__content')
+            ?.classList.remove('con-table')
         }
       }
 
-      const header = document.querySelector(".header-page .header__content");
+      const header = document.querySelector('.header-page .header__content')
       if (document.querySelector(`.con-header table`)) {
-        const tableRemove = header?.querySelector(`.table-${index}`);
-        tableRemove && header?.removeChild(tableRemove);
+        const tableRemove = header?.querySelector(`.table-${index}`)
+        tableRemove && header?.removeChild(tableRemove)
         document
-          .querySelector(".header-page .header__content")
-          ?.classList.remove("con-table");
+          .querySelector('.header-page .header__content')
+          ?.classList.remove('con-table')
       }
-    });
+    })
     // window.pageYOffset
-  });
-});
+  })
+})
 
-watch(() => route.path, () => {
-  let header = document.querySelector(".header-page .header__content");
-  const _table = header?.querySelector("table");
-  _table && header?.removeChild(_table);
-  document
-    .querySelector(".header-page .header__content")
-    ?.classList.remove("con-table");
-});
+watch(
+  () => route.path,
+  () => {
+    const header = document.querySelector('.header-page .header__content')
+    const _table = header?.querySelector('table')
+    _table && header?.removeChild(_table)
+    document
+      .querySelector('.header-page .header__content')
+      ?.classList.remove('con-table')
+  }
+)
 
 const getValues = (values: string) => {
-  if (!values) return;
-  let arrayValues = values.split(",");
-  let spanValues = "";
-  arrayValues.map((item) => {
-    spanValues += `<span class='value-span'>${item}</span>`;
-  });
-  return spanValues;
-};
+  if (!values) return
+  const arrayValues = values.split(',')
+  let spanValues = ''
+  arrayValues.forEach((item) => {
+    spanValues += `<span class='value-span'>${item}</span>`
+  })
+  return spanValues
+}
 const toggleCode = (evt: MouseEvent, tr: ThemeNormalPropsFrontmatter) => {
-  const trParent = (evt.target as HTMLElement).closest("tr");
-  const nextCode = trParent?.nextElementSibling;
+  const trParent = (evt.target as HTMLElement).closest('tr')
+  const nextCode = trParent?.nextElementSibling
 
-  if (!nextCode) return;
+  if (!nextCode) return
 
-  const preElement = nextCode.querySelector("pre");
-  if (nextCode.classList.contains("open")) {
-    (evt.target as HTMLElement).setAttribute(
-      "href",
-      "#vs-api-close-" + tr.name
-    );
-    nextCode.classList.remove("open");
-    (evt.target as HTMLElement).classList.remove("open-btn");
+  const preElement = nextCode.querySelector('pre')
+  if (nextCode.classList.contains('open')) {
+    ;(evt.target as HTMLElement).setAttribute(
+      'href',
+      `#vs-api-close-${tr.name}`
+    )
+    nextCode.classList.remove('open')
+    ;(evt.target as HTMLElement).classList.remove('open-btn')
 
     if (preElement) {
-      preElement.style.padding = "0px 20px";
-      preElement.style.maxHeight = "0px";
+      preElement.style.padding = '0px 20px'
+      preElement.style.maxHeight = '0px'
     }
   } else {
-    (evt.target as HTMLElement).setAttribute("href", "#vs-api-" + tr.name);
-    (evt.target as HTMLElement).classList.add("open-btn");
-    nextCode.classList.add("open");
+    ;(evt.target as HTMLElement).setAttribute('href', `#vs-api-${tr.name}`)
+    ;(evt.target as HTMLElement).classList.add('open-btn')
+    nextCode.classList.add('open')
     // console.dir()
     if (preElement) {
-      preElement.style.padding = "20px";
-      preElement.style.maxHeight = `${preElement.scrollHeight + 40}px`;
+      preElement.style.padding = '20px'
+      preElement.style.maxHeight = `${preElement.scrollHeight + 40}px`
     }
   }
-};
+}
 const wrap = (code: string, lang: string) => {
-  return `<pre v-pre class="language-${lang}"><code>${code}</code></pre>`;
-};
+  return `<pre v-pre class="language-${lang}"><code>${code}</code></pre>`
+}
 const getCode = (str: string) => {
-  const code = prism.highlight(str, prism.languages["html"], "html");
-  return wrap(code, "html");
-};
+  const code = prism.highlight(str, prism.languages['html'], 'html')
+  return wrap(code, 'html')
+}
 </script>
 
 <style lang="scss">
-@import "../styles/use";
+@import '../styles/use';
 .content-table {
   &:last-child {
     table {
@@ -422,7 +439,7 @@ const getCode = (str: string) => {
       transition: all 0.25s ease;
     }
     &:after {
-      content: "Copied to Clipboard";
+      content: 'Copied to Clipboard';
       top: 0px;
       left: 50%;
       transform: translate(-50%, -100%);
@@ -441,7 +458,7 @@ const getCode = (str: string) => {
         transform: translate(-50%, 0%);
       }
     }
-    pre[class*="language-"] {
+    pre[class*='language-'] {
       margin: 0px;
     }
   }
@@ -449,8 +466,8 @@ const getCode = (str: string) => {
     opacity: 0.7;
   }
   &:hover {
-    code[class*="language-"] {
-      background: -color("accent-color", 0.1);
+    code[class*='language-'] {
+      background: -color('accent-color', 0.1);
     }
   }
   &.open {

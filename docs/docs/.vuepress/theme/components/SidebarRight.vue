@@ -11,20 +11,19 @@
 </template>
 
 <script setup lang="ts">
-import { usePageData, usePageFrontmatter } from "@vuepress/client";
-import { ThemeNormalApiFrontmatter } from "../shared/frontmatter/normal";
+import { usePageData, usePageFrontmatter } from '@vuepress/client'
+import RenderHeaders from './SidebarLink/RenderHeaders.vue'
+import type { ThemeNormalApiFrontmatter } from '../shared/frontmatter/normal'
 
-import RenderHeaders from "./SidebarLink/RenderHeaders.vue";
+const pageFrontmatter = usePageFrontmatter<ThemeNormalApiFrontmatter>()
+const pageData = usePageData()
 
-const pageFrontmatter = usePageFrontmatter<ThemeNormalApiFrontmatter>();
-const pageData = usePageData();
-
-const news = pageFrontmatter.value.NEWS;
-const updates = pageFrontmatter.value.UPDATES;
+const news = pageFrontmatter.value.NEWS
+const updates = pageFrontmatter.value.UPDATES
 </script>
 
 <style lang="scss">
-@import "../styles/use";
+@import '../styles/use';
 
 @media (max-width: 1080px) {
   .no-sidebar {

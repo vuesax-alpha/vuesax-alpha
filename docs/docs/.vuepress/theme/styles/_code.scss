@@ -1,5 +1,5 @@
-@import "./config";
-@import "./mixin";
+@import './config';
+@import './mixin';
 
 code {
   // color: -color('text-color');
@@ -7,42 +7,42 @@ code {
   padding: 0.25rem 0.5rem;
   margin: 0;
   font-size: 0.85em !important;
-  background-color: -color("theme-bg2");
+  background-color: -color('theme-bg2');
   border-radius: 3px;
-  color: -color("theme-color");
+  color: -color('theme-color');
   box-shadow: inset 0px 0px 20px 0px rgba(0, 0, 0, 0.04);
   .token {
     &.deleted {
       color: #ec5975;
     }
     &.inserted {
-      color: -color("accent-color");
+      color: -color('accent-color');
     }
   }
 }
 pre,
-pre[class*="language-"] {
+pre[class*='language-'] {
   line-height: 1.4;
   padding: 1.25rem 1.5rem;
   margin: 0;
-  background-color: -color("theme-code");
+  background-color: -color('theme-code');
   border-radius: 6px;
   overflow: auto;
 }
 pre code,
-pre[class*="language-"] code {
+pre[class*='language-'] code {
   color: #fff;
   padding: 0;
   background-color: transparent;
   border-radius: 0;
 }
 
-div[class*="language-"] {
+div[class*='language-'] {
   position: relative;
-  background-color: -color("theme-code");
+  background-color: -color('theme-code');
   border-radius: 6px;
   // .tag {
-    // line-height: 1.6;
+  // line-height: 1.6;
   // }
   .highlight-lines {
     user-select: none;
@@ -60,7 +60,7 @@ div[class*="language-"] {
 
   // height: 16px
   pre,
-  pre[class*="language-"] {
+  pre[class*='language-'] {
     background: transparent;
     position: relative;
     z-index: 1;
@@ -85,7 +85,7 @@ div[class*="language-"] {
     .highlight-lines .highlight-line {
       position: relative;
       &::before {
-        content: " ";
+        content: ' ';
         position: absolute;
         z-index: 3;
         left: 0;
@@ -120,7 +120,7 @@ div[class*="language-"] {
       }
     }
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       z-index: 2;
       top: 0;
@@ -134,46 +134,46 @@ div[class*="language-"] {
   }
 }
 
-div[class~="language-javascript"]:before {
-  content: "js";
+div[class~='language-javascript']:before {
+  content: 'js';
 }
 
-div[class~="language-typescript"]:before {
-  content: "ts";
+div[class~='language-typescript']:before {
+  content: 'ts';
 }
 
-div[class~="language-markup"]:before {
-  content: "html";
+div[class~='language-markup']:before {
+  content: 'html';
 }
 
-div[class~="language-markdown"]:before {
-  content: "md";
+div[class~='language-markdown']:before {
+  content: 'md';
 }
 
-div[class~="language-json"]:before {
-  content: "json";
+div[class~='language-json']:before {
+  content: 'json';
 }
 
-div[class~="language-ruby"]:before {
-  content: "rb";
+div[class~='language-ruby']:before {
+  content: 'rb';
 }
 
-div[class~="language-python"]:before {
-  content: "py";
+div[class~='language-python']:before {
+  content: 'py';
 }
 
-div[class~="language-bash"]:before {
-  content: "sh";
+div[class~='language-bash']:before {
+  content: 'sh';
 }
 
-div[class~="language-php"]:before {
-  content: "php";
+div[class~='language-php']:before {
+  content: 'php';
 }
 
 @media (max-width: 500px) {
-  div[class*="language-"] {
+  div[class*='language-'] {
     pre,
-    pre[class*="language-"] {
+    pre[class*='language-'] {
       padding-left: 5px;
       padding-right: 5px;
     }

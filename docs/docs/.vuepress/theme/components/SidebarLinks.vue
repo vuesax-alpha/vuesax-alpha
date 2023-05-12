@@ -1,14 +1,20 @@
 <template>
-  <ul class="sidebar-links" v-if="links.length">
+  <ul v-if="links.length" class="sidebar-links">
     <li
       v-for="(item, i) in links"
+      :key="i"
       :class="{ active: item.link === $route.path }"
     >
       <template v-if="!isString(item)">
         <SidebarGroup
-          v-if="('children' in item)"
+          v-if="'children' in item"
           :item="item"
-          :open="fixed || i === openGroupIndex || vsTheme?.sidebarCollapseOpen || false"
+          :open="
+            fixed ||
+            i === openGroupIndex ||
+            vsTheme?.sidebarCollapseOpen ||
+            false
+          "
           :collapsable="true"
           :depth="depth"
           @toggle="toggleGroup(i)"
@@ -20,65 +26,69 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onBeforeMount, inject } from "vue";
-import { SidebarConfigArray } from "vuepress-vite";
-import { RouteLocationNormalizedLoaded, useRoute } from "vue-router";
-import { isString } from "@vue/shared";
+import { inject, onBeforeMount, ref } from 'vue'
+import { isString } from '@vue/shared'
+import { useRoute } from 'vue-router'
 
-import SidebarGroup from "./SidebarGroup.vue";
-import SidebarLink from "./SidebarLink.vue";
-import { isMathcedPath } from "../util";
-import { vsThemeKey } from "../type";
+import { isMathcedPath } from '../util'
+import { vsThemeKey } from '../type'
+import SidebarGroup from './SidebarGroup.vue'
+import SidebarLink from './SidebarLink.vue'
+import type { RouteLocationNormalizedLoaded } from 'vue-router'
+import type { SidebarConfigArray } from 'vuepress-vite'
 
 const props = defineProps<{
-  links: SidebarConfigArray;
+  links: SidebarConfigArray
   /**
    * depth of current sidebar links
    */
-  depth: number;
-  fixed?: boolean;
-}>();
+  depth: number
+  fixed?: boolean
+}>()
 
-const route = useRoute();
+const route = useRoute()
 
-const vsTheme = inject(vsThemeKey, null);
+const vsTheme = inject(vsThemeKey, null)
 
-const openGroupIndex = ref<number>(0);
-const allOpen = ref<boolean>(false);
+const openGroupIndex = ref<number>(0)
 
 onBeforeMount(() => {
-  refreshIndex();
-});
+  refreshIndex()
+})
 
 // watch(route, () => {
 //   // refreshIndex();
 // });
 
 const refreshIndex = () => {
-  const index = resolveOpenGroupIndex(route, props.links);
+  const index = resolveOpenGroupIndex(route, props.links)
   if (index > -1) {
-    openGroupIndex.value = index;
+    openGroupIndex.value = index
   }
-};
+}
 
 const toggleGroup = (index: number) => {
-  openGroupIndex.value = index === openGroupIndex.value ? -1 : index;
-};
+  openGroupIndex.value = index === openGroupIndex.value ? -1 : index
+}
 
-const resolveOpenGroupIndex = (route: RouteLocationNormalizedLoaded, sidebar: SidebarConfigArray) => {
+const resolveOpenGroupIndex = (
+  route: RouteLocationNormalizedLoaded,
+  sidebar: SidebarConfigArray
+) => {
   // console.log(sidebar);
-  
-  for (let i = 0; i < sidebar.length; i++) {
-    const item = sidebar[i];
-    if (isString(item)) continue;
+
+  for (const [i, item] of sidebar.entries()) {
+    if (isString(item)) continue
 
     if (
       'children' in item &&
-      item.children.some((c) => isMathcedPath(route, isString(c) ? c : c.link || ''))
+      item.children.some((c) =>
+        isMathcedPath(route, isString(c) ? c : c.link || '')
+      )
     ) {
-      return i;
+      return i
     }
   }
-  return -1;
-};
+  return -1
+}
 </script>

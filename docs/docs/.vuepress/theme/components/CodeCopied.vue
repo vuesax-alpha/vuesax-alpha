@@ -1,18 +1,18 @@
 <template>
   <div :class="{ copied }" class="noti-code">
-    <i class="bx bx-check"></i> {{ text || 'Code Copied' }}
+    <i class="bx bx-check" /> {{ text || 'Code Copied' }}
   </div>
 </template>
 
 <script setup lang="ts">
 defineProps<{
-  copied: boolean;
+  copied: boolean
   text?: string
-}>();
+}>()
 </script>
 
 <style lang="scss">
-@import "../styles/use";
+@import '../styles/use';
 
 .noti-code {
   position: fixed;
@@ -30,7 +30,7 @@ defineProps<{
   visibility: hidden;
   transition: all 0.25s ease;
   z-index: 1000;
-  
+
   i {
     position: absolute;
     left: 0px;

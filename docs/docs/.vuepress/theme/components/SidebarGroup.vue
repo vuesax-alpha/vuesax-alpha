@@ -17,15 +17,11 @@
         active: isMathcedPath($route, item.link),
       }"
       :to="item.link"
-      @click.native="$emit('toggle')"
+      @click="$emit('toggle')"
     >
       <span>{{ item.text }}</span>
-      <span
-        class="arrow"
-        v-if="collapsable"
-        :class="open ? 'down' : 'right'"
-      ></span>
-      <template v-else></template>
+      <span v-if="collapsable" class="arrow" :class="open ? 'down' : 'right'" />
+      <template v-else />
     </router-link>
 
     <p
@@ -35,7 +31,7 @@
       @click="$emit('toggle')"
     >
       <span>{{ item.text }}</span>
-      <i class="bx bx-chevron-right"></i>
+      <i class="bx bx-chevron-right" />
     </p>
 
     <DropdownTransition>
@@ -50,25 +46,25 @@
 </template>
 
 <script lang="ts" setup>
-import { SidebarGroupCollapsible } from "vuepress-vite";
-import { isMathcedPath } from "../util";
-import DropdownTransition from "./DropdownTransition.vue";
-import SidebarLinks from "./SidebarLinks.vue";
+import { isMathcedPath } from '../util'
+import DropdownTransition from './DropdownTransition.vue'
+import SidebarLinks from './SidebarLinks.vue'
+import type { SidebarGroupCollapsible } from 'vuepress-vite'
 
 defineEmits<{
-  (event: "toggle"): void;
-}>();
+  (event: 'toggle'): void
+}>()
 
 defineProps<{
-  open: boolean;
-  collapsable: boolean;
-  depth: number;
-  item: SidebarGroupCollapsible;
-}>();
+  open: boolean
+  collapsable: boolean
+  depth: number
+  item: SidebarGroupCollapsible
+}>()
 </script>
 
 <style lang="scss">
-@import "../styles/use";
+@import '../styles/use';
 
 .sidebar-group {
   .sidebar-group {
@@ -110,7 +106,7 @@ defineProps<{
   }
 }
 .sidebar-heading {
-  color: -color("theme-color");
+  color: -color('theme-color');
   transition: color 0.15s ease;
   cursor: pointer;
   font-size: 1em;
@@ -141,11 +137,11 @@ defineProps<{
   &.clickable {
     &.active {
       font-weight: 600;
-      color: -color("accent-color");
-      border-left-color: -color("accent-color");
+      color: -color('accent-color');
+      border-left-color: -color('accent-color');
     }
     &:hover {
-      color: -color("accent-color");
+      color: -color('accent-color');
     }
   }
 }

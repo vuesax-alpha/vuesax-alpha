@@ -10,10 +10,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "lib": [
-      "ESNext",
-      "DOM"
-    ],
+    "lib": ["ESNext", "DOM"],
     // "skipLibCheck": false,
     "allowJs": true,
     // "outDir": "dist",

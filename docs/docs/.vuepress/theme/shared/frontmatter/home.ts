@@ -1,43 +1,43 @@
-import { PageFrontmatter } from 'vuepress-vite';
+import type { PageFrontmatter } from 'vuepress-vite'
 
 export interface ThemeHomeActionOption {
   /**
    * Action name
    */
-  text: string;
+  text: string
 
   /**
    * Action link
    */
-  link: string;
+  link: string
 }
 
 export interface ThemeHomeFeature {
   /**
-  * Feature name
-  */
-  title: string;
+   * Feature name
+   */
+  title: string
 
   /**
-  * Feature description
-  */
-  details: string;
+   * Feature description
+   */
+  details: string
 }
 
 export interface ThemeHomeFeatureOption extends ThemeHomeFeature {
   /**
    * Feature actions
    */
-  action?: ThemeHomeActionOption,
+  action?: ThemeHomeActionOption
 }
 
 export interface ThemeProjectHomePageFrontmatter extends PageFrontmatter {
-  home: true,
-  heroText?: string;
-  tagline?: string;
+  home: true
+  heroText?: string
+  tagline?: string
 
-  action: ThemeHomeActionOption;
-  features?: ThemeHomeFeatureOption[];
-  suscribe?: string;
-  premiumThemes?: ThemeHomeFeature,
+  action: ThemeHomeActionOption
+  features?: ThemeHomeFeatureOption[]
+  suscribe?: string
+  premiumThemes?: ThemeHomeFeature
 }

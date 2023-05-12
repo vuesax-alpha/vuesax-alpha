@@ -1,5 +1,6 @@
 <template>
   <router-link
+    v-if="!isExternal(navItem.link)"
     class="nav-link"
     :class="{
       active,
@@ -7,11 +8,10 @@
     :to="navItem.link"
     :active-class="''"
     :exact-active-class="''"
-    v-if="!isExternal(navItem.link)"
   >
     {{ navItem.text }}
-    <i v-if="arrow" class="bx bx-chevron-down"></i>
-    <template v-else></template>
+    <i v-if="arrow" class="bx bx-chevron-down" />
+    <template v-else />
   </router-link>
   <a
     v-else
@@ -28,29 +28,29 @@
         : 'noopener noreferrer'
     "
   >
-    {{ navItem.text }} <i class='bx bx-link-external'></i>
+    {{ navItem.text }} <i class="bx bx-link-external" />
   </a>
 </template>
 
 <script lang="ts" setup>
-import { isLinkMailto, isLinkTel } from "@vuepress/shared";
-import { computed } from "vue";
-import { useRoute } from "vue-router";
-import { NavbarItem } from "vuepress-vite";
-import { isMathcedPath, isExternal } from "../util";
+import { computed } from 'vue'
+import { isLinkMailto, isLinkTel } from '@vuepress/shared'
+import { useRoute } from 'vue-router'
+import { isExternal, isMathcedPath } from '../util'
+import type { NavbarItem } from 'vuepress-vite'
 
 const props = defineProps<{
-  navItem: NavbarItem;
-  arrow?: boolean;
-}>();
+  navItem: NavbarItem
+  arrow?: boolean
+}>()
 
-const route = useRoute();
+const route = useRoute()
 
-const active = computed(() => isMathcedPath(route, props.navItem.link));
+const active = computed(() => isMathcedPath(route, props.navItem.link))
 </script>
 
 <style lang="scss">
-@import "../styles/use";
+@import '../styles/use';
 
 .nav-item {
   & > div {

@@ -1,6 +1,6 @@
 <template>
-  <nav class="nav-links" v-if="userNav.length || repoLink">
-    <div class="nav-item" v-for="navItem in userNav">
+  <nav v-if="userNav.length || repoLink" class="nav-links">
+    <div v-for="(navItem, index) in userNav" :key="index" class="nav-item">
       <template v-if="!isString(navItem)">
         <DropdownLink
           v-if="'children' in navItem"
@@ -9,10 +9,10 @@
         />
         <NavLink v-else :nav-item="navItem" />
       </template>
-      <template v-else></template>
+      <template v-else />
     </div>
   </nav>
-  <template v-else></template>
+  <template v-else />
 </template>
 
 <script lang="ts" setup>
@@ -21,11 +21,11 @@ import { isLinkHttp, isString } from '@vuepress/shared'
 import {
   useThemeData,
   useThemeLocaleData,
-// @ts-ignore
+  // @ts-ignore
 } from '@vuepress/plugin-theme-data/client'
-import { VuesaxAlphaThemeOptions } from '../vuesaxAlphaTheme'
 import DropdownLink from './DropdownLink.vue'
 import NavLink from './NavLink.vue'
+import type { VuesaxAlphaThemeOptions } from '../vuesaxAlphaTheme'
 import type { NavbarConfig } from '../shared/client/nav'
 
 const themeData = useThemeData<VuesaxAlphaThemeOptions>()
@@ -43,24 +43,23 @@ const repoLink = computed(() => {
   return ''
 })
 
-const repoLabel = computed(() => {
-  if (!repoLink.value) return
-  if (themeData.value.repoLabel) {
-    return themeData.value.repoLabel
-  }
+// const repoLabel = computed(() => {
+//   if (!repoLink.value) return
+//   if (themeData.value.repoLabel) {
+//     return themeData.value.repoLabel
+//   }
 
-  const [repoHost] = repoLink.value.match(/^https?:\/\/[^/]+/) || ['']
+//   const [repoHost] = repoLink.value.match(/^https?:\/\/[^/]+/) || ['']
 
-  const platforms = ['GitHub', 'GitLab', 'Bitbucket']
-  for (let i = 0; i < platforms.length; i++) {
-    const platform = platforms[i]
-    if (new RegExp(platform, 'i').test(repoHost)) {
-      return platform
-    }
-  }
+//   const platforms = ['GitHub', 'GitLab', 'Bitbucket']
+//   for (const platform of platforms) {
+//     if (new RegExp(platform, 'i').test(repoHost)) {
+//       return platform
+//     }
+//   }
 
-  return 'Source'
-})
+//   return 'Source'
+// })
 </script>
 
 <style lang="scss">

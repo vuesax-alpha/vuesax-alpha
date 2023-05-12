@@ -1,16 +1,16 @@
 <template>
-  <div ref="codefund" class="codefund" id="codefund"></div>
+  <div id="codefund" ref="codefund" class="codefund" />
 </template>
 
 <style lang="scss">
-@import "../styles/use";
+@import '../styles/use';
 
 .codefund {
   position: fixed;
   right: 0px;
   bottom: 0px;
   width: 145px;
-  background: -color("theme-layout");
+  background: -color('theme-layout');
   z-index: 90000;
   border-radius: 25px 0px 0px 0px;
   transition: all 0.25s ease;

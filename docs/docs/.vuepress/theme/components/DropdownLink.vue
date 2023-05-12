@@ -5,39 +5,44 @@
         <span v-if="item.text !== '...'">
           {{ item.text }}
         </span>
-        <i v-else class="bx bx-dots-horizontal-rounded"> </i>
+        <i v-else class="bx bx-dots-horizontal-rounded" />
 
-        <i v-if="hasFle" class="bx bx-chevron-down not-remove"></i>
-        <template v-else></template>
+        <i v-if="hasFle" class="bx bx-chevron-down not-remove" />
+        <template v-else />
       </span>
     </a>
 
     <DropdownTransition>
-      <ul class="nav-dropdown" v-show="open">
-        <li class="dropdown-item" v-for="subItem in item.children">
+      <ul v-show="open" class="nav-dropdown">
+        <li
+          v-for="(subItem, subIndex) in item.children"
+          :key="subIndex"
+          class="dropdown-item"
+        >
           <template v-if="!isString(subItem)">
             <template v-if="'children' in subItem">
               <h4>{{ subItem.text }}</h4>
               <ul class="dropdown-subitem-wrapper">
                 <li
+                  v-for="(childSubItem, childSubIndex) in subItem.children"
+                  :key="childSubIndex"
                   class="dropdown-subitem"
-                  v-for="childSubItem in subItem.children"
                 >
                   <template
                     v-if="
                       !isString(childSubItem) && !('children' in childSubItem)
                     "
                   >
-                    <NavLink :nav-item="childSubItem"/>
+                    <NavLink :nav-item="childSubItem" />
                   </template>
-                 <template v-else></template>
+                  <template v-else />
                 </li>
               </ul>
             </template>
 
             <NavLink v-else :nav-item="subItem" />
           </template>
-          <template v-else></template>
+          <template v-else />
         </li>
       </ul>
     </DropdownTransition>
@@ -45,26 +50,26 @@
 </template>
 
 <script setup lang="ts">
-import NavLink from "./NavLink.vue";
-import DropdownTransition from "./DropdownTransition.vue";
-import { ref } from "vue";
-import { NavbarGroup } from "vuepress-vite";
-import { isString } from "@vue/shared";
+import { ref } from 'vue'
+import { isString } from '@vue/shared'
+import NavLink from './NavLink.vue'
+import DropdownTransition from './DropdownTransition.vue'
+import type { NavbarGroup } from 'vuepress-vite'
 
 defineProps<{
-  item: NavbarGroup;
-  hasFle?: boolean;
-}>();
+  item: NavbarGroup
+  hasFle?: boolean
+}>()
 
-const open = ref<boolean>(false);
+const open = ref<boolean>(false)
 
 const toggle = () => {
-  open.value = !open.value;
-};
+  open.value = !open.value
+}
 </script>
 
 <style lang="scss">
-@import "../styles/use";
+@import '../styles/use';
 
 .dropdown-wrapper {
   .dropdown-title {
@@ -138,7 +143,7 @@ const toggle = () => {
         font-weight: bold !important;
         transform: translate(0) !important;
         &::after {
-          content: "";
+          content: '';
           width: 5px;
           height: 5px;
           position: absolute;
@@ -205,7 +210,7 @@ const toggle = () => {
   .dropdown-wrapper {
     position: relative;
     &:after {
-      content: "";
+      content: '';
       position: absolute;
       bottom: -12px;
       width: 100%;
@@ -228,7 +233,7 @@ const toggle = () => {
       .arrow {
         border-left: 4px solid transparent;
         border-right: 4px solid transparent;
-        border-top: 6px solid -color("arrow-bg-color");
+        border-top: 6px solid -color('arrow-bg-color');
         border-bottom: 0;
       }
     }
@@ -245,7 +250,7 @@ const toggle = () => {
       bottom: 0px;
       transform: translate(0, 100%);
       left: 0;
-      background-color: -color("theme-layout");
+      background-color: -color('theme-layout');
       padding: 0.5rem 0;
       text-align: left;
       border-radius: 7px 20px 20px 20px;

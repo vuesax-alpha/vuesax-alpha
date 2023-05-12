@@ -15,27 +15,27 @@
       />
     </svg>
     <div class="content-sidebar">
-      <slot name="top"></slot>
+      <slot name="top" />
       <SidebarLinks :fixed="fixed" :depth="0" :links="sidebar" />
       <NavLinks />
-      <slot name="bottom"></slot>
+      <slot name="bottom" />
     </div>
   </aside>
 </template>
 
 <script setup lang="ts">
-import SidebarLinks from "./SidebarLinks.vue";
-import NavLinks from "./NavLinks.vue";
-import { SidebarConfigArray } from "vuepress-vite";
+import SidebarLinks from './SidebarLinks.vue'
+import NavLinks from './NavLinks.vue'
+import type { SidebarConfigArray } from 'vuepress-vite'
 
 defineProps<{
-  sidebar: SidebarConfigArray,
+  sidebar: SidebarConfigArray
   fixed?: boolean
 }>()
 </script>
 
 <style lang="scss">
-@import "../styles/use";
+@import '../styles/use';
 
 .effect1 {
   transform: rotate(-90deg);
@@ -71,7 +71,7 @@ defineProps<{
     opacity: 0.4;
     position: relative;
     &:after {
-      content: "";
+      content: '';
       position: absolute;
       bottom: 0px;
       left: 50%;

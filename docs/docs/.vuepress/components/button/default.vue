@@ -6,8 +6,8 @@
   </div>
 </template>
 
-<script setup lang="ts" >
-import { ref } from "vue";
+<script setup lang="ts">
+import { ref } from 'vue'
 
-const active = ref<number>(0);
+const active = ref<number>(0)
 </script>

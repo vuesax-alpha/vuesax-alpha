@@ -1,12 +1,8 @@
-import { MarkdownItHeader } from "@mdit-vue/types";
-import { RouteLocale } from "@vuepress/client";
-import {
-  ensureEndingSlash, ensureLeadingSlash,
-} from "@vuepress/shared";
-import {
-  RouteLocationNormalizedLoaded,
-} from "vue-router";
-import {
+import { ensureEndingSlash, ensureLeadingSlash } from '@vuepress/shared'
+import type { MarkdownItHeader } from '@mdit-vue/types'
+import type { RouteLocale } from '@vuepress/client'
+import type { RouteLocationNormalizedLoaded } from 'vue-router'
+import type {
   NavbarGroup,
   NavbarItem,
   PageData,
@@ -14,132 +10,141 @@ import {
   SidebarConfigArray,
   SidebarGroup,
   SidebarItem,
-} from "vuepress-vite";
-import { VuesaxAlphaThemeOptions } from "../vuesaxAlphaTheme";
+} from 'vuepress-vite'
+import type { VuesaxAlphaThemeOptions } from '../vuesaxAlphaTheme'
 
-export const hashRE = /#.*$/;
-export const extRE = /\.(md|html)$/;
-export const endingSlashRE = /\/$/;
-export const outboundRE = /^(https?:|mailto:|tel:)/;
+export const hashRE = /#.*$/
+export const extRE = /\.(md|html)$/
+export const endingSlashRE = /\/$/
+export const outboundRE = /^(https?:|mailto:|tel:)/
 
 export function normalize(path: string) {
-  return decodeURI(path).replace(hashRE, "").replace(extRE, "");
+  return decodeURI(path).replace(hashRE, '').replace(extRE, '')
 }
 
 export function getHash(path: string) {
-  const match = path.match(hashRE);
+  const match = path.match(hashRE)
   if (match) {
-    return match[0];
+    return match[0]
   }
 }
 
 export function isExternal(path: string) {
-  return outboundRE.test(path);
+  return outboundRE.test(path)
 }
 
 export function isMailto(path: string) {
-  return /^mailto:/.test(path);
+  return path.startsWith('mailto:')
 }
 
 export function isTel(path: string) {
-  return /^tel:/.test(path);
+  return path.startsWith('tel:')
 }
 
 export function ensureExt(path: string) {
   if (isExternal(path)) {
-    return path;
+    return path
   }
-  const hashMatch = path.match(hashRE);
-  const hash = hashMatch ? hashMatch[0] : "";
-  const normalized = normalize(path);
+  const hashMatch = path.match(hashRE)
+  const hash = hashMatch ? hashMatch[0] : ''
+  const normalized = normalize(path)
 
   if (endingSlashRE.test(normalized)) {
-    return path;
+    return path
   }
-  return normalized + ".html" + hash;
+  return `${normalized}.html${hash}`
 }
 
-export function isMathcedPath(route: RouteLocationNormalizedLoaded, path: string) {
-  const routeHash = route.hash;
-  const linkHash = getHash(path);
+export function isMathcedPath(
+  route: RouteLocationNormalizedLoaded,
+  path: string
+) {
+  const routeHash = route.hash
+  const linkHash = getHash(path)
   if (linkHash && routeHash !== linkHash) {
-    return false;
+    return false
   }
-  const routePath = ensureLeadingSlash(ensureEndingSlash(normalize(route.fullPath))).toLowerCase();
-  const pagePath = ensureLeadingSlash(ensureEndingSlash(normalize(path))).toLowerCase();
+  const routePath = ensureLeadingSlash(
+    ensureEndingSlash(normalize(route.fullPath))
+  ).toLowerCase()
+  const pagePath = ensureLeadingSlash(
+    ensureEndingSlash(normalize(path))
+  ).toLowerCase()
 
-  return routePath === pagePath;
+  return routePath === pagePath
 }
 
-export function isMatchedHeader(route: RouteLocationNormalizedLoaded, path: string) {
-  const routeHash = route.hash;
-  const linkHash = getHash(path);
-  
-  return routeHash === linkHash;
+export function isMatchedHeader(
+  route: RouteLocationNormalizedLoaded,
+  path: string
+) {
+  const routeHash = route.hash
+  const linkHash = getHash(path)
+
+  return routeHash === linkHash
 }
 
 /**
  * @param relative: route locale
  * @param base: route path (not fullpath)
  */
-function resolvePath(relative: RouteLocale, base: string, append?: boolean) {
-  const firstChar = relative.charAt(0);
-  if (firstChar === "/") {
-    return relative;
-  }
+// function resolvePath(relative: RouteLocale, base: string, append?: boolean) {
+//   const firstChar = relative.charAt(0)
+//   if (firstChar === '/') {
+//     return relative
+//   }
 
-  if (firstChar === "?" || firstChar === "#") {
-    return base + relative;
-  }
+//   if (firstChar === '?' || firstChar === '#') {
+//     return base + relative
+//   }
 
-  const stack = base.split("/");
+//   const stack = base.split('/')
 
-  // remove trailing segment if:
-  // - not appending
-  // - appending to trailing slash (last segment is empty)
-  if (!append || !stack[stack.length - 1]) {
-    stack.pop();
-  }
+//   // remove trailing segment if:
+//   // - not appending
+//   // - appending to trailing slash (last segment is empty)
+//   if (!append || !stack[stack.length - 1]) {
+//     stack.pop()
+//   }
 
-  // resolve relative path
-  const segments = relative.replace(/^\//, "").split("/");
-  for (let i = 0; i < segments.length; i++) {
-    const segment = segments[i];
-    if (segment === "..") {
-      stack.pop();
-    } else if (segment !== ".") {
-      stack.push(segment);
-    }
-  }
+//   // resolve relative path
+//   const segments = relative.replace(/^\//, '').split('/')
+//   for (const segment of segments) {
+//     if (segment === '..') {
+//       stack.pop()
+//     } else if (segment !== '.') {
+//       stack.push(segment)
+//     }
+//   }
 
-  // ensure leading slash
-  if (stack[0] !== "") {
-    stack.unshift("");
-  }
+//   // ensure leading slash
+//   if (stack[0] !== '') {
+//     stack.unshift('')
+//   }
 
-  return stack.join("/");
-}
+//   return stack.join('/')
+// }
 
 export function resolveSidebarItems(
   pageData: PageData,
   themeOptions: VuesaxAlphaThemeOptions,
-  localePath: RouteLocale = "/"
+  localePath: RouteLocale = '/'
 ): SidebarConfigArray {
-  const { locales } = themeOptions;
+  const { locales } = themeOptions
 
   const localeConfig =
-    localePath && locales ? locales[localePath] || themeOptions : themeOptions;
-  const sidebarConfig = localeConfig.sidebar || themeOptions.sidebar;
+    localePath && locales ? locales[localePath] || themeOptions : themeOptions
+  const sidebarConfig = localeConfig.sidebar || themeOptions.sidebar
 
-  if (sidebarConfig === "auto") {
-    const headers = groupHeaders(pageData.headers);
-    return resolveHeaders(headers, pageData);
+  if (sidebarConfig === 'auto') {
+    const headers = groupHeaders(pageData.headers)
+    return resolveHeaders(headers, pageData)
   }
-  if (sidebarConfig === false || sidebarConfig === undefined) return [];
+  if (sidebarConfig === false || sidebarConfig === undefined) return []
 
-  const { base, config } = resolveMatchingConfig(localePath, sidebarConfig);
+  const { config } = resolveMatchingConfig(localePath, sidebarConfig)
   // return config ? config.map((item) => resolveItem(item, pageData, base)) : [];
-  return config || [];
+  return config || []
 }
 
 function resolveHeaders(
@@ -153,42 +158,42 @@ function resolveHeaders(
       children: headers.map(
         (h: MarkdownItHeader): SidebarItem | SidebarGroup => ({
           text: h.title,
-          link: "#" + h.slug,
+          link: `#${h.slug}`,
           children: resolveHeaders(h.children, page),
         })
       ),
     },
-  ];
+  ]
 }
 
 export function groupHeaders(
   headers: MarkdownItHeader[] = []
 ): MarkdownItHeader[] {
   // group h3s under h2
-  headers = headers.map((h) => Object.assign({}, h));
-  let lastH2: MarkdownItHeader;
+  headers = headers.map((h) => Object.assign({}, h))
+  let lastH2: MarkdownItHeader
 
   headers.forEach((h) => {
     if (h.level === 2) {
-      lastH2 = h;
+      lastH2 = h
     } else if (lastH2) {
-      (lastH2.children || (lastH2.children = [])).push(h);
+      ;(lastH2.children || (lastH2.children = [])).push(h)
     }
-  });
-  return headers.filter((h) => h.level === 2);
+  })
+  return headers.filter((h) => h.level === 2)
 }
 
 export function resolveTypeNavLinkItem(
   linkItem: NavbarGroup | NavbarItem | string
 ) {
-  let type: string = "link";
+  let type = 'link'
 
-  if (typeof linkItem !== "string" && "children" in linkItem) {
-    type = linkItem.children.length > 0 ? "links" : "link";
+  if (typeof linkItem !== 'string' && 'children' in linkItem) {
+    type = linkItem.children.length > 0 ? 'links' : 'link'
   }
   return Object.assign(linkItem, {
     type,
-  });
+  })
 }
 
 export function resolveMatchingConfig(
@@ -197,18 +202,17 @@ export function resolveMatchingConfig(
 ) {
   if (Array.isArray(config)) {
     return {
-      base: "/",
-      config: config,
-    };
+      base: '/',
+      config,
+    }
   }
   for (const base in config) {
     if (ensureEndingSlash(localePath).indexOf(encodeURI(base)) === 0) {
       return {
         base,
         config: config[base],
-      };
+      }
     }
   }
-  return {};
+  return {}
 }
-

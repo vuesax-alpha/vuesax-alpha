@@ -1,7 +1,7 @@
-import RenderLink from "./RenderLink.vue";
-import RenderHeaders from "./RenderHeaders.vue";
+import RenderLinkComp from './RenderLink.vue'
+import RenderHeadersComp from './RenderHeaders.vue'
 
-export type RenderLink = InstanceType<typeof RenderLink>;
-export type RenderHeaders = InstanceType<typeof RenderHeaders>;
+export type RenderLink = InstanceType<typeof RenderLinkComp>
+export type RenderHeaders = InstanceType<typeof RenderHeadersComp>
 
-export default { RenderLink, RenderHeaders };
+export default { RenderLink: RenderLinkComp, RenderHeaders: RenderHeadersComp }

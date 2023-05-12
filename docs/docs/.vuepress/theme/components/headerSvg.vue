@@ -1,7 +1,7 @@
 <template>
   <svg
-    class="svgx"
     id="e4da07c6-3f45-486e-a553-879e7f222c67"
+    class="svgx"
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     width="926"

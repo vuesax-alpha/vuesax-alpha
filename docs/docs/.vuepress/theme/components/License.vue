@@ -7,24 +7,28 @@
       </div>
 
       <div class="con-text-header">
-        <h1 v-html="pageFrontmatter.header?.title"></h1>
-        <p v-html="pageFrontmatter.header?.description"></p>
+        <h1 v-html="pageFrontmatter.header?.title" />
+        <p v-html="pageFrontmatter.header?.description" />
         <footer>
-          <button @click="handleRoute('#plans')" class="see">
+          <button class="see" @click="handleRoute('#plans')">
             {{ pageFrontmatter.header?.buttonText }}
           </button>
-          <button @click="handleRoute('#faq')" class="faq">FAQ</button>
+          <button class="faq" @click="handleRoute('#faq')">FAQ</button>
         </footer>
       </div>
     </header>
 
     <div id="plans" class="con-plans">
-      <h2 v-html="pageFrontmatter.cards?.title"></h2>
+      <h2 v-html="pageFrontmatter.cards?.title" />
 
       <div class="con-cards">
-        <div v-for="card in pageFrontmatter.cards?.cards" class="card">
-          <h3 v-html="card.title"></h3>
-          <p v-html="card.description"></p>
+        <div
+          v-for="(card, index) in pageFrontmatter.cards?.cards"
+          :key="index"
+          class="card"
+        >
+          <h3 v-html="card.title" />
+          <p v-html="card.description" />
           <button
             @click="
               card.contact
@@ -61,26 +65,26 @@
                 <span v-if="typeof tr[1] === 'string'">
                   {{ tr[1] }}
                 </span>
-                <i v-else-if="tr[1]" class="bx bx-check"></i>
-                <i v-else class="bx bx-x"></i>
+                <i v-else-if="tr[1]" class="bx bx-check" />
+                <i v-else class="bx bx-x" />
               </td>
               <td :class="{ none: !tr[2] && typeof tr[2] !== 'string' }">
                 <span v-if="typeof tr[1] === 'string'">
                   {{ tr[1] }}
                 </span>
-                <i v-if="tr[2]" class="bx bx-check"></i>
-                <i v-else class="bx bx-x"></i>
+                <i v-if="tr[2]" class="bx bx-check" />
+                <i v-else class="bx bx-x" />
               </td>
               <td :class="{ none: !tr[3] && typeof tr[3] !== 'string' }">
                 <span v-if="typeof tr[1] === 'string'" @click="openContact">
                   {{ tr[1] }}
                 </span>
-                <i v-else-if="tr[3]" class="bx bx-check"></i>
-                <i v-else class="bx bx-x"></i>
+                <i v-else-if="tr[3]" class="bx bx-check" />
+                <i v-else class="bx bx-x" />
               </td>
             </tr>
           </tbody>
-          <tr></tr>
+          <tr />
         </table>
       </div>
     </div>
@@ -90,40 +94,40 @@
       <ul>
         <li v-for="(faq, index) in pageFrontmatter.faqs" :key="index">
           <h4>{{ faq.title }}</h4>
-          <p v-html="faq.text"></p>
+          <p v-html="faq.text" />
         </li>
       </ul>
     </div>
 
-    <Footer></Footer>
+    <Footer />
   </div>
 </template>
 
 <script setup lang="ts">
-import { usePageFrontmatter } from "@vuepress/client";
-import { nextTick } from "vue";
-import { useRouter } from "vue-router";
+import { nextTick } from 'vue'
+import { usePageFrontmatter } from '@vuepress/client'
+import { useRouter } from 'vue-router'
 
-import { ThemeLicenseFrontmatter } from "../shared/frontmatter/license";
-import Footer from "./Footer.vue";
+import Footer from './Footer.vue'
+import type { ThemeLicenseFrontmatter } from '../shared/frontmatter/license'
 
-const router = useRouter();
-const pageFrontmatter = usePageFrontmatter<ThemeLicenseFrontmatter>();
+const router = useRouter()
+const pageFrontmatter = usePageFrontmatter<ThemeLicenseFrontmatter>()
 
 const handleRoute = (hash: string) => {
-  router.replace("");
+  router.replace('')
   nextTick(() => {
-    router.replace(hash);
-  });
-};
+    router.replace(hash)
+  })
+}
 
 const openContact = () => {
-  window.open("mailto:tranthinh.work@gmail.com", "_self");
-};
+  window.open('mailto:tranthinh.work@gmail.com', '_self')
+}
 </script>
 
 <style lang="scss">
-@import "../styles/use";
+@import '../styles/use';
 
 .darken {
   .con-faq {
@@ -170,10 +174,10 @@ const openContact = () => {
       padding-top: 10px;
       position: relative;
       &:after {
-        content: "";
+        content: '';
       }
       &:hover {
-        background: -color("theme-layout");
+        background: -color('theme-layout');
         box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.1);
         transform: translate(0, -5px);
       }
@@ -212,7 +216,7 @@ const openContact = () => {
   .con-tabla {
     width: 100%;
     max-width: 1000px;
-    background: -color("theme-bg", 0.6);
+    background: -color('theme-bg', 0.6);
     padding: 20px;
     border-radius: 30px;
   }
@@ -224,7 +228,7 @@ const openContact = () => {
     tbody {
       tr {
         &:hover {
-          background: -color("theme-bg2");
+          background: -color('theme-bg2');
         }
       }
     }
@@ -240,7 +244,7 @@ const openContact = () => {
         font-size: 0.8rem;
         &:last-child {
           span {
-            color: -color("primary");
+            color: -color('primary');
             text-decoration: underline;
             cursor: pointer;
             &:hover {
@@ -254,11 +258,11 @@ const openContact = () => {
         }
         i {
           font-size: 1.3rem;
-          color: -color("primary");
+          color: -color('primary');
         }
         &.none {
           i {
-            color: -color("theme-color");
+            color: -color('theme-color');
             opacity: 0.2;
           }
         }
@@ -308,27 +312,27 @@ const openContact = () => {
           border-radius: 15px;
           margin: 0px 3px;
           &.see {
-            background: -color("primary");
+            background: -color('primary');
             color: #fff;
             transition: all 0.25s ease;
-            box-shadow: 0px 0px 0px 0px -color("primary", 0.3);
+            box-shadow: 0px 0px 0px 0px -color('primary', 0.3);
             transform: translate(0px);
             &:hover {
               transform: translate(0, -4px);
-              box-shadow: 0px 8px 20px 0px -color("primary", 0.3);
+              box-shadow: 0px 8px 20px 0px -color('primary', 0.3);
             }
           }
           &.faq {
-            background: -color("primary", 0.1);
-            color: -color("primary");
+            background: -color('primary', 0.1);
+            color: -color('primary');
             font-weight: bold;
             box-sizing: border-box;
             transition: all 0.25s ease;
-            box-shadow: 0px 0px 0px 0px -color("primary", 0.2);
+            box-shadow: 0px 0px 0px 0px -color('primary', 0.2);
             transform: translate(0px);
             &:hover {
               transform: translate(0, -4px);
-              box-shadow: 0px 8px 15px 0px -color("primary", 0.2);
+              box-shadow: 0px 8px 15px 0px -color('primary', 0.2);
             }
           }
         }
@@ -371,7 +375,7 @@ const openContact = () => {
     justify-content: center;
     .card {
       width: 30%;
-      background: -color("theme-bg", 0.6);
+      background: -color('theme-bg', 0.6);
       max-width: 350px;
       margin: 20px;
       border-radius: 25px;
@@ -381,13 +385,13 @@ const openContact = () => {
       transition: all 0.25s ease;
       box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
       &:hover {
-        background: -color("theme-layout");
+        background: -color('theme-layout');
         box-shadow: 0px 15px 40px 0px rgba(0, 0, 0, 0.08);
         transform: translate(0, -8px);
         button {
           color: #fff;
-          background: -color("primary");
-          box-shadow: 0px 10px 30px 0px -color("primary", 0.3);
+          background: -color('primary');
+          box-shadow: 0px 10px 30px 0px -color('primary', 0.3);
         }
       }
       a {
@@ -399,7 +403,7 @@ const openContact = () => {
         padding-top: 10px;
         text-align: center;
         font-size: 1.2rem;
-        border-bottom: 1px solid -color("theme-bg2");
+        border-bottom: 1px solid -color('theme-bg2');
       }
       p {
         padding: 25px;
@@ -413,8 +417,8 @@ const openContact = () => {
         border: 0px;
         padding: 12px;
         transition: all 0.25s ease;
-        background: -color("theme-bg2");
-        color: -color("theme-color");
+        background: -color('theme-bg2');
+        color: -color('theme-color');
         position: absolute;
         bottom: 0px;
         font-weight: bold;
@@ -423,7 +427,7 @@ const openContact = () => {
         border-radius: 0px 0px 25px 25px;
         &:hover {
           color: #fff;
-          background: -color("primary");
+          background: -color('primary');
         }
       }
     }

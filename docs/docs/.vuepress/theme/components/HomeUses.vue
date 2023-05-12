@@ -1,5 +1,5 @@
 <template>
-  <div class="con-twits" ref="$twits">
+  <div ref="$twits" class="con-twits">
     <header>
       <h2>
         These are some of the <b>libraries</b>, <b>languages </b> and
@@ -9,12 +9,12 @@
     </header>
 
     <ul
+      ref="$ul"
+      class="con-projects-ul-uses"
       @mousedown="mousedownx"
       @mousemove="mousemovex"
       @mouseleave="mouseleaveUl"
       @mouseup="mouseupx"
-      class="con-projects-ul-uses"
-      ref="$ul"
     >
       <li v-for="(item, index) in twits" :key="index">
         <div class="con-img-t">
@@ -35,227 +35,224 @@
             alt=""
           />
         </div>
-        <p v-html="item.name"></p>
+        <p v-html="item.name" />
       </li>
     </ul>
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted, reactive, ref, watch, onBeforeUnmount } from "vue";
+import { onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
 
-const speed = 0.08;
-const notPulse = ref<boolean>(true);
-const translatex = ref<number>(0);
-const mousex = ref<number>(0);
-const moving = ref<boolean>(false);
-const notScrolling = ref<boolean>(false);
-const offset = ref<number>(0);
-const requestAnimationId = ref<number>();
+const speed = 0.08
+const notPulse = ref<boolean>(true)
+const translatex = ref<number>(0)
+const mousex = ref<number>(0)
+const moving = ref<boolean>(false)
+const notScrolling = ref<boolean>(false)
+const offset = ref<number>(0)
+const requestAnimationId = ref<number>()
 
 const twits = reactive([
-      {
-        name: "Vuejs",
-        link: "https://vuejs.org/",
-        img: "/use/vuejs-vuesax-1.png",
-      },
-      {
-        name: "Javascript",
-        link: null,
-        img: "/use/js-javaScript-vuesax.png",
-      },
-      {
-        name: "Typescript",
-        link: "https://www.typescriptlang.org/",
-        img: "/use/typescript-vuesax.png",
-      },
-      {
-        name: "Sass",
-        link: "https://sass-lang.com/",
-        img: "/use/sass-vuesax-4.png",
-      },
-      {
-        name: "Vuepress",
-        link: "https://vuepress.vuejs.org/",
-        img: "/use/vuepress-vuesax-5.png",
-      },
-      {
-        name: "Babel",
-        link: "https://babeljs.io/",
-        img: "/use/babel-vuesax-6.png",
-      },
-      {
-        name: "Jest",
-        link: "https://jestjs.io/",
-        img: "/use/jest-vuesax-8-w.svg",
-        img2: "/use/jest-vuesax-8.svg",
-        notShadow: true,
-      },
-      {
-        name: "Boxicons",
-        link: "https://boxicons.com/",
-        img: "/use/boxicons-vuesax-10.png",
-        img2: "/use/boxicons-vuesax-9.png",
-      },
-      {
-        name: "Adobe XD",
-        link: "https://www.adobe.com/es/products/xd.html",
-        img: "/use/adobe-xd-1.svg",
-      },
-      {
-        name: "Webpack",
-        link: "https://webpack.js.org/",
-        img: "/use/webpack-vuesax-13.png",
-        img2: "/use/webpack-vuesax-12.png",
-      },
-      {
-        name: "Illustrator",
-        link: "https://www.adobe.com/products/illustrator.html",
-        img: "/use/illustrator-vuesax-11.png",
-      },
-]);
+  {
+    name: 'Vuejs',
+    link: 'https://vuejs.org/',
+    img: '/use/vuejs-vuesax-1.png',
+  },
+  {
+    name: 'Javascript',
+    link: null,
+    img: '/use/js-javaScript-vuesax.png',
+  },
+  {
+    name: 'Typescript',
+    link: 'https://www.typescriptlang.org/',
+    img: '/use/typescript-vuesax.png',
+  },
+  {
+    name: 'Sass',
+    link: 'https://sass-lang.com/',
+    img: '/use/sass-vuesax-4.png',
+  },
+  {
+    name: 'Vuepress',
+    link: 'https://vuepress.vuejs.org/',
+    img: '/use/vuepress-vuesax-5.png',
+  },
+  {
+    name: 'Babel',
+    link: 'https://babeljs.io/',
+    img: '/use/babel-vuesax-6.png',
+  },
+  {
+    name: 'Jest',
+    link: 'https://jestjs.io/',
+    img: '/use/jest-vuesax-8-w.svg',
+    img2: '/use/jest-vuesax-8.svg',
+    notShadow: true,
+  },
+  {
+    name: 'Boxicons',
+    link: 'https://boxicons.com/',
+    img: '/use/boxicons-vuesax-10.png',
+    img2: '/use/boxicons-vuesax-9.png',
+  },
+  {
+    name: 'Adobe XD',
+    link: 'https://www.adobe.com/es/products/xd.html',
+    img: '/use/adobe-xd-1.svg',
+  },
+  {
+    name: 'Webpack',
+    link: 'https://webpack.js.org/',
+    img: '/use/webpack-vuesax-13.png',
+    img2: '/use/webpack-vuesax-12.png',
+  },
+  {
+    name: 'Illustrator',
+    link: 'https://www.adobe.com/products/illustrator.html',
+    img: '/use/illustrator-vuesax-11.png',
+  },
+])
 
-const $ul = ref<HTMLElement>()!;
-const $twits = ref<HTMLElement>()!;
+const $ul = ref<HTMLElement>()!
+const $twits = ref<HTMLElement>()!
 
 watch(translatex, (transform: number) => {
   if (transform > 100) {
-    notScrolling.value = true;
+    notScrolling.value = true
   } else {
-    notScrolling.value = false;
+    notScrolling.value = false
   }
-});
+})
 
 onMounted(() => {
-  smooth();
-  document.addEventListener("keydown", keydownx);
-});
+  smooth()
+  document.addEventListener('keydown', keydownx)
+})
 
 onBeforeUnmount(() => {
-  cancelAnimationFrame(requestAnimationId.value!);
+  cancelAnimationFrame(requestAnimationId.value!)
 })
 
 const smooth = () => {
   const smoothScroll = () => {
-    offset.value += (translatex.value - offset.value) * speed;
+    offset.value += (translatex.value - offset.value) * speed
 
-    const scroll = `translateX(-${offset.value}px) translateZ(0)`;
-    $ul.value!.style.transform = scroll;
+    const scroll = `translateX(-${offset.value}px) translateZ(0)`
+    $ul.value!.style.transform = scroll
 
-    requestAnimationId.value = requestAnimationFrame(smoothScroll);
-  };
-  smoothScroll();
-};
+    requestAnimationId.value = requestAnimationFrame(smoothScroll)
+  }
+  smoothScroll()
+}
 
 const mouseleaveUl = () => {
-  mousex.value = 0;
-  notPulse.value = true;
+  mousex.value = 0
+  notPulse.value = true
   setTimeout(() => {
-    moving.value = false;
-  }, 50);
-};
+    moving.value = false
+  }, 50)
+}
 
 const mousemovex = (e: MouseEvent) => {
   if (notPulse.value) {
-    return;
+    return
   }
-  const element = $ul.value!;
-  const parent = $twits.value!;
+  const element = $ul.value!
+  const parent = $twits.value!
 
-  let move: number;
+  let move: number
 
-  if (e.type == "touchmove") {
+  if (e.type == 'touchmove') {
     move =
       mousex.value -
-      ((e as unknown as TouchEvent).targetTouches[0].clientX - 200);
+      ((e as unknown as TouchEvent).targetTouches[0].clientX - 200)
   } else {
-    move = mousex.value - (e.clientX - 200);
+    move = mousex.value - (e.clientX - 200)
   }
   if (move > 40 || move < -40) {
-    moving.value = true;
+    moving.value = true
   }
   if (move > 50) {
-    translatex.value += 80;
+    translatex.value += 80
     if (translatex.value > element.clientWidth - parent.clientWidth) {
-      translatex.value = element.clientWidth - parent.clientWidth;
+      translatex.value = element.clientWidth - parent.clientWidth
     }
-    if (e.type == "touchmove") {
-      mousex.value =
-        (e as unknown as TouchEvent).targetTouches[0].clientX - 200;
+    if (e.type == 'touchmove') {
+      mousex.value = (e as unknown as TouchEvent).targetTouches[0].clientX - 200
     } else {
-      mousex.value = e.clientX - 200;
+      mousex.value = e.clientX - 200
     }
   } else if (move < -50) {
-    translatex.value -= 80;
+    translatex.value -= 80
     if (translatex.value < 0) {
-      translatex.value = 0;
+      translatex.value = 0
     }
-    if (e.type == "touchmove") {
-      mousex.value =
-        (e as unknown as TouchEvent).targetTouches[0].clientX - 200;
+    if (e.type == 'touchmove') {
+      mousex.value = (e as unknown as TouchEvent).targetTouches[0].clientX - 200
     } else {
-      mousex.value = e.clientX - 200;
+      mousex.value = e.clientX - 200
     }
   }
-};
+}
 const mouseupx = (e: MouseEvent) => {
-  e.preventDefault();
-  const element = $ul.value!;
-  const parent = $twits.value!;
+  e.preventDefault()
+  const element = $ul.value!
+  const parent = $twits.value!
 
   if (translatex.value < 0) {
-    translatex.value = 0;
+    translatex.value = 0
   }
   if (translatex.value > element.clientWidth - parent.clientWidth) {
-    translatex.value = element.clientWidth - parent.clientWidth;
+    translatex.value = element.clientWidth - parent.clientWidth
   }
-  mousex.value = 0;
-  notPulse.value = true;
+  mousex.value = 0
+  notPulse.value = true
   setTimeout(() => {
-    moving.value = false;
-  }, 1);
-};
+    moving.value = false
+  }, 1)
+}
 
 const mousedownx = (e: MouseEvent) => {
-  e.preventDefault();
+  e.preventDefault()
   setTimeout(() => {
-    notPulse.value = false;
-  }, 20);
-  if (e.type == "touchstart") {
-    mousex.value = (e as unknown as TouchEvent).targetTouches[0].clientX - 200;
+    notPulse.value = false
+  }, 20)
+  if (e.type == 'touchstart') {
+    mousex.value = (e as unknown as TouchEvent).targetTouches[0].clientX - 200
   } else {
-    mousex.value = e.clientX - 200;
+    mousex.value = e.clientX - 200
   }
-};
+}
 
 const keydownx = (evt: KeyboardEvent) => {
-  const eventKey = evt.key;
-  const element = $ul.value!;
-  const parent = $twits.value!;
+  const eventKey = evt.key
+  const element = $ul.value!
+  const parent = $twits.value!
 
-  if (eventKey == "ArrowRight") {
-    translatex.value -= -300;
+  if (eventKey == 'ArrowRight') {
+    translatex.value -= -300
     if (translatex.value > element.clientWidth - parent.clientWidth) {
-      translatex.value = element.clientWidth - parent.clientWidth;
+      translatex.value = element.clientWidth - parent.clientWidth
     }
-  } else if (eventKey == "ArrowLeft") {
-    translatex.value -= 300;
+  } else if (eventKey == 'ArrowLeft') {
+    translatex.value -= 300
     if (translatex.value < 0) {
-      translatex.value = 0;
+      translatex.value = 0
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/use";
-
+@import '../styles/use';
 
 .darken {
   .con-twits {
     ul {
       li {
         .con-img-t {
-          background: -color("theme-bg");
+          background: -color('theme-bg');
         }
         .filter {
           opacity: 0.2;
@@ -320,7 +317,7 @@ const keydownx = (evt: KeyboardEvent) => {
         box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.05);
         border-radius: 25px;
         box-sizing: border-box;
-        background: -color("theme-layout");
+        background: -color('theme-layout');
         display: flex;
         align-items: center;
         justify-content: center;

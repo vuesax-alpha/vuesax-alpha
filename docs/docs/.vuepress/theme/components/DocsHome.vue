@@ -1,20 +1,20 @@
 <template>
   <div class="docs-home">
     <Sidebar :sidebar="sidebarItems" />
-    <Footer></Footer>
+    <Footer />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { SidebarConfigArray } from "vuepress-vite";
-import Sidebar from "./Sidebar.vue";
-import Footer from "./Footer.vue";
+import Sidebar from './Sidebar.vue'
+import Footer from './Footer.vue'
+import type { SidebarConfigArray } from 'vuepress-vite'
 
-defineProps<{ sidebarItems: SidebarConfigArray }>();
+defineProps<{ sidebarItems: SidebarConfigArray }>()
 </script>
 
 <style lang="scss">
-@import "../styles/use";
+@import '../styles/use';
 .docs-home {
   & ~ .config {
     left: 0px;

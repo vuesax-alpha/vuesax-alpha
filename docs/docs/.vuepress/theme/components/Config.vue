@@ -1,7 +1,7 @@
 <template>
-  <div class="config" ref="$el">
+  <div ref="$el" class="config">
     <button class="config-btn">
-      <i class="bx bx-cog"></i>
+      <i class="bx bx-cog" />
       <svg
         class="effect1config"
         xmlns="http://www.w3.org/2000/svg"
@@ -33,48 +33,48 @@
           />
         </svg>
         <li @click="reloadConfig">
-          <i title="reload config" class="bx bx-rotate-left"></i>
+          <i title="reload config" class="bx bx-rotate-left" />
         </li>
         <li @click="changeSidebar">
           <i
             title="Hidden Sidebar"
             class="bx bx-left-indent hidden-sidebar-hidden"
-          ></i>
+          />
           <i
             title="Open Sidebar"
             class="bx bx-right-indent visible-sidebar-hidden"
-          ></i>
+          />
         </li>
         <li
           :title="`${
             !$vsTheme.sidebarCollapseOpen ? 'Open' : 'Close'
           } sidebar items`"
-          @click="changeMenu"
           :class="{ active: !$vsTheme.sidebarCollapseOpen }"
+          @click="changeMenu"
         >
-          <i v-if="$vsTheme.sidebarCollapseOpen" class="bx bx-list-minus"></i>
-          <i v-else class="bx bx-list-plus"></i>
+          <i v-if="$vsTheme.sidebarCollapseOpen" class="bx bx-list-minus" />
+          <i v-else class="bx bx-list-plus" />
         </li>
         <li
           :title="`${!$vsTheme?.openCode ? 'Open' : 'Close'} all Code`"
-          @click="changeOpenCode"
           :class="{ active: $vsTheme?.openCode }"
+          @click="changeOpenCode"
         >
-          <i class="bx bx-code-block"></i>
+          <i class="bx bx-code-block" />
         </li>
         <li class="theme-color-layout" title="Theme Color Layout">
-          <i class="bx bx-paint-roll"></i>
+          <i class="bx bx-paint-roll" />
           <input
+            type="color"
+            value="#2564ff"
             @change="
               changeColorLayout(($event.target as HTMLInputElement).value)
             "
-            type="color"
-            value="#2564ff"
           />
         </li>
         <li class="theme-color-primary" title="Theme Primary Color">
-          <i class="bx bxs-color-fill"></i>
-          <input @change="changeColor" type="color" value="#2564ff" />
+          <i class="bx bxs-color-fill" />
+          <input type="color" value="#2564ff" @change="changeColor" />
         </li>
 
         <svg
@@ -108,7 +108,11 @@
       </svg>
 
       <ul class="lang">
-        <li v-for="item in lang[0]?.items" v-show="item.link !== pageData.path">
+        <li
+          v-for="(item, kKey) in lang[0]?.items"
+          v-show="item.link !== pageData.path"
+          :key="kKey"
+        >
           <router-link :to="item.link">
             {{ item.text }}
           </router-link>
@@ -117,15 +121,15 @@
     </button>
 
     <button
-      @click="changeTheme"
       :class="{ active: $vsTheme.themeDarken }"
       :title="`Theme ${!$vsTheme.themeDarken ? 'Dark' : 'Light'}`"
       class="li-darken switch-dark"
+      @click="changeTheme"
     >
       <div class="switch-con">
         <span class="circle">
-          <i v-if="$vsTheme.themeDarken" class="bx bxs-sun"></i>
-          <i v-else class="bx bxs-moon"></i>
+          <i v-if="$vsTheme.themeDarken" class="bx bxs-sun" />
+          <i v-else class="bx bxs-moon" />
         </span>
       </div>
     </button>
@@ -133,6 +137,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed, inject, onMounted, ref } from 'vue'
 import {
   usePageData,
   usePageLang,
@@ -141,10 +146,10 @@ import {
 } from '@vuepress/client'
 // @ts-ignore
 import { useThemeData } from '@vuepress/plugin-theme-data/client'
-import { computed, inject, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { vsThemeContext, vsThemeKey } from '../type'
+import { vsThemeKey } from '../type'
 import { isDark, toggleDark } from '../composables'
+import type { vsThemeContext } from '../type'
 
 const router = useRouter()
 const themeData = useThemeData()
@@ -185,7 +190,7 @@ const lang = computed(() => {
         return { text, link }
       }),
     }
-    console.log(languageDropdown)
+    // console.log(languageDropdown)
     return [languageDropdown]
   }
   return []
@@ -201,9 +206,9 @@ const reloadConfig = () => {
   const config = document.querySelector(
     '.theme-container > .config'
   ) as HTMLElement
-  const effect1 = document.querySelector(
-    '.header-page > .effect1'
-  ) as HTMLElement
+  // const effect1 = document.querySelector(
+  //   '.header-page > .effect1'
+  // ) as HTMLElement
 
   sidebar?.style.removeProperty(`--vsd-theme-layout`)
   navbar?.style.removeProperty(`--vsd-theme-layout`)
@@ -225,7 +230,7 @@ const reloadConfig = () => {
   // TODO: useDark instead of setTheme func
   const returnTheme = toggleDark(true)
 
-  $vsTheme.themeDarken = true
+  $vsTheme.themeDarken = returnTheme
 }
 
 const changeSidebar = () => {
@@ -238,16 +243,16 @@ const changeSidebar = () => {
 const hexToRgb = (hex: string) => {
   // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
   const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i
-  hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+  hex = hex.replace(shorthandRegex, (m, r, g, b) => {
     return r + r + g + g + b + b
   })
 
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
   return result
     ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
+        r: Number.parseInt(result[1], 16),
+        g: Number.parseInt(result[2], 16),
+        b: Number.parseInt(result[3], 16),
       }
     : null
 }
@@ -259,7 +264,7 @@ const contrastColor = (element: string) => {
     .replace(/\)$/, '')
     .replace(/\s/g, '')
     .split(',')
-  console.log({ rgb })
+
   const yiq =
     (Number(rgb[0]) * 299 + Number(rgb[1]) * 587 + Number(rgb[2]) * 114) / 1000
   if (yiq >= 128) {
@@ -271,7 +276,7 @@ const contrastColor = (element: string) => {
 const changeColorLayout = (colorBase: string) => {
   let colour: string = colorBase
   if (/[#]/g.test(colour)) {
-    let rgb = hexToRgb(colour)
+    const rgb = hexToRgb(colour)
     colour = `${rgb?.r}, ${rgb?.g}, ${rgb?.b}`
   }
   document.body.classList.add('all-transition')
@@ -286,9 +291,9 @@ const changeColorLayout = (colorBase: string) => {
   const config = document.querySelector(
     '.theme-container > .config'
   )! as HTMLElement
-  const effect1 = document.querySelector(
-    '.header-page > .effect1'
-  )! as HTMLElement
+  // const effect1 = document.querySelector(
+  //   '.header-page > .effect1'
+  // )! as HTMLElement
 
   sidebar.style.setProperty(`--vsd-theme-layout`, colour)
   navbar.style.setProperty(`--vsd-theme-layout`, colour)
@@ -321,10 +326,10 @@ const changeMenu = () => {
   $vsTheme.sidebarCollapseOpen = !$vsTheme?.sidebarCollapseOpen
   localStorage.sidebarCollapseOpen = !$vsTheme?.sidebarCollapseOpen
 }
-const changeMobile = () => {
-  $vsTheme.mobileActive = !$vsTheme.mobileActive
-  localStorage.mobile = !$vsTheme.mobileActive
-}
+// const changeMobile = () => {
+//   $vsTheme.mobileActive = !$vsTheme.mobileActive
+//   localStorage.mobile = !$vsTheme.mobileActive
+// }
 const changeOpenCode = () => {
   $vsTheme.openCode = !$vsTheme.openCode
 }

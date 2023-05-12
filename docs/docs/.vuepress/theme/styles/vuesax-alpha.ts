@@ -1,1 +1,1 @@
-import "./vuesax-alpha.scss";
+import './vuesax-alpha.scss'

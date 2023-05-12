@@ -14,7 +14,7 @@
     </div>
 
     <div class="copy">
-      <span class="span-copy"> </span>
+      <span class="span-copy" />
       <span class="span-lusaxweb">
         <span> Created on base </span>
         <a target="_blank" href="vuesax.com">Vuesax.com</a>
@@ -26,87 +26,87 @@
 <script setup lang="ts">
 const links = [
   {
-    title: "Vuesax",
+    title: 'Vuesax',
     items: [
       {
-        text: "What is Vuesax?",
-        link: "/guide/#whats-is-vuesax",
+        text: 'What is Vuesax?',
+        link: '/guide/#whats-is-vuesax',
       },
       {
-        text: "Why Vuesax?",
-        link: "/guide/#why-vuesax",
+        text: 'Why Vuesax?',
+        link: '/guide/#why-vuesax',
       },
       {
         text: "What's new in v4",
-        link: "/guide/#features",
+        link: '/guide/#features',
       },
       {
-        text: "FAQ",
-        link: "/license/#faq",
+        text: 'FAQ',
+        link: '/license/#faq',
       },
     ],
   },
   {
-    title: "Resources",
+    title: 'Resources',
     items: [
       // {
       //   text: 'Blog',
       //   link: '/'
       // },
       {
-        text: "Documentation",
-        link: "/",
+        text: 'Documentation',
+        link: '/',
       },
       {
-        text: "Github",
-        link: "https://github.com/vuesax-alphax/vuesax-alpha",
+        text: 'Github',
+        link: 'https://github.com/vuesax-alphax/vuesax-alpha',
       },
       {
-        text: "Privacy Policy",
-        link: "/license/",
+        text: 'Privacy Policy',
+        link: '/license/',
       },
     ],
   },
   {
-    title: "Help",
+    title: 'Help',
     items: [
       {
-        text: "Github Issues",
-        link: "https://github.com/vuesax-alphax/vuesax-alpha/issues",
+        text: 'Github Issues',
+        link: 'https://github.com/vuesax-alphax/vuesax-alpha/issues',
       },
       // {
       //   text: 'Latest Releases',
       //   link: '/'
       // },
       {
-        text: "FAQ",
-        link: "/license/#faq",
+        text: 'FAQ',
+        link: '/license/#faq',
       },
     ],
   },
   {
-    title: "Community",
+    title: 'Community',
     items: [
       // {
       //   text: "Discord",
       //   link: "https://discord.gg/6AZNXEa",
       // },
       {
-        text: "Github",
-        link: "https://github.com/vuesax-alphax/vuesax-alpha",
+        text: 'Github',
+        link: 'https://github.com/vuesax-alphax/vuesax-alpha',
       },
     ],
   },
-];
+]
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/use";
+@import '../styles/use';
 
 .darken {
   .subscribe-content {
     #mc_embed_signup_scroll {
-      input[type="email"] {
+      input[type='email'] {
         background: -color('theme-bg') !important;
       }
     }
@@ -131,7 +131,7 @@ const links = [
     text-align: left;
     padding-left: 10px;
     b {
-      color: -color("primary", 1) !important;
+      color: -color('primary', 1) !important;
     }
   }
   #mc_embed_signup_scroll {
@@ -145,7 +145,7 @@ const links = [
       transition: all 0.25s ease;
       box-shadow: 0px 8px 40px -5px rgba(0, 0, 0, 0.09);
     }
-    input[type="email"] {
+    input[type='email'] {
       width: 400px;
       margin-right: -30px;
       padding-right: 30px;
@@ -156,28 +156,28 @@ const links = [
       min-width: 250px;
       background: -color('theme-layout');
     }
-    input[type="email"]:focus {
+    input[type='email']:focus {
       box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
       transform: translate(0, 4px);
       & ~ .clear {
         input {
-          box-shadow: 0px 0px 0px 0px -color("primary", 0.6);
+          box-shadow: 0px 0px 0px 0px -color('primary', 0.6);
           transform: translate(0, 0px);
         }
       }
     }
-    input[type="submit"] {
-      background: -color("primary");
+    input[type='submit'] {
+      background: -color('primary');
       color: #fff;
-      box-shadow: 0px 10px 20px -10px -color("primary", 0.6);
+      box-shadow: 0px 10px 20px -10px -color('primary', 0.6);
       cursor: pointer;
       position: relative;
       z-index: 200;
       margin-left: -85px;
       transform: translate(0%, -10px);
     }
-    input[type="submit"]:hover {
-      box-shadow: 0px 10px 20px -10px -color("primary", 0.6) !important;
+    input[type='submit']:hover {
+      box-shadow: 0px 10px 20px -10px -color('primary', 0.6) !important;
       transform: translate(0, -5px) !important;
     }
   }
@@ -243,7 +243,7 @@ const links = [
         display: block;
         &:hover {
           opacity: 1;
-          color: -color("primary") !important;
+          color: -color('primary') !important;
         }
       }
     }
@@ -284,8 +284,8 @@ const links = [
   .footer .subscribe-content .con-form {
     width: 100%;
   }
-  .footer p .con-form input[type="email"],
-  .footer .subscribe-content .con-form input[type="email"] {
+  .footer p .con-form input[type='email'],
+  .footer .subscribe-content .con-form input[type='email'] {
     width: calc(100% - 50px) !important;
   }
 }
@@ -302,7 +302,7 @@ const links = [
         width: 100%;
       }
       .con-form {
-        input[type="email"] {
+        input[type='email'] {
           width: 100% !important;
           margin-bottom: 10px !important;
         }

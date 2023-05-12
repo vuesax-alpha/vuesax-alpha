@@ -2,46 +2,46 @@ export interface ThemeLicenseHeader {
   /**
    * Header title - accept raw html
    */
-  title: string;
+  title: string
   /**
    * Header description - accept raw html
    */
-  description: string;
-  
-  buttonText: string;
+  description: string
+
+  buttonText: string
 }
 
 export interface ThemeLicenseCard {
   /**
    * Card title - accept raw html
    */
-  title: string;
+  title: string
   /**
    * Car description - accept raw html
    */
-  description: string;
+  description: string
   /**
    * open contact mail?
    */
-  contact?: boolean | false;
+  contact?: boolean | false
   /**
    * button name
    */
-  buttonText?: string | "Start"
+  buttonText?: string | 'Start'
 }
 
-export type ThemeLicenseTableTr = (string | boolean)[];
+export type ThemeLicenseTableTr = (string | boolean)[]
 
 export interface ThemeLicenseTable {
-  title: string;
-  
-  thead: string[];
+  title: string
+
+  thead: string[]
 
   tbody: ThemeLicenseTableTr[]
 }
 
 export interface ThemeLicenseFaq {
-  title: string;
+  title: string
 
   /**
    * Accept raw html
@@ -50,17 +50,17 @@ export interface ThemeLicenseFaq {
 }
 
 export interface ThemeLicenseCards {
-  title: string;
+  title: string
 
   cards: ThemeLicenseCard[]
 }
 
 export type ThemeLicenseFrontmatter = {
-  header: ThemeLicenseHeader;
+  header: ThemeLicenseHeader
 
-  cards: ThemeLicenseCards;
+  cards: ThemeLicenseCards
 
-  table: ThemeLicenseTable;
+  table: ThemeLicenseTable
 
-  faqs: ThemeLicenseFaq[];
+  faqs: ThemeLicenseFaq[]
 }

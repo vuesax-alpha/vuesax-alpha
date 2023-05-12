@@ -1,22 +1,20 @@
-import { InjectionKey } from "vue";
+import type { InjectionKey } from 'vue'
 
 export interface vsThemeContext {
-  mobileActive: boolean;
-  openCode: boolean;
-  themeDarken: boolean;
-  sidebarCollapseOpen: boolean;
+  mobileActive: boolean
+  openCode: boolean
+  themeDarken: boolean
+  sidebarCollapseOpen: boolean
 }
 
-export const vsThemeKey: InjectionKey<vsThemeContext> = Symbol("$vsTheme");
+export const vsThemeKey: InjectionKey<vsThemeContext> = Symbol('$vsTheme')
 
 export interface codesandboxContext {
-  url?: string;
+  url?: string
 }
 
 export const codesandboxContextKey: InjectionKey<codesandboxContext> =
-  Symbol("$codesandbox");
+  Symbol('$codesandbox')
 
-export type activeSlotType = 0 | 1 | 2 | 3;
-export const activeSlotText = ["template", "script", "stype", "all"];
-
-
+export type activeSlotType = 0 | 1 | 2 | 3
+export const activeSlotText = ['template', 'script', 'stype', 'all']

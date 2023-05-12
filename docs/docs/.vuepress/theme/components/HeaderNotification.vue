@@ -1,8 +1,8 @@
 <template>
   <div v-if="active == number" class="header-notification">
-    <div @click="handleClick" class="con-text-n">
+    <div class="con-text-n" @click="handleClick">
       <div class="icon-n">
-        <i class="bx bxs-megaphone"></i>
+        <i class="bx bxs-megaphone" />
       </div>
       <div class="text-n">
         <h3>New component <b>Card</b> 🎉</h3>
@@ -11,44 +11,44 @@
     </div>
     <div class="con-btn-n">
       <button class="btn-info" @click="handleClick">👉 More information</button>
-      <button @click="handleRemove" class="btn-x">
-        <i class="bx bx-x"></i>
+      <button class="btn-x" @click="handleRemove">
+        <i class="bx bx-x" />
       </button>
     </div>
   </div>
-  <template v-else></template>
+  <template v-else />
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { useRouter } from "vue-router";
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-const router = useRouter();
+const router = useRouter()
 
-const active = ref<number>(0);
-const number = ref<number>(12);
+const active = ref<number>(0)
+const number = ref<number>(12)
 
 const handleClick = () => {
-  router.push("/components/Card");
-  active.value = 0;
+  router.push('/components/Card')
+  active.value = 0
 
-  localStorage.notificationHidden = number.value;
-};
+  localStorage.notificationHidden = number.value
+}
 const handleRemove = () => {
-  active.value = 0;
-  localStorage.notificationHidden = number.value;
-};
+  active.value = 0
+  localStorage.notificationHidden = number.value
+}
 onMounted(() => {
   if (localStorage.notificationHidden == number.value) {
-    active.value = 0;
+    active.value = 0
   } else {
-    active.value = number.value;
+    active.value = number.value
   }
-});
+})
 </script>
 
 <style lang="scss">
-@import "../styles/use";
+@import '../styles/use';
 .header-notification {
   width: 100%;
   position: fixed;

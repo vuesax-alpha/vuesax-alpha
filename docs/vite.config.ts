@@ -9,9 +9,9 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import Components from 'unplugin-vue-components/vite'
 import {
   docPackage,
-  vsPackage,
   getPackageDependencies,
   projRoot,
+  vsPackage,
 } from '@vuesax-alpha/build-utils'
 
 import type { Alias } from 'vite'

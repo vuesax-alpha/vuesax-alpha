@@ -1,9 +1,9 @@
-import { NavbarConfig, SidebarConfig } from "vuepress-vite";
-import { SearchDataOption } from "./theme/vuesaxAlphaTheme";
+import type { NavbarConfig, SidebarConfig } from 'vuepress-vite'
+import type { SearchDataOption } from './theme/vuesaxAlphaTheme'
 
 export const enNavbar: NavbarConfig = [
   {
-    text: "Guide",
+    text: 'Guide',
     link: `/guide/`,
     children: [
       { text: `Introduction`, link: `/guide/` },
@@ -35,22 +35,22 @@ export const enNavbar: NavbarConfig = [
           { text: `Alert`, link: `/components/Alert` },
           { text: `Loading`, link: `/components/Loading` },
           { text: `Input`, link: `/components/Input` },
-          { text: "Checkbox", link: `/components/Checkbox` },
-          { text: "Switch", link: `/components/Switch` },
-          { text: "Select", link: `/components/Select` },
-          { text: "Avatar", link: `/components/Avatar` },
+          { text: 'Checkbox', link: `/components/Checkbox` },
+          { text: 'Switch', link: `/components/Switch` },
+          { text: 'Select', link: `/components/Select` },
+          { text: 'Avatar', link: `/components/Avatar` },
           {
-            text: "Notification",
+            text: 'Notification',
             link: `/components/Notification`,
           },
-          { text: "Radio", link: `/components/Radio` },
-          { text: "Tooltip", link: `/components/Tooltip` },
-          { text: "Dialog", link: `/components/Dialog` },
-          { text: "Pagination", link: `/components/Pagination` },
-          { text: "Table", link: `/components/Table` },
-          { text: "Navbar", link: `/components/Navbar` },
-          { text: "Sidebar", link: `/components/Sidebar` },
-          { text: "Card", link: `/components/Card` },
+          { text: 'Radio', link: `/components/Radio` },
+          { text: 'Tooltip', link: `/components/Tooltip` },
+          { text: 'Dialog', link: `/components/Dialog` },
+          { text: 'Pagination', link: `/components/Pagination` },
+          { text: 'Table', link: `/components/Table` },
+          { text: 'Navbar', link: `/components/Navbar` },
+          { text: 'Sidebar', link: `/components/Sidebar` },
+          { text: 'Card', link: `/components/Card` },
           // new component slot 1
         ],
       },
@@ -113,19 +113,19 @@ export const enNavbar: NavbarConfig = [
   //   text: "...",
   //   children: [{ text: `Branding`, link: `/branding/` }],
   // },
-];
+]
 
 export const enSidebar: SidebarConfig = [
   {
-    text: "Guide",
+    text: 'Guide',
     children: [
       {
-        text: "Introduction",
-        link: "/guide/",
+        text: 'Introduction',
+        link: '/guide/',
       },
       {
-        text: "Getting Started",
-        link: "/guide/getting-started/",
+        text: 'Getting Started',
+        link: '/guide/getting-started/',
       },
       // {
       //   text: "Vuesax + Nuxt",
@@ -134,16 +134,16 @@ export const enSidebar: SidebarConfig = [
     ],
   },
   {
-    text: "Theme",
+    text: 'Theme',
     children: [
       {
-        text: "Colors",
-        link: "/theme/",
+        text: 'Colors',
+        link: '/theme/',
       },
     ],
   },
   {
-    text: "Components",
+    text: 'Components',
     children: [
       { text: `Button`, link: `/components/` },
       { text: `Alert`, link: `/components/Alert` },
@@ -166,27 +166,26 @@ export const enSidebar: SidebarConfig = [
     ],
   },
   {
-    text: "Layout",
+    text: 'Layout',
     collapsible: false,
     children: [
       {
-        text: "Grid",
-        link: "/layout/",
+        text: 'Grid',
+        link: '/layout/',
       },
     ],
   },
-];
+]
 
 export const enSearchData: SearchDataOption[] = [
   {
-    title: "Alert",
-    path: "docs/components/alert",
+    title: 'Alert',
+    path: 'docs/components/alert',
     headers: [
       {
-        title: "Default",
-        slug: "default",
+        title: 'Default',
+        slug: 'default',
       },
     ],
   },
-  
-];
+]

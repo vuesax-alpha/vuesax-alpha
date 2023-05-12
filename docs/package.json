@@ -1,27 +1,13 @@
 {
   "name": "@vuesax-alpha/docs",
-  "private": true,
   "version": "0.0.1",
-  "main": "index.js",
+  "private": true,
+  "type": "module",
   "license": "MIT",
+  "main": "index.js",
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs"
-  },
-  "type": "module",
-  "devDependencies": {
-    "@types/prismjs": "^1.26.0",
-    "@vuepress/client": "2.0.0-beta.62",
-    "@vuepress/plugin-active-header-links": "2.0.0-beta.62",
-    "@vuepress/plugin-container": "2.0.0-beta.62",
-    "@vuepress/plugin-git": "2.0.0-beta.62",
-    "@vuepress/plugin-prismjs": "2.0.0-beta.62",
-    "@vuepress/plugin-register-components": "2.0.0-beta.62",
-    "@vuepress/plugin-theme-data": "2.0.0-beta.62",
-    "node-sass": "^8.0.0",
-    "sass": "^1.62.1",
-    "sass-loader": "^13.2.2",
-    "vuepress": "2.0.0-beta.62"
   },
   "dependencies": {
     "@vuepress/shared-utils": "^1.9.9",
@@ -36,5 +22,19 @@
     "vue": "^3.3.1",
     "vue-router": "^4.2.0",
     "vuesax-alpha": "npm:vuesax-alpha"
+  },
+  "devDependencies": {
+    "@types/prismjs": "^1.26.0",
+    "@vuepress/client": "2.0.0-beta.62",
+    "@vuepress/plugin-active-header-links": "2.0.0-beta.62",
+    "@vuepress/plugin-container": "2.0.0-beta.62",
+    "@vuepress/plugin-git": "2.0.0-beta.62",
+    "@vuepress/plugin-prismjs": "2.0.0-beta.62",
+    "@vuepress/plugin-register-components": "2.0.0-beta.62",
+    "@vuepress/plugin-theme-data": "2.0.0-beta.62",
+    "node-sass": "^8.0.0",
+    "sass": "^1.62.1",
+    "sass-loader": "^13.2.2",
+    "vuepress": "2.0.0-beta.62"
   }
 }

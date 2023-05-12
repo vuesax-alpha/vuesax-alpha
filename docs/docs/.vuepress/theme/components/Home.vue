@@ -3,59 +3,55 @@
     <div class="init">
       <header class="hero">
         <div class="points-init">
-          <span v-for="span in 16" :key="span"></span>
+          <span v-for="span in 16" :key="span" />
         </div>
         <div class="content-hero">
           <h1
             v-if="pageFrontmatter.heroText"
+            id="main-title"
             v-html="
               pageFrontmatter.heroText || pageFrontmatter.title || 'Hello'
             "
-            id="main-title"
-          ></h1>
-          <template v-else></template>
+          />
+          <template v-else />
 
           <p
+            class="description"
             v-html="
               pageFrontmatter.description || 'Welcome to your VuePress site'
             "
-            class="description"
-          ></p>
+          />
 
           <div class="con-btns">
             <NavLink
-              @mouseleave.native="time('vuesax')"
-              @mouseenter.native="
-                (nativeButtons.vuesax = true), (expand = true)
-              "
               :title="action.text"
               class="action-button"
               :nav-item="action"
+              @mouseleave="time('vuesax')"
+              @mouseenter=";(nativeButtons.vuesax = true), (expand = true)"
             />
 
             <a
-              @mouseleave.native="time('install')"
-              @mouseenter.native="
-                (nativeButtons.install = true), (expand = true)
-              "
               title="install"
               class="install"
               href="/guide/gettingStarted.html/#installation"
+              @mouseleave="time('install')"
+              @mouseenter=";(nativeButtons.install = true), (expand = true)"
             >
-              <img src="/install.png" alt="">
+              <img src="/install.png" alt="" />
             </a>
 
             <a
-              @mouseleave="time('github')"
-              @mouseenter="(nativeButtons.github = true), (expand = true)"
               title="Github"
               class="github"
               target="_blank"
               href="https://github.com/vuesax-alphax/vuesax-alpha/"
+              @mouseleave="time('github')"
+              @mouseenter=";(nativeButtons.github = true), (expand = true)"
             >
-              <i class="bx bxl-github"></i>
+              <i class="bx bxl-github" />
               <span title="Stargazers" class="badge-star">
-                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star" />
                 {{ numberWithCommas }}
               </span>
             </a>
@@ -96,94 +92,93 @@
   </main>
 </template>
 
-<script lang="ts">
-export type PageButtons = {
-  github: boolean;
-  install: boolean;
-  vuesax: boolean;
-};
-</script>
+<script lang="ts"></script>
 
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref } from "vue";
-import { usePageFrontmatter } from "@vuepress/client";
+import { computed, onMounted, reactive, ref } from 'vue'
+import { usePageFrontmatter } from '@vuepress/client'
 
-import {
-  ThemeProjectHomePageFrontmatter,
+import NavLink from './NavLink.vue'
+import Footer from './Footer.vue'
+import Illustration1 from './HomeIllustration1.vue'
+import Illustration2 from './HomeIllustration2.vue'
+import Illustration3 from './HomeIllustration3.vue'
+import Illustration4 from './HomeIllustration4.vue'
+import HomeComponent from './HomeComponent.vue'
+import HomeTwitter from './HomeTwitter.vue'
+import HomeUses from './HomeUses.vue'
+import type {
   ThemeHomeFeatureOption,
-} from "../shared/frontmatter/home";
-import NavLink from "./NavLink.vue";
-import Footer from "./Footer.vue";
-import Illustration1 from "./HomeIllustration1.vue";
-import Illustration2 from "./HomeIllustration2.vue";
-import Illustration3 from "./HomeIllustration3.vue";
-import Illustration4 from "./HomeIllustration4.vue";
-import HomeComponent from "./HomeComponent.vue";
-import HomeTwitter from "./HomeTwitter.vue";
-import HomeUses from "./HomeUses.vue";
+  ThemeProjectHomePageFrontmatter,
+} from '../shared/frontmatter/home'
+export type PageButtons = {
+  github: boolean
+  install: boolean
+  vuesax: boolean
+}
 
-const pageFrontmatter = usePageFrontmatter<ThemeProjectHomePageFrontmatter>();
+const pageFrontmatter = usePageFrontmatter<ThemeProjectHomePageFrontmatter>()
 
-const star = ref<number>(0);
+const star = ref<number>(0)
 
 const nativeButtons = reactive<PageButtons>({
   github: false,
   install: false,
   vuesax: false,
-});
+})
 
-const expand = ref<boolean>(false);
+const expand = ref<boolean>(false)
 
 const action = computed(() => {
   return {
-    link: pageFrontmatter.value.action?.link || "",
-    text: pageFrontmatter.value.action?.text || "",
-  };
-});
+    link: pageFrontmatter.value.action?.link || '',
+    text: pageFrontmatter.value.action?.text || '',
+  }
+})
 const numberWithCommas = computed(() => {
-  const x = star.value;
-  var parts = x.toString().split(".");
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  return parts.join(".");
-});
+  const x = star.value
+  const parts = x.toString().split('.')
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+  return parts.join('.')
+})
 
 onMounted(async () => {
   const res = await fetch(
-    "https://api.github.com/repos/vuesax-alphax/vuesax-alpha"
-  );
+    'https://api.github.com/repos/vuesax-alphax/vuesax-alpha'
+  )
 
-  const json = await res.json();
-  star.value = json.stargazers_count;
-});
+  const json = await res.json()
+  star.value = json.stargazers_count
+})
 
 const time = (variable: keyof PageButtons) => {
-  expand.value = false;
-  nativeButtons[variable] = false;
-};
+  expand.value = false
+  nativeButtons[variable] = false
+}
 </script>
 
 <style lang="scss">
-@import "../styles/_use.scss";
+@import '../styles/_use.scss';
 
 .darken {
   .init {
     &:after {
       background-image: radial-gradient(
-        -color("theme-bg") 0%,
-        -color("theme-bg") 30%,
+        -color('theme-bg') 0%,
+        -color('theme-bg') 30%,
         transparent 70%
       );
     }
   }
   .discord {
-    background: -color("theme-bg");
+    background: -color('theme-bg');
     color: #fff !important;
     i {
       color: #fff !important;
     }
   }
   .badge-star {
-    background: -color("theme-bg2");
+    background: -color('theme-bg2');
     color: #fff;
   }
 }
@@ -214,18 +209,18 @@ const time = (variable: keyof PageButtons) => {
       justify-content: center;
       &:hover {
         &:after {
-          background: -color("primary");
+          background: -color('primary');
           width: 12px;
           height: 12px;
-          box-shadow: 0px 4px 10px 0px -color("primary", 0.2);
+          box-shadow: 0px 4px 10px 0px -color('primary', 0.2);
         }
       }
       &:after {
-        content: "";
+        content: '';
         position: relative;
         width: 6px;
         height: 6px;
-        background: -color("theme-bg2");
+        background: -color('theme-bg2');
         border-radius: 50%;
         transition: all 0.25s ease;
       }
@@ -235,14 +230,14 @@ const time = (variable: keyof PageButtons) => {
     position: absolute;
     width: 430px;
     height: 430px;
-    border: 40px solid -color("theme-bg");
+    border: 40px solid -color('theme-bg');
     border-radius: 50%;
     bottom: -80px;
     left: -200px;
     z-index: -1;
     transition: all 0.25s ease;
     &:hover {
-      border: 40px solid -color("theme-bg2");
+      border: 40px solid -color('theme-bg2');
     }
   }
   .hero {
@@ -254,8 +249,8 @@ const time = (variable: keyof PageButtons) => {
   top: -8px;
   right: -25px;
   font-size: 0.7rem;
-  background: -color("theme-color");
-  color: -color("theme-layout");
+  background: -color('theme-color');
+  color: -color('theme-layout');
   border-radius: 8px 8px 8px 4px;
   padding: 2px 5px;
   font-weight: normal;
@@ -281,18 +276,18 @@ const time = (variable: keyof PageButtons) => {
   transition: all 0.25s ease;
   &:after {
     border-radius: inherit;
-    content: "";
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: calc(100% - 2px);
     height: calc(100% - 2px);
-    border: 2px solid -color("theme-color");
+    border: 2px solid -color('theme-color');
     opacity: 0.2;
     transition: all 0.25s ease;
     background: transparent;
-    box-shadow: 0px 0px 0px 0px -color("theme-color");
+    box-shadow: 0px 0px 0px 0px -color('theme-color');
   }
   &:hover {
     &:after {
@@ -322,18 +317,18 @@ const time = (variable: keyof PageButtons) => {
   }
   &:after {
     border-radius: inherit;
-    content: "";
+    content: '';
     position: absolute;
     box-sizing: content-box;
     top: 0px;
     left: 0px;
     width: calc(100% - 4px);
     height: calc(100% - 4px);
-    border: 2px solid -color("theme-color");
+    border: 2px solid -color('theme-color');
     opacity: 0.2;
     transition: all 0.25s ease;
     background: transparent;
-    box-shadow: 0px 0px 0px 0px -color("theme-color");
+    box-shadow: 0px 0px 0px 0px -color('theme-color');
   }
   i {
     font-size: 1.4rem;
@@ -345,14 +340,14 @@ const time = (variable: keyof PageButtons) => {
 }
 .logo-vuesax {
   max-width: 260px;
-  fill: -color("theme-color");
+  fill: -color('theme-color');
 }
 .home {
   margin: 0px auto;
   display: block;
   width: 100%;
   overflow: hidden;
-  background: -color("theme-layout");
+  background: -color('theme-layout');
   & ~ .config {
     left: 0px;
   }
@@ -392,7 +387,7 @@ const time = (variable: keyof PageButtons) => {
       max-width: 35rem;
       font-size: 1.1rem;
       line-height: 1.3;
-      color: -color("theme-color");
+      color: -color('theme-color');
       opacity: 0.6;
       margin-top: 0px;
       margin-bottom: 1em;
@@ -401,18 +396,18 @@ const time = (variable: keyof PageButtons) => {
       display: inline-block;
       font-size: 0.8rem;
       color: #fff !important;
-      background: -color("primary");
+      background: -color('primary');
       padding: 13px 25px;
       border-radius: 17px;
       transition: background-color 0.1s ease;
       box-sizing: border-box;
       transition: all 0.25s ease;
-      box-shadow: 0px 10px 20px -10px -color("primary", 0.5);
+      box-shadow: 0px 10px 20px -10px -color('primary', 0.5);
       i {
         display: none;
       }
       &:hover {
-        box-shadow: 0px 20px 20px -10px -color("primary", 0.5);
+        box-shadow: 0px 20px 20px -10px -color('primary', 0.5);
         transform: translate(0, -5px);
       }
     }
@@ -436,10 +431,10 @@ const time = (variable: keyof PageButtons) => {
       font-weight: 500;
       border-bottom: none;
       padding-bottom: 0;
-      color: -color("theme-color");
+      color: -color('theme-color');
     }
     p {
-      color: -color("theme-color");
+      color: -color('theme-color');
       opacity: 0.7;
     }
   }

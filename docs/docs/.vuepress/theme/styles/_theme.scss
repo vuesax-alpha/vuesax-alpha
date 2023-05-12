@@ -1,8 +1,8 @@
-@import "./_use.scss";
+@import './_use.scss';
 
 @font-face {
-  font-family: "Poppins";
-  src: url("/Poppins/Poppins-Regular.ttf");
+  font-family: 'Poppins';
+  src: url('/Poppins/Poppins-Regular.ttf');
   font-weight: 400;
   font-style: normal;
 }
@@ -101,21 +101,21 @@ svg {
   max-width: unset !important;
 }
 body {
-  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
 }
 input {
-  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 }
 button {
-  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 }
 * {
@@ -193,14 +193,14 @@ button {
 }
 a {
   font-weight: 500;
-  color: -color("theme-color");
+  color: -color('theme-color');
   text-decoration: none;
 }
 p {
   a {
     code {
       font-weight: 400;
-      color: -color("theme-color");
+      color: -color('theme-color');
     }
   }
 }
@@ -284,7 +284,7 @@ a {
 code,
 kbd,
 .line-number {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 p,

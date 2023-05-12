@@ -1,7 +1,7 @@
 <template>
   <CodeCopied :copied="copied" :text="'Copied'" />
   <div class="command">
-    <div class="tabs" v-if="isMultipleSlot">
+    <div v-if="isMultipleSlot" class="tabs">
       <svg
         class="tab-effect tab-effect1"
         xmlns="http://www.w3.org/2000/svg"
@@ -14,7 +14,7 @@
           data-name="Trazado 200"
           d="M0-10,150,0l10,150S137.643,80.734,100.143,43.234,0-10,0-10Z"
           transform="translate(0 10)"
-        ></path>
+        />
       </svg>
       <svg
         class="tab-effect tab-effect2"
@@ -28,15 +28,19 @@
           data-name="Trazado 200"
           d="M0-10,150,0l10,150S137.643,80.734,100.143,43.234,0-10,0-10Z"
           transform="translate(0 10)"
-        ></path>
+        />
       </svg>
 
-      <div class="active" ref="$tab"></div>
-      <template v-for="(slot, index) of slotsNames">
-        <div class="tab" :ref="slotRefs.set" @click="activeSlot = index">
-          {{ slot }}
-        </div>
-      </template>
+      <div ref="$tab" class="active" />
+      <div
+        v-for="(slot, index) of slotsNames"
+        :key="index"
+        :ref="slotRefs.set"
+        class="tab"
+        @click="activeSlot = index"
+      >
+        {{ slot }}
+      </div>
     </div>
     <div class="copy">
       <div
@@ -45,58 +49,58 @@
         :class="{ copied }"
         @click="copy($el.textContent)"
       >
-        <i v-if="!copied" class="bx bx-clipboard"></i>
-        <i v-else class="bx bx-check"></i>
+        <i v-if="!copied" class="bx bx-clipboard" />
+        <i v-else class="bx bx-check" />
       </div>
     </div>
 
-    <div class="slots" ref="$el">
+    <div ref="$el" class="slots">
       <template v-if="isMultipleSlot">
-        <template v-for="(slot, index) of slotsNames">
-          <template v-if="activeSlot === index">
-            <slot :name="slot"></slot>
-          </template>
-          <template v-else></template>
+        <template v-for="(slot, index) of slotsNames" :key="index">
+          <slot v-if="activeSlot === index" :name="slot" />
         </template>
       </template>
-      <template v-else>
-        <slot></slot>
-      </template>
+
+      <slot />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useTemplateRefsList, useClipboard } from "@vueuse/core";
-import { ref, useSlots, watchPostEffect } from "vue";
-import CodeCopied from "../components/CodeCopied.vue";
+import { ref, useSlots, watchPostEffect } from 'vue'
+import { useClipboard, useTemplateRefsList } from '@vueuse/core'
+import CodeCopied from '../components/CodeCopied.vue'
 
-const slots = useSlots();
+const slots = useSlots()
 
-const slotsNames = Object.keys(slots);
-const isMultipleSlot = slotsNames.length > 1;
+const slotsNames = Object.keys(slots)
+const isMultipleSlot = slotsNames.length > 1
 
-const $el = ref<HTMLElement>()!;
-const $tab = ref<HTMLElement>()!;
-const slotRefs = useTemplateRefsList<HTMLDivElement>();
-const activeSlot = ref(0);
+const $el = ref<HTMLElement>()!
+const $tab = ref<HTMLElement>()!
+const slotRefs = useTemplateRefsList<HTMLDivElement>()
+const activeSlot = ref(0)
 
 const { copied, copy } = useClipboard({
   legacy: true,
-});
+})
 
-if (isMultipleSlot) { 
+if (isMultipleSlot) {
   watchPostEffect(() => {
-    $tab.value!.style.width = `${slotRefs.value[activeSlot.value].clientWidth}px`;
-    $tab.value!.style.height = `${slotRefs.value[activeSlot.value].clientHeight}px`;
-    $tab.value!.style.top = `${slotRefs.value[activeSlot.value].offsetTop}px`;
-    $tab.value!.style.left = `${slotRefs.value[activeSlot.value].offsetLeft}px`;
+    $tab.value!.style.width = `${
+      slotRefs.value[activeSlot.value].clientWidth
+    }px`
+    $tab.value!.style.height = `${
+      slotRefs.value[activeSlot.value].clientHeight
+    }px`
+    $tab.value!.style.top = `${slotRefs.value[activeSlot.value].offsetTop}px`
+    $tab.value!.style.left = `${slotRefs.value[activeSlot.value].offsetLeft}px`
   })
 }
 </script>
 
 <style lang="scss">
-@import "../styles/use";
+@import '../styles/use';
 
 .command {
   z-index: 300;
@@ -122,7 +126,7 @@ if (isMultipleSlot) {
     padding-right: 9px;
 
     ~ div {
-      div[class*="language-"] {
+      div[class*='language-'] {
         border-radius: 20px 10px 20px 20px;
       }
     }
@@ -165,7 +169,7 @@ if (isMultipleSlot) {
       border-radius: 14px;
       position: absolute;
       background: rgba($color: #fff, $alpha: 0.2);
-      transition: all .25s ease;
+      transition: all 0.25s ease;
       z-index: 0;
     }
 
