@@ -1,7 +1,7 @@
 <template>
   <div class="center">
     <vs-button block>
-      <i class="bx bxs-paint-roll"></i>
+      <i class="bx bxs-paint-roll" />
       Edit Theme
     </vs-button>
   </div>

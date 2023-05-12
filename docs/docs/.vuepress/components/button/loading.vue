@@ -12,7 +12,7 @@
       :active="active == 1"
       @click="active = 1"
     >
-      <i class="bx bxs-phone-call"></i>
+      <i class="bx bxs-phone-call" />
     </vs-button>
 
     <vs-button
@@ -22,7 +22,7 @@
       :active="active == 2"
       @click="active = 2"
     >
-      <i class="bx bxs-heart"></i> Like
+      <i class="bx bxs-heart" /> Like
     </vs-button>
 
     <vs-button
@@ -32,7 +32,7 @@
       :active="active == 3"
       @click="active = 3"
     >
-      Notifications <i class="bx bxs-bell-ring"></i>
+      Notifications <i class="bx bxs-bell-ring" />
     </vs-button>
 
     <vs-button
@@ -43,7 +43,7 @@
       :active="active == 5"
       @click="active = 5"
     >
-      <i class="bx bxs-paper-plane"></i>
+      <i class="bx bxs-paper-plane" />
     </vs-button>
     <vs-button
       loading
@@ -53,7 +53,7 @@
       :active="active == 6"
       @click="active = 6"
     >
-      <i class="bx bxs-purchase-tag"></i>
+      <i class="bx bxs-purchase-tag" />
     </vs-button>
   </div>
 </template>

@@ -11,47 +11,44 @@
 
     <vs-button-group>
       <vs-button flat icon>
-        <i class="bx bx-play"></i>
+        <i class="bx bx-play" />
       </vs-button>
       <vs-button flat icon>
-        <i class="bx bx-pause"></i>
+        <i class="bx bx-pause" />
       </vs-button>
       <vs-button flat icon>
-        <i class="bx bx-fast-forward"></i>
+        <i class="bx bx-fast-forward" />
       </vs-button>
       <vs-button flat icon>
-        <i class="bx bx-shuffle"></i>
+        <i class="bx bx-shuffle" />
       </vs-button>
     </vs-button-group>
 
     <span class="divider"></span>
 
     <vs-button-group>
-      <vs-button border> <i class="bx bxs-pencil"></i> Edit </vs-button>
+      <vs-button border> <i class="bx bxs-pencil" /> Edit </vs-button>
       <vs-button border icon>
-        <i class="bx bx-font-color"></i>
+        <i class="bx bx-font-color" />
       </vs-button>
       <vs-button border icon>
-        <i class="bx bx-align-middle"></i>
+        <i class="bx bx-align-middle" />
       </vs-button>
-      <vs-button border> <i class="bx bx-font-size"></i> Font size </vs-button>
+      <vs-button border> <i class="bx bx-font-size" /> Font size </vs-button>
     </vs-button-group>
 
     <span class="divider"></span>
 
     <vs-button-group>
-      <vs-button relief> <i class="bx bx-home-alt"></i> Home </vs-button>
-      <vs-button relief> <i class="bx bxs-phone-call"></i> Contact </vs-button>
+      <vs-button relief> <i class="bx bx-home-alt" /> Home </vs-button>
+      <vs-button relief> <i class="bx bxs-phone-call" /> Contact </vs-button>
       <vs-button relief loading>
-        <i class="bx bxs-cart-alt"></i> Products
+        <i class="bx bxs-cart-alt" /> Products
       </vs-button>
-      <vs-button relief upload>
-        <i class="bx bxs-envelope"></i> Send
-      </vs-button>
+      <vs-button relief upload> <i class="bx bxs-envelope" /> Send </vs-button>
     </vs-button-group>
   </div>
 </template>
-
 
 <style lang="scss" scoped>
 .center {

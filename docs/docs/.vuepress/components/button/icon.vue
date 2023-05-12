@@ -1,7 +1,7 @@
 <template>
   <div class="center">
     <vs-button icon :active="active == 0" @click="active = 0">
-      <i class="bx bx-home-alt"></i>
+      <i class="bx bx-home-alt" />
     </vs-button>
 
     <vs-button
@@ -11,7 +11,7 @@
       :active="active == 1"
       @click="active = 1"
     >
-      <i class="bx bxs-phone-call"></i>
+      <i class="bx bxs-phone-call" />
     </vs-button>
 
     <vs-button
@@ -21,7 +21,7 @@
       :active="active == 2"
       @click="active = 2"
     >
-      <i class="bx bxs-heart"></i>
+      <i class="bx bxs-heart" />>
     </vs-button>
 
     <vs-button
@@ -31,7 +31,7 @@
       :active="active == 3"
       @click="active = 3"
     >
-      <i class="bx bxs-bell-ring"></i>
+      <i class="bx bxs-bell-ring" />
     </vs-button>
 
     <vs-button
@@ -41,7 +41,7 @@
       :active="active == 5"
       @click="active = 5"
     >
-      <i class="bx bxs-paper-plane"></i>
+      <i class="bx bxs-paper-plane" />
     </vs-button>
 
     <vs-button
@@ -51,12 +51,12 @@
       :active="active == 6"
       @click="active = 6"
     >
-      <i class="bx bxs-purchase-tag"></i>
+      <i class="bx bxs-purchase-tag" />
     </vs-button>
   </div>
 </template>
 
-<script setup lang="ts" >
+<script setup lang="ts">
 import { ref } from 'vue'
 
 const active = ref<number>(0)

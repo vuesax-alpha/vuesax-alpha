@@ -7,11 +7,11 @@
       :color="successMail ? 'success' : 'primary'"
     >
       <span v-if="!successMail">
-        <i class="bx bx-mail-send"></i>
+        <i class="bx bx-mail-send" />
         Send
       </span>
 
-      <i class="bx bx-check" v-else></i>
+      <i class="bx bx-check" v-else />
     </vs-button>
 
     <vs-button
@@ -20,9 +20,9 @@
       :loading="loadingFace"
       color="facebook"
     >
-      <i class="bx bxl-facebook-square"></i>
+      <i class="bx bxl-facebook-square" />
       {{ successFace ? 'Logout' : 'Facebook' }}
-      <template #animate> <i class="bx bx-user"></i> Login </template>
+      <template #animate> <i class="bx bx-user" /> Login </template>
     </vs-button>
   </div>
 </template>
