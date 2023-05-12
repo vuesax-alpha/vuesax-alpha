@@ -139,7 +139,10 @@ export const setVsCssVar = (
   namespace = 'vs'
 ) => {
   if (!el) {
-    document.documentElement.style.setProperty(`--${namespace}-${propertyName}`, value)
+    document.documentElement.style.setProperty(
+      `--${namespace}-${propertyName}`,
+      value
+    )
   } else {
     if (el.nodeName !== '#comment') {
       el.style.setProperty(`--${namespace}-${propertyName}`, value)
