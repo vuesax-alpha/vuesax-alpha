@@ -1,18 +1,14 @@
 <template>
   <div class="center">
-    <vs-button
-      upload
-      :active="active == 0"
-      @click="active = 0"
-    >
+    <vs-button upload :active="active == 0" @click="active = 0">
       Home
     </vs-button>
 
     <vs-button
       upload
       icon
-      success
-      flat
+      color="success"
+      type="flat"
       :active="active == 1"
       @click="active = 1"
     >
@@ -21,8 +17,8 @@
 
     <vs-button
       upload
-      danger
-      border
+      color="danger"
+      type="border"
       :active="active == 2"
       @click="active = 2"
     >
@@ -31,8 +27,8 @@
 
     <vs-button
       upload
-      warn
-      gradient
+      color="warn"
+      type="gradient"
       :active="active == 3"
       @click="active = 3"
     >
@@ -41,8 +37,8 @@
 
     <vs-button
       upload
-      dark
-      transparent
+      color="dark"
+      type="transparent"
       :active="active == 5"
       @click="active = 5"
     >
@@ -53,7 +49,7 @@
       upload
       icon
       color="#7d33ff"
-      relief
+      type="relief"
       :active="active == 5"
       @click="active = 5"
     >
@@ -64,7 +60,7 @@
       upload
       icon
       color="rgb(59,222,200)"
-      gradient
+      type="gradient"
       :active="active == 6"
       @click="active = 6"
     >
@@ -73,8 +69,8 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { ref } from "vue";
+<script setup lang="ts">
+import { ref } from 'vue'
 
-const active = ref<number>(0);
+const active = ref<number>(0)
 </script>

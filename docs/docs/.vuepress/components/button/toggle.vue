@@ -21,36 +21,36 @@
       color="facebook"
     >
       <i class="bx bxl-facebook-square"></i>
-      {{ successFace ? "Logout" : "Facebook" }}
+      {{ successFace ? 'Logout' : 'Facebook' }}
       <template #animate> <i class="bx bx-user"></i> Login </template>
     </vs-button>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref } from 'vue'
 
-const sendingMail = ref<boolean>(false);
-const successMail = ref<boolean>(false);
-const loadingFace = ref<boolean>(false);
-const successFace = ref<boolean>(false);
+const sendingMail = ref<boolean>(false)
+const successMail = ref<boolean>(false)
+const loadingFace = ref<boolean>(false)
+const successFace = ref<boolean>(false)
 
 const handleClickMail = () => {
-  sendingMail.value = true;
+  sendingMail.value = true
 
   setTimeout(() => {
-    sendingMail.value = false;
-    successMail.value = !successMail.value;
-  }, 2000);
-};
+    sendingMail.value = false
+    successMail.value = !successMail.value
+  }, 2000)
+}
 const handleClickFace = () => {
-  loadingFace.value = true;
+  loadingFace.value = true
 
   setTimeout(() => {
-    loadingFace.value = false;
-    successFace.value = !successFace.value;
-  }, 2000);
-};
+    loadingFace.value = false
+    successFace.value = !successFace.value
+  }, 2000)
+}
 </script>
 
 <style scoped lang="scss">

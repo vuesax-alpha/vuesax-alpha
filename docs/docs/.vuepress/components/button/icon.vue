@@ -1,66 +1,63 @@
 <template>
   <div class="center">
-    <vs-button
-      icon
-      :active="active == 0"
-      @click="active = 0"
-    >
-      <i class='bx bx-home-alt'></i>
+    <vs-button icon :active="active == 0" @click="active = 0">
+      <i class="bx bx-home-alt"></i>
     </vs-button>
 
     <vs-button
       icon
-      success
-      flat
+      color="success"
+      type="flat"
       :active="active == 1"
       @click="active = 1"
     >
-      <i class='bx bxs-phone-call' ></i>
+      <i class="bx bxs-phone-call"></i>
     </vs-button>
 
     <vs-button
       icon
-      danger
-      border
+      color="danger"
+      type="border"
       :active="active == 2"
       @click="active = 2"
     >
-      <i class='bx bxs-heart' ></i>
+      <i class="bx bxs-heart"></i>
     </vs-button>
 
     <vs-button
       icon
-      warn
-      gradient
-      :active="active == 3" @click="active = 3"
+      color="warn"
+      type="gradient"
+      :active="active == 3"
+      @click="active = 3"
     >
-      <i class='bx bxs-bell-ring' ></i>
+      <i class="bx bxs-bell-ring"></i>
     </vs-button>
 
     <vs-button
       icon
       color="#7d33ff"
-      relief
+      type="relief"
       :active="active == 5"
       @click="active = 5"
     >
-      <i class='bx bxs-paper-plane' ></i>
+      <i class="bx bxs-paper-plane"></i>
     </vs-button>
 
     <vs-button
       icon
       color="rgb(59,222,200)"
-      gradient
+      type="gradient"
       :active="active == 6"
       @click="active = 6"
     >
-      <i class='bx bxs-purchase-tag' ></i>
+      <i class="bx bxs-purchase-tag"></i>
     </vs-button>
   </div>
 </template>
 
-<script lang="ts" setup>
-import { ref } from "vue";
+<script setup lang="ts" >
+import { ref } from 'vue'
 
-const active = ref<number>(0);
+const active = ref<number>(0)
 </script>

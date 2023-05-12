@@ -52,15 +52,11 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { ref } from "vue";
 
-const active = ref<number>(0);
-</script>
 <style lang="scss" scoped>
 .center {
   flex-wrap: wrap;
-  > .vs-button__group {
+  .vs-button__group {
     margin: 20px 20px;
   }
 }

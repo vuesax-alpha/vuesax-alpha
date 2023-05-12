@@ -1,38 +1,33 @@
 <template>
   <div class="center">
+    <vs-button :active="active == 0" @click="active = 0"> Default </vs-button>
     <vs-button
-      :active="active == 0"
-      @click="active = 0"
-    >
-      Default
-    </vs-button>
-    <vs-button
-      success
-      flat
+      color="success"
+      type="flat"
       :active="active == 1"
       @click="active = 1"
     >
       Success
     </vs-button>
     <vs-button
-      danger
-      border
+      color="danger"
+      type="border"
       :active="active == 2"
       @click="active = 2"
     >
       Danger
     </vs-button>
     <vs-button
-      warn
-      gradient
+      color="warn"
+      type="gradient"
       :active="active == 3"
       @click="active = 3"
     >
       Warn
     </vs-button>
     <vs-button
-      dark
-      shadow
+      color="dark"
+      type="shadow"
       :active="active == 4"
       @click="active = 4"
     >
@@ -40,15 +35,15 @@
     </vs-button>
     <vs-button
       color="#7d33ff"
-      relief
+      type="relief"
       :active="active == 5"
       @click="active = 5"
     >
-        HEX
+      HEX
     </vs-button>
     <vs-button
       color="rgb(59,222,200)"
-      gradient
+      type="gradient"
       :active="active == 6"
       @click="active = 6"
     >
@@ -57,8 +52,8 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { ref } from "vue";
+<script setup lang="ts">
+import { ref } from 'vue'
 
-const active = ref<number>(0);
+const active = ref<number>(0)
 </script>
