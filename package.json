@@ -34,8 +34,6 @@
     "docs:dev": "pnpm run -C docs dev",
     "docs:build": "pnpm run -C docs build",
     "docs:serve": "pnpm run -C docs serve",
-    "docs:gen-locale": "pnpm run -C docs gen-locale",
-    "docs:crowdin-credentials": "pnpm run -C docs crowdin-credentials",
     "stub": "pnpm run -r --parallel stub",
     "prepare": "husky install",
     "postinstall": "pnpm stub && concurrently \"pnpm gen:version\" \"pnpm run -C internal/metadata dev\""
