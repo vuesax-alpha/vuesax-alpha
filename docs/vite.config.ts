@@ -1,7 +1,7 @@
 import path from 'path'
 import Inspect from 'vite-plugin-inspect'
 import { defineConfig, loadEnv } from 'vite'
-import VueMacros from 'unplugin-vue-macros/vite'
+import Vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
 import mkcert from 'vite-plugin-mkcert'
 import glob from 'fast-glob'
@@ -13,14 +13,13 @@ import {
   getPackageDependencies,
   projRoot,
 } from '@vuesax-alpha/build-utils'
-import { MarkdownTransform } from './.vitepress/plugins/markdown-transform'
 
 import type { Alias } from 'vite'
 
 const alias: Alias[] = [
   {
     find: '~/',
-    replacement: `${path.resolve(__dirname, './.vitepress/vitepress')}/`,
+    replacement: `${path.resolve(__dirname, './.vuepress/vuepress')}/`,
   },
 ]
 if (process.env.DOC_ENV !== 'production') {
@@ -56,6 +55,9 @@ export default defineConfig(async ({ mode }) => {
   )
 
   return {
+    esbuild: {
+      minify: true,
+    },
     server: {
       host: true,
       https: !!env.HTTPS,
@@ -67,17 +69,12 @@ export default defineConfig(async ({ mode }) => {
       alias,
     },
     plugins: [
-      VueMacros({
-        setupComponent: false,
-        setupSFC: false,
-        plugins: {
-          vueJsx: vueJsx(),
-        },
-      }),
+      Vue(),
+      vueJsx(),
 
       // https://github.com/antfu/unplugin-vue-components
       Components({
-        dirs: ['.vitepress/vitepress/components'],
+        dirs: ['.vuepress/theme/components'],
 
         allowOverrides: true,
 
@@ -86,7 +83,6 @@ export default defineConfig(async ({ mode }) => {
       }),
 
       UnoCSS(),
-      MarkdownTransform(),
       Inspect(),
       mkcert(),
     ],

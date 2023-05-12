@@ -10,14 +10,17 @@
     "strict": true,
     "noImplicitAny": false,
     "skipLibCheck": true,
-    "lib": ["WebWorker"],
+    "useDefineForClassFields": true,
+    "sourceMap": true,
+    "isolatedModules": true,
+    "lib": ["ESNext", "DOM"],
     "paths": {
       "vuesax-alpha": ["../packages/vuesax-alpha"],
-      "~/*": ["./.vitepress/vitepress/*"]
+      "~/*": ["./.vuepress/vuepress/*"]
     },
-    "types": ["../typings/components"],
+    "types": ["vite/client", "@vuepress/client/types", "../typings/components"],
     "jsx": "preserve"
   },
-  "include": ["**/*", ".vitepress/**/*"],
+  "include": ["docs/.vuepress/theme"],
   "exclude": ["node_modules"]
 }
