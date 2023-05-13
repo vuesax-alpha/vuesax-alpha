@@ -101,6 +101,7 @@ export default defineUserConfig({
       '/': enSearchData,
     },
     lastUpdated: true,
+    contributors: true,
     lastUpdatedText: 'Last Updated',
   }),
   markdown: {

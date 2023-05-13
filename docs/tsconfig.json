@@ -1,26 +1,30 @@
 {
   "compilerOptions": {
     "target": "ESNext",
+    "useDefineForClassFields": true,
     "module": "ESNext",
     "moduleResolution": "Node",
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "noImplicitAny": false,
-    "skipLibCheck": true,
-    "useDefineForClassFields": true,
+    "jsx": "preserve",
     "sourceMap": true,
+    "resolveJsonModule": true,
     "isolatedModules": true,
-    "lib": ["ESNext", "DOM"],
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM", "WebWorker"],
+    "skipLibCheck": true,
+    "allowJs": true,
+    "noImplicitAny": false,
+    "outDir": "dist",
+    "declaration": true,
+    "types": ["vite/client", "@vuepress/client/types", "../typings/components"],
     "paths": {
       "vuesax-alpha": ["../packages/vuesax-alpha"],
-      "~/*": ["./.vuepress/vuepress/*"]
-    },
-    "types": ["vite/client", "@vuepress/client/types", "../typings/components"],
-    "jsx": "preserve"
+      "~/*": ["./.vuepress/theme/*"],
+      "@vuesax-alpha/docs": ["./.vuepress"]
+    }
   },
-  "include": ["docs/.vuepress/theme"],
+  "include": ["**/*", ".vuepress/**/*"],
   "exclude": ["node_modules"]
 }

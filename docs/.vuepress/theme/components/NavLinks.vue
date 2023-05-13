@@ -15,7 +15,7 @@
   <template v-else />
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import { isLinkHttp, isString } from '@vuepress/shared'
 import {

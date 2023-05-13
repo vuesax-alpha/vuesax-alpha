@@ -46,10 +46,7 @@ export const vuesaxAlphaTheme = (
       registerComponentsPlugin({
         componentsDir: path.resolve(__dirname, '../components'),
       }),
-      gitPlugin({
-        updatedTime: true,
-        createdTime: true,
-      }),
+      gitPlugin(),
     ],
   }
 }

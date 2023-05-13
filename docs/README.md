@@ -1,6 +1,6 @@
 ---
 home: true
-heroText: <b>Vuesax-alpha</b> Framework <br> Components for <a target="_blank" href="https://vuejs.org/" >Vuejs</a>
+heroText: <b>Vuesax</b> Framework <br> Components for <a target="_blank" href="https://vuejs.org/" >Vuejs</a>  
 description: We love what we do. Let us help you do what <b>You love</b>.
 action:
   text: Get Started
@@ -29,4 +29,3 @@ features:
     details: <b>Our designs are unique</b> for each component and are not anchored to any visual trends or design rules, which makes us unique and of course your projects as well.
     action: false
 ---
-

@@ -76,8 +76,8 @@ const slots = useSlots()
 const slotsNames = Object.keys(slots)
 const isMultipleSlot = slotsNames.length > 1
 
-const $el = ref<HTMLElement>()!
-const $tab = ref<HTMLElement>()!
+const $el = ref<HTMLElement>()
+const $tab = ref<HTMLElement>()
 const slotRefs = useTemplateRefsList<HTMLDivElement>()
 const activeSlot = ref(0)
 
@@ -87,14 +87,16 @@ const { copied, copy } = useClipboard({
 
 if (isMultipleSlot) {
   watchPostEffect(() => {
-    $tab.value!.style.width = `${
-      slotRefs.value[activeSlot.value].clientWidth
-    }px`
-    $tab.value!.style.height = `${
-      slotRefs.value[activeSlot.value].clientHeight
-    }px`
-    $tab.value!.style.top = `${slotRefs.value[activeSlot.value].offsetTop}px`
-    $tab.value!.style.left = `${slotRefs.value[activeSlot.value].offsetLeft}px`
+    if ($tab.value) {
+      $tab.value.style.width = `${
+        slotRefs.value[activeSlot.value].clientWidth
+      }px`
+      $tab.value!.style.height = `${
+        slotRefs.value[activeSlot.value].clientHeight
+      }px`
+      $tab.value!.style.top = `${slotRefs.value[activeSlot.value].offsetTop}px`
+      $tab.value!.style.left = `${slotRefs.value[activeSlot.value].offsetLeft}px`
+    }
   })
 }
 </script>

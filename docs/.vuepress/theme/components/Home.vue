@@ -10,15 +10,14 @@
             v-if="pageFrontmatter.heroText"
             id="main-title"
             v-html="
-              pageFrontmatter.heroText || pageFrontmatter.title || 'Hello'
+              pageFrontmatter.heroText || pageFrontmatter.title || 'Hi!'
             "
           />
-          <template v-else />
 
           <p
             class="description"
             v-html="
-              pageFrontmatter.description || 'Welcome to your VuePress site'
+              pageFrontmatter.description || 'Welcome to Vuesax-alpha'
             "
           />
 
@@ -34,7 +33,7 @@
             <a
               title="install"
               class="install"
-              href="/guide/gettingStarted.html/#installation"
+              href="/guide/getting-started.html/#installation"
               @mouseleave="time('install')"
               @mouseenter=";(nativeButtons.install = true), (expand = true)"
             >
@@ -45,7 +44,7 @@
               title="Github"
               class="github"
               target="_blank"
-              href="https://github.com/vuesax-alphax/vuesax-alpha/"
+              href="https://github.com/vuesax-alpha/vuesax-alpha/"
               @mouseleave="time('github')"
               @mouseenter=";(nativeButtons.github = true), (expand = true)"
             >

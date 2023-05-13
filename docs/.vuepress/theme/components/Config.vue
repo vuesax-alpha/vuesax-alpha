@@ -210,15 +210,15 @@ const reloadConfig = () => {
   //   '.header-page > .effect1'
   // ) as HTMLElement
 
-  sidebar?.style.removeProperty(`--vsd-theme-layout`)
-  navbar?.style.removeProperty(`--vsd-theme-layout`)
-  navbar?.style.removeProperty(`--vsd-theme-bg2`)
-  config?.style.removeProperty(`--vsd-theme-layout`)
-  sidebar?.style.removeProperty(`--vsd-theme-color`)
-  navbar?.style.removeProperty(`--vsd-theme-color`)
-  config?.style.removeProperty(`--vsd-theme-color`)
+  sidebar?.style.removeProperty(`--vs-theme-layout`)
+  navbar?.style.removeProperty(`--vs-theme-layout`)
+  navbar?.style.removeProperty(`--vs-theme-bg2`)
+  config?.style.removeProperty(`--vs-theme-layout`)
+  sidebar?.style.removeProperty(`--vs-theme-color`)
+  navbar?.style.removeProperty(`--vs-theme-color`)
+  config?.style.removeProperty(`--vs-theme-color`)
   document.body.classList.remove('hidden-sidebar')
-  document.body.style.setProperty(`--vsd-primary`, '26, 92, 255')
+  document.body.style.setProperty(`--vs-primary`, '26, 92, 255')
   $vsTheme.mobileActive = false
   localStorage.mobile = false
 
@@ -295,19 +295,19 @@ const changeColorLayout = (colorBase: string) => {
   //   '.header-page > .effect1'
   // )! as HTMLElement
 
-  sidebar.style.setProperty(`--vsd-theme-layout`, colour)
-  navbar.style.setProperty(`--vsd-theme-layout`, colour)
-  navbar.style.setProperty(`--vsd-theme-bg2`, colour)
-  config.style.setProperty(`--vsd-theme-layout`, colour)
+  sidebar.style.setProperty(`--vs-theme-layout`, colour)
+  navbar.style.setProperty(`--vs-theme-layout`, colour)
+  navbar.style.setProperty(`--vs-theme-bg2`, colour)
+  config.style.setProperty(`--vs-theme-layout`, colour)
 
   if (contrastColor(colour)) {
-    sidebar.style.setProperty(`--vsd-theme-color`, '44, 62, 80')
-    navbar.style.setProperty(`--vsd-theme-color`, '44, 62, 80')
-    config.style.setProperty(`--vsd-theme-color`, '44, 62, 80')
+    sidebar.style.setProperty(`--vs-theme-color`, '44, 62, 80')
+    navbar.style.setProperty(`--vs-theme-color`, '44, 62, 80')
+    config.style.setProperty(`--vs-theme-color`, '44, 62, 80')
   } else {
-    sidebar.style.setProperty(`--vsd-theme-color`, '0, 0, 0')
-    navbar.style.setProperty(`--vsd-theme-color`, '0, 0, 0')
-    config.style.setProperty(`--vsd-theme-color`, '0, 0, 0')
+    sidebar.style.setProperty(`--vs-theme-color`, '0, 0, 0')
+    navbar.style.setProperty(`--vs-theme-color`, '0, 0, 0')
+    config.style.setProperty(`--vs-theme-color`, '0, 0, 0')
   }
 
   setTimeout(() => {
@@ -320,7 +320,7 @@ const changeColor = (evt: Event) => {
   // @ts-ignore
   const rgb = hexToRgb(evt.target.value)
   const color = `${rgb?.r},${rgb?.g},${rgb?.b}`
-  document.body.style.setProperty(`--vsd-primary`, color)
+  document.body.style.setProperty(`--vs-primary`, color)
 }
 const changeMenu = () => {
   $vsTheme.sidebarCollapseOpen = !$vsTheme?.sidebarCollapseOpen

@@ -35,8 +35,8 @@
           <p>Do you want to participate in our initiative? We are open.</p>
 
           <footer>
-            <vs-button danger> Open </vs-button>
-            <vs-button dark shadow> cancel </vs-button>
+            <vs-button color="danger"> Open </vs-button>
+            <vs-button color="dark" type="shadow"> cancel </vs-button>
           </footer>
         </div>
       </div>
@@ -94,7 +94,7 @@
       </div>
 
       <div class="component6">
-        <vs-button icon dark transparent>
+        <vs-button icon color="dark" type="transparent">
           <i class="bx bx-dots-vertical-rounded" />
         </vs-button>
 
@@ -109,10 +109,14 @@
         </div>
 
         <header>
-          <button icon dark shadow>
+          <vs-button icon color="dark" type="shadow">
             <i class="bx bxs-heart" />
-          </button>
-          <button dark shadow><i class="bx bxs-chat" /> 12</button>
+          </vs-button>
+
+          <vs-button color="dark" type="shadow">
+            <i class="bx bxs-chat" />
+            12
+          </vs-button>
         </header>
 
         <div class="content-text">
@@ -125,9 +129,11 @@
 
         <footer>
           <vs-input v-model="input1" placeholder="Comment" />
-          <vs-button icon flat>
-            <i class="bx bx-send" />
-          </vs-button>
+          <div>
+            <vs-button icon type="flat">
+              <i class="bx bx-send" />
+            </vs-button>
+          </div>
         </footer>
       </div>
 
@@ -147,7 +153,7 @@
 
         <footer>
           <div>
-            <h4>Vuesax 4.0</h4>
+            <h4>Vuesax Alpha</h4>
             <p>Framework</p>
           </div>
 
@@ -182,10 +188,10 @@
       </div>
 
       <div class="component10">
-        <vs-button danger icon>
+        <vs-button color="danger" icon>
           <i class="bx bx-play" />
         </vs-button>
-        <vs-button warn icon>
+        <vs-button color="warn" icon>
           <i class="bx bx-git-pull-request" />
         </vs-button>
         <vs-button icon>
@@ -320,7 +326,7 @@ const handleBurDrop = () => {
 .has-darken {
   display: none;
 }
-.darken {
+.dark {
   .component13 {
     header {
       input {
@@ -480,7 +486,7 @@ const handleBurDrop = () => {
         box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
         transform: translate(0, 5px);
       }
-      .vs-input-parent {
+      .vs-input {
         width: calc(100% - 50px);
         input {
           width: 100% !important;
@@ -1026,8 +1032,9 @@ const handleBurDrop = () => {
         margin-top: -20px;
         z-index: 200;
         position: relative;
+
         button {
-          padding: 5px 12px;
+          padding: 5px 8px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -1345,6 +1352,7 @@ const handleBurDrop = () => {
         footer {
           display: flex;
           align-items: center;
+          gap: 10px;
           justify-content: center;
           position: absolute;
           bottom: -30px;

@@ -11,7 +11,6 @@
   >
     {{ navItem.text }}
     <i v-if="arrow" class="bx bx-chevron-down" />
-    <template v-else />
   </router-link>
   <a
     v-else

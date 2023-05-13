@@ -118,7 +118,7 @@ const router = useRouter()
 
 const pageData = usePageData()
 const pageFrontmatter = usePageFrontmatter<LayoutFrontmatter>()
-1
+
 const themeData = useThemeData<VuesaxAlphaThemeOptions>()
 const themeLocaleData = useThemeLocaleData<VuesaxAlphaThemeOptions>()
 const routeLocale = useRouteLocale()
@@ -212,7 +212,7 @@ const onTouchEnd = (e: TouchEvent) => {
   opacity: 0;
 }
 
-.darken {
+.dark1 {
   .con-codesandbox {
     background: rgba(0, 0, 0, 0.7);
   }

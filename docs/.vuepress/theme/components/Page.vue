@@ -136,21 +136,18 @@
         <span class="prefix">{{ lastUpdatedText }}: </span>
         <span class="time">{{ lastUpdatedTime }}</span>
       </div>
-      <template v-else />
     </footer>
 
     <div v-if="prev || next" class="page-nav">
       <p class="inner">
-        <!-- v-show="prev" -->
         <span v-if="prev" class="prev">
-          <router-link class="prev" :to="prev.link">
+          <router-link :to="prev.link">
             <i class="bx bx-chevron-left" />
             <span>
               {{ prev.title || prev.link }}
             </span>
           </router-link>
         </span>
-        <template v-else />
 
         <span v-if="next" class="next">
           <router-link :to="next.link">
@@ -160,11 +157,8 @@
             <i class="bx bx-chevron-right" />
           </router-link>
         </span>
-        <template v-else />
       </p>
     </div>
-    <template v-else />
-
     <slot name="bottom" />
 
     <div ref="$up" class="up" @click="handleUp">
@@ -176,8 +170,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { computed } from '@vue/reactivity'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 import { usePageData, usePageFrontmatter } from '@vuepress/client'
 // @ts-ignore
 import { useThemeData } from '@vuepress/plugin-theme-data/client'
@@ -344,10 +337,6 @@ const editLink = computed(() => {
     })
   }
 })
-
-// const editLinkText = computed(() => {
-//   return themeData.value.editLinkText || `Edit this page`
-// })
 
 onMounted(() => {
   window.addEventListener('scroll', () => {

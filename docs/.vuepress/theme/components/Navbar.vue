@@ -76,17 +76,17 @@
         <a
           title="Github"
           target="_blank"
-          href="https://github.com/vuesax-alphax/vuesax-alpha"
+          href="https://github.com/vuesax-alpha/vuesax-alpha"
         >
           <i class="bx bxl-github" />
         </a>
-        <a
+        <!-- <a
           title="Facebook"
           target="_blank"
           href="https://www.facebook.com/thinh.onichan"
         >
           <i class="bx bxl-facebook" />
-        </a>
+        </a> -->
       </div>
 
       <SearchBox

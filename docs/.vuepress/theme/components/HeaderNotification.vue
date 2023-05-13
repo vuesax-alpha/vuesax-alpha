@@ -29,7 +29,7 @@ const active = ref<number>(0)
 const number = ref<number>(12)
 
 const handleClick = () => {
-  router.push('/components/Card')
+  router.push('/components/card')
   active.value = 0
 
   localStorage.notificationHidden = number.value
@@ -38,6 +38,7 @@ const handleRemove = () => {
   active.value = 0
   localStorage.notificationHidden = number.value
 }
+
 onMounted(() => {
   if (localStorage.notificationHidden == number.value) {
     active.value = 0

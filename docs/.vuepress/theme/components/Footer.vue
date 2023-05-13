@@ -59,7 +59,7 @@ const links = [
       },
       {
         text: 'Github',
-        link: 'https://github.com/vuesax-alphax/vuesax-alpha',
+        link: 'https://github.com/vuesax-alpha/vuesax-alpha',
       },
       {
         text: 'Privacy Policy',
@@ -72,7 +72,7 @@ const links = [
     items: [
       {
         text: 'Github Issues',
-        link: 'https://github.com/vuesax-alphax/vuesax-alpha/issues',
+        link: 'https://github.com/vuesax-alpha/vuesax-alpha/issues',
       },
       // {
       //   text: 'Latest Releases',
@@ -93,7 +93,7 @@ const links = [
       // },
       {
         text: 'Github',
-        link: 'https://github.com/vuesax-alphax/vuesax-alpha',
+        link: 'https://github.com/vuesax-alpha/vuesax-alpha',
       },
     ],
   },
@@ -103,7 +103,7 @@ const links = [
 <style lang="scss" scoped>
 @import '../styles/use';
 
-.darken {
+.dark {
   .subscribe-content {
     #mc_embed_signup_scroll {
       input[type='email'] {
