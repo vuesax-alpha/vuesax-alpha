@@ -1,5 +1,5 @@
 import { defineUserConfig } from 'vuepress'
-import { enNavbar, enSearchData, enSidebar } from './locale'
+import { enNavbar, enSearchData, enSidebar } from './app'
 import { vuesaxAlphaTheme } from './theme/index'
 
 export default defineUserConfig({
