@@ -1,6 +1,5 @@
 packages:
   - packages/*
   - docs
-  - vitepress-theme
   - play
   - internal/*
