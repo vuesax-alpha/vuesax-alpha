@@ -123,7 +123,6 @@ if (isMultipleSlot) {
     border-radius: 20px 25px 0 0;
     margin-left: 18px;
     gap: 4px;
-    // color: -color(text-color);
     background: -color(theme-code);
     padding: 6px;
     padding-right: 9px;
@@ -140,7 +139,7 @@ if (isMultipleSlot) {
       max-height: 40px;
       z-index: -1;
       pointer-events: none;
-      fill: rgba(var(--vsd-theme-code), 1);
+      fill: rgba(var(--vs-theme-code), 1);
 
       &.tab-effect1 {
         transform: rotate(72deg) scale(0.6);
@@ -160,18 +159,16 @@ if (isMultipleSlot) {
       justify-content: center;
       align-items: center;
       user-select: none;
-      // cursor: pointer;
       color: rgb(240, 234, 234, 0.84);
       padding: 2px 12px;
-      // #e0e6ec
-      // background: -color(theme-code);
       z-index: 3;
+      cursor: pointer;
     }
 
     .active {
-      border-radius: 14px;
+      border-radius: 11px;
       position: absolute;
-      background: rgba($color: #fff, $alpha: 0.2);
+      background: rgba($color: #fff, $alpha: 0.1);
       transition: all 0.25s ease;
       z-index: 0;
     }
