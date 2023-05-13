@@ -24,6 +24,12 @@
 </template>
 
 <script setup lang="ts">
+// @ts-ignore
+import { useThemeData } from '@vuepress/plugin-theme-data/client'
+import type { VuesaxAlphaThemeOptions } from '~/vuesaxAlphaTheme'
+
+const themeData = useThemeData<VuesaxAlphaThemeOptions>()
+
 const links = [
   {
     title: 'Vuesax',
@@ -49,17 +55,13 @@ const links = [
   {
     title: 'Resources',
     items: [
-      // {
-      //   text: 'Blog',
-      //   link: '/'
-      // },
       {
         text: 'Documentation',
         link: '/',
       },
       {
         text: 'Github',
-        link: 'https://github.com/vuesax-alpha/vuesax-alpha',
+        link: themeData.value.docsRepo,
       },
       {
         text: 'Privacy Policy',
@@ -72,12 +74,12 @@ const links = [
     items: [
       {
         text: 'Github Issues',
-        link: 'https://github.com/vuesax-alpha/vuesax-alpha/issues',
+        link: `${themeData.value.docsRepo}/issues`,
       },
-      // {
-      //   text: 'Latest Releases',
-      //   link: '/'
-      // },
+      {
+        text: 'Latest Releases',
+        link: `${themeData.value.docsRepo}/releases`,
+      },
       {
         text: 'FAQ',
         link: '/license/#faq',
@@ -87,13 +89,9 @@ const links = [
   {
     title: 'Community',
     items: [
-      // {
-      //   text: "Discord",
-      //   link: "https://discord.gg/6AZNXEa",
-      // },
       {
         text: 'Github',
-        link: 'https://github.com/vuesax-alpha/vuesax-alpha',
+        link: themeData.value.docsRepo,
       },
     ],
   },

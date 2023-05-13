@@ -1,5 +1,5 @@
 <template>
-  <RenderLink :link="link.link" :text="link.text" />
+  <RenderLink :link="link.link!" :text="link.text" />
 </template>
 
 <script lang="ts" setup>

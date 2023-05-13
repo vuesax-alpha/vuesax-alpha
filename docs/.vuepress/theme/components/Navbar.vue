@@ -90,9 +90,7 @@
       </div>
 
       <SearchBox
-        v-if="
-          themeData.search !== false && pageData.frontmatter.search !== false
-        "
+        v-if="themeData.search !== false && frontmatter.search !== false"
         @focus="focused = true"
         @blur="focused = false"
         @show-suggestions="handleShowSuggestions"
@@ -104,22 +102,28 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import { usePageData, useSiteLocaleData } from '@vuepress/client'
+import {
+  usePageData,
+  usePageFrontmatter,
+  useSiteLocaleData,
+} from '@vuepress/client'
+
 // @ts-ignore
 import { useThemeData } from '@vuepress/plugin-theme-data/client'
 
 import SidebarButton from './SidebarButton.vue'
 import NavLinks from './NavLinks.vue'
 import SearchBox from './SearchBox.vue'
-import type { VuesaxAlphaThemeOptions } from '../vuesaxAlphaTheme'
+import type { VuesaxAlphaThemeOptions } from '~/vuesaxAlphaTheme'
 
 const emits = defineEmits<{
   (event: 'toggle-sidebar'): void
 }>()
 
+const frontmatter = usePageFrontmatter<{ search?: boolean }>()
 const themeData = useThemeData<VuesaxAlphaThemeOptions>()
 const siteLocaleData = useSiteLocaleData()
-const pageData = usePageData()
+const pageData = usePageData<{ search?: boolean }>()
 
 const linksWrapMaxWidth = ref<number | null>(null)
 const showSuggestions = ref<boolean>(false)

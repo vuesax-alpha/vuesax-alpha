@@ -43,7 +43,8 @@ onMounted(() => {
   if (localStorage.notificationHidden == number.value) {
     active.value = 0
   } else {
-    active.value = number.value
+    // TODO: uncomment after the docs are completed
+    // active.value = number.value
   }
 })
 </script>

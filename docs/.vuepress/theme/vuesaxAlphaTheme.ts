@@ -8,6 +8,7 @@ export declare interface VuesaxAlphaThemeOptions extends DefaultThemeOptions {
   prevVersion?: string
   linkPrevVersion?: string
   searchPlaceholder?: string
+  linkSite?: string
   search?: boolean
   next?: string
   prev?: string

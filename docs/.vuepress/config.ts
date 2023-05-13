@@ -76,9 +76,10 @@ export default defineUserConfig({
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
   ],
   theme: vuesaxAlphaTheme({
+    linkSite: 'http://vuesax.space',
     repo: 'vuesax-alpha/vuesax-alpha',
     docsBranch: 'main',
-    docsDir: 'packages/documents',
+    docsDir: 'docs',
     docsRepo: 'https://github.com/vuesax-alpha/vuesax-alpha/',
     editLink: true,
     editLinkPattern: 'https://github.com/vuesax-alpha/vuesax-alpha/',
