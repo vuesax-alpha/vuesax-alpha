@@ -180,7 +180,7 @@ importers:
       vue: ^3.3.2
       vue-router: ^4.2.0
       vuepress: 2.0.0-beta.62
-      vuesax-alpha: 0.2.0-beta.5
+      vuesax-alpha: npm:vuesax-alpha@latest
     dependencies:
       '@vuepress/shared-utils': 1.9.9
       '@vueuse/components': 9.13.0_vue@3.3.2
@@ -193,7 +193,7 @@ importers:
       prismjs: 1.29.0
       vue: 3.3.2
       vue-router: 4.2.0_vue@3.3.2
-      vuesax-alpha: 0.2.0-beta.5_vue@3.3.2
+      vuesax-alpha: 0.2.0-beta.6_vue@3.3.2
     devDependencies:
       '@types/prismjs': 1.26.0
       '@vuepress/client': 2.0.0-beta.62
@@ -13292,8 +13292,8 @@ packages:
       - vue
     dev: true
 
-  /vuesax-alpha/0.2.0-beta.5_vue@3.3.2:
-    resolution: {integrity: sha512-IKhfk6x/wxwtvW5xMqFshUx+IZJCeReHxw2h/DKfdthD7MBF8IjUr/MxLUK0QzztJQGxzelYBxI6p3erN5BEOg==}
+  /vuesax-alpha/0.2.0-beta.6_vue@3.3.2:
+    resolution: {integrity: sha512-O6khsU78+qW+vYLJdKbz9qFq/gVPDcX7tpA5hqWszgHc1867gGEDu5TZbxBai6RafOYDPJwLbVcKw/t6jyFy8A==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
