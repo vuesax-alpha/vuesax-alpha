@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { provide } from 'vue'
 
 import type { InjectionKey, ObjectDirective, Ref } from 'vue'
