@@ -51,12 +51,13 @@ export const setColor = (
   colorName: string,
   color: string,
   el: HTMLElement,
-  addClass?: boolean
+  addClass?: boolean,
+  namespace = 'vs'
 ) => {
   let newColor
   if (color == 'dark' && el) {
     if (addClass) {
-      el.classList.add('vs-component-dark')
+      el.classList.add(`${namespace}-component-dark`)
     }
   }
   if (isRgbColor(color)) {
@@ -64,26 +65,26 @@ export const setColor = (
     newColor = `${arrayColor[0]},${arrayColor[1]},${arrayColor[2]}`
     setVsCssVar(colorName, newColor, el)
     if (addClass) {
-      el.classList.add('vs-change-color')
+      el.classList.add(`${namespace}-change-color`)
     }
   } else if (isHexColor(color)) {
     const rgb = hexToRgb(color)
     newColor = `${rgb!.r},${rgb!.g},${rgb!.b}`
     setVsCssVar(colorName, newColor, el)
     if (addClass) {
-      el.classList.add('vs-change-color')
+      el.classList.add(`${namespace}-change-color`)
     }
   } else if (isVsColor(color)) {
     const style = window.getComputedStyle(document.body)
-    newColor = style.getPropertyValue(`--vs-${color}`)
+    newColor = style.getPropertyValue(`--${namespace}-${color}`)
     setVsCssVar(colorName, newColor, el)
     if (addClass) {
-      el.classList.add('vs-change-color')
+      el.classList.add(`${namespace}-change-color`)
     }
   } else if (isRGBNumbers(color)) {
     setVsCssVar(colorName, color, el)
     if (addClass) {
-      el.classList.add('vs-change-color')
+      el.classList.add(`${namespace}-change-color`)
     }
   }
 }
@@ -108,7 +109,7 @@ export const acceptColor = (color: string) => {
  *
  * e.g 'rgb(23,34,34)' -> '23, 34, 34'
  */
-export const getVsColor = (color?: string): string => {
+export const getVsColor = (color?: string, namespace = 'vs'): string => {
   if (!color) return ''
 
   const isRGB = rgbRE.test(color)
@@ -124,8 +125,7 @@ export const getVsColor = (color?: string): string => {
     const rgb = hexToRgb(color)
     newColor = `${rgb?.r}, ${rgb?.g}, ${rgb?.b}`
   } else if (isVsColor(color as VuesaxColor)) {
-    const style = window.getComputedStyle(document.body)
-    newColor = style.getPropertyValue(`--vs-${color}`)
+    newColor = `var(--${namespace}-${color})`
   } else if (isRGBNumbers) {
     newColor = color
   }
@@ -135,13 +135,17 @@ export const getVsColor = (color?: string): string => {
 export const setVsCssVar = (
   propertyName: string,
   value: string,
-  el?: HTMLElement
+  el?: HTMLElement,
+  namespace = 'vs'
 ) => {
-  if (!el) {
-    document.documentElement.style.setProperty(`--vs-${propertyName}`, value)
+  if (!el && document?.documentElement) {
+    document.documentElement.style.setProperty(
+      `--${namespace}-${propertyName}`,
+      value
+    )
   } else {
-    if (el.nodeName !== '#comment') {
-      el.style.setProperty(`--vs-${propertyName}`, value)
+    if (el?.nodeName !== '#comment') {
+      el?.style.setProperty(`--${namespace}-${propertyName}`, value)
     }
   }
 }

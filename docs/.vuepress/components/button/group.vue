@@ -27,41 +27,34 @@
     <span class="divider" />
 
     <vs-button-group>
-      <vs-button type="border"> <i class="bx bxs-pencil" /> Edit </vs-button>
-      <vs-button type="border" icon>
+      <vs-button border> <i class="bx bxs-pencil" /> Edit </vs-button>
+      <vs-button border icon>
         <i class="bx bx-font-color" />
       </vs-button>
-      <vs-button type="border" icon>
+      <vs-button border icon>
         <i class="bx bx-align-middle" />
       </vs-button>
-      <vs-button type="border">
-        <i class="bx bx-font-size" /> Font size
-      </vs-button>
+      <vs-button border> <i class="bx bx-font-size" /> Font size </vs-button>
     </vs-button-group>
 
     <span class="divider" />
 
     <vs-button-group>
-      <vs-button type="relief"> <i class="bx bx-home-alt" /> Home </vs-button>
-      <vs-button type="relief">
-        <i class="bx bxs-phone-call" /> Contact
-      </vs-button>
-      <vs-button type="relief" loading>
+      <vs-button relief> <i class="bx bx-home-alt" /> Home </vs-button>
+      <vs-button relief> <i class="bx bxs-phone-call" /> Contact </vs-button>
+      <vs-button relief loading>
         <i class="bx bxs-cart-alt" /> Products
       </vs-button>
-      <vs-button type="relief" upload>
-        <i class="bx bxs-envelope" /> Send
-      </vs-button>
+      <vs-button relief upload> <i class="bx bxs-envelope" /> Send </vs-button>
     </vs-button-group>
   </div>
 </template>
 
-<script lang="ts" setup></script>
-
 <style lang="scss" scoped>
 .center {
   flex-wrap: wrap;
-  > .vs-button__group {
+
+  .vs-button__group {
     margin: 20px 20px;
   }
 }

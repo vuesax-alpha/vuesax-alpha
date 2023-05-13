@@ -1,6 +1,6 @@
 import type { InjectionKey } from 'vue'
 
-export type SelectOptionValue = string | number | Record<any, unknown>
+export type SelectOptionValue = string | number | object
 
 export type SelectOptionStates = {
   index: number
@@ -48,7 +48,6 @@ export type SelectContext = {
   props: {
     multiple?: boolean
     multipleLimit?: number
-    modelKey: string
     modelValue?: SelectValue
     popperClass?: string
   }

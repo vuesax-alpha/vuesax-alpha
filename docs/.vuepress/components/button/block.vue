@@ -7,8 +7,6 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
-
 <style lang="scss" scoped>
 .center {
   max-width: 400px;

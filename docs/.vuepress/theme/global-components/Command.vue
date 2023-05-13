@@ -1,5 +1,5 @@
 <template>
-  <code-copied :copied="copied" :text="'Copied'" />
+  <CodeCopied :copied="copied" :text="'Copied'" />
   <div class="command">
     <div v-if="isMultipleSlot" class="tabs">
       <svg
@@ -32,11 +32,15 @@
       </svg>
 
       <div ref="$tab" class="active" />
-      <template v-for="(slot, index) of slotsNames" :key="index">
-        <div :ref="slotRefs.set" class="tab" @click="activeSlot = index">
-          {{ slot }}
-        </div>
-      </template>
+      <div
+        v-for="(slot, index) of slotsNames"
+        :key="index"
+        :ref="slotRefs.set"
+        class="tab"
+        @click="activeSlot = index"
+      >
+        {{ slot }}
+      </div>
     </div>
     <div class="copy">
       <div
@@ -52,16 +56,11 @@
 
     <div ref="$el" class="slots">
       <template v-if="isMultipleSlot">
-        <template v-for="(slot, index) of slotsNames">
-          <template v-if="activeSlot === index">
-            <slot :name="slot" />
-          </template>
-          <template v-else />
+        <template v-for="(slot, index) of slotsNames" :key="index">
+          <slot v-if="activeSlot === index" :name="slot" />
         </template>
       </template>
-      <template v-else>
-        <slot />
-      </template>
+      <slot />
     </div>
   </div>
 </template>
@@ -69,15 +68,15 @@
 <script lang="ts" setup>
 import { ref, useSlots, watchPostEffect } from 'vue'
 import { useClipboard, useTemplateRefsList } from '@vueuse/core'
-import CodeCopied from '../components/code-copied.vue'
+import CodeCopied from '../components/CodeCopied.vue'
 
 const slots = useSlots()
 
 const slotsNames = Object.keys(slots)
 const isMultipleSlot = slotsNames.length > 1
 
-const $el = ref<HTMLElement>()!
-const $tab = ref<HTMLElement>()!
+const $el = ref<HTMLElement>()
+const $tab = ref<HTMLElement>()
 const slotRefs = useTemplateRefsList<HTMLDivElement>()
 const activeSlot = ref(0)
 
@@ -87,14 +86,18 @@ const { copied, copy } = useClipboard({
 
 if (isMultipleSlot) {
   watchPostEffect(() => {
-    $tab.value!.style.width = `${
-      slotRefs.value[activeSlot.value].clientWidth
-    }px`
-    $tab.value!.style.height = `${
-      slotRefs.value[activeSlot.value].clientHeight
-    }px`
-    $tab.value!.style.top = `${slotRefs.value[activeSlot.value].offsetTop}px`
-    $tab.value!.style.left = `${slotRefs.value[activeSlot.value].offsetLeft}px`
+    if ($tab.value) {
+      $tab.value.style.width = `${
+        slotRefs.value[activeSlot.value].clientWidth
+      }px`
+      $tab.value!.style.height = `${
+        slotRefs.value[activeSlot.value].clientHeight
+      }px`
+      $tab.value!.style.top = `${slotRefs.value[activeSlot.value].offsetTop}px`
+      $tab.value!.style.left = `${
+        slotRefs.value[activeSlot.value].offsetLeft
+      }px`
+    }
   })
 }
 </script>

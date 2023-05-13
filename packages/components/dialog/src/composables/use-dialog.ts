@@ -1,11 +1,4 @@
-import {
-  computed,
-  getCurrentInstance,
-  nextTick,
-  onMounted,
-  ref,
-  watch,
-} from 'vue'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { isClient, useTimeoutFn } from '@vueuse/core'
 import {
   useBaseComponent,
@@ -15,10 +8,9 @@ import {
 } from '@vuesax-alpha/hooks'
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import { getVsColor } from '@vuesax-alpha/utils'
-import type { SetupContext } from 'vue'
-import type { DialogEmits, DialogProps } from './../dialog'
+import type { DialogEmitFn, DialogProps } from './../dialog'
 
-export const useDialog = (props: DialogProps) => {
+export const useDialog = (props: DialogProps, emit: DialogEmitFn) => {
   const rebound = ref(false)
   const visible = ref(false)
   const closed = ref(false)
@@ -26,9 +18,6 @@ export const useDialog = (props: DialogProps) => {
   const { nextZIndex } = useZIndex()
 
   const zIndex = ref(nextZIndex())
-
-  const instance = getCurrentInstance()!
-  const emit = instance.emit as SetupContext<DialogEmits>['emit']
 
   const afterEnter = () => {
     emit('opened')
@@ -116,15 +105,15 @@ export const useDialog = (props: DialogProps) => {
   const dialogKls = computed(() => [
     ns.b('original'),
     useBaseComponent(props.color),
+    ns.m(props.shape),
     {
-      [ns.m('fullScreen')]: props.fullScreen,
+      [ns.m('full-screen')]: props.fullScreen,
       [ns.m('rebound')]: rebound.value,
-      [ns.m('notPadding')]: props.notPadding,
-      [ns.m('square')]: props.shape === 'square',
-      [ns.m('autoWidth')]: props.autoWidth,
+      [ns.m('not-padding')]: props.notPadding,
+      [ns.m('auto-width')]: props.autoWidth,
       [ns.m('scroll')]: props.scroll,
       [ns.m('loading')]: props.loading,
-      [ns.m('notCenter')]: props.notCenter,
+      [ns.m('not-center')]: props.notCenter,
     },
   ])
 

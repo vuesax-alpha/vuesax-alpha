@@ -18,12 +18,40 @@
           ns.b(),
           ns.is('open', dropMenuVisible),
           ns.is('hovering', states.mouseEnter),
+          ns.is('focus', states.softFocus),
+          { [ns.m('has-label')]: props.label || props.labelFloat },
         ]"
         @mouseenter="handleMouseEnter"
         @mouseleave="handleMouseLeave"
         @click.prevent="toggleMenu"
       >
         <input
+          v-if="filter"
+          ref="input"
+          v-model="query"
+          type="text"
+          :class="[
+            ns.e('input'),
+            ns.e('input-filter'),
+            ns.is('disabled', selectDisabled),
+          ]"
+          :placeholder="states.selectedLabel ? '' : states.query ?? ''"
+          :disabled="selectDisabled"
+          @focus="handleFocus"
+          @blur="handleBlur"
+          @keyup="managePlaceholder"
+          @keydown.down.prevent="navigateOptions('next')"
+          @keydown.up.prevent="navigateOptions('prev')"
+          @keydown.esc="handleKeydownEscape"
+          @keydown.enter.stop.prevent="selectOption"
+          @keydown.delete="deletePrevTag"
+          @keydown.tab="visible = false"
+          @compositionstart="handleComposition"
+          @compositionupdate="handleComposition"
+          @compositionend="handleComposition"
+          @input="debouncedQueryChange"
+        />
+        <vs-input
           :id="inputId"
           ref="reference"
           :class="[ns.e('input'), ns.is('multiple', multiple)]"
@@ -48,7 +76,13 @@
           :for="inputId"
           :class="[
             ns.e('label'),
-            ns.is('placeholder', !modelValue && !dropMenuVisible),
+            ns.is(
+              'placeholder',
+              labelFloat &&
+                !dropMenuVisible &&
+                (isEqual(modelValue, notValue) ||
+                  (!modelValue && modelValue != 0))
+            ),
           ]"
         >
           {{ label }}
@@ -61,13 +95,23 @@
           {{ states.currentPlaceholder }}
         </span>
 
-        <vs-icon :class="ns.e('arrow')"><chevron-down /></vs-icon>
+        <vs-icon :class="ns.e('arrow')" size="14"><chevron-down /></vs-icon>
+
+        <transition name="v-clearable">
+          <span
+            v-if="showClose"
+            class="vs-select__clearable"
+            @click="handleClearClick"
+          >
+            <icon-close hover="less" scale="0.675" />
+          </span>
+        </transition>
       </div>
     </template>
 
     <template #content>
       <div :class="ns.e('content')">
-        <vs-scrollbar max-height="200" :native="nativeScrollbar">
+        <vs-scrollbar thickness="3" max-height="200" :native="nativeScrollbar">
           <slot />
         </vs-scrollbar>
       </div>
@@ -78,9 +122,11 @@
 <script lang="ts" setup>
 import { computed, onMounted, provide, reactive, toRefs } from 'vue'
 import { useResizeObserver } from '@vueuse/core'
+import { isEqual } from 'lodash-unified'
 import { ClickOutside as vClickOutside } from '@vuesax-alpha/directives'
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
-import { VsIcon } from '@vuesax-alpha/components/icon'
+import { IconClose, VsIcon } from '@vuesax-alpha/components/icon'
+import { VsInput } from '@vuesax-alpha/components/input'
 import { VsScrollbar } from '@vuesax-alpha/components/scrollbar'
 import { VsTooltip } from '@vuesax-alpha/components/tooltip'
 import { ChevronDown } from '@vuesax-alpha/icons-vue'
@@ -96,7 +142,7 @@ defineOptions({
 
 const props = defineProps(selectProps)
 const emit = defineEmits([
-  'update:modelValue',
+  UPDATE_MODEL_EVENT,
   'visible-change',
   'remove-tag',
   'focus',
@@ -110,10 +156,17 @@ const ns = useNamespace('select')
 const states = useSelectStates(props)
 
 const {
+  debouncedQueryChange,
+  managePlaceholder,
+  deletePrevTag,
+  handleClearClick,
+  showClose,
+  input,
   inputId,
   readonly,
   reference,
   tooltipRef,
+  selectDisabled,
   selectWrapper,
   handleMouseEnter,
   handleMouseLeave,
@@ -136,9 +189,12 @@ const {
   onOptionCreate,
   onOptionDestroy,
   handleOptionSelect,
+  focus,
+  blur,
 } = useSelect(props, states, emit)
 
 const {
+  visible,
   selected,
   filteredOptionsCount,
   hoverIndex,
@@ -195,4 +251,12 @@ provide(
     groupQuery,
   }) as SelectContext
 )
+
+defineExpose({
+  /** focus to select */
+  focus,
+
+  /** blur select */
+  blur,
+})
 </script>

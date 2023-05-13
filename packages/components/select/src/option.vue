@@ -22,11 +22,15 @@ import {
   onBeforeUnmount,
   reactive,
   ref,
-  toRaw,
   toRefs,
   watch,
 } from 'vue'
-import { isObject as _isObject, get, toArray } from 'lodash-unified'
+import {
+  isObject as _isObject,
+  includes,
+  isEqual,
+  toArray,
+} from 'lodash-unified'
 import { useNamespace } from '@vuesax-alpha/hooks'
 import { escapeStringRegexp, throwError } from '@vuesax-alpha/utils'
 import { selectContextKey, selectGroupContextKey } from './tokens'
@@ -74,7 +78,8 @@ const isSelected = computed(() => {
   if (!select?.props.multiple) {
     return isEqual(props.value, select.props.modelValue)
   } else {
-    return contains(select.props.modelValue as unknown[], props.value)
+    // @ts-ignore
+    return includes(select.props.modelValue, props.value)
   }
 })
 
@@ -96,36 +101,9 @@ const currentLabel = computed(() => {
   )
 })
 
-// const currentValue = computed(() => {
-//   return props.value || props.label || ''
-// })
-
 const isDisabled = computed(() => {
   return props.disabled || states.groupDisabled || limitReached.value
 })
-
-const contains = (arr: unknown[], target: unknown) => {
-  if (!isObject.value) {
-    return arr && arr.includes(target)
-  } else {
-    const modelKey = select.props.modelKey
-    return (
-      arr &&
-      arr.some((item) => {
-        return toRaw(get(item, modelKey)) === get(target, modelKey)
-      })
-    )
-  }
-}
-
-const isEqual = (a: unknown, b: unknown) => {
-  if (!isObject.value) {
-    return a === b
-  } else {
-    const { modelKey } = select.props
-    return get(a, modelKey) === get(b, modelKey)
-  }
-}
 
 const hoverItem = () => {
   if (!props.disabled && !selectGroup.disabled) {
@@ -162,24 +140,9 @@ watch(
 watch(
   () => props.value,
   (val, oldVal) => {
-    const { modelKey } = select.props
-
     if (!Object.is(val, oldVal)) {
       select.onOptionDestroy(oldVal, vm)
       select.onOptionCreate(vm)
-    }
-
-    // !remote
-    if (!vm.userCreated) {
-      if (
-        modelKey &&
-        typeof val === 'object' &&
-        typeof oldVal === 'object' &&
-        val[modelKey] === oldVal[modelKey]
-      ) {
-        return
-      }
-      select.setSelected()
     }
   }
 )

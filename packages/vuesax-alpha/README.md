@@ -5,7 +5,7 @@
 ## Usage
 
 ```
-const vuesaxtPlus = require('vuesax-alpha');
+const vuesax = require('vuesax-alpha');
 
 // TODO: DEMONSTRATE API
 ```

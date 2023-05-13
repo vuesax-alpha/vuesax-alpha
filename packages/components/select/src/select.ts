@@ -25,9 +25,9 @@ export const selectProps = buildProps({
     type: definePropType<SelectValue>([Array, String, Number, Object]),
     default: '',
   },
-  modelKey: {
-    type: String,
-    default: 'value',
+  notValue: {
+    type: definePropType<SelectOptionValue>([String, Number, Object]),
+    default: '',
   },
   popperOptions: popperCoreConfigProps.popperOptions,
   placement: {
@@ -140,3 +140,10 @@ export type SelectEmits = typeof selectEmits
 export type SelectEmitsFn = EmitFn<SelectEmits>
 
 export type SelectInstance = InstanceType<typeof Select>
+
+export interface SelectExpose {
+  /** focus to select */
+  readonly focus: () => void
+  /** blur select */
+  readonly blur: () => void
+}

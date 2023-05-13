@@ -1,6 +1,7 @@
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import { useColorProp } from '@vuesax-alpha/hooks'
 import { buildProps, definePropType, isBoolean } from '@vuesax-alpha/utils'
+import type { EmitFn } from '@vuesax-alpha/utils'
 
 import type { ExtractPropTypes } from 'vue'
 import type Dialog from './dialog.vue'
@@ -152,5 +153,7 @@ export const dialogEmits = {
 }
 
 export type DialogEmits = typeof dialogEmits
+export type DialogEmitFn = EmitFn<DialogEmits>
+
 export type DialogProps = ExtractPropTypes<typeof dialogProps>
 export type DialogInstance = InstanceType<typeof Dialog>

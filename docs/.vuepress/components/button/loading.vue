@@ -58,7 +58,7 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 
 const active = ref<number>(0)

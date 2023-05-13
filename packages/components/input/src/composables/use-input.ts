@@ -1,11 +1,17 @@
 import { computed, ref, shallowRef } from 'vue'
-import { useVModel } from '@vueuse/core'
+import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import { useInputEvent } from './use-input-event'
 import { useInputClearable } from './use-input-clearable'
 import type { InputEmitsFn, InputProps } from '../input'
 
 export const useInput = (props: InputProps, emit: InputEmitsFn) => {
-  const model = useVModel(props, 'modelValue', emit)
+  const model = computed({
+    get: () => props.modelValue,
+    set: (value: string | number | null | undefined) => {
+      if (props.disabled || props.loading) return
+      emit(UPDATE_MODEL_EVENT, value)
+    },
+  })
 
   const hovering = ref(false)
   const inputRef = shallowRef<HTMLInputElement>()

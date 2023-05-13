@@ -35,7 +35,7 @@
 .has-darken {
   display: none;
 }
-.darken {
+.dark {
   .data {
     background: rgba(0, 0, 0, 0.3) !important;
   }
@@ -53,7 +53,9 @@
   padding: 20px;
   flex-wrap: wrap;
 }
-
+b {
+  font-weight: bold;
+}
 .vs-clipboard {
   opacity: 0;
   position: fixed;
@@ -353,4 +355,11 @@ td {
       padding-left: 0;
     }
   }
+}
+
+.card .example .vs-button {
+  margin: 0 5px;
+}
+.card .example .vs-button__group .vs-button {
+  margin: 0;
 }

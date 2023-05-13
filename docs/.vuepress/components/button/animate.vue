@@ -15,7 +15,7 @@
     <vs-button
       type="gradient"
       style="min-width: 60px"
-      warn
+      color="warn"
       animation-type="scale"
     >
       <i class="bx bxs-shopping-bag" />
@@ -30,8 +30,6 @@
     </vs-button>
   </div>
 </template>
-
-<script lang="ts" setup></script>
 
 <style lang="scss" scoped>
 .center {

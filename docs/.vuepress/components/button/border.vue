@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 
 const active = ref<number>(0)
@@ -21,6 +21,7 @@ const active = ref<number>(0)
   box-sizing: border-box !important;
 }
 </style>
+
 <style lang="scss" scoped>
 .center {
   max-width: 400px;

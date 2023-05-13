@@ -1,28 +1,28 @@
 <template>
-  <el-select v-model="value" class="m-2" placeholder="Select" size="large">
-    <el-option
+  <vs-select v-model="value" class="m-2" placeholder="Select" size="large">
+    <vs-option
       v-for="item in options"
       :key="item.value"
       :label="item.label"
       :value="item.value"
     />
-  </el-select>
-  <el-select v-model="value" class="m-2" placeholder="Select">
-    <el-option
+  </vs-select>
+  <vs-select v-model="value" class="m-2" placeholder="Select">
+    <vs-option
       v-for="item in options"
       :key="item.value"
       :label="item.label"
       :value="item.value"
     />
-  </el-select>
-  <el-select v-model="value" class="m-2" placeholder="Select" size="small">
-    <el-option
+  </vs-select>
+  <vs-select v-model="value" class="m-2" placeholder="Select" size="small">
+    <vs-option
       v-for="item in options"
       :key="item.value"
       :label="item.label"
       :value="item.value"
     />
-  </el-select>
+  </vs-select>
 </template>
 
 <script lang="ts" setup>

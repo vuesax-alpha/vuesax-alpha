@@ -31,13 +31,18 @@
       <i class="bx bxs-bell-ring" /> Notifications
     </vs-button>
 
-    <vs-button color="#7d33ff" relief :active="active == 5" @click="active = 5">
+    <vs-button
+      color="#7d33ff"
+      type="relief"
+      :active="active == 5"
+      @click="active = 5"
+    >
       <i class="bx bxs-paper-plane" /> Send
     </vs-button>
 
     <vs-button
       color="rgb(59,222,200)"
-      gradient
+      type="gradient"
       :active="active == 6"
       @click="active = 6"
     >
@@ -46,7 +51,7 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 
 const active = ref<number>(0)

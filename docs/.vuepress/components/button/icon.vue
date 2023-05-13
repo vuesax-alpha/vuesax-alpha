@@ -21,7 +21,7 @@
       :active="active == 2"
       @click="active = 2"
     >
-      <i class="bx bxs-heart" />
+      <i class="bx bxs-heart" />>
     </vs-button>
 
     <vs-button
@@ -56,7 +56,7 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 
 const active = ref<number>(0)

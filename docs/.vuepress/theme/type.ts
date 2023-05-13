@@ -7,14 +7,14 @@ export interface vsThemeContext {
   sidebarCollapseOpen: boolean
 }
 
-export const vsThemeKey: InjectionKey<vsThemeContext> = Symbol('theme')
+export const vsThemeKey: InjectionKey<vsThemeContext> = Symbol('$vsTheme')
 
 export interface codesandboxContext {
   url?: string
 }
 
 export const codesandboxContextKey: InjectionKey<codesandboxContext> =
-  Symbol('codesandbox')
+  Symbol('$codesandbox')
 
 export type activeSlotType = 0 | 1 | 2 | 3
 export const activeSlotText = ['template', 'script', 'stype', 'all']

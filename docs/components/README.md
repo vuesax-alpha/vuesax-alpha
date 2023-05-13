@@ -18,7 +18,7 @@ PROPS:
     link: null
     usage: "#flat"
     code: >
-      <vs-button flat> Flat </vs-button>
+      <vs-button type="flat"> Flat </vs-button>
   # _______________________________________
   - name: active
     type: Boolean
@@ -62,7 +62,7 @@ PROPS:
     link: null
     usage: "#to-href"
     code: >
-      <vs-button href="https://tranthinh-coding.github.io/vuesax-alpha/">
+      <vs-button href="https://github.com/vuesax-alpha/vuesax-alpha/">
         Example prop - url
       </vs-button>
   # _______________________________________
@@ -74,7 +74,7 @@ PROPS:
     link: null
     usage: "#to-href"
     code: >
-      <vs-button blank href="https://tranthinh-coding.github.io/vuesax-alpha/">
+      <vs-button blank href="https://github.com/vuesax-alpha/vuesax-alpha/">
         Example prop - url
       </vs-button>
   # _______________________________________
@@ -86,7 +86,7 @@ PROPS:
     link: null
     usage: "#icon"
     code: >
-      <vs-button icon >
+      <vs-button icon>
         <i class='bx bx-home-alt'></i>
       </vs-button>
   # _______________________________________
@@ -98,7 +98,7 @@ PROPS:
     link: null
     usage: "#circle"
     code: >
-      <vs-button icon circle>
+      <vs-button icon shape="circle">
         <i class='bx bx-home-alt'></i>
       </vs-button>
   # _______________________________________
@@ -110,7 +110,7 @@ PROPS:
     link: null
     usage: "#square"
     code: >
-      <vs-button icon square> // <------
+      <vs-button icon shape="square"> // <------
         <i class='bx bx-home-alt'></i>
       </vs-button>
   # _______________________________________
@@ -134,7 +134,7 @@ PROPS:
     link: null
     usage: "#animate"
     code: >
-      <vs-button flat color="success" animation-type="vertical">
+      <vs-button type="flat" color="success" animation-type="vertical">
         Message
         <template #animate>
           <i class='bx bx-mail-send'></i> Send

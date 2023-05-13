@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { computed, getCurrentInstance, inject, provide, ref, unref } from 'vue'
 import { configProviderContextKey } from '@vuesax-alpha/tokens'
 import { debugWarn, keysOf } from '@vuesax-alpha/utils'

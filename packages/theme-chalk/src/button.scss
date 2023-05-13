@@ -45,6 +45,10 @@
       color: rgba(30, 30, 30, 1) !important;
     }
   }
+  &:focus-visible {
+    outline: 2px solid getColor(primary, 0.7);
+    outline-offset: 1px;
+  }
   @include e(content) {
     padding: getCssVar(padding);
     width: 100%;
@@ -344,7 +348,6 @@
       box-shadow: 0 10px 20px -10px getColor('color', 0.7);
       &::before {
         opacity: 0;
-        // transform: translate(50%, -50%);
       }
     }
     &.#{$namespace}-button--active {
@@ -406,7 +409,6 @@
     &::before {
       content: '';
       background: getColor('color', 0.1);
-      // background: getColor('color', getCssVar('background-opacity'));
       position: absolute;
       bottom: 0;
       left: 0;

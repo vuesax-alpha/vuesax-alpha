@@ -17,6 +17,7 @@ declare module '@vue/runtime-core' {
     VsCol: typeof import('../packages/vuesax-alpha')['VsCol']
     VsCollapseTransition: typeof import('../packages/vuesax-alpha')['VsCollapseTransition']
     VsDialog: typeof import('../packages/vuesax-alpha')['VsDialog']
+    VsIcon: typeof import('../packages/vuesax-alpha')['VsIcon']
     VsInput: typeof import('../packages/vuesax-alpha')['VsInput']
     VsNavbar: typeof import('../packages/vuesax-alpha')['VsNavbar']
     VsNavbarItem: typeof import('../packages/vuesax-alpha')['VsNavbarItem']
@@ -31,6 +32,7 @@ declare module '@vue/runtime-core' {
     VsSelect: typeof import('../packages/vuesax-alpha')['VsSelect']
     // VsSwitch: typeof import('../packages/vuesax-alpha')['VsSwitch']
     // VsTable: typeof import('../packages/vuesax-alpha')['VsTable']
+    VsTimeSelect: typeof import('../packages/vuesax-alpha')['VsTimeSelect']
     VsTooltip: typeof import('../packages/vuesax-alpha')['VsTooltip']
   }
 
