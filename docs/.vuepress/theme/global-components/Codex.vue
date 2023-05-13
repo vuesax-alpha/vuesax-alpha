@@ -170,9 +170,9 @@ const props = defineProps<{
   codesandbox?: string
 }>()
 
-const $el = ref<HTMLElement>()!
-const $ul = ref<HTMLElement>()!
-const $codex = ref<HTMLElement>()!
+const $el = ref<HTMLElement>()
+const $ul = ref<HTMLElement>()
+const $codex = ref<HTMLElement>()
 const $slotRefs = ref<any[]>([])
 
 const active = ref<boolean>(false)

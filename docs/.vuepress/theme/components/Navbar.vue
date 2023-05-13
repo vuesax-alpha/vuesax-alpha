@@ -90,9 +90,7 @@
       </div>
 
       <SearchBox
-        v-if="
-          themeData.search !== false && pageData.frontmatter.search !== false
-        "
+        v-if="themeData.search !== false && frontmatter.search !== false"
         @focus="focused = true"
         @blur="focused = false"
         @show-suggestions="handleShowSuggestions"
@@ -104,32 +102,38 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import { usePageData, useSiteLocaleData } from '@vuepress/client'
+import {
+  usePageData,
+  usePageFrontmatter,
+  useSiteLocaleData,
+} from '@vuepress/client'
+
 // @ts-ignore
 import { useThemeData } from '@vuepress/plugin-theme-data/client'
 
 import SidebarButton from './SidebarButton.vue'
 import NavLinks from './NavLinks.vue'
 import SearchBox from './SearchBox.vue'
-import type { VuesaxAlphaThemeOptions } from '../vuesaxAlphaTheme'
+import type { VuesaxAlphaThemeOptions } from '~/vuesaxAlphaTheme'
 
 const emits = defineEmits<{
   (event: 'toggle-sidebar'): void
 }>()
 
+const frontmatter = usePageFrontmatter<{ search?: boolean }>()
 const themeData = useThemeData<VuesaxAlphaThemeOptions>()
 const siteLocaleData = useSiteLocaleData()
-const pageData = usePageData()
+const pageData = usePageData<{ search?: boolean }>()
 
 const linksWrapMaxWidth = ref<number | null>(null)
 const showSuggestions = ref<boolean>(false)
 const focused = ref<boolean>(false)
 
-const $el = ref<HTMLElement>()!
+const $el = ref<HTMLElement>()
 
-const css = (el: HTMLElement, property: string) => {
+const css = (el: HTMLElement | undefined, property: string) => {
   // NOTE: Known bug, will return 'auto' if style value is 'auto'
-  const win = el.ownerDocument.defaultView
+  const win = el?.ownerDocument.defaultView
   // null means not to return pseudo styles
   // @ts-ignore
   return win?.getComputedStyle(el)[property]
@@ -138,24 +142,27 @@ const css = (el: HTMLElement, property: string) => {
 onMounted(() => {
   const MOBILE_DESKTOP_BREAKPOINT = 719 // refer to config.styl
   const NAVBAR_VERTICAL_PADDING =
-    Number.parseInt(css($el.value!, 'paddingLeft')) +
-    Number.parseInt(css($el.value!, 'paddingRight'))
+    Number.parseInt(css($el.value, 'paddingLeft')) +
+    Number.parseInt(css($el.value, 'paddingRight'))
 
   const handleLinksWrapWidth = () => {
     if (document.documentElement.clientWidth < MOBILE_DESKTOP_BREAKPOINT) {
       linksWrapMaxWidth.value = null
     } else {
-      linksWrapMaxWidth.value = $el.value!.offsetWidth - NAVBAR_VERTICAL_PADDING
+      linksWrapMaxWidth.value =
+        ($el.value?.offsetWidth || 0) - NAVBAR_VERTICAL_PADDING
     }
   }
   handleLinksWrapWidth()
   window.addEventListener('resize', handleLinksWrapWidth, false)
 
   window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 0) {
-      $el.value?.classList.add('fixed')
-    } else {
-      $el.value?.classList.remove('fixed')
+    if ($el.value) {
+      if (window.pageYOffset > 0) {
+        $el.value.classList.add('fixed')
+      } else {
+        $el.value.classList.remove('fixed')
+      }
     }
   })
 })

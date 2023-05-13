@@ -9,10 +9,8 @@
         />
         <NavLink v-else :nav-item="navItem" />
       </template>
-      <template v-else />
     </div>
   </nav>
-  <template v-else />
 </template>
 
 <script setup lang="ts">
@@ -26,12 +24,11 @@ import {
 import DropdownLink from './DropdownLink.vue'
 import NavLink from './NavLink.vue'
 import type { VuesaxAlphaThemeOptions } from '../vuesaxAlphaTheme'
-import type { NavbarConfig } from '../shared/client/nav'
 
 const themeData = useThemeData<VuesaxAlphaThemeOptions>()
 const themeLocaleData = useThemeLocaleData<VuesaxAlphaThemeOptions>()
 
-const userNav = computed<NavbarConfig[]>(() => {
+const userNav = computed(() => {
   return themeLocaleData.value?.navbar || themeData.value?.navbar || []
 })
 

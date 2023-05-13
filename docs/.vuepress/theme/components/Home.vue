@@ -40,7 +40,7 @@
               title="Github"
               class="github"
               target="_blank"
-              href="https://github.com/vuesax-alpha/vuesax-alpha/"
+              :href="themeData.docsRepo"
               @mouseleave="time('github')"
               @mouseenter=";(nativeButtons.github = true), (expand = true)"
             >
@@ -92,7 +92,8 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref } from 'vue'
 import { usePageFrontmatter } from '@vuepress/client'
-
+// @ts-ignore
+import { useThemeData } from '@vuepress/plugin-theme-data/client'
 import { VsThemeHomeFeatureOption } from '../shared/frontmatter/home'
 import NavLink from './NavLink.vue'
 import Footer from './Footer.vue'
@@ -105,6 +106,7 @@ import HomeTwitter from './HomeTwitter.vue'
 import HomeUses from './HomeUses.vue'
 
 import type { VsThemeProjectHomePageFrontmatter } from '../shared/frontmatter/home'
+import type { VuesaxAlphaThemeOptions } from '~/vuesaxAlphaTheme'
 
 export type PageButtons = {
   github: boolean
@@ -112,6 +114,7 @@ export type PageButtons = {
   vuesax: boolean
 }
 
+const themeData = useThemeData<VuesaxAlphaThemeOptions>()
 const pageFrontmatter = usePageFrontmatter<VsThemeProjectHomePageFrontmatter>()
 
 const star = ref<number>(0)
@@ -139,7 +142,7 @@ const numberWithCommas = computed(() => {
 
 onMounted(async () => {
   const res = await fetch(
-    'https://api.github.com/repos/vuesax-alphax/vuesax-alpha'
+    `https://api.github.com/repos/${themeData.value.repo}`
   )
 
   const json = await res.json()

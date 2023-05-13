@@ -1,4 +1,5 @@
 import { existsSync } from 'fs'
+// @ts-ignore
 import { mkdir, writeFile } from 'fs/promises'
 
 export const writeJson = (path: string, data: any, spaces = 0) =>
