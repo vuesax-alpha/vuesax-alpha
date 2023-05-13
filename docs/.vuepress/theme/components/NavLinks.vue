@@ -9,10 +9,8 @@
         />
         <NavLink v-else :nav-item="navItem" />
       </template>
-      <template v-else />
     </div>
   </nav>
-  <template v-else />
 </template>
 
 <script setup lang="ts">

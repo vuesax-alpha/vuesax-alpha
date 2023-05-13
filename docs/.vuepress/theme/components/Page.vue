@@ -376,12 +376,14 @@ onMounted(() => {
   })
 
   window.addEventListener('resize', () => {
-    if (window.pageYOffset > 140) {
-      $header.value?.classList.add('fixed')
-      $header.value!.style.width = `${$page.value?.offsetWidth}px`
-    } else {
-      $header.value!.style.width = `100%`
-      $header.value?.classList.remove('fixed')
+    if ($header.value) {
+      if (window.pageYOffset > 140) {
+        $header.value?.classList.add('fixed')
+        $header.value!.style.width = `${$page.value?.offsetWidth}px`
+      } else {
+        $header.value!.style.width = `100%`
+        $header.value?.classList.remove('fixed')
+      }
     }
   })
 })
