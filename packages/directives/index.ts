@@ -1,5 +1,0 @@
-export { default as ClickOutside } from './click-outside'
-export { default as Loading } from './loading'
-export { default as Mousewheel } from './mousewheel'
-export { RepeatClick } from './repeat-click'
-export { default as TrapFocus } from './trap-focus'
