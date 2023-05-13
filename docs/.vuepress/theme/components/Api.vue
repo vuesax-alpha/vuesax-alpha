@@ -28,8 +28,8 @@
             </thead>
             <tbody
               v-for="(tr, trKey) in table"
-              :key="trKey"
               :id="`api-${tr.name}`"
+              :key="trKey"
             >
               <tr>
                 <td>
@@ -109,14 +109,13 @@
             </tbody>
           </table>
         </template>
-        <template v-else />
       </div>
     </div>
   </div>
-  <template v-else />
 </template>
+
 <script setup lang="ts">
-import { onMounted, watch, computed } from 'vue'
+import { computed, onMounted, watch } from 'vue'
 import { usePageData, usePageFrontmatter } from '@vuepress/client'
 import { useRoute } from 'vue-router'
 import prism from 'prismjs'

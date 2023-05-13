@@ -10,15 +10,11 @@
         <img src="bit-share-code.png" alt="" />
         <img class="themeDarken" src="/bit-share-code2.png" alt="" />
       </a>
-      <a target="_blank" href="https://www.wrappixel.com/?ref=102">
+      <a target="_blank" href="https://www.wrappixel.com/">
         <img src="wrappixel-logo.png" alt="" />
         <img class="themeDarken" src="/wrappixel-logo2.png" alt="" />
       </a>
-      <a
-        class="plus"
-        target="_blank"
-        href="https://www.patreon.com/bePatron?c=1567892"
-      >
+      <a class="plus" target="_blank" href="https://www.patreon.com/">
         <i class="bx bx-plus" />
       </a>
     </div>
@@ -35,14 +31,14 @@
 
 <script setup lang="ts">
 const openUrl = () => {
-  open('https://www.patreon.com/bePatron?c=1567892')
+  open('https://www.patreon.com/')
 }
 </script>
 
 <style lang="scss">
 @import '../styles/use';
 
-.darken {
+.dark {
   .con-patrons {
     button {
       background: -color('theme-bg');

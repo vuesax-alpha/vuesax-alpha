@@ -170,7 +170,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, watchEffect } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { usePageData, usePageFrontmatter } from '@vuepress/client'
 // @ts-ignore
 import { useThemeData } from '@vuepress/plugin-theme-data/client'
@@ -336,6 +336,7 @@ const editLink = computed(() => {
       path,
     })
   }
+  return ''
 })
 
 onMounted(() => {

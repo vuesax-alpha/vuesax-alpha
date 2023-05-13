@@ -16,8 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue'
-import { computed, ref } from '@vue/reactivity'
+import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 import { isMatchedHeader, isMathcedPath } from '../../util'

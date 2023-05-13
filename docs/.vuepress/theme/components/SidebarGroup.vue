@@ -49,7 +49,7 @@
 import { isMathcedPath } from '../util'
 import DropdownTransition from './DropdownTransition.vue'
 import SidebarLinks from './SidebarLinks.vue'
-import type { SidebarGroupCollapsible } from 'vuepress-vite'
+import type { SidebarGroupCollapsible } from '../shared/client/nav'
 
 defineEmits<{
   (event: 'toggle'): void

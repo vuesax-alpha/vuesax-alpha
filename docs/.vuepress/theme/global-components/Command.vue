@@ -60,7 +60,6 @@
           <slot v-if="activeSlot === index" :name="slot" />
         </template>
       </template>
-
       <slot />
     </div>
   </div>
@@ -95,7 +94,9 @@ if (isMultipleSlot) {
         slotRefs.value[activeSlot.value].clientHeight
       }px`
       $tab.value!.style.top = `${slotRefs.value[activeSlot.value].offsetTop}px`
-      $tab.value!.style.left = `${slotRefs.value[activeSlot.value].offsetLeft}px`
+      $tab.value!.style.left = `${
+        slotRefs.value[activeSlot.value].offsetLeft
+      }px`
     }
   })
 }

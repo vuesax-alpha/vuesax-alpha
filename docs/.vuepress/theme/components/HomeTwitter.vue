@@ -43,8 +43,8 @@ const notScrolling = ref<boolean>(false)
 const offset = ref<number>(0)
 const requestAnimationId = ref<number>()
 
-const $ul = ref<HTMLElement>()!
-const $twits = ref<HTMLElement>()!
+const $ul = ref<HTMLElement>()
+const $twits = ref<HTMLElement>()
 
 const twits = reactive([
   {

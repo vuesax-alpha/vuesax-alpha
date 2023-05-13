@@ -35,7 +35,7 @@ import { vsThemeKey } from '../type'
 import SidebarGroup from './SidebarGroup.vue'
 import SidebarLink from './SidebarLink.vue'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
-import type { SidebarConfigArray } from 'vuepress-vite'
+import type { SidebarConfigArray } from '../shared/client/nav'
 
 const props = defineProps<{
   links: SidebarConfigArray

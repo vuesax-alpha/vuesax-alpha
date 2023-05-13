@@ -9,16 +9,12 @@
           <h1
             v-if="pageFrontmatter.heroText"
             id="main-title"
-            v-html="
-              pageFrontmatter.heroText || pageFrontmatter.title || 'Hi!'
-            "
+            v-html="pageFrontmatter.heroText || pageFrontmatter.title || 'Hi!'"
           />
 
           <p
             class="description"
-            v-html="
-              pageFrontmatter.description || 'Welcome to Vuesax-alpha'
-            "
+            v-html="pageFrontmatter.description || 'Welcome to Vuesax-alpha'"
           />
 
           <div class="con-btns">
@@ -69,18 +65,18 @@
     </div>
 
     <Illustration1
-      :feature="(pageFrontmatter.features as ThemeHomeFeatureOption[])[0]"
+      :feature="(pageFrontmatter.features as VsThemeHomeFeatureOption[])[0]"
     />
     <Illustration2
-      :feature="(pageFrontmatter.features as ThemeHomeFeatureOption[])[1]"
+      :feature="(pageFrontmatter.features as VsThemeHomeFeatureOption[])[1]"
     />
 
     <HomeUses />
     <Illustration3
-      :feature="(pageFrontmatter.features as ThemeHomeFeatureOption[])[2]"
+      :feature="(pageFrontmatter.features as VsThemeHomeFeatureOption[])[2]"
     />
     <Illustration4
-      :feature="(pageFrontmatter.features as ThemeHomeFeatureOption[])[3]"
+      :feature="(pageFrontmatter.features as VsThemeHomeFeatureOption[])[3]"
     />
 
     <HomeTwitter />
@@ -97,6 +93,7 @@
 import { computed, onMounted, reactive, ref } from 'vue'
 import { usePageFrontmatter } from '@vuepress/client'
 
+import { VsThemeHomeFeatureOption } from '../shared/frontmatter/home'
 import NavLink from './NavLink.vue'
 import Footer from './Footer.vue'
 import Illustration1 from './HomeIllustration1.vue'
@@ -106,17 +103,16 @@ import Illustration4 from './HomeIllustration4.vue'
 import HomeComponent from './HomeComponent.vue'
 import HomeTwitter from './HomeTwitter.vue'
 import HomeUses from './HomeUses.vue'
-import type {
-  ThemeHomeFeatureOption,
-  ThemeProjectHomePageFrontmatter,
-} from '../shared/frontmatter/home'
+
+import type { VsThemeProjectHomePageFrontmatter } from '../shared/frontmatter/home'
+
 export type PageButtons = {
   github: boolean
   install: boolean
   vuesax: boolean
 }
 
-const pageFrontmatter = usePageFrontmatter<ThemeProjectHomePageFrontmatter>()
+const pageFrontmatter = usePageFrontmatter<VsThemeProjectHomePageFrontmatter>()
 
 const star = ref<number>(0)
 

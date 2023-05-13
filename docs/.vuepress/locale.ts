@@ -180,7 +180,17 @@ export const enSidebar: SidebarConfig = [
 export const enSearchData: SearchDataOption[] = [
   {
     title: 'Alert',
-    path: 'docs/components/alert',
+    path: 'components/alert',
+    headers: [
+      {
+        title: 'Default',
+        slug: 'default',
+      },
+    ],
+  },
+  {
+    title: 'Button',
+    path: 'components',
     headers: [
       {
         title: 'Default',

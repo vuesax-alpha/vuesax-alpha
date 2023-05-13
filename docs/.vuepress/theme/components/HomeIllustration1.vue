@@ -22,9 +22,9 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import type { ThemeHomeFeatureOption } from '../shared/frontmatter/home'
+import type { VsThemeHomeFeatureOption } from '../shared/frontmatter/home'
 
-defineProps<{ feature: ThemeHomeFeatureOption }>()
+defineProps<{ feature: VsThemeHomeFeatureOption }>()
 
 const router = useRouter()
 

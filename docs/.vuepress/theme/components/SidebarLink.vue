@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 import RenderLink from './SidebarLink/RenderLink.vue'
-import type { SidebarItem } from 'vuepress-vite'
+import type { SidebarItem } from '../shared/client/nav'
 
 defineProps<{ link: SidebarItem }>()
 </script>
