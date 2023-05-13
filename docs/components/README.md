@@ -700,24 +700,6 @@ This is an example of what you can achieve with simple logic and few lines of co
 
 <card>
 
-## To - href
-
-If you need to use a button such as a vue-router link or an external link you can do it with the properties (`to`: vue-router link) or (` href`: html external link, `blank`: Open the linked document in a new window or tab)
-
-<template #example>
-<button-toHref />
-</template>
-
-<template #template>
-
-@[code html](../.vuepress/components/button/toHref.vue)
-
-</template>
-
-</card>
-
-<card>
-
 ## Ripple <Badge text="New" />
 
 You can change ripple style of a button with the `ripple` property and the allowed values are
