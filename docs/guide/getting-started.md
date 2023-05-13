@@ -16,6 +16,14 @@ You can install vuesax through npm with the command:
 
 <command>
 
+<template #pnpm>
+
+```bash
+pnpm install vuesax-alpha
+```
+
+</template>
+
 <template #npm>
 
 ```bash
@@ -38,23 +46,27 @@ yarn add vuesax-alpha
 
 <card>
 
-## Uso
+## Use
 
 To use vuesax in your vuejs project, add this code:
 
 <command>
 
 ```ts
-import { createApp } from "vue";
-import Vuesax from "vuesax-alpha";
-import App from "./App.vue";
+import { createApp } from 'vue'
+import Vuesax from 'vuesax-alpha'
 
-import "vuesax-alpha/dist/vuesax.css"; // Vuesax styles
+import App from './App.vue'
 
-const app = createApp(App);
-app.use(Vuesax);
+import 'vuesax-alpha/theme-chalk/index.css'
+// dark mode
+import 'vuesax-alpha/theme-chalk/dark/css-vars.css'
 
-app.mount("#app");
+const app = createApp(App)
+
+app.use(Vuesax)
+
+app.mount('#app')
 ```
 
 </command>
@@ -70,16 +82,19 @@ There are cases that in your project you only need some components of vuesax and
 <command>
 
 ```ts
-import { createApp } from "vue";
-import { vsAlert, vsInput, vsPopup } from "vuesax-alpha";
-import App from "./App.vue";
+import { createApp } from 'vue'
+import { vsAlert, vsInput, vsPopup } from 'vuesax-alpha'
+import App from './App.vue'
 
-import "vuesax-alpha/dist/vuesax.css"; // Vuesax styles
+import 'vuesax-alpha/theme-chalk/index.css'
+// dark mode
+import 'vuesax-alpha/theme-chalk/dark/css-vars.css'
 
-const app = createApp(App);
-app.use(vsPopup).use(vsAlert).use(vsInput);
+const app = createApp(App)
 
-app.mount("#app");
+app.use(vsPopup).use(vsAlert).use(vsInput)
+
+app.mount('#app')
 ```
 
 </command>
@@ -99,7 +114,7 @@ You can use vuesax by loading it via cdn by adding a `<script>` tag to your proj
 <html>
   <head>
     <link
-      href="https://unpkg.com/vuesax-alpha@0.0.20/dist/style.css"
+      href="https://unpkg.com/vuesax-alpha/theme-chalk/index.css"
       rel="stylesheet"
     />
     <meta
@@ -113,12 +128,12 @@ You can use vuesax by loading it via cdn by adding a `<script>` tag to your proj
     </div>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="https://unpkg.com/vuesax-alpha@0.0.20/dist/vuesax-alpha.js"></script>
+    <script src="https://unpkg.com/vuesax-alpha/dist/index.full.min.js"></script>
 
     <script>
-      const { createApp } = Vue;
+      const { createApp } = Vue
 
-      createApp().mount("#app");
+      createApp().mount('#app')
     </script>
   </body>
 </html>
