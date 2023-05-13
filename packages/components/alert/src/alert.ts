@@ -9,7 +9,7 @@ export const alertProps = buildProps({
   /**
    * @description Component color - Accept Vuesax's color, Hex, rgb
    */
-  color: useColorProp,
+  color: { ...useColorProp, default: 'primary' },
   /**
    * @description	whether alert can be dismissed.
    */
@@ -72,6 +72,20 @@ export const alertProps = buildProps({
     ] as const,
     default: '',
   },
+
+  /** TODO: remove in 0.3.0 */
+  /** @deprecated use prop [type] instead */
+  border: Boolean,
+  /** @deprecated use prop [type] instead */
+  flat: Boolean,
+  /** @deprecated use prop [type] instead */
+  gradient: Boolean,
+  /** @deprecated use prop [type] instead */
+  relief: Boolean,
+  /** @deprecated use prop [type] instead */
+  shadow: Boolean,
+  /** @deprecated use prop [type] instead */
+  solid: Boolean,
 } as const)
 
 export type AlertProps = ExtractPropTypes<typeof alertProps>

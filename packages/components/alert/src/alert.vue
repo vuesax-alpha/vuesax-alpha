@@ -4,7 +4,6 @@
       <div v-if="$slots.icon" :class="ns.e('icon')">
         <slot name="icon" />
       </div>
-      <template v-else />
 
       <div
         v-if="$slots.title"
@@ -20,9 +19,7 @@
           :less="!hiddenContent"
           @click.stop="handleClickHidden"
         />
-        <template v-else />
       </div>
-      <template v-else />
 
       <vs-collapse-transition>
         <div v-if="!hiddenContent" :class="ns.e('content')">
@@ -36,12 +33,10 @@
       <button v-if="closable" :class="ns.e('close')" @click="handleClickClose">
         <icon-close hover="less" />
       </button>
-      <template v-else />
 
       <div v-if="$slots.footer" :class="ns.e('footer')">
         <slot name="footer" />
       </div>
-      <template v-else />
 
       <div v-if="!!progress" :class="ns.e('progress')">
         <div
@@ -49,14 +44,12 @@
           :style="{ width: `${progress}%` }"
         />
       </div>
-      <template v-else />
 
       <div v-if="getTotalPages > 0" :class="ns.e('pagination')">
         <button @click="handleClickPrevPage" v-text="'<'" />
         <span>{{ page }} / {{ getTotalPages }}</span>
         <button @click="handleClickNextPage" v-text="'>'" />
       </div>
-      <template v-else />
     </div>
   </vs-collapse-transition>
 </template>
@@ -70,6 +63,7 @@ import { VsCollapseTransition } from '@vuesax-alpha/components/collapse-transiti
 import { useBaseComponent, useNamespace } from '@vuesax-alpha/hooks'
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import { alertEmits, alertProps } from './alert'
+import { useAlertDeprecated } from './use-deprecated'
 import type { CSSProperties } from 'vue'
 
 defineOptions({
@@ -79,6 +73,8 @@ defineOptions({
 const props = defineProps(alertProps)
 const slots = useSlots()
 const emit = defineEmits(alertEmits)
+
+useAlertDeprecated(props)
 
 const ns = useNamespace('alert')
 
