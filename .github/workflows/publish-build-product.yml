@@ -47,7 +47,7 @@ jobs:
           NODE_OPTIONS: --max-old-space-size=4096
 
       - name: Check build product
-        run: sh -c ./scripts/file-check.sh
+        run: chmod +x ./scripts/file-check.sh && sh -c ./scripts/file-check.sh
 
       - name: Diff gen
         run: pnpm diff:table
