@@ -15,6 +15,8 @@
 
 # Getting Started
 
+See the documentation [Vuesax Alpha](https://www.vuesax.space/)
+
 ## Api with vuesax-next
 
 About 90% of the api in vuesax-next version works fine. But that's just the `make it work with vue 3` part. And this version does not support `typescript`
