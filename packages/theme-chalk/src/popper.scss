@@ -5,8 +5,6 @@
 @use 'common/var' as *;
 
 @include b(popper) {
-  @include set-var-value(color, getCssVar(text));
-
   line-height: 20px;
   word-wrap: break-word;
   visibility: visible;
