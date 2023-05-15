@@ -27,16 +27,17 @@ $iconActiveMargin: -4px;
 }
 
 @mixin state($color) {
-  .#{namespace}-select__input {
-    // border: 2px solid getColor($color,.5);
+  @include e(input) {
     background: getColor($color, 0.05);
     color: getColor($color, 1);
     &:hover {
-      // border: 2px solid getColor($color, 0);
       color: getColor('text', 1);
     }
   }
-  .#{namespace}-select__chips {
+
+  // .#{namespace}-select__input {
+  // }
+  @include e(chips) {
     background: getColor($color, 0.05);
     color: getColor($color, 1);
     &:hover {
@@ -57,28 +58,19 @@ $iconActiveMargin: -4px;
       transition: all 0.25s ease;
     }
   }
-  .#{namespace}-select__label {
+  @include e(label) {
     color: getColor($color, 1);
   }
-  .#{namespace}-select__icon {
+  @include e(icon) {
     color: getColor($color, 1);
     background: getColor($color, 0.1);
     box-shadow: -15px 10px 10px -10px getColor($color, 0.1);
   }
-  .#{namespace}-icon-arrow {
-    &:after {
-      background: getColor($color);
-    }
-    &:before {
-      background: getColor($color);
-    }
+  @include e(arrow) {
+    color: getColor($color);
   }
   ~ div .#{namespace}-select__message--#{$color} {
     color: getColor($color, 1);
-    // opacity: 1;
-    // visibility: visible;
-    // height: auto;
-    // margin-top: 0;
   }
 }
 
@@ -95,23 +87,25 @@ $iconActiveMargin: -4px;
   width: 100%;
   max-width: getCssVar(select-width);
 
-  &--state-success {
-    @include state('success');
-  }
-  &--state-danger {
-    @include state('danger');
-  }
-  &--state-warn {
-    @include state('warn');
-  }
-  &--state-dark {
-    @include state('dark');
-  }
-  &--state-primary {
-    @include state('primary');
+  @include e(state) {
+    @include m(success) {
+      @include state('success');
+    }
+    @include m(danger) {
+      @include state('danger');
+    }
+    @include m(warn) {
+      @include state('warn');
+    }
+    @include m(dark) {
+      @include state('dark');
+    }
+    @include m(primary) {
+      @include state('primary');
+    }
   }
 
-  &.loading {
+  @include when(loading) {
     pointer-events: none;
     *:not(.#{namespace}-select__loading):not(.#{namespace}-select__label) {
       opacity: 0.6;
@@ -130,7 +124,7 @@ $iconActiveMargin: -4px;
       }
     }
   }
-  &--disabled {
+  @include when(disabled) {
     pointer-events: none;
     * {
       opacity: 0.6;
@@ -306,7 +300,6 @@ $iconActiveMargin: -4px;
     margin-top: 24px !important;
   }
   @include e(options) {
-    @include set-var-value(color, getCssVar(primary));
     background: getColor('background') !important;
     border: none !important;
     color: getColor(color) !important;
@@ -356,7 +349,7 @@ $iconActiveMargin: -4px;
 
     .is-hover,
     &:hover {
-      background: getColor('gray-2');
+      background: getColor('color', 0.01);
     }
 
     @include when(active) {
@@ -381,6 +374,7 @@ $iconActiveMargin: -4px;
     }
     @include e(input) {
       transform: translateY(-4px);
+      background: getColor('background');
     }
     @include e(label) {
       @include when(placeholder) {
@@ -434,16 +428,6 @@ $iconActiveMargin: -4px;
     @include e(clearable) {
       margin-top: $iconActiveMargin;
       right: $clearableRight;
-    }
-    @include e(input) {
-      border-radius: 12px 12px 0px 0px;
-      background: getColor('background');
-      box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity));
-      transform: translate(0, -4px);
-      transition: all 0.25s ease, height 0s;
-      border: 2px solid transparent;
-      color: getColor('text');
-      padding-left: 10px;
     }
     @include e(chips) {
       border-radius: 12px 12px 0px 0px;
