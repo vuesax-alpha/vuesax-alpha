@@ -2,9 +2,10 @@
   <vs-tooltip
     ref="tooltipRef"
     trigger="click"
+    :style="selectStyle"
     :visible="dropMenuVisible"
     :placement="placement"
-    :popper-class="ns.e('options')"
+    :popper-class="[ns.e('options'), useBaseComponent(color)]"
     :teleported="teleported"
     :persistent="persistent"
     :show-arrow="false"
@@ -14,13 +15,8 @@
     <template #default>
       <div
         v-click-outside:[popperPaneRef]="handleClose"
-        :class="[
-          ns.b(),
-          ns.is('open', dropMenuVisible),
-          ns.is('hovering', states.mouseEnter),
-          ns.is('focus', states.softFocus),
-          { [ns.m('has-label')]: props.label || props.labelFloat },
-        ]"
+        :class="selectKls"
+        :style="selectStyle"
         @mouseenter="handleMouseEnter"
         @mouseleave="handleMouseLeave"
         @click.prevent="toggleMenu"
@@ -130,9 +126,10 @@ import { VsInput } from '@vuesax-alpha/components/input'
 import { VsScrollbar } from '@vuesax-alpha/components/scrollbar'
 import { VsTooltip } from '@vuesax-alpha/components/tooltip'
 import { ChevronDown } from '@vuesax-alpha/icons-vue'
-import { useNamespace } from '@vuesax-alpha/hooks'
+import { useBaseComponent, useNamespace } from '@vuesax-alpha/hooks'
+import { getVsColor } from '@vuesax-alpha/utils'
 import { selectContextKey } from './tokens'
-import { selectProps } from './select'
+import { selectEmits, selectProps } from './select'
 import { useSelect, useSelectStates } from './useSelect'
 import type { SelectContext } from './tokens'
 
@@ -141,15 +138,7 @@ defineOptions({
 })
 
 const props = defineProps(selectProps)
-const emit = defineEmits([
-  UPDATE_MODEL_EVENT,
-  'visible-change',
-  'remove-tag',
-  'focus',
-  'change',
-  'clear',
-  'blur',
-])
+const emit = defineEmits(selectEmits)
 
 const ns = useNamespace('select')
 
@@ -215,6 +204,26 @@ if (props.multiple && !Array.isArray(props.modelValue)) {
 if (!props.multiple && Array.isArray(props.modelValue)) {
   emit(UPDATE_MODEL_EVENT, '')
 }
+
+const selectKls = computed(() => [
+  ns.is('block', props.block),
+
+  ns.b(),
+  ns.em('state', props.state),
+  ns.is('open', dropMenuVisible.value),
+  ns.is('hovering', states.mouseEnter),
+  ns.is('focus', states.softFocus),
+  ns.is('disabled', selectDisabled.value),
+  ns.is('multiple', props.multiple),
+  ns.is('loading', props.loading),
+  { [ns.m('has-label')]: props.label || props.labelFloat },
+])
+
+const selectStyle = computed(() => [
+  ns.cssVar({
+    color: getVsColor(props.color),
+  }),
+])
 
 onMounted(() => {
   states.cachedPlaceHolder = states.currentPlaceholder = props.placeholder

@@ -67,7 +67,10 @@ export const selectProps = buildProps({
    * @description Add a loading animation to the input.
    */
   loading: Boolean,
-
+  /**
+   * @description Select color - Accept Vuesax's color, Hex, rgb
+   */
+  color: { ...useColorProp, default: 'primary' },
   /**
    * @description State color - Accept Vuesax's color, Hex, rgb
    */
