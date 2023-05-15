@@ -18,8 +18,7 @@ importers:
       '@types/jsdom': ^16.2.15
       '@types/lodash': ^4.14.194
       '@types/lodash-es': ^4.17.7
-      '@types/node': ^0.0.0
-      '@types/sass': ^1.45.0
+      '@types/node': '*'
       '@vitejs/plugin-vue': ^2.3.4
       '@vitejs/plugin-vue-jsx': ^1.3.10
       '@vitest/ui': 0.16.0
@@ -114,13 +113,12 @@ importers:
       '@types/fs-extra': 9.0.13
       '@types/gulp': 4.0.10
       '@types/jsdom': 16.2.15
-      '@types/node': 0.0.0
-      '@types/sass': 1.45.0
+      '@types/node': 20.1.3
       '@vitejs/plugin-vue': 2.3.4_vue@3.3.2
       '@vitejs/plugin-vue-jsx': 1.3.10
       '@vitest/ui': 0.16.0
       '@vue/test-utils': 2.3.2_vue@3.3.2
-      '@vue/tsconfig': 0.1.3_@types+node@0.0.0
+      '@vue/tsconfig': 0.1.3_@types+node@20.1.3
       '@vuesax-alpha/build': link:internal/build
       '@vuesax-alpha/build-utils': link:internal/build-utils
       '@vuesax-alpha/eslint-config': link:internal/eslint-config
@@ -2862,7 +2860,7 @@ packages:
   /@types/clean-css/4.2.6:
     resolution: {integrity: sha512-Ze1tf+LnGPmG6hBFMi0B4TEB0mhF7EiMM5oyjLDNPE9hxrPU0W+5+bHvO+eFPA+bt0iC1zkQMoU/iGdRVjcRbw==}
     dependencies:
-      '@types/node': 0.0.0
+      '@types/node': 20.1.3
       source-map: 0.6.1
     dev: true
 
@@ -2990,7 +2988,7 @@ packages:
   /@types/jsonwebtoken/9.0.1:
     resolution: {integrity: sha512-c5ltxazpWabia/4UzhIoaDcIza4KViOQhdbjRlfcIGVnsE3c3brkz9Z+F/EeJIECOQP7W7US2hNE930cWWkPiw==}
     dependencies:
-      '@types/node': 0.0.0
+      '@types/node': 20.1.3
     dev: true
 
   /@types/keyv/3.1.4:
@@ -3061,11 +3059,7 @@ packages:
   /@types/node-sass/4.11.3:
     resolution: {integrity: sha512-wXPCn3t9uu5rR4zXNSLasZHQMuRzUKBsdi4MsgT8uq4Lp1gQQo+T2G23tGj4SSgDHeNBle6vGseZtM2XV/X9bw==}
     dependencies:
-      '@types/node': 0.0.0
-    dev: true
-
-  /@types/node/0.0.0:
-    resolution: {integrity: sha512-WTVTibPZsmWNm4thlkPnc0QPbT4+Vw+48e4otLxwdBVZduwrZ2pDvAH9dnpOe/fQnNl84PO4XOq3dHAyjaornA==}
+      '@types/node': 20.1.3
     dev: true
 
   /@types/node/13.13.52:
@@ -3098,13 +3092,6 @@ packages:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
       '@types/node': 20.1.3
-
-  /@types/sass/1.45.0:
-    resolution: {integrity: sha512-jn7qwGFmJHwUSphV8zZneO3GmtlgLsmhs/LQyVvQbIIa+fzGMUiHI4HXJZL3FT8MJmgXWbLGiVVY7ElvHq6vDA==}
-    deprecated: This is a stub types definition. sass provides its own type definitions, so you do not need this installed.
-    dependencies:
-      sass: 1.62.1
-    dev: true
 
   /@types/semver/6.2.3:
     resolution: {integrity: sha512-KQf+QAMWKMrtBMsB8/24w53tEsxllMj6TuA80TT/5igJalLI/zm0L3oXRbIAl4Ohfc85gyHX/jhMwsVkmhLU4A==}
@@ -3636,7 +3623,7 @@ packages:
       '@vue/server-renderer': 3.3.2_vue@3.3.2
     dev: true
 
-  /@vue/tsconfig/0.1.3_@types+node@0.0.0:
+  /@vue/tsconfig/0.1.3_@types+node@20.1.3:
     resolution: {integrity: sha512-kQVsh8yyWPvHpb8gIc9l/HIDiiVUy1amynLNpCy8p+FoCiZXCo6fQos5/097MmnNZc9AtseDsCrfkhqCrJ8Olg==}
     peerDependencies:
       '@types/node': '*'
@@ -3644,7 +3631,7 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@types/node': 0.0.0
+      '@types/node': 20.1.3
     dev: true
 
   /@vuepress/bundler-vite/2.0.0-beta.62_sass@1.62.1:
