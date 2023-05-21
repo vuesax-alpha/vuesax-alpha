@@ -1,37 +1,23 @@
 import { buildProps } from '@vuesax-alpha/utils'
-
-import type { ExtractPropTypes } from 'vue'
+import { useDelayedToggleProps } from '@vuesax-alpha/hooks'
+import { popperContentProps } from './content'
+import { popperTriggerProps } from './trigger'
 import type Popper from './popper.vue'
 
-const effects = ['light', 'dark'] as const
-const triggers = ['click', 'contextmenu', 'hover', 'focus'] as const
-
-export const Effect = {
-  LIGHT: 'light',
-  DARK: 'dark',
-} as const
-
-export const roleTypes = [
-  'dialog',
-  'grid',
-  'group',
-  'listbox',
-  'menu',
-  'navigation',
-  'tooltip',
-  'tree',
-] as const
-
-export type PopperEffect = (typeof effects)[number]
-export type PopperTrigger = (typeof triggers)[number]
+import type { ExtractPropTypes } from 'vue'
 
 export const popperProps = buildProps({
-  role: {
-    type: String,
-    values: roleTypes,
-    default: 'tooltip',
+  ...useDelayedToggleProps,
+  ...popperContentProps,
+  ...popperTriggerProps,
+
+  showArrow: {
+    type: Boolean,
+    default: true,
   },
-} as const)
+
+  loading: Boolean,
+})
 
 export type PopperProps = ExtractPropTypes<typeof popperProps>
 

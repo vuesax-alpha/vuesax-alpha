@@ -1,60 +1,115 @@
 <template>
-  <slot />
+  <popper-trigger
+    :disabled="disabled"
+    :trigger="trigger"
+    :virtual-ref="virtualRef"
+    :virtual-triggering="virtualTriggering"
+    :on-mouseenter="onMouseenter"
+    :on-mouseleave="onMouseleave"
+    :on-click="onClick"
+    :on-keydown="onKeydown"
+    :on-focus="onFocus"
+    :on-blur="onBlur"
+    :on-contextmenu="onContextmenu"
+  >
+    <slot />
+  </popper-trigger>
+
+  <popper-content
+    :animation="animation"
+    :append-to="appendTo"
+    :teleported="teleported"
+    :options="options"
+    :strategy="strategy"
+    :fit="fit"
+    :placement="placement"
+    :z-index="zIndex"
+    :interactivity="interactivity"
+    :offset="offset"
+    :popper-class="popperClass"
+    :popper-style="popperStyle"
+  >
+    <slot name="content" />
+  </popper-content>
 </template>
 
-<script lang="ts" setup>
-import { computed, provide, ref } from 'vue'
-import { popperInjectionKey } from '@vuesax-alpha/tokens'
+<script setup lang="ts">
+import { computed, nextTick, provide, reactive, ref, watch } from 'vue'
+import { useElementBounding, useTimeoutFn } from '@vueuse/core'
+import { useFloating, useZIndex } from '@vuesax-alpha/hooks'
+import { popperContextKey } from '@vuesax-alpha/tokens'
 import { popperProps } from './popper'
-import type { Instance } from '@popperjs/core'
-import type { Measurable, PopperInjectionContext } from '@vuesax-alpha/tokens'
+import popperContent from './content.vue'
+import popperTrigger from './trigger.vue'
 
 defineOptions({
-  name: 'VsPopperRoot',
-  inheritAttrs: false,
+  name: 'VsPopper',
 })
 
 const props = defineProps(popperProps)
+
+const { currentZIndex, nextZIndex } = useZIndex()
+
+const zIndex = computed(() => currentZIndex.value)
+
 const triggerRef = ref<HTMLElement>()
-const popperInstance = ref<Instance>()
 const contentRef = ref<HTMLElement>()
-const referenceRef = ref<HTMLElement>()
-const role = computed(() => props.role)
+const triggerBounding = reactive(useElementBounding(triggerRef))
 
-const popperProvides = {
-  /**
-   * @description trigger element
-   */
-  triggerRef,
-  /**
-   * @description popperjs instance
-   */
-  popperInstance,
-  /**
-   * @description popper content element
-   */
+const open = ref<boolean>(false)
+
+const { destroy, update, placement } = useFloating(triggerRef, contentRef, {
+  ...props,
+  autoUpdate: true,
+})
+
+const { start: startShow, stop: stopShow } = useTimeoutFn(
+  () => {
+    if (!open.value) nextZIndex()
+    open.value = true
+  },
+  props.showAfter,
+  { immediate: false }
+)
+
+const { start: startHide, stop: stopHide } = useTimeoutFn(
+  () => {
+    open.value = false
+  },
+  props.hideAfter,
+  { immediate: false }
+)
+
+provide(popperContextKey, {
+  open,
   contentRef,
-  /**
-   * @description popper reference element
-   */
-  referenceRef,
-  /**
-   * @description role determines how aria attributes are distributed
-   */
-  role,
-} as PopperInjectionContext
+  triggerRef,
+  referenceRef: triggerRef,
+  startShow,
+  stopShow,
+  startHide,
+  stopHide,
+})
 
-defineExpose(popperProvides)
+watch([open, triggerBounding], ([isOpen]) => {
+  if (isOpen) update()
+})
 
-provide(popperInjectionKey, popperProvides)
-</script>
+watch(
+  [triggerRef],
+  ([referenceElement]) => {
+    destroy()
 
-<script lang="ts">
-export interface PopperExpose {
-  readonly triggerRef: Measurable | undefined
-  readonly popperInstance: Instance | undefined
-  readonly contentRef: HTMLElement | undefined
-  readonly referenceRef: Measurable | undefined
-  readonly role: string
-}
+    if (!referenceElement) return
+
+    if (open.value) {
+      nextTick(() => {
+        update()
+      })
+    }
+  },
+  {
+    flush: 'post',
+  }
+)
 </script>

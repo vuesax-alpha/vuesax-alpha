@@ -5,7 +5,7 @@
 <script lang="ts" setup>
 import { inject, onBeforeUnmount, watch } from 'vue'
 import { useNamespace } from '@vuesax-alpha/hooks'
-import { popperContentInjectionKey } from '@vuesax-alpha/tokens'
+import { popperContentContextKey } from '@vuesax-alpha/tokens'
 import { popperArrowProps } from './arrow'
 
 defineOptions({
@@ -16,7 +16,7 @@ defineOptions({
 const props = defineProps(popperArrowProps)
 const ns = useNamespace('popper')
 
-const { arrowOffset, arrowRef } = inject(popperContentInjectionKey, undefined)!
+const { arrowOffset, arrowRef } = inject(popperContentContextKey, undefined)!
 
 watch(
   () => props.arrowOffset,
