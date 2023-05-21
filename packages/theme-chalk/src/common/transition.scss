@@ -11,6 +11,27 @@
   opacity: 0;
 }
 
+.tooltip-enter-active,
+.tooltip-leave-active {
+  transition: all 0.25s ease;
+}
+
+.tooltip-enter-from,
+.tooltip-leave-to {
+  opacity: 0;
+  &[data-popper-placement='top'] {
+    transform: translate(0, 5px);
+  }
+  &[data-popper-placement='bottom'] {
+    transform: translate(0, -5px);
+  }
+  &[data-popper-placement='left'] {
+    transform: translate(5px);
+  }
+  &[data-popper-placement='right'] {
+    transform: translate(-5px);
+  }
+}
 .#{$namespace}-fade-in-linear-enter-active,
 .#{$namespace}-fade-in-linear-leave-active {
   transition: getCssVar('transition-fade', 'linear');

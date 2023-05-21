@@ -5,15 +5,37 @@
 $clearableRight: 34px;
 $iconActiveMargin: -4px;
 
-.v-clearable {
-  &-enter-active {
-    animation: #{namespace}-clearable 0.25s ease forwards;
+.#{$namespace}-select-enter-active,
+.#{$namespace}-select-leave-active {
+  transition: all 0.25s ease;
+}
+.#{$namespace}-select-enter-from,
+.#{$namespace}-select-leave-to {
+  opacity: 0;
+  &[data-tooltip-placement='top'] {
+    transform: translate(0, 5px);
   }
-  &-leave-active {
-    animation: #{namespace}-clearable 0.25s ease reverse;
+  &[data-tooltip-placement='bottom'] {
+    transform: translate(0, -5px);
+  }
+  &[data-tooltip-placement='left'] {
+    transform: translate(5px);
+  }
+  &[data-tooltip-placement='right'] {
+    transform: translate(-5px);
   }
 }
-@keyframes #{namespace}-clearable {
+
+.v-clearable {
+  &-enter-active {
+    animation: v-clearable 0.25s ease forwards;
+  }
+  &-leave-active {
+    animation: v-clearable 0.25s ease reverse;
+  }
+}
+
+@keyframes v-clearable {
   0% {
     right: 10px;
     opacity: 0.2;
@@ -35,8 +57,6 @@ $iconActiveMargin: -4px;
     }
   }
 
-  // .#{namespace}-select__input {
-  // }
   @include e(chips) {
     background: getColor($color, 0.05);
     color: getColor($color, 1);
