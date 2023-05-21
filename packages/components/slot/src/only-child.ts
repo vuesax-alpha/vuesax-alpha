@@ -4,6 +4,7 @@ import {
   Text,
   cloneVNode,
   defineComponent,
+  h,
   inject,
   withDirectives,
 } from 'vue'
@@ -22,11 +23,12 @@ const NAME = 'VsOnlyChild'
 export const OnlyChild = defineComponent({
   name: NAME,
   setup(_, { slots, attrs }) {
-    const forwardRefInjection = inject(FORWARD_REF_INJECTION_KEY)
-    const forwardRefDirective = useForwardRefDirective(
-      forwardRefInjection?.setForwardRef ?? NOOP
-    )
     return () => {
+      const forwardRefInjection = inject(FORWARD_REF_INJECTION_KEY, undefined)
+      const forwardRefDirective = useForwardRefDirective(
+        forwardRefInjection?.setForwardRef ?? NOOP
+      )
+
       const defaultSlot = slots.default?.(attrs)
       if (!defaultSlot) return null
 
@@ -41,7 +43,7 @@ export const OnlyChild = defineComponent({
         return null
       }
 
-      return withDirectives(cloneVNode(firstLegitNode!, attrs), [
+      return withDirectives(cloneVNode(firstLegitNode!), [
         [forwardRefDirective],
       ])
     }
@@ -77,9 +79,15 @@ function findFirstLegitChild(node: VNode[] | undefined): VNode | null {
 
 function wrapTextContent(s: string | VNode) {
   const ns = useNamespace('only-child')
-  return <span class={ns.e('content')}>{s}</span>
+  return h(
+    'span',
+    {
+      className: ns.e('content'),
+    },
+    s
+  )
 }
 
-export type OnlyChildExpose = {
+export interface OnlyChildExpose {
   forwardRef: Ref<HTMLElement>
 }
