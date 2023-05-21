@@ -19,6 +19,7 @@ import { computed, ref } from 'vue'
 import { useNamespace } from '@vuesax-alpha/hooks'
 import VsInput from '@vuesax-alpha/components/input'
 import { usePagination } from '../usePagination'
+import type { InputValue } from '@vuesax-alpha/components/input'
 
 defineOptions({
   name: 'VsPaginationJumper',
@@ -31,8 +32,8 @@ const userInput = ref<number>()
 
 const innerValue = computed(() => userInput.value ?? currentPage.value)
 
-function handleInput(val: number | string) {
-  userInput.value = +val
+function handleInput(val: InputValue) {
+  userInput.value = Number(val)
 }
 
 function handleChange(val: number | string) {
