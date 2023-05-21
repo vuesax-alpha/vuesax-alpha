@@ -12,7 +12,7 @@ import type { ExtractPropTypes, StyleValue } from 'vue'
 import type { EmitFn } from '@vuesax-alpha/utils'
 import type Input from './input.vue'
 
-type InputValue = string | number | null | undefined
+export type InputValue = string | number | null | undefined
 
 export const inputProps = buildProps({
   /**
