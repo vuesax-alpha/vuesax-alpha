@@ -1,6 +1,5 @@
 import { placements } from '@popperjs/core'
 import { isNil } from 'lodash-unified'
-import { popperCoreConfigProps } from '@vuesax-alpha/components/popper/src/content'
 import { useColorProp } from '@vuesax-alpha/hooks'
 import {
   buildProps,
@@ -29,7 +28,6 @@ export const selectProps = buildProps({
     type: definePropType<SelectOptionValue>([String, Number, Object]),
     default: '',
   },
-  popperOptions: popperCoreConfigProps.popperOptions,
   placement: {
     type: String,
     values: placements,
