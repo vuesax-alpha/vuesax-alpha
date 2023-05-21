@@ -1,5 +1,6 @@
 <template>
   <vs-popper
+    ref="popperRef"
     :interactivity="interactivity"
     :popper-class="[tooltipKls, popperClass ?? '']"
     :animation="animation"
@@ -39,17 +40,20 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { useNamespace } from '@vuesax-alpha/hooks'
 import { VsPopper } from '@vuesax-alpha/components/popper'
 import { tooltipProps } from './tooltip'
 import { useTooltipDeprecated } from './useTooltipDeprecated'
+import type { PopperExpose } from '@vuesax-alpha/components/popper/src/popper.vue'
 
 defineOptions({
   name: 'VsTooltip',
 })
 
 const ns = useNamespace('tooltip')
+
+const popperRef = ref<PopperExpose>()
 
 const props = defineProps(tooltipProps)
 
@@ -63,4 +67,22 @@ const tooltipKls = computed(() => [
 ])
 
 useTooltipDeprecated(props)
+
+defineExpose(
+  reactive({
+    ...popperRef.value!,
+  })
+)
+</script>
+
+<script lang="ts">
+export type TooltipExpose = {
+  isVisible: boolean
+  contentRef: HTMLElement | undefined
+  triggerRef: HTMLElement | undefined
+  show: () => void
+  hide: () => void
+  update: () => void
+  destroy: () => void
+}
 </script>

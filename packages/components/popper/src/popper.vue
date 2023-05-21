@@ -66,7 +66,7 @@ const { destroy, update, placement } = useFloating(triggerRef, contentRef, {
 const { start: startShow, stop: stopShow } = useTimeoutFn(
   () => {
     if (!open.value) nextZIndex()
-    open.value = true
+    show()
   },
   props.showAfter,
   { immediate: false }
@@ -74,11 +74,19 @@ const { start: startShow, stop: stopShow } = useTimeoutFn(
 
 const { start: startHide, stop: stopHide } = useTimeoutFn(
   () => {
-    open.value = false
+    hide()
   },
   props.hideAfter,
   { immediate: false }
 )
+
+const show = () => {
+  open.value = true
+}
+
+const hide = () => {
+  open.value = false
+}
 
 provide(popperContextKey, {
   open,
@@ -90,6 +98,18 @@ provide(popperContextKey, {
   startHide,
   stopHide,
 })
+
+defineExpose<PopperExpose>(
+  reactive({
+    isVisible: open,
+    contentRef,
+    triggerRef,
+    show,
+    hide,
+    update,
+    destroy,
+  })
+)
 
 watch([open, triggerBounding], ([isOpen]) => {
   if (isOpen) update()
@@ -112,4 +132,16 @@ watch(
     flush: 'post',
   }
 )
+</script>
+
+<script lang="ts">
+export type PopperExpose = {
+  isVisible: boolean
+  contentRef: HTMLElement | undefined
+  triggerRef: HTMLElement | undefined
+  show: () => void
+  hide: () => void
+  update: () => void
+  destroy: () => void
+}
 </script>
