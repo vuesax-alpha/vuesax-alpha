@@ -22,7 +22,7 @@
     :options="options"
     :strategy="strategy"
     :fit="fit"
-    :placement="placement"
+    :placement="popperPlacement"
     :z-index="zIndex"
     :interactivity="interactivity"
     :offset="offset"
@@ -58,10 +58,11 @@ const triggerBounding = reactive(useElementBounding(triggerRef))
 
 const open = ref<boolean>(false)
 
-const { destroy, update, placement } = useFloating(triggerRef, contentRef, {
-  ...props,
-  autoUpdate: true,
-})
+const {
+  destroy,
+  update,
+  placement: popperPlacement,
+} = useFloating(triggerRef, contentRef, props)
 
 const { start: startShow, stop: stopShow } = useTimeoutFn(
   () => {
@@ -88,6 +89,10 @@ const hide = () => {
   open.value = false
 }
 
+const isFocusInsideContent = () => {
+  return !!contentRef.value?.contains(document.activeElement)
+}
+
 provide(popperContextKey, {
   open,
   contentRef,
@@ -99,7 +104,7 @@ provide(popperContextKey, {
   stopHide,
 })
 
-defineExpose<PopperExpose>(
+defineExpose(
   reactive({
     isVisible: open,
     contentRef,
@@ -108,6 +113,7 @@ defineExpose<PopperExpose>(
     hide,
     update,
     destroy,
+    isFocusInsideContent,
   })
 )
 
@@ -132,16 +138,4 @@ watch(
     flush: 'post',
   }
 )
-</script>
-
-<script lang="ts">
-export type PopperExpose = {
-  isVisible: boolean
-  contentRef: HTMLElement | undefined
-  triggerRef: HTMLElement | undefined
-  show: () => void
-  hide: () => void
-  update: () => void
-  destroy: () => void
-}
 </script>

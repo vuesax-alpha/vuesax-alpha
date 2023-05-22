@@ -2,8 +2,8 @@
   <teleport :to="appendTo" :disabled="!teleported">
     <transition :name="animation">
       <vs-only-child
-        v-if="open"
-        v-show="open"
+        v-if="shouldRender"
+        v-show="shouldShow"
         ref="contentRef"
         :class="popperKls"
         :style="{ position: 'fixed', zIndex }"
@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject } from 'vue'
+import { computed, inject, unref } from 'vue'
 import { useNamespace } from '@vuesax-alpha/hooks'
 import { VsOnlyChild } from '@vuesax-alpha/components/slot'
 import { popperContextKey } from '@vuesax-alpha/tokens'
@@ -30,19 +30,34 @@ defineOptions({
 
 const ns = useNamespace('popper')
 
-const { contentRef, startShow, stopShow, startHide, stopHide, open } = inject(
+const { contentRef, stopShow, startHide, stopHide, open } = inject(
   popperContextKey,
   undefined
 )!
 
 const props = defineProps(popperContentProps)
 
+const persistentRef = computed(() => {
+  // For testing, we would always want the content to be rendered
+  // to the DOM, so we need to return true here.
+  if (process.env.NODE_ENV === 'test') {
+    return true
+  }
+  return props.persistent
+})
+const shouldRender = computed(() => {
+  return unref(persistentRef) ? true : unref(open)
+})
+
+const shouldShow = computed(() => {
+  return props.disabled ? false : unref(open)
+})
+
 const popperKls = computed(() => [ns.b(), props.popperClass])
 
 const mouseenter = () => {
   if (props.interactivity) {
     stopHide()
-    startShow()
   } else {
     stopShow()
     startHide()

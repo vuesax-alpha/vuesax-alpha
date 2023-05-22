@@ -76,3 +76,13 @@ export const tooltipProps = buildProps({
 export type TooltipProps = ExtractPropTypes<typeof tooltipProps>
 
 export type TooltipInstance = InstanceType<typeof Tooltip>
+
+export type TooltipExpose = {
+  isVisible: boolean
+  contentRef: HTMLElement | undefined
+  triggerRef: HTMLElement | undefined
+  show: () => void
+  hide: () => void
+  update: () => void
+  destroy: () => void
+}

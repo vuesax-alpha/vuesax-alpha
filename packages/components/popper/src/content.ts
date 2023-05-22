@@ -23,6 +23,8 @@ export const popperContentProps = buildProps({
     type: Boolean,
     default: true,
   },
+  disabled: Boolean,
+  persistent: Boolean,
   options: {
     type: definePropType<Options>(Object),
   },
@@ -31,10 +33,7 @@ export const popperContentProps = buildProps({
     values: POSITIONING_STRATEGIES,
     default: 'absolute',
   },
-  fit: {
-    type: Boolean,
-    default: false,
-  },
+  fit: Boolean,
   placement: {
     type: definePropType<Placement>(String),
     values: placements,
@@ -45,6 +44,15 @@ export const popperContentProps = buildProps({
     default: defaultZIndex,
   },
   interactivity: {
+    type: Boolean,
+    default: true,
+  },
+  flip: Boolean,
+  windowResize: {
+    type: Boolean,
+    default: true,
+  },
+  windowScroll: {
     type: Boolean,
     default: true,
   },

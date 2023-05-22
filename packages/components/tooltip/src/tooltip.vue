@@ -5,6 +5,9 @@
     :popper-class="[tooltipKls, popperClass ?? '']"
     :animation="animation"
     :append-to="appendTo"
+    :flip="flip"
+    :window-resize="windowResize"
+    :window-scroll="windowScroll"
     :disabled="disabled"
     :fit="fit"
     :loading="loading"
@@ -45,7 +48,7 @@ import { useNamespace } from '@vuesax-alpha/hooks'
 import { VsPopper } from '@vuesax-alpha/components/popper'
 import { tooltipProps } from './tooltip'
 import { useTooltipDeprecated } from './useTooltipDeprecated'
-import type { PopperExpose } from '@vuesax-alpha/components/popper/src/popper.vue'
+import type { PopperExpose } from '@vuesax-alpha/components/popper'
 
 defineOptions({
   name: 'VsTooltip',
@@ -73,16 +76,4 @@ defineExpose(
     ...popperRef.value!,
   })
 )
-</script>
-
-<script lang="ts">
-export type TooltipExpose = {
-  isVisible: boolean
-  contentRef: HTMLElement | undefined
-  triggerRef: HTMLElement | undefined
-  show: () => void
-  hide: () => void
-  update: () => void
-  destroy: () => void
-}
 </script>

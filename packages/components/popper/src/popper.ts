@@ -22,3 +22,14 @@ export const popperProps = buildProps({
 export type PopperProps = ExtractPropTypes<typeof popperProps>
 
 export type PopperInstance = InstanceType<typeof Popper>
+
+export type PopperExpose = {
+  isVisible: boolean
+  contentRef: HTMLElement | undefined
+  triggerRef: HTMLElement | undefined
+  show: () => void
+  hide: () => void
+  update: () => void
+  destroy: () => void
+  isFocusInsideContent: () => boolean
+}
