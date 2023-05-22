@@ -1,5 +1,10 @@
-import { nextTick, reactive, ref } from 'vue'
-import { isClient, unrefElement, useElementBounding } from '@vueuse/core'
+import { nextTick, onMounted, reactive, ref, watch } from 'vue'
+import {
+  isClient,
+  unrefElement,
+  useElementBounding,
+  useEventListener,
+} from '@vueuse/core'
 import type { MaybeElementRef } from '@vueuse/core'
 
 export type Placement =
@@ -26,7 +31,7 @@ export type Options = {
   placement?: Placement
   /**
    * Tooltip strategy
-   * @default bottom
+   * @default absolute
    */
   strategy?: Strategy
   /**
@@ -36,16 +41,26 @@ export type Options = {
   fit?: boolean
 
   /**
-   * Update popper content with reference element when window is resized or scrolled
+   * Flip popper when the viewport crosses the screen
    * @default true
    */
-  autoUpdate?: boolean
+  flip?: boolean
+  /**
+   * Update popper content with reference element when window is resized
+   * @default true
+   */
+  windowResize?: boolean
+  /**
+   * Update popper content with reference element when window is scrolled
+   * @default true
+   */
+  windowScroll?: boolean
 
   /**
    * distance from popper to element
    * @default 0
    */
-  offset: number
+  offset?: number
 }
 
 export function useFloating(
@@ -53,7 +68,24 @@ export function useFloating(
   popper: MaybeElementRef,
   options?: Options
 ) {
-  const { placement = 'bottom', fit = true, offset = 0 } = options ?? {}
+  const {
+    placement = 'bottom',
+    fit = true,
+    offset = 0,
+    windowResize = true,
+    windowScroll = true,
+    flip = true,
+  } = options ?? {}
+
+  const cacheOptions: Pick<
+    Options,
+    'placement' | 'windowResize' | 'windowScroll' | 'flip'
+  > = {
+    placement,
+    windowResize,
+    windowScroll,
+    flip,
+  }
 
   const popperPlacement = ref(placement)
 
@@ -61,7 +93,7 @@ export function useFloating(
     unrefElement(popper)?.remove()
   }
 
-  const updateCord = () => {
+  const update = () => {
     if (!isClient) return
 
     nextTick(() => {
@@ -76,7 +108,9 @@ export function useFloating(
       const style = popperElement.style
       style.position = 'fixed'
 
-      const scrollTop = window.pageYOffset
+      // TODO: add support for arrow elements
+      const arrowHeight = 0
+      const arrowWidth = 0
 
       const triggerWidth = triggerBounding.width
       const triggerHeight = triggerBounding.height
@@ -91,22 +125,57 @@ export function useFloating(
       const distanceYAxis = Math.abs(triggerHalfWidth - popperHaflWidth)
       const distanceXAxis = Math.abs(triggerHalfHeight - popperHaflHeight)
 
-      if (placement.includes('bottom') || placement.includes('top')) {
-        if (fit) style.width = `${triggerBounding.width}px`
+      // BUG: the first time render is not executed
+      if (flip) {
+        const flipPlacement = () => {
+          const _placement = cacheOptions.placement
 
-        let popperOffsetTop = triggerBounding.y + offset
+          if (_placement === 'top')
+            return triggerBounding.y - arrowHeight < popperHeight
+              ? 'bottom'
+              : 'top'
 
-        if (placement.includes('bottom')) {
-          popperOffsetTop += scrollTop + triggerHeight
+          if (_placement === 'bottom')
+            return window.innerHeight - popperHeight - triggerBounding.y < 30
+              ? 'top'
+              : 'bottom'
+
+          if (_placement === 'left')
+            return triggerBounding.x - arrowWidth < popperWidth
+              ? 'right'
+              : 'left'
+
+          if (_placement === 'right')
+            return triggerBounding.x + arrowWidth + triggerWidth + popperWidth >
+              window.innerWidth
+              ? 'left'
+              : 'right'
+
+          return 'bottom'
         }
 
-        if (placement.includes('top')) {
-          popperOffsetTop += scrollTop - popperHeight
+        popperPlacement.value = flipPlacement()
+      }
+
+      if (
+        popperPlacement.value.includes('bottom') ||
+        popperPlacement.value.includes('top')
+      ) {
+        if (fit) style.width = `${triggerBounding.width}px`
+
+        let popperOffsetTop = triggerBounding.top
+
+        if (popperPlacement.value.includes('bottom')) {
+          popperOffsetTop += triggerHeight + offset
+        }
+
+        if (popperPlacement.value.includes('top')) {
+          popperOffsetTop -= popperHeight - offset
         }
 
         style.top = `${popperOffsetTop}px`
 
-        switch (placement) {
+        switch (popperPlacement.value) {
           case 'bottom':
           case 'top':
             // eslint-disable-next-line no-case-declarations
@@ -134,16 +203,19 @@ export function useFloating(
         }
       }
 
-      if (placement.includes('left') || placement.includes('right')) {
-        if (placement.includes('left')) {
+      if (
+        popperPlacement.value.includes('left') ||
+        popperPlacement.value.includes('right')
+      ) {
+        if (popperPlacement.value.includes('left')) {
           style.left = `${triggerBounding.x - popperBounding.width}px`
         }
 
-        if (placement.includes('right')) {
+        if (popperPlacement.value.includes('right')) {
           style.left = `${triggerBounding.x + triggerBounding.width}px`
         }
 
-        switch (placement) {
+        switch (popperPlacement.value) {
           case 'left':
           case 'right':
             style.top = `${triggerBounding.top + distanceXAxis}px`
@@ -162,13 +234,25 @@ export function useFloating(
             break
         }
       }
-
-      popperPlacement.value = placement
     })
   }
 
+  onMounted(() => {
+    if (windowResize) {
+      addEventListener('resize', update)
+    }
+
+    if (windowScroll) {
+      useEventListener('scroll', update)
+    }
+  })
+
+  watch(popperPlacement, (placement) => {
+    unrefElement(popper)?.setAttribute('data-popper-placement', placement)
+  })
+
   return {
-    update: updateCord,
+    update,
     destroy,
     placement: popperPlacement,
   }
