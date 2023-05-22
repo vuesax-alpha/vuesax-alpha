@@ -1,6 +1,5 @@
-import { placements } from '@popperjs/core'
 import { isNil } from 'lodash-unified'
-import { useColorProp } from '@vuesax-alpha/hooks'
+import { useColorProp, useDelayedToggleProps } from '@vuesax-alpha/hooks'
 import {
   buildProps,
   definePropType,
@@ -10,6 +9,8 @@ import {
   isObject,
   isString,
 } from '@vuesax-alpha/utils'
+import { placements } from '@vuesax-alpha/constants'
+import type { Placement } from '@vuesax-alpha/hooks'
 import type { EmitFn } from '@vuesax-alpha/utils'
 import type { SelectOptionValue, SelectValue } from './tokens'
 
@@ -17,6 +18,15 @@ import type { ExtractPropTypes } from 'vue'
 import type Select from './select.vue'
 
 export const selectProps = buildProps({
+  ...useDelayedToggleProps,
+  placement: {
+    type: definePropType<Placement>(String),
+    values: placements,
+  },
+  fit: {
+    type: Boolean,
+    default: true,
+  },
   /**
    * @description binding value
    */
@@ -27,19 +37,6 @@ export const selectProps = buildProps({
   notValue: {
     type: definePropType<SelectOptionValue>([String, Number, Object]),
     default: '',
-  },
-  placement: {
-    type: String,
-    values: placements,
-    default: 'bottom-start',
-  },
-  persistent: {
-    type: Boolean,
-    default: true,
-  },
-  teleported: {
-    type: Boolean,
-    default: true,
   },
   allowCreate: Boolean,
   multiple: Boolean,

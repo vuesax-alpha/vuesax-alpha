@@ -1,13 +1,16 @@
 <template>
-  <vs-tooltip
-    ref="tooltipRef"
+  <vs-popper
+    ref="popperRef"
     trigger="click"
+    :flip="false"
+    :fit="fit"
+    :hide-after="hideAfter"
+    :show-after="showAfter"
+    :loading="loading"
     :style="selectStyle"
     :visible="dropMenuVisible"
     :placement="placement"
     :popper-class="[ns.e('options'), useBaseComponent(color)]"
-    :teleported="teleported"
-    :persistent="persistent"
     :show-arrow="false"
     :offset="0"
     @show="handleMenuEnter"
@@ -112,7 +115,7 @@
         </vs-scrollbar>
       </div>
     </template>
-  </vs-tooltip>
+  </vs-popper>
 </template>
 
 <script lang="ts" setup>
@@ -124,7 +127,7 @@ import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import { IconClose, VsIcon } from '@vuesax-alpha/components/icon'
 import { VsInput } from '@vuesax-alpha/components/input'
 import { VsScrollbar } from '@vuesax-alpha/components/scrollbar'
-import { VsTooltip } from '@vuesax-alpha/components/tooltip'
+import { VsPopper } from '@vuesax-alpha/components/popper'
 import { ChevronDown } from '@vuesax-alpha/icons-vue'
 import { useBaseComponent, useNamespace } from '@vuesax-alpha/hooks'
 import { getVsColor } from '@vuesax-alpha/utils'
@@ -154,7 +157,7 @@ const {
   inputId,
   readonly,
   reference,
-  tooltipRef,
+  popperRef,
   selectDisabled,
   selectWrapper,
   handleMouseEnter,
@@ -194,7 +197,7 @@ const {
 
 // @ts-ignore - directive: v-click-outside element
 const popperPaneRef = computed(() => {
-  return tooltipRef.value?.popperComponent?.contentRef
+  return popperRef.value?.contentRef
 })
 
 if (props.multiple && !Array.isArray(props.modelValue)) {

@@ -26,7 +26,7 @@ import {
   scrollIntoView,
 } from '@vuesax-alpha/utils'
 import { useId, useNamespace } from '@vuesax-alpha/hooks'
-import type { TooltipExpose } from '@vuesax-alpha/components/tooltip/src/tooltip.vue'
+import type { PopperExpose } from '@vuesax-alpha/components/popper'
 import type { SelectEmitsFn, SelectProps } from './select'
 
 import type {
@@ -75,7 +75,7 @@ export const useSelect = (
   // template refs
   const reference = ref<HTMLInputElement | null>(null)
   const input = ref<HTMLInputElement | null>(null)
-  const tooltipRef = ref<TooltipExpose | null>(null)
+  const popperRef = ref<PopperExpose | null>(null)
   const tags = ref<HTMLElement | null>(null)
   const selectWrapper = ref<HTMLElement | null>(null)
   const scrollbar = ref<{
@@ -214,7 +214,7 @@ export const useSelect = (
           }
         }
       } else {
-        tooltipRef.value?.updateTooltip?.()
+        popperRef.value?.update?.()
 
         if (props.filter) {
           states.filteredOptionsCount = states.optionsCount
@@ -247,7 +247,7 @@ export const useSelect = (
     () => states.options.entries(),
     () => {
       if (!isClient) return
-      tooltipRef.value?.updateTooltip?.()
+      popperRef.value?.update?.()
 
       const inputs = selectWrapper.value?.querySelectorAll('input') || []
       if (
@@ -290,7 +290,7 @@ export const useSelect = (
     }
     states.previousQuery = val
     nextTick(() => {
-      if (states.visible) tooltipRef.value?.updateTooltip?.()
+      if (states.visible) popperRef.value?.update?.()
     })
     states.hoverIndex = -1
     if (props.multiple && props.filter) {
@@ -439,7 +439,7 @@ export const useSelect = (
   }
 
   const handleResize = () => {
-    tooltipRef.value?.updateTooltip?.()
+    popperRef.value?.update?.()
   }
 
   const onInputChange = () => {
@@ -585,11 +585,10 @@ export const useSelect = (
       }
     }
 
-    if (tooltipRef.value && target) {
-      const menu =
-        tooltipRef.value?.popperComponent?.contentRef?.querySelector?.(
-          `.${ns.be('dropdown', 'wrap')}`
-        )
+    if (popperRef.value && target) {
+      const menu = popperRef.value?.contentRef?.querySelector?.(
+        `.${ns.be('dropdown', 'wrap')}`
+      )
       if (menu) {
         scrollIntoView(menu as HTMLElement, target)
       }
@@ -716,7 +715,7 @@ export const useSelect = (
       if (states.menuVisibleOnFocus) {
         states.menuVisibleOnFocus = false
       } else {
-        if (!tooltipRef.value || !tooltipRef.value.isFocusInsideContent()) {
+        if (!popperRef.value || !popperRef.value.isFocusInsideContent()) {
           states.visible = !states.visible
         }
       }
@@ -826,7 +825,7 @@ export const useSelect = (
     // DOM ref
     reference,
     input,
-    tooltipRef,
+    popperRef,
     tags,
     selectWrapper,
     scrollbar,
