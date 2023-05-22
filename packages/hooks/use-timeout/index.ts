@@ -5,9 +5,9 @@ export function useTimeout() {
 
   const registerTimeout = (fn: (...args: any[]) => any, delay: number) => {
     cancelTimeout()
-    timeoutHandle = window.setTimeout(fn, delay)
+    timeoutHandle = setTimeout(fn, delay)
   }
-  const cancelTimeout = () => window.clearTimeout(timeoutHandle)
+  const cancelTimeout = () => clearTimeout(timeoutHandle)
 
   tryOnScopeDispose(() => cancelTimeout())
 

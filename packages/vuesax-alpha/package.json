@@ -54,7 +54,6 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "^3.4.1",
-    "@floating-ui/dom": "^1.0.1",
     "@popperjs/core": "npm:@sxzz/popperjs-es@^2.11.7",
     "@types/lodash": "^4.14.182",
     "@types/lodash-es": "^4.17.6",
