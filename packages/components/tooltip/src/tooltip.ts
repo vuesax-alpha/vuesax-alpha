@@ -1,4 +1,4 @@
-import { buildProps } from '@vuesax-alpha/utils'
+import { buildProps, definePropType } from '@vuesax-alpha/utils'
 import { popperProps } from '@vuesax-alpha/components/popper'
 import type Tooltip from './tooltip.vue'
 
@@ -13,6 +13,9 @@ export const tooltipProps = buildProps({
   interactivity: {
     type: Boolean,
     default: false,
+  },
+  appendTo: {
+    type: definePropType<string | HTMLElement>(String),
   },
   /**
    * @description tooltip style
