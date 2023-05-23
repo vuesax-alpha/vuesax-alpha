@@ -12,16 +12,16 @@ $iconActiveMargin: -4px;
 .#{$namespace}-select-enter-from,
 .#{$namespace}-select-leave-to {
   opacity: 0;
-  &[data-tooltip-placement='top'] {
+  &[data-popper-placement='top'] {
     transform: translate(0, 5px);
   }
-  &[data-tooltip-placement='bottom'] {
+  &[data-popper-placement='bottom'] {
     transform: translate(0, -5px);
   }
-  &[data-tooltip-placement='left'] {
+  &[data-popper-placement='left'] {
     transform: translate(5px);
   }
-  &[data-tooltip-placement='right'] {
+  &[data-popper-placement='right'] {
     transform: translate(-5px);
   }
 }
@@ -89,7 +89,7 @@ $iconActiveMargin: -4px;
   @include e(arrow) {
     color: getColor($color);
   }
-  ~ div .#{namespace}-select__message--#{$color} {
+  ~ div .#{$namespace}-select__message--#{$color} {
     color: getColor($color, 1);
   }
 }
@@ -106,6 +106,20 @@ $iconActiveMargin: -4px;
   min-height: 38px;
   width: 100%;
   max-width: getCssVar(select-width);
+
+  @include e(content) {
+    &[data-popper-placement^='top'] {
+      border-radius: 12px 12px 0px 0px;
+      box-shadow: 0px -10px 20px -5px
+        rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity));
+    }
+    margin-top: -4px;
+    overflow: hidden;
+    background: getColor('background');
+    color: getColor(color);
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0px 10px 20px -5px rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity));
+  }
 
   @include e(state) {
     @include m(success) {
@@ -127,23 +141,14 @@ $iconActiveMargin: -4px;
 
   @include when(loading) {
     pointer-events: none;
-    *:not(.#{namespace}-select__loading):not(.#{namespace}-select__label) {
+    *:not(.#{$namespace}-select__loading):not(.#{$namespace}-select__label) {
       opacity: 0.6;
     }
-    .#{namespace}-select__label {
+    .#{$namespace}-select__label {
       pointer-events: none !important;
     }
   }
-  &.top {
-    &.activeOptions {
-      .#{namespace}-select__input,
-      .#{namespace}-select__chips {
-        border-radius: 0px 0px 12px 12px !important;
-        box-shadow: 0px -5px 25px -4px
-          rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity)) !important;
-      }
-    }
-  }
+
   @include when(disabled) {
     pointer-events: none;
     * {
@@ -297,7 +302,7 @@ $iconActiveMargin: -4px;
         &:hover {
           background: getColor('danger');
 
-          .#{namespace}-icon-close {
+          .#{$namespace}-icon-close {
             @include set-var-value(color, getCssVar(background));
             &:after {
               width: 12px;
@@ -309,7 +314,7 @@ $iconActiveMargin: -4px;
             }
           }
         }
-        .#{namespace}-icon-close {
+        .#{$namespace}-icon-close {
           @include set-var-value(color, getCssVar(text));
           transform: scale(0.5);
         }
@@ -319,25 +324,7 @@ $iconActiveMargin: -4px;
   @include m(has-label) {
     margin-top: 24px !important;
   }
-  @include e(options) {
-    background: getColor('background') !important;
-    border: none !important;
-    color: getColor(color) !important;
-    width: 100%;
-    max-width: 200px;
-    padding: 5px;
-    // border-radius: 0 0 12px 12px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0px 10px 20px -5px rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity));
 
-    &[data-popper-placement^='top'] {
-      margin-bottom: 8px !important;
-      // border-radius: 12px 12px 0px 0px;
-      box-shadow: 0px -10px 20px -5px
-        rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity));
-    }
-  }
   @include e(option) {
     @include flex(flex-start, center);
     border: 0px;
@@ -412,7 +399,7 @@ $iconActiveMargin: -4px;
       margin-top: -2px !important;
     }
     @include e(input) {
-      // border-radius: 12px 12px 0px 0px;
+      border-radius: 12px 12px 0px 0px;
       background: getColor('background');
       box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity));
       transition: all 0.25s ease, height 0s;
@@ -468,20 +455,18 @@ $iconActiveMargin: -4px;
         font-size: 0.75rem;
       }
     }
-  }
-  @include e(content) {
-    max-height: 200px;
-    overflow: auto;
-    height: auto;
-    z-index: 100;
-    transform: scale(1);
-    transition: all 0.25s ease;
-    position: relative;
-    scroll-behavior: smooth;
 
-    &::-webkit-scrollbar {
-      display: none;
+    @include when(top) {
+      .#{$namespace}-select__input,
+      .#{$namespace}-select__chips {
+        border-radius: 0px 0px 12px 12px !important;
+        box-shadow: 0px -5px 25px -4px
+          rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity)) !important;
+      }
     }
+  }
+  @include e(options) {
+    padding: 5px;
 
     &__not-data {
       color: getColor('text');
@@ -551,8 +536,8 @@ $iconActiveMargin: -4px;
       opacity: 1 !important;
     }
 
-    ~ .#{namespace}-select__arrow,
-    ~ .#{namespace}-select__clearable {
+    ~ .#{$namespace}-select__arrow,
+    ~ .#{$namespace}-select__clearable {
       opacity: 0 !important;
     }
   }
