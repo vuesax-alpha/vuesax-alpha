@@ -18,14 +18,23 @@ export const popperContentProps = buildProps({
   },
   appendTo: {
     type: definePropType<string | HTMLElement>(String),
-    default: 'body',
+  },
+  // because model toggle prop is generated dynamically
+  // so the typing cannot be evaluated by typescript as type:
+  // [name]: { type: Boolean, default: null }
+  // so we need to declare that again for type checking.
+  /**
+   * @description visibility of Tooltip
+   */
+  visible: {
+    type: definePropType<boolean | null>(Boolean),
+    default: null,
   },
   teleported: {
     type: Boolean,
     default: true,
   },
   disabled: Boolean,
-  persistent: Boolean,
   options: {
     type: definePropType<Options>(Object),
   },
@@ -61,6 +70,8 @@ export const popperContentProps = buildProps({
     type: Number,
     default: 12,
   },
+  content: String,
+  rawContent: Boolean,
   popperClass: {
     type: definePropType<ClassType>([String, Array, Object]),
   },
