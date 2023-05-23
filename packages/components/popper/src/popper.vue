@@ -49,8 +49,7 @@ import {
   unref,
   watch,
 } from 'vue'
-import { useElementBounding } from '@vueuse/core'
-import { isBoolean } from 'lodash'
+import { isBoolean, useElementBounding } from '@vueuse/core'
 import {
   useDelayedToggle,
   useFloating,
