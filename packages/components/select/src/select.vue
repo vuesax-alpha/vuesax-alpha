@@ -1,126 +1,128 @@
 <template>
   <vs-popper
     ref="popperRef"
+    v-model:visible="dropMenuVisible"
     trigger="click"
+    :animation="optionsAnimation"
     :flip="false"
     :fit="fit"
     :hide-after="hideAfter"
     :show-after="showAfter"
     :loading="loading"
-    :style="selectStyle"
-    :visible="dropMenuVisible"
-    :placement="placement"
-    :popper-class="[ns.e('options'), useBaseComponent(color)]"
+    placement="bottom"
+    :popper-class="[ns.e('content'), useBaseComponent(color)]"
     :show-arrow="false"
     :offset="0"
     @show="handleMenuEnter"
   >
-    <template #default>
-      <div
-        v-click-outside:[popperPaneRef]="handleClose"
-        :class="selectKls"
-        :style="selectStyle"
-        @mouseenter="handleMouseEnter"
-        @mouseleave="handleMouseLeave"
-        @click.prevent="toggleMenu"
+    <div
+      ref="selectWrapper"
+      v-click-outside:[popperPaneRef]="handleClose"
+      :class="selectKls"
+      :style="selectStyle"
+      @mouseenter="handleMouseEnter"
+      @mouseleave="handleMouseLeave"
+      @click.prevent="toggleMenu"
+    >
+      <input
+        v-if="filter"
+        ref="input"
+        v-model="query"
+        type="text"
+        :class="[
+          ns.e('input'),
+          ns.e('input-filter'),
+          ns.is('disabled', selectDisabled),
+        ]"
+        :placeholder="states.selectedLabel ? '' : states.query ?? ''"
+        :disabled="selectDisabled"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        @keyup="managePlaceholder"
+        @keydown.down.prevent="navigateOptions('next')"
+        @keydown.up.prevent="navigateOptions('prev')"
+        @keydown.esc="handleKeydownEscape"
+        @keydown.enter.stop.prevent="selectOption"
+        @keydown.delete="deletePrevTag"
+        @keydown.tab="visible = false"
+        @compositionstart="handleComposition"
+        @compositionupdate="handleComposition"
+        @compositionend="handleComposition"
+        @input="debouncedQueryChange"
+      />
+      <vs-input
+        :id="inputId"
+        ref="reference"
+        :class="[ns.e('input'), ns.is('multiple', multiple)]"
+        :readonly="readonly"
+        :value="multiple ? '' : states.selectedLabel"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        @input="debouncedOnInputChange"
+        @paste="debouncedOnInputChange"
+        @compositionstart="handleComposition"
+        @compositionupdate="handleComposition"
+        @compositionend="handleComposition"
+        @keydown.down.prevent="navigateOptions('next')"
+        @keydown.up.prevent="navigateOptions('prev')"
+        @keydown.enter.prevent="selectOption"
+        @keydown.esc="handleKeydownEscape"
+        @keydown.tab="states.visible = false"
+      />
+
+      <label
+        v-if="label"
+        :for="inputId"
+        :class="[
+          ns.e('label'),
+          ns.is(
+            'placeholder',
+            labelFloat &&
+              !dropMenuVisible &&
+              (isEqual(modelValue, notValue) ||
+                (!modelValue && modelValue != 0))
+          ),
+        ]"
       >
-        <input
-          v-if="filter"
-          ref="input"
-          v-model="query"
-          type="text"
-          :class="[
-            ns.e('input'),
-            ns.e('input-filter'),
-            ns.is('disabled', selectDisabled),
-          ]"
-          :placeholder="states.selectedLabel ? '' : states.query ?? ''"
-          :disabled="selectDisabled"
-          @focus="handleFocus"
-          @blur="handleBlur"
-          @keyup="managePlaceholder"
-          @keydown.down.prevent="navigateOptions('next')"
-          @keydown.up.prevent="navigateOptions('prev')"
-          @keydown.esc="handleKeydownEscape"
-          @keydown.enter.stop.prevent="selectOption"
-          @keydown.delete="deletePrevTag"
-          @keydown.tab="visible = false"
-          @compositionstart="handleComposition"
-          @compositionupdate="handleComposition"
-          @compositionend="handleComposition"
-          @input="debouncedQueryChange"
-        />
-        <vs-input
-          :id="inputId"
-          ref="reference"
-          :class="[ns.e('input'), ns.is('multiple', multiple)]"
-          :readonly="readonly"
-          :value="multiple ? '' : states.selectedLabel"
-          @focus="handleFocus"
-          @blur="handleBlur"
-          @input="debouncedOnInputChange"
-          @paste="debouncedOnInputChange"
-          @compositionstart="handleComposition"
-          @compositionupdate="handleComposition"
-          @compositionend="handleComposition"
-          @keydown.down.prevent="navigateOptions('next')"
-          @keydown.up.prevent="navigateOptions('prev')"
-          @keydown.enter.prevent="selectOption"
-          @keydown.esc="handleKeydownEscape"
-          @keydown.tab="states.visible = false"
-        />
+        {{ label }}
+      </label>
 
-        <label
-          v-if="label"
-          :for="inputId"
-          :class="[
-            ns.e('label'),
-            ns.is(
-              'placeholder',
-              labelFloat &&
-                !dropMenuVisible &&
-                (isEqual(modelValue, notValue) ||
-                  (!modelValue && modelValue != 0))
-            ),
-          ]"
-        >
-          {{ label }}
-        </label>
+      <span
+        v-if="!multiple && !labelFloat && states.currentPlaceholder"
+        :class="[ns.e('placeholder'), ns.is('hidden', !!modelValue)]"
+      >
+        {{ states.currentPlaceholder }}
+      </span>
 
+      <vs-icon :class="ns.e('arrow')" size="14"><chevron-down /></vs-icon>
+
+      <transition name="v-clearable">
         <span
-          v-if="!multiple && !labelFloat && states.currentPlaceholder"
-          :class="[ns.e('placeholder'), ns.is('hidden', !!modelValue)]"
+          v-if="showClose"
+          class="vs-select__clearable"
+          @click="handleClearClick"
         >
-          {{ states.currentPlaceholder }}
+          <icon-close hover="less" scale="0.675" />
         </span>
-
-        <vs-icon :class="ns.e('arrow')" size="14"><chevron-down /></vs-icon>
-
-        <transition name="v-clearable">
-          <span
-            v-if="showClose"
-            class="vs-select__clearable"
-            @click="handleClearClick"
-          >
-            <icon-close hover="less" scale="0.675" />
-          </span>
-        </transition>
-      </div>
-    </template>
+      </transition>
+    </div>
 
     <template #content>
-      <div :class="ns.e('content')">
-        <vs-scrollbar thickness="3" max-height="200" :native="nativeScrollbar">
-          <slot />
-        </vs-scrollbar>
-      </div>
+      <vs-scrollbar
+        max-height="200"
+        thickness="3"
+        :wrap-class="ns.e('options')"
+        :native="nativeScrollbar"
+      >
+        <slot />
+      </vs-scrollbar>
     </template>
   </vs-popper>
 </template>
 
 <script lang="ts" setup>
 import { computed, onMounted, provide, reactive, toRefs } from 'vue'
-import { useResizeObserver } from '@vueuse/core'
+import { unrefElement, useResizeObserver } from '@vueuse/core'
 import { isEqual } from 'lodash-unified'
 import { ClickOutside as vClickOutside } from '@vuesax-alpha/directives'
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
@@ -146,6 +148,8 @@ const emit = defineEmits(selectEmits)
 const ns = useNamespace('select')
 
 const states = useSelectStates(props)
+
+const optionsAnimation = computed(() => ns.b())
 
 const {
   debouncedQueryChange,
@@ -197,7 +201,7 @@ const {
 
 // @ts-ignore - directive: v-click-outside element
 const popperPaneRef = computed(() => {
-  return popperRef.value?.contentRef
+  return unrefElement(popperRef.value?.contentRef)
 })
 
 if (props.multiple && !Array.isArray(props.modelValue)) {
@@ -219,6 +223,7 @@ const selectKls = computed(() => [
   ns.is('disabled', selectDisabled.value),
   ns.is('multiple', props.multiple),
   ns.is('loading', props.loading),
+  ns.is(popperRef.value?.popperPlacement ?? 'botton'),
   { [ns.m('has-label')]: props.label || props.labelFloat },
 ])
 
