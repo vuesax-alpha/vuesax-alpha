@@ -22,7 +22,7 @@ import { computed, inject, unref } from 'vue'
 import { useNamespace } from '@vuesax-alpha/hooks'
 import { VsOnlyChild } from '@vuesax-alpha/components/slot'
 import { popperContextKey } from '@vuesax-alpha/tokens'
-import { popperContentProps } from './content'
+import { popperContentEmits, popperContentProps } from './content'
 
 defineOptions({
   name: 'VsPopper',
@@ -36,6 +36,7 @@ const { contentRef, stopShow, startHide, stopHide, open } = inject(
 )!
 
 const props = defineProps(popperContentProps)
+defineEmits(popperContentEmits)
 
 const persistentRef = computed(() => {
   // For testing, we would always want the content to be rendered

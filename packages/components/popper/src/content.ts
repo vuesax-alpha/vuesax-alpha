@@ -1,5 +1,6 @@
 import { buildProps, definePropType } from '@vuesax-alpha/utils'
 import { defaultZIndex, placements } from '@vuesax-alpha/constants'
+import type { EmitFn } from '@vuesax-alpha/utils'
 import type { Options, Placement, Strategy } from '@vuesax-alpha/hooks'
 import type Content from './content.vue'
 
@@ -69,5 +70,15 @@ export const popperContentProps = buildProps({
 })
 
 export type PopperContentProps = ExtractPropTypes<typeof popperContentProps>
+
+export const popperContentEmits = {
+  mouseenter: (evt: MouseEvent) => evt instanceof MouseEvent,
+  mouseleave: (evt: MouseEvent) => evt instanceof MouseEvent,
+  focus: () => true,
+  blur: () => true,
+  close: () => true,
+}
+export type PopperContentEmits = typeof popperContentEmits
+export type PopperContentEmitFn = EmitFn<PopperContentEmits>
 
 export type PopperContentInstance = InstanceType<typeof Content>
