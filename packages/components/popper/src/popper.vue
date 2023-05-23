@@ -28,25 +28,54 @@
     :offset="offset"
     :popper-class="popperClass"
     :popper-style="popperStyle"
+    :disabled="disabled"
+    @blur="onBlur"
+    @close="onClose"
   >
     <slot name="content" />
   </popper-content>
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, provide, reactive, ref, watch } from 'vue'
-import { useElementBounding, useTimeoutFn } from '@vueuse/core'
-import { useFloating, useZIndex } from '@vuesax-alpha/hooks'
+import {
+  computed,
+  nextTick,
+  onDeactivated,
+  provide,
+  reactive,
+  readonly,
+  ref,
+  toRef,
+  unref,
+  watch,
+} from 'vue'
+import { useElementBounding } from '@vueuse/core'
+import { isBoolean } from 'lodash'
+import {
+  useDelayedToggle,
+  useFloating,
+  usePopperContainer,
+  usePopperContainerId,
+  useZIndex,
+} from '@vuesax-alpha/hooks'
 import { popperContextKey } from '@vuesax-alpha/tokens'
-import { popperProps } from './popper'
+import { popperEmits, popperProps, usePopperModelToggle } from './popper'
 import popperContent from './content.vue'
 import popperTrigger from './trigger.vue'
 
 defineOptions({
   name: 'VsPopper',
+  inheritAttrs: false,
 })
 
+usePopperContainer()
+
+const { selector, id } = usePopperContainerId()
+
+const appendTo = computed(() => props.appendTo || selector.value)
+
 const props = defineProps(popperProps)
+const emit = defineEmits(popperEmits)
 
 const { currentZIndex, nextZIndex } = useZIndex()
 
@@ -56,64 +85,128 @@ const triggerRef = ref<HTMLElement>()
 const contentRef = ref<HTMLElement>()
 const triggerBounding = reactive(useElementBounding(triggerRef))
 
-const open = ref<boolean>(false)
-
 const {
   destroy,
   update,
   placement: popperPlacement,
 } = useFloating(triggerRef, contentRef, props)
 
-const { start: startShow, stop: stopShow } = useTimeoutFn(
-  () => {
-    if (!open.value) nextZIndex()
-    show()
-  },
-  props.showAfter,
-  { immediate: false }
+const open = ref(false)
+const toggleReason = ref<Event>()
+
+const { show, hide, hasUpdateHandler } = usePopperModelToggle({
+  indicator: open,
+  toggleReason,
+})
+
+const { onOpen, onClose } = useDelayedToggle({
+  showAfter: toRef(props, 'showAfter'),
+  hideAfter: toRef(props, 'hideAfter'),
+  open: show,
+  close: hide,
+})
+
+const controlled = computed(
+  () => isBoolean(props.visible) && !hasUpdateHandler.value
 )
 
-const { start: startHide, stop: stopHide } = useTimeoutFn(
-  () => {
-    hide()
-  },
-  props.hideAfter,
-  { immediate: false }
-)
-
-const show = () => {
-  open.value = true
+const updatePopper = (shouldUpdateZIndex = true) => {
+  update()
+  shouldUpdateZIndex && nextZIndex()
 }
 
-const hide = () => {
-  open.value = false
+const onBlur = () => {
+  if (!props.virtualTriggering) {
+    onClose()
+  }
 }
 
 const isFocusInsideContent = () => {
   return !!contentRef.value?.contains(document.activeElement)
 }
 
+watch(
+  () => props.disabled,
+  (disabled) => {
+    if (disabled && open.value) {
+      open.value = false
+    }
+  }
+)
+
+onDeactivated(() => open.value && hide())
+
 provide(popperContextKey, {
-  open,
   contentRef,
   triggerRef,
   referenceRef: triggerRef,
-  startShow,
-  stopShow,
-  startHide,
-  stopHide,
+
+  controlled,
+  id,
+  open: readonly(open),
+  trigger: toRef(props, 'trigger'),
+  onOpen: (event?: Event) => {
+    onOpen(event)
+  },
+  onClose: (event?: Event) => {
+    onClose(event)
+  },
+  onToggle: (event?: Event) => {
+    if (unref(open)) {
+      onClose(event)
+    } else {
+      onOpen(event)
+    }
+  },
+  onShow: () => {
+    emit('show', toggleReason.value)
+  },
+  onHide: () => {
+    emit('hide', toggleReason.value)
+  },
+  onBeforeShow: () => {
+    emit('before-show', toggleReason.value)
+  },
+  onBeforeHide: () => {
+    emit('before-hide', toggleReason.value)
+  },
+  updatePopper,
 })
 
 defineExpose(
   reactive({
-    isVisible: open,
-    contentRef,
+    /**
+     * @description el-popper component instance
+     */
     triggerRef,
-    show,
-    hide,
-    update,
-    destroy,
+    /**
+     * @description el-tooltip-content component instance
+     */
+    contentRef,
+    /**
+     * @description validate current focus event is trigger inside el-tooltip-content
+     */
     isFocusInsideContent,
+    /**
+     * @description update el-popper component instance
+     */
+    updatePopper,
+    /**
+     * @description expose onOpen function to mange el-tooltip open state
+     */
+    onOpen,
+    /**
+     * @description expose onOpen function to mange el-tooltip open state
+     */
+    onClose,
+    /**
+     * @description expose hide function
+     */
+    hide,
+    /**
+     * @description expose current poppper placement
+     */
+    popperPlacement,
   })
 )
 
