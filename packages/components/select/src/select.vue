@@ -223,7 +223,7 @@ const selectKls = computed(() => [
   ns.is('disabled', selectDisabled.value),
   ns.is('multiple', props.multiple),
   ns.is('loading', props.loading),
-  ns.is(popperRef.value?.popperPlacement ?? 'botton'),
+  ns.is(popperRef.value?.popperPlacement ?? 'bottom'),
   { [ns.m('has-label')]: props.label || props.labelFloat },
 ])
 
