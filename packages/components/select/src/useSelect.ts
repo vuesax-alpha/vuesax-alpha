@@ -73,15 +73,15 @@ export const useSelect = (
   const ns = useNamespace('select')
 
   // template refs
-  const reference = ref<HTMLInputElement | null>(null)
-  const input = ref<HTMLInputElement | null>(null)
-  const popperRef = ref<PopperExpose | null>(null)
-  const tags = ref<HTMLElement | null>(null)
-  const selectWrapper = ref<HTMLElement | null>(null)
+  const reference = ref<HTMLInputElement>()
+  const input = ref<HTMLInputElement>()
+  const popperRef = ref<PopperExpose>()
+  const tags = ref<HTMLElement>()
+  const selectWrapper = ref<HTMLElement>()
   const scrollbar = ref<{
     handleScroll: () => void
-  } | null>(null)
-  const hoverOption = ref<SelectOptionContext | null>()
+  }>()
+  const hoverOption = ref<SelectOptionContext>()
   const query = shallowRef<string>('')
   const inputId = useId(props.id)
   const groupQuery = shallowRef('')
@@ -214,7 +214,7 @@ export const useSelect = (
           }
         }
       } else {
-        popperRef.value?.update?.()
+        popperRef.value?.updatePopper()
 
         if (props.filter) {
           states.filteredOptionsCount = states.optionsCount
@@ -247,7 +247,7 @@ export const useSelect = (
     () => states.options.entries(),
     () => {
       if (!isClient) return
-      popperRef.value?.update?.()
+      popperRef.value?.updatePopper()
 
       const inputs = selectWrapper.value?.querySelectorAll('input') || []
       if (
@@ -290,7 +290,7 @@ export const useSelect = (
     }
     states.previousQuery = val
     nextTick(() => {
-      if (states.visible) popperRef.value?.update?.()
+      if (states.visible) popperRef.value?.updatePopper()
     })
     states.hoverIndex = -1
     if (props.multiple && props.filter) {
@@ -439,7 +439,7 @@ export const useSelect = (
   }
 
   const handleResize = () => {
-    popperRef.value?.update?.()
+    popperRef.value?.updatePopper()
   }
 
   const onInputChange = () => {
@@ -715,7 +715,7 @@ export const useSelect = (
       if (states.menuVisibleOnFocus) {
         states.menuVisibleOnFocus = false
       } else {
-        if (!popperRef.value || !popperRef.value.isFocusInsideContent()) {
+        if (!popperRef.value || !popperRef.value.isFocusInsideContent) {
           states.visible = !states.visible
         }
       }
