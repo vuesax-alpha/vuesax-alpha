@@ -1,5 +1,5 @@
 import { isNil } from 'lodash-unified'
-import { useColorProp, useDelayedToggleProps } from '@vuesax-alpha/hooks'
+import { useColorProp } from '@vuesax-alpha/hooks'
 import {
   buildProps,
   definePropType,
@@ -9,8 +9,6 @@ import {
   isObject,
   isString,
 } from '@vuesax-alpha/utils'
-import { placements } from '@vuesax-alpha/constants'
-import type { Placement } from '@vuesax-alpha/hooks'
 import type { EmitFn } from '@vuesax-alpha/utils'
 import type { SelectOptionValue, SelectValue } from './tokens'
 
@@ -18,10 +16,13 @@ import type { ExtractPropTypes } from 'vue'
 import type Select from './select.vue'
 
 export const selectProps = buildProps({
-  ...useDelayedToggleProps,
-  placement: {
-    type: definePropType<Placement>(String),
-    values: placements,
+  showAfter: {
+    type: Number,
+    default: 0,
+  },
+  hideAfter: {
+    type: Number,
+    default: 0,
   },
   fit: {
     type: Boolean,
