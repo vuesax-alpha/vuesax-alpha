@@ -173,7 +173,7 @@ importers:
       vue: ^3.3.4
       vue-router: ^4.2.1
       vuepress: 2.0.0-beta.62
-      vuesax-alpha: 0.2.0-beta.9
+      vuesax-alpha: npm:vuesax-alpha@latest
     dependencies:
       '@vuepress/shared-utils': 1.9.9
       '@vueuse/components': 9.13.0_vue@3.3.4
@@ -7465,7 +7465,7 @@ packages:
     resolution: {integrity: sha512-MGIE4HOvQCeUCzmlHs0vXpih4ysz4wg9qiSAu6cd42lVwPbTM1TjV7RusoyQqMmk/95gdQZX72u+YW+c3eEpFQ==}
     engines: {node: '>=14.14'}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       jsonfile: 6.1.0
       universalify: 2.0.0
     dev: true
@@ -7498,7 +7498,7 @@ packages:
     resolution: {integrity: sha512-+vSd9frUnapVC2RZYfL3FCB2p3g4TBhaUmrsWlSudsGdnxIuUvBB2QM1VZeBtc49QFwrp+wQLrDs3+xxDgI5gQ==}
     engines: {node: '>= 0.10'}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       through2: 2.0.5
     dev: false
 
@@ -9048,7 +9048,7 @@ packages:
     resolution: {integrity: sha512-cy7ZdNRXdablkXYNI049pthVeXFurRyb9+hA/dZzerZ0pGTx42z+y+ssxBaVV2l70t1muq5IdKhn4UtcoGUY9A==}
     engines: {node: '>=0.10.0'}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       parse-json: 2.2.0
       pify: 2.3.0
       pinkie-promise: 2.0.1
@@ -9059,7 +9059,7 @@ packages:
     resolution: {integrity: sha512-Kx8hMakjX03tiGTLAIdJ+lL0htKnXjEZN6hk/tozf/WOuYGdZBJrZ+rCJRbVCugsjB3jMLn9746NsQIf5VjBMw==}
     engines: {node: '>=4'}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       parse-json: 4.0.0
       pify: 3.0.0
       strip-bom: 3.0.0
@@ -9069,7 +9069,7 @@ packages:
     resolution: {integrity: sha512-gUD/epcRms75Cw8RT1pUdHugZYM5ce64ucs2GEISABwkRsOQr0q2wm/MV2TKThycIe5e0ytRweW2RZxclogCdQ==}
     engines: {node: '>=8'}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       parse-json: 5.2.0
       strip-bom: 4.0.0
       type-fest: 0.6.0
@@ -10355,7 +10355,7 @@ packages:
     resolution: {integrity: sha512-S4eENJz1pkiQn9Znv33Q+deTOKmbl+jj1Fl+qiP/vYezj+S8x+J3Uo0ISrx/QoEvIlOaDWJhPaRd1flJ9HXZqg==}
     engines: {node: '>=0.10.0'}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       pify: 2.3.0
       pinkie-promise: 2.0.1
     dev: false
@@ -10850,7 +10850,7 @@ packages:
     resolution: {integrity: sha512-1JU/8q+VgFZyxwrJ+SVIOsh+KywWGpds3NTqikiKpDMZWScmAYyKIgqkO+ARvNWJfXeXR1zxz7aHF4u4CyH6vQ==}
     engines: {node: '>=0.10'}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       micromatch: 3.1.10
       readable-stream: 2.3.7
     transitivePeerDependencies:
@@ -12718,7 +12718,7 @@ packages:
     dependencies:
       append-buffer: 1.0.2
       convert-source-map: 1.9.0
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       normalize-path: 2.1.1
       now-and-later: 2.0.1
       remove-bom-buffer: 3.0.0
