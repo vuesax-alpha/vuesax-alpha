@@ -2,58 +2,50 @@
 @use 'mixins/var' as *;
 @use 'common/var' as *;
 
-@include b(popper) {
-  &-enter-active,
-  &-leave-active {
-    transition: all 0.25s ease, transform 0s;
-  }
-  &-enter-from,
-  &-leave-to {
-    opacity: 0;
-    &[data-popper-placement='top'] {
-      margin-bottom: -5px !important;
-    }
-    &[data-popper-placement='bottom'] {
-      margin-bottom: 5px !important;
-    }
-    &[data-popper-placement='left'] {
-      margin-left: 5px !important;
-    }
-    &[data-popper-placement='right'] {
-      margin-left: -5px !important;
-    }
-  }
+@include b(tooltip) {
+  @include set-var-value(color, getCssVar(text));
 
-  &.loading {
+  background: getColor('color');
+  color: getColor('background');
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  max-width: 350px;
+  min-width: 30px;
+  min-height: 30px;
+
+  @include when(loading) {
     color: getColor('background', 0.2);
     * {
       opacity: 0.5;
       pointer-events: none;
     }
   }
-  &.borderThick {
+  @include when(border-thick) {
     background: getColor('background');
     color: getColor('color');
     box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, getCssVar(shadow-opacity));
-    &.top {
+
+    &[data-popper-placement='top'] {
       border-bottom: 4px solid getColor('color');
       &:after {
         bottom: -7px;
       }
     }
-    &.left {
+    &[data-popper-placement='left'] {
       border-right: 4px solid getColor('color');
       &:after {
         right: -7px;
       }
     }
-    &.right {
+    &[data-popper-placement='right'] {
       border-left: 4px solid getColor('color');
       &:after {
         left: -7px;
       }
     }
-    &.bottom {
+    &[data-popper-placement='bottom'] {
       border-top: 4px solid getColor('color');
       &:after {
         top: -7px;
@@ -75,7 +67,7 @@
       background: getColor('color') !important;
     }
   }
-  &.border {
+  @include when(border) {
     background: getColor('background');
     color: getColor('color');
     border: 2px solid getColor('color');
@@ -96,18 +88,18 @@
       height: 12px !important;
     }
   }
-  &.circle {
+  @include when(circle) {
     border-radius: 20px;
   }
-  &.square {
+  @include when(square) {
     border-radius: 0px;
   }
-  &.notArrow {
+  @include when(not-arrow) {
     &:after {
       display: none;
     }
   }
-  &.shadow {
+  @include when(shadow) {
     background: getColor('background');
     color: getColor('color');
     box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, getCssVar(shadow-opacity));
@@ -127,9 +119,8 @@
       box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, getCssVar(shadow-opacity));
     }
   }
-
   @include when(light) {
-    --vs-color: var(--vs-gray-3);
+    @include set-var-value(color, getCssVar(gray-3));
     color: $color-white;
   }
 }

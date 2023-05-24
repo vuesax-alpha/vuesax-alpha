@@ -4,7 +4,6 @@ import {
   isNumber,
   mutable,
 } from '@vuesax-alpha/utils'
-import { popperCoreConfigProps } from '@vuesax-alpha/components/popper/src/content'
 import type { EmitFn } from '@vuesax-alpha/utils'
 import type { ExtractPropTypes } from 'vue'
 import type Sizes from './sizes.vue'
@@ -18,7 +17,6 @@ export const paginationSizesProps = buildProps({
     type: definePropType<number[]>(Array),
     default: () => mutable([10, 20, 30, 40, 50, 100] as const),
   },
-  popperOptions: popperCoreConfigProps.popperOptions,
 } as const)
 
 export type PaginationSizesProps = ExtractPropTypes<typeof paginationSizesProps>

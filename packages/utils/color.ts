@@ -63,26 +63,26 @@ export const setColor = (
   if (isRgbColor(color)) {
     const arrayColor = color.replace(/[rgba()]/g, '').split(',')
     newColor = `${arrayColor[0]},${arrayColor[1]},${arrayColor[2]}`
-    setVsCssVar(colorName, newColor, el)
+    setCssVar(colorName, newColor, el)
     if (addClass) {
       el.classList.add(`${namespace}-change-color`)
     }
   } else if (isHexColor(color)) {
     const rgb = hexToRgb(color)
     newColor = `${rgb!.r},${rgb!.g},${rgb!.b}`
-    setVsCssVar(colorName, newColor, el)
+    setCssVar(colorName, newColor, el)
     if (addClass) {
       el.classList.add(`${namespace}-change-color`)
     }
   } else if (isVsColor(color)) {
     const style = window.getComputedStyle(document.body)
     newColor = style.getPropertyValue(`--${namespace}-${color}`)
-    setVsCssVar(colorName, newColor, el)
+    setCssVar(colorName, newColor, el)
     if (addClass) {
       el.classList.add(`${namespace}-change-color`)
     }
   } else if (isRGBNumbers(color)) {
-    setVsCssVar(colorName, color, el)
+    setCssVar(colorName, color, el)
     if (addClass) {
       el.classList.add(`${namespace}-change-color`)
     }
@@ -132,7 +132,13 @@ export const getVsColor = (color?: string, namespace = 'vs'): string => {
   return newColor
 }
 
-export const setVsCssVar = (
+/**
+ * @param propertyName The name of the property
+ * @param value The value of the property
+ * @param el The element to set the property. Default document.documentElement
+ * @param namespace The namespace of vs app. Default'vs'
+ */
+export const setCssVar = (
   propertyName: string,
   value: string,
   el?: HTMLElement,

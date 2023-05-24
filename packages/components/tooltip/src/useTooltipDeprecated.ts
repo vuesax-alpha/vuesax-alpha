@@ -7,18 +7,6 @@ export const useTooltipDeprecated = (props: TooltipProps) => {
     {
       scope: 'vs-tooltip',
       type: 'Prop',
-      from: 'v-model / modelValue',
-      version: '0.0.2',
-      replacement: 'visible',
-      ref: 'https://vuesax.space/components/tooltip#props',
-    },
-    computed(() => !!props.modelValue)
-  )
-
-  useDeprecated(
-    {
-      scope: 'vs-tooltip',
-      type: 'Prop',
       from: '[top, right, bottom, left]',
       version: '0.0.2',
       replacement: 'placement',

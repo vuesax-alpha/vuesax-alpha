@@ -19,7 +19,7 @@ export const barProps = buildProps({
   },
   thickness: {
     type: [Number, String],
-    default: 8,
+    default: 6,
   },
 } as const)
 export type BarProps = ExtractPropTypes<typeof barProps>

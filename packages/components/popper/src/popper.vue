@@ -1,60 +1,231 @@
 <template>
-  <slot />
+  <popper-trigger
+    :disabled="disabled"
+    :trigger="trigger"
+    :virtual-ref="virtualRef"
+    :virtual-triggering="virtualTriggering"
+    :on-mouseenter="onMouseenter"
+    :on-mouseleave="onMouseleave"
+    :on-click="onClick"
+    :on-keydown="onKeydown"
+    :on-focus="onFocus"
+    :on-blur="onBlur"
+    :on-contextmenu="onContextmenu"
+  >
+    <slot />
+  </popper-trigger>
+
+  <popper-content
+    :animation="animation"
+    :append-to="appendTo"
+    :teleported="teleported"
+    :options="options"
+    :strategy="strategy"
+    :fit="fit"
+    :placement="popperPlacement"
+    :z-index="zIndex"
+    :interactivity="interactivity"
+    :offset="offset"
+    :popper-class="popperClass"
+    :popper-style="popperStyle"
+    :disabled="disabled"
+    @blur="onBlur"
+    @close="onClose"
+  >
+    <slot name="content" />
+  </popper-content>
 </template>
 
-<script lang="ts" setup>
-import { computed, provide, ref } from 'vue'
-import { popperInjectionKey } from '@vuesax-alpha/tokens'
-import { popperProps } from './popper'
-import type { Instance } from '@popperjs/core'
-import type { Measurable, PopperInjectionContext } from '@vuesax-alpha/tokens'
+<script setup lang="ts">
+import {
+  computed,
+  nextTick,
+  onDeactivated,
+  provide,
+  reactive,
+  readonly,
+  ref,
+  toRef,
+  unref,
+  watch,
+} from 'vue'
+import { isBoolean, useElementBounding } from '@vueuse/core'
+import {
+  useDelayedToggle,
+  useFloating,
+  usePopperContainer,
+  usePopperContainerId,
+  useZIndex,
+} from '@vuesax-alpha/hooks'
+import { popperContextKey } from '@vuesax-alpha/tokens'
+import { popperEmits, popperProps, usePopperModelToggle } from './popper'
+import popperContent from './content.vue'
+import popperTrigger from './trigger.vue'
 
 defineOptions({
-  name: 'VsPopperRoot',
+  name: 'VsPopper',
   inheritAttrs: false,
 })
 
+usePopperContainer()
+
+const { selector, id } = usePopperContainerId()
+
+const appendTo = computed(() => props.appendTo || selector.value)
+
 const props = defineProps(popperProps)
+const emit = defineEmits(popperEmits)
+
+const { currentZIndex, nextZIndex } = useZIndex()
+
+const zIndex = computed(() => currentZIndex.value)
+
 const triggerRef = ref<HTMLElement>()
-const popperInstance = ref<Instance>()
 const contentRef = ref<HTMLElement>()
-const referenceRef = ref<HTMLElement>()
-const role = computed(() => props.role)
+const triggerBounding = reactive(useElementBounding(triggerRef))
 
-const popperProvides = {
-  /**
-   * @description trigger element
-   */
-  triggerRef,
-  /**
-   * @description popperjs instance
-   */
-  popperInstance,
-  /**
-   * @description popper content element
-   */
-  contentRef,
-  /**
-   * @description popper reference element
-   */
-  referenceRef,
-  /**
-   * @description role determines how aria attributes are distributed
-   */
-  role,
-} as PopperInjectionContext
+const {
+  destroy,
+  update,
+  placement: popperPlacement,
+} = useFloating(triggerRef, contentRef, props)
 
-defineExpose(popperProvides)
+const open = ref(false)
+const toggleReason = ref<Event>()
 
-provide(popperInjectionKey, popperProvides)
-</script>
+const { show, hide, hasUpdateHandler } = usePopperModelToggle({
+  indicator: open,
+  toggleReason,
+  processBeforeClosing: () => props.processBeforeClose(),
+  shouldProceed: () => props.processBeforeOpen(),
+})
 
-<script lang="ts">
-export interface PopperExpose {
-  readonly triggerRef: Measurable | undefined
-  readonly popperInstance: Instance | undefined
-  readonly contentRef: HTMLElement | undefined
-  readonly referenceRef: Measurable | undefined
-  readonly role: string
+const { onOpen, onClose } = useDelayedToggle({
+  showAfter: toRef(props, 'showAfter'),
+  hideAfter: toRef(props, 'hideAfter'),
+  open: show,
+  close: hide,
+})
+
+const controlled = computed(
+  () => isBoolean(props.visible) && !hasUpdateHandler.value
+)
+
+const updatePopper = (shouldUpdateZIndex = true) => {
+  update()
+  shouldUpdateZIndex && nextZIndex()
 }
+
+const onBlur = () => {
+  if (!props.virtualTriggering) {
+    onClose()
+  }
+}
+
+const isFocusInsideContent = () => {
+  return !!contentRef.value?.contains(document.activeElement)
+}
+
+watch(
+  () => props.disabled,
+  (disabled) => {
+    if (disabled && open.value) {
+      open.value = false
+    }
+  }
+)
+
+onDeactivated(() => open.value && hide())
+
+provide(popperContextKey, {
+  contentRef,
+  triggerRef,
+  referenceRef: triggerRef,
+
+  controlled,
+  id,
+  open: readonly(open),
+  trigger: toRef(props, 'trigger'),
+  onOpen,
+  onClose,
+  onToggle: (event?: Event) => {
+    if (unref(open)) {
+      onClose(event)
+    } else {
+      onOpen(event)
+    }
+  },
+  onShow: () => {
+    emit('show', toggleReason.value)
+  },
+  onHide: () => {
+    emit('hide', toggleReason.value)
+  },
+  onBeforeShow: () => {
+    emit('before-show', toggleReason.value)
+  },
+  onBeforeHide: () => {
+    emit('before-hide', toggleReason.value)
+  },
+  updatePopper,
+})
+
+defineExpose(
+  reactive({
+    /**
+     * @description el-popper component instance
+     */
+    triggerRef,
+    /**
+     * @description el-tooltip-content component instance
+     */
+    contentRef,
+    /**
+     * @description validate current focus event is trigger inside el-tooltip-content
+     */
+    isFocusInsideContent,
+    /**
+     * @description update el-popper component instance
+     */
+    updatePopper,
+    /**
+     * @description expose onOpen function to mange el-tooltip open state
+     */
+    onOpen,
+    /**
+     * @description expose onOpen function to mange el-tooltip open state
+     */
+    onClose,
+    /**
+     * @description expose hide function
+     */
+    hide,
+    /**
+     * @description expose current poppper placement
+     */
+    popperPlacement,
+  })
+)
+
+watch([open, triggerBounding], ([isOpen]) => {
+  if (isOpen) update()
+})
+
+watch(
+  [triggerRef],
+  ([referenceElement]) => {
+    destroy()
+
+    if (!referenceElement) return
+
+    if (open.value) {
+      nextTick(() => {
+        update()
+      })
+    }
+  },
+  {
+    flush: 'post',
+  }
+)
 </script>

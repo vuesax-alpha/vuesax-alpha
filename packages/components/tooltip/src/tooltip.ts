@@ -1,58 +1,55 @@
-import { buildProps } from '@vuesax-alpha/utils'
-import { createModelToggleComposable } from '@vuesax-alpha/hooks'
-import { popperArrowProps, popperProps } from '@vuesax-alpha/components/popper'
-import { tooltipContentProps } from './content'
-import { tooltipTriggerProps } from './trigger'
+import { buildProps, definePropType } from '@vuesax-alpha/utils'
+import { popperProps } from '@vuesax-alpha/components/popper'
 import type Tooltip from './tooltip.vue'
 
 import type { ExtractPropTypes } from 'vue'
 
-export const {
-  useModelToggleProps: useTooltipModelToggleProps,
-  useModelToggleEmits: useTooltipModelToggleEmits,
-  useModelToggle: useTooltipModelToggle,
-} = createModelToggleComposable('visible' as const)
-
-export const useTooltipProps = buildProps({
+export const tooltipProps = buildProps({
   ...popperProps,
-  ...useTooltipModelToggleProps,
-  ...tooltipContentProps,
-  ...tooltipTriggerProps,
-  ...popperArrowProps,
-
-  showArrow: {
-    type: Boolean,
-    default: true,
+  animation: {
+    type: String,
+    default: 'tooltip',
   },
-
-  /** @description tooltip is loading */
-  loading: Boolean,
-
+  interactivity: {
+    type: Boolean,
+    default: false,
+  },
+  appendTo: {
+    type: definePropType<string | HTMLElement>(String),
+  },
+  /**
+   * @description tooltip style
+   * @enum `shadow` | `border` | `border-thick`
+   * */
+  type: {
+    type: String,
+    values: ['shadow', 'border', 'border-thick'] as const,
+    default: '',
+  },
   /**
    * @description Change the border radius
    * @enum `circle` | `square`
    * */
   shape: {
     type: String,
-    values: ['circle', 'square'] as const,
-  },
-
-  /**
-   * @description tooltip style
-   * @enum `shadow` | `border` | `border-thick`
-   * @default ''
-   * */
-  type: {
-    type: String,
-    values: ['', 'shadow', 'border', 'border-thick'] as const,
+    values: ['circle', 'square', 'default'] as const,
     default: '',
   },
+  effect: {
+    type: String,
+    values: ['light', 'dark'] as const,
+    default: 'dark',
+  },
+  showArrow: {
+    type: Boolean,
+    default: true,
+  },
 
-  /** @deprecated use showArraw instead. */
-  notArrow: Boolean,
-
-  /** @deprecated use visible instead */
-  modelValue: Boolean,
+  loading: Boolean,
+  offset: {
+    type: Number,
+    default: 8,
+  },
 
   /** @deprecated use placement instead*/
   bottom: Boolean,
@@ -73,24 +70,22 @@ export const useTooltipProps = buildProps({
   /** @deprecated use type instead */
   borderThick: Boolean,
 
-  /** @deprecated use enterable instead. */
-  interactivity: Boolean,
   /** @deprecated use shape instead */
   square: Boolean,
   /** @deprecated use shape instead */
   circle: Boolean,
 })
 
-export const tooltipEmits = [
-  ...useTooltipModelToggleEmits,
-  'before-show',
-  'before-hide',
-  'show',
-  'hide',
-  'open',
-  'close',
-]
-
-export type TooltipProps = ExtractPropTypes<typeof useTooltipProps>
+export type TooltipProps = ExtractPropTypes<typeof tooltipProps>
 
 export type TooltipInstance = InstanceType<typeof Tooltip>
+
+export type TooltipExpose = {
+  isVisible: boolean
+  contentRef: HTMLElement | undefined
+  triggerRef: HTMLElement | undefined
+  show: () => void
+  hide: () => void
+  update: () => void
+  destroy: () => void
+}

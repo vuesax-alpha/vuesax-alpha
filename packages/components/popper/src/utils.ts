@@ -1,90 +1,25 @@
-import { isClient, unrefElement } from '@vueuse/core'
+import { unref } from 'vue'
+import { isArray } from '@vuesax-alpha/utils'
+import type { Arrayable } from '@vuesax-alpha/utils'
+import type { Ref } from 'vue'
+import type { PopperTriggerType } from './trigger'
 
-import type { ComponentPublicInstance } from 'vue'
-import type { MaybeRef } from '@vueuse/core'
-import type { Measurable } from '@vuesax-alpha/tokens'
-import type { PopperCoreConfigProps } from './content'
-
-type ArrowProps = {
-  arrowEl: HTMLElement | undefined
-  arrowOffset: number | undefined
-}
-
-export const buildPopperOptions = (
-  props: PopperCoreConfigProps,
-  arrowProps: ArrowProps
+export const isTriggerType = (
+  trigger: Arrayable<PopperTriggerType>,
+  type: PopperTriggerType
 ) => {
-  const { placement, strategy, popperOptions } = props
-  const options = {
-    placement,
-    strategy,
-    ...popperOptions,
-    modifiers: genModifiers(props),
+  if (isArray(trigger)) {
+    return trigger.includes(type)
   }
-
-  attachArrow(options, arrowProps)
-  deriveExtraModifiers(options, popperOptions?.modifiers)
-  return options
+  return trigger === type
 }
 
-export const unwrapMeasurableEl = (
-  $el: MaybeRef<Measurable | undefined | ComponentPublicInstance>
+export const whenTrigger = (
+  trigger: Ref<Arrayable<PopperTriggerType>>,
+  type: PopperTriggerType,
+  handler: (e: Event) => void
 ) => {
-  if (!isClient) return
-  return unrefElement($el as HTMLElement)
-}
-
-function genModifiers(options: PopperCoreConfigProps) {
-  const { offset, gpuAcceleration, fallbackPlacements } = options
-  return [
-    {
-      name: 'offset',
-      options: {
-        offset: [0, offset ?? 12],
-      },
-    },
-    {
-      name: 'preventOverflow',
-      options: {
-        padding: {
-          top: 2,
-          bottom: 2,
-          left: 5,
-          right: 5,
-        },
-      },
-    },
-    {
-      name: 'flip',
-      options: {
-        padding: 5,
-        fallbackPlacements,
-      },
-    },
-    {
-      name: 'computeStyles',
-      options: {
-        gpuAcceleration,
-      },
-    },
-  ]
-}
-
-function attachArrow(options: any, { arrowEl, arrowOffset }: ArrowProps) {
-  options.modifiers.push({
-    name: 'arrow',
-    options: {
-      element: arrowEl,
-      padding: arrowOffset ?? 5,
-    },
-  } as any)
-}
-
-function deriveExtraModifiers(
-  options: any,
-  modifiers: PopperCoreConfigProps['popperOptions']['modifiers']
-) {
-  if (modifiers) {
-    options.modifiers = [...options.modifiers, ...(modifiers ?? [])]
+  return (e: Event) => {
+    isTriggerType(unref(trigger), type) && handler(e)
   }
 }

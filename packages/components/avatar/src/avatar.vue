@@ -53,7 +53,7 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref, useSlots, watch } from 'vue'
 import { useBaseComponent, useNamespace } from '@vuesax-alpha/hooks'
-import { getVsColor, setVsCssVar } from '@vuesax-alpha/utils'
+import { getVsColor, setCssVar } from '@vuesax-alpha/utils'
 import { IconLoading } from '@vuesax-alpha/components/icon'
 import { avatarProps } from './avatar'
 import { useAvatarStatus } from './composables'
@@ -99,13 +99,13 @@ const avatarStyles = computed<CSSProperties>(
 watch(
   () => props.badgeColor,
   () => {
-    setVsCssVar('avatar-badge', getVsColor(props.badgeColor), root$.value)
+    setCssVar('avatar-badge', getVsColor(props.badgeColor), root$.value)
     root$.value?.classList.add(ns.em('badge', 'change-color'))
   }
 )
 
 onMounted(() => {
   root$.value?.classList.add(ns.em('badge', 'change-color'))
-  setVsCssVar('avatar-badge', getVsColor(props.badgeColor), root$.value)
+  setCssVar('avatar-badge', getVsColor(props.badgeColor), root$.value)
 })
 </script>

@@ -15,6 +15,7 @@ export const componentColors = [
   'danger',
   'warn',
   'dark',
+  'text',
 ] as const
 
 export type ComponentColor = (typeof componentColors)[number]

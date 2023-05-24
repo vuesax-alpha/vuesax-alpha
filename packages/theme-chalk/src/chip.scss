@@ -1,0 +1,40 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@include b(chip) {
+  position: relative;
+  margin: 1px 3px 2px 3px;
+  border-radius: 12px;
+  padding: 3px 10px 3px 6px;
+  font-size: 0.84rem;
+  border: 2px solid getColor(gray-2);
+  color: getColor(text);
+  display: flex;
+  background-color: getColor('gray-2');
+
+  @include when(hit) {
+    background-color: transparent;
+    border-color: getColor(gray-4);
+  }
+
+  .#{$namespace}-icon-close {
+    background: getColor(gray-4);
+    padding: 14px;
+    position: absolute;
+    top: -11px;
+    right: -11px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    @include set-var-value(color, getCssVar(text));
+
+    &:hover {
+      background: getColor('danger');
+    }
+  }
+}

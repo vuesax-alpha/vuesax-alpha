@@ -5,15 +5,37 @@
 $clearableRight: 34px;
 $iconActiveMargin: -4px;
 
-.v-clearable {
-  &-enter-active {
-    animation: #{namespace}-clearable 0.25s ease forwards;
+.#{$namespace}-select-enter-active,
+.#{$namespace}-select-leave-active {
+  transition: getCssVar(transition-ease);
+}
+.#{$namespace}-select-enter-from,
+.#{$namespace}-select-leave-to {
+  opacity: 0;
+  &[data-popper-placement='top'] {
+    transform: translate(0, 5px);
   }
-  &-leave-active {
-    animation: #{namespace}-clearable 0.25s ease reverse;
+  &[data-popper-placement='bottom'] {
+    transform: translate(0, -5px);
+  }
+  &[data-popper-placement='left'] {
+    transform: translate(5px);
+  }
+  &[data-popper-placement='right'] {
+    transform: translate(-5px);
   }
 }
-@keyframes #{namespace}-clearable {
+
+.v-clearable {
+  &-enter-active {
+    animation: v-clearable 0.25s ease forwards;
+  }
+  &-leave-active {
+    animation: v-clearable 0.25s ease reverse;
+  }
+}
+
+@keyframes v-clearable {
   0% {
     right: 10px;
     opacity: 0.2;
@@ -27,16 +49,15 @@ $iconActiveMargin: -4px;
 }
 
 @mixin state($color) {
-  .#{namespace}-select__input {
-    // border: 2px solid getColor($color,.5);
+  @include e(input) {
     background: getColor($color, 0.05);
     color: getColor($color, 1);
     &:hover {
-      // border: 2px solid getColor($color, 0);
       color: getColor('text', 1);
     }
   }
-  .#{namespace}-select__chips {
+
+  @include e(chips) {
     background: getColor($color, 0.05);
     color: getColor($color, 1);
     &:hover {
@@ -45,40 +66,30 @@ $iconActiveMargin: -4px;
       }
     }
     &:after {
-      width: 100%;
-      height: 100%;
+      width: calc(100% - 4px);
+      height: calc(100% - 4px);
       content: '';
       position: absolute;
-      z-index: -1;
       top: 0px;
       left: 0px;
       border: 2px solid getColor($color, 0.5);
       border-radius: inherit;
-      transition: all 0.25s ease;
+      transition: getCssVar(transition-ease);
     }
   }
-  .#{namespace}-select__label {
+  @include e(label) {
     color: getColor($color, 1);
   }
-  .#{namespace}-select__icon {
+  @include e(icon) {
     color: getColor($color, 1);
     background: getColor($color, 0.1);
     box-shadow: -15px 10px 10px -10px getColor($color, 0.1);
   }
-  .#{namespace}-icon-arrow {
-    &:after {
-      background: getColor($color);
-    }
-    &:before {
-      background: getColor($color);
-    }
+  @include e(arrow) {
+    color: getColor($color);
   }
-  ~ div .#{namespace}-select__message--#{$color} {
+  ~ div .#{$namespace}-select__message--#{$color} {
     color: getColor($color, 1);
-    // opacity: 1;
-    // visibility: visible;
-    // height: auto;
-    // margin-top: 0;
   }
 }
 
@@ -89,48 +100,53 @@ $iconActiveMargin: -4px;
 @include b(select) {
   position: relative;
   display: flex;
-  // align-items: center;
   justify-content: center;
-  min-height: 38px;
+  min-height: 42px;
   width: 100%;
   max-width: getCssVar(select-width);
 
-  &--state-success {
-    @include state('success');
-  }
-  &--state-danger {
-    @include state('danger');
-  }
-  &--state-warn {
-    @include state('warn');
-  }
-  &--state-dark {
-    @include state('dark');
-  }
-  &--state-primary {
-    @include state('primary');
+  @include e(content) {
+    &[data-popper-placement^='top'] {
+      border-radius: 12px 12px 0px 0px;
+      box-shadow: 0px -10px 20px -5px rgba(0, 0, 0, getCssVar(shadow-opacity));
+    }
+    margin-top: -4px;
+    overflow: hidden;
+    background: getColor('background');
+    color: getColor(color);
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0px 10px 20px -5px rgba(0, 0, 0, getCssVar(shadow-opacity));
   }
 
-  &.loading {
+  @include e(state) {
+    @include m(success) {
+      @include state('success');
+    }
+    @include m(danger) {
+      @include state('danger');
+    }
+    @include m(warn) {
+      @include state('warn');
+    }
+    @include m(dark) {
+      @include state('dark');
+    }
+    @include m(primary) {
+      @include state('primary');
+    }
+  }
+
+  @include when(loading) {
     pointer-events: none;
-    *:not(.#{namespace}-select__loading):not(.#{namespace}-select__label) {
+    *:not(.#{$namespace}-select__loading):not(.#{$namespace}-select__label) {
       opacity: 0.6;
     }
-    .#{namespace}-select__label {
+    .#{$namespace}-select__label {
       pointer-events: none !important;
     }
   }
-  &.top {
-    &.activeOptions {
-      .#{namespace}-select__input,
-      .#{namespace}-select__chips {
-        border-radius: 0px 0px 12px 12px !important;
-        box-shadow: 0px -5px 25px -4px
-          rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity)) !important;
-      }
-    }
-  }
-  &--disabled {
+
+  @include when(disabled) {
     pointer-events: none;
     * {
       opacity: 0.6;
@@ -143,11 +159,12 @@ $iconActiveMargin: -4px;
   }
   @include e(arrow) {
     position: absolute;
+    z-index: 2;
     color: getColor(text, 0.6);
     right: 10px;
     top: 20px;
     transform: translateY(-50%);
-    transition: all 0.25s ease;
+    transition: getCssVar(transition-ease);
     cursor: pointer;
   }
   @include e(clearable) {
@@ -164,7 +181,7 @@ $iconActiveMargin: -4px;
     border-radius: 9999px;
     cursor: pointer;
     // background-color: getColor('gray-2');
-    transition: all 0.25s ease;
+    transition: getCssVar(transition-ease);
     z-index: 9;
 
     margin-top: $iconActiveMargin;
@@ -175,16 +192,16 @@ $iconActiveMargin: -4px;
     border: 2px solid transparent;
     border-radius: 12px;
     cursor: pointer;
-    transition: all 0.25s ease, height 0s;
+    transition: getCssVar(transition-ease), height 0s;
     background: getColor('gray-2');
     color: getColor('text');
-    min-height: 38px;
+    min-height: 42px;
     padding: 7px 30px 7px 10px;
     width: 100%;
 
     @include when(multiple) {
-      color: transparent;
-      background: transparent;
+      color: transparent !important;
+      background: transparent !important;
       pointer-events: none;
     }
 
@@ -194,137 +211,48 @@ $iconActiveMargin: -4px;
     }
 
     &-filter {
-      position: absolute;
-      z-index: 1;
-      background: transparent;
-      box-shadow: none;
-      color: transparent;
-
-      &::placeholder {
-        font-weight: 100;
-      }
-    }
-  }
-  @include e(chips) {
-    width: 100%;
-    height: max-content;
-    position: absolute;
-    left: 0px;
-    background: getColor('gray-2');
-    z-index: 300;
-    border-radius: 12px;
-    display: flex;
-    border: 0px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    padding: 5px;
-    min-height: 38px;
-    transition: all 0.25s ease, height 0s;
-    padding-right: 26px;
-
-    &__input {
       width: auto;
       flex: 1;
       padding: 2px 0;
-      max-width: 100%;
       position: relative;
-      min-width: 0px;
       border: 0px solid transparent;
       background: transparent;
       margin: 2px 3px;
       min-width: 30px;
+      max-width: 100%;
       color: getColor('text');
-      transition: all 0.15s linear;
+      // transition: getCssVar(transition-ease);
 
       &::placeholder {
         color: getColor('text', 0.4);
       }
 
       &:focus {
-        padding-left: 4px;
+        padding-left: 3px;
       }
     }
-    &__chip {
-      flex: 0 1 auto;
-      position: relative;
-      background: getColor('background');
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2px 4px 2px 6px;
-      margin: 2px 3px;
-      font-size: 0.84rem;
-      border: 2px solid getColor('gray-2');
-      box-sizing: border-box;
-      color: getColor('text');
-      &.isCollapse {
-        padding-right: 6px !important;
-      }
-      &.disabled {
-        background-color: getColor('gray-2');
-        border-color: transparent;
-      }
-      &__close {
-        margin-left: 6px;
-        width: 15px;
-        height: 15px;
-        background: getColor('gray-3');
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        font-size: 0.75rem;
-        cursor: pointer;
-        transition: all 0.25s ease;
-
-        &:hover {
-          background: getColor('danger');
-
-          .#{namespace}-icon-close {
-            @include set-var-value(color, getCssVar(background));
-            &:after {
-              width: 12px;
-              transform: rotate(180deg);
-            }
-            &:before {
-              width: 12px;
-              transform: rotate(180deg);
-            }
-          }
-        }
-        .#{namespace}-icon-close {
-          @include set-var-value(color, getCssVar(text));
-          transform: scale(0.5);
-        }
-      }
-    }
+  }
+  @include e(chips) {
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    left: 0px;
+    background: getColor('gray-2');
+    border-radius: 12px;
+    display: flex;
+    border: 2px solid transparent;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 5px;
+    min-height: 42px;
+    transition: getCssVar(transition-ease), height 0s;
+    padding-right: 26px;
   }
   @include m(has-label) {
     margin-top: 24px !important;
   }
-  @include e(options) {
-    @include set-var-value(color, getCssVar(primary));
-    background: getColor('background') !important;
-    border: none !important;
-    color: getColor(color) !important;
-    width: 100%;
-    max-width: 200px;
-    padding: 5px;
-    // border-radius: 0 0 12px 12px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0px 10px 20px -5px rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity));
 
-    &[data-popper-placement^='top'] {
-      margin-bottom: 8px !important;
-      // border-radius: 12px 12px 0px 0px;
-      box-shadow: 0px -10px 20px -5px
-        rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity));
-    }
-  }
   @include e(option) {
     @include flex(flex-start, center);
     border: 0px;
@@ -332,11 +260,10 @@ $iconActiveMargin: -4px;
     padding: 6px 10px;
     text-align: left;
     background: transparent;
-    transition: all 0.25s ease;
+    transition: getCssVar(transition-ease);
     color: getColor('text');
     border-radius: 8px;
-    box-shadow: 0px 0px 0px 0px
-      rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity));
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, getCssVar(shadow-opacity));
     margin: 2px 0px;
     overflow: hidden;
     opacity: 1;
@@ -356,13 +283,12 @@ $iconActiveMargin: -4px;
 
     .is-hover,
     &:hover {
-      background: getColor('gray-2');
+      background: getColor('color', 0.01);
     }
 
     @include when(active) {
       background: getColor('color', 0.05);
       color: getColor('color', 1);
-      pointer-events: none;
     }
     &:hover:not(.is-disabled) {
       color: getColor('color');
@@ -381,6 +307,11 @@ $iconActiveMargin: -4px;
     }
     @include e(input) {
       transform: translateY(-4px);
+      background: getColor('background');
+    }
+    @include e(chips) {
+      background: getColor('background');
+      transform: translate(0, -4px);
     }
     @include e(label) {
       @include when(placeholder) {
@@ -398,10 +329,10 @@ $iconActiveMargin: -4px;
       margin-top: -2px !important;
     }
     @include e(input) {
-      // border-radius: 12px 12px 0px 0px;
+      border-radius: 12px 12px 0px 0px;
       background: getColor('background');
-      box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity));
-      transition: all 0.25s ease, height 0s;
+      box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, getCssVar(shadow-opacity));
+      transition: getCssVar(transition-ease), height 0s;
       border: 2px solid transparent;
       color: getColor('text');
       padding-left: 13px;
@@ -435,22 +366,12 @@ $iconActiveMargin: -4px;
       margin-top: $iconActiveMargin;
       right: $clearableRight;
     }
-    @include e(input) {
-      border-radius: 12px 12px 0px 0px;
-      background: getColor('background');
-      box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity));
-      transform: translate(0, -4px);
-      transition: all 0.25s ease, height 0s;
-      border: 2px solid transparent;
-      color: getColor('text');
-      padding-left: 10px;
-    }
     @include e(chips) {
       border-radius: 12px 12px 0px 0px;
       background: getColor('background');
-      box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--#{$namespace}-shadow-opacity));
+      box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, getCssVar(shadow-opacity));
       transform: translate(0, -4px);
-      transition: all 0.25s ease, height 0s;
+      transition: getCssVar(transition-ease), height 0s;
       &:after {
         opacity: 0;
       }
@@ -464,20 +385,17 @@ $iconActiveMargin: -4px;
         font-size: 0.75rem;
       }
     }
-  }
-  @include e(content) {
-    max-height: 200px;
-    overflow: auto;
-    height: auto;
-    z-index: 100;
-    transform: scale(1);
-    transition: all 0.25s ease;
-    position: relative;
-    scroll-behavior: smooth;
 
-    &::-webkit-scrollbar {
-      display: none;
+    @include when(top) {
+      .#{$namespace}-select__input,
+      .#{$namespace}-select__chips {
+        border-radius: 0px 0px 12px 12px !important;
+        box-shadow: 0px -5px 25px -4px rgba(0, 0, 0, getCssVar(shadow-opacity)) !important;
+      }
     }
+  }
+  @include e(options) {
+    padding: 5px;
 
     &__not-data {
       color: getColor('text');
@@ -547,8 +465,8 @@ $iconActiveMargin: -4px;
       opacity: 1 !important;
     }
 
-    ~ .#{namespace}-select__arrow,
-    ~ .#{namespace}-select__clearable {
+    ~ .#{$namespace}-select__arrow,
+    ~ .#{$namespace}-select__clearable {
       opacity: 0 !important;
     }
   }
@@ -557,7 +475,7 @@ $iconActiveMargin: -4px;
     padding: 0px 7px;
     overflow: hidden;
     height: auto;
-    transition: all 0.25s ease;
+    transition: getCssVar(transition-ease);
 
     &--success {
       color: getColor('success');

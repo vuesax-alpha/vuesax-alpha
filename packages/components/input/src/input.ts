@@ -12,7 +12,7 @@ import type { ExtractPropTypes, StyleValue } from 'vue'
 import type { EmitFn } from '@vuesax-alpha/utils'
 import type Input from './input.vue'
 
-type InputValue = string | number | null | undefined
+export type InputValue = string | number | null | undefined
 
 export const inputProps = buildProps({
   /**
@@ -169,7 +169,7 @@ export const inputEmits = {
   mouseleave: (evt: MouseEvent) => evt instanceof MouseEvent,
   mouseenter: (evt: MouseEvent) => evt instanceof MouseEvent,
   clear: () => true,
-  input: (value: string) => isString(value),
+  input: (value: string) => !isNil(value),
   change: (value: string) => isString(value),
   focus: (evt: FocusEvent) => evt instanceof FocusEvent,
   blur: (evt: FocusEvent) => evt instanceof FocusEvent,

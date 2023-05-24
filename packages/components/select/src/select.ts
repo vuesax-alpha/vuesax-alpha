@@ -1,6 +1,4 @@
-import { placements } from '@popperjs/core'
 import { isNil } from 'lodash-unified'
-import { popperCoreConfigProps } from '@vuesax-alpha/components/popper/src/content'
 import { useColorProp } from '@vuesax-alpha/hooks'
 import {
   buildProps,
@@ -18,6 +16,18 @@ import type { ExtractPropTypes } from 'vue'
 import type Select from './select.vue'
 
 export const selectProps = buildProps({
+  showAfter: {
+    type: Number,
+    default: 0,
+  },
+  hideAfter: {
+    type: Number,
+    default: 0,
+  },
+  fit: {
+    type: Boolean,
+    default: true,
+  },
   /**
    * @description binding value
    */
@@ -28,20 +38,6 @@ export const selectProps = buildProps({
   notValue: {
     type: definePropType<SelectOptionValue>([String, Number, Object]),
     default: '',
-  },
-  popperOptions: popperCoreConfigProps.popperOptions,
-  placement: {
-    type: String,
-    values: placements,
-    default: 'bottom-start',
-  },
-  persistent: {
-    type: Boolean,
-    default: true,
-  },
-  teleported: {
-    type: Boolean,
-    default: true,
   },
   allowCreate: Boolean,
   multiple: Boolean,
@@ -67,7 +63,10 @@ export const selectProps = buildProps({
    * @description Add a loading animation to the input.
    */
   loading: Boolean,
-
+  /**
+   * @description Select color - Accept Vuesax's color, Hex, rgb
+   */
+  color: { ...useColorProp, default: 'primary' },
   /**
    * @description State color - Accept Vuesax's color, Hex, rgb
    */

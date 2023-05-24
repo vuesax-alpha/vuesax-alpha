@@ -1,44 +1,59 @@
 <template>
-  <vs-tooltip
-    ref="tooltipRef"
+  <vs-popper
+    ref="popperRef"
+    v-model:visible="dropMenuVisible"
     trigger="click"
-    :visible="dropMenuVisible"
-    :placement="placement"
-    :popper-class="ns.e('options')"
-    :teleported="teleported"
-    :persistent="persistent"
+    placement="bottom"
+    :animation="optionsAnimation"
+    :flip="false"
+    :fit="fit"
+    :hide-after="hideAfter"
+    :show-after="showAfter"
+    :loading="loading"
+    :popper-class="[ns.e('content'), useBaseComponent(color)]"
+    :popper-style="colorCssVar"
     :show-arrow="false"
     :offset="0"
+    :process-before-open="processBeforeOpen"
+    :process-before-close="processBeforeClose"
     @show="handleMenuEnter"
   >
-    <template #default>
-      <div
-        v-click-outside:[popperPaneRef]="handleClose"
-        :class="[
-          ns.b(),
-          ns.is('open', dropMenuVisible),
-          ns.is('hovering', states.mouseEnter),
-          ns.is('focus', states.softFocus),
-          { [ns.m('has-label')]: props.label || props.labelFloat },
-        ]"
-        @mouseenter="handleMouseEnter"
-        @mouseleave="handleMouseLeave"
-        @click.prevent="toggleMenu"
-      >
+    <div
+      ref="selectWrapper"
+      v-click-outside:[popperPaneRef]="handleClose"
+      :class="selectKls"
+      :style="selectStyle"
+      @mouseenter="handleMouseEnter"
+      @mouseleave="handleMouseLeave"
+      @click="toggleMenu"
+    >
+      <div v-if="multiple" ref="chips" :class="[ns.e('chips')]">
+        <vs-chip
+          v-for="(item, cIndex) in selected"
+          :key="cIndex + 'chip'"
+          :closable="!selectDisabled && !item.isDisabled"
+          :hit="item.hitState"
+          @close="deleteTag($event, item.value)"
+        >
+          {{ item.currentLabel }}
+        </vs-chip>
+
         <input
           v-if="filter"
           ref="input"
           v-model="query"
           type="text"
           :class="[
-            ns.e('input'),
             ns.e('input-filter'),
             ns.is('disabled', selectDisabled),
+            ns.be('chips', 'input'),
           ]"
           :placeholder="states.selectedLabel ? '' : states.query ?? ''"
           :disabled="selectDisabled"
           @focus="handleFocus"
           @blur="handleBlur"
+          @mouseenter="handleTarget('input-filter')"
+          @mouseleave="handleTarget(null)"
           @keyup="managePlaceholder"
           @keydown.down.prevent="navigateOptions('next')"
           @keydown.up.prevent="navigateOptions('prev')"
@@ -51,88 +66,95 @@
           @compositionend="handleComposition"
           @input="debouncedQueryChange"
         />
-        <vs-input
-          :id="inputId"
-          ref="reference"
-          :class="[ns.e('input'), ns.is('multiple', multiple)]"
-          :readonly="readonly"
-          :value="multiple ? '' : states.selectedLabel"
-          @focus="handleFocus"
-          @blur="handleBlur"
-          @input="debouncedOnInputChange"
-          @paste="debouncedOnInputChange"
-          @compositionstart="handleComposition"
-          @compositionupdate="handleComposition"
-          @compositionend="handleComposition"
-          @keydown.down.prevent="navigateOptions('next')"
-          @keydown.up.prevent="navigateOptions('prev')"
-          @keydown.enter.prevent="selectOption"
-          @keydown.esc="handleKeydownEscape"
-          @keydown.tab="states.visible = false"
-        />
-
-        <label
-          v-if="label"
-          :for="inputId"
-          :class="[
-            ns.e('label'),
-            ns.is(
-              'placeholder',
-              labelFloat &&
-                !dropMenuVisible &&
-                (isEqual(modelValue, notValue) ||
-                  (!modelValue && modelValue != 0))
-            ),
-          ]"
-        >
-          {{ label }}
-        </label>
-
-        <span
-          v-if="!multiple && !labelFloat && states.currentPlaceholder"
-          :class="[ns.e('placeholder'), ns.is('hidden', !!modelValue)]"
-        >
-          {{ states.currentPlaceholder }}
-        </span>
-
-        <vs-icon :class="ns.e('arrow')" size="14"><chevron-down /></vs-icon>
-
-        <transition name="v-clearable">
-          <span
-            v-if="showClose"
-            class="vs-select__clearable"
-            @click="handleClearClick"
-          >
-            <icon-close hover="less" scale="0.675" />
-          </span>
-        </transition>
       </div>
-    </template>
+      <input
+        :id="inputId"
+        ref="reference"
+        v-model="states.selectedLabel"
+        :placeholder="multiple ? '' : states.currentPlaceholder"
+        :class="[ns.e('input'), ns.is('multiple', multiple)]"
+        :readonly="readonly"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        @mouseenter="handleTarget('input-filter', !readonly)"
+        @mouseleave="handleTarget(null)"
+        @input="debouncedOnInputChange"
+        @paste="debouncedOnInputChange"
+        @compositionstart="handleComposition"
+        @compositionupdate="handleComposition"
+        @compositionend="handleComposition"
+        @keydown.down.prevent="navigateOptions('next')"
+        @keydown.up.prevent="navigateOptions('prev')"
+        @keydown.enter.prevent="selectOption"
+        @keydown.esc="handleKeydownEscape"
+        @keydown.tab="states.visible = false"
+      />
+
+      <label
+        v-if="label"
+        :for="inputId"
+        :class="[
+          ns.e('label'),
+          ns.is(
+            'placeholder',
+            labelFloat &&
+              !dropMenuVisible &&
+              (isEqual(modelValue, notValue) ||
+                (!modelValue && modelValue != 0))
+          ),
+        ]"
+      >
+        {{ label }}
+      </label>
+
+      <span
+        v-if="!multiple && !labelFloat && states.currentPlaceholder"
+        :class="[ns.e('placeholder'), ns.is('hidden', !!modelValue)]"
+      >
+        {{ states.currentPlaceholder }}
+      </span>
+
+      <vs-icon :class="ns.e('arrow')" size="14"><chevron-down /></vs-icon>
+
+      <transition name="v-clearable">
+        <span
+          v-if="showClose"
+          :class="ns.e('clearable')"
+          @click="handleClearClick"
+        >
+          <icon-close hover="less" scale="0.675" />
+        </span>
+      </transition>
+    </div>
 
     <template #content>
-      <div :class="ns.e('content')">
-        <vs-scrollbar thickness="3" max-height="200" :native="nativeScrollbar">
-          <slot />
-        </vs-scrollbar>
-      </div>
+      <vs-scrollbar
+        max-height="200"
+        thickness="3"
+        :wrap-class="ns.e('options')"
+        :native="nativeScrollbar"
+      >
+        <slot />
+      </vs-scrollbar>
     </template>
-  </vs-tooltip>
+  </vs-popper>
 </template>
 
 <script lang="ts" setup>
 import { computed, onMounted, provide, reactive, toRefs } from 'vue'
-import { useResizeObserver } from '@vueuse/core'
+import { unrefElement, useResizeObserver } from '@vueuse/core'
 import { isEqual } from 'lodash-unified'
 import { ClickOutside as vClickOutside } from '@vuesax-alpha/directives'
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import { IconClose, VsIcon } from '@vuesax-alpha/components/icon'
-import { VsInput } from '@vuesax-alpha/components/input'
 import { VsScrollbar } from '@vuesax-alpha/components/scrollbar'
-import { VsTooltip } from '@vuesax-alpha/components/tooltip'
+import { VsPopper } from '@vuesax-alpha/components/popper'
 import { ChevronDown } from '@vuesax-alpha/icons-vue'
-import { useNamespace } from '@vuesax-alpha/hooks'
+import { useBaseComponent, useColor, useNamespace } from '@vuesax-alpha/hooks'
+import { getVsColor } from '@vuesax-alpha/utils'
+import VsChip from './chip.vue'
 import { selectContextKey } from './tokens'
-import { selectProps } from './select'
+import { selectEmits, selectProps } from './select'
 import { useSelect, useSelectStates } from './useSelect'
 import type { SelectContext } from './tokens'
 
@@ -141,35 +163,40 @@ defineOptions({
 })
 
 const props = defineProps(selectProps)
-const emit = defineEmits([
-  UPDATE_MODEL_EVENT,
-  'visible-change',
-  'remove-tag',
-  'focus',
-  'change',
-  'clear',
-  'blur',
-])
+const emit = defineEmits(selectEmits)
 
 const ns = useNamespace('select')
 
 const states = useSelectStates(props)
 
+const color = useColor('primary')
+
+const colorCssVar = computed(() =>
+  ns.cssVar({
+    color: getVsColor(color.value),
+  })
+)
+
+const optionsAnimation = computed(() => ns.b())
+
 const {
   debouncedQueryChange,
   managePlaceholder,
   deletePrevTag,
+  deleteTag,
   handleClearClick,
   showClose,
   input,
   inputId,
   readonly,
   reference,
-  tooltipRef,
+  chips,
+  popperRef,
   selectDisabled,
   selectWrapper,
   handleMouseEnter,
   handleMouseLeave,
+  handleTarget,
   selectOption,
   handleComposition,
   navigateOptions,
@@ -191,6 +218,9 @@ const {
   handleOptionSelect,
   focus,
   blur,
+
+  processBeforeOpen,
+  processBeforeClose,
 } = useSelect(props, states, emit)
 
 const {
@@ -205,7 +235,7 @@ const {
 
 // @ts-ignore - directive: v-click-outside element
 const popperPaneRef = computed(() => {
-  return tooltipRef.value?.popperComponent?.contentRef
+  return unrefElement(popperRef.value?.contentRef)
 })
 
 if (props.multiple && !Array.isArray(props.modelValue)) {
@@ -215,6 +245,23 @@ if (props.multiple && !Array.isArray(props.modelValue)) {
 if (!props.multiple && Array.isArray(props.modelValue)) {
   emit(UPDATE_MODEL_EVENT, '')
 }
+
+const selectKls = computed(() => [
+  ns.is('block', props.block),
+
+  ns.b(),
+  ns.em('state', props.state),
+  ns.is('open', dropMenuVisible.value),
+  ns.is('hovering', states.mouseEnter),
+  ns.is('focus', states.softFocus),
+  ns.is('disabled', selectDisabled.value),
+  ns.is('multiple', props.multiple),
+  ns.is('loading', props.loading),
+  ns.is(popperRef.value?.popperPlacement ?? 'bottom'),
+  { [ns.m('has-label')]: props.label || props.labelFloat },
+])
+
+const selectStyle = computed(() => [colorCssVar.value])
 
 onMounted(() => {
   states.cachedPlaceHolder = states.currentPlaceholder = props.placeholder
@@ -247,6 +294,7 @@ provide(
     selectWrapper,
     selected,
     setSelected,
+    handleTarget,
     query,
     groupQuery,
   }) as SelectContext

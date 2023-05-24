@@ -11,14 +11,13 @@ const setStoreValue = (
   props: CheckboxProps,
   { model }: Pick<CheckboxModel, 'model'>
 ) => {
-  function addToStore() {
+  if (props.checked) {
     if (isArray(model.value) && !model.value.includes(props.value)) {
       model.value.push(props.value)
     } else {
       model.value = props.value || true
     }
   }
-  props.checked && addToStore()
 }
 
 export const useCheckbox = (

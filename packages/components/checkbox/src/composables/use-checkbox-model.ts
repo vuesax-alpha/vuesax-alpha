@@ -13,7 +13,9 @@ export const useCheckboxModel = (props: CheckboxProps) => {
   const isLimitExceeded = ref(false)
   const model = computed({
     get() {
-      return isGroup.value ? checkboxGroup?.modelValue?.value : selfModel.value
+      return isGroup.value
+        ? checkboxGroup?.modelValue?.value
+        : props.modelValue ?? selfModel.value
     },
 
     set(val: unknown) {

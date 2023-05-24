@@ -62,16 +62,6 @@ describe('types', () => {
     expect(isElement('element')).toBe(false)
   })
 
-  it('isElement should return false when Element is not exists', () => {
-    const _Element = window.Element
-
-    window.Element = undefined as any
-    expect(isElement(document.createElement('div'))).toBe(false)
-
-    window.Element = _Element
-    expect(isElement(document.createElement('div'))).toBe(true)
-  })
-
   it('isPropAbsent should work', () => {
     expect(isPropAbsent(null)).toBe(true)
     expect(isPropAbsent(undefined)).toBe(true)

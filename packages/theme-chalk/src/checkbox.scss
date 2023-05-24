@@ -14,7 +14,7 @@
 }
 
 @include b(checkbox) {
-  @include flex(center, center);
+  @include flex(flex-start, center);
   position: relative;
 
   @include pseudo(active) {

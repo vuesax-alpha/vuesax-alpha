@@ -9,13 +9,11 @@ import {
 } from 'vue'
 import { isObject } from '@vue/shared'
 import {
-  indexOf,
   isArray,
   isEqual,
   isNil,
   last,
   debounce as lodashDebounce,
-  toArray,
 } from 'lodash-unified'
 import { isClient } from '@vueuse/core'
 import { EVENT_CODE, UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
@@ -26,13 +24,14 @@ import {
   scrollIntoView,
 } from '@vuesax-alpha/utils'
 import { useId, useNamespace } from '@vuesax-alpha/hooks'
-import type { TooltipExpose } from '@vuesax-alpha/components/tooltip/src/tooltip.vue'
+import type { PopperExpose } from '@vuesax-alpha/components/popper'
 import type { SelectEmitsFn, SelectProps } from './select'
 
 import type {
   SelectOptionContext,
   SelectOptionValue,
   SelectStates,
+  SelectTargetElement,
   SelectValue,
 } from './tokens'
 
@@ -42,9 +41,8 @@ export function useSelectStates(props: SelectProps): SelectStates {
     cachedOptions: new Map(),
     selected: [],
     createdLabel: null,
+    targetOnElement: null,
     createdSelected: false,
-    inputLength: 20,
-    inputWidth: 0,
     optionsCount: 0,
     filteredOptionsCount: 0,
     visible: false,
@@ -73,15 +71,15 @@ export const useSelect = (
   const ns = useNamespace('select')
 
   // template refs
-  const reference = ref<HTMLInputElement | null>(null)
-  const input = ref<HTMLInputElement | null>(null)
-  const tooltipRef = ref<TooltipExpose | null>(null)
-  const tags = ref<HTMLElement | null>(null)
-  const selectWrapper = ref<HTMLElement | null>(null)
+  const reference = ref<HTMLInputElement>()
+  const input = ref<HTMLInputElement>()
+  const popperRef = ref<PopperExpose>()
+  const chips = ref<HTMLElement>()
+  const selectWrapper = ref<HTMLElement>()
   const scrollbar = ref<{
     handleScroll: () => void
-  } | null>(null)
-  const hoverOption = ref<SelectOptionContext | null>()
+  }>()
+  const hoverOption = ref<SelectOptionContext>()
   const query = shallowRef<string>('')
   const inputId = useId(props.id)
   const groupQuery = shallowRef('')
@@ -110,9 +108,7 @@ export const useSelect = (
     Array.from(states.cachedOptions.values())
   )
 
-  const selectedArray = computed<SelectOptionContext[]>(() =>
-    toArray(states.selected)
-  )
+  const selectedArray = computed<SelectOptionContext[]>(() => states.selected)
 
   const showNewOption = computed(() => {
     const hasExistingOption = optionsArray.value
@@ -160,11 +156,14 @@ export const useSelect = (
           states.query = ''
           handleQueryChange(states.query)
         }
+
+        nextTick(() => {
+          if (reference.value && chips.value) {
+            reference.value.style.height = `${chips.value.scrollHeight}px`
+          }
+        })
       }
       setSelected()
-      if (props.filter && !props.multiple) {
-        states.inputLength = 20
-      }
     },
     {
       flush: 'post',
@@ -180,7 +179,6 @@ export const useSelect = (
         states.query = ''
         states.previousQuery = null
         states.selectedLabel = ''
-        states.inputLength = 20
         states.menuVisibleOnFocus = false
         resetHoverIndex()
 
@@ -214,7 +212,7 @@ export const useSelect = (
           }
         }
       } else {
-        tooltipRef.value?.updateTooltip?.()
+        popperRef.value?.updatePopper()
 
         if (props.filter) {
           states.filteredOptionsCount = states.optionsCount
@@ -247,7 +245,7 @@ export const useSelect = (
     () => states.options.entries(),
     () => {
       if (!isClient) return
-      tooltipRef.value?.updateTooltip?.()
+      popperRef.value?.updatePopper()
 
       const inputs = selectWrapper.value?.querySelectorAll('input') || []
       if (
@@ -290,13 +288,11 @@ export const useSelect = (
     }
     states.previousQuery = val
     nextTick(() => {
-      if (states.visible) tooltipRef.value?.updateTooltip?.()
+      if (states.visible) popperRef.value?.updatePopper()
     })
     states.hoverIndex = -1
     if (props.multiple && props.filter) {
       nextTick(() => {
-        const length = input.value!.value.length * 15 + 20
-        states.inputLength = props.collapseChips ? Math.min(50, length) : length
         managePlaceholder()
       })
     }
@@ -439,7 +435,7 @@ export const useSelect = (
   }
 
   const handleResize = () => {
-    tooltipRef.value?.updateTooltip?.()
+    popperRef.value?.updatePopper()
   }
 
   const onInputChange = () => {
@@ -482,10 +478,10 @@ export const useSelect = (
     }
   }
 
-  const deleteTag = (event: MouseEvent, tag: SelectOptionValue) => {
+  const deleteTag = (event: Event | MouseEvent, tag: SelectOptionValue) => {
     const hasTag = states.cachedOptions.get(tag)
     if (!hasTag) return
-    const index = selectedArray.value.indexOf(hasTag)
+    const index = getValueIndex(selectedArray.value, hasTag)
     if (index > -1 && !selectDisabled.value) {
       const value = (props.modelValue as SelectOptionValue[]).slice()
       value.splice(index, 1)
@@ -493,7 +489,7 @@ export const useSelect = (
       emitChange(value)
       emit('remove-tag', tag)
     }
-    event.stopPropagation()
+    // event.stopPropagation()
   }
 
   const deleteSelected = () => {
@@ -518,7 +514,8 @@ export const useSelect = (
   ) => {
     if (props.multiple) {
       const value = ((props.modelValue || []) as SelectOptionValue[]).slice()
-      const optionIndex = indexOf(selectedArray.value, option)
+      const optionIndex = getValueIndex(selectedArray.value, option)
+
       if (optionIndex > -1) {
         value.splice(optionIndex, 1)
       } else if (
@@ -532,7 +529,6 @@ export const useSelect = (
       if (option.userCreated) {
         states.query = ''
         handleQueryChange('')
-        states.inputLength = 20
       }
       if (props.filter) input.value?.focus()
     } else {
@@ -552,8 +548,6 @@ export const useSelect = (
     arr: SelectOptionContext[],
     option: SelectOptionContext
   ) => {
-    if (!isObject(option.value)) return arr.indexOf(option)
-
     let index = -1
     arr.some((item, i) => {
       if (isEqual(item.value, option.value)) {
@@ -576,7 +570,7 @@ export const useSelect = (
   const scrollToOption = (option: SelectOptionContext) => {
     let target
 
-    if (option.value) {
+    if (option?.value) {
       const options = optionsArray.value.filter(
         (item) => item.value === option.value
       )
@@ -585,11 +579,10 @@ export const useSelect = (
       }
     }
 
-    if (tooltipRef.value && target) {
-      const menu =
-        tooltipRef.value?.popperComponent?.contentRef?.querySelector?.(
-          `.${ns.be('dropdown', 'wrap')}`
-        )
+    if (popperRef.value && target) {
+      const menu = popperRef.value?.contentRef?.querySelector?.(
+        `.${ns.be('dropdown', 'wrap')}`
+      )
       if (menu) {
         scrollIntoView(menu as HTMLElement, target)
       }
@@ -614,7 +607,6 @@ export const useSelect = (
 
   const resetInputState = (e: KeyboardEvent) => {
     if (e.code !== EVENT_CODE.backspace) toggleLastOptionHitState(false)
-    states.inputLength = input.value!.value.length * 15 + 20
   }
 
   const toggleLastOptionHitState = (hit?: boolean) => {
@@ -641,6 +633,13 @@ export const useSelect = (
     }
   }
 
+  const handleTarget = (
+    target: SelectTargetElement | null,
+    condition = true
+  ) => {
+    if (condition) states.targetOnElement = target
+  }
+
   const handleMenuEnter = () => {
     nextTick(() => scrollToOption(selectedArray.value[0]))
   }
@@ -656,7 +655,7 @@ export const useSelect = (
         if (!states.visible) {
           states.menuVisibleOnFocus = true
         }
-        states.visible = true
+        // states.visible = true
       }
       emit('focus', event)
     } else {
@@ -716,7 +715,7 @@ export const useSelect = (
       if (states.menuVisibleOnFocus) {
         states.menuVisibleOnFocus = false
       } else {
-        if (!tooltipRef.value || !tooltipRef.value.isFocusInsideContent()) {
+        if (!popperRef.value || !popperRef.value.isFocusInsideContent) {
           states.visible = !states.visible
         }
       }
@@ -785,6 +784,13 @@ export const useSelect = (
     states.mouseEnter = false
   }
 
+  const processBeforeOpen = () => true
+
+  const processBeforeClose = () => {
+    if (states.targetOnElement == null) return true
+    return !['chip-close', 'input-filter'].includes(states.targetOnElement)
+  }
+
   return {
     showNewOption,
     inputId,
@@ -799,6 +805,7 @@ export const useSelect = (
     scrollToOption,
     readonly,
     showClose,
+    handleTarget,
     setSelected,
     managePlaceholder,
     selectDisabled,
@@ -826,13 +833,16 @@ export const useSelect = (
     // DOM ref
     reference,
     input,
-    tooltipRef,
-    tags,
+    popperRef,
+    chips,
     selectWrapper,
     scrollbar,
 
     // Mouser Event
     handleMouseEnter,
     handleMouseLeave,
+
+    processBeforeOpen,
+    processBeforeClose,
   }
 }
