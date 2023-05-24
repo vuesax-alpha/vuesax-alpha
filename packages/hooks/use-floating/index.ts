@@ -1,4 +1,4 @@
-import { nextTick, onMounted, reactive, ref, watch } from 'vue'
+import { onMounted, reactive, ref, watch } from 'vue'
 import {
   isClient,
   unrefElement,

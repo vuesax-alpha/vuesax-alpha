@@ -788,7 +788,6 @@ export const useSelect = (
 
   const processBeforeClose = () => {
     if (states.targetOnElement == null) return true
-    console.log(states.targetOnElement)
     return !['chip-close', 'input-filter'].includes(states.targetOnElement)
   }
 
