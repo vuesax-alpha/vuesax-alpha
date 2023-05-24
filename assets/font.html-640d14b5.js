@@ -1,1 +1,0 @@
-import{_ as t,o,c as n,b as e,d as a}from"./app-f60374db.js";const c={},r=e("h1",{id:"font",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#font","aria-hidden":"true"},"#"),a(" Font")],-1),s=[r];function _(d,f){return o(),n("div",null,s)}const h=t(c,[["render",_],["__file","font.html.vue"]]);export{h as default};
