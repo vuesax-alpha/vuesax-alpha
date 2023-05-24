@@ -11,7 +11,7 @@
     "test": "vitest",
     "test:coverage": "vitest --coverage",
     "test:ssr": "vitest --config ./ssr-testing/vitest.config.ts",
-    "prepare:e2e": "if [ ! -d \"docs/.vitepress/dist\" ]; then pnpm run docs:build; fi;",
+    "prepare:e2e": "if [ ! -d \"docs/.vuepress/dist\" ]; then pnpm run docs:build; fi;",
     "dev": "pnpm -C play dev",
     "gen": "bash ./scripts/gc.sh",
     "gen:version": "tsx scripts/gen-version.ts",
