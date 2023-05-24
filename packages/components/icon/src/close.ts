@@ -2,7 +2,7 @@ import {
   buildProps,
   definePropType,
   isNumber,
-  isString,
+  isStringNumber,
 } from '@vuesax-alpha/utils'
 
 import type { ExtractPropTypes } from 'vue'
@@ -14,8 +14,10 @@ export const closeProps = buildProps({
   },
   scale: {
     type: definePropType<string | number>([String, Number]),
-    validator: (value: number) =>
-      isString(value) || (isNumber(value) && value >= 0 && value <= 1),
+    validator: (value: number | string) =>
+      (isStringNumber(`${value}`) || isNumber(value)) &&
+      Number(value) >= 0 &&
+      Number(value) <= 1,
     default: 1,
   },
 } as const)
