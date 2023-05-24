@@ -96,6 +96,8 @@ const toggleReason = ref<Event>()
 const { show, hide, hasUpdateHandler } = usePopperModelToggle({
   indicator: open,
   toggleReason,
+  processBeforeClosing: () => props.processBeforeClose(),
+  shouldProceed: () => props.processBeforeOpen(),
 })
 
 const { onOpen, onClose } = useDelayedToggle({
@@ -144,12 +146,8 @@ provide(popperContextKey, {
   id,
   open: readonly(open),
   trigger: toRef(props, 'trigger'),
-  onOpen: (event?: Event) => {
-    onOpen(event)
-  },
-  onClose: (event?: Event) => {
-    onClose(event)
-  },
+  onOpen,
+  onClose,
   onToggle: (event?: Event) => {
     if (unref(open)) {
       onClose(event)

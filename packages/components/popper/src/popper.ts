@@ -1,4 +1,4 @@
-import { buildProps } from '@vuesax-alpha/utils'
+import { buildProps, definePropType } from '@vuesax-alpha/utils'
 import {
   createModelToggleComposable,
   useDelayedToggleProps,
@@ -23,6 +23,22 @@ export const popperProps = buildProps({
   ...popperTriggerProps,
   ...usePopperModelToggleProps,
 
+  processBeforeOpen: {
+    type: definePropType<() => boolean>(Function),
+    default: () => true,
+  },
+
+  /**
+   * Return false if cancled close
+   */
+  processBeforeClose: {
+    type: definePropType<() => boolean>(Function),
+    default: () => true,
+  },
+
+  /**
+   * Return false if cancled open
+   */
   showArrow: {
     type: Boolean,
     default: true,
