@@ -3,16 +3,19 @@
     ref="popperRef"
     v-model:visible="dropMenuVisible"
     trigger="click"
+    placement="bottom"
     :animation="optionsAnimation"
     :flip="false"
     :fit="fit"
     :hide-after="hideAfter"
     :show-after="showAfter"
     :loading="loading"
-    placement="bottom"
     :popper-class="[ns.e('content'), useBaseComponent(color)]"
+    :popper-style="colorCssVar"
     :show-arrow="false"
     :offset="0"
+    :process-before-open="processBeforeOpen"
+    :process-before-close="processBeforeClose"
     @show="handleMenuEnter"
   >
     <div
@@ -22,42 +25,59 @@
       :style="selectStyle"
       @mouseenter="handleMouseEnter"
       @mouseleave="handleMouseLeave"
-      @click.prevent="toggleMenu"
+      @click="toggleMenu"
     >
+      <div v-if="multiple" ref="chips" :class="[ns.e('chips')]">
+        <vs-chip
+          v-for="(item, cIndex) in selected"
+          :key="cIndex + 'chip'"
+          :closable="!selectDisabled && !item.isDisabled"
+          :hit="item.hitState"
+          @close="deleteTag($event, item.value)"
+        >
+          {{ item.currentLabel }}
+        </vs-chip>
+
+        <input
+          v-if="filter"
+          ref="input"
+          v-model="query"
+          type="text"
+          :class="[
+            ns.e('input-filter'),
+            ns.is('disabled', selectDisabled),
+            ns.be('chips', 'input'),
+          ]"
+          :placeholder="states.selectedLabel ? '' : states.query ?? ''"
+          :disabled="selectDisabled"
+          @focus="handleFocus"
+          @blur="handleBlur"
+          @mouseenter="handleTarget('input-filter')"
+          @mouseleave="handleTarget(null)"
+          @keyup="managePlaceholder"
+          @keydown.down.prevent="navigateOptions('next')"
+          @keydown.up.prevent="navigateOptions('prev')"
+          @keydown.esc="handleKeydownEscape"
+          @keydown.enter.stop.prevent="selectOption"
+          @keydown.delete="deletePrevTag"
+          @keydown.tab="visible = false"
+          @compositionstart="handleComposition"
+          @compositionupdate="handleComposition"
+          @compositionend="handleComposition"
+          @input="debouncedQueryChange"
+        />
+      </div>
       <input
-        v-if="filter"
-        ref="input"
-        v-model="query"
-        type="text"
-        :class="[
-          ns.e('input'),
-          ns.e('input-filter'),
-          ns.is('disabled', selectDisabled),
-        ]"
-        :placeholder="states.selectedLabel ? '' : states.query ?? ''"
-        :disabled="selectDisabled"
-        @focus="handleFocus"
-        @blur="handleBlur"
-        @keyup="managePlaceholder"
-        @keydown.down.prevent="navigateOptions('next')"
-        @keydown.up.prevent="navigateOptions('prev')"
-        @keydown.esc="handleKeydownEscape"
-        @keydown.enter.stop.prevent="selectOption"
-        @keydown.delete="deletePrevTag"
-        @keydown.tab="visible = false"
-        @compositionstart="handleComposition"
-        @compositionupdate="handleComposition"
-        @compositionend="handleComposition"
-        @input="debouncedQueryChange"
-      />
-      <vs-input
         :id="inputId"
         ref="reference"
+        v-model="states.selectedLabel"
+        :placeholder="multiple ? '' : states.currentPlaceholder"
         :class="[ns.e('input'), ns.is('multiple', multiple)]"
         :readonly="readonly"
-        :value="multiple ? '' : states.selectedLabel"
         @focus="handleFocus"
         @blur="handleBlur"
+        @mouseenter="handleTarget('input-filter', !readonly)"
+        @mouseleave="handleTarget(null)"
         @input="debouncedOnInputChange"
         @paste="debouncedOnInputChange"
         @compositionstart="handleComposition"
@@ -99,7 +119,7 @@
       <transition name="v-clearable">
         <span
           v-if="showClose"
-          class="vs-select__clearable"
+          :class="ns.e('clearable')"
           @click="handleClearClick"
         >
           <icon-close hover="less" scale="0.675" />
@@ -127,12 +147,12 @@ import { isEqual } from 'lodash-unified'
 import { ClickOutside as vClickOutside } from '@vuesax-alpha/directives'
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import { IconClose, VsIcon } from '@vuesax-alpha/components/icon'
-import { VsInput } from '@vuesax-alpha/components/input'
 import { VsScrollbar } from '@vuesax-alpha/components/scrollbar'
 import { VsPopper } from '@vuesax-alpha/components/popper'
 import { ChevronDown } from '@vuesax-alpha/icons-vue'
-import { useBaseComponent, useNamespace } from '@vuesax-alpha/hooks'
+import { useBaseComponent, useColor, useNamespace } from '@vuesax-alpha/hooks'
 import { getVsColor } from '@vuesax-alpha/utils'
+import VsChip from './chip.vue'
 import { selectContextKey } from './tokens'
 import { selectEmits, selectProps } from './select'
 import { useSelect, useSelectStates } from './useSelect'
@@ -149,23 +169,34 @@ const ns = useNamespace('select')
 
 const states = useSelectStates(props)
 
+const color = useColor('primary')
+
+const colorCssVar = computed(() =>
+  ns.cssVar({
+    color: getVsColor(color.value),
+  })
+)
+
 const optionsAnimation = computed(() => ns.b())
 
 const {
   debouncedQueryChange,
   managePlaceholder,
   deletePrevTag,
+  deleteTag,
   handleClearClick,
   showClose,
   input,
   inputId,
   readonly,
   reference,
+  chips,
   popperRef,
   selectDisabled,
   selectWrapper,
   handleMouseEnter,
   handleMouseLeave,
+  handleTarget,
   selectOption,
   handleComposition,
   navigateOptions,
@@ -187,6 +218,9 @@ const {
   handleOptionSelect,
   focus,
   blur,
+
+  processBeforeOpen,
+  processBeforeClose,
 } = useSelect(props, states, emit)
 
 const {
@@ -227,11 +261,7 @@ const selectKls = computed(() => [
   { [ns.m('has-label')]: props.label || props.labelFloat },
 ])
 
-const selectStyle = computed(() => [
-  ns.cssVar({
-    color: getVsColor(props.color),
-  }),
-])
+const selectStyle = computed(() => [colorCssVar.value])
 
 onMounted(() => {
   states.cachedPlaceHolder = states.currentPlaceholder = props.placeholder
@@ -264,6 +294,7 @@ provide(
     selectWrapper,
     selected,
     setSelected,
+    handleTarget,
     query,
     groupQuery,
   }) as SelectContext

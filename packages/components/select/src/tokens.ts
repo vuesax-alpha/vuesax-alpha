@@ -1,3 +1,4 @@
+import type { OptionProps } from './option'
 import type { InjectionKey } from 'vue'
 
 export type SelectOptionValue = string | number | object
@@ -11,6 +12,16 @@ export type SelectOptionStates = {
   userCreated: boolean
 }
 
+export type SelectTargetElement =
+  | 'select'
+  | 'chip'
+  | 'popper'
+  | 'chip'
+  | 'chip-close'
+  | 'input'
+  | 'input-filter'
+  | 'reference'
+
 export type SelectValue = SelectOptionValue | SelectOptionValue[]
 
 export type SelectStates = {
@@ -19,8 +30,7 @@ export type SelectStates = {
   selected: SelectOptionContext[]
   createdLabel: string | null
   createdSelected: boolean
-  inputLength: number
-  inputWidth: number
+  targetOnElement: SelectTargetElement | null
   optionsCount: number
   filteredOptionsCount: number
   visible: boolean
@@ -62,6 +72,10 @@ export type SelectContext = {
   options: Map<SelectOptionValue, SelectOptionContext>
   optionsArray: SelectOptionContext[]
   selected: SelectOptionContext[]
+  handleTarget: (
+    target: SelectTargetElement | null,
+    condition?: boolean
+  ) => void
   setSelected(): void
   onOptionCreate(vm: SelectOptionContext): void
   onOptionDestroy(key: SelectOptionValue, vm: SelectOptionContext): void
@@ -90,3 +104,13 @@ export interface SelectOptionContext {
   hoverItem: () => void
   selectOptionClick: () => void
 }
+
+export type RegisterContext = (props: OptionProps) => {
+  unregister: () => void
+}
+
+export const optionGroupRegisterKey: InjectionKey<RegisterContext> =
+  Symbol('group-register')
+
+export const selectRegisterKey: InjectionKey<RegisterContext> =
+  Symbol('select-register')
