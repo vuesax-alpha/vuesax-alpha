@@ -42,6 +42,7 @@ export const createModelToggleComposable = <T extends string>(name: T) => {
     toggleReason,
     shouldHideWhenRouteChanges,
     shouldProceed,
+    processBeforeClosing,
     onShow,
     onHide,
   }: ModelToggleParams) => {
@@ -105,7 +106,12 @@ export const createModelToggleComposable = <T extends string>(name: T) => {
     }
 
     const hide = (event?: Event) => {
-      if (props.disabled === true || !isClient) return
+      if (
+        props.disabled === true ||
+        !isClient ||
+        (isFunction(processBeforeClosing) && !processBeforeClosing())
+      )
+        return
 
       const shouldEmit = hasUpdateHandler.value && isClient
 
@@ -194,6 +200,7 @@ export type ModelToggleParams = {
   toggleReason?: Ref<Event | undefined>
   shouldHideWhenRouteChanges?: Ref<boolean>
   shouldProceed?: () => boolean
+  processBeforeClosing?: () => boolean
   onShow?: (event?: Event) => void
   onHide?: (event?: Event) => void
 }
