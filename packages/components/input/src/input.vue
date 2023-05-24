@@ -14,6 +14,7 @@
         :disabled="disabled"
         :class="[ns.e('original'), ns.is('disabled', disabled)]"
         placeholder=""
+        @input="handleInput"
         @focus="handleFocus"
         @blur="handleBlur"
         @change="handleChange"
@@ -233,7 +234,7 @@ const {
   handleShowPassword,
   handleMouseLeave,
   handleMouseEnter,
-
+  handleInput,
   /** clearable */
   showClear,
   clear,

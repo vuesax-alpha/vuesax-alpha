@@ -1,7 +1,7 @@
 import { computed, getCurrentInstance } from 'vue'
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import type { Ref } from 'vue'
-import type { InputProps } from './../input'
+import type { InputProps } from '../input'
 
 export const useInputClearable = (
   props: InputProps,
