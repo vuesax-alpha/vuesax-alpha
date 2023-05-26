@@ -558,12 +558,12 @@ $checkbox: map.merge(
 $popper: () !default;
 $popper: map.merge(
   (
-    color: getCssVar(background),
-    background: getCssVar(color),
-    border-radius: 12px,
-    font-size: 0.85rem,
-    arrow-width: 10px,
-    arrow-height: 10px,
+    'color': getCssVar(background),
+    'background': getCssVar(color),
+    'border-radius': 12px,
+    'font-size': 0.85rem,
+    'arrow-width': 10px,
+    'arrow-height': 10px,
   ),
   $popper
 );
@@ -573,14 +573,15 @@ $popper: map.merge(
 $select: () !default;
 $select: map.merge(
   (
-    width: 200px,
-    label-left: 12px,
-    label-offset: 0px,
-    label-font-size: 0.81rem,
-    placeholder-font-size: 0.76rem,
-    suport-font-size: 0.68rem,
-    suport-offset: 6px,
-    input-radius: 12px,
+    'width': 200px,
+    'min-height': 42px,
+    'label-left': 12px,
+    'label-offset': 0px,
+    'label-font-size': 0.81rem,
+    'placeholder-font-size': 0.76rem,
+    'suport-font-size': 0.68rem,
+    'suport-offset': 6px,
+    'input-radius': 12px,
   ),
   $select
 );

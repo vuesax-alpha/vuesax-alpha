@@ -13,7 +13,7 @@ html.dark {
     @include set-colors($type);
   }
 
-  // vuesax var
+  // // vuesax var
   @include set-component-var('', $vsVar);
 
   // --vs-box-shadow-#{$type}

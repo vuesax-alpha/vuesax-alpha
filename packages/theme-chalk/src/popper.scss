@@ -2,7 +2,17 @@
 @use 'mixins/var' as *;
 @use 'common/var' as *;
 
-[id*="#{$namespace}-popper-container"] {
+[id*='#{$namespace}-popper-container'] {
   position: relative;
   z-index: 0;
+}
+
+@include b(popper) {
+  @include e(arrow) {
+    path {
+      fill: getColor(color);
+      fill-opacity: 0.92;
+      fill-rule: evenodd;
+    }
+  }
 }
