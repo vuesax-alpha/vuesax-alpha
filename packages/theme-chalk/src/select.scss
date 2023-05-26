@@ -110,7 +110,8 @@ $iconActiveMargin: -4px;
       border-radius: 12px 12px 0px 0px;
       box-shadow: 0px -10px 20px -5px rgba(0, 0, 0, getCssVar(shadow-opacity));
     }
-    margin-top: -4px;
+    margin-top: -5px;
+    padding-top: 5px;
     overflow: hidden;
     background: getColor('background');
     color: getColor(color);
@@ -191,6 +192,7 @@ $iconActiveMargin: -4px;
     opacity: 1;
     border: 2px solid transparent;
     border-radius: 12px;
+    z-index: 1;
     cursor: pointer;
     transition: getCssVar(transition-ease), height 0s;
     background: getColor('gray-2');
@@ -221,7 +223,7 @@ $iconActiveMargin: -4px;
       min-width: 30px;
       max-width: 100%;
       color: getColor('text');
-      // transition: getCssVar(transition-ease);
+      transition: getCssVar(transition-ease);
 
       &::placeholder {
         color: getColor('text', 0.4);
@@ -240,7 +242,6 @@ $iconActiveMargin: -4px;
     background: getColor('gray-2');
     border-radius: 12px;
     display: flex;
-    border: 2px solid transparent;
     align-items: flex-start;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -271,7 +272,6 @@ $iconActiveMargin: -4px;
     max-height: 40px;
 
     @include when(hidden) {
-      // display: none
       opacity: 0;
       visibility: hidden;
       max-height: 0px;
@@ -281,16 +281,14 @@ $iconActiveMargin: -4px;
       margin: 0px;
     }
 
-    .is-hover,
-    &:hover {
-      background: getColor('color', 0.01);
-    }
-
     @include when(active) {
       background: getColor('color', 0.05);
       color: getColor('color', 1);
+      transition: all 0.25s linear;
     }
-    &:hover:not(.is-disabled) {
+
+    &.#{$state-prefix}hover:not(.#{$state-prefix}disabled) {
+      background: getColor('color', 0.015);
       color: getColor('color');
       padding-left: 14px;
     }
@@ -308,10 +306,11 @@ $iconActiveMargin: -4px;
     @include e(input) {
       transform: translateY(-4px);
       background: getColor('background');
+      box-shadow: 0 5px 25px -4px rgba(0, 0, 0, getCssVar(shadow-opacity));
     }
     @include e(chips) {
       background: getColor('background');
-      transform: translate(0, -4px);
+      transform: translateY(-4px);
     }
     @include e(label) {
       @include when(placeholder) {
@@ -369,7 +368,6 @@ $iconActiveMargin: -4px;
     @include e(chips) {
       border-radius: 12px 12px 0px 0px;
       background: getColor('background');
-      box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, getCssVar(shadow-opacity));
       transform: translate(0, -4px);
       transition: getCssVar(transition-ease), height 0s;
       &:after {
@@ -396,9 +394,14 @@ $iconActiveMargin: -4px;
   }
   @include e(options) {
     padding: 5px;
+    transition: getCssVar(transition-ease);
 
-    &__not-data {
-      color: getColor('text');
+    @include when(empty) {
+      padding: 0 5px;
+    }
+
+    @include m(empty) {
+      color: getColor('text', 0.7);
       font-size: 0.8rem;
       text-align: center;
       padding: 6px 10px;

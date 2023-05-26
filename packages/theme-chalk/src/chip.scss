@@ -8,14 +8,14 @@
   border-radius: 12px;
   padding: 3px 10px 3px 6px;
   font-size: 0.84rem;
-  border: 2px solid getColor(gray-2);
+  border: 1px solid getColor(gray-2);
   color: getColor(text);
   display: flex;
-  background-color: getColor('gray-2');
+  background-color: getColor(background);
 
   @include when(hit) {
     background-color: transparent;
-    border-color: getColor(gray-4);
+    border-color: getColor(color, 0.5);
   }
 
   .#{$namespace}-icon-close {
@@ -34,6 +34,7 @@
     @include set-var-value(color, getCssVar(text));
 
     &:hover {
+      @include set-var-value(color, getCssVar(white));
       background: getColor('danger');
     }
   }
