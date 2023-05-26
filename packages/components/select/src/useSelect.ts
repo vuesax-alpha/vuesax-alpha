@@ -41,7 +41,7 @@ export function useSelectStates(props: SelectProps): SelectStates {
   return reactive({
     options: new Map(),
     cachedOptions: new Map(),
-    selected: new Set(),
+    selected: new Map(),
     createdLabel: null,
     targetOnElement: null,
     createdSelected: false,
@@ -377,7 +377,7 @@ export const useSelect = (
         states.createdSelected = false
       }
       states.selectedLabel = option.currentLabel
-      states.selected.add(option)
+      states.selected.set(option.value, option)
       if (props.filter) states.query = states.selectedLabel
       return
     }
@@ -386,7 +386,8 @@ export const useSelect = (
 
     if (Array.isArray(props.modelValue)) {
       props.modelValue.forEach((value) => {
-        states.selected.add(getOption(value))
+        const option = getOption(value)
+        states.selected.set(option.value, option)
       })
     }
   }

@@ -1,7 +1,5 @@
 import '@vuesax-alpha/components/base/style/css'
-import '@vuesax-alpha/theme-chalk/vs-chip.css'
-import '@vuesax-alpha/theme-chalk/vs-popper.css'
-import '@vuesax-alpha/theme-chalk/vs-scrollbar.css'
+import '@vuesax-alpha/components/popper/style/css'
+import '@vuesax-alpha/components/scrollbar/style/css'
+
 import '@vuesax-alpha/theme-chalk/vs-select.css'
-import '@vuesax-alpha/theme-chalk/vs-option.css'
-import '@vuesax-alpha/theme-chalk/vs-option-group.css'

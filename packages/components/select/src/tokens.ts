@@ -1,8 +1,9 @@
+import type { SelectProps } from './select'
 import type { InjectionKey } from 'vue'
 
 export type SelectOptionValue = string | number | object
 
-export interface SelectOptionContext {
+export type SelectOptionContext = {
   el: HTMLElement | undefined
   index: number
   groupDisabled: boolean
@@ -27,12 +28,11 @@ export type SelectTargetElement =
   | 'reference'
 
 export type SelectValue = SelectOptionValue | SelectOptionValue[]
-Set<SelectOptionContext>
 
 export type SelectStates = {
   options: Map<SelectOptionValue, SelectOptionContext>
   cachedOptions: Map<SelectOptionValue, SelectOptionContext>
-  selected: Set<SelectOptionContext>
+  selected: Map<SelectOptionValue, SelectOptionContext>
   createdLabel: string | null
   createdSelected: boolean
   targetOnElement: SelectTargetElement | null
@@ -57,12 +57,7 @@ export type SelectGroupContext = {
 }
 
 export type SelectContext = {
-  props: {
-    multiple?: boolean
-    multipleLimit?: number
-    modelValue?: SelectValue
-    popperClass?: string
-  }
+  props: SelectProps
   states: SelectStates
   queryChange: string | null
   selectWrapper: HTMLElement | undefined
@@ -83,16 +78,14 @@ type SelectRegisterContext = (option: SelectOptionContext) => {
   updateOption: (option: SelectOptionContext) => void
 }
 
-export const selectContextKey: InjectionKey<SelectContext> = Symbol('select')
+export const selectContextKey: InjectionKey<SelectContext> = Symbol()
 
-export const selectRegisterKey: InjectionKey<SelectRegisterContext> =
-  Symbol('select-register')
+export const selectRegisterKey: InjectionKey<SelectRegisterContext> = Symbol()
 
-export const optionGroupContextKey: InjectionKey<SelectGroupContext> =
-  Symbol('option-group')
+export const optionGroupContextKey: InjectionKey<SelectGroupContext> = Symbol()
 
 type OptionGroupRegisterContext = (option: SelectOptionContext) => {
   unregister: () => void
 }
 export const optionGroupRegisterKey: InjectionKey<OptionGroupRegisterContext> =
-  Symbol('group-register')
+  Symbol()

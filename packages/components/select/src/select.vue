@@ -29,7 +29,7 @@
     >
       <div v-if="multiple" ref="chips" :class="[ns.e('chips')]">
         <vs-chip
-          v-for="(item, cIndex) in selected"
+          v-for="(item, cIndex) in selectedArray"
           :key="cIndex + 'chip'"
           :closable="!selectDisabled && !item.isDisabled"
           :hit="item.hit"
@@ -127,36 +127,40 @@
     </div>
 
     <template #content>
-      <vs-scrollbar
-        v-show="states.options.size > 0 && !loading"
-        max-height="200"
-        thickness="3"
-        :wrap-class="[
-          ns.e('options'),
-          ns.is(
-            'empty',
-            !allowCreate && Boolean(query) && states.filteredOptionsCount === 0
-          ),
-        ]"
-        :native="nativeScrollbar"
-        @mouseleave="hoverIndex = -1"
-      >
-        <slot />
-      </vs-scrollbar>
+      <div>
+        <vs-scrollbar
+          v-show="states.options.size > 0 && !loading"
+          max-height="200"
+          thickness="3"
+          :wrap-class="[
+            ns.e('options'),
+            ns.is(
+              'empty',
+              !allowCreate &&
+                Boolean(query) &&
+                states.filteredOptionsCount === 0
+            ),
+          ]"
+          :native="nativeScrollbar"
+          @mouseleave="hoverIndex = -1"
+        >
+          <slot />
+        </vs-scrollbar>
 
-      <template
-        v-if="
-          emptyText &&
-          (!allowCreate ||
-            loading ||
-            (allowCreate && states.options.size === 0))
-        "
-      >
-        <slot v-if="$slots.empty" name="empty" />
-        <p v-else :class="ns.em('options', 'empty')">
-          {{ emptyText }}
-        </p>
-      </template>
+        <template
+          v-if="
+            emptyText &&
+            (!allowCreate ||
+              loading ||
+              (allowCreate && states.options.size === 0))
+          "
+        >
+          <slot v-if="$slots.empty" name="empty" />
+          <p v-else :class="ns.em('options', 'empty')">
+            {{ emptyText }}
+          </p>
+        </template>
+      </div>
     </template>
   </vs-popper>
 </template>
@@ -249,7 +253,7 @@ const {
   selectedArray,
 } = useSelect(props, states, emit)
 
-const { visible, selected, hoverIndex, query } = toRefs(states)
+const { visible, hoverIndex, query } = toRefs(states)
 
 // @ts-ignore - directive: v-click-outside element
 const popperPaneRef = computed(() => {
