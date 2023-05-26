@@ -1,0 +1,8 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+[id*="#{$namespace}-popper-container"] {
+  position: relative;
+  z-index: 0;
+}
