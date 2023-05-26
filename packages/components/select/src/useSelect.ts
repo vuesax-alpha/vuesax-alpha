@@ -21,9 +21,11 @@ import {
   isBoolean,
   isFunction,
   isKorean,
+  removeStyle,
   scrollIntoView,
+  setStyle,
 } from '@vuesax-alpha/utils'
-import { useId, useNamespace } from '@vuesax-alpha/hooks'
+import { useId, useLocale, useNamespace } from '@vuesax-alpha/hooks'
 import type { PopperExpose } from '@vuesax-alpha/components/popper'
 import type { SelectEmitsFn, SelectProps } from './select'
 
@@ -39,7 +41,7 @@ export function useSelectStates(props: SelectProps): SelectStates {
   return reactive({
     options: new Map(),
     cachedOptions: new Map(),
-    selected: [],
+    selected: new Set(),
     createdLabel: null,
     targetOnElement: null,
     createdSelected: false,
@@ -51,14 +53,11 @@ export function useSelectStates(props: SelectProps): SelectStates {
     hoverIndex: -1,
     query: '',
     previousQuery: null,
-    inputHovering: false,
     cachedPlaceHolder: '',
     currentPlaceholder: props.placeholder,
     menuVisibleOnFocus: false,
     isOnComposition: false,
     isSilentBlur: false,
-    prefixWidth: 11,
-    tagInMultiLine: false,
     mouseEnter: false,
   })
 }
@@ -69,6 +68,7 @@ export const useSelect = (
   emit: SelectEmitsFn
 ) => {
   const ns = useNamespace('select')
+  const { t } = useLocale()
 
   // template refs
   const reference = ref<HTMLInputElement>()
@@ -80,9 +80,8 @@ export const useSelect = (
     handleScroll: () => void
   }>()
   const hoverOption = ref<SelectOptionContext>()
-  const query = shallowRef<string>('')
   const inputId = useId(props.id)
-  const groupQuery = shallowRef('')
+  const queryChange = shallowRef<string>('')
   const debounce = ref(0)
   const readonly = computed(
     () => !props.filter || props.multiple || !states.visible
@@ -108,7 +107,7 @@ export const useSelect = (
     Array.from(states.cachedOptions.values())
   )
 
-  const selectedArray = computed<SelectOptionContext[]>(() => states.selected)
+  const selectedArray = computed(() => Array.from(states.selected.values()))
 
   const showNewOption = computed(() => {
     const hasExistingOption = optionsArray.value
@@ -135,6 +134,25 @@ export const useSelect = (
     },
   })
 
+  const emptyText = computed(() => {
+    if (props.loading) {
+      return props.loadingText || t('vs.select.loading')
+    }
+
+    if (
+      props.filter &&
+      states.query &&
+      states.options.size > 0 &&
+      states.filteredOptionsCount === 0
+    ) {
+      return props.noMatchText || t('vs.select.noMatch')
+    }
+    if (states.options.size === 0) {
+      return props.noDataText || t('vs.select.noData')
+    }
+    return null
+  })
+
   watch(
     () => props.placeholder,
     (val) => {
@@ -146,8 +164,11 @@ export const useSelect = (
     () => props.modelValue,
     (val) => {
       if (props.multiple) {
-        // @ts-ignore
-        if ((val && val.length > 0) || (input.value && states.query !== '')) {
+        if (
+          // @ts-ignore
+          (val && val.length > 0) ||
+          (input.value && states.query !== '')
+        ) {
           states.currentPlaceholder = ''
         } else {
           states.currentPlaceholder = states.cachedPlaceHolder
@@ -159,7 +180,7 @@ export const useSelect = (
 
         nextTick(() => {
           if (reference.value && chips.value) {
-            reference.value.style.height = `${chips.value.scrollHeight}px`
+            reference.value.style.height = `${chips.value.scrollHeight - 1}px`
           }
         })
       }
@@ -228,10 +249,9 @@ export const useSelect = (
 
           states.query && handleQueryChange(states.query)
           if (!props.multiple) {
-            query.value = ''
+            queryChange.value = ''
 
-            triggerRef(query)
-            triggerRef(groupQuery)
+            triggerRef(queryChange)
           }
         }
       }
@@ -270,7 +290,7 @@ export const useSelect = (
     () => states.hoverIndex,
     (val) => {
       if (val > -1) {
-        hoverOption.value = optionsArray.value[0]
+        hoverOption.value = optionsArray.value[val]
       } else {
         hoverOption.value = undefined
       }
@@ -280,7 +300,7 @@ export const useSelect = (
     }
   )
 
-  const handleQueryChange = async (val: string) => {
+  const handleQueryChange = (val: string) => {
     if (states.previousQuery === val || states.isOnComposition) return
     if (states.previousQuery === null && isFunction(props.filterMethod)) {
       states.previousQuery = val
@@ -298,27 +318,26 @@ export const useSelect = (
     }
     if (isFunction(props.filterMethod)) {
       props.filterMethod(val)
-      triggerRef(groupQuery)
     } else {
       states.filteredOptionsCount = states.optionsCount
-      query.value = val
+      queryChange.value = val
 
-      triggerRef(query)
-      triggerRef(groupQuery)
+      triggerRef(queryChange)
     }
     if (
       props.defaultFirstOption &&
       props.filter &&
       states.filteredOptionsCount
     ) {
-      await nextTick()
-      checkDefaultFirstOption()
+      nextTick(() => {
+        checkDefaultFirstOption()
+      })
     }
   }
 
   const managePlaceholder = () => {
     if (states.currentPlaceholder !== '') {
-      states.currentPlaceholder = input.value!.value
+      states.currentPlaceholder = input.value?.value
         ? ''
         : states.cachedPlaceHolder
     }
@@ -330,13 +349,13 @@ export const useSelect = (
    * - if the first option in dropdown list is user-created,
    *   it would be at the end of the optionsArray
    *   so find it and set hover.
-   *   (NOTE: there must be only one user-created option in dropdown list with query)
+   *   (NOTE: there must be only one user-created option in dropdown list with queryChange)
    * - if there's no user-created option in list, just find the first one as usual
    *   (NOTE: exclude options that are disabled or in disabled-group)
    */
   const checkDefaultFirstOption = () => {
     const optionsInDropdown = optionsArray.value.filter(
-      (n) => n.visible && !n.disabled && !n.groupDisabled
+      (n) => n.visible && !n.isDisabled && !n.groupDisabled
     )
     const userCreatedOption = optionsInDropdown.find((n) => n.userCreated)
     const firstOriginOption = optionsInDropdown[0]
@@ -347,6 +366,8 @@ export const useSelect = (
   }
 
   const setSelected = () => {
+    states.selected.clear()
+
     if (!props.multiple) {
       const option = getOption(props.modelValue as SelectOptionValue)
       if (option.userCreated) {
@@ -356,19 +377,18 @@ export const useSelect = (
         states.createdSelected = false
       }
       states.selectedLabel = option.currentLabel
-      states.selected = [option]
+      states.selected.add(option)
       if (props.filter) states.query = states.selectedLabel
       return
     }
 
     states.selectedLabel = ''
-    const result: SelectOptionContext[] = []
+
     if (Array.isArray(props.modelValue)) {
       props.modelValue.forEach((value) => {
-        result.push(getOption(value))
+        states.selected.add(getOption(value))
       })
     }
-    states.selected = result
   }
 
   const getOption = (value: SelectOptionValue): SelectOptionContext => {
@@ -394,19 +414,18 @@ export const useSelect = (
       ? String(value)
       : ''
 
-    const newOption: Pick<
-      SelectOptionContext,
-      'value' | 'currentLabel' | 'hitState' | 'label'
-    > = {
+    const newOption = {
       value,
       currentLabel: label,
       label,
-      hitState: true,
-    }
+      hit: true,
+    } as SelectOptionContext
+
     if (props.multiple) {
-      newOption.hitState = false
+      newOption.hit = false
     }
-    return newOption as SelectOptionContext
+
+    return newOption
   }
 
   const resetHoverIndex = () => {
@@ -435,6 +454,9 @@ export const useSelect = (
   }
 
   const handleResize = () => {
+    if (reference.value && chips.value) {
+      reference.value.style.height = `${chips.value.scrollHeight}px`
+    }
     popperRef.value?.updatePopper()
   }
 
@@ -478,18 +500,18 @@ export const useSelect = (
     }
   }
 
-  const deleteTag = (event: Event | MouseEvent, tag: SelectOptionValue) => {
+  const deleteTag = (tag: SelectOptionValue) => {
     const hasTag = states.cachedOptions.get(tag)
     if (!hasTag) return
     const index = getValueIndex(selectedArray.value, hasTag)
     if (index > -1 && !selectDisabled.value) {
-      const value = (props.modelValue as SelectOptionValue[]).slice()
+      // @ts-ignore
+      const value = props.modelValue.slice()
       value.splice(index, 1)
       emit(UPDATE_MODEL_EVENT, value)
       emitChange(value)
       emit('remove-tag', tag)
     }
-    // event.stopPropagation()
   }
 
   const deleteSelected = () => {
@@ -580,28 +602,35 @@ export const useSelect = (
     }
 
     if (popperRef.value && target) {
-      const menu = popperRef.value?.contentRef?.querySelector?.(
-        `.${ns.be('dropdown', 'wrap')}`
-      )
+      const menu: HTMLElement | null | undefined =
+        popperRef.value?.contentRef?.querySelector?.(`.${ns.e('options')}`)
       if (menu) {
+        setStyle(menu, 'scroll-behavior', 'smooth')
         scrollIntoView(menu as HTMLElement, target)
+        removeStyle(menu, 'scroll-behavior')
       }
     }
     scrollbar.value?.handleScroll()
   }
 
-  const onOptionCreate = (vm: SelectOptionContext) => {
+  const onOptionCreate = (
+    value: SelectOptionValue,
+    option: SelectOptionContext
+  ) => {
     states.optionsCount++
     states.filteredOptionsCount++
-    states.options.set(vm.value, vm)
-    states.cachedOptions.set(vm.value, vm)
+    states.options.set(value, option)
+    states.cachedOptions.set(value, option)
   }
 
-  const onOptionDestroy = (key: SelectOptionValue, vm: SelectOptionContext) => {
-    if (states.options.get(key) === vm) {
+  const onOptionDestroy = (
+    value: SelectOptionValue,
+    option: SelectOptionContext
+  ) => {
+    if (states.options.get(value) === option) {
       states.optionsCount--
       states.filteredOptionsCount--
-      states.options.delete(key)
+      states.options.delete(value)
     }
   }
 
@@ -614,12 +643,12 @@ export const useSelect = (
     if (!option) return
 
     if (isBoolean(hit)) {
-      option.hitState = hit
+      option.hit = hit
       return hit
     }
 
-    option.hitState = !option.hitState
-    return option.hitState
+    option.hit = !option.hit
+    return option.hit
   }
 
   const handleComposition = (event: Event) => {
@@ -689,7 +718,7 @@ export const useSelect = (
     if (optionsArray.value.length === 0) return false
 
     const ignoreDisabledOptions = optionsArray.value.filter(
-      (e) => e.disabled === false
+      (e) => e.isDisabled === false
     )
     if (ignoreDisabledOptions.length === 0) return false
 
@@ -738,7 +767,7 @@ export const useSelect = (
   const optionsAllDisabled = computed(() =>
     optionsArray.value
       .filter((option) => option.visible)
-      .every((option) => option.disabled)
+      .every((option) => option.isDisabled)
   )
 
   const navigateOptions = (direction: string = 'next' || 'prev') => {
@@ -763,7 +792,7 @@ export const useSelect = (
       }
       const option = optionsArray.value[states.hoverIndex]
       if (
-        option.disabled === true ||
+        option.isDisabled === true ||
         option.groupDisabled === true ||
         !option.visible
       ) {
@@ -795,6 +824,8 @@ export const useSelect = (
     showNewOption,
     inputId,
     optionsArray,
+    cachedOptionsArray,
+    selectedArray,
     handleResize,
     debouncedOnInputChange,
     debouncedQueryChange,
@@ -827,8 +858,7 @@ export const useSelect = (
     selectOption,
     navigateOptions,
     dropMenuVisible,
-    query,
-    groupQuery,
+    queryChange,
 
     // DOM ref
     reference,
@@ -844,5 +874,9 @@ export const useSelect = (
 
     processBeforeOpen,
     processBeforeClose,
+
+    emptyText,
+
+    resetHoverIndex,
   }
 }

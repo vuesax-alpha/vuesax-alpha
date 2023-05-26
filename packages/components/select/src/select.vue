@@ -32,8 +32,8 @@
           v-for="(item, cIndex) in selected"
           :key="cIndex + 'chip'"
           :closable="!selectDisabled && !item.isDisabled"
-          :hit="item.hitState"
-          @close="deleteTag($event, item.value)"
+          :hit="item.hit"
+          @close="deleteTag(item.value)"
         >
           {{ item.currentLabel }}
         </vs-chip>
@@ -71,7 +71,6 @@
         :id="inputId"
         ref="reference"
         v-model="states.selectedLabel"
-        :placeholder="multiple ? '' : states.currentPlaceholder"
         :class="[ns.e('input'), ns.is('multiple', multiple)]"
         :readonly="readonly"
         @focus="handleFocus"
@@ -129,19 +128,41 @@
 
     <template #content>
       <vs-scrollbar
+        v-show="states.options.size > 0 && !loading"
         max-height="200"
         thickness="3"
-        :wrap-class="ns.e('options')"
+        :wrap-class="[
+          ns.e('options'),
+          ns.is(
+            'empty',
+            !allowCreate && Boolean(query) && states.filteredOptionsCount === 0
+          ),
+        ]"
         :native="nativeScrollbar"
+        @mouseleave="hoverIndex = -1"
       >
         <slot />
       </vs-scrollbar>
+
+      <template
+        v-if="
+          emptyText &&
+          (!allowCreate ||
+            loading ||
+            (allowCreate && states.options.size === 0))
+        "
+      >
+        <slot v-if="$slots.empty" name="empty" />
+        <p v-else :class="ns.em('options', 'empty')">
+          {{ emptyText }}
+        </p>
+      </template>
     </template>
   </vs-popper>
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, provide, reactive, toRefs } from 'vue'
+import { computed, nextTick, onMounted, provide, reactive, toRefs } from 'vue'
 import { unrefElement, useResizeObserver } from '@vueuse/core'
 import { isEqual } from 'lodash-unified'
 import { ClickOutside as vClickOutside } from '@vuesax-alpha/directives'
@@ -153,10 +174,10 @@ import { ChevronDown } from '@vuesax-alpha/icons-vue'
 import { useBaseComponent, useColor, useNamespace } from '@vuesax-alpha/hooks'
 import { getVsColor } from '@vuesax-alpha/utils'
 import VsChip from './chip.vue'
-import { selectContextKey } from './tokens'
+import { selectContextKey, selectRegisterKey } from './tokens'
 import { selectEmits, selectProps } from './select'
 import { useSelect, useSelectStates } from './useSelect'
-import type { SelectContext } from './tokens'
+import type { SelectOptionContext } from './tokens'
 
 defineOptions({
   name: 'VsSelect',
@@ -186,10 +207,12 @@ const {
   deleteTag,
   handleClearClick,
   showClose,
-  input,
   inputId,
+  emptyText,
   readonly,
+  input,
   reference,
+
   chips,
   popperRef,
   selectDisabled,
@@ -202,10 +225,7 @@ const {
   navigateOptions,
   handleKeydownEscape,
   dropMenuVisible,
-  query,
-  groupQuery,
   debouncedOnInputChange,
-  optionsArray,
   handleFocus,
   handleBlur,
   toggleMenu,
@@ -221,17 +241,15 @@ const {
 
   processBeforeOpen,
   processBeforeClose,
+
+  queryChange,
+
+  optionsArray,
+  cachedOptionsArray,
+  selectedArray,
 } = useSelect(props, states, emit)
 
-const {
-  visible,
-  selected,
-  filteredOptionsCount,
-  hoverIndex,
-  options,
-  cachedOptions,
-  optionsCount,
-} = toRefs(states)
+const { visible, selected, hoverIndex, query } = toRefs(states)
 
 // @ts-ignore - directive: v-click-outside element
 const popperPaneRef = computed(() => {
@@ -282,23 +300,45 @@ provide(
   reactive({
     props,
     states,
-    options,
-    optionsArray,
-    cachedOptions,
-    optionsCount,
-    filteredOptionsCount,
+    queryChange,
     hoverIndex,
-    handleOptionSelect,
-    onOptionCreate,
-    onOptionDestroy,
     selectWrapper,
-    selected,
-    setSelected,
+    selectedArray,
+    optionsArray,
+    cachedOptionsArray,
     handleTarget,
-    query,
-    groupQuery,
-  }) as SelectContext
+    setSelected,
+    handleOptionSelect,
+  })
 )
+
+provide(selectRegisterKey, (option: SelectOptionContext) => {
+  option.index = states.optionsCount
+
+  onOptionCreate(option.value, option)
+
+  return {
+    updateOption: (newOption: SelectOptionContext) => {
+      onOptionDestroy(option.value, option)
+      onOptionCreate(newOption.value, newOption)
+    },
+    unregister: () => {
+      const doesSelected = selectedArray.value.some(
+        (e) => e.value == option.value
+      )
+      // if option is not selected, remove it from cache
+      nextTick(() => {
+        if (
+          states.cachedOptions.get(option.value) === option &&
+          !doesSelected
+        ) {
+          states.cachedOptions.delete(option.value)
+        }
+      })
+      onOptionDestroy(option.value, option)
+    },
+  }
+})
 
 defineExpose({
   /** focus to select */
