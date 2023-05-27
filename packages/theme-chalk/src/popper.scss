@@ -2,16 +2,19 @@
 @use 'mixins/var' as *;
 @use 'common/var' as *;
 
-[id*='#{$namespace}-popper-container'] {
-  position: relative;
-  z-index: 0;
-}
-
 @include b(popper) {
+  background-color: getColor(color, 0.92);
+  color: getColor(light);
+  border-radius: 12px;
+  padding: 5px 10px;
+
   @include e(arrow) {
+    position: fixed;
+    display: block;
+    width: 30px;
+
     path {
-      fill: getColor(color);
-      fill-opacity: 0.92;
+      fill: getColor(color, 0.92);
       fill-rule: evenodd;
     }
   }
