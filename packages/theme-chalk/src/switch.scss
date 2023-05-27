@@ -1,0 +1,199 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@keyframes vs-rotate-switch {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@include b(switch) {
+  @include flex(center, center);
+
+  color: #fff;
+  padding: 5px;
+  border-radius: 20px;
+  min-width: 48px;
+  height: 28px;
+  border: 0px;
+  position: relative;
+  background: getColor(gray-3);
+  transition: getCssVar(transition-ease);
+  overflow: hidden;
+
+  @include when(icon) {
+    .#{$namespace}-switch__input {
+      &:checked {
+        ~ .#{$namespace}-switch__circle {
+          color: #fff !important;
+        }
+      }
+    }
+    .#{$namespace}-switch__circle {
+      background: transparent !important;
+      box-shadow: none !important;
+      i {
+        opacity: 1;
+        font-size: 1.3rem;
+      }
+    }
+  }
+
+  @include when(indeterminate) {
+    .#{$namespace}-switch__input {
+      pointer-events: none;
+    }
+    .#{$namespace}-switch__circle {
+      left: 50% !important;
+      transform: translate(-50%);
+    }
+  }
+
+  @include when(square) {
+    border-radius: 5px;
+    .#{$namespace}-switch__background {
+      border-radius: 5px !important;
+    }
+    .#{$namespace}-switch__circle {
+      border-radius: 5px !important;
+    }
+  }
+  @include when(loading) {
+    width: 28px !important;
+    min-width: 28px !important;
+    pointer-events: none;
+    border-radius: 20px !important;
+
+    .#{$namespace}-switch__input:not(:checked) {
+      ~ .#{$namespace}-switch__circle {
+        @include set-var-value(color, getCssVar(divider));
+        color: getColor('divider') !important;
+      }
+    }
+    .#{$namespace}-switch__circle {
+      border-radius: 50% !important;
+    }
+    .#{$namespace}-switch__background {
+      opacity: 0 !important;
+    }
+  }
+  &:hover {
+    background: getColor('gray-4');
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+
+  @include e('background') {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    background: getColor(color);
+    border-radius: inherit;
+    z-index: 2;
+    transition: all 0.25s ease-out;
+    transform: scale(1);
+    left: -100%;
+    border-radius: 50%;
+    padding-bottom: 100%;
+  }
+  @include e(text) {
+    @include flex(center, center);
+    font-size: 0.7rem;
+    padding: 5px;
+    padding-left: 25px;
+    transition: all 0.25s ease 0.05s;
+    color: getColor('text');
+    z-index: 9;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+
+    @include when(on) {
+      transform: translate(-100%);
+      position: absolute;
+      opacity: 0;
+    }
+    i {
+      font-size: 1rem;
+      opacity: 0.7;
+    }
+  }
+  @include e(circle) {
+    @include flex(center, center);
+    width: 20px;
+    height: 20px;
+    background: getColor('background');
+    border-radius: 20px;
+    transition: getCssVar(transition-ease);
+    position: absolute;
+    z-index: 10;
+    left: 4px;
+    color: getColor('text');
+
+    i {
+      font-size: 0.8rem;
+    }
+  }
+  @include e(input) {
+    position: absolute;
+    width: 100%;
+    opacity: 0 !important;
+    height: 100%;
+    border-radius: inherit;
+    z-index: 100;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    cursor: pointer;
+
+    &:active {
+      &:checked {
+        ~ .#{$namespace}-switch__circle {
+          left: calc(100% - 30px);
+        }
+      }
+      ~ .#{$namespace}-switch__circle {
+        width: 25px;
+      }
+    }
+    &:checked {
+      ~ .#{$namespace}-switch__background {
+        opacity: 1;
+        transform: scale(1);
+        width: 100%;
+        padding-bottom: 100%;
+        left: 0px;
+        border-radius: 50%;
+        transition: all 0.25s ease;
+      }
+      ~ .#{$namespace}-switch__text {
+        padding-left: 5px;
+        padding-right: 25px;
+        color: #fff;
+        i {
+          opacity: 1;
+        }
+        @include when(on) {
+          transform: translate(0);
+          position: relative;
+          opacity: 1;
+        }
+        @include when(off) {
+          transform: translate(100%);
+          position: absolute;
+          opacity: 0;
+        }
+      }
+      ~ .#{$namespace}-switch__circle {
+        left: calc(100% - 24px);
+        box-shadow: -5px 0px 25px 0px getColor('background', 0.6);
+        color: getColor('color');
+      }
+    }
+  }
+}

@@ -19,6 +19,7 @@ export * from './rate'
 export * from './scrollbar'
 export * from './select'
 export * from './slot'
+export * from './switch'
 export * from './time-select'
 export * from './tooltip'
 

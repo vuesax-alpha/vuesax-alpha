@@ -33,7 +33,7 @@ import {
   VsOptionGroup,
   VsSelect,
 } from '@vuesax-alpha/components/select'
-// import { VsSwitch } from '@vuesax-alpha/components/switch'
+import { VsSwitch } from '@vuesax-alpha/components/switch'
 // import { VsTable } from '@vuesax-alpha/components/table'
 import { VsTimeSelect } from '@vuesax-alpha/components/time-select'
 import { VsTooltip } from '@vuesax-alpha/components/tooltip'
@@ -67,7 +67,7 @@ export default [
   // VsRow,
   VsScrollbar,
   VsSelect,
-  // VsSwitch,
+  VsSwitch,
   // VsTable,
   VsTimeSelect,
   VsTooltip,
