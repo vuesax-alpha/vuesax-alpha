@@ -1,69 +1,61 @@
-import { isNil } from 'lodash-unified'
-import {
-  buildProps,
-  definePropType,
-  isArray,
-  isBoolean,
-  isNumber,
-  isObject,
-  isString,
-} from '@vuesax-alpha/utils'
+import { buildProps, isBoolean, isNumber, isString } from '@vuesax-alpha/utils'
 
 import { useColorProp } from '@vuesax-alpha/hooks'
-import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
+import {
+  CHANGE_EVENT,
+  INPUT_EVENT,
+  UPDATE_MODEL_EVENT,
+} from '@vuesax-alpha/constants'
 import type { EmitFn } from '@vuesax-alpha/utils'
 import type { ExtractPropTypes } from 'vue'
 import type Switch from './switch.vue'
 
-export type SwitchValue = string | number | object | boolean
-
 export const switchProps = buildProps({
   color: useColorProp,
   modelValue: {
-    type: definePropType<SwitchValue[] | SwitchValue>([
-      Array,
-      String,
-      Number,
-      Object,
-      Boolean,
-    ]),
-    default: null,
+    type: [Boolean, String, Number],
+    default: false,
   },
-  value: {
-    type: definePropType<SwitchValue>([String, Number, Object, Boolean]),
-    default: null,
+  activeValue: {
+    type: [Boolean, String, Number],
+    default: true,
   },
-  notValue: {
-    type: definePropType<SwitchValue>([String, Number, Object, Boolean]),
-    default: null,
+  inactiveValue: {
+    type: [Boolean, String, Number],
+    default: false,
   },
-  disabled: Boolean,
-  loading: Boolean,
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
   shape: {
     type: String,
     values: ['square'] as const,
     default: null,
   },
-  /**
-   * @deprecated use shape instead
-   */
-  square: Boolean,
-  indeterminate: Boolean,
-  icon: Boolean,
+  indeterminate: {
+    type: Boolean,
+    default: false,
+  },
+  icon: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 export type SwitchProps = ExtractPropTypes<typeof switchProps>
 
 export const switchEmits = {
-  [UPDATE_MODEL_EVENT]: (val: SwitchValue | SwitchValue[] | null) =>
-    isArray(val) ||
-    isBoolean(val) ||
-    isString(val) ||
-    isNumber(val) ||
-    isObject(val) ||
-    isNil(val),
-  change: (event: Event) => event instanceof Event,
-  click: (event: Event) => event instanceof Event,
+  [UPDATE_MODEL_EVENT]: (val: boolean | string | number) =>
+    isBoolean(val) || isString(val) || isNumber(val),
+  [CHANGE_EVENT]: (val: boolean | string | number) =>
+    isBoolean(val) || isString(val) || isNumber(val),
+  [INPUT_EVENT]: (val: boolean | string | number) =>
+    isBoolean(val) || isString(val) || isNumber(val),
 }
 
 export type SwitchEmits = typeof switchEmits

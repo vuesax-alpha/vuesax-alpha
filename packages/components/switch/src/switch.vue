@@ -1,11 +1,17 @@
 <template>
-  <div type="checkbox" :class="switchKls" :style="switchStyles" @click="click">
+  <div
+    type="checkbox"
+    :class="switchKls"
+    :style="switchStyles"
+    @click="switchValue"
+  >
     <input
-      :checked="isChecked"
-      v-bind="$attrs"
       type="checkbox"
+      :checked="checked"
+      :disabled="isDisabled"
+      :readonly="isDisabled"
       :class="ns.e('input')"
-      @input="input"
+      @change="handleChange"
     />
     <div :class="ns.e('circle')">
       <slot name="circle" />
@@ -41,6 +47,7 @@ import { useSwitch } from './use-switch'
 
 defineOptions({
   name: 'VsSwitch',
+  inheritAttrs: false,
 })
 
 const props = defineProps(switchProps)
@@ -50,7 +57,7 @@ const ns = useNamespace('switch')
 
 const color = useColor('primary')
 
-const { isLoading, isChecked, isDisabled, click, input } = useSwitch(
+const { isLoading, checked, isDisabled, handleChange, switchValue } = useSwitch(
   props,
   emit
 )
@@ -62,14 +69,19 @@ const switchKls = computed(() => [
   ns.is(props.shape),
   ns.is('indeterminate', props.indeterminate),
   ns.is('icon', props.icon),
-  ns.is('checked', isChecked.value),
   ns.is('disabled', isDisabled.value),
 ])
 
 const switchStyles = computed(() => [
   ns.cssVar({
-    color: getVsColor(color),
+    color: getVsColor(color.value),
   }),
 ])
-// init here
+
+defineExpose({
+  /**
+   * @description whether Switch is checked
+   */
+  checked,
+})
 </script>
