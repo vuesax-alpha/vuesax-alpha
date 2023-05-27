@@ -127,40 +127,36 @@
     </div>
 
     <template #content>
-      <div>
-        <vs-scrollbar
-          v-show="states.options.size > 0 && !loading"
-          max-height="200"
-          thickness="3"
-          :wrap-class="[
-            ns.e('options'),
-            ns.is(
-              'empty',
-              !allowCreate &&
-                Boolean(query) &&
-                states.filteredOptionsCount === 0
-            ),
-          ]"
-          :native="nativeScrollbar"
-          @mouseleave="hoverIndex = -1"
-        >
-          <slot />
-        </vs-scrollbar>
+      <vs-scrollbar
+        v-show="states.options.size > 0 && !loading"
+        max-height="200"
+        thickness="3"
+        :wrap-class="[
+          ns.e('options'),
+          ns.is(
+            'empty',
+            !allowCreate && Boolean(query) && states.filteredOptionsCount === 0
+          ),
+        ]"
+        :native="nativeScrollbar"
+        @mouseleave="hoverIndex = -1"
+      >
+        <slot />
+      </vs-scrollbar>
 
-        <template
-          v-if="
-            emptyText &&
-            (!allowCreate ||
-              loading ||
-              (allowCreate && states.options.size === 0))
-          "
-        >
-          <slot v-if="$slots.empty" name="empty" />
-          <p v-else :class="ns.em('options', 'empty')">
-            {{ emptyText }}
-          </p>
-        </template>
-      </div>
+      <template
+        v-if="
+          emptyText &&
+          (!allowCreate ||
+            loading ||
+            (allowCreate && states.options.size === 0))
+        "
+      >
+        <slot v-if="$slots.empty" name="empty" />
+        <p v-else :class="ns.em('options', 'empty')">
+          {{ emptyText }}
+        </p>
+      </template>
     </template>
   </vs-popper>
 </template>

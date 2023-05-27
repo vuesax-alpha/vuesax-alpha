@@ -396,6 +396,21 @@ $iconActiveMargin: -4px;
     padding: 5px;
     transition: getCssVar(transition-ease);
 
+    @include pseudo(after) {
+      content: '';
+      position: absolute;
+      top: -10px;
+      width: 80%;
+      margin-left: 10%;
+      left: 0;
+      height: 10px;
+      background: getColor(backgorund);
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, getCssVar(shadow-opacity));
+      z-index: 200;
+      transition: all 0.25s ease 0.05s;
+      opacity: 1;
+    }
+
     @include when(empty) {
       padding: 0 5px;
     }
