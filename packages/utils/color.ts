@@ -1,3 +1,4 @@
+import { unref } from 'vue'
 import {
   hexFullRE,
   hexShorthandRE,
@@ -7,6 +8,7 @@ import {
   vuesaxColors,
 } from '@vuesax-alpha/constants'
 import { debugWarn } from './error'
+import type { MaybeRef } from '@vueuse/core'
 import type { VuesaxColor } from '@vuesax-alpha/constants'
 
 export const getCssVariable = (el: HTMLElement, property: string) => {
@@ -109,7 +111,11 @@ export const acceptColor = (color: string) => {
  *
  * e.g 'rgb(23,34,34)' -> '23, 34, 34'
  */
-export const getVsColor = (color?: string, namespace = 'vs'): string => {
+export const getVsColor = (
+  colorRef: MaybeRef<string | undefined>,
+  namespace = 'vs'
+): string => {
+  const color = unref(colorRef)
   if (!color) return ''
 
   const isRGB = rgbRE.test(color)
