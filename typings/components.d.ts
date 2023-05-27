@@ -27,7 +27,7 @@ declare module '@vue/runtime-core' {
     VsPagination: typeof import('../packages/vuesax-alpha')['VsPagination']
     VsPopper: typeof import('../packages/vuesax-alpha')['VsPopper']
     VsRate: typeof import('../packages/vuesax-alpha')['VsRate']
-    // VsRadio: typeof import('../packages/vuesax-alpha')['VsRadio']
+    VsRadio: typeof import('../packages/vuesax-alpha')['VsRadio']
     // VsRow: typeof import('../packages/vuesax-alpha')['VsRow']
     VsScrollbar: typeof import('../packages/vuesax-alpha')['VsScrollbar']
     VsSelect: typeof import('../packages/vuesax-alpha')['VsSelect']

@@ -6,14 +6,7 @@ import { VsCheckbox, VsCheckboxGroup } from '@vuesax-alpha/components/checkbox'
 import { VsCol } from '@vuesax-alpha/components/col'
 import { VsCollapseTransition } from '@vuesax-alpha/components/collapse-transition'
 import { VsDialog } from '@vuesax-alpha/components/dialog'
-import {
-  VsIcon,
-  //   IconCheck,
-  //   IconClose,
-  //   IconPlus,
-  //   IconStar,
-  //   IconStarFilled,
-} from '@vuesax-alpha/components/icon'
+import { VsIcon } from '@vuesax-alpha/components/icon'
 import { VsInput } from '@vuesax-alpha/components/input'
 import {
   VsNavbar,
@@ -21,10 +14,7 @@ import {
   VsNavbarItem,
 } from '@vuesax-alpha/components/navbar'
 import { VsPagination } from '@vuesax-alpha/components/pagination'
-// import {
-//   VsRadio,
-//   VsRadioGroup,
-// } from '@vuesax-alpha/components/radio'
+import { VsRadio } from '@vuesax-alpha/components/radio'
 import { VsRate } from '@vuesax-alpha/components/rate'
 // import { VsRow } from '@vuesax-alpha/components/row'
 import { VsScrollbar } from '@vuesax-alpha/components/scrollbar'
@@ -61,8 +51,7 @@ export default [
   VsNavbarGroup,
   VsNavbarItem,
   VsPagination,
-  // VsRadio,
-  // VsRadioGroup,
+  VsRadio,
   VsRate,
   // VsRow,
   VsScrollbar,

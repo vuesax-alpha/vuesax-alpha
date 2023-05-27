@@ -586,6 +586,19 @@ $select: map.merge(
   $select
 );
 
+// Radio
+// css3 var in packages/theme-chalk/src/radio.scss
+$radio: () !default;
+$radio: map.merge(
+  (
+    'width': 20px,
+    'height': 20px,
+    'min-width': 20px,
+    'min-height': 20px,
+  ),
+  $radio
+);
+
 // Pagination
 // css3 var in packages/theme-chalk/src/pagination.scss
 $pagination: () !default;
