@@ -92,12 +92,12 @@ You can only use this function when you can obtain the document object, for exam
 
 ```html
 <script lang="ts" setup>
-import { onMounted } from 'vue'
-import { setCssVar } from 'vuesax-alpha'
+  import { onMounted } from 'vue'
+  import { setCssVar } from 'vuesax-alpha'
 
-onMounted(() => {
-  setCssVar('primary', '#000')
-})
+  onMounted(() => {
+    setCssVar('primary', '#000')
+  })
 </script>
 ```
 
@@ -113,9 +113,9 @@ onMounted(() => {
  * @param namespace The namespace of vs app. Default'vs'
  */
 const setCssVar: (
-  propertyName: string, 
-  value: string, 
-  el?: HTMLElement, 
+  propertyName: string,
+  value: string,
+  el?: HTMLElement,
   namespace?: string
 ) => void
 ```

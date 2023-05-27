@@ -1,6 +1,6 @@
 ---
 home: true
-heroText: <b>Vuesax</b> Framework <br> Components for <a target="_blank" href="https://vuejs.org/" >Vuejs</a>  
+heroText: <b>Vuesax</b> Framework <br> Components for <a target="_blank" href="https://vuejs.org/" >Vuejs</a>
 description: We love what we do. Let us help you do what <b>You love</b>.
 action:
   text: Get Started
@@ -22,7 +22,7 @@ features:
       link: /layout/
   - title: <b>Vuesax</b> is here to help you create your ideas and develop those <b>great projects</b>
     details: Do you have an idea? or some project for a client, vuesax can help you <b>create faster and work less</b> giving you everything you need to implement an interface from the simplest to the most complex.
-    action: 
+    action:
       text: Getting Started
       link: /guide/gettingStarted/
   - title: <b>Unique and beautiful<b> design
