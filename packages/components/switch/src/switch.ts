@@ -1,4 +1,4 @@
-import { isNil, isPlainObject } from 'lodash-unified'
+import { isNil } from 'lodash-unified'
 import {
   buildProps,
   definePropType,
