@@ -8,11 +8,9 @@ importers:
       '@commitlint/config-conventional': ^17.6.3
       '@esbuild-kit/cjs-loader': ^2.4.2
       '@floating-ui/dom': ^1.2.7
-      '@formkit/auto-animate': 1.0.0-beta.5
       '@pnpm/find-workspace-packages': ^4.0.43
       '@pnpm/logger': ^4.0.0
       '@pnpm/types': ^8.10.0
-      '@popperjs/core': npm:@sxzz/popperjs-es@^2.11.7
       '@types/fs-extra': ^9.0.13
       '@types/gulp': ^4.0.10
       '@types/jsdom': ^16.2.15
@@ -79,8 +77,6 @@ importers:
       vue-tsc: ^0.38.9
     dependencies:
       '@floating-ui/dom': 1.2.7
-      '@formkit/auto-animate': 1.0.0-beta.5
-      '@popperjs/core': /@sxzz/popperjs-es/2.11.7
       '@types/lodash': 4.14.194
       '@types/lodash-es': 4.17.7
       '@vuesax-alpha/components': link:packages/components
@@ -1255,10 +1251,6 @@ packages:
     resolution: {integrity: sha512-DyqylONj1ZaBnzj+uBnVfzdjjCkFCL2aA9ESHLyUOGSqb03RpbLMImP1ekIQXYs4KLk9jAjJfZAU8hXfWSahEg==}
     dependencies:
       '@floating-ui/core': 1.2.6
-    dev: false
-
-  /@formkit/auto-animate/1.0.0-beta.5:
-    resolution: {integrity: sha512-WoSwyhAZPOe6RB/IgicOtCHtrWwEpfKIZ/H/nxpKfnZL9CB6hhhBGU5bCdMRw7YpAUF2CDlQa+WWh+gCqz5lDg==}
     dev: false
 
   /@gar/promisify/1.1.3:
