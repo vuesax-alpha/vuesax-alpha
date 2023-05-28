@@ -129,7 +129,9 @@
       "ignoreMissing": [
         "vite",
         "react",
-        "react-dom"
+        "react-dom",
+        "@yarnpkg/core",
+        "webpack"
       ]
     }
   },

@@ -47,8 +47,8 @@ const props = defineProps(focusTrapProps)
 const emit = defineEmits(focusTrapEmits)
 
 const forwardRef = ref<HTMLElement | undefined>()
-let lastFocusBeforeTrapped: HTMLElement | null
-let lastFocusAfterTrapped: HTMLElement | null
+let lastFocusBeforeTrapped: HTMLElement | null = null
+let lastFocusAfterTrapped: HTMLElement | null = null
 
 const { focusReason } = useFocusReason()
 
@@ -198,7 +198,7 @@ const onFocusOut = (e: Event) => {
   }
 }
 
-async function startTrap() {
+const startTrap = async () => {
   // Wait for forwardRef to resolve
   await nextTick()
   const trapContainer = unref(forwardRef)
@@ -240,7 +240,7 @@ async function startTrap() {
   }
 }
 
-function stopTrap() {
+const stopTrap = () => {
   const trapContainer = unref(forwardRef)
   if (trapContainer) {
     trapContainer.removeEventListener(focusAfterTrapped, trapOnFocus)

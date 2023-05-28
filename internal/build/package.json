@@ -12,7 +12,7 @@
     "stub": "unbuild --stub"
   },
   "peerDependencies": {
-    "vue": "^3.2.0 <3.3.0"
+    "vue": "^3.2.0"
   },
   "dependencies": {
     "@pnpm/find-workspace-packages": "4.0.16",

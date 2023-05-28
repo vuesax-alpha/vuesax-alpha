@@ -4518,6 +4518,9 @@ packages:
     engines: {node: '>=14.15.0'}
     peerDependencies:
       '@yarnpkg/core': ^4.0.0-rc.24
+    peerDependenciesMeta:
+      '@yarnpkg/core':
+        optional: true
     dev: true
 
   /@yarnpkg/fslib/2.10.3:
@@ -11610,6 +11613,8 @@ packages:
       sass:
         optional: true
       sass-embedded:
+        optional: true
+      webpack:
         optional: true
     dependencies:
       klona: 2.0.6
