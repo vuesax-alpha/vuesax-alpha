@@ -27,6 +27,7 @@
 
 <script lang="ts" setup>
 const handleClick = () => {
+  // eslint-disable-next-line no-console
   console.log('click')
 }
 </script>
