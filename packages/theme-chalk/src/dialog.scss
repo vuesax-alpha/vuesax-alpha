@@ -22,7 +22,7 @@
 
   &.is-full-screen {
     .#{$namespace}-dialog-original {
-      transform: scale(0.95) translate(0, 8%) !important;
+      transform: translate(0, 8%) !important;
     }
   }
   .#{$namespace}-dialog-original {
