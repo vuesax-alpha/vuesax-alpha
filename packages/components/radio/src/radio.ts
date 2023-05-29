@@ -10,15 +10,11 @@ export const radioProps = buildProps({
   color: useColorProp,
   modelValue: {
     type: [Boolean, String, Number],
-    default: false,
+    default: null,
   },
-  activeValue: {
+  value: {
     type: [Boolean, String, Number],
-    default: true,
-  },
-  inactiveValue: {
-    type: [Boolean, String, Number],
-    default: false,
+    default: '',
   },
   /**
    * @description whether Radio is disabled

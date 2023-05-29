@@ -7,7 +7,7 @@
         type="radio"
         :disabled="isDisabled"
         :readonly="isDisabled"
-        :name="name || modelValue.toString()"
+        :name="name"
         @focus="focus = true"
         @blur="focus = false"
       />
