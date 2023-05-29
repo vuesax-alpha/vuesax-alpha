@@ -1,5 +1,5 @@
 <template>
-  <teleport to="body">
+  <teleport :to="selector">
     <transition
       :name="ns.b()"
       @after-enter="afterEnter"
@@ -8,7 +8,7 @@
     >
       <div
         v-if="visible"
-        :class="[ns.b(), { fullScreen: fullScreen }]"
+        :class="rootKls"
         :style="{ zIndex }"
         @click="clickDialog.onClick"
         @mousedown="clickDialog.onMousedown"
@@ -45,8 +45,15 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue'
 import { IconClose, IconLoading } from '@vuesax-alpha/components/icon'
-import { useModal, useNamespace, useSameTarget } from '@vuesax-alpha/hooks'
+import {
+  useModal,
+  useNamespace,
+  usePopperContainer,
+  usePopperContainerId,
+  useSameTarget,
+} from '@vuesax-alpha/hooks'
 import { dialogEmits, dialogProps } from './dialog'
 import { useDialog } from './composables'
 import { dialogDeprecated } from './deprecated'
@@ -57,6 +64,9 @@ defineOptions({
 
 const props = defineProps(dialogProps)
 const emit = defineEmits(dialogEmits)
+
+usePopperContainer()
+const { selector } = usePopperContainerId()
 
 const ns = useNamespace('dialog')
 
@@ -77,6 +87,12 @@ const {
 useModal({ handleClose }, visible)
 
 const clickDialog = useSameTarget(handleClose)
+
+const rootKls = computed(() => [
+  ns.b(),
+  ns.is('full-screen', props.fullScreen),
+  ns.is('blur', props.overlayBlur),
+])
 
 defineExpose({
   /** @description whether the dialog is visible */

@@ -107,7 +107,6 @@ export const useDialog = (props: DialogProps, emit: DialogEmitFn) => {
     useBaseComponent(props.color),
     ns.m(props.shape),
     {
-      [ns.m('full-screen')]: props.fullScreen,
       [ns.m('rebound')]: rebound.value,
       [ns.m('not-padding')]: props.notPadding,
       [ns.m('auto-width')]: props.autoWidth,

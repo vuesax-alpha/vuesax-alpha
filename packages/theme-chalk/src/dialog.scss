@@ -19,12 +19,15 @@
 .#{$namespace}-dialog-enter-from,
 .#{$namespace}-dialog-leave-to {
   opacity: 0;
+
+  &.is-full-screen {
+    .#{$namespace}-dialog-original {
+      transform: scale(0.95) translate(0, 8%) !important;
+    }
+  }
   .#{$namespace}-dialog-original {
     transform: scale(0.7);
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, getCssVar('shadow-opacity'));
-    &--full-screen {
-      transform: translate(0, 8%) !important;
-    }
   }
 }
 
@@ -80,11 +83,20 @@
   overflow-x: hidden;
   padding-top: 80px;
   padding-bottom: 80px;
-  &.full-screen {
+
+  @include when(full-screen) {
     padding: 0px;
     overflow: hidden;
+
+    .#{$namespace}-dialog-original {
+      width: calc(100% - 30px) !important;
+      height: calc(100% - 30px) !important;
+      max-width: none !important;
+      max-height: none !important;
+    }
   }
-  &.blur {
+
+  @include when(blur) {
     backdrop-filter: saturate(180%) blur(15px);
   }
 
@@ -135,12 +147,6 @@
   }
   @include m(rebound) {
     animation: reboundClick 0.43s !important;
-  }
-  @include m(full-screen) {
-    width: calc(100% - 30px) !important;
-    height: calc(100% - 30px) !important;
-    max-width: none !important;
-    max-height: none !important;
   }
 
   @include e(loading) {
