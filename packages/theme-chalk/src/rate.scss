@@ -28,6 +28,10 @@ $rate-height: map.merge(
     outline: none;
   }
 
+  svg {
+    max-width: initial;
+  }
+
   @include e(item) {
     cursor: pointer;
     display: inline-block;
@@ -38,7 +42,7 @@ $rate-height: map.merge(
     line-height: normal;
   }
 
-  & .#{bem('rate', 'icon')} {
+  .#{bem('rate', 'icon')} {
     position: relative;
     display: inline-block;
     font-size: getCssVar('rate-icon-size');

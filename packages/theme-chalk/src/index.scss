@@ -9,7 +9,6 @@
 @use './card.scss';
 @use './checkbox-group.scss';
 @use './checkbox.scss';
-@use './chip.scss';
 @use './col.scss';
 @use './dialog.scss';
 @use './focus-trap.scss';
@@ -25,10 +24,12 @@
 @use './pagination.scss';
 @use './popper.scss';
 @use './radio-group.scss';
+@use './radio.scss';
 @use './rate.scss';
 @use './row.scss';
 @use './scrollbar.scss';
 @use './select.scss';
+@use './switch.scss';
 @use './time-select.scss';
 @use './tooltip.scss';
 @use './virtual-list.scss';

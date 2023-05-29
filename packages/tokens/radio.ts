@@ -1,7 +1,6 @@
-// import type { RadioGroupProps } from '@vuesax-alpha/components'
 // import type { InjectionKey } from 'vue'
 
-// export interface RadioGroupContext extends RadioGroupProps {
+// export type RadioGroupContext = {
 //   changeEvent: (val: RadioGroupProps['modelValue']) => void
 // }
 

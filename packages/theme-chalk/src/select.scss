@@ -101,16 +101,17 @@ $iconActiveMargin: -4px;
   position: relative;
   display: flex;
   justify-content: center;
-  min-height: 42px;
+  min-height: getCssVar(select, min-height);
   width: 100%;
-  max-width: getCssVar(select-width);
+  max-width: getCssVar(select, width);
 
   @include e(content) {
     &[data-popper-placement^='top'] {
       border-radius: 12px 12px 0px 0px;
       box-shadow: 0px -10px 20px -5px rgba(0, 0, 0, getCssVar(shadow-opacity));
     }
-    margin-top: -4px;
+    margin-top: -5px;
+    padding-top: 5px;
     overflow: hidden;
     background: getColor('background');
     color: getColor(color);
@@ -191,11 +192,12 @@ $iconActiveMargin: -4px;
     opacity: 1;
     border: 2px solid transparent;
     border-radius: 12px;
+    z-index: 1;
     cursor: pointer;
     transition: getCssVar(transition-ease), height 0s;
     background: getColor('gray-2');
     color: getColor('text');
-    min-height: 42px;
+    min-height: getCssVar(select, min-height);
     padding: 7px 30px 7px 10px;
     width: 100%;
 
@@ -221,7 +223,7 @@ $iconActiveMargin: -4px;
       min-width: 30px;
       max-width: 100%;
       color: getColor('text');
-      // transition: getCssVar(transition-ease);
+      transition: getCssVar(transition-ease);
 
       &::placeholder {
         color: getColor('text', 0.4);
@@ -240,12 +242,11 @@ $iconActiveMargin: -4px;
     background: getColor('gray-2');
     border-radius: 12px;
     display: flex;
-    border: 2px solid transparent;
     align-items: flex-start;
     justify-content: flex-start;
     flex-wrap: wrap;
     padding: 5px;
-    min-height: 42px;
+    min-height: getCssVar(select, min-height);
     transition: getCssVar(transition-ease), height 0s;
     padding-right: 26px;
   }
@@ -271,7 +272,6 @@ $iconActiveMargin: -4px;
     max-height: 40px;
 
     @include when(hidden) {
-      // display: none
       opacity: 0;
       visibility: hidden;
       max-height: 0px;
@@ -281,16 +281,14 @@ $iconActiveMargin: -4px;
       margin: 0px;
     }
 
-    .is-hover,
-    &:hover {
-      background: getColor('color', 0.01);
-    }
-
     @include when(active) {
       background: getColor('color', 0.05);
       color: getColor('color', 1);
+      transition: all 0.25s linear;
     }
-    &:hover:not(.is-disabled) {
+
+    &.is-hover:not(.is-disabled) {
+      background: getColor('color', 0.015);
       color: getColor('color');
       padding-left: 14px;
     }
@@ -308,10 +306,11 @@ $iconActiveMargin: -4px;
     @include e(input) {
       transform: translateY(-4px);
       background: getColor('background');
+      box-shadow: 0 5px 25px -4px rgba(0, 0, 0, getCssVar(shadow-opacity));
     }
     @include e(chips) {
       background: getColor('background');
-      transform: translate(0, -4px);
+      transform: translateY(-4px);
     }
     @include e(label) {
       @include when(placeholder) {
@@ -369,7 +368,6 @@ $iconActiveMargin: -4px;
     @include e(chips) {
       border-radius: 12px 12px 0px 0px;
       background: getColor('background');
-      box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, getCssVar(shadow-opacity));
       transform: translate(0, -4px);
       transition: getCssVar(transition-ease), height 0s;
       &:after {
@@ -396,9 +394,29 @@ $iconActiveMargin: -4px;
   }
   @include e(options) {
     padding: 5px;
+    transition: getCssVar(transition-ease);
 
-    &__not-data {
-      color: getColor('text');
+    @include pseudo(after) {
+      content: '';
+      position: absolute;
+      top: -10px;
+      width: 80%;
+      margin-left: 10%;
+      left: 0;
+      height: 10px;
+      background: getColor(backgorund);
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, getCssVar(shadow-opacity));
+      z-index: 200;
+      transition: all 0.25s ease 0.05s;
+      opacity: 1;
+    }
+
+    @include when(empty) {
+      padding: 0 5px;
+    }
+
+    @include m(empty) {
+      color: getColor('text', 0.7);
       font-size: 0.8rem;
       text-align: center;
       padding: 6px 10px;
@@ -491,6 +509,88 @@ $iconActiveMargin: -4px;
     }
     &--primary {
       color: getColor('primary');
+    }
+  }
+}
+
+@include b(option-group) {
+  padding-left: 10px;
+  border-bottom: 2px solid getColor(gray-1);
+  position: relative;
+  overflow: hidden;
+  transition: getCssVar(transition-ease);
+
+  &:last-child {
+    border: 0px;
+  }
+
+  @include when(hidden) {
+    border-bottom: 0px solid getColor(gray-1);
+    h5 {
+      opacity: 0;
+      visibility: hidden;
+      max-height: 0px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      border: 0px;
+      margin: 0px;
+      padding: 0px;
+      max-height: 0px;
+    }
+  }
+
+  h5 {
+    max-height: 28px;
+    transition: getCssVar(transition-ease);
+    // opacity: 0.6;
+    margin: 0px;
+    padding: 0px;
+    padding: 7px 0px;
+    font-size: 0.7rem;
+    user-select: none;
+    overflow: hidden;
+    color: getColor(text, 0.6);
+
+    * {
+      pointer-events: none;
+    }
+  }
+}
+
+@include b(chip) {
+  position: relative;
+  margin: 1px 3px 2px 3px;
+  border-radius: 12px;
+  padding: 3px 10px 3px 6px;
+  font-size: 0.84rem;
+  border: 1px solid getColor(gray-2);
+  color: getColor(text);
+  display: flex;
+  background-color: getColor('background');
+
+  @include when(hit) {
+    background-color: transparent;
+    border-color: getColor(color, 0.5);
+  }
+
+  .#{$namespace}-icon-close {
+    background: getColor(gray-4);
+    padding: 14px;
+    position: absolute;
+    top: -11px;
+    right: -11px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    @include set-var-value(color, getCssVar(text));
+
+    &:hover {
+      @include set-var-value(color, getCssVar(white));
+      background: getColor(danger);
     }
   }
 }

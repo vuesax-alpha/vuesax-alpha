@@ -2,8 +2,8 @@ import { computed, ref, unref } from 'vue'
 import { buildProp, isValidComponentColor } from '@vuesax-alpha/utils'
 import { componentSizes, vuesaxColors } from '@vuesax-alpha/constants'
 import { useProp } from '../use-prop'
+import type { MaybeRef } from '@vuesax-alpha/utils'
 import type { Color, ComponentSize } from '@vuesax-alpha/constants'
-import type { MaybeRef } from '@vueuse/core'
 
 export const useSizeProp = buildProp({
   type: String,

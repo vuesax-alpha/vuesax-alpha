@@ -1,15 +1,20 @@
-import type { OptionProps } from './option'
+import type { SelectProps } from './select'
 import type { InjectionKey } from 'vue'
 
 export type SelectOptionValue = string | number | object
 
-export type SelectOptionStates = {
+export type SelectOptionContext = {
+  el: HTMLElement | undefined
   index: number
   groupDisabled: boolean
+  label?: string
+  value: SelectOptionValue
+  isDisabled: boolean
   visible: boolean
-  hitState: boolean
+  hit: boolean
   hover: boolean
   userCreated: boolean
+  currentLabel: string
 }
 
 export type SelectTargetElement =
@@ -27,7 +32,7 @@ export type SelectValue = SelectOptionValue | SelectOptionValue[]
 export type SelectStates = {
   options: Map<SelectOptionValue, SelectOptionContext>
   cachedOptions: Map<SelectOptionValue, SelectOptionContext>
-  selected: SelectOptionContext[]
+  selected: Map<SelectOptionValue, SelectOptionContext>
   createdLabel: string | null
   createdSelected: boolean
   targetOnElement: SelectTargetElement | null
@@ -35,18 +40,15 @@ export type SelectStates = {
   filteredOptionsCount: number
   visible: boolean
   softFocus: boolean
-  selectedLabel: string | null
+  selectedLabel: string
   hoverIndex: number
-  query: string | null
+  query: string
   previousQuery: string | null
-  inputHovering: boolean
   cachedPlaceHolder: string | undefined
   currentPlaceholder: string | undefined
   menuVisibleOnFocus: boolean
   isOnComposition: boolean
   isSilentBlur: boolean
-  prefixWidth: number
-  tagInMultiLine: boolean
   mouseEnter: boolean
 }
 
@@ -55,62 +57,35 @@ export type SelectGroupContext = {
 }
 
 export type SelectContext = {
-  props: {
-    multiple?: boolean
-    multipleLimit?: number
-    modelValue?: SelectValue
-    popperClass?: string
-  }
+  props: SelectProps
   states: SelectStates
-  query: string
-  groupQuery: string
-  selectWrapper: HTMLElement
-  cachedOptions: Map<SelectOptionValue, SelectOptionContext>
-  hoverIndex: number
-  optionsCount: number
-  filteredOptionsCount: number
-  options: Map<SelectOptionValue, SelectOptionContext>
+  queryChange: string | null
+  selectWrapper: HTMLElement | undefined
+  selectedArray: SelectOptionContext[]
   optionsArray: SelectOptionContext[]
-  selected: SelectOptionContext[]
+  cachedOptionsArray: SelectOptionContext[]
+  hoverIndex: number
   handleTarget: (
     target: SelectTargetElement | null,
     condition?: boolean
   ) => void
   setSelected(): void
-  onOptionCreate(vm: SelectOptionContext): void
-  onOptionDestroy(key: SelectOptionValue, vm: SelectOptionContext): void
   handleOptionSelect(vm: SelectOptionContext, byClick: boolean): void
 }
 
-export const selectGroupContextKey: InjectionKey<SelectGroupContext> =
-  Symbol('SelectGroup')
-
-export const selectContextKey: InjectionKey<SelectContext> = Symbol('Select')
-
-export interface SelectOptionContext {
-  el: HTMLElement | undefined
-  value: SelectOptionValue
-  label?: string
-  disabled: boolean
-  index: number
-  groupDisabled: boolean
-  visible: boolean
-  hitState: boolean
-  hover: boolean
-  userCreated: boolean
-  currentLabel: string
-  isSelected: boolean
-  isDisabled: boolean
-  hoverItem: () => void
-  selectOptionClick: () => void
+type SelectRegisterContext = (option: SelectOptionContext) => {
+  unregister: () => void
+  updateOption: (option: SelectOptionContext) => void
 }
 
-export type RegisterContext = (props: OptionProps) => {
+export const selectContextKey: InjectionKey<SelectContext> = Symbol()
+
+export const selectRegisterKey: InjectionKey<SelectRegisterContext> = Symbol()
+
+export const optionGroupContextKey: InjectionKey<SelectGroupContext> = Symbol()
+
+type OptionGroupRegisterContext = (option: SelectOptionContext) => {
   unregister: () => void
 }
-
-export const optionGroupRegisterKey: InjectionKey<RegisterContext> =
-  Symbol('group-register')
-
-export const selectRegisterKey: InjectionKey<RegisterContext> =
-  Symbol('select-register')
+export const optionGroupRegisterKey: InjectionKey<OptionGroupRegisterContext> =
+  Symbol()

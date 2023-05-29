@@ -146,7 +146,7 @@ PROPS:
           Vuesax
         </vs-checkbox>
       </template>
-         
+
 SLOTS:
   - name: icon
     type: slot

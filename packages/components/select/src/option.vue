@@ -5,12 +5,7 @@
     @mouseenter="hoverItem"
     @click="selectOptionClick"
   >
-    <!-- <vs-checkbox v-if="isMultiple" :checked-force="isSelected">
-      <slot>{{ label }}</slot>
-    </vs-checkbox> -->
-    <!-- <template v-else> -->
     <slot>{{ currentLabel }}</slot>
-    <!-- </template> -->
   </button>
 </template>
 
@@ -18,74 +13,54 @@
 import {
   computed,
   inject,
-  nextTick,
   onBeforeUnmount,
   reactive,
   ref,
-  toRefs,
+  toRef,
   watch,
 } from 'vue'
-import {
-  isObject as _isObject,
-  includes,
-  isEqual,
-  toArray,
-} from 'lodash-unified'
+import { isObject as _isObject } from 'lodash-unified'
 import { useNamespace } from '@vuesax-alpha/hooks'
 import { escapeStringRegexp, throwError } from '@vuesax-alpha/utils'
-import { selectContextKey, selectGroupContextKey } from './tokens'
-import { optionProps } from './option'
-import type {
-  SelectOptionContext,
-  SelectOptionStates,
-  SelectValue,
+import {
+  optionGroupContextKey,
+  optionGroupRegisterKey,
+  selectContextKey,
+  selectRegisterKey,
 } from './tokens'
+import { optionProps } from './option'
+import type { SelectOptionContext } from './tokens'
 
 defineOptions({
   name: 'VsOption',
 })
 
-const select = inject(selectContextKey)
-const selectGroup = inject(selectGroupContextKey, { disabled: false })
+const ns = useNamespace('select')
 
-if (!select) {
+const props = defineProps(optionProps)
+const value = toRef(props, 'value')
+
+const select = inject(selectContextKey)
+const selectRegister = inject(selectRegisterKey)
+
+const optionGroupRegister = inject(optionGroupRegisterKey, undefined)
+
+if (!select || !selectRegister) {
   throwError(
     'Select Option',
     '`Option` component must be called inside `select` or `option-group` component'
   )
 }
 
-const ns = useNamespace('select')
-
-const props = defineProps(optionProps)
+const selectGroup = inject(optionGroupContextKey, { disabled: false })
 
 const el = ref<HTMLElement>()
 
-const states = reactive<SelectOptionStates>({
-  index: -1,
-  groupDisabled: false,
-  visible: true,
-  hitState: false,
-  hover: false,
-  userCreated: false,
-})
-
-const { visible, hover } = toRefs(states)
-
 const isObject = computed(() => _isObject(props.value))
-
-const isSelected = computed(() => {
-  if (!select?.props.multiple) {
-    return isEqual(props.value, select.props.modelValue)
-  } else {
-    // @ts-ignore
-    return includes(select.props.modelValue, props.value)
-  }
-})
 
 const limitReached = computed(() => {
   if (select.props.multiple && select.props.multipleLimit) {
-    const modelValue = (toArray(select.props.modelValue) || []) as SelectValue[]
+    const modelValue = select.selectedArray
     return (
       !isSelected.value &&
       modelValue.length >= select.props.multipleLimit &&
@@ -96,53 +71,55 @@ const limitReached = computed(() => {
 })
 
 const currentLabel = computed(() => {
-  return (
-    props.label || ((isObject.value ? '' : props.value) as unknown as string)
-  )
+  return props.label || (isObject.value ? '' : `${props.value}`)
 })
 
 const isDisabled = computed(() => {
-  return props.disabled || states.groupDisabled || limitReached.value
+  return props.disabled || optionContext.groupDisabled || limitReached.value
+})
+
+const isSelected = computed(() => {
+  return select.selectedArray.some((e) => e.value == optionContext.value)
+})
+
+const optionContext: SelectOptionContext = reactive({
+  index: -1,
+  el,
+  value,
+  currentLabel,
+  isDisabled,
+  groupDisabled: false,
+  visible: true,
+  hit: false,
+  hover: false,
+  userCreated: false,
+})
+
+const { unregister, updateOption } = selectRegister(optionContext)
+
+const { unregister: optionGroupUnregister } =
+  optionGroupRegister?.(optionContext) || {}
+
+onBeforeUnmount(() => {
+  unregister()
+  optionGroupUnregister?.()
 })
 
 const hoverItem = () => {
   if (!props.disabled && !selectGroup.disabled) {
-    select.hoverIndex = select.optionsArray.indexOf(
-      reactive({
-        ...props,
-        ...states,
-        isDisabled,
-        isSelected,
-        currentLabel,
-        hoverItem,
-      }) as SelectOptionContext
-    )
+    select.hoverIndex = select.optionsArray.indexOf(optionContext)
   }
 }
 
-const vm = reactive({
-  ...props,
-  ...states,
-  isDisabled,
-  isSelected,
-  currentLabel,
-  hoverItem,
-}) as SelectOptionContext
-
-watch(
-  () => currentLabel.value,
-  () => {
-    // !remote
-    if (!states.userCreated) select.setSelected()
-  }
-)
+watch(currentLabel, () => {
+  if (!optionContext.userCreated) select.setSelected()
+})
 
 watch(
   () => props.value,
   (val, oldVal) => {
     if (!Object.is(val, oldVal)) {
-      select.onOptionDestroy(oldVal, vm)
-      select.onOptionCreate(vm)
+      updateOption(optionContext)
     }
   }
 )
@@ -150,67 +127,33 @@ watch(
 watch(
   () => selectGroup.disabled,
   (val) => {
-    states.groupDisabled = val
+    optionContext.groupDisabled = val
   },
   { immediate: true }
 )
 
 watch(
-  () => select.query,
-  (query: string) => {
-    const regexp = new RegExp(escapeStringRegexp(query), 'i')
-    states.visible = regexp.test(`${currentLabel.value}`)
-    if (!states.visible) {
-      select.filteredOptionsCount--
+  () => select.queryChange,
+  (query) => {
+    const regexp = new RegExp(escapeStringRegexp(`${query}`), 'i')
+    optionContext.visible = regexp.test(`${currentLabel.value}`)
+    if (!optionContext.visible) {
+      select.states.filteredOptionsCount--
     }
   }
 )
 
 const optionKls = computed(() => [
   ns.e('option'),
-  ns.is('hover', hover.value),
+  ns.is('hover', optionContext.hover),
   ns.is('active', isSelected.value),
   ns.is('disabled', isDisabled.value),
-  ns.is('hidden', !visible.value),
+  ns.is('hidden', !optionContext.visible),
 ])
 
-onBeforeUnmount(() => {
-  const key = vm.value
-  const { selected } = select
-  const doesSelected = selected.includes(vm)
-  // if option is not selected, remove it from cache
-  nextTick(() => {
-    if (select.cachedOptions.get(key) === vm && !doesSelected) {
-      select.cachedOptions.delete(key)
-    }
-  })
-  select.onOptionDestroy(
-    key,
-    reactive({
-      ...props,
-      ...states,
-      isDisabled,
-      isSelected,
-      currentLabel,
-      hoverItem,
-    }) as SelectOptionContext
-  )
-})
-
 const selectOptionClick = () => {
-  if (props.disabled !== true && states.groupDisabled !== true) {
-    select.handleOptionSelect(vm, true)
+  if (props.disabled !== true && optionContext.groupDisabled !== true) {
+    select.handleOptionSelect(optionContext, true)
   }
 }
-
-select.onOptionCreate(
-  reactive({
-    ...props,
-    ...states,
-    isDisabled,
-    isSelected,
-    currentLabel,
-    hoverItem,
-  }) as SelectOptionContext
-)
 </script>

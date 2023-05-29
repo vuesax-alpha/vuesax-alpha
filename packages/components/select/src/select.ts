@@ -39,6 +39,9 @@ export const selectProps = buildProps({
     type: definePropType<SelectOptionValue>([String, Number, Object]),
     default: '',
   },
+  loadingText: String,
+  noMatchText: String,
+  noDataText: String,
   allowCreate: Boolean,
   multiple: Boolean,
   multipleLimit: {

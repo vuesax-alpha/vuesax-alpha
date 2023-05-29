@@ -10,7 +10,7 @@
     "build": "vuepress build"
   },
   "dependencies": {
-    "@vuepress/shared-utils": "^1.9.9",
+    "@vuepress/shared-utils": "1.9.9",
     "@vueuse/components": "^9.13.0",
     "@vueuse/core": "^9.13.0",
     "@vueuse/motion": "2.0.0-beta.12",
@@ -19,8 +19,8 @@
     "lodash": "^4.17.21",
     "minimist": "^1.2.8",
     "prismjs": "^1.29.0",
-    "vue": "^3.3.4",
-    "vue-router": "^4.2.1",
+    "vue": "3.3.1",
+    "vue-router": "4.2.0",
     "vuesax-alpha": "npm:vuesax-alpha@latest"
   },
   "devDependencies": {

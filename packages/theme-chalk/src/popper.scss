@@ -1,0 +1,21 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@include b(popper) {
+  background-color: getColor(color, 0.92);
+  color: getColor(light);
+  border-radius: 12px;
+  padding: 5px 10px;
+
+  @include e(arrow) {
+    position: fixed;
+    display: block;
+    width: 30px;
+
+    path {
+      fill: getColor(color, 0.92);
+      fill-rule: evenodd;
+    }
+  }
+}

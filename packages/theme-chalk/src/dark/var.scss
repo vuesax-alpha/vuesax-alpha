@@ -132,6 +132,15 @@ $box-shadow: map.merge(
   $box-shadow
 );
 
+$vsVar: () !default;
+$vsVar: map.merge(
+  (
+    'shadow-opacity': 0.3,
+    'background-opacity': 0.6,
+  ),
+  $vsVar
+);
+
 $moreColor: () !default;
 $moreColor: map.merge(
   (

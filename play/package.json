@@ -12,7 +12,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.3",
     "local-pkg": "^0.4.2",
-    "vite": "^2.9.15",
+    "vite": "^2.5.0",
     "vite-plugin-inspect": "^0.5.0",
     "vite-plugin-mkcert": "^1.7.2"
   }

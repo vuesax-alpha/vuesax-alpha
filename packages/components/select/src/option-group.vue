@@ -1,5 +1,5 @@
 <template>
-  <div :class="[ns.e('group'), ns.is('hidden', isHidden)]">
+  <div :class="[ns.b(), ns.is('hidden', !visible)]">
     <h5>
       <slot name="label">
         {{ label }}
@@ -10,11 +10,12 @@
 </template>
 
 <script lang="ts" setup>
-import { provide, reactive, ref } from 'vue'
+import { computed, inject, provide, ref, watch } from 'vue'
 import { useNamespace } from '@vuesax-alpha/hooks'
+import { throwError } from '@vuesax-alpha/utils'
 import { optionGroupProps } from './option-group'
-import { optionGroupRegisterKey } from './tokens'
-import type { OptionProps } from './option'
+import { optionGroupRegisterKey, selectContextKey } from './tokens'
+import type { SelectOptionContext, SelectOptionValue } from './tokens'
 
 defineOptions({
   name: 'VsOptionGroup',
@@ -22,18 +23,36 @@ defineOptions({
 
 defineProps(optionGroupProps)
 
-const ns = useNamespace('select')
+const ns = useNamespace('option-group')
 
-const isHidden = ref(false)
-const options = reactive<OptionProps[]>([])
+const select = inject(selectContextKey)
 
-provide(optionGroupRegisterKey, (option: OptionProps) => {
-  options.push(option)
+if (!select) {
+  throwError(
+    'Option Group',
+    '`option-group` component must be called inside `select` component'
+  )
+}
+
+const visible = ref(true)
+const options = ref<Map<SelectOptionValue, SelectOptionContext>>(new Map())
+
+const optionsArray = computed(() => Array.from(options.value.values()))
+
+watch(
+  () => select.queryChange,
+  () => {
+    visible.value = optionsArray.value.some((option) => option.visible === true)
+  },
+  { flush: 'post' }
+)
+
+provide(optionGroupRegisterKey, (option: SelectOptionContext) => {
+  options.value.set(option.value, option)
 
   return {
     unregister() {
-      const index = options.indexOf(option)
-      options.splice(index, 1)
+      options.value.delete(option.value)
     },
   }
 })

@@ -457,10 +457,10 @@ $rate: map.merge(
 $scrollbar: () !default;
 $scrollbar: map.merge(
   (
-    'thumb-opacity': 0.38,
-    'thumb-hover-opacity': 0.55,
-    'thumb-color': '148, 163, 184',
-    'bar-color': '243, 244, 246',
+    'thumb-opacity': 0.7,
+    'thumb-hover-opacity': 1,
+    'thumb-color': getCssVar(gray-3),
+    'bar-color': getCssVar(gray-2),
   ),
   $scrollbar
 );
@@ -558,12 +558,12 @@ $checkbox: map.merge(
 $popper: () !default;
 $popper: map.merge(
   (
-    color: getCssVar(background),
-    background: getCssVar(color),
-    border-radius: 12px,
-    font-size: 0.85rem,
-    arrow-width: 10px,
-    arrow-height: 10px,
+    'color': getCssVar(background),
+    'background': getCssVar(color),
+    'border-radius': 12px,
+    'font-size': 0.85rem,
+    'arrow-width': 10px,
+    'arrow-height': 10px,
   ),
   $popper
 );
@@ -573,16 +573,30 @@ $popper: map.merge(
 $select: () !default;
 $select: map.merge(
   (
-    width: 200px,
-    label-left: 12px,
-    label-offset: 0px,
-    label-font-size: 0.81rem,
-    placeholder-font-size: 0.76rem,
-    suport-font-size: 0.68rem,
-    suport-offset: 6px,
-    input-radius: 12px,
+    'width': 200px,
+    'min-height': 42px,
+    'label-left': 12px,
+    'label-offset': 0px,
+    'label-font-size': 0.81rem,
+    'placeholder-font-size': 0.76rem,
+    'suport-font-size': 0.68rem,
+    'suport-offset': 6px,
+    'input-radius': 12px,
   ),
   $select
+);
+
+// Radio
+// css3 var in packages/theme-chalk/src/radio.scss
+$radio: () !default;
+$radio: map.merge(
+  (
+    'width': 20px,
+    'height': 20px,
+    'min-width': 20px,
+    'min-height': 20px,
+  ),
+  $radio
 );
 
 // Pagination
