@@ -2,19 +2,10 @@
 @use 'mixins/var' as *;
 @use 'common/var' as *;
 
-@keyframes loading-radio {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 @include b(radio-wrapper) {
   @include set-component-var('radio', $radio);
 
-  @include flex(center, center);
+  @include flex(flex-start, center);
   position: relative;
   gap: 6px;
 
