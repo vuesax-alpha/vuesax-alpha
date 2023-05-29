@@ -97,7 +97,7 @@ Add the radio type input with the component `<vs-radio />`
 
 <template #template>
 
-@[code{1-15} vue{4-9}](../.vuepress/components/radio/color.vue)
+@[code{1-13} vue{4-9}](../.vuepress/components/radio/color.vue)
 
 </template>
 

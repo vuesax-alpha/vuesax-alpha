@@ -28,3 +28,10 @@
     </vs-avatar>
   </div>
 </template>
+<style scoped lang="scss">
+.con-avatars {
+  .vs-avatar-content {
+    margin: 10px;
+  }
+}
+</style>
