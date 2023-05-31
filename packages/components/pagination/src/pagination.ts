@@ -88,11 +88,11 @@ export const paginationProps = buildProps({
     default: 7,
   },
 
-  /** @description layout of Pagination, elements separated with a comma */
+  /** @description layout of Pagination, an array or string elements separated with a comma */
   layout: {
-    type: String,
-    default: (
-      [
+    type: definePropType<LayoutKey[] | string>([String, Array]),
+    default: () =>
+      mutable([
         'prev',
         'pager',
         'next',
@@ -101,8 +101,7 @@ export const paginationProps = buildProps({
         'total',
         'slot',
         'sizes',
-      ] as LayoutKey[]
-    ).join(', '),
+      ] as const),
   },
 
   /** @description item count of each page */
@@ -147,17 +146,11 @@ export const paginationProps = buildProps({
   /** @description Makes the buttons not have the internal number and changes its size. */
   buttonsDotted: Boolean,
 
-  /** @description Remove the arrows (next and back) of the component. */
-  notArrows: Boolean,
-
-  /** @description Remove the items leaving only the arrows (next and back). */
-  onlyArrows: Boolean,
-
-  /** @description Change the style of the buttons making them completely round. */
-  circle: Boolean,
-
-  /** @description Change the style of the buttons making them totally square. */
-  square: Boolean,
+  shape: {
+    type: String,
+    values: ['circle', 'square'] as const,
+    default: '',
+  },
 
   /** @description Determine if the entire component is in the disabled state. */
   disabled: Boolean,
@@ -173,15 +166,6 @@ export const paginationProps = buildProps({
     type: definePropType<number[]>(Array),
     default: (): number[] => [],
   },
-
-  /** @deprecated removed */
-  max: Number,
-  /** @deprecated use current-page prop instead */
-  modelValue: Number,
-  /** @deprecated removed */
-  dottedNumber: Number,
-  /** @deprecated use total prop instead */
-  length: Number,
 } as const)
 
 export type PaginationProps = ExtractPropTypes<typeof paginationProps>
@@ -300,9 +284,9 @@ export default defineComponent({
       set(v) {
         let newCurrentPage = v
         if (v < 1) {
-          newCurrentPage = 1
+          newCurrentPage = props.infinite ? pageCountBridge.value : 1
         } else if (v > pageCountBridge.value) {
-          newCurrentPage = pageCountBridge.value
+          newCurrentPage = props.infinite ? 1 : pageCountBridge.value
         }
         if (isAbsent(props.currentPage)) {
           innerCurrentPage.value = newCurrentPage
@@ -363,6 +347,8 @@ export default defineComponent({
       pageCount: pageCountBridge,
       disabled: computed(() => props.disabled),
       currentPage: currentPageBridge,
+      buttonsDotted: computed(() => props.buttonsDotted),
+      infinite: computed(() => props.infinite),
       changeEvent: handleCurrentChange,
       handleSizeChange,
     })
@@ -372,7 +358,7 @@ export default defineComponent({
         debugWarn(COMPONENT_NAME, assertValidUsage.value)
         return null
       }
-      if (!props.layout) return null
+      if (!props.layout.length) return null
       if (props.hideOnSinglePage && pageCountBridge.value <= 1) return null
 
       const rootChildren: Array<VNode | VNode[] | null> = []
@@ -406,11 +392,19 @@ export default defineComponent({
           pageSize: pageSizeBridge.value,
           pageSizes: props.pageSizes,
         }),
-        slot: slots?.default?.() ?? null,
+        slot:
+          slots?.default?.({
+            currentPage: currentPageBridge.value,
+            total: props.total,
+            pageSize: pageSizeBridge.value,
+            pageSizes: props.pageSizes,
+            pagerCount: props.pagerCount,
+          }) ?? null,
         total: h(Total, { total: isAbsent(props.total) ? 0 : props.total }),
       }
 
       const components = props.layout
+        .toString()
         .split(',')
         .map((item: string) => item.trim()) as LayoutKey[]
 
@@ -444,7 +438,12 @@ export default defineComponent({
         {
           role: 'pagination',
           'aria-label': 'pagination',
-          class: ns.b(),
+          class: [
+            ns.b(),
+            ns.is(props.shape),
+            ns.is('buttons-dotted', props.buttonsDotted),
+            ns.is('not-margin', props.notMargin),
+          ],
           style: ns.cssVar({
             color: getVsColor(props.color),
           }),

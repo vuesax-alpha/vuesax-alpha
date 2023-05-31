@@ -2,8 +2,8 @@
   <button
     type="button"
     class="btn-prev"
-    :disabled="internalDisabled"
-    :aria-disabled="internalDisabled"
+    :disabled="internalDisabled && !infinite"
+    :aria-disabled="internalDisabled && !infinite"
   >
     <span v-if="prevText">{{ prevText }}</span>
     <vs-icon v-else>
@@ -22,7 +22,7 @@ defineOptions({
   name: 'VsPaginationPrev',
 })
 
-const { disabled, currentPage } = usePagination()
+const { disabled, currentPage, infinite } = usePagination()
 defineProps(paginationPrevProps)
 
 const internalDisabled = computed(

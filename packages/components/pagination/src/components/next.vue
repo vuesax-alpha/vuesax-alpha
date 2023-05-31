@@ -2,8 +2,8 @@
   <button
     type="button"
     class="btn-next"
-    :disabled="internalDisabled"
-    :aria-disabled="internalDisabled"
+    :disabled="internalDisabled && !infinite"
+    :aria-disabled="internalDisabled && !infinite"
   >
     <span v-if="nextText">{{ nextText }}</span>
     <vs-icon v-else>
@@ -24,7 +24,7 @@ defineOptions({
 
 defineProps(paginationNextProps)
 
-const { pageCount, disabled, currentPage } = usePagination()
+const { pageCount, disabled, currentPage, infinite } = usePagination()
 
 const internalDisabled = computed(
   () =>
