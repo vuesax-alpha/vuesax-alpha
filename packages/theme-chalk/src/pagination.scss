@@ -76,28 +76,18 @@
   }
 
   @include when(not-margin) {
-    button {
-      margin: 0;
-    }
-
-    .btn-prev,
-    .btn-next {
-      margin: 0px;
+    .#{$namespace}-pager button {
       border-radius: 0px;
+      margin: 0;
     }
 
     .btn-prev {
       border-radius: 12px 0px 0px 12px;
+      margin-right: 0;
     }
     .btn-next {
       border-radius: 0px 12px 12px 0px;
-    }
-
-    .#{$namespace}-pager {
-      button {
-        border-radius: 0px;
-        margin: 0px;
-      }
+      margin-left: 0;
     }
   }
 
@@ -149,8 +139,17 @@
     -moz-appearance: textfield;
   }
 
+  .#{$namespace}-select {
+    @include set-var-value(
+      select-min-height,
+      getCssVar(pagination-button-height)
+    );
+  }
   @include meb(false, input, #{$namespace}-select) {
     width: 128px;
+    height: getCssVar(pagination-button-height);
+    line-height: getCssVar(pagination-button-height);
+    font-size: getCssVar(pagination-font-size);
   }
 
   button {
@@ -234,6 +233,8 @@
       text-align: center;
       box-sizing: border-box;
       width: 56px;
+      height: getCssVar(pagination-button-height);
+      line-height: getCssVar(pagination-button-height);
 
       &::-webkit-inner-spin-button,
       &::-webkit-outer-spin-button {
@@ -296,8 +297,18 @@
       font-size: getCssVar(pagination-font-size-small);
     }
 
-    .#{$namespace}-select .#{$namespace}-input {
-      width: 100px;
+    .#{$namespace}-select {
+      @include set-var-value(
+        select-min-height,
+        getCssVar(pagination-button-height)
+      );
+
+      .#{$namespace}-input {
+        width: 100px;
+        font-size: getCssVar(pagination-font-size-small);
+        height: getCssVar(pagination-button-height-small);
+        line-height: getCssVar(pagination-button-height-small);
+      }
     }
   }
 }
