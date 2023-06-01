@@ -380,6 +380,7 @@ export default defineComponent({
         jumper: h(Jumper),
         pager: h(Pager, {
           color: props.color,
+          progress: props.progress,
           pagerCount: props.pagerCount,
           onChange: handleCurrentChange,
         }),

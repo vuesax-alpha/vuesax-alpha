@@ -12,6 +12,7 @@ export const paginationPagerProps = buildProps({
    * @description Component color - Accept Vuesax's color, Hex, rgb
    */
   color: useColorProp,
+  progress: Boolean,
 } as const)
 
 export type PaginationPagerProps = ExtractPropTypes<typeof paginationPagerProps>

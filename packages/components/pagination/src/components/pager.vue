@@ -92,7 +92,7 @@
       {{ buttonsDotted ? '' : currentPage }}
     </div>
 
-    <pagination-progress />
+    <pagination-progress v-if="progress" />
   </div>
 </template>
 
