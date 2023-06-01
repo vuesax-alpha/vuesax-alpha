@@ -1,10 +1,14 @@
-import { buildProps, isBoolean } from '@vuesax-alpha/utils'
+import { buildProps, isBoolean, isString } from '@vuesax-alpha/utils'
 
 import { useColorProp } from '@vuesax-alpha/hooks'
+import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import type { ExtractPropTypes } from 'vue'
 import type Navbar from './navbar.vue'
 
 export const navbarProps = buildProps({
+  modelValue: {
+    type: String,
+  },
   /**
    * @description Component color - Accept Vuesax's color, Hex, rgb
    */
@@ -75,6 +79,7 @@ export type NavbarProps = ExtractPropTypes<typeof navbarProps>
 
 export const navbarEmits = {
   collapsed: (val: unknown): val is boolean => isBoolean(val),
+  [UPDATE_MODEL_EVENT]: (val: string): val is string => isString(val),
 }
 
 export type NavbarEmits = typeof navbarEmits

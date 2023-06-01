@@ -21,17 +21,12 @@ export const navbarItemProps = buildProps({
    */
   link: {
     type: definePropType<_NavbarItem>([Object]),
-    required: true,
   },
 
-  /** @deprecated */
-  arrow: { type: Boolean },
-  /** @deprecated */
-  href: { type: String },
-  /** @deprecated */
-  target: { type: String },
-  /** @deprecated */
-  id: { type: String },
+  id: {
+    type: String,
+    required: true,
+  },
 } as const)
 
 export type NavbarItemProps = ExtractPropTypes<typeof navbarItemProps>

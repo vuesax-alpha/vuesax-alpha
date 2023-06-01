@@ -2,7 +2,7 @@
  * Base nav item, displayed as text
  */
 export interface NavItem {
-  text: string
+  text?: string
   ariaLabel?: string
 }
 /**
@@ -33,15 +33,15 @@ export const isNavbarGroup = (nav: unknown): nav is NavbarGroup =>
 export const isNavbarItem = (nav: unknown): nav is NavbarItem =>
   !Object.prototype.hasOwnProperty.call(nav, 'children')
 
-export const isLinkExternal = (path: string) => path.startsWith('http')
+export const isLinkExternal = (path?: string) => !!path?.startsWith('http')
 
-export const isMailto = (path: string): path is `mailto:${string}` =>
-  path.startsWith('mailto:')
+export const isMailto = (path?: string): path is `mailto:${string}` =>
+  !!path?.startsWith('mailto:')
 
-export const isTel = (path: string): path is `tel:${string}` =>
-  path.startsWith('tel:')
+export const isTel = (path?: string): path is `tel:${string}` =>
+  !!path?.startsWith('tel:')
 
 export const isExternal = (
-  path: string
+  path?: string
 ): path is `mailto:${string}` | `tel:${string}` | `http${string}` =>
   isLinkExternal(path) || isMailto(path) || isTel(path) || false

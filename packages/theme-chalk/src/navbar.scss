@@ -51,7 +51,7 @@
 
   &.is-shadow,
   &.is-shadow-active {
-    box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, getCssVar('shadow-opacity'));
+    box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, getCssVar('shadow-opacity'));
   }
 
   @include when(hidden) {
@@ -85,6 +85,7 @@
     bottom: 0px;
     width: 100px;
     background: getColor('text');
+    border-radius: 8px;
     height: 3px;
     transition: getCssVar(transition-ease);
 

@@ -1,26 +1,48 @@
 <template>
-  <div ref="el$" :class="navbarKls" :style="navbarStyles">
+  <div ref="navbarRef" :class="navbarKls" :style="navbarStyles">
     <div :class="ns.e('content')">
-      <div v-if="isLeft" ref="left$" :class="ns.e('left')">
+      <div v-if="isLeft" ref="navbarLeftRef" :class="ns.e('left')">
         <slot name="left" />
       </div>
 
-      <div v-if="isCenter" ref="center$" :class="ns.e('center')">
+      <div v-if="isCenter" ref="navbarCenterRef" :class="ns.e('center')">
         <slot />
       </div>
 
-      <div v-if="isRight" ref="right$" :class="ns.e('right')">
+      <div v-if="isRight" ref="navbarRightRef" :class="ns.e('right')">
         <slot name="right" />
       </div>
     </div>
+
+    <div
+      v-if="!notLine"
+      :class="[ns.e('line'), ns.is('not-transition', !line.transition)]"
+      :style="{
+        left: `${line.left}px`,
+        width: `${line.width}px`,
+      }"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue'
+import {
+  computed,
+  nextTick,
+  onMounted,
+  provide,
+  reactive,
+  ref,
+  watch,
+} from 'vue'
 import { useEventListener } from '@vueuse/core'
 import { useBaseComponent, useNamespace } from '@vuesax-alpha/hooks'
 import { getVsColor } from '@vuesax-alpha/utils'
+import {
+  navbarContextKey,
+  navbarRegisterContextKey,
+} from '@vuesax-alpha/tokens/navbar'
+import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import { navbarEmits, navbarProps } from './navbar'
 
 defineOptions({
@@ -32,10 +54,12 @@ const emit = defineEmits(navbarEmits)
 
 const ns = useNamespace('navbar')
 
-const el$ = ref<HTMLElement>()
-const left$ = ref<HTMLElement>()
-const right$ = ref<HTMLElement>()
-const center$ = ref<HTMLElement>()
+const navbarRef = ref<HTMLElement>()
+const navbarLeftRef = ref<HTMLElement>()
+const navbarRightRef = ref<HTMLElement>()
+const navbarCenterRef = ref<HTMLElement>()
+
+const children = reactive<Set<string>>(new Set())
 
 const state = reactive({
   scrollTop: 0,
@@ -49,13 +73,19 @@ const state = reactive({
   lineNotTransition: false,
 })
 
+const line = reactive({
+  left: 0,
+  width: 0,
+  transition: false,
+})
+
 const navbarKls = computed(() => [
   ns.b(),
   useBaseComponent(props.color),
 
   ns.is('fixed', props.fixed),
   ns.is('shadow', props.shadow),
-  ns.is('hidden', state.hidden),
+  // ns.is('hidden', state.hidden),
   ns.is('shadow-active', state.shadowActive),
   ns.is('text-white', props.textWhite),
   ns.is('padding-scroll', props.paddingScroll),
@@ -99,6 +129,21 @@ const scroll = () => {
   state.scrollTop = _scrollTop
 }
 
+const handleLine = (transition = true) => {
+  const navItemActive: HTMLElement | null | undefined =
+    navbarRef.value?.querySelector('[aria-item-active="true"]')
+  if (!navItemActive) {
+    line.width = 0
+    line.left = 0
+    line.transition = false
+    return
+  }
+
+  line.width = navItemActive.scrollWidth
+  line.left = navItemActive.offsetLeft
+  line.transition = transition
+}
+
 const handleScroll = () => {
   if (props.hideScroll || props.shadowScroll || props.paddingScroll) {
     if (props.targetScroll) {
@@ -111,7 +156,9 @@ const handleScroll = () => {
 }
 
 const handleResize = () => {
-  const navbar: any = el$.value
+  handleLine(false)
+
+  const navbar = navbarRef.value!
 
   if (props.leftCollapsed || props.centerCollapsed || props.rightCollapsed) {
     if (navbar.offsetWidth < state.collapsedWidth) {
@@ -148,13 +195,41 @@ watch(
   handleScroll
 )
 
+watch(
+  () => props.modelValue,
+  () => {
+    nextTick(() => {
+      handleLine()
+    })
+  }
+)
+
+provide(navbarContextKey, {
+  modelValue: computed(() => props.modelValue),
+})
+
+provide(navbarRegisterContextKey, (id: string) => {
+  children.add(id)
+
+  return {
+    unregister: () => children.delete(id),
+    onClick: () => emit(UPDATE_MODEL_EVENT, id),
+    isActive: computed(() => props.modelValue === id),
+  }
+})
+
 onMounted(() => {
   nextTick(() => {
-    if (el$.value && left$.value && center$.value && right$.value) {
-      const left = left$.value
-      const center = center$.value
-      const right = right$.value
-      const navbar = el$.value
+    if (
+      navbarRef.value &&
+      navbarLeftRef.value &&
+      navbarCenterRef.value &&
+      navbarRightRef.value
+    ) {
+      const left = navbarLeftRef.value
+      const center = navbarCenterRef.value
+      const right = navbarRightRef.value
+      const navbar = navbarRef.value
 
       const GAP_PADDING_SLOT = 120 + 30
       state.collapsedWidth =
@@ -166,6 +241,7 @@ onMounted(() => {
       if (navbar.offsetWidth < state.collapsedWidth) {
         state.collapsedForced = true
         emit('collapsed', true)
+        line.width = 0
         handleResize()
       }
     }
