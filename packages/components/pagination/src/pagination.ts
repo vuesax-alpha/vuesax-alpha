@@ -90,7 +90,7 @@ export const paginationProps = buildProps({
 
   /** @description layout of Pagination, an array or string elements separated with a comma */
   layout: {
-    type: definePropType<LayoutKey[] | string>([String, Array]),
+    type: definePropType<LayoutKey[] | LayoutKey>([String, Array]),
     default: () =>
       mutable([
         'prev',
