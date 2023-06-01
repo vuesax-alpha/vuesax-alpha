@@ -39,7 +39,6 @@
 <script setup lang="ts">
 import {
   computed,
-  nextTick,
   onDeactivated,
   provide,
   reactive,
@@ -49,7 +48,7 @@ import {
   unref,
   watch,
 } from 'vue'
-import { isBoolean, useElementBounding } from '@vueuse/core'
+import { isBoolean } from '@vueuse/core'
 import {
   useDelayedToggle,
   useFloating,
@@ -82,13 +81,6 @@ const zIndex = computed(() => currentZIndex.value)
 
 const triggerRef = ref<HTMLElement>()
 const contentRef = ref<HTMLElement>()
-const triggerBounding = reactive(useElementBounding(triggerRef))
-
-const {
-  destroy,
-  update,
-  placement: popperPlacement,
-} = useFloating(triggerRef, contentRef, props)
 
 const open = ref(false)
 const toggleReason = ref<Event>()
@@ -106,6 +98,12 @@ const { onOpen, onClose } = useDelayedToggle({
   open: show,
   close: hide,
 })
+
+const { update, placement: popperPlacement } = useFloating(
+  triggerRef,
+  contentRef,
+  { ...props, visible: open }
+)
 
 const controlled = computed(
   () => isBoolean(props.visible) && !hasUpdateHandler.value
@@ -205,27 +203,5 @@ defineExpose(
      */
     popperPlacement,
   })
-)
-
-watch([open, triggerBounding], ([isOpen]) => {
-  if (isOpen) update()
-})
-
-watch(
-  [triggerRef],
-  ([referenceElement]) => {
-    destroy()
-
-    if (!referenceElement) return
-
-    if (open.value) {
-      nextTick(() => {
-        update()
-      })
-    }
-  },
-  {
-    flush: 'post',
-  }
 )
 </script>

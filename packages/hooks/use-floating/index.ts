@@ -1,10 +1,6 @@
-import { onMounted, reactive, ref, watch } from 'vue'
-import {
-  isClient,
-  unrefElement,
-  useElementBounding,
-  useEventListener,
-} from '@vueuse/core'
+import { nextTick, onMounted, ref, watch } from 'vue'
+import { unrefElement } from '@vueuse/core'
+import type { Ref } from 'vue'
 import type { MaybeElementRef } from '@vueuse/core'
 
 export type Placement =
@@ -61,12 +57,14 @@ export type Options = {
    * @default 0
    */
   offset?: number
+
+  visible: Ref<boolean>
 }
 
 export function useFloating(
   reference: MaybeElementRef,
   popper: MaybeElementRef,
-  options?: Options
+  options: Options
 ) {
   const {
     placement = 'bottom',
@@ -75,6 +73,7 @@ export function useFloating(
     windowResize = true,
     windowScroll = true,
     flip = true,
+    visible,
   } = options ?? {}
 
   const cacheOptions: Pick<
@@ -99,8 +98,8 @@ export function useFloating(
 
     if (!popperElement || !triggerElement) return
 
-    const triggerBounding = reactive(useElementBounding(triggerElement))
-    const popperBounding = reactive(useElementBounding(popperElement))
+    const triggerBounding = triggerElement.getBoundingClientRect()
+    const popperBounding = popperElement.getBoundingClientRect()
 
     const style = popperElement.style
     style.position = 'fixed'
@@ -174,7 +173,7 @@ export function useFloating(
         case 'bottom':
         case 'top':
           // eslint-disable-next-line no-case-declarations
-          let left = triggerBounding.x
+          let left = triggerBounding.left
           if (!fit) {
             if (triggerBounding.width > popperBounding.width) {
               left += distanceYAxis
@@ -188,7 +187,7 @@ export function useFloating(
 
         case 'bottom-start':
         case 'top-start':
-          style.left = `${triggerBounding.x}px`
+          style.left = `${triggerBounding.left}px`
           break
 
         case 'bottom-end':
@@ -196,19 +195,15 @@ export function useFloating(
           style.left = `${triggerBounding.right - popperBounding.width}px`
           break
       }
-    }
-
-    if (
+    } else if (
       popperPlacement.value.includes('left') ||
       popperPlacement.value.includes('right')
     ) {
-      let left = triggerBounding.x
+      let left = triggerBounding.left
       if (popperPlacement.value.includes('left')) {
-        left -= offset - popperBounding.width
-      }
-
-      if (popperPlacement.value.includes('right')) {
-        left += offset + popperBounding.width
+        left -= popperWidth
+      } else if (popperPlacement.value.includes('right')) {
+        left += offset + popperWidth
       }
       style.left = `${left}px`
 
@@ -231,28 +226,54 @@ export function useFloating(
     }
   }
 
-  const update = () => {
-    if (!isClient) return
+  const handleWindowScroll = () => {
+    if (!unrefElement(reference) || !unrefElement(popper)) return
+    updateCord()
+  }
 
+  const handleWindowResize = () => {
+    if (!unrefElement(reference) || !unrefElement(popper)) return
     updateCord()
   }
 
   onMounted(() => {
-    if (windowResize) {
-      addEventListener('resize', update)
-    }
+    watch(visible, (val) => {
+      if (val) {
+        nextTick(updateCord)
 
-    if (windowScroll) {
-      useEventListener('scroll', update)
-    }
-  })
+        if (windowScroll) window.addEventListener('scroll', handleWindowScroll)
+        if (windowResize) window.addEventListener('resize', handleWindowResize)
+      } else {
+        window.removeEventListener('scroll', handleWindowScroll)
+        window.removeEventListener('resize', handleWindowResize)
+      }
+    })
 
-  watch(popperPlacement, (placement) => {
-    unrefElement(popper)?.setAttribute('data-popper-placement', placement)
+    watch(popperPlacement, (placement) => {
+      unrefElement(popper)?.setAttribute('data-popper-placement', placement)
+    })
+
+    watch(
+      () => unrefElement(reference),
+      (referenceElement) => {
+        destroy()
+
+        if (!referenceElement) return
+
+        if (visible.value) {
+          nextTick(() => {
+            updateCord()
+          })
+        }
+      },
+      {
+        flush: 'post',
+      }
+    )
   })
 
   return {
-    update,
+    update: updateCord,
     destroy,
     placement: popperPlacement,
   }
