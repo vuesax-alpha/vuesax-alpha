@@ -343,4 +343,46 @@
       transform: scale(1.1);
     }
   }
+
+  .more {
+    position: relative;
+  }
+
+  .more {
+    span {
+      opacity: 1;
+      visibility: visible;
+      transition: getCssVar(transition-ease);
+    }
+
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transition: getCssVar(transition-ease);
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    &.btn-quickprev svg {
+      transform: translate(calc(-50% + 4px), -50%);
+    }
+
+    &.btn-quicknext svg {
+      transform: translate(calc(-50% - 4px), -50%);
+    }
+
+    &:hover {
+      svg {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      span {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  }
 }

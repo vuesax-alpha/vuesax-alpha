@@ -31,8 +31,8 @@
       @click="onMoreClick('prev')"
       @keyup.enter="onMoreClick('prev')"
     >
-      <chevron-left v-if="(quickPrevHover || quickPrevFocus) && !disabled" />
-      <span v-else>...</span>
+      <chevron-left-double />
+      <span>...</span>
     </button>
     <button
       v-for="pager in pagers"
@@ -66,8 +66,8 @@
       @click="onMoreClick('next')"
       @keyup.enter="onMoreClick('next')"
     >
-      <chevron-right v-if="(quickNextHover || quickNextFocus) && !disabled" />
-      <span v-else>...</span>
+      <chevron-right-double />
+      <span>...</span>
     </button>
     <button
       v-if="pageCount > 1"
@@ -100,7 +100,7 @@
 import { computed, nextTick, reactive, ref, watch, watchEffect } from 'vue'
 import { isNil } from 'lodash-unified'
 import { useNamespace } from '@vuesax-alpha/hooks'
-import { ChevronLeft, ChevronRight } from '@vuesax-alpha/icons-vue'
+import { ChevronLeftDouble, ChevronRightDouble } from '@vuesax-alpha/icons-vue'
 import { usePagination } from '../usePagination'
 import { paginationPagerProps } from './pager'
 import PaginationProgress from './progress.vue'
