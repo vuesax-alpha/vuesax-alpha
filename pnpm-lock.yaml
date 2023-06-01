@@ -184,7 +184,7 @@ importers:
       prismjs: 1.29.0
       vue: 3.3.1
       vue-router: 4.2.0_vue@3.3.1
-      vuesax-alpha: 0.2.0-beta.11_vue@3.3.1
+      vuesax-alpha: 0.2.0-beta.13_vue@3.3.1
     devDependencies:
       '@types/prismjs': 1.26.0
       '@vuepress/client': 2.0.0-beta.62
@@ -3138,10 +3138,6 @@ packages:
     resolution: {integrity: sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==}
     engines: {node: '>=10'}
     dev: true
-
-  /@sxzz/popperjs-es/2.11.7:
-    resolution: {integrity: sha512-Ccy0NlLkzr0Ex2FKvh2X+OyERHXJ88XJ1MXtsI9y9fGexlaXaVTPzBCRBwIxFkORuOb+uBqeu+RqnpgYTEZRUQ==}
-    dev: false
 
   /@szmarczak/http-timer/4.0.6:
     resolution: {integrity: sha512-4BAffykYOgO+5nzBWYwE3W90sBgLJoUPRWWcL8wlyiM8IB8ipJz3UMJ9KXQd1RKQXpKp8Tutn80HZtWsu2u76w==}
@@ -13396,13 +13392,12 @@ packages:
       - webpack
     dev: true
 
-  /vuesax-alpha/0.2.0-beta.11_vue@3.3.1:
-    resolution: {integrity: sha512-aVVamyL5GFWkJZj7P+Eq1kx5Cw1ZMRPAUtY5Al/60YIw/6nT52tCAzH+vw6zb4POt+6MXEhsVEw3ed4XFpT/Bw==}
+  /vuesax-alpha/0.2.0-beta.13_vue@3.3.1:
+    resolution: {integrity: sha512-72wxZc/ymSpUZhcqcibltCnmCfUZ2jqBDq3T6XRzH/5waxxD+9PEIyPr12ZWW2fFInJbPxSBhTD9hcsnSYCkdw==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
       '@ctrl/tinycolor': 3.4.1
-      '@popperjs/core': /@sxzz/popperjs-es/2.11.7
       '@types/lodash': 4.14.194
       '@types/lodash-es': 4.17.7
       '@vueuse/core': 9.13.0_vue@3.3.1
