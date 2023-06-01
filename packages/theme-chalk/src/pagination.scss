@@ -6,18 +6,16 @@
 @use 'common/var' as *;
 
 @mixin pagination-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: getCssVar('pagination-font-size');
-  min-width: getCssVar('pagination-button-width');
-  height: getCssVar('pagination-button-height');
-  line-height: getCssVar('pagination-button-height');
-  color: getCssVar('pagination-button-color');
-  background: getCssVar('pagination-bg-color');
+  @include flex(center, center);
+  font-size: getCssVar(pagination-font-size);
+  min-width: getCssVar(pagination-button-width);
+  height: getCssVar(pagination-button-height);
+  line-height: getCssVar(pagination-button-height);
+  color: getCssVar(pagination-button-color);
+  background: getCssVar(pagination-bg-color);
   padding: 0 4px;
   border: none;
-  border-radius: getCssVar('pagination-border-radius');
+  border-radius: getCssVar(pagination-border-radius);
   cursor: pointer;
   text-align: center;
   box-sizing: border-box;
@@ -33,11 +31,11 @@
   }
 
   &:hover {
-    background-color: getCssVar('pagination-button-bg-hover');
+    background-color: getCssVar(pagination-button-bg-hover);
   }
 
   &:active {
-    transform: scale(0.9);
+    transform: scale(0.93);
   }
 
   &:disabled,
@@ -48,28 +46,110 @@
   }
 
   &:focus-visible {
-    outline: 1px solid getCssVar('pagination-hover-color');
+    outline: 1px solid getCssVar(pagination-hover-color);
     outline-offset: -1px;
   }
 }
 
 @include b(pagination) {
-  @include set-component-var('pagination', $pagination);
+  @include set-component-var(pagination, $pagination);
   @include set-var-value(color, getCssVar(primary));
 
+  @include flex(flex-start, center);
   white-space: nowrap;
-  color: getCssVar('pagination-text-color');
+  color: getCssVar(pagination-text-color);
   font-weight: normal;
-  display: flex;
-  align-items: center;
 
-  .#{$namespace}-input__inner {
+  @include when(square) {
+    * {
+      border-radius: 0px;
+    }
+  }
+
+  @include when(circle) {
+    .btn-prev,
+    .btn-next,
+    .#{$namespace}-pager button,
+    .#{$namespace}-pager__aria-active {
+      border-radius: 50%;
+    }
+  }
+
+  @include when(not-margin) {
+    .#{$namespace}-pager button {
+      border-radius: 0px;
+      margin: 0;
+    }
+
+    .btn-prev {
+      border-radius: 12px 0px 0px 12px;
+      margin-right: 0;
+    }
+    .btn-next {
+      border-radius: 0px 12px 12px 0px;
+      margin-left: 0;
+    }
+  }
+
+  @include when(buttons-dotted) {
+    .btn-prev,
+    .btn-next {
+      width: 15px;
+      height: 12px;
+      min-width: 15px;
+      padding: 0px;
+      background: transparent;
+      i {
+        width: 6px;
+        height: 6px;
+        &:before {
+          width: 1px;
+        }
+        &:after {
+          height: 1px;
+        }
+      }
+    }
+
+    .#{$namespace}-pager > button {
+      min-width: 12px;
+      max-width: 12px;
+      width: 12px;
+      height: 12px;
+
+      @include when(active) {
+        transform: scale(1);
+      }
+    }
+
+    .#{$namespace}-pager__aria-active {
+      width: 12px;
+      height: 12px;
+      box-shadow: 0px 2px 10px 0px getColor('color', 0.4);
+      transform: scale(1);
+
+      @include when(change) {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  @include meb(false, original, #{$namespace}-input) {
     text-align: center;
     -moz-appearance: textfield;
   }
 
-  .#{$namespace}-select .#{$namespace}-input {
-    width: 200px;
+  .#{$namespace}-select {
+    @include set-var-value(
+      select-min-height,
+      getCssVar(pagination-button-height)
+    );
+  }
+  @include meb(false, input, #{$namespace}-select) {
+    width: 128px;
+    height: getCssVar(pagination-button-height);
+    line-height: getCssVar(pagination-button-height);
+    font-size: getCssVar(pagination-font-size);
   }
 
   button {
@@ -97,6 +177,25 @@
 
   .btn-prev {
     margin-left: getCssVar('pagination-item-gap');
+  }
+
+  @include e(progress) {
+    width: 100%;
+    height: 3px;
+    background: getColor('gray-3');
+    position: absolute;
+    bottom: -8px;
+    border-radius: 10px;
+
+    .progress {
+      width: 0px;
+      background: getColor('color', 1);
+      height: 100%;
+      position: relative;
+      border-radius: inherit;
+      transition: all 0.25s ease;
+      max-width: 100%;
+    }
   }
 
   @include e(sizes) {
@@ -133,13 +232,12 @@
     @include e(editor) {
       text-align: center;
       box-sizing: border-box;
+      width: 56px;
+      height: getCssVar(pagination-button-height);
+      line-height: getCssVar(pagination-button-height);
 
-      &.#{$namespace}-input {
-        width: 56px;
-      }
-
-      .#{$namespace}-input__inner::-webkit-inner-spin-button,
-      .#{$namespace}-input__inner::-webkit-outer-spin-button {
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
         -webkit-appearance: none;
         margin: 0;
       }
@@ -152,74 +250,75 @@
 
   @include e(rightwrapper) {
     flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    @include flex(flex-end, center);
   }
 
   @include when(background) {
     .btn-prev,
     .btn-next,
-    .#{$namespace}-pager li {
+    .#{$namespace}-pager button {
       margin: 0 4px;
-      background-color: getCssVar('pagination-button-bg-color');
+      background-color: getCssVar(pagination-button-bg-color);
 
       &.is-active {
-        background-color: getCssVar('color-primary');
-        color: getCssVar('color-white');
+        background-color: getCssVar(color-primary);
+        color: getCssVar(color-white);
       }
 
       &:disabled,
       &.is-disabled {
-        color: getCssVar('text-color', 'placeholder');
-        background-color: getCssVar('disabled-bg-color');
+        color: getCssVar(text-color, placeholder);
+        background-color: getCssVar(disabled-bg-color);
 
         &.is-active {
-          color: getCssVar('text-color', 'secondary');
-          background-color: getCssVar('fill-color', 'dark');
+          color: getCssVar(text-color, secondary);
+          background-color: getCssVar(fill-color, dark);
         }
       }
     }
 
     .btn-prev {
-      margin-left: getCssVar('pagination-item-gap');
+      margin-left: getCssVar(pagination-item-gap);
     }
   }
 
   @include m(small) {
     .btn-prev,
     .btn-next,
-    .#{$namespace}-pager li {
-      height: getCssVar('pagination-button-height-small');
-      line-height: getCssVar('pagination-button-height-small');
-      font-size: getCssVar('pagination-font-size-small');
-      min-width: getCssVar('pagination-button-width-small');
+    .#{$namespace}-pager button {
+      height: getCssVar(pagination-button-height-small);
+      line-height: getCssVar(pagination-button-height-small);
+      font-size: getCssVar(pagination-font-size-small);
+      min-width: getCssVar(pagination-button-width-small);
     }
 
     span:not([class*='suffix']),
     button {
-      font-size: getCssVar('pagination-font-size-small');
+      font-size: getCssVar(pagination-font-size-small);
     }
 
-    .#{$namespace}-select .#{$namespace}-input {
-      width: 100px;
+    .#{$namespace}-select {
+      @include set-var-value(
+        select-min-height,
+        getCssVar(pagination-button-height)
+      );
+
+      .#{$namespace}-input {
+        width: 100px;
+        font-size: getCssVar(pagination-font-size-small);
+        height: getCssVar(pagination-button-height-small);
+        line-height: getCssVar(pagination-button-height-small);
+      }
     }
   }
 }
 
 @include b(pager) {
+  @include flex(flex-start, center);
   position: relative;
-  user-select: none;
-  list-style: none;
   font-size: getCssVar('pagination-font-size');
   padding: 0;
   margin: 0;
-  display: flex;
-  align-items: center;
-
-  div {
-    @include pagination-button;
-  }
 
   // need to bind width, height
   @include e(aria-active) {

@@ -1,6 +1,6 @@
 <template>
   <div ref="pagerRef" :class="nsPager.b()">
-    <div
+    <button
       v-if="pageCount > 0"
       :class="[
         nsPager.is('active', currentPage === 1),
@@ -13,10 +13,10 @@
       @click="onPageClick(1)"
       @keyup.enter="onPageClick(1)"
     >
-      1
-    </div>
-    <div
-      v-if="showPrevMore"
+      {{ buttonsDotted ? '' : 1 }}
+    </button>
+    <button
+      v-if="showPrevMore && !buttonsDotted"
       :class="[
         'more',
         'btn-quickprev',
@@ -33,8 +33,8 @@
     >
       <chevron-left v-if="(quickPrevHover || quickPrevFocus) && !disabled" />
       <span v-else>...</span>
-    </div>
-    <div
+    </button>
+    <button
       v-for="pager in pagers"
       :key="pager"
       :class="[
@@ -48,10 +48,10 @@
       @click="onPageClick(pager)"
       @keyup.enter="onPageClick(pager)"
     >
-      {{ pager }}
-    </div>
-    <div
-      v-if="showNextMore"
+      {{ buttonsDotted ? '' : pager }}
+    </button>
+    <button
+      v-if="showNextMore && !buttonsDotted"
       :class="[
         'more',
         'btn-quicknext',
@@ -68,8 +68,8 @@
     >
       <chevron-right v-if="(quickNextHover || quickNextFocus) && !disabled" />
       <span v-else>...</span>
-    </div>
-    <div
+    </button>
+    <button
       v-if="pageCount > 1"
       :class="[
         nsPager.is('active', currentPage === pageCount),
@@ -82,15 +82,17 @@
       @click="onPageClick(pageCount)"
       @keyup.enter="onPageClick(pageCount)"
     >
-      {{ pageCount }}
+      {{ buttonsDotted ? '' : pageCount }}
+    </button>
+
+    <div
+      :class="[nsPager.e('aria-active'), nsPager.is('change', isChange)]"
+      :style="{ left: `${pageActive.left}px` }"
+    >
+      {{ buttonsDotted ? '' : currentPage }}
     </div>
 
-    <span
-      :class="[nsPager.e('aria-active'), nsPager.is('change', isChange)]"
-      :style="pageActive"
-    >
-      {{ currentPage }}
-    </span>
+    <pagination-progress />
   </div>
 </template>
 
@@ -101,6 +103,7 @@ import { useNamespace } from '@vuesax-alpha/hooks'
 import { ChevronLeft, ChevronRight } from '@vuesax-alpha/icons-vue'
 import { usePagination } from '../usePagination'
 import { paginationPagerProps } from './pager'
+import PaginationProgress from './progress.vue'
 
 defineOptions({
   name: 'VsPaginationPager',
@@ -110,7 +113,7 @@ const props = defineProps(paginationPagerProps)
 const emit = defineEmits(['change'])
 const nsPager = useNamespace('pager')
 const nsIcon = useNamespace('icon')
-const { currentPage, disabled, pageCount } = usePagination()
+const { currentPage, disabled, pageCount, buttonsDotted } = usePagination()
 
 const pagerRef = ref<HTMLElement>()
 const showPrevMore = ref(false)
@@ -122,7 +125,6 @@ const quickNextFocus = ref(false)
 const isChange = ref(false)
 const pageActive = reactive({
   left: 0,
-  top: 0,
 })
 const pagers = computed(() => {
   const pagerCount = props.pagerCount
@@ -182,36 +184,26 @@ watchEffect(() => {
 
 watch([pagerRef, currentPage], () => {
   nextTick(() => {
-    const pageActived = pagerRef.value?.querySelector(
-      `[aria-label="${currentPage.value}"]`
-    )
+    const pageActived: HTMLElement | null | undefined =
+      pagerRef.value?.querySelector(`[aria-label="${currentPage.value}"]`)
 
     // current page changed but dom not changing aria-label
     // => pageActive null
     // need to query after dom updated
     if (isNil(pageActived) || isNil(pagerRef.value)) {
-      return Object.assign(pageActive, {
-        left: 0,
-        top: 0,
-      })
+      pageActive.left = 0
+      return
     }
+    isChange.value = true
 
-    const pageActiveBounding = pageActived.getBoundingClientRect()
-    const pagerBounding = pagerRef.value.getBoundingClientRect()
+    const offsetLeftButtonActive = pageActived.offsetLeft
 
-    onChange()
+    pageActive.left = offsetLeftButtonActive
 
-    Object.assign(pageActive, {
-      left: `${pageActiveBounding.left - pagerBounding.left}px`,
-      top: `${pagerBounding.top - pagerBounding.top}px`,
-    })
+    setTimeout(() => (isChange.value = false), 300)
   })
 })
 
-function onChange() {
-  isChange.value = true
-  setTimeout(() => (isChange.value = false), 300)
-}
 function onMouseEnter(forward = false) {
   if (disabled.value) return
   if (forward) {
@@ -227,50 +219,6 @@ function onFocus(forward = false) {
     quickNextFocus.value = true
   }
 }
-// function onEnter(e: UIEvent) {
-//   const target = e.target as HTMLElement
-//   if (
-//     target.tagName.toLowerCase() === 'li' &&
-//     Array.from(target.classList).includes('number')
-//   ) {
-//     const newPage = Number(target.textContent)
-//     if (newPage !== currentPage.value) {
-//       emit('change', newPage)
-//     }
-//   } else if (
-//     target.tagName.toLowerCase() === 'li' &&
-//     Array.from(target.classList).includes('more')
-//   ) {
-//     onPagerClick(e)
-//   }
-// }
-// function onPagerClick(event: UIEvent) {
-//   const target = event.target as HTMLElement
-//   if (target.tagName.toLowerCase() === 'ul' || disabled.value) {
-//     return
-//   }
-//   let newPage = Number(target.textContent)
-
-//   const pagerCountOffset = props.pagerCount - 2
-//   if (target.className.includes('more')) {
-//     if (target.className.includes('quickprev')) {
-//       newPage = currentPage.value - pagerCountOffset
-//     } else if (target.className.includes('quicknext')) {
-//       newPage = currentPage.value + pagerCountOffset
-//     }
-//   }
-//   if (!Number.isNaN(+newPage)) {
-//     if (newPage < 1) {
-//       newPage = 1
-//     }
-//     if (newPage > pageCount.value) {
-//       newPage = pageCount.value
-//     }
-//   }
-//   if (newPage !== currentPage.value) {
-//     emit('change', newPage)
-//   }
-// }
 
 function onMoreClick(key: 'prev' | 'next') {
   let newPage: number = currentPage.value
