@@ -110,7 +110,8 @@ $iconActiveMargin: -4px;
       border-radius: 12px 12px 0px 0px;
       box-shadow: 0px -10px 20px -5px rgba(0, 0, 0, getCssVar(shadow-opacity));
     }
-    margin-top: -4px;
+    margin-top: -5px;
+    padding: 5px;
     overflow: hidden;
     background: getColor('background');
     color: getColor(color);
@@ -392,7 +393,6 @@ $iconActiveMargin: -4px;
     }
   }
   @include e(options) {
-    padding: 5px;
     transition: getCssVar(transition-ease);
 
     @include pseudo(after) {
