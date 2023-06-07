@@ -553,6 +553,19 @@ $checkbox: map.merge(
   $checkbox
 );
 
+// Navbar
+// css3 var in packages/theme-chalk/src/navbar.scss
+$navbar: () !default;
+$navbar: map.merge(
+  (
+    'z-index': getCssVar(z-index-top),
+    'color': getColor(text),
+    'background': getColor(color),
+    'border-radius': 0px 0px 15px 15px,
+  ),
+  $navbar
+);
+
 // popper
 // css3 var in packages/theme-chalk/src/popper.scss
 $popper: () !default;
@@ -586,6 +599,16 @@ $select: map.merge(
   $select
 );
 
+// Sidebar
+// css3 var in packages/theme-chalk/src/sidebar.scss
+$sidebar: () !default;
+$sidebar: map.merge(
+  (
+    'z-index': getCssVar(z-index-top),
+  ),
+  $sidebar
+);
+
 // Radio
 // css3 var in packages/theme-chalk/src/radio.scss
 $radio: () !default;
@@ -606,12 +629,9 @@ $pagination: map.merge(
   (
     'font-size': 14px,
     'bg-color': getColor('gray-3'),
-    // ok
     'text-color': getColor('text'),
     'border-radius': 12px,
-    // ok
     'button-color': getColor('text'),
-    // ok
     'button-width': 36px,
     'button-height': 36px,
     'button-disabled-color': getCssVar('text-color-placeholder'),
