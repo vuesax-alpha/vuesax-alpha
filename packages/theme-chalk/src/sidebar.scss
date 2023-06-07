@@ -1,0 +1,212 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@keyframes delay-opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@include b(sidebar) {
+  @include set-component-var('sidebar', $sidebar);
+}
+
+@include b(sidebar) {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  transform: translate(-110%);
+
+  @include flex(space-between, flex-start);
+  flex-direction: column;
+
+  width: calc(100% - 50px);
+  max-width: 260px;
+  height: 100vh;
+  border-radius: 0px 30px 30px 0px;
+
+  color: getColor('text');
+  box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, getCssVar('shadow-opacity'));
+  background: getColor('background');
+
+  transition: getCssVar(transition-ease);
+  z-index: getCssVar(sidebar, z-index);
+
+  @include when(right) {
+    left: auto;
+    right: 0px;
+    transform: translate(110%);
+    border-radius: 30px 0px 0px 30px;
+
+    @include when(open) {
+      transform: translate(0);
+    }
+
+    @include when(reduce) {
+      .#{$namespace}-sidebar-item {
+        &:hover {
+          .#{$namespace}-sidebar-item__text-tooltip {
+            opacity: 1;
+            left: auto !important;
+            right: 60px !important;
+          }
+        }
+      }
+    }
+  }
+  @include when(absolute) {
+    position: absolute !important;
+    z-index: getCssVar(sidebar, z-index);
+    height: 100%;
+  }
+  @include when(relative) {
+    position: relative !important;
+    z-index: getCssVar(sidebar, z-index);
+    height: 100%;
+  }
+
+  @include when(text-white) {
+    .#{$namespace}-sidebar-group__content {
+      &:after {
+        background: rgba(255, 255, 255, 0.4);
+      }
+    }
+    .#{$namespace}-sidebar-item {
+      &:after {
+        background: #fff !important;
+      }
+      &.is-active {
+        color: #fff !important;
+      }
+    }
+  }
+
+  @include when(not-shadow) {
+    box-shadow: none !important;
+  }
+
+  @include when(square) {
+    border-radius: 0px;
+  }
+
+  @include when(not-line-active) {
+    @include e(body) {
+      .#{$namespace}-sidebar-item {
+        &:after {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @include when(open) {
+    transform: translate(0%);
+  }
+
+  @include when(reduce) {
+    @include e(body) {
+      .#{$namespace}-sidebar__footer {
+        padding: 10px 0px;
+      }
+      .#{$namespace}-sidebar__header {
+        .#{$namespace}-avatar {
+          width: 44px !important;
+          height: 44px !important;
+        }
+      }
+      .#{$namespace}-sidebar__logo {
+        img {
+          width: 80%;
+        }
+      }
+    }
+    @include e(footer) {
+      padding: 10px 0;
+    }
+    .#{$namespace}-sidebar-item {
+      padding-left: 16px !important;
+      min-height: 47px;
+      &:not(.is-has-icon) {
+        .#{$namespace}-sidebar-item__text {
+          font-size: 0.5rem;
+        }
+      }
+      &.is-has-icon {
+        .#{$namespace}-sidebar-item__text {
+          transform: translate(-10px);
+          margin-left: -50px;
+        }
+      }
+      &__arrow {
+        position: absolute;
+        left: 36px;
+        top: 10px;
+        animation: delay-opacity 0.6s ease;
+        width: 5px;
+        height: 5px;
+      }
+      &:hover {
+        .#{$namespace}-sidebar-item__text-tooltip {
+          opacity: 1;
+          left: 60px;
+        }
+      }
+    }
+    .#{$namespace}-sidebar-item.is-has-icon {
+      padding: 0px !important;
+
+      &:after {
+        left: -6px;
+      }
+    }
+  }
+
+  @include e(logo) {
+    @include flex(center, center);
+    width: 100%;
+    padding: 25px 0px;
+    min-height: 80px;
+    img {
+      max-width: 120px;
+      max-height: 35px;
+    }
+  }
+
+  @include e(body) {
+    @include flex();
+
+    overflow-x: hidden;
+    width: 100%;
+    flex-grow: 1;
+    flex-direction: column;
+
+    &::-webkit-scrollbar {
+      width: 0px;
+    }
+
+    .#{$namespace}-sidebar__header {
+      @include flex(center, center);
+      width: 100%;
+      padding: 10px;
+    }
+
+    .#{$namespace}-sidebar__footer {
+      display: flex;
+      align-items: center;
+      justify-self: flex-start;
+      width: 100%;
+      padding: 10px;
+    }
+  }
+
+  @include e(footer) {
+    @include flex(center, center);
+    justify-self: flex-start;
+    width: 100%;
+    padding: 10px;
+  }
+}

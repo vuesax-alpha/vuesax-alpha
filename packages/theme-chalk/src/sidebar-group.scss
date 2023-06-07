@@ -1,0 +1,62 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@include b(sidebar-group) {
+  padding: 0px;
+  width: 100%;
+  min-width: 260px;
+  position: relative;
+
+  @include when(open) {
+    @include e(content) {
+      &:after {
+        transform: translate(0);
+        opacity: 1;
+      }
+    }
+    > .#{$namespace}-sidebar-group__header {
+      .#{$namespace}-sidebar-item {
+        opacity: 1;
+      }
+
+      .#{$namespace}-sidebar-item__arrow {
+        transform: rotate(45deg) !important;
+      }
+    }
+  }
+
+  @include e(header) {
+    @include flex(center, center);
+  }
+
+  @include e(content) {
+    overflow: hidden;
+    transition: getCssVar(transition-ease);
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      background: getColor('color', 0.3);
+      width: 4px;
+      height: 100%;
+      opacity: 0;
+      transition: all 0.25s ease;
+      transform: translate(-100%);
+      border-radius: 0px 10px 10px 0px;
+      z-index: 60;
+    }
+    .#{$namespace}-sidebar-item {
+      background: getColor('background');
+    }
+  }
+
+  > .#{$namespace}-sidebar-group__header {
+    .#{$namespace}-sidebar-item:hover {
+      padding-left: 0px;
+    }
+  }
+}
