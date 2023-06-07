@@ -4,17 +4,20 @@
 
 @include b(navbar) {
   @include set-var-value(color, getCssVar(background));
+  @include set-component-var(navbar, $navbar);
+}
 
+@include b(navbar) {
   width: 100%;
   position: absolute;
-  z-index: 9000;
+  z-index: getCssVar(navbar, z-index);
   top: 0px;
   left: 0px;
   width: 100%;
-  border-radius: 0px 0px 15px 15px;
-  background: getColor(color);
+  border-radius: getCssVar(navbar, border-radius);
+  background: getCssVar(navbar, background);
   transition: getCssVar(transition-ease);
-  color: getColor(text);
+  color: getCssVar(navbar, color);
 
   @include when(padding-scroll) {
     &:not(.is-padding-scroll-active) {
