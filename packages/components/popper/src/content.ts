@@ -78,6 +78,10 @@ export const popperContentProps = buildProps({
   popperStyle: {
     type: definePropType<StyleValue>([String, Array, Object]),
   },
+  /**
+   * @description `persistent` is `false`, popper content will be destroyed
+   */
+  persistent: Boolean,
 })
 
 export type PopperContentProps = ExtractPropTypes<typeof popperContentProps>

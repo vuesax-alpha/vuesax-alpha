@@ -78,8 +78,17 @@ defineEmits(popperContentEmits)
 
 const destroyed = ref(false)
 
+const persistentRef = computed(() => {
+  // For testing, we would always want the content to be rendered
+  // to the DOM, so we need to return true here.
+  if (process.env.NODE_ENV === 'test') {
+    return true
+  }
+  return props.persistent
+})
+
 const shouldRender = computed(() => {
-  return unref(open)
+  return unref(persistentRef) ? true : unref(open)
 })
 
 const shouldShow = computed(() => {
