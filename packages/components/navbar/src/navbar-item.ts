@@ -13,7 +13,7 @@ export const navbarItemProps = buildProps({
 
   /** @description User-level route location, used for router-link */
   to: {
-    type: definePropType<RouteLocationRaw>([]),
+    type: definePropType<RouteLocationRaw>([String, Object]),
   },
 
   /**
