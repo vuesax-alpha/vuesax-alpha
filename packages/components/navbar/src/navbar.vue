@@ -71,6 +71,7 @@ const navbarKls = computed(() => [
   ns.is('fixed', props.fixed),
   ns.is('shadow', props.shadow),
   ns.is('not-line', props.notLine),
+  ns.is('hidden', state.hidden),
   ns.is('shadow-active', state.shadowActive),
   ns.is('text-white', props.textWhite),
   ns.is('padding-scroll', props.paddingScroll),
