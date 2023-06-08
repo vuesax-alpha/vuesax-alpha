@@ -1,10 +1,6 @@
 <template>
   <div :class="[ns.b(), ns.is('hidden', !visible)]">
-    <h5>
-      <slot name="label">
-        {{ label }}
-      </slot>
-    </h5>
+    <h5>{{ label }}</h5>
     <slot />
   </div>
 </template>
