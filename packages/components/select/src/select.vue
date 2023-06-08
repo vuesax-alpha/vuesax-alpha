@@ -16,6 +16,7 @@
     :offset="0"
     :process-before-open="processBeforeOpen"
     :process-before-close="processBeforeClose"
+    persistent
     @show="handleMenuEnter"
   >
     <div
