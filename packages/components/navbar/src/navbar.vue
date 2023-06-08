@@ -13,15 +13,6 @@
         <slot name="right" />
       </div>
     </div>
-
-    <div
-      v-if="!notLine"
-      :class="[ns.e('line'), ns.is('not-transition', !line.transition)]"
-      :style="{
-        left: `${line.left}px`,
-        width: `${line.width}px`,
-      }"
-    />
   </div>
 </template>
 
@@ -73,19 +64,13 @@ const state = reactive({
   lineNotTransition: false,
 })
 
-const line = reactive({
-  left: 0,
-  width: 0,
-  transition: false,
-})
-
 const navbarKls = computed(() => [
   ns.b(),
   useBaseComponent(props.color),
 
   ns.is('fixed', props.fixed),
   ns.is('shadow', props.shadow),
-  // ns.is('hidden', state.hidden),
+  ns.is('not-line', props.notLine),
   ns.is('shadow-active', state.shadowActive),
   ns.is('text-white', props.textWhite),
   ns.is('padding-scroll', props.paddingScroll),
@@ -129,21 +114,6 @@ const scroll = () => {
   state.scrollTop = _scrollTop
 }
 
-const handleLine = (transition = true) => {
-  const navItemActive: HTMLElement | null | undefined =
-    navbarRef.value?.querySelector('[aria-item-active="true"]')
-  if (!navItemActive) {
-    line.width = 0
-    line.left = 0
-    line.transition = false
-    return
-  }
-
-  line.width = navItemActive.scrollWidth
-  line.left = navItemActive.offsetLeft
-  line.transition = transition
-}
-
 const handleScroll = () => {
   if (props.hideScroll || props.shadowScroll || props.paddingScroll) {
     if (props.targetScroll) {
@@ -156,8 +126,6 @@ const handleScroll = () => {
 }
 
 const handleResize = () => {
-  handleLine(false)
-
   const navbar = navbarRef.value!
 
   if (props.leftCollapsed || props.centerCollapsed || props.rightCollapsed) {
@@ -193,15 +161,6 @@ const isCenter = computed(() =>
 watch(
   [() => props.hideScroll, () => props.paddingScroll, () => props.shadowScroll],
   handleScroll
-)
-
-watch(
-  () => props.modelValue,
-  () => {
-    nextTick(() => {
-      handleLine()
-    })
-  }
 )
 
 provide(navbarContextKey, {
@@ -241,7 +200,6 @@ onMounted(() => {
       if (navbar.offsetWidth < state.collapsedWidth) {
         state.collapsedForced = true
         emit('collapsed', true)
-        line.width = 0
         handleResize()
       }
     }

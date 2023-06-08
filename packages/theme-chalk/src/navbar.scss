@@ -61,6 +61,18 @@
     transform: translate(0, -100%);
   }
 
+  @include when(not-line) {
+    .#{$namespace}-navbar-group,
+    .#{$namespace}-navbar-item {
+      &::after {
+        display: none;
+      }
+      &::before {
+        display: none;
+      }
+    }
+  }
+
   @include e(content) {
     width: 100%;
     position: relative;
@@ -80,20 +92,5 @@
 
   @include e(center) {
     @include flex(center, center);
-  }
-
-  @include e(line) {
-    position: absolute;
-    left: 0px;
-    bottom: 0px;
-    width: 100px;
-    background: getColor('text');
-    border-radius: 8px;
-    height: 3px;
-    transition: getCssVar(transition-ease);
-
-    @include when(not-transition) {
-      transition: none !important;
-    }
   }
 }
