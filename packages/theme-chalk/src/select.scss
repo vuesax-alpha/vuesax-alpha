@@ -13,16 +13,10 @@ $iconActiveMargin: -4px;
 .#{$namespace}-select-leave-to {
   opacity: 0;
   &[data-popper-placement='top'] {
-    transform: translate(0, 5px);
+    transform: translate(0, 10px);
   }
   &[data-popper-placement='bottom'] {
-    transform: translate(0, -5px);
-  }
-  &[data-popper-placement='left'] {
-    transform: translate(5px);
-  }
-  &[data-popper-placement='right'] {
-    transform: translate(-5px);
+    transform: translate(0, -10px);
   }
 }
 
@@ -88,8 +82,11 @@ $iconActiveMargin: -4px;
   @include e(arrow) {
     color: getColor($color);
   }
-  ~ div .#{$namespace}-select__message--#{$color} {
-    color: getColor($color, 1);
+  
+  @include e(message) {
+    @include m(#{$color}) {
+      color: getColor($color, 1);
+    }
   }
 }
 
@@ -488,25 +485,28 @@ $iconActiveMargin: -4px;
     }
   }
   @include e(message) {
+    position: absolute;
+    top: 100%;
+    left: 0;
     font-size: 0.7rem;
     padding: 0px 7px;
     overflow: hidden;
     height: auto;
     transition: getCssVar(transition-ease);
 
-    &--success {
+    @include m(success) {
       color: getColor('success');
     }
-    &--danger {
+    @include m(danger) {
       color: getColor('danger');
     }
-    &--warn {
+    @include m(warn) {
       color: getColor('warn');
     }
-    &--dark {
+    @include m(dark) {
       color: getColor('dark');
     }
-    &--primary {
+    @include m(primary) {
       color: getColor('primary');
     }
   }
