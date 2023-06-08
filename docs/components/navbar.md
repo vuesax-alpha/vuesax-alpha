@@ -409,18 +409,18 @@ Remove the border-radius property by making the component square
 Eliminates the active effect line of the component
 
 <template #example>
-<navbar-notLine />
+<navbar-not-line />
 </template>
 
 <template #template>
 
-@[code{1-30}](../.vuepress/components/navbar/notLine.vue)
+@[code{1-30}](../.vuepress/components/navbar/not-line.vue)
 
 </template>
 
 <template #script>
 
-@[code{32-36}](../.vuepress/components/navbar/notLine.vue)
+@[code{32-36}](../.vuepress/components/navbar/not-line.vue)
 
 </template>
 
