@@ -32,6 +32,9 @@
     :popper-class="popperClass"
     :popper-style="popperStyle"
     :disabled="disabled"
+    :visible="visible"
+    :window-resize="windowResize"
+    :window-scroll="windowScroll"
     @blur="onBlur"
     @close="onClose"
   >
@@ -91,8 +94,8 @@ const toggleReason = ref<Event>()
 const { show, hide, hasUpdateHandler } = usePopperModelToggle({
   indicator: open,
   toggleReason,
-  processBeforeClosing: () => props.processBeforeClose(),
-  shouldProceed: () => props.processBeforeOpen(),
+  processBeforeClosing: props.processBeforeClose,
+  shouldProceed: props.processBeforeOpen,
 })
 
 const { onOpen, onClose } = useDelayedToggle({

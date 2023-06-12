@@ -23,6 +23,9 @@ export const popperProps = buildProps({
   ...popperTriggerProps,
   ...usePopperModelToggleProps,
 
+  /**
+   * Return false if cancled open
+   */
   processBeforeOpen: {
     type: definePropType<() => boolean>(Function),
     default: () => true,
@@ -36,9 +39,6 @@ export const popperProps = buildProps({
     default: () => true,
   },
 
-  /**
-   * Return false if cancled open
-   */
   showArrow: {
     type: Boolean,
     default: true,

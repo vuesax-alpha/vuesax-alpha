@@ -101,7 +101,7 @@ const popperStyles = computed(
   () =>
     [
       props.popperStyle,
-      { position: 'fixed' },
+      { position: 'absolute' },
       { zIndex: props.zIndex },
     ] as StyleValue
 )
@@ -131,7 +131,7 @@ const onTransitionLeave = () => {
 }
 
 const onBeforeEnter = () => {
-  updatePopper()
+  // updatePopper()
   onBeforeShow?.()
 }
 
