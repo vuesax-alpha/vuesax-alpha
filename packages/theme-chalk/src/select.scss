@@ -7,7 +7,7 @@ $iconActiveMargin: -4px;
 
 .#{$namespace}-select-enter-active,
 .#{$namespace}-select-leave-active {
-  transition: getCssVar(transition-ease);
+  transition: all 0s ease 0s, transform 0.25s ease, opacity 0.12s ease;
 }
 .#{$namespace}-select-enter-from,
 .#{$namespace}-select-leave-to {
@@ -82,7 +82,7 @@ $iconActiveMargin: -4px;
   @include e(arrow) {
     color: getColor($color);
   }
-  
+
   @include e(message) {
     @include m(#{$color}) {
       color: getColor($color, 1);
