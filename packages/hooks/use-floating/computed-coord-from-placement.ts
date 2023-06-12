@@ -34,14 +34,14 @@ export function computeCoordsFromPlacement(
     case 'right':
       coords = {
         x: reference.x + reference.width,
-        y: commonY + reference.height / 2 + floating.height / 2,
+        y: commonY + reference.height / 2 - floating.height / 2,
       }
       coords[crossAxis] += offset
       break
     case 'left':
       coords = {
         x: reference.x - floating.width,
-        y: commonY + reference.height / 2 + floating.height / 2,
+        y: commonY + reference.height / 2 - floating.height / 2,
       }
       coords[crossAxis] -= offset
       break
