@@ -12,8 +12,10 @@ export function computeCoordsFromPlacement(
   const { offset = 0, rtl } = options
 
   const scrollTop = window.pageYOffset
+  const scrollLeft = window.pageXOffset
 
-  const commonX = reference.x + reference.width / 2 - floating.width / 2
+  const commonX =
+    reference.x + scrollLeft + reference.width / 2 - floating.width / 2
   const commonY = reference.y + scrollTop
   const { mainAxis, crossAxis } = getAxis(placement)
   const length = getLengthFromAxis(mainAxis)
@@ -28,7 +30,10 @@ export function computeCoordsFromPlacement(
       coords[crossAxis] -= offset
       break
     case 'bottom':
-      coords = { x: commonX, y: reference.y + reference.height + scrollTop }
+      coords = {
+        x: commonX,
+        y: reference.y + reference.height + scrollTop,
+      }
       coords[crossAxis] += offset
       break
     case 'right':
