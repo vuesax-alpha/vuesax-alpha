@@ -12,6 +12,13 @@ export const RowJustify = [
 ] as const
 
 export const RowAlign = ['top', 'middle', 'bottom'] as const
+export const RowDerection = [
+  'row',
+  'row-reverse',
+  'column',
+  'column-reverse',
+] as const
+
 export const rowProps = buildProps({
   /**
    * @description grid spacing
@@ -27,6 +34,11 @@ export const rowProps = buildProps({
     type: String,
     values: RowJustify,
     default: 'start',
+  },
+  direction: {
+    type: String,
+    values: RowDerection,
+    default: 'row',
   },
   /**
    * @description vertical alignment of flex layout

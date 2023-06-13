@@ -38,5 +38,6 @@ const rowKls = computed(() => [
   ns.b(),
   ns.is(`justify-${props.justify}`, props.justify !== 'start'),
   ns.is(`align-${props.align}`, props.align !== 'top'),
+  ns.is(`direction-${props.direction}`, props.direction !== 'row'),
 ])
 </script>
