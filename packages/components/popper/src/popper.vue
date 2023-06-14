@@ -35,6 +35,7 @@
     :visible="visible"
     :window-resize="windowResize"
     :window-scroll="windowScroll"
+    :show-arrow="showArrow"
     @blur="onBlur"
     @close="onClose"
   >
@@ -87,6 +88,7 @@ const zIndex = computed(() => currentZIndex.value)
 
 const triggerRef = ref<HTMLElement>()
 const contentRef = ref<HTMLElement>()
+const arrowRef = ref<HTMLElement>()
 
 const open = ref(false)
 const toggleReason = ref<Event>()
@@ -108,6 +110,7 @@ const { onOpen, onClose } = useDelayedToggle({
 const { update, placement: popperPlacement } = useFloating(
   triggerRef,
   contentRef,
+  arrowRef,
   { ...props, visible: open }
 )
 
@@ -144,6 +147,7 @@ onDeactivated(() => open.value && hide())
 provide(popperContextKey, {
   contentRef,
   triggerRef,
+  arrowRef,
   referenceRef: triggerRef,
 
   controlled,

@@ -11,6 +11,7 @@ export * from './types'
 export function useFloating(
   reference: Ref<HTMLElement | undefined>,
   popper: Ref<HTMLElement | undefined>,
+  arrowRef: Ref<HTMLElement | undefined>,
   options: Options
 ) {
   const {
@@ -43,6 +44,7 @@ export function useFloating(
       {
         reference: getBoundingClientRect(triggerElement),
         floating: getBoundingClientRect(popperElement),
+        arrow: getBoundingClientRect(arrowRef.value),
       },
       popperPlacement.value,
       {

@@ -14,6 +14,7 @@ export type Measurable = {
 export type PopperContext = {
   triggerRef: Ref<HTMLElement | undefined>
   contentRef: Ref<HTMLElement | undefined>
+  arrowRef: Ref<HTMLElement | undefined>
   referenceRef: Ref<Measurable | undefined>
 
   controlled: Ref<boolean>

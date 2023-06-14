@@ -66,6 +66,10 @@ export const popperContentProps = buildProps({
     type: Boolean,
     default: true,
   },
+  showArrow: {
+    type: Boolean,
+    default: true,
+  },
   offset: {
     type: Number,
     default: 12,

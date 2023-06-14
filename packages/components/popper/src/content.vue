@@ -95,7 +95,11 @@ const shouldShow = computed(() => {
   return props.disabled ? false : unref(open)
 })
 
-const popperKls = computed(() => [ns.b(), props.popperClass])
+const popperKls = computed(() => [
+  ns.b(),
+  ns.is('not-arrow', !props.showArrow),
+  props.popperClass,
+])
 
 const popperStyles = computed(
   () =>

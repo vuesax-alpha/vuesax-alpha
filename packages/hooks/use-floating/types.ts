@@ -25,6 +25,7 @@ export type ClientRectObject = Rect & SideObject
 export type ElementRects = {
   reference: Rect
   floating: Rect
+  arrow: Rect
 }
 
 export type Options = {
