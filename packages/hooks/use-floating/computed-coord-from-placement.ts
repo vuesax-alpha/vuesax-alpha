@@ -26,13 +26,13 @@ export function computeCoordsFromPlacement(
   let coords
   switch (side) {
     case 'top':
-      coords = { x: commonX, y: reference.y - floating.height }
+      coords = { x: commonX, y: commonY - floating.height }
       coords[crossAxis] -= offset
       break
     case 'bottom':
       coords = {
         x: commonX,
-        y: reference.y + reference.height + scrollTop,
+        y: commonY + reference.height,
       }
       coords[crossAxis] += offset
       break
