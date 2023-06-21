@@ -2,7 +2,7 @@ import { provideGlobalConfig } from '@vuesax-alpha/hooks'
 import { INSTALLED_KEY } from '@vuesax-alpha/constants'
 import { version } from './version'
 
-import type { App, Plugin } from '@vue/runtime-core'
+import type { App, Plugin } from 'vue'
 import type { ConfigProviderContext } from '@vuesax-alpha/tokens'
 
 export const makeInstaller = (components: Plugin[] = []) => {

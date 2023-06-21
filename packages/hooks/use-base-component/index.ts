@@ -3,7 +3,7 @@ import { vuesaxColors } from '@vuesax-alpha/constants'
 import { useNamespace } from '../use-namespace'
 import type { MaybeRef } from '@vueuse/core'
 
-export const useBaseComponent = (color?: MaybeRef<string>) => {
+export const useBaseComponent = (color?: MaybeRef<string | undefined>) => {
   const ns = useNamespace('component')
 
   const className = computed(() => {

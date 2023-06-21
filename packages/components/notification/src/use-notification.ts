@@ -1,17 +1,20 @@
 import { computed, onBeforeMount } from 'vue'
-import { isClient } from '@vueuse/core'
-import { useGlobalConfig } from '../use-global-config'
-import { defaultNamespace } from '../use-namespace'
-import { useIdInjection } from '../use-id'
+import { isClient } from '@vueuse/shared'
+import {
+  createContainer,
+  defaultNamespace,
+  useGlobalConfig,
+  useIdInjection,
+} from '@vuesax-alpha/hooks'
 
-let cachedContainer: HTMLElement
+export let cachedContainer: HTMLElement
 
-export const usePopperContainerId = () => {
+export const useNotificationContainerId = () => {
   const namespace = useGlobalConfig('namespace', defaultNamespace)
   const idInjection = useIdInjection()
 
   const id = computed(() => {
-    return `${namespace.value}-popper-container-${idInjection.prefix}`
+    return `${namespace.value}-notification-container-${idInjection.prefix}`
   })
   const selector = computed(() => `#${id.value}`)
 
@@ -21,15 +24,8 @@ export const usePopperContainerId = () => {
   }
 }
 
-export const createContainer = (id: string) => {
-  const container = document.createElement('div')
-  container.id = id
-  document.body.appendChild(container)
-  return container
-}
-
-export const usePopperContainer = () => {
-  const { id, selector } = usePopperContainerId()
+export const useNotificationContainer = () => {
+  const { id, selector } = useNotificationContainerId()
   onBeforeMount(() => {
     if (!isClient) return
 
