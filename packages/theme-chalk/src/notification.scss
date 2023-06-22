@@ -288,7 +288,7 @@
   }
   @include when(border) {
     border: 3px solid transparent;
-    border-right-color: getColor('color');
+    border-right-color: getColor('border');
   }
   @include e(progress) {
     width: 0;
