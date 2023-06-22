@@ -7,12 +7,7 @@ import {
 } from '@vuesax-alpha/utils'
 
 import { useColorProp } from '@vuesax-alpha/hooks'
-import type {
-  ComponentPublicInstance,
-  ExtractPropTypes,
-  VNode,
-  defineComponent,
-} from 'vue'
+import type { ExtractPropTypes, VNode } from 'vue'
 import type Notification from './notification.vue'
 
 export const notificationPosition = [
@@ -59,12 +54,7 @@ export const notificationProps = buildProps({
    * @description description text
    */
   content: {
-    type: definePropType<
-      | string
-      | VNode
-      | ComponentPublicInstance
-      | ReturnType<typeof defineComponent>
-    >([String, Object]),
+    type: definePropType<string | VNode>([String, Object]),
     default: '',
   },
   loading: Boolean,
