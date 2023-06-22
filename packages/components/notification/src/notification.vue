@@ -81,7 +81,7 @@ const notifyKls = computed(() => [
   ns.b(),
   useBaseComponent(color),
   ns.is('flat', props.flat),
-  ns.is('flat', props.sticky),
+  ns.is('sticky', props.sticky),
   ns.is('border', !!props.border),
   ns.is('color', !!color.value),
   ns.is('icon', !!props.icon),
