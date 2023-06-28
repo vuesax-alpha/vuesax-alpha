@@ -7,9 +7,9 @@ import {
 
 import NotificationConstructor from './notification.vue'
 import { useNotificationContainerId } from './use-notification'
-import type { Notify, NotifyFn } from './notification'
+import type { NotificationPosition, Notify, NotifyFn } from './notification'
 
-const globalContainer: Record<string, HTMLElement | null> = {
+const globalContainer: Record<NotificationPosition, HTMLElement | null> = {
   'top-right': null,
   'top-center': null,
   'top-left': null,

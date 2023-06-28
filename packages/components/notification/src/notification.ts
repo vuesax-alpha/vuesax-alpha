@@ -19,6 +19,8 @@ export const notificationPosition = [
   'bottom-left',
 ] as const
 
+export type NotificationPosition = typeof notificationPosition[number]
+
 export const notificationProps = buildProps({
   border: useColorProp,
   color: useColorProp,
@@ -91,7 +93,7 @@ export const notificationProps = buildProps({
    * @description custom position
    */
   position: {
-    type: String,
+    type: definePropType<NotificationPosition>(String),
     values: notificationPosition,
     default: 'bottom-right',
   },
