@@ -27,4 +27,5 @@ export * from './time-select'
 export * from './tooltip'
 
 // plugins
+export * from './loading'
 export * from './notification'
