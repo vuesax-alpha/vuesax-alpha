@@ -1,15 +1,9 @@
 import { createVNode, render } from 'vue'
 import { isClient } from '@vueuse/shared'
 import { debugWarn, isElement, isString } from '@vuesax-alpha/utils'
+import { LOADING_RECT, SCALE_PARENT } from '@vuesax-alpha/constants'
 import LoadingConstructor from './loading.vue'
 import type { LoadingFn } from './loading'
-
-const LOADING_RECT = {
-  height: 40,
-  width: 40,
-}
-
-const SCALE_PARENT = 0.8
 
 export const loading: LoadingFn = (options = {}) => {
   if (!options) return { close: () => undefined }

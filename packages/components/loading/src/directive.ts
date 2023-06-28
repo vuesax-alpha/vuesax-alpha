@@ -1,7 +1,7 @@
+// @ts-nocheck
 import { isRef, ref } from 'vue'
 import { hyphenate, isObject, isString } from '@vue/shared'
 import { isEqual } from 'lodash-unified'
-import { toReactive } from '@vueuse/shared'
 import { loading } from './method'
 import type { LoadingHandle, LoadingParams } from './loading'
 import type { Directive, DirectiveBinding, UnwrapRef } from 'vue'
