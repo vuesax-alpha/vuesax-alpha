@@ -36,10 +36,10 @@ declare module '@vue/runtime-core' {
     VsTooltip: typeof import('vuesax-alpha')['VsTooltip']
   }
 
-  // interface ComponentCustomProperties {}
-  // $notify    : typeof import('vuesax-alpha')['VsNotification']
-  // $loading   : typeof import('vuesax-alpha')['VsLoadingService']
-  // }
+  interface ComponentCustomProperties {
+    $notification: typeof import('vuesax-alpha')['VsNotification']
+    $loading: typeof import('vuesax-alpha')['VsLoadingFn']
+  }
 }
 
 export {}
