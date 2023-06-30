@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { createVNode, ref, render, unref } from 'vue'
 import { isClient } from '@vueuse/shared'
+import { unrefElement } from '@vueuse/core'
 import { debugWarn, isElement, isString } from '@vuesax-alpha/utils'
 import { LOADING_RECT, SCALE_PARENT } from '@vuesax-alpha/constants'
 import LoadingConstructor from './loading.vue'
@@ -36,10 +37,12 @@ export const loading: LoadingFn = (options = {}) => {
   })
 
   let appendTo: HTMLElement | null = document.body
-  if (isElement(optionsRef.target?.value)) {
-    appendTo = optionsRef.target!.value
-  } else if (isString(optionsRef.target?.value)) {
-    appendTo = document.querySelector(optionsRef.target!.value)
+  if (isElement(unrefElement(optionsRef.target))) {
+    appendTo = unrefElement(optionsRef.target)
+  } else if (isString(unref(optionsRef.target))) {
+    appendTo = document.querySelector(unref(optionsRef.target))
+  } else {
+    appendTo = null
   }
 
   if (!isElement(appendTo)) {
