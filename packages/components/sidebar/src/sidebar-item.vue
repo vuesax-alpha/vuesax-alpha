@@ -27,6 +27,10 @@ import { throwError } from '@vuesax-alpha/utils'
 import { IconArrow } from '@vuesax-alpha/components/icon'
 import { sidebarItemProps } from './sidebar-item'
 
+defineOptions({
+  name: 'VsSidebarItem',
+})
+
 const router = useRouter()
 const slots = useSlots()
 

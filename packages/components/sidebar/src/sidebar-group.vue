@@ -18,6 +18,10 @@ import { useNamespace } from '@vuesax-alpha/hooks'
 import { sidebarGroupContextKey } from '@vuesax-alpha/tokens'
 import { sidebarGroupProps } from './sidebar-group'
 
+defineOptions({
+  name: 'VsSidebarGroup',
+})
+
 const props = defineProps(sidebarGroupProps)
 
 const ns = useNamespace('sidebar-group')
