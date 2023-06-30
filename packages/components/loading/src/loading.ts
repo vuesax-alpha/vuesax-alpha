@@ -6,6 +6,7 @@ import {
 } from '@vuesax-alpha/utils'
 
 import { useColorProp } from '@vuesax-alpha/hooks'
+import type { MaybeRef } from '@vuesax-alpha/utils'
 import type { ExtractPropTypes } from 'vue'
 import type Loading from './loading.vue'
 
@@ -67,9 +68,15 @@ export type LoadingProps = ExtractPropTypes<typeof loadingProps>
 export type LoadingInstance = InstanceType<typeof Loading>
 
 export type LoadingParams = Partial<LoadingProps & { visible: boolean }>
+export type LoadingParamsRef = {
+  [P in keyof LoadingParams]?: MaybeRef<LoadingParams[P]>
+}
 
 export interface LoadingHandle {
   close: () => void
+  setText: (text: string) => void
+  setProgress: (progress: number) => void
+  setPercent: (percent: number) => void
 }
 
-export type LoadingFn = (options?: LoadingParams) => LoadingHandle
+export type LoadingFn = (options?: LoadingParamsRef) => LoadingHandle

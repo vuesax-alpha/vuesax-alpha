@@ -1,23 +1,45 @@
-import { createVNode, render } from 'vue'
+// @ts-nocheck
+import { createVNode, ref, render, unref } from 'vue'
 import { isClient } from '@vueuse/shared'
 import { debugWarn, isElement, isString } from '@vuesax-alpha/utils'
 import { LOADING_RECT, SCALE_PARENT } from '@vuesax-alpha/constants'
 import LoadingConstructor from './loading.vue'
-import type { LoadingFn } from './loading'
+import type { LoadingFn, LoadingParams, LoadingParamsRef } from './loading'
 
 export const loading: LoadingFn = (options = {}) => {
-  if (!options) return { close: () => undefined }
+  if (!options)
+    return {
+      setPercent: () => undefined,
+      setProgress: () => undefined,
+      close: () => undefined,
+      setText: () => undefined,
+    }
 
   if (!isClient)
     return {
+      setPercent: () => undefined,
+      setProgress: () => undefined,
       close: () => undefined,
+      setText: () => undefined,
     }
 
+  const getOption = (key: keyof LoadingParams) => {
+    const data = options?.[key] || key
+    if (unref(data)) return ref(data)
+    return data
+  }
+
+  const optionsRef: LoadingParamsRef = {}
+
+  Object.keys(options).forEach((e) => {
+    optionsRef[e] = getOption(e)
+  })
+
   let appendTo: HTMLElement | null = document.body
-  if (isElement(options.target)) {
-    appendTo = options.target
-  } else if (isString(options.target)) {
-    appendTo = document.querySelector(options.target)
+  if (isElement(optionsRef.target?.value)) {
+    appendTo = optionsRef.target!.value
+  } else if (isString(optionsRef.target?.value)) {
+    appendTo = document.querySelector(optionsRef.target!.value)
   }
 
   if (!isElement(appendTo)) {
@@ -26,17 +48,17 @@ export const loading: LoadingFn = (options = {}) => {
       'the appendTo option is not an HTMLElement. Falling back to document.body.'
     )
     appendTo = document.body
-    options.target = undefined
+    optionsRef.target!.value = undefined
   }
 
   if (appendTo.clientHeight < LOADING_RECT.height) {
     // descre 80% parent height
     const eightyPercentParentHeight = appendTo.clientHeight * SCALE_PARENT
     const loadingScale = eightyPercentParentHeight / LOADING_RECT.height
-    options.scale = loadingScale
+    optionsRef.scale!.value = loadingScale
   }
 
-  const vm = createVNode(LoadingConstructor, options)
+  const vm = createVNode(LoadingConstructor, optionsRef)
   const container = document.createElement('div')
   render(vm, container)
 
@@ -46,8 +68,21 @@ export const loading: LoadingFn = (options = {}) => {
     ;(vm.component!.exposed as { close: () => void }).close()
   }
 
+  const setText = (val: string) => {
+    optionsRef.text!.value = val
+  }
+  const setProgress = (val: number) => {
+    optionsRef.progress!.value = val
+  }
+  const setPercent = (val: number) => {
+    optionsRef.percent!.value = val
+  }
+
   return {
     close,
+    setText,
+    setProgress,
+    setPercent,
   }
 }
 

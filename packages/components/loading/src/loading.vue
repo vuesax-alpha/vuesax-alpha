@@ -1,12 +1,15 @@
 <template>
   <div ref="loadingRef" :class="loadingKls" :style="loadingStyles">
-    <div :class="ns.e('load')" :style="[{ transform: `scale(${scale})` }]">
+    <div
+      :class="ns.e('load')"
+      :style="[{ transform: `scale(${unref(scale)})` }]"
+    >
       <div :class="ns.e('animation')">
-        <div v-if="percent" :class="ns.em('load', 'percent')">
-          {{ percent }}
+        <div v-if="unref(percent)" :class="ns.em('load', 'percent')">
+          {{ unref(percent) }}
         </div>
 
-        <template v-if="type === 'default'">
+        <template v-if="unref(type) === 'default'">
           <icon-loading />
         </template>
 
@@ -20,7 +23,7 @@
           :class="[ns.em('animation', 'item'), ns.em('animation', 'item-3')]"
         />
 
-        <template v-if="type === 'ball'">
+        <template v-if="unref(type) === 'ball'">
           <div
             :class="[
               ns.em('animation', 'shadow'),
@@ -42,11 +45,14 @@
         </template>
       </div>
 
-      <div v-if="text" :class="ns.e('text')">{{ text }}</div>
+      <div v-if="unref(text)" :class="ns.e('text')">{{ unref(text) }}</div>
     </div>
 
-    <div v-if="progress" :class="ns.e('progress')">
-      <div :class="ns.e('progress-bar')" :style="[{ width: `${progress}%` }]" />
+    <div v-if="unref(progress)" :class="ns.e('progress')">
+      <div
+        :class="ns.e('progress-bar')"
+        :style="[{ width: `${unref(progress)}%` }]"
+      />
     </div>
   </div>
 </template>
@@ -81,13 +87,13 @@ const type = useProp<string>('type')
 const loadingKls = computed(() => [
   ns.b(),
   type.value && ns.m(type.value),
-  ns.is('has-target', !!props.target),
+  ns.is('has-target', !!unref(props.target)),
 ])
 const loadingStyles = computed(() => [
   ns.cssVar({
     color: getVsColor(color),
     background: getVsColor(background),
-    opacity: `${props.opacity}`,
+    opacity: `${unref(props.opacity)}`,
   }),
   { zIndex: unref(currentZIndex) },
 ])
