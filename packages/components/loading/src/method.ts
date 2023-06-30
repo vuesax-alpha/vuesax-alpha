@@ -41,8 +41,6 @@ export const loading: LoadingFn = (options = {}) => {
     appendTo = unrefElement(optionsRef.target)
   } else if (isString(unref(optionsRef.target))) {
     appendTo = document.querySelector(unref(optionsRef.target))
-  } else {
-    appendTo = null
   }
 
   if (!isElement(appendTo)) {
