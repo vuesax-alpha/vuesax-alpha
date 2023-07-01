@@ -99,7 +99,7 @@ export default {
       total: '共 {total} 項',
       pageClassifier: '頁',
       deprecationWarning:
-        '偵測到已過時的使用方式，請參閱 el-pagination 說明文件以了解更多資訊',
+        '偵測到已過時的使用方式，請參閱 pagination 說明文件以了解更多資訊',
     },
     dialog: {
       close: '關閉此對話框',

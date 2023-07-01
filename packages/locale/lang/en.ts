@@ -101,7 +101,7 @@ export default {
       total: 'Total {total}',
       pageClassifier: '',
       deprecationWarning:
-        'Deprecated usages detected, please refer to the el-pagination documentation for more details',
+        'Deprecated usages detected, please refer to the pagination documentation for more details',
     },
     dialog: {
       close: 'Close this dialog',
@@ -128,6 +128,7 @@ export default {
       defaultRangeEndLabel: 'pick end value',
     },
     table: {
+      noMatch: 'No matching data',
       emptyText: 'No Data',
       confirmFilter: 'Confirm',
       resetFilter: 'Reset',

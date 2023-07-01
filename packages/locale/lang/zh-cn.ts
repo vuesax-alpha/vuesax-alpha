@@ -77,7 +77,7 @@ export default {
       total: '共 {total} 条',
       pageClassifier: '页',
       deprecationWarning:
-        '你使用了一些已被废弃的用法，请参考 el-pagination 的官方文档',
+        '你使用了一些已被废弃的用法，请参考 pagination 的官方文档',
     },
     messagebox: {
       title: '提示',

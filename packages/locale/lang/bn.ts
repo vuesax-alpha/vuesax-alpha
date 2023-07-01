@@ -77,7 +77,7 @@ export default {
       total: 'মোট {total}',
       pageClassifier: '',
       deprecationWarning:
-        'অপ্রচলিত (Deprecated) ব্যাবহার পওয়া গেছে, আরও জানতে চাইলে, দয়া করে el-pagination এর ডকুমেন্টেশন দেখুন',
+        'অপ্রচলিত (Deprecated) ব্যাবহার পওয়া গেছে, আরও জানতে চাইলে, দয়া করে pagination এর ডকুমেন্টেশন দেখুন',
     },
     messagebox: {
       title: 'বার্তা',
