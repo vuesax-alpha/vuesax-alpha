@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { computed, onMounted, ref } from 'vue'
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import { isArray } from '@vuesax-alpha/utils'

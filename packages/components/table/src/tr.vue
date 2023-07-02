@@ -5,7 +5,7 @@
   <template v-if="$slots.expand">
     <transition name="fade-expand">
       <tr v-if="expand" ref="trRef" :class="ns.be('tr-expand', 'row')">
-        <td :class="ns.be('tr-expand', 'td')" :colspan="table.colspan">
+        <td :class="ns.be('tr-expand', 'td')" :colspan="unref(table.colspan)">
           <div ref="contentRef" :class="ns.be('tr-expand', 'content')">
             <div :class="ns.bem('tr-expand', 'content', 'inner')">
               <slot />
@@ -18,13 +18,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, nextTick, ref, useSlots, watch } from 'vue'
+import { computed, inject, nextTick, ref, unref, useSlots, watch } from 'vue'
 import { isEqual } from 'lodash-unified'
 import { useBaseComponent, useNamespace } from '@vuesax-alpha/hooks'
 import { tableContextKey } from '@vuesax-alpha/tokens'
 import { getVsColor, isArray, throwError } from '@vuesax-alpha/utils'
 
 import { tableTrEmits, tableTrProps } from './tr'
+import type { TableModelValueType } from './table'
 
 defineOptions({
   name: 'VsTr',
@@ -53,7 +54,7 @@ const isSelected = computed(() => {
     ? table.modelValue.value
     : [table.modelValue.value]
 
-  return modelValue.find((e) => isEqual(e, props.data))
+  return modelValue.includes((e: TableModelValueType) => isEqual(e, props.data))
 })
 
 const trKls = computed(() => [
