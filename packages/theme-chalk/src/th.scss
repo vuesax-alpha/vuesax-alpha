@@ -1,0 +1,70 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+// Icon sort classes
+$icon-1: 'icon-sort-1';
+$icon-2: 'icon-sort-2';
+
+@include b(table-th) {
+  padding: 10px 12px;
+  text-align: left;
+  transition: all 0.25s ease;
+  font-size: 0.8rem;
+  border: 0px;
+
+  @include when(sort) {
+    @include e(content) {
+      pointer-events: none;
+    }
+
+    &:hover {
+      background: getColor(gray-3);
+    }
+  }
+
+  &[data-sort-type='asc'] {
+    .#{$icon-1} {
+      margin-top: -1px;
+      transform: rotate(45deg) !important;
+    }
+    .#{$icon-2} {
+      margin-top: -7px;
+      transform: rotate(45deg) !important;
+    }
+  }
+  &[data-sort-type='desc'] {
+    .#{$icon-1} {
+      margin-top: -1px;
+      transform: rotate(-135deg) !important;
+    }
+    .#{$icon-2} {
+      margin-top: -7px;
+    }
+  }
+
+  @include e(content) {
+    @include flex(flex-start, center);
+    transition: getCssVar(transition, ease);
+
+    .#{$namespace}-icon-arrow {
+      position: relative;
+      display: block;
+
+      &.#{$icon-1} {
+        transform: rotate(45deg);
+      }
+
+      &.#{$icon-2} {
+        transform: rotate(-135deg);
+      }
+    }
+  }
+
+  @include e(icons) {
+    @include flex(center, center);
+    flex-direction: column;
+    margin-left: 7px;
+    transform: scale(0.8);
+  }
+}

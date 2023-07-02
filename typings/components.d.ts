@@ -35,7 +35,10 @@ declare module '@vue/runtime-core' {
     VsSidebarItem: typeof import('../packages/vuesax-alpha')['VsSidebarItem']
     VsSidebar: typeof import('../packages/vuesax-alpha')['VsSidebar']
     VsSwitch: typeof import('../packages/vuesax-alpha')['VsSwitch']
-    // VsTable: typeof import('../packages/vuesax-alpha')['VsTable']
+    VsTable: typeof import('../packages/vuesax-alpha')['VsTable']
+    VsTh: typeof import('../packages/vuesax-alpha')['VsTh']
+    VsTd: typeof import('../packages/vuesax-alpha')['VsTd']
+    VsTr: typeof import('../packages/vuesax-alpha')['VsTr']
     VsTimeSelect: typeof import('../packages/vuesax-alpha')['VsTimeSelect']
     VsTooltip: typeof import('../packages/vuesax-alpha')['VsTooltip']
   }

@@ -23,6 +23,7 @@ export * from './select'
 export * from './sidebar'
 export * from './slot'
 export * from './switch'
+export * from './table'
 export * from './time-select'
 export * from './tooltip'
 

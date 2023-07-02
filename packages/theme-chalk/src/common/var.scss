@@ -647,3 +647,13 @@ $pagination: map.merge(
   ),
   $pagination
 );
+
+// Table
+// css3 var in packages/theme-chalk/src/table.scss
+$table: () !default;
+$table: map.merge(
+  (
+    'bg': getCssVar(bg-color),
+  ),
+  $table
+);

@@ -29,7 +29,7 @@ import {
   VsSidebarItem,
 } from '@vuesax-alpha/components/sidebar'
 import { VsSwitch } from '@vuesax-alpha/components/switch'
-// import { VsTable } from '@vuesax-alpha/components/table'
+import { VsTable, VsTd, VsTh, VsTr } from '@vuesax-alpha/components/table'
 import { VsTimeSelect } from '@vuesax-alpha/components/time-select'
 import { VsTooltip } from '@vuesax-alpha/components/tooltip'
 
@@ -65,7 +65,10 @@ export default [
   VsSidebar,
   VsSidebarGroup,
   VsSidebarItem,
-  // VsTable,
+  VsTable,
+  VsTd,
+  VsTh,
+  VsTr,
   VsTimeSelect,
   VsTooltip,
 ] as Plugin[]
