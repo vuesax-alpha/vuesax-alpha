@@ -10,7 +10,7 @@ export const useBaseComponent = (color?: MaybeRef<string | undefined>) => {
     return vuesaxColors.includes(unref(color) as any) ? ns.m(unref(color)) : ''
   })
 
-  const isColor = computed(() => (!!color && ns.m(ns.is('color'))) || '')
+  const isColor = computed(() => (!!unref(color) && ns.m(ns.is('color'))) || '')
 
   return [unref(className), unref(isColor)]
 }
