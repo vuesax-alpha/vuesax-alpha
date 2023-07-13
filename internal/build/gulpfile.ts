@@ -1,9 +1,10 @@
 import path from 'path'
-import { copyFile, mkdir } from 'fs/promises'
+import { copyFile, mkdir, readdir, rm } from 'fs/promises'
 import { copy } from 'fs-extra'
 import { parallel, series } from 'gulp'
 import {
   buildOutput,
+  cpdirRecursive,
   projRoot,
   vsOutput,
   vsPackage,
@@ -43,9 +44,29 @@ export const copyFullStyle = async () => {
   )
 }
 
-const _series: TaskFunction = series(
+async function moveAndRemovePackagesDir() {
+  const files = await readdir(path.resolve(vsOutput, 'es/packages'), {
+    withFileTypes: true,
+  })
+
+  for (const file of files) {
+    const fromPath = path.resolve(vsOutput, 'es/packages', file.name)
+    const toPath = fromPath.replace('packages', '')
+
+    if (file.isDirectory()) {
+      await cpdirRecursive(fromPath, toPath)
+    } else {
+      await copyFile(fromPath, toPath)
+    }
+  }
+
+  // Remove empty packages dir
+  await rm(path.resolve(vsOutput, 'es/packages'), { recursive: true })
+}
+
+export default series(
   withTaskName('clean', () => run('pnpm run clean')),
-  withTaskName('createOutput', () => mkdir(`${vsOutput}`, { recursive: true })),
+  withTaskName('createOutput', () => mkdir(vsOutput, { recursive: true })),
 
   parallel(
     runTask('buildModules'),
@@ -60,9 +81,8 @@ const _series: TaskFunction = series(
     )
   ),
 
-  parallel(copyTypesDefinitions, copyFiles)
+  parallel(copyTypesDefinitions, copyFiles),
+  parallel(moveAndRemovePackagesDir)
 ) as any
-
-export default _series
 
 export * from './src'
