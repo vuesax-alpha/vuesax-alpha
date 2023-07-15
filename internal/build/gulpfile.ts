@@ -44,26 +44,6 @@ export const copyFullStyle = async () => {
   )
 }
 
-async function moveAndRemovePackagesDir() {
-  const files = await readdir(path.resolve(vsOutput, 'es/packages'), {
-    withFileTypes: true,
-  })
-
-  for (const file of files) {
-    const fromPath = path.resolve(vsOutput, 'es/packages', file.name)
-    const toPath = fromPath.replace('packages', '')
-
-    if (file.isDirectory()) {
-      await cpdirRecursive(fromPath, toPath)
-    } else {
-      await copyFile(fromPath, toPath)
-    }
-  }
-
-  // Remove empty packages dir
-  await rm(path.resolve(vsOutput, 'es/packages'), { recursive: true })
-}
-
 export default series(
   withTaskName('clean', () => run('pnpm run clean')),
   withTaskName('createOutput', () => mkdir(vsOutput, { recursive: true })),
@@ -81,8 +61,7 @@ export default series(
     )
   ),
 
-  parallel(copyTypesDefinitions, copyFiles),
-  parallel(moveAndRemovePackagesDir)
+  parallel(copyTypesDefinitions, copyFiles)
 ) as any
 
 export * from './src'
