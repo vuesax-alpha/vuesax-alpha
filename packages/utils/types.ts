@@ -10,8 +10,12 @@ export {
   isPromise,
   isSymbol,
 } from '@vue/shared'
-export { isBoolean, isNumber } from '@vueuse/core'
+
 export { isVNode } from 'vue'
+
+export const isBoolean = (val: any): val is boolean => typeof val === 'boolean'
+
+export const isNumber = (val: any): val is number => typeof val === 'number'
 
 export const isUndefined = (val: any): val is undefined => val === undefined
 
