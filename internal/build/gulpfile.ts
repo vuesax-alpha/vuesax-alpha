@@ -1,10 +1,9 @@
 import path from 'path'
-import { copyFile, mkdir, readdir, rm } from 'fs/promises'
+import { copyFile, mkdir } from 'fs/promises'
 import { copy } from 'fs-extra'
 import { parallel, series } from 'gulp'
 import {
   buildOutput,
-  cpdirRecursive,
   projRoot,
   vsOutput,
   vsPackage,
