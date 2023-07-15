@@ -78,7 +78,7 @@ describe('types', () => {
     expect(isNumber(123)).toBe(true)
     expect(isNumber(true)).toBe(false)
     expect(isNumber(false)).toBe(false)
-    expect(isNumber(Number.NaN)).toBe(true)
+    expect(isNumber(Number.NaN)).toBe(false)
     expect(isNumber('')).toBe(false)
     expect(isNumber(null)).toBe(false)
     expect(isNumber(undefined)).toBe(false)
