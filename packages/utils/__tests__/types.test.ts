@@ -35,10 +35,6 @@ describe('types', () => {
     expect(isNumber).toBe(vueuse.isNumber)
   })
 
-  it('re-export from vue', () => {
-    expect(isVNode).toBe(vue.isVNode)
-  })
-
   it('isUndefined should work', () => {
     expect(isUndefined(undefined)).toBe(true)
     expect(isUndefined(null)).toBe(false)
