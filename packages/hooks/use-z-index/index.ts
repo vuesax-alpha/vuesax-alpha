@@ -1,5 +1,5 @@
 import { computed, inject, ref, unref } from 'vue'
-import { isNumber } from '@vueuse/core'
+import { isNumber } from '@vuesax-alpha/utils'
 import type { InjectionKey, Ref } from 'vue'
 
 const zIndex = ref(0)
