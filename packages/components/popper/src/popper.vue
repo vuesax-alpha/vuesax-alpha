@@ -55,7 +55,7 @@ import {
   unref,
   watch,
 } from 'vue'
-import { isBoolean } from '@vueuse/core'
+import { isBoolean } from '@vuesax-alpha/utils'
 import {
   useDelayedToggle,
   useFloating,

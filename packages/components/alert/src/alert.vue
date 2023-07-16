@@ -56,8 +56,7 @@
 
 <script lang="ts" setup>
 import { computed, useSlots } from 'vue'
-import { isBoolean } from 'lodash-unified'
-import { getVsColor } from '@vuesax-alpha/utils'
+import { getVsColor, isBoolean } from '@vuesax-alpha/utils'
 import { IconClose, IconPlus } from '@vuesax-alpha/components/icon'
 import { VsCollapseTransition } from '@vuesax-alpha/components/collapse-transition'
 import { useBaseComponent, useNamespace } from '@vuesax-alpha/hooks'

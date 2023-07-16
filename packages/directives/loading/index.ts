@@ -1,10 +1,8 @@
 import { isRef } from 'vue'
 
-import { isBoolean } from '@vueuse/core'
+import { isBoolean } from '@vuesax-alpha/utils'
 import type { ObjectDirective } from 'vue'
 import type { MaybeRef } from '@vueuse/core'
-// import { isElement } from '@vuesax-alpha/utils'
-// import { useLoading } from '@vuesax-alpha/hooks'
 
 type LoadingOptions = {
   loading: MaybeRef<boolean>
