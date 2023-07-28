@@ -50,6 +50,8 @@ const contentExpandRef = ref<HTMLElement>()
 const expand = ref<boolean>(false)
 
 const isSelected = computed(() => {
+  if (props.isSelected != null) return props.isSelected
+
   const modelValue = isArray(table.modelValue.value)
     ? table.modelValue.value
     : [table.modelValue.value]

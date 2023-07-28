@@ -16,6 +16,10 @@ export const tableTrProps = buildProps({
     type: definePropType<TableModelValueType>([String, Number, Object]),
     default: null,
   },
+  isSelected: {
+    type: Boolean,
+    default: null,
+  },
   notClickSelected: Boolean,
   openExpandOnlyTd: Boolean,
 } as const)
