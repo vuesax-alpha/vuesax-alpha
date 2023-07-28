@@ -389,6 +389,10 @@ $iconActiveMargin: -4px;
       }
     }
   }
+  @include when(block) {
+    width: 100%;
+    max-width: unset;
+  }
   @include e(options) {
     transition: getCssVar(transition-ease);
 
