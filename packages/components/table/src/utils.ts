@@ -75,3 +75,13 @@ export const sortData = <T = Record<any, unknown>>(
     ? [...data].sort(compare)
     : [...data].sort(returnOriginalIndex)
 }
+
+export const getPage = <T = any>(
+  data: T[],
+  page: number,
+  maxItems = 5
+): T[] => {
+  const max = Math.ceil(page * maxItems)
+  const min = max - maxItems
+  return data.filter((_: any, index: number) => index >= min && index < max)
+}
