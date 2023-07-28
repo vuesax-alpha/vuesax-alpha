@@ -16,3 +16,4 @@ export const VsTh = withNoopInstall(Th)
 export const VsTr = withNoopInstall(Tr)
 
 export * from './src/table'
+export * from './src/utils'
