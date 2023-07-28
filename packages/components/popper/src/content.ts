@@ -43,6 +43,9 @@ export const popperContentProps = buildProps({
     values: POSITIONING_STRATEGIES,
     default: 'absolute',
   },
+  /**
+   * @description fit popper's width to trigger element
+   */
   fit: Boolean,
   placement: {
     type: definePropType<Placement>(String),

@@ -24,6 +24,9 @@ export const selectProps = buildProps({
     type: Number,
     default: 0,
   },
+  /**
+   * @description fit select options's width to trigger element
+   */
   fit: {
     type: Boolean,
     default: true,
@@ -74,6 +77,9 @@ export const selectProps = buildProps({
    * @description State color - Accept Vuesax's color, Hex, rgb
    */
   state: useColorProp,
+  /**
+   * @description make select width full
+   */
   block: Boolean,
   /**
    * @description hide scrollbar
