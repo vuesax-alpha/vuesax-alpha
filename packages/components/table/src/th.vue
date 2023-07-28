@@ -3,7 +3,7 @@
     <div :class="ns.be('th', 'content')">
       <slot />
 
-      <div v-if="sort" :class="ns.be('th', 'icon')">
+      <div v-if="sort" :class="ns.be('th', 'icons')">
         <icon-arrow class="icon-sort-1" />
         <icon-arrow class="icon-sort-2" />
       </div>
