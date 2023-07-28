@@ -25,7 +25,6 @@ import { tableContextKey } from '@vuesax-alpha/tokens'
 import { getVsColor, isArray, throwError } from '@vuesax-alpha/utils'
 
 import { tableTrEmits, tableTrProps } from './tr'
-import type { TableModelValueType } from './table'
 
 defineOptions({
   name: 'VsTr',
@@ -56,7 +55,7 @@ const isSelected = computed(() => {
     ? table.modelValue.value
     : [table.modelValue.value]
 
-  return modelValue.includes((e: TableModelValueType) => isEqual(e, props.data))
+  return modelValue.some((e) => isEqual(e, props.data))
 })
 
 const trKls = computed(() => [
