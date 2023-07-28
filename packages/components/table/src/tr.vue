@@ -4,11 +4,11 @@
   </tr>
   <template v-if="$slots.expand">
     <transition name="fade-expand">
-      <tr v-if="expand" ref="trRef" :class="ns.be('tr-expand', 'row')">
+      <tr v-if="expand" ref="trRef" :class="ns.b('tr-expand')">
         <td :class="ns.be('tr-expand', 'td')" :colspan="unref(table.colspan)">
-          <div ref="contentRef" :class="ns.be('tr-expand', 'content')">
+          <div ref="contentExpandRef" :class="ns.be('tr-expand', 'content')">
             <div :class="ns.bem('tr-expand', 'content', 'inner')">
-              <slot />
+              <slot name="expand" />
             </div>
           </div>
         </td>
