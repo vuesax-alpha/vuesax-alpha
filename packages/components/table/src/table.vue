@@ -47,7 +47,7 @@ const props = defineProps(tableProps)
 
 const emit = defineEmits(tableEmits)
 
-const { tableKls, colspan, selected } = useTable(props, emit)
+const { tableKls, colspan, selected, theadRef } = useTable(props, emit)
 
 provide(tableContextKey, {
   selected,
