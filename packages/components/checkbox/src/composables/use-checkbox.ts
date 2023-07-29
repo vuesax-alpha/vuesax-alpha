@@ -30,11 +30,8 @@ export const useCheckbox = (
     slots,
     { model }
   )
-  const { handleChange, onClickRoot } = useCheckboxEvent(props, {
-    model,
+  const { handleChange } = useCheckboxEvent(props, {
     isLimitExceeded,
-    hasOwnLabel,
-    isDisabled,
   })
 
   setStoreValue(props, { model })
@@ -46,6 +43,5 @@ export const useCheckbox = (
     hasOwnLabel,
     model,
     handleChange,
-    onClickRoot,
   }
 }

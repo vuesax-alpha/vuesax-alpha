@@ -1,5 +1,5 @@
 <template>
-  <div :class="checkboxKls" :style="checkboxStyles" @click="onClickRoot">
+  <div :class="checkboxKls" :style="checkboxStyles">
     <div :class="ns.e('input')">
       <input
         v-bind="$attrs"
@@ -8,8 +8,8 @@
         :value="value"
         :name="name"
         :disabled="isDisabled"
-        type="checkbox"
         :class="ns.e('original')"
+        type="checkbox"
         @change="handleChange"
       />
       <div :class="ns.em('input', 'mask')">
@@ -18,7 +18,6 @@
       </div>
 
       <icon-loading v-if="loading" />
-      <template v-else />
     </div>
     <label
       v-if="hasOwnLabel"
@@ -28,7 +27,6 @@
       <slot />
       <template v-if="!$slots.default">{{ label }}</template>
     </label>
-    <template v-else />
   </div>
 </template>
 
@@ -52,8 +50,10 @@ const ns = useNamespace('checkbox')
 
 const checkboxId = props.id ?? useId()
 
-const { isChecked, isDisabled, model, hasOwnLabel, onClickRoot, handleChange } =
-  useCheckbox(props, slots)
+const { isChecked, isDisabled, model, hasOwnLabel, handleChange } = useCheckbox(
+  props,
+  slots
+)
 
 const checkboxKls = computed(() => [
   ns.b(),
