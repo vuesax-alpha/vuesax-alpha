@@ -45,13 +45,14 @@ defineOptions({
 
 const props = defineProps(checkboxProps)
 const slots = useSlots()
-defineEmits(checkboxEmits)
+const emit = defineEmits(checkboxEmits)
 const ns = useNamespace('checkbox')
 
 const checkboxId = props.id ?? useId()
 
 const { isChecked, isDisabled, model, hasOwnLabel, handleChange } = useCheckbox(
   props,
+  emit,
   slots
 )
 
