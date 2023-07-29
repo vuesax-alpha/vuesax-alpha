@@ -108,10 +108,12 @@ export const useCheckbox = (
       } else if (isArray(props.modelValue)) {
         const modelValueRaw = props.modelValue.map(toRaw)
 
-        const indexVal = modelValueRaw.findIndex((e) => isEqual(e, props.value))
+        const indexVal = modelValueRaw.findIndex((e) =>
+          isEqual(e, updatedValue)
+        )
 
         if (indexVal == -1) {
-          modelValueRaw.push(props.value)
+          modelValueRaw.push(updatedValue)
         } else {
           modelValueRaw.splice(indexVal, 1)
         }
