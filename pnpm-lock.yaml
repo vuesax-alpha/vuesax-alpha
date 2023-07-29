@@ -184,7 +184,7 @@ importers:
       prismjs: 1.29.0
       vue: 3.3.1
       vue-router: 4.2.0_vue@3.3.1
-      vuesax-alpha: 0.2.0-beta.26_vue@3.3.1
+      vuesax-alpha: 0.2.0-beta.36_vue@3.3.1
     devDependencies:
       '@types/prismjs': 1.26.0
       '@vuepress/client': 2.0.0-beta.62
@@ -13387,8 +13387,8 @@ packages:
       - webpack
     dev: true
 
-  /vuesax-alpha/0.2.0-beta.26_vue@3.3.1:
-    resolution: {integrity: sha512-3VlBTYGZCMEJGMBBxtB9MWxL/dMSBv+WQvr34XsKyRy7TMVB8CKebr/M9PCqrk5vKgW3coADCR6AYeNn2tCCDQ==}
+  /vuesax-alpha/0.2.0-beta.36_vue@3.3.1:
+    resolution: {integrity: sha512-nvBPOdQJbEqGu7mL5W+g2LvHQgOaiPOWrylZrwsKVK5tB3uCcbXfGm9dYsZv6Tnr0rQaunNMUegVpiCTTRLHdQ==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
