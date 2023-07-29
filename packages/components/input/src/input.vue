@@ -187,18 +187,6 @@ useDeprecated(
 
 useDeprecated(
   {
-    from: 'block',
-    type: 'Prop',
-    version: 'VuesaxAlpha',
-    scope: 'vs-input',
-    ref: 'https://vuesax.space/components/input',
-    replacement: 'parent style',
-  },
-  computed(() => !!props.block)
-)
-
-useDeprecated(
-  {
     from: 'square',
     type: 'Prop',
     version: 'VuesaxAlpha',
