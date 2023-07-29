@@ -481,7 +481,7 @@ onMounted(() => {
   &.fixed {
     position: fixed;
     top: 57px;
-    z-index: 9999;
+    z-index: 1000;
     border-radius: 0px;
     background: -color('theme-bg');
     margin: 0px;
@@ -682,7 +682,7 @@ onMounted(() => {
     top: 200px;
     width: auto;
     background: transparent;
-    z-index: 1200;
+    z-index: 800;
     max-height: calc(100vh - 470px);
     overflow: auto;
     transition: 0s !important;
@@ -714,7 +714,7 @@ onMounted(() => {
     &.fixed {
       position: fixed !important;
       top: 55px !important;
-      z-index: 10000 !important;
+      z-index: 1300 !important;
       max-height: calc(100vh - 270px);
     }
     .sidebar-sub-headers {

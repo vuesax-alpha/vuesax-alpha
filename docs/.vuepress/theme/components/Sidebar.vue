@@ -96,7 +96,7 @@ defineProps<{
 
 .sidebar {
   padding-right: 5px;
-  z-index: 18000 !important;
+  z-index: 1500 !important;
   transition: all 0.25s ease;
   overflow: inherit !important;
   .content-sidebar {
