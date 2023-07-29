@@ -1,11 +1,13 @@
 import { buildProps, definePropType } from '@vuesax-alpha/utils'
 import { popperProps } from '@vuesax-alpha/components/popper'
+import { useColorProp } from '@vuesax-alpha/hooks'
 import type Tooltip from './tooltip.vue'
 
 import type { ExtractPropTypes } from 'vue'
 
 export const tooltipProps = buildProps({
   ...popperProps,
+  color: useColorProp,
   animation: {
     type: String,
     default: 'tooltip',

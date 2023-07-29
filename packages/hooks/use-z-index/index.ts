@@ -1,11 +1,23 @@
-import { computed, ref } from 'vue'
-import { defaultZIndex } from '@vuesax-alpha/constants'
-import { useGlobalConfig } from '../use-global-config'
+import { computed, inject, ref, unref } from 'vue'
+import { isNumber } from '@vuesax-alpha/utils'
+import type { InjectionKey, Ref } from 'vue'
 
 const zIndex = ref(0)
+export const defaultInitialZIndex = 2000
 
-export const useZIndex = () => {
-  const initialZIndex = useGlobalConfig('zIndex', defaultZIndex) // TODO: move to @vuesax-alpha/constants
+export const zIndexContextKey: InjectionKey<Ref<number | undefined>> =
+  Symbol('zIndexContextKey')
+
+export const useZIndex = (zIndexOverrides?: Ref<number>) => {
+  const zIndexInjection = zIndexOverrides || inject(zIndexContextKey, undefined)
+
+  const initialZIndex = computed(() => {
+    const zIndexFromInjection = unref(zIndexInjection)
+    return isNumber(zIndexFromInjection)
+      ? zIndexFromInjection
+      : defaultInitialZIndex
+  })
+
   const currentZIndex = computed(() => initialZIndex.value + zIndex.value)
 
   const nextZIndex = () => {
@@ -19,3 +31,5 @@ export const useZIndex = () => {
     nextZIndex,
   }
 }
+
+export type UseZIndexReturn = ReturnType<typeof useZIndex>

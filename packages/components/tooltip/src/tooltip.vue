@@ -3,6 +3,7 @@
     ref="popperRef"
     :interactivity="interactivity"
     :popper-class="[tooltipKls, popperClass ?? '']"
+    :popper-style="[popperStyle ?? '', tooltipStyle]"
     :animation="animation"
     :append-to="appendTo"
     :flip="flip"
@@ -15,7 +16,6 @@
     :offset="offset"
     :placement="placement"
     :options="options"
-    :popper-style="popperStyle"
     :show-after="showAfter"
     :show-arrow="showArrow"
     :strategy="strategy"
@@ -44,8 +44,9 @@
 
 <script setup lang="ts">
 import { computed, reactive, ref } from 'vue'
-import { useNamespace } from '@vuesax-alpha/hooks'
+import { useBaseComponent, useNamespace } from '@vuesax-alpha/hooks'
 import { VsPopper } from '@vuesax-alpha/components/popper'
+import { getVsColor } from '@vuesax-alpha/utils'
 import { tooltipProps } from './tooltip'
 import { useTooltipDeprecated } from './useTooltipDeprecated'
 import type { PopperExpose } from '@vuesax-alpha/components/popper'
@@ -60,8 +61,15 @@ const popperRef = ref<PopperExpose>()
 
 const props = defineProps(tooltipProps)
 
+const tooltipStyle = computed(() => [
+  ns.cssVar({
+    color: getVsColor(props.color),
+  }),
+])
+
 const tooltipKls = computed(() => [
   ns.b(),
+  useBaseComponent(props.color),
   ns.is('loading', props.loading),
   ns.is(props.type, !!props.type),
   ns.is(props.shape, !!props.shape),

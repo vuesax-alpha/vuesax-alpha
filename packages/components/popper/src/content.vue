@@ -78,21 +78,34 @@ defineEmits(popperContentEmits)
 
 const destroyed = ref(false)
 
+const persistentRef = computed(() => {
+  // For testing, we would always want the content to be rendered
+  // to the DOM, so we need to return true here.
+  if (process.env.NODE_ENV === 'test') {
+    return true
+  }
+  return props.persistent
+})
+
 const shouldRender = computed(() => {
-  return unref(open)
+  return unref(persistentRef) ? true : unref(open)
 })
 
 const shouldShow = computed(() => {
   return props.disabled ? false : unref(open)
 })
 
-const popperKls = computed(() => [ns.b(), props.popperClass])
+const popperKls = computed(() => [
+  ns.b(),
+  ns.is('not-arrow', !props.showArrow),
+  props.popperClass,
+])
 
 const popperStyles = computed(
   () =>
     [
       props.popperStyle,
-      { position: 'fixed' },
+      { position: 'absolute' },
       { zIndex: props.zIndex },
     ] as StyleValue
 )
@@ -122,7 +135,7 @@ const onTransitionLeave = () => {
 }
 
 const onBeforeEnter = () => {
-  updatePopper()
+  // updatePopper()
   onBeforeShow?.()
 }
 

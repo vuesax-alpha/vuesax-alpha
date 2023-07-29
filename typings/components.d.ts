@@ -28,19 +28,25 @@ declare module '@vue/runtime-core' {
     VsPopper: typeof import('../packages/vuesax-alpha')['VsPopper']
     VsRate: typeof import('../packages/vuesax-alpha')['VsRate']
     VsRadio: typeof import('../packages/vuesax-alpha')['VsRadio']
-    // VsRow: typeof import('../packages/vuesax-alpha')['VsRow']
+    VsRow: typeof import('../packages/vuesax-alpha')['VsRow']
     VsScrollbar: typeof import('../packages/vuesax-alpha')['VsScrollbar']
     VsSelect: typeof import('../packages/vuesax-alpha')['VsSelect']
+    VsSidebarGroup: typeof import('../packages/vuesax-alpha')['VsSidebarGroup']
+    VsSidebarItem: typeof import('../packages/vuesax-alpha')['VsSidebarItem']
+    VsSidebar: typeof import('../packages/vuesax-alpha')['VsSidebar']
     VsSwitch: typeof import('../packages/vuesax-alpha')['VsSwitch']
-    // VsTable: typeof import('../packages/vuesax-alpha')['VsTable']
+    VsTable: typeof import('../packages/vuesax-alpha')['VsTable']
+    VsTh: typeof import('../packages/vuesax-alpha')['VsTh']
+    VsTd: typeof import('../packages/vuesax-alpha')['VsTd']
+    VsTr: typeof import('../packages/vuesax-alpha')['VsTr']
     VsTimeSelect: typeof import('../packages/vuesax-alpha')['VsTimeSelect']
     VsTooltip: typeof import('../packages/vuesax-alpha')['VsTooltip']
   }
 
-  // interface ComponentCustomProperties {
-  // $notify: typeof import('../packages/vuesax-alpha')['VsNotification']
-  // $loading: typeof import('../packages/vuesax-alpha')['VsLoadingService']
-  // }
+  interface ComponentCustomProperties {
+    $notification: typeof import('../packages/vuesax-alpha')['VsNotification']
+    $loading: typeof import('../packages/vuesax-alpha')['VsLoadingFn']
+  }
 }
 
 export {}

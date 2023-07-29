@@ -185,6 +185,9 @@ export const useSelect = (
         })
       }
       setSelected()
+      nextTick(() => {
+        popperRef.value?.updatePopper()
+      })
     },
     {
       flush: 'post',
@@ -536,7 +539,16 @@ export const useSelect = (
     byClick: boolean
   ) => {
     if (props.multiple) {
-      const value = ((props.modelValue || []) as SelectOptionValue[]).slice()
+      let modelValue: SelectOptionValue[] = props.modelValue as any
+      if (!isArray(props.modelValue)) {
+        if (states.options.has(modelValue)) {
+          modelValue = [modelValue]
+        } else {
+          modelValue = []
+        }
+      }
+
+      const value = modelValue.slice()
       const optionIndex = getValueIndex(selectedArray.value, option)
 
       if (optionIndex > -1) {

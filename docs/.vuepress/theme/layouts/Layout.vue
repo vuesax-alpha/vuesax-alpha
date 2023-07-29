@@ -221,7 +221,7 @@ const onTouchEnd = (e: TouchEvent) => {
   width: 100%;
   height: 100%;
   position: fixed;
-  z-index: 100001;
+  z-index: 1200;
   top: 0px;
   left: 0px;
   background: rgba(0, 0, 0, 0.4);

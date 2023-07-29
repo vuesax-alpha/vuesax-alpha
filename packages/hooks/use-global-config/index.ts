@@ -1,13 +1,23 @@
 // @ts-nocheck
 import { computed, getCurrentInstance, inject, provide, ref, unref } from 'vue'
-import { configProviderContextKey } from '@vuesax-alpha/tokens'
 import { debugWarn, keysOf } from '@vuesax-alpha/utils'
+import { configProviderContextKey } from '@vuesax-alpha/tokens'
 
+import { localeContextKey, useLocale } from '../use-locale'
+import {
+  defaultNamespace,
+  namespaceContextKey,
+  useNamespace,
+} from '../use-namespace'
+import {
+  defaultInitialZIndex,
+  useZIndex,
+  zIndexContextKey,
+} from '../use-z-index'
 import type { MaybeRef } from '@vueuse/core'
 import type { App, Ref } from 'vue'
 import type { ConfigProviderContext } from '@vuesax-alpha/tokens'
 
-// this is meant to fix global methods like `VsNotification(opts)`
 const globalConfig = ref<ConfigProviderContext>()
 
 export function useGlobalConfig<
@@ -29,6 +39,27 @@ export function useGlobalConfig(
     return computed(() => config.value?.[key] ?? defaultValue)
   } else {
     return config
+  }
+}
+
+// for components like `VsNotification`.
+export const useGlobalComponentSettings = (block: string) => {
+  const config = useGlobalConfig()
+
+  const ns = useNamespace(
+    block,
+    computed(() => config.value?.namespace || defaultNamespace)
+  )
+
+  const locale = useLocale(computed(() => config.value?.locale))
+  const zIndex = useZIndex(
+    computed(() => config.value?.zIndex || defaultInitialZIndex)
+  )
+
+  return {
+    ns,
+    locale,
+    zIndex,
   }
 }
 
@@ -54,7 +85,21 @@ export const provideGlobalConfig = (
     if (!oldConfig?.value) return cfg
     return mergeConfig(oldConfig.value, cfg)
   })
+
   provideFn(configProviderContextKey, context)
+  provideFn(
+    localeContextKey,
+    computed(() => context.value.locale)
+  )
+  provideFn(
+    namespaceContextKey,
+    computed(() => context.value.namespace)
+  )
+  provideFn(
+    zIndexContextKey,
+    computed(() => context.value.zIndex)
+  )
+
   if (global || !globalConfig.value) {
     globalConfig.value = context.value
   }

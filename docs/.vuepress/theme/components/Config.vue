@@ -509,7 +509,7 @@ onMounted(() => {
   position: fixed;
   bottom: 0px;
   left: 260px;
-  z-index: 18000;
+  z-index: 1200;
   border: 0px;
   border-radius: 0px 20px 0px 0px;
   transition: all 0.25s ease;
@@ -617,7 +617,7 @@ onMounted(() => {
   .config {
     left: 0px;
     bottom: 0px;
-    z-index: 2000;
+    z-index: 1400;
     .config-btn {
       .effect1config {
         display: none;

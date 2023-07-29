@@ -3,31 +3,42 @@
 @use 'common/var' as *;
 
 @include b(navbar-item) {
+  position: relative;
   padding: 10px 15px;
   margin: 0px;
   border: 0px;
   background: transparent;
-  font-size: 14px;
-  opacity: 0.6;
+  font-size: 0.85rem;
+  opacity: 0.7;
   transition: getCssVar(transition-ease), color 0s;
-  font-weight: 600;
+  font-weight: bold;
   color: inherit;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: -3px;
+    max-width: 18px;
+    margin: auto;
+    width: 0;
+    height: 3px;
+    border-radius: 12px;
+    background-color: black;
+  }
 
   @include when(active) {
     opacity: 1;
-  }
 
-  @include when(external) {
-    display: flex !important;
-    align-items: center;
-    gap: 4px;
+    &::after {
+      transition: all 1s ease;
+      width: 100%;
+    }
   }
 
   &:hover {
     opacity: 1;
-  }
-
-  @include e(arrow) {
-    transform: translateY(2px);
   }
 }

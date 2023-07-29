@@ -16,6 +16,7 @@
 @include b(checkbox) {
   @include flex(flex-start, center);
   position: relative;
+  max-width: fit-content;
 
   @include pseudo(active) {
     @include e(input) {

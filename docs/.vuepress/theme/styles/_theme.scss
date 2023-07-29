@@ -132,7 +132,7 @@ button {
 }
 .navbar {
   position: fixed;
-  z-index: 20000;
+  z-index: 1200;
   top: 0;
   right: 0px;
   left: auto;
@@ -144,7 +144,7 @@ button {
 }
 .sidebar-mask {
   position: fixed;
-  z-index: 10000;
+  z-index: 1000;
   top: 0;
   left: 0;
   width: 100vw;

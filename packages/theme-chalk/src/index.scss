@@ -12,6 +12,7 @@
 @use './col.scss';
 @use './dialog.scss';
 @use './focus-trap.scss';
+@use './loading.scss';
 @use './icon.scss';
 @use './infinite-scroll.scss';
 @use './input.scss';
@@ -20,6 +21,7 @@
 @use './navbar-group.scss';
 @use './navbar-item.scss';
 @use './navbar.scss';
+@use './notification.scss';
 @use './overlay.scss';
 @use './pagination.scss';
 @use './popper.scss';
@@ -29,7 +31,14 @@
 @use './row.scss';
 @use './scrollbar.scss';
 @use './select.scss';
+@use './sidebar-group.scss';
+@use './sidebar-item.scss';
+@use './sidebar.scss';
 @use './switch.scss';
+@use './table.scss';
+@use './td.scss';
+@use './th.scss';
+@use './tr.scss';
 @use './time-select.scss';
 @use './tooltip.scss';
 @use './virtual-list.scss';

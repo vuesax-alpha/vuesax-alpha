@@ -16,4 +16,11 @@ const page = ref(2)
     margin: 10px 0px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .con-pagination {
+    overflow: scroll;
+    justify-content: flex-start;
+  }
+}
 </style>

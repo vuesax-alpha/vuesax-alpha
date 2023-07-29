@@ -7,11 +7,14 @@ import VueMacros from 'unplugin-vue-macros/rollup'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import esbuild, { minify as minifyPlugin } from 'rollup-plugin-esbuild'
 import { parallel } from 'gulp'
+import glob from 'fast-glob'
+import { camelCase, upperFirst } from 'lodash-unified'
 import {
   PKG_BRAND_NAME,
+  PKG_CAMELCASE_LOCAL_NAME,
   PKG_CAMELCASE_NAME,
 } from '@vuesax-alpha/build-constants'
-import { vsOutput, vsRoot } from '@vuesax-alpha/build-utils'
+import { localeRoot, vsOutput, vsRoot } from '@vuesax-alpha/build-utils'
 import { version } from '../../../../packages/vuesax-alpha/version'
 import { VuesaxAlphaAlias } from '../plugins/vuesax-alpha-alias'
 import {
@@ -28,7 +31,6 @@ const banner = `/*! ${PKG_BRAND_NAME} v${version} */\n`
 async function buildFullEntry(minify: boolean) {
   const plugins: Plugin[] = [
     VuesaxAlphaAlias(),
-    // @ts-ignore
     VueMacros({
       setupComponent: false,
       setupSFC: false,
@@ -101,8 +103,56 @@ async function buildFullEntry(minify: boolean) {
   ])
 }
 
+async function buildFullLocale(minify: boolean) {
+  const files = await glob(`**/*.ts`, {
+    cwd: path.resolve(localeRoot, 'lang'),
+    absolute: true,
+  })
+  return Promise.all(
+    files.map(async (file) => {
+      const filename = path.basename(file, '.ts')
+      const name = upperFirst(camelCase(filename))
+
+      const bundle = await rollup({
+        input: file,
+        plugins: [
+          esbuild({
+            minify,
+            sourceMap: minify,
+            target,
+          }),
+        ],
+      })
+      await writeBundles(bundle, [
+        {
+          format: 'umd',
+          file: path.resolve(
+            vsOutput,
+            'dist/locale',
+            formatBundleFilename(filename, minify, 'js')
+          ),
+          exports: 'default',
+          name: `${PKG_CAMELCASE_LOCAL_NAME}${name}`,
+          sourcemap: minify,
+          banner,
+        },
+        {
+          format: 'esm',
+          file: path.resolve(
+            vsOutput,
+            'dist/locale',
+            formatBundleFilename(filename, minify, 'mjs')
+          ),
+          sourcemap: minify,
+          banner,
+        },
+      ])
+    })
+  )
+}
+
 export const buildFull = (minify: boolean) => async () =>
-  Promise.all([buildFullEntry(minify)])
+  Promise.all([buildFullEntry(minify), buildFullLocale(minify)])
 
 export const buildFullBundle = parallel(
   withTaskName('buildFullMinified', buildFull(true)),

@@ -43,6 +43,9 @@ export const popperContentProps = buildProps({
     values: POSITIONING_STRATEGIES,
     default: 'absolute',
   },
+  /**
+   * @description fit popper's width to trigger element
+   */
   fit: Boolean,
   placement: {
     type: definePropType<Placement>(String),
@@ -66,6 +69,10 @@ export const popperContentProps = buildProps({
     type: Boolean,
     default: true,
   },
+  showArrow: {
+    type: Boolean,
+    default: true,
+  },
   offset: {
     type: Number,
     default: 12,
@@ -78,6 +85,10 @@ export const popperContentProps = buildProps({
   popperStyle: {
     type: definePropType<StyleValue>([String, Array, Object]),
   },
+  /**
+   * @description `persistent` is `false`, popper content will be destroyed
+   */
+  persistent: Boolean,
 })
 
 export type PopperContentProps = ExtractPropTypes<typeof popperContentProps>

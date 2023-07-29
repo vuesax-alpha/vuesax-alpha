@@ -2,53 +2,65 @@
 @use 'mixins/var' as *;
 @use 'common/var' as *;
 
-/** Navbar Group */
 @include b(navbar-group) {
   position: relative;
 
-  @include e(title) {
-    @include flex(center, center);
-    cursor: pointer;
-    padding: 10px 15px;
-    font-size: 14px;
-    background: transparent;
-    color: inherit;
-    font-weight: 600;
-    transition: getCssVar(transition-ease), color 0s;
-    opacity: 0.7;
-    border: 0px;
-    transition: all 0.25s ease;
-
-    i.bx {
-      font-size: 1.3rem;
-      transition: getCssVar(transition-ease);
-    }
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: -3px;
+    max-width: 18px;
+    margin: auto;
+    width: 0;
+    transition: width 0.3s ease;
+    height: 3px;
+    border-radius: 12px;
+    background-color: black;
   }
 
   &:hover {
-    @include e(title) {
+    .#{$namespace}-navbar-group__text {
       opacity: 1;
     }
-
-    @include e(dropdown) {
+    .#{$namespace}-navbar-group__items {
       opacity: 1;
       visibility: visible;
       transform: translate(0, 100%);
     }
-    i.bx {
-      transform: rotate(-180deg);
+  }
+
+  @include when(active) {
+    .#{$namespace}-navbar-group__text {
+      opacity: 1;
+    }
+
+    &::after {
+      width: 100%;
     }
   }
 
-  /** Dropdown */
-  @include e(dropdown) {
+  @include e(text) {
+    padding: 10px 15px;
+    font-size: 0.85rem;
+    background: transparent;
+    color: inherit;
+    font-weight: bold;
+    transition: getCssVar(transition-ease), color 0s;
+    opacity: 0.7;
+    border: 0px;
+    cursor: pointer;
+  }
+
+  @include e(items) {
+    @include flex(center, center);
     position: absolute;
     bottom: 0px;
     left: 0px;
-    @include flex(center, flex-start);
     flex-direction: column;
     margin-bottom: -12px;
-    transform: translate(0, 80%);
+    transform: translate(0, 90%);
     background: getColor('color');
     border-radius: 5px 18px 18px 18px;
     padding: 10px;
@@ -69,161 +81,38 @@
       position: absolute;
       z-index: -1;
     }
-  }
-  @include e(dropdown-item) {
-    color: inherit;
-    line-height: 1.7rem;
 
     .#{$namespace}-navbar-item {
-      display: block;
+      text-align: left;
+      width: 100%;
       position: relative;
-      border-bottom: none !important;
-      margin-bottom: 0 !important;
-      font-size: 13px;
-      padding: 3px 15px;
-      opacity: 0.5;
-      font-weight: 600;
-      transform: translate(0) !important;
+      padding: 5px 10px;
 
+      &:before {
+        content: '';
+        left: 0px;
+        top: 0px;
+        width: 4px;
+        height: 4px;
+        background: getColor('text');
+        position: absolute;
+        border-radius: 50%;
+        top: calc(50% - 2px);
+        opacity: 0;
+        transform: translate(-10px);
+        transition: getCssVar(transition-ease);
+      }
       @include when(active) {
-        opacity: 1 !important;
-        &::after {
+        &:before {
           opacity: 1;
           transform: translate(0px);
         }
       }
 
       &::after {
-        content: '';
-        left: 2px;
-        top: 0px;
-        width: 5.2px;
-        height: 5.2px;
-        background: getColor('text');
-        position: absolute;
-        border-radius: 2px;
-        top: calc(50% - 2px);
-        opacity: 0;
-        transform: translate(-10px);
-        transition: getCssVar(transition-ease);
-      }
-
-      &:hover {
-        opacity: 1;
+        width: 0;
+        height: 0;
       }
     }
-    &:first-child {
-      @include e(dropdown-sub-title) {
-        margin-top: 0;
-        padding-top: 0;
-        border-top: 0;
-      }
-    }
-  }
-  @include e(dropdown-sub-title) {
-    margin: 8px 0 0;
-    padding: 0;
-    padding-left: 15px;
-    margin-bottom: 4px;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: default;
-    color: getCssVar(background);
-  }
-  @include e(dropdown-sub-wrapper) {
-    padding: 0;
-    list-style: none;
-  }
-  @include e(dropdown-sub-item) {
-    font-size: 12px;
-    padding-left: 8px;
-    // style for child navbar item
   }
 }
-
-// @media (max-width: $MQMobile) {
-//   .dropdown-wrapper {
-//     &.open {
-//       .dropdown-title {
-//         margin-bottom: 0.5rem;
-//       }
-//     }
-//     .nav-dropdown {
-//       transition: height 0.1s ease-out;
-//       overflow: hidden;
-//       .dropdown-item {
-//         h4 {
-//           border-top: 0;
-//           margin-top: 0;
-//           padding-top: 0;
-//         }
-//         .dropdown-subitem {
-//           font-size: 14px;
-//           padding-left: 1rem;
-//         }
-//       }
-//     }
-//   }
-//   .dropdown-wrapper .nav-dropdown .dropdown-item h4,
-//   .dropdown-wrapper .nav-dropdown .dropdown-item > a {
-//     font-size: 15px;
-//     line-height: 2rem;
-//   }
-// }
-
-// @media (min-width: $MQMobile) {
-//   .dropdown-wrapper {
-//     position: relative;
-//     &:after {
-//       content: '';
-//       position: absolute;
-//       bottom: -12px;
-//       width: 100%;
-//       height: 20px;
-//       background: transparent;
-//       display: none;
-//     }
-//     &:hover {
-//       display: block !important;
-//       &:after {
-//         display: block;
-//       }
-//       .nav-dropdown {
-//         transform: translate(0, calc(100% + 10px)) !important;
-//         visibility: visible !important;
-//         opacity: 1 !important;
-//       }
-//     }
-//     .dropdown-title {
-//       .arrow {
-//         border-left: 4px solid transparent;
-//         border-right: 4px solid transparent;
-//         border-top: 6px solid -color('arrow-bg-color');
-//         border-bottom: 0;
-//       }
-//     }
-//     .nav-dropdown {
-//       min-width: 200px;
-//       display: block !important;
-//       visibility: hidden;
-//       opacity: 0;
-//       height: auto !important;
-//       box-sizing: border-box;
-//       max-height: calc(100vh - 2.7rem);
-//       overflow-y: auto;
-//       position: absolute;
-//       bottom: 0px;
-//       transform: translate(0, 100%);
-//       left: 0;
-//       background-color: -color('theme-layout');
-//       padding: 0.5rem 0;
-//       text-align: left;
-//       border-radius: 7px 20px 20px 20px;
-//       white-space: nowrap;
-//       margin: 0;
-//       margin-top: -10px;
-//       transition: all 0.25s ease;
-//       box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.1);
-//     }
-//   }
-// }

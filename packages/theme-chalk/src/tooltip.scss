@@ -15,6 +15,10 @@
   min-width: 30px;
   min-height: 30px;
 
+  &::after {
+    background-color: getColor(color);
+  }
+
   @include when(loading) {
     color: getColor('background', 0.2);
     * {
@@ -116,6 +120,7 @@
       position: absolute;
     }
     &:after {
+      background: getColor('background');
       box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, getCssVar(shadow-opacity));
     }
   }

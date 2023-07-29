@@ -16,15 +16,20 @@ import {
 import { VsPagination } from '@vuesax-alpha/components/pagination'
 import { VsRadio } from '@vuesax-alpha/components/radio'
 import { VsRate } from '@vuesax-alpha/components/rate'
-// import { VsRow } from '@vuesax-alpha/components/row'
+import { VsRow } from '@vuesax-alpha/components/row'
 import { VsScrollbar } from '@vuesax-alpha/components/scrollbar'
 import {
   VsOption,
   VsOptionGroup,
   VsSelect,
 } from '@vuesax-alpha/components/select'
+import {
+  VsSidebar,
+  VsSidebarGroup,
+  VsSidebarItem,
+} from '@vuesax-alpha/components/sidebar'
 import { VsSwitch } from '@vuesax-alpha/components/switch'
-// import { VsTable } from '@vuesax-alpha/components/table'
+import { VsTable, VsTd, VsTh, VsTr } from '@vuesax-alpha/components/table'
 import { VsTimeSelect } from '@vuesax-alpha/components/time-select'
 import { VsTooltip } from '@vuesax-alpha/components/tooltip'
 
@@ -53,11 +58,17 @@ export default [
   VsPagination,
   VsRadio,
   VsRate,
-  // VsRow,
+  VsRow,
   VsScrollbar,
   VsSelect,
   VsSwitch,
-  // VsTable,
+  VsSidebar,
+  VsSidebarGroup,
+  VsSidebarItem,
+  VsTable,
+  VsTd,
+  VsTh,
+  VsTr,
   VsTimeSelect,
   VsTooltip,
 ] as Plugin[]

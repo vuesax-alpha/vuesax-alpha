@@ -1,16 +1,61 @@
+@use 'sass:map';
+
 @use 'mixins/mixins' as *;
 @use 'mixins/var' as *;
 @use 'common/var' as *;
 
-@include b(popper) {
-  @include e(arrow) {
-    position: fixed;
-    display: block;
-    width: 30px;
+@include dark(popper) {
+  @include set-var-value(color, getCssVar(gray-3));
+  color: $color-white;
+}
 
-    path {
-      fill: getColor(color, 0.92);
-      fill-rule: evenodd;
+@include b(popper) {
+  @include when(not-arrow) {
+    &::after {
+      opacity: 0;
+      visibility: hidden;
+      display: none;
+    }
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    z-index: -2;
+  }
+
+  &[data-popper-placement='top'] {
+    &:after {
+      bottom: -3px;
+      left: 50%;
+      transform: translate(-50%) rotate(45deg);
+      border-radius: 0px 0px 2px 0px;
+    }
+  }
+  &[data-popper-placement='bottom'] {
+    &:after {
+      top: -3px;
+      left: 50%;
+      transform: translate(-50%) rotate(45deg);
+      border-radius: 2px 0px 0px 0px;
+    }
+  }
+  &[data-popper-placement='left'] {
+    &:after {
+      right: -3px;
+      top: 50%;
+      transform: translate(0, -50%) rotate(45deg);
+      border-radius: 0px 2px 0px 0px;
+    }
+  }
+  &[data-popper-placement='right'] {
+    &:after {
+      left: -3px;
+      top: 50%;
+      transform: translate(0, -50%) rotate(45deg);
+      border-radius: 0px 0px 0px 2px;
     }
   }
 }

@@ -30,7 +30,7 @@ importers:
       '@vuesax-alpha/directives': workspace:*
       '@vuesax-alpha/eslint-config': workspace:*
       '@vuesax-alpha/hooks': workspace:*
-      '@vuesax-alpha/icons-vue': 0.0.2-beta.8
+      '@vuesax-alpha/icons-vue': 0.0.2-beta.9
       '@vuesax-alpha/locale': workspace:*
       '@vuesax-alpha/test-utils': workspace:*
       '@vuesax-alpha/theme-chalk': workspace:*
@@ -83,7 +83,7 @@ importers:
       '@vuesax-alpha/constants': link:packages/constants
       '@vuesax-alpha/directives': link:packages/directives
       '@vuesax-alpha/hooks': link:packages/hooks
-      '@vuesax-alpha/icons-vue': 0.0.2-beta.8_vue@3.3.1
+      '@vuesax-alpha/icons-vue': 0.0.2-beta.9_vue@3.3.1
       '@vuesax-alpha/locale': link:packages/locale
       '@vuesax-alpha/test-utils': link:packages/test-utils
       '@vuesax-alpha/theme-chalk': link:packages/theme-chalk
@@ -184,7 +184,7 @@ importers:
       prismjs: 1.29.0
       vue: 3.3.1
       vue-router: 4.2.0_vue@3.3.1
-      vuesax-alpha: 0.2.0-beta.13_vue@3.3.1
+      vuesax-alpha: 0.2.0-beta.36_vue@3.3.1
     devDependencies:
       '@types/prismjs': 1.26.0
       '@vuepress/client': 2.0.0-beta.62
@@ -4319,8 +4319,8 @@ packages:
       - supports-color
     dev: true
 
-  /@vuesax-alpha/icons-vue/0.0.2-beta.8_vue@3.3.1:
-    resolution: {integrity: sha512-OIYwt1J6A80B6x2OmEyp+UdbXW3BQJOhzDetx6J8VuVSXp8uqbGcIDzsYv0AZSlUAitzCqRBJ2gkLbtTi0u0hw==}
+  /@vuesax-alpha/icons-vue/0.0.2-beta.9_vue@3.3.1:
+    resolution: {integrity: sha512-7F3b6TBglSVEo4fONc5k83ZbPJNjVCfQni7uHFSvQwlZTvp8QzOkwpP6rHdOHZiZC+DoiYpzB6ZZvH5udSdnvQ==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
@@ -9397,14 +9397,9 @@ packages:
       strip-bom: 4.0.0
       type-fest: 0.6.0
 
-  /local-pkg/0.4.2:
-    resolution: {integrity: sha512-mlERgSPrbxU3BP4qBqAvvwlgW4MTg78iwJdGGnv7kibKjWcJksrG3t6LB5lXI93wXRDvG4NpUgJFmTG4T6rdrg==}
-    engines: {node: '>=14'}
-
   /local-pkg/0.4.3:
     resolution: {integrity: sha512-SFppqq5p42fe2qcZQqqEOiVRXl+WCP1MdT6k7BDEW1j++sp5fIY+/fdRQitvKgB5BrBcmrs5m/L0v2FrU5MY1g==}
     engines: {node: '>=14'}
-    dev: true
 
   /locate-path/5.0.0:
     resolution: {integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==}
@@ -12880,7 +12875,7 @@ packages:
       '@vue-macros/hoist-static': 0.11.2
       '@vue-macros/setup-component': 0.11.2
       '@vue-macros/setup-sfc': 0.11.2
-      local-pkg: 0.4.2
+      local-pkg: 0.4.3
       unplugin-combine: 0.2.8
       unplugin-vue-define-options: 0.11.2
       vue: 3.3.1
@@ -12904,7 +12899,7 @@ packages:
       '@vue-macros/hoist-static': 0.11.2
       '@vue-macros/setup-component': 0.11.2
       '@vue-macros/setup-sfc': 0.11.2
-      local-pkg: 0.4.2
+      local-pkg: 0.4.3
       unplugin-combine: 0.2.8_qrpxjnto46iodaa4efitqiw3he
       unplugin-vue-define-options: 0.11.2
       vue: 3.2.37
@@ -13392,8 +13387,8 @@ packages:
       - webpack
     dev: true
 
-  /vuesax-alpha/0.2.0-beta.13_vue@3.3.1:
-    resolution: {integrity: sha512-72wxZc/ymSpUZhcqcibltCnmCfUZ2jqBDq3T6XRzH/5waxxD+9PEIyPr12ZWW2fFInJbPxSBhTD9hcsnSYCkdw==}
+  /vuesax-alpha/0.2.0-beta.36_vue@3.3.1:
+    resolution: {integrity: sha512-nvBPOdQJbEqGu7mL5W+g2LvHQgOaiPOWrylZrwsKVK5tB3uCcbXfGm9dYsZv6Tnr0rQaunNMUegVpiCTTRLHdQ==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:

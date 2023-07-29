@@ -1,0 +1,109 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@include b(table) {
+  @include set-var-value(color, getCssVar(bg-color));
+  width: 100%;
+  font-size: 0.9rem;
+  margin: 0px;
+  overflow: auto;
+
+  table {
+    margin: 0px;
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 500px;
+    border: 0px;
+  }
+
+  @include when(striped) {
+    .#{$namespace}-table-tr {
+      &:nth-child(2n) {
+        background: getColor(gray-1) !important;
+      }
+    }
+  }
+
+  @include when(selected-value) {
+    tr {
+      cursor: pointer;
+    }
+  }
+
+  @include when(multiple-selected) {
+    .#{$namespace}-table-td {
+      border-radius: 0px !important;
+    }
+  }
+
+  @include e(not-found) {
+    display: none;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+
+    tr {
+      text-align: center;
+      td {
+        padding: 20px;
+        border: 0px;
+        // width: 100%;
+      }
+    }
+  }
+
+  @include e(tbody) {
+    &:empty {
+      display: none;
+      background: #000;
+      ~ .#{$namespace}-table__not-found {
+        display: table-row-group;
+      }
+    }
+  }
+
+  @include e(thead) {
+    width: 100%;
+
+    .#{$namespace}-table-th {
+      background: getColor(gray-2);
+      &:first-child {
+        border-radius: 14px 0px 0px 0px;
+      }
+      &:last-child {
+        border-radius: 0px 14px 0px 0px;
+      }
+    }
+  }
+
+  @include e(footer) {
+    padding: 8px 10px;
+    background: getColor(gray-2);
+    border-radius: 0px 0px 14px 14px;
+  }
+
+  &-wrapper {
+    width: 100%;
+    // box-shadow: 0px 5px 22px 0px rgba(0,0,0, -var(shadow-opacity));
+    border-radius: 16px;
+
+    &__header {
+      width: 100%;
+      padding: 10px;
+      background: getColor(gray-2);
+      border-radius: 14px 14px 0px 0px;
+
+      & ~ .#{$namespace}-table {
+        .#{$namespace}-table-th {
+          &:first-child {
+            border-radius: 0px;
+          }
+          &:last-child {
+            border-radius: 0px;
+          }
+        }
+      }
+    }
+  }
+}

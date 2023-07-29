@@ -16,6 +16,7 @@
     :offset="0"
     :process-before-open="processBeforeOpen"
     :process-before-close="processBeforeClose"
+    persistent
     @show="handleMenuEnter"
   >
     <div
@@ -124,6 +125,18 @@
           <icon-close hover="less" scale="0.675" />
         </span>
       </transition>
+
+      <vs-collapse-transition
+        v-for="(messageType, index) in messageTypes"
+        :key="index"
+      >
+        <div
+          v-if="$slots[`message-${messageType}`]"
+          :class="[ns.e('message'), ns.em('message', messageType)]"
+        >
+          <slot :name="`message-${messageType}`" />
+        </div>
+      </vs-collapse-transition>
     </div>
 
     <template #content>
@@ -168,6 +181,7 @@ import { isEqual } from 'lodash-unified'
 import { ClickOutside as vClickOutside } from '@vuesax-alpha/directives'
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import { IconClose, VsIcon } from '@vuesax-alpha/components/icon'
+import { VsCollapseTransition } from '@vuesax-alpha/components/collapse-transition'
 import { VsScrollbar } from '@vuesax-alpha/components/scrollbar'
 import { VsPopper } from '@vuesax-alpha/components/popper'
 import { ChevronDown } from '@vuesax-alpha/icons-vue'
@@ -183,9 +197,10 @@ defineOptions({
   name: 'VsSelect',
 })
 
+const messageTypes = ['success', 'warn', 'danger', 'primary', 'dark']
+
 const props = defineProps(selectProps)
 const emit = defineEmits(selectEmits)
-
 const ns = useNamespace('select')
 
 const states = useSelectStates(props)

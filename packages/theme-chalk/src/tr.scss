@@ -1,0 +1,120 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+.fade-expand-enter-active,
+.fade-expand-leave-active {
+  transition: all 0.25s ease;
+}
+
+.fade-expand-enter-from,
+.fade-expand-leave-to {
+  opacity: 0;
+  td {
+    .#{$namespace}-table-tr-expand__content {
+      height: 0px !important;
+    }
+  }
+}
+
+@include b(table-tr) {
+  padding: 5px;
+  border: 0px;
+
+  &:hover {
+    .#{$namespace}-table-td {
+      background: getColor('gray-1');
+    }
+  }
+
+  &.#{$namespace}-component--is-color {
+    .#{$namespace}-table-td {
+      background: getColor('color', 0.1) !important;
+      color: getColor('color', 1) !important;
+
+      &:hover {
+        background: getColor('color', 0.2) !important;
+      }
+    }
+
+    &:hover {
+      .#{$namespace}-table-td {
+        background: getColor('color', 0.2) !important;
+      }
+    }
+  }
+
+  @include when(has-expand-slot) {
+    cursor: pointer;
+  }
+
+  &:first-of-type {
+    .#{$namespace}-table-td {
+      &:last-child {
+        border-radius: 0px 0px 15px 0px;
+      }
+      &:first-child {
+        border-radius: 0px 0px 0px 15px;
+      }
+    }
+  }
+  @include when(expand) {
+    &:first-of-type {
+      .#{$namespace}-table-td {
+        background: getColor(gray-1) !important;
+        border-radius: 0px;
+      }
+    }
+    &:not(:first-of-type) {
+      .#{$namespace}-table-td {
+        background: getColor(gray-1) !important;
+        &:last-child {
+          border-radius: 0px 15px 0px 0px;
+        }
+        &:first-child {
+          border-radius: 15px 0px 0px 0px;
+        }
+      }
+      + .#{$namespace}-table-tr-expand {
+        td {
+          border-radius: 0px 0px 15px 15px !important;
+        }
+      }
+    }
+  }
+
+  @include when(selected) {
+    .#{$namespace}-table-td {
+      background: getColor(color, 0.1) !important;
+      color: getColor(color, 1) !important;
+
+      &:not([class*='#{$namespace}-component--']) {
+        @include set-var-value(color, getCssVar(primary));
+      }
+    }
+  }
+}
+
+@include b(table-tr-expand) {
+  transition: all 0.25s ease;
+  border: 0px;
+
+  td {
+    transition: all 0.25s ease;
+    padding: 0px;
+    background: getColor('gray-1') !important;
+    border: 0px;
+
+    .#{$namespace}-table-tr-expand__content {
+      overflow: hidden;
+      display: block;
+      transition: all 0.25s ease;
+
+      &--inner {
+        padding: 10px 15px;
+        z-index: 1;
+        position: relative;
+      }
+    }
+  }
+}

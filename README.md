@@ -15,13 +15,11 @@
 
 # Getting Started
 
-See the documentation [Vuesax Alpha](https://www.vuesax.space/)
+## Try with vuesax-next (vuesax v4)
 
-## Api with vuesax-next
+About 90% of the api in this version works fine. This version references to [Vuesax documentaion](https://vuesax.com/)
 
-About 90% of the api in vuesax-next version works fine. But that's just the `make it work with vue 3` part. And this version does not support `typescript`
-
-You can test with tag `old` from npm
+You can try with tag `old` from npm
 
 ```sh
 # Choose a package manager you like.
@@ -49,7 +47,11 @@ import App from './App.vue'
 createApp(App).use(vuesax).mount('#app')
 ```
 
-## New version, Typescript support
+Then, see the [vuesax-next doucmentation](https://vuesax.com/) to try it
+
+## New version - Vuesax-alpha
+
+The documentation of this version is different from the above version, see the [VuesaxAlpha doucmentation](https://vuesax.space/)
 
 ```sh
 # Choose a package manager you like.

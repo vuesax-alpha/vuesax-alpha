@@ -298,7 +298,6 @@ input[class*='#{$namespace}'][type='search']::-webkit-search-results-decoration 
     margin-top: 24px !important;
   }
   @include m(has-icon) {
-    // ok
     @include e(original) {
       padding-left: 38px;
     }
@@ -306,10 +305,11 @@ input[class*='#{$namespace}'][type='search']::-webkit-search-results-decoration 
     @include e(placeholder) {
       left: 44px;
     }
-    // ok
+
     @include e(label) {
       left: 44px;
     }
+
     @include e(icon) {
       pointer-events: auto !important;
       cursor: pointer;
@@ -421,7 +421,6 @@ input[class*='#{$namespace}'][type='search']::-webkit-search-results-decoration 
   }
   @include e(clearable) {
     @include set-var-value(color, getCssVar(text));
-    // --vs-color: 99, 116, 140;
     position: absolute;
     right: getCssVar(input-default-icon-init-right);
     top: 50%;
@@ -448,8 +447,7 @@ input[class*='#{$namespace}'][type='search']::-webkit-search-results-decoration 
     border-radius: inherit;
     transition: getCssVar(transition-ease);
     padding-left: 10px;
-    // width: 200px;
-    width: 100%;
+    width: 200px;
   }
   @include e(icon) {
     position: absolute;
@@ -462,7 +460,6 @@ input[class*='#{$namespace}'][type='search']::-webkit-search-results-decoration 
     border-radius: inherit;
     background: getColor('gray-2');
     pointer-events: none;
-    // cursor: pointer;
     left: 2px;
     user-select: none;
 
@@ -490,7 +487,6 @@ input[class*='#{$namespace}'][type='search']::-webkit-search-results-decoration 
     cursor: text;
     user-select: none;
     pointer-events: none;
-    // width: 100%;
     height: 100%;
     @include flex(flex-start, center);
     opacity: 0.4;
@@ -514,7 +510,6 @@ input[class*='#{$namespace}'][type='search']::-webkit-search-results-decoration 
     transition: getCssVar(transition-ease);
     cursor: text;
     user-select: none;
-    // width: 100%;
     height: 100%;
     @include flex(flex-start, center);
 

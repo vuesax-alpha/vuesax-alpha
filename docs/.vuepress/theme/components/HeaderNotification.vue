@@ -56,7 +56,7 @@ onMounted(() => {
   position: fixed;
   height: 40px;
   background: -color('theme-bg2');
-  z-index: 10000;
+  z-index: 1200;
   display: flex;
   align-items: center;
   justify-content: space-between;

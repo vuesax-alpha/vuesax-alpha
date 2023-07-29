@@ -1,11 +1,20 @@
 import { useColorProp } from '@vuesax-alpha/hooks'
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
-import { buildProps, isBoolean, isNumber, isString } from '@vuesax-alpha/utils'
+import {
+  buildProps,
+  definePropType,
+  isBoolean,
+  isNumber,
+  isString,
+} from '@vuesax-alpha/utils'
+import type { EmitFn } from '@vuesax-alpha/utils'
 
 import type { ExtractPropTypes } from 'vue'
 import type Checkbox from './checkbox.vue'
 
 export type CheckboxValueType = string | number | boolean | object
+
+export type CheckboxModelType = CheckboxValueType | CheckboxValueType[]
 
 export const checkboxProps = buildProps({
   /**
@@ -17,15 +26,37 @@ export const checkboxProps = buildProps({
    * @description binding value
    */
   modelValue: {
-    type: [Boolean, String, Number],
+    type: definePropType<CheckboxModelType>([
+      String,
+      Number,
+      Boolean,
+      Object,
+      Array,
+    ]),
     default: undefined,
+  },
+
+  notValue: {
+    type: definePropType<CheckboxModelType>([
+      String,
+      Number,
+      Boolean,
+      Object,
+      Array,
+    ]),
   },
 
   /**
    * @description self value of the Checkbox, used inside a `checkbox-group`
    */
   value: {
-    type: [String, Boolean, Number, Object],
+    type: definePropType<CheckboxModelType>([
+      String,
+      Number,
+      Boolean,
+      Object,
+      Array,
+    ]),
   },
 
   /** @description checkbox id */
@@ -69,6 +100,14 @@ export const checkboxProps = buildProps({
     type: String,
     default: undefined,
   },
+  /**
+   * @description minimum number of checkbox checked
+   */
+  min: Number,
+  /**
+   * @description maximum number of checkbox checked
+   */
+  max: Number,
 } as const)
 
 export const checkboxEmits = {
@@ -80,4 +119,5 @@ export const checkboxEmits = {
 
 export type CheckboxProps = ExtractPropTypes<typeof checkboxProps>
 export type CheckboxEmits = typeof checkboxEmits
+export type CheckboxEmitsFn = EmitFn<CheckboxEmits>
 export type CheckboxInstance = InstanceType<typeof Checkbox>

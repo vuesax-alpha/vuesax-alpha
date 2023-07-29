@@ -11,7 +11,7 @@
   bottom: 0px;
   width: 145px;
   background: -color('theme-layout');
-  z-index: 90000;
+  z-index: 1000;
   border-radius: 25px 0px 0px 0px;
   transition: all 0.25s ease;
   &:empty {

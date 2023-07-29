@@ -43,9 +43,9 @@ export const copyFullStyle = async () => {
   )
 }
 
-const _series: TaskFunction = series(
+export default series(
   withTaskName('clean', () => run('pnpm run clean')),
-  withTaskName('createOutput', () => mkdir(`${vsOutput}`, { recursive: true })),
+  withTaskName('createOutput', () => mkdir(vsOutput, { recursive: true })),
 
   parallel(
     runTask('buildModules'),
@@ -62,7 +62,5 @@ const _series: TaskFunction = series(
 
   parallel(copyTypesDefinitions, copyFiles)
 ) as any
-
-export default _series
 
 export * from './src'

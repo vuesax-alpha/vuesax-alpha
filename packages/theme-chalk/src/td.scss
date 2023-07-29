@@ -1,0 +1,27 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@include b(table-td) {
+  padding: 10px 12px;
+  transition: all 0.25s ease;
+  font-size: 0.8rem;
+  border: 0px;
+
+  &:last-child {
+    border-radius: 0px 15px 15px 0px;
+  }
+
+  &:first-child {
+    border-radius: 15px 0px 0px 15px;
+  }
+
+  @include when(has-checkbox) {
+    width: 23px;
+  }
+
+  @include when(edit) {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

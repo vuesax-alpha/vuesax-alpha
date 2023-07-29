@@ -7,22 +7,16 @@ $iconActiveMargin: -4px;
 
 .#{$namespace}-select-enter-active,
 .#{$namespace}-select-leave-active {
-  transition: getCssVar(transition-ease);
+  transition: all 0s ease 0s, transform 0.25s ease, opacity 0.12s ease;
 }
 .#{$namespace}-select-enter-from,
 .#{$namespace}-select-leave-to {
   opacity: 0;
   &[data-popper-placement='top'] {
-    transform: translate(0, 5px);
+    transform: translate(0, 10px);
   }
   &[data-popper-placement='bottom'] {
-    transform: translate(0, -5px);
-  }
-  &[data-popper-placement='left'] {
-    transform: translate(5px);
-  }
-  &[data-popper-placement='right'] {
-    transform: translate(-5px);
+    transform: translate(0, -10px);
   }
 }
 
@@ -88,8 +82,11 @@ $iconActiveMargin: -4px;
   @include e(arrow) {
     color: getColor($color);
   }
-  ~ div .#{$namespace}-select__message--#{$color} {
-    color: getColor($color, 1);
+
+  @include e(message) {
+    @include m(#{$color}) {
+      color: getColor($color, 1);
+    }
   }
 }
 
@@ -111,7 +108,7 @@ $iconActiveMargin: -4px;
       box-shadow: 0px -10px 20px -5px rgba(0, 0, 0, getCssVar(shadow-opacity));
     }
     margin-top: -5px;
-    padding-top: 5px;
+    padding: 5px;
     overflow: hidden;
     background: getColor('background');
     color: getColor(color);
@@ -392,8 +389,11 @@ $iconActiveMargin: -4px;
       }
     }
   }
+  @include when(block) {
+    width: 100%;
+    max-width: unset;
+  }
   @include e(options) {
-    padding: 5px;
     transition: getCssVar(transition-ease);
 
     @include pseudo(after) {
@@ -489,25 +489,28 @@ $iconActiveMargin: -4px;
     }
   }
   @include e(message) {
+    position: absolute;
+    top: 100%;
+    left: 0;
     font-size: 0.7rem;
     padding: 0px 7px;
     overflow: hidden;
     height: auto;
     transition: getCssVar(transition-ease);
 
-    &--success {
+    @include m(success) {
       color: getColor('success');
     }
-    &--danger {
+    @include m(danger) {
       color: getColor('danger');
     }
-    &--warn {
+    @include m(warn) {
       color: getColor('warn');
     }
-    &--dark {
+    @include m(dark) {
       color: getColor('dark');
     }
-    &--primary {
+    @include m(primary) {
       color: getColor('primary');
     }
   }

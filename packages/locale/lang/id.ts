@@ -77,7 +77,7 @@ export default {
       total: 'Total {total}',
       pageClassifier: '',
       deprecationWarning:
-        'Penggunaan yang tidak akan digunakan lagi terdeteksi, silakan lihat dokumentasi el-pagination untuk lebih jelasnya',
+        'Penggunaan yang tidak akan digunakan lagi terdeteksi, silakan lihat dokumentasi pagination untuk lebih jelasnya',
     },
     messagebox: {
       title: 'Pesan',

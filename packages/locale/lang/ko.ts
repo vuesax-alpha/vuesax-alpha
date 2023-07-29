@@ -91,7 +91,7 @@ export default {
       total: '총 {total} 건',
       pageClassifier: '페이지로',
       deprecationWarning:
-        '더 이상 사용되지 않는 동작이 감지되었습니다. 자세한 내용은 el-pagination 문서를 참조하세요.',
+        '더 이상 사용되지 않는 동작이 감지되었습니다. 자세한 내용은 pagination 문서를 참조하세요.',
     },
     dialog: {
       close: '대화 상자 닫기',

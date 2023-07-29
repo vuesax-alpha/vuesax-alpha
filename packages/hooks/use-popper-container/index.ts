@@ -21,7 +21,7 @@ export const usePopperContainerId = () => {
   }
 }
 
-const createContainer = (id: string) => {
+export const createContainer = (id: string) => {
   const container = document.createElement('div')
   container.id = id
   document.body.appendChild(container)
@@ -29,10 +29,10 @@ const createContainer = (id: string) => {
 }
 
 export const usePopperContainer = () => {
+  const { id, selector } = usePopperContainerId()
   onBeforeMount(() => {
     if (!isClient) return
 
-    const { id, selector } = usePopperContainerId()
     // This is for bypassing the error that when under testing env, we often encounter
     // document.body.innerHTML = '' situation
     // for this we need to disable the caching since it's not really needed
@@ -43,4 +43,9 @@ export const usePopperContainer = () => {
       cachedContainer = createContainer(id.value)
     }
   })
+
+  return {
+    id,
+    selector,
+  }
 }

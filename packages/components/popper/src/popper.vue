@@ -22,13 +22,20 @@
     :options="options"
     :strategy="strategy"
     :fit="fit"
+    :persistent="persistent"
     :placement="popperPlacement"
+    :flip="flip"
+    :content="content"
     :z-index="zIndex"
     :interactivity="interactivity"
     :offset="offset"
     :popper-class="popperClass"
     :popper-style="popperStyle"
     :disabled="disabled"
+    :visible="visible"
+    :window-resize="windowResize"
+    :window-scroll="windowScroll"
+    :show-arrow="showArrow"
     @blur="onBlur"
     @close="onClose"
   >
@@ -39,7 +46,6 @@
 <script setup lang="ts">
 import {
   computed,
-  nextTick,
   onDeactivated,
   provide,
   reactive,
@@ -49,7 +55,7 @@ import {
   unref,
   watch,
 } from 'vue'
-import { isBoolean, useElementBounding } from '@vueuse/core'
+import { isBoolean } from '@vuesax-alpha/utils'
 import {
   useDelayedToggle,
   useFloating,
@@ -82,13 +88,7 @@ const zIndex = computed(() => currentZIndex.value)
 
 const triggerRef = ref<HTMLElement>()
 const contentRef = ref<HTMLElement>()
-const triggerBounding = reactive(useElementBounding(triggerRef))
-
-const {
-  destroy,
-  update,
-  placement: popperPlacement,
-} = useFloating(triggerRef, contentRef, props)
+const arrowRef = ref<HTMLElement>()
 
 const open = ref(false)
 const toggleReason = ref<Event>()
@@ -96,8 +96,8 @@ const toggleReason = ref<Event>()
 const { show, hide, hasUpdateHandler } = usePopperModelToggle({
   indicator: open,
   toggleReason,
-  processBeforeClosing: () => props.processBeforeClose(),
-  shouldProceed: () => props.processBeforeOpen(),
+  processBeforeClosing: props.processBeforeClose,
+  shouldProceed: props.processBeforeOpen,
 })
 
 const { onOpen, onClose } = useDelayedToggle({
@@ -106,6 +106,13 @@ const { onOpen, onClose } = useDelayedToggle({
   open: show,
   close: hide,
 })
+
+const { update, placement: popperPlacement } = useFloating(
+  triggerRef,
+  contentRef,
+  arrowRef,
+  { ...props, visible: open }
+)
 
 const controlled = computed(
   () => isBoolean(props.visible) && !hasUpdateHandler.value
@@ -140,6 +147,7 @@ onDeactivated(() => open.value && hide())
 provide(popperContextKey, {
   contentRef,
   triggerRef,
+  arrowRef,
   referenceRef: triggerRef,
 
   controlled,
@@ -205,27 +213,5 @@ defineExpose(
      */
     popperPlacement,
   })
-)
-
-watch([open, triggerBounding], ([isOpen]) => {
-  if (isOpen) update()
-})
-
-watch(
-  [triggerRef],
-  ([referenceElement]) => {
-    destroy()
-
-    if (!referenceElement) return
-
-    if (open.value) {
-      nextTick(() => {
-        update()
-      })
-    }
-  },
-  {
-    flush: 'post',
-  }
 )
 </script>

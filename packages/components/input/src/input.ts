@@ -142,8 +142,11 @@ export const inputProps = buildProps({
     type: definePropType<StyleValue>([String, Object, Array]),
   },
 
-  /** @deprecated */
+  /**
+   * @description set input width 100%
+   */
   block: Boolean,
+
   /** @deprecated */
   border: Boolean,
   /** @deprecated */

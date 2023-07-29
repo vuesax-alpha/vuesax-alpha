@@ -20,9 +20,10 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import type { Color } from 'vuesax-alpha'
 
 const page = ref(1)
-const color = ref('success')
+const color = ref<Color>('success')
 </script>
 
 <style lang="scss" scoped>
@@ -38,6 +39,13 @@ const color = ref('success')
   }
   .vs-pagination {
     margin: 10px 0px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .con-pagination {
+    overflow: scroll;
+    justify-content: flex-start;
   }
 }
 </style>

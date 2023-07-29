@@ -547,7 +547,7 @@ const getCode = (str: string) => {
       &.fixed-thead {
         thead {
           position: fixed;
-          z-index: 8000;
+          z-index: 1000;
           top: 0px;
         }
       }

@@ -77,7 +77,7 @@ export default {
       total: 'Totaly {total}',
       pageClassifier: '',
       deprecationWarning:
-        'Fampiasana tsy ampiasaina intsony no hita, azafady mba jereo ny tahirin-kevitra el-pagination raha mila fanazavana fanampiny',
+        'Fampiasana tsy ampiasaina intsony no hita, azafady mba jereo ny tahirin-kevitra pagination raha mila fanazavana fanampiny',
     },
     messagebox: {
       title: 'Hafatra',

@@ -27,12 +27,18 @@ const typeMap = {
   vue: ['Component', 'VNode', 'CSSProperties', 'StyleValue'],
 }
 
+const removeTag = (str: string) => {
+  return str.replaceAll(/\^\([^)]*\)/g, '').trim()
+}
+
 const reComponentName: ReComponentName = (title) =>
   `vs-${hyphenate(title).replace(/[ ]+/g, '-')}`
 
 const reDocUrl: ReDocUrl = (fileName, header) => {
   const docs = 'https://vuesax.space/'
-  const _header = header ? header.replaceAll(/\s+/g, '-').toLowerCase() : ''
+  const _header = header
+    ? removeTag(header).replaceAll(/\s+/g, '-').toLowerCase()
+    : ''
 
   return `${docs}${fileName}.html${_header ? '#' : ''}${_header}`
 }
@@ -195,10 +201,7 @@ export const buildHelper: TaskFunction = (done) => {
   main({
     name: name!,
     version: _version,
-    entry: `${path.resolve(
-      projRoot,
-      'docs/component'
-    )}/!(datetime-picker|message-box|message).md`,
+    entry: `${path.resolve(projRoot, 'docs/components')}/!(datetime-picker).md`,
     outDir: vsOutput,
     reComponentName,
     reDocUrl,

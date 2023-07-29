@@ -1,0 +1,453 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+.#{$namespace}-notification-enter-active {
+  transition: all 0.3s ease 0.05s, transform 0.3s ease, margin 0.25s ease,
+    clip-path 8s ease 0.8s;
+}
+// .notification-leave-active
+//   transition: all .25s ease !important
+
+.#{$namespace}-notification-leave-to {
+  max-height: 0 !important;
+  height: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  opacity: 0 !important;
+  clip-path: circle(0% at 80% 35%) !important;
+  transform: translate(0, 10px) !important;
+}
+
+.#{$namespace}-notification-enter-from {
+  transform: translate(25%);
+  clip-path: circle(0% at 80% 35%) !important;
+
+  .#{$namespace}-notification__content {
+    opacity: 0;
+    transform: translate(10%);
+  }
+}
+
+// .notification-enter-to {
+//   margin-top: 0px !important;
+//   .#{$namespace}-notification__effect {
+//     width: 0%;
+//     padding-bottom: 0%;
+//   }
+// }
+
+[id*='notification-container'] {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 200000;
+  transition: all 25s ease;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  @include when(top-right) {
+    bottom: auto;
+    top: 0;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  @include when(top-center) {
+    bottom: auto;
+    top: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%);
+
+    .#{$namespace}-notification {
+      clip-path: circle(120% at 50% 0%);
+      transition: all 0.25s ease, transform 0.3s ease, max-height 0.25s ease,
+        clip-path 0.5s ease 0.1s;
+
+      @include when(sticky) {
+        margin: 3px 20px;
+        border-radius: 20px;
+        &:last-child {
+          border-radius: 0 0 20px 20px;
+          margin-top: -10px;
+        }
+      }
+      @include when(border) {
+        border: 3px solid transparent;
+        border-top-color: getColor('border');
+      }
+    }
+    .#{$namespace}-notification-enter-from {
+      transform: translate(0, -25%);
+      clip-path: circle(0% at 50% 0%) !important;
+      .#{$namespace}-notification__content {
+        opacity: 0;
+        transform: translate(0, -10%);
+      }
+    }
+  }
+  @include when(top-left) {
+    bottom: auto;
+    top: 0;
+    left: 0;
+    right: auto;
+    @include flex(flex-end, flex-start);
+    flex-direction: column-reverse;
+
+    .#{$namespace}-notification {
+      clip-path: circle(145% at 0% 50%);
+      @include when(sticky) {
+        margin-left: 0;
+        border-radius: 0 20px 20px 0;
+      }
+      @include when(border) {
+        border: 3px solid transparent;
+        border-left-color: getColor('border');
+      }
+    }
+    .#{$namespace}-notification-enter-from {
+      transform: translate(-25%);
+      clip-path: circle(0% at 20% 35%) !important;
+      .#{$namespace}-notification__content {
+        opacity: 0;
+        transform: translate(-10%);
+      }
+    }
+  }
+  @include when(bottom-center) {
+    left: 50%;
+    right: auto;
+    transform: translate(-50%);
+
+    .#{$namespace}-notification {
+      clip-path: circle(120% at 50% 100%);
+      transition: all 0.25s ease, transform 0.3s ease, max-height 0.25s ease,
+        clip-path 0.5s ease 0.1s;
+
+      @include when(sticky) {
+        margin: 3px 20px;
+        border-radius: 20px;
+        &:last-child {
+          border-radius: 20px 20px 0 0;
+          margin-bottom: -10px;
+        }
+      }
+
+      @include when(border) {
+        border: 3px solid transparent;
+        border-bottom-color: getColor('border');
+      }
+    }
+    .#{$namespace}-notification-enter-from {
+      transform: translate(0, 25%);
+      clip-path: circle(0% at 50% 100%) !important;
+      .#{$namespace}-notification__content {
+        opacity: 0;
+        transform: translate(0, 10%);
+      }
+    }
+  }
+  @include when(bottom-left) {
+    left: 0;
+    right: auto;
+    .#{$namespace}-notification {
+      clip-path: circle(145% at 0% 50%);
+
+      @include when(sticky) {
+        margin-left: 0;
+        border-radius: 0 20px 20px 0;
+      }
+      @include when(border) {
+        border: 3px solid transparent;
+        border-left-color: getColor('border');
+      }
+    }
+    .#{$namespace}-notification-enter-from {
+      transform: translate(-25%);
+      clip-path: circle(0% at 20% 35%) !important;
+      .#{$namespace}-notification__content {
+        opacity: 0;
+        transform: translate(-10%);
+      }
+    }
+  }
+}
+
+@include b(notification) {
+  @include set-var-value(color, getCssVar(background));
+  @include set-var-value(border, getCssVar(background));
+  @include set-var-value(opacity, 0.6);
+
+  position: relative;
+  max-width: 340px;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, getCssVar('shadow-opacity'));
+  overflow: hidden;
+  clip-path: circle(145% at 100% 50%);
+  background: getColor('color');
+  color: getColor('text');
+  margin: 3px 10px;
+  transition: all 0.25s ease, transform 0.3s ease 0.1s, max-height 0.25s ease,
+    clip-path 0.5s ease 0.1s;
+
+  &:hover:not(.is-flat) {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, getCssVar('shadow-opacity'));
+    transform: translate(0, 3px);
+  }
+  @include when(not-padding) {
+    padding: 0 !important;
+  }
+  @include when(icon) {
+    padding-left: 50px !important;
+  }
+  @include when(loading) {
+    width: 100px !important;
+    max-height: 100px !important;
+    min-height: 100px !important;
+    padding: 0 !important;
+    @include flex(center, center);
+  }
+  @include when(width-auto) {
+    width: auto;
+    max-width: none;
+  }
+  @include when(width-full) {
+    max-width: calc(100vw - 50px);
+    width: calc(100vw - 50px);
+  }
+  @include when(square) {
+    border-radius: 0 !important;
+  }
+  @include when(sticky) {
+    margin-right: 0;
+    margin-bottom: 0;
+    border-radius: 20px 0 0 20px;
+  }
+  @include when(flat) {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, getCssVar('shadow-opacity'));
+    background: getColor('background');
+    color: getColor('color') !important;
+    &:hover {
+      &::after {
+        background: getColor('color', 0.15);
+      }
+    }
+    .#{$namespace}-notification__progress {
+      background: getColor('color');
+    }
+    .#{$namespace}-notification__close {
+      @include set-var-value(color, inherit);
+    }
+    .#{$namespace}-notification__content {
+      color: getColor('color') !important;
+    }
+    &:after {
+      content: '';
+      background: getColor('color', 0.1);
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      transition: all 0.25s ease;
+    }
+  }
+  @include when(on-click) {
+    cursor: pointer;
+  }
+  &.is-color:not(.is-flat) {
+    color: $color-white;
+    .#{$namespace}-notification__progress {
+      background: $color-white;
+    }
+    .#{$namespace}-notification__close {
+      @include set-var-value(color, $color-white);
+    }
+    .#{$namespace}-notification__loading {
+      &:after {
+        border: 2px solid transparent;
+        border-bottom-color: $color-white;
+      }
+      &:before {
+        border: 2px dashed transparent;
+        border-bottom-color: $color-white;
+      }
+    }
+  }
+  @include when(border) {
+    border: 3px solid transparent;
+    border-right-color: getColor('border');
+  }
+  @include e(progress) {
+    width: 0;
+    height: 3px;
+    border-radius: 4px;
+    background: getColor('text');
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: all 0.25s ease;
+  }
+  @include e(loading) {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    &:after {
+      box-sizing: border-box;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      border: 2px solid transparent;
+      border-bottom-color: getColor('text');
+      animation: loading-notification 0.8s ease infinite;
+      top: 0;
+      content: '';
+    }
+    &:before {
+      box-sizing: border-box;
+      top: 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      border: 2px dashed transparent;
+      border-bottom-color: getColor('text');
+      animation: loading-notification 0.8s linear infinite;
+      opacity: 0.2;
+      content: '';
+    }
+  }
+  @include e(close) {
+    @include set-var-value(color, getCssVar(text));
+    position: absolute;
+    border: 0;
+    background: transparent;
+    top: 2px;
+    right: 2px;
+    transform: scale(0.75);
+    padding: 0;
+  }
+  @include e(icon) {
+    position: absolute;
+    @include flex(center, center);
+    top: calc(50% - 22px);
+    background: transparent;
+    width: 45px;
+    height: 45px;
+    left: 2px;
+    border-radius: 0 35% 35% 0;
+    // box-shadow: inherit;
+    i {
+      font-size: 1.2rem;
+    }
+  }
+  @include e(content) {
+    position: relative;
+    width: auto;
+    height: auto;
+    transition: all 0.25s ease 0.2s;
+    opacity: 1;
+  }
+  @include e(text) {
+    width: 100%;
+    p {
+      margin: 0;
+      padding: 0;
+      font-size: 0.75rem;
+      line-height: 1rem;
+    }
+  }
+  @include e(title) {
+    width: 100%;
+    margin: 0;
+    padding: 0 0 6px 0;
+    h4 {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.darken {
+  .#{$namespace}-notification--dark {
+    color: $color-white !important;
+    .#{$namespace}-notification__close {
+      @include set-var-value(color, $color-white);
+    }
+    h4 {
+      color: $color-white !important;
+    }
+    p {
+      color: $color-white !important;
+    }
+  }
+}
+
+@keyframes loading-notification {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes progress-notification {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .#{$namespace}-notification {
+    margin: 3px 0 !important;
+    border-radius: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    &:hover {
+      transform: translate(0) !important;
+    }
+    &:last-child {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  [id*='notification-container'] {
+    padding: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+
+    .#{$namespace}-notification {
+      .is-sticky {
+        margin-bottom: 0 !important;
+      }
+    }
+
+    @include when(top-center) {
+      .#{$namespace}-notification:last-child {
+        margin-bottom: 3px;
+        margin-top: 0 !important;
+      }
+    }
+  }
+}

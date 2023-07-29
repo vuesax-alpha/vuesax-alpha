@@ -29,4 +29,13 @@
   @include when(align-bottom) {
     align-items: flex-end;
   }
+  @include when(direction-row-reverse) {
+    flex-direction: row-reverse;
+  }
+  @include when(direction-column) {
+    flex-direction: column;
+  }
+  @include when(direction-column-reverse) {
+    flex-direction: column-reverse;
+  }
 }

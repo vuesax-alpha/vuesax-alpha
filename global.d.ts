@@ -24,19 +24,25 @@ declare module '@vue/runtime-core' {
     VsPagination: typeof import('vuesax-alpha')['VsPagination']
     VsRate: typeof import('vuesax-alpha')['VsRate']
     VsRadio: typeof import('vuesax-alpha')['VsRadio']
-    // VsRow               : typeof import('vuesax-alpha')['VsRow']
+    VsRow: typeof import('vuesax-alpha')['VsRow']
     VsSelect: typeof import('vuesax-alpha')['VsSelect']
     VsScrollbar: typeof import('vuesax-alpha')['VsScrollbar']
     VsSwitch: typeof import('vuesax-alpha')['VsSwitch']
-    // VsTable             : typeof import('vuesax-alpha')['VsTable']
+    VsSidebar: typeof import('vuesax-alpha')['VsSidebar']
+    VsSidebarGroup: typeof import('vuesax-alpha')['VsSidebarGroup']
+    VsSidebarItem: typeof import('vuesax-alpha')['VsSidebarItem']
+    VsTable: typeof import('vuesax-alpha')['VsTable']
+    VsTh: typeof import('vuesax-alpha')['VsTh']
+    VsTd: typeof import('vuesax-alpha')['VsTd']
+    VsTr: typeof import('vuesax-alpha')['VsTr']
     VsTimeSelect: typeof import('vuesax-alpha')['VsTimeSelect']
     VsTooltip: typeof import('vuesax-alpha')['VsTooltip']
   }
 
-  // interface ComponentCustomProperties {}
-  // $notify    : typeof import('vuesax-alpha')['VsNotification']
-  // $loading   : typeof import('vuesax-alpha')['VsLoadingService']
-  // }
+  interface ComponentCustomProperties {
+    $notification: typeof import('vuesax-alpha')['VsNotification']
+    $loading: typeof import('vuesax-alpha')['VsLoadingFn']
+  }
 }
 
 export {}

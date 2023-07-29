@@ -1,6 +1,5 @@
 import * as vue from 'vue'
 import * as vueShared from '@vue/shared'
-import * as vueuse from '@vueuse/core'
 import { describe, expect, it } from 'vitest'
 import {
   isArray,
@@ -28,11 +27,6 @@ describe('types', () => {
     expect(isPromise).toBe(vueShared.isPromise)
     expect(isString).toBe(vueShared.isString)
     expect(isSymbol).toBe(vueShared.isSymbol)
-  })
-
-  it('re-export from vueuse', () => {
-    expect(isBoolean).toBe(vueuse.isBoolean)
-    expect(isNumber).toBe(vueuse.isNumber)
   })
 
   it('re-export from vue', () => {
@@ -67,5 +61,27 @@ describe('types', () => {
     expect(isPropAbsent(undefined)).toBe(true)
     expect(isPropAbsent(123)).toBe(false)
     expect(isPropAbsent({})).toBe(false)
+  })
+
+  it('isBoolean should work', () => {
+    expect(isBoolean(true)).toBe(true)
+    expect(isBoolean(false)).toBe(true)
+    expect(isBoolean(Number.NaN)).toBe(false)
+    expect(isBoolean('')).toBe(false)
+    expect(isBoolean(null)).toBe(false)
+    expect(isBoolean(undefined)).toBe(false)
+    expect(isBoolean(0)).toBe(false)
+    expect(isBoolean({})).toBe(false)
+  })
+
+  it('isNumber should work', () => {
+    expect(isNumber(123)).toBe(true)
+    expect(isNumber(true)).toBe(false)
+    expect(isNumber(false)).toBe(false)
+    expect(isNumber(Number.NaN)).toBe(false)
+    expect(isNumber('')).toBe(false)
+    expect(isNumber(null)).toBe(false)
+    expect(isNumber(undefined)).toBe(false)
+    expect(isNumber({})).toBe(false)
   })
 })

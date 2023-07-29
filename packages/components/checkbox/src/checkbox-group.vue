@@ -4,11 +4,12 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, nextTick, provide, toRefs } from 'vue'
+import { computed, nextTick, onBeforeMount, provide, toRefs } from 'vue'
 import { pick } from 'lodash-unified'
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import { useNamespace } from '@vuesax-alpha/hooks'
 import { checkboxGroupContextKey } from '@vuesax-alpha/tokens'
+import { isArray } from '@vuesax-alpha/utils'
 import { checkboxGroupEmits, checkboxGroupProps } from './checkbox-group'
 
 import type { CheckboxGroupValueType } from './checkbox-group'
@@ -34,6 +35,12 @@ const modelValue = computed({
   set(val: CheckboxGroupValueType) {
     changeEvent(val)
   },
+})
+
+onBeforeMount(() => {
+  if (!isArray(props.modelValue)) {
+    modelValue.value = [props.modelValue]
+  }
 })
 
 provide(checkboxGroupContextKey, {

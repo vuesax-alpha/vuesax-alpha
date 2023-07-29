@@ -1,0 +1,700 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+@include b(loading) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  @include flex(center, center);
+  border-radius: inherit;
+
+  color: getColor('color');
+  background: getColor('background', getCssVar('opacity'));
+  transition: getCssVar(transition-ease);
+
+  @include when(has-target) {
+    position: absolute;
+  }
+
+  @include e(load) {
+    @include flex(center, center);
+    flex-direction: column;
+
+    @include e(text) {
+      font-size: 0.75em;
+      margin: 7px;
+      font-weight: bold;
+      color: getColor('color');
+    }
+
+    @include m(percent) {
+      position: relative;
+      font-size: 0.65rem;
+      font-weight: bold;
+      color: getColor('color');
+      margin-top: 1px;
+      z-index: 200;
+    }
+
+    @include e(animation) {
+      @include flex(center, center);
+      width: 40px;
+      height: 40px;
+      position: relative;
+    }
+  }
+
+  @include e(progress) {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: getColor('color', 0.2);
+
+    &-bar {
+      background: getColor('color');
+      height: 100%;
+      position: relative;
+      border-radius: 0 10px 10px 0;
+    }
+  }
+
+  @include m(waves) {
+    @include e(animation) {
+      @include flex(center, center);
+
+      @include m(item-1) {
+        width: 0;
+        background: transparent;
+        height: 0;
+        position: absolute;
+        animation: waves 0.7s ease infinite;
+        box-shadow: 0 0 10px 0 getColor('color', 0.5);
+        border-radius: 50%;
+      }
+
+      @include m(item-2) {
+        width: 0;
+        background: transparent;
+        height: 0;
+        position: absolute;
+        animation: waves 1.4s linear infinite;
+        box-shadow: 0 0 10px 0 getColor('color', 0.5);
+        border-radius: 50%;
+      }
+
+      @include m(item-3) {
+        width: 0;
+        background: transparent;
+        height: 0;
+        position: absolute;
+        animation: waves 1.75s ease infinite;
+        box-shadow: 0 0 10px 0 getColor('color', 0.5);
+        border-radius: 50%;
+      }
+    }
+  }
+
+  @include m(corners) {
+    @include e(animation) {
+      @include flex(center, center);
+
+      @include m(item-1) {
+        width: 100%;
+        background: transparent;
+        height: 100%;
+        position: absolute;
+        animation: corners 1s ease infinite;
+        border-radius: 50%;
+        border: 2px solid getColor('color', 1);
+      }
+
+      @include m(item-2) {
+        display: none;
+      }
+
+      @include m(item-3) {
+        display: none;
+      }
+    }
+  }
+
+  @include m(border) {
+    @include e(animation) {
+      @include flex(center, center);
+      border-radius: 50%;
+
+      @include m(item-1) {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 1px solid getColor('color');
+        border-radius: inherit;
+        border-top: 1px solid transparent;
+        border-left: 1px solid transparent;
+        border-right: 1px solid transparent;
+        animation: rotate 1s linear infinite;
+        top: 0;
+      }
+
+      @include m(item-2) {
+        top: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 1px dashed getColor('color');
+        border-radius: inherit;
+        border-top: 1px solid transparent;
+        border-left: 1px solid transparent;
+        border-right: 1px solid transparent;
+        animation: rotate 1s linear infinite 0.2s;
+      }
+
+      @include m(item-3) {
+        top: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 1px dashed getColor('color');
+        border-radius: inherit;
+        animation: rotate 1s linear infinite 0.4s;
+        opacity: 0.2;
+      }
+    }
+  }
+
+  @include m(points) {
+    @include e(load) {
+      @include m(percent) {
+        position: absolute;
+        top: -10px;
+      }
+    }
+
+    @include e(animation) {
+      @include flex(center, flex-end);
+      width: auto;
+
+      @include m(item-1) {
+        width: 8px;
+        height: 8px;
+        background: getColor('color');
+        border-radius: 50%;
+        margin: 3px;
+        animation: points 0.75s ease infinite;
+      }
+
+      @include m(item-2) {
+        width: 8px;
+        height: 8px;
+        background: getColor('color');
+        border-radius: 50%;
+        margin: 3px;
+        animation: points 0.75s ease infinite 0.25s;
+      }
+
+      @include m(item-3) {
+        width: 8px;
+        height: 8px;
+        background: getColor('color');
+        border-radius: 50%;
+        margin: 3px;
+        animation: points 0.75s ease infinite 0.5s;
+      }
+    }
+  }
+
+  @include m(square) {
+    @include e(animation) {
+      @include flex(center, center);
+
+      @include m(item-1) {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 2px solid getColor('color');
+        border-radius: inherit;
+        animation: rotate-square 4s ease infinite;
+        top: 0;
+      }
+
+      @include m(item-2) {
+        top: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 2px solid getColor('color');
+        border-radius: inherit;
+        animation: rotate-square 4s ease infinite reverse;
+        background: getColor('background', 1);
+      }
+
+      @include m(item-3) {
+        display: none;
+      }
+    }
+  }
+
+  @include m(gradient) {
+    @include e(animation) {
+      @include flex(center, center);
+
+      width: 60px;
+      height: 60px;
+      border-radius: 999px;
+
+      @include m(item-1) {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        border-radius: inherit;
+        animation: rotate 1s linear infinite;
+        top: 0;
+        background: linear-gradient(
+          0deg,
+          getColor('background', 0) 33%,
+          getColor('color', 1) 100%
+        );
+      }
+
+      @include m(item-2) {
+        top: 2px;
+        position: absolute;
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
+        border: 0;
+        border-radius: inherit;
+        background: getColor('background', 1);
+      }
+
+      @include m(item-3) {
+        display: none;
+      }
+    }
+  }
+
+  @include m(rectangle) {
+    @include e(load) {
+      @include m(percent) {
+        position: absolute;
+        bottom: -2px;
+      }
+    }
+
+    @include e(animation) {
+      @include flex(center, flex-end);
+
+      @include m(item-1) {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border: 0;
+        border-radius: inherit;
+        animation: rectangle 1s ease infinite;
+        background: getColor('color', 1);
+      }
+
+      @include m(item-2) {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border: 0;
+        border-radius: inherit;
+        animation: rectangle 1s ease-out infinite;
+        background: getColor('color', 0.2);
+      }
+
+      @include m(item-3) {
+        display: none;
+      }
+    }
+  }
+
+  @include m(circles) {
+    @include e(animation) {
+      @include flex(center, center);
+      width: 60px;
+      height: 60px;
+
+      @include m(item-1) {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        animation: rotate 1s ease infinite;
+        border-radius: 50%;
+        border: 2px solid getColor('color', 1);
+        border-top: 3px solid transparent;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+      }
+
+      @include m(item-2) {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        animation: rotate 1s ease-in-out infinite;
+        border-radius: 50%;
+        border: 2px dashed getColor('color', 1);
+        border-top: 3px solid transparent;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+      }
+
+      @include m(item-3) {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        animation: rotate 1s linear infinite reverse;
+        border-radius: 50%;
+        border: 2px solid getColor('color', 1);
+        border-top: 3px solid transparent;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+      }
+    }
+  }
+
+  @include m(square-rotate) {
+    @include e(load) {
+      @include m(percent) {
+        position: absolute;
+        bottom: 30px;
+      }
+    }
+
+    @include e(animation) {
+      @include flex(center, flex-end);
+      width: 60px;
+      height: 60px;
+
+      @include m(item-1) {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        animation: square-rotate 3s ease infinite;
+        background: getColor('color', 1);
+      }
+
+      @include m(item-2) {
+        display: none;
+      }
+
+      @include m(item-3) {
+        display: none;
+      }
+    }
+  }
+
+  @include m(scale) {
+    @include e(load) {
+      @include m(percent) {
+        position: absolute;
+        bottom: 40px;
+      }
+    }
+
+    @include e(animation) {
+      @include flex(center, center);
+      width: 40px;
+      height: 40px;
+
+      @include m(item-1) {
+        position: relative;
+        width: 5px;
+        height: 5px;
+        background: getColor('color', 1);
+        margin: 3px;
+        animation: scale 0.8s ease infinite;
+        border-radius: 5px;
+      }
+
+      @include m(item-2) {
+        position: relative;
+        width: 5px;
+        height: 5px;
+        background: getColor('color', 1);
+        margin: 3px;
+        animation: scale 0.8s ease infinite 0.2s;
+        border-radius: 5px;
+      }
+
+      @include m(item-3) {
+        position: relative;
+        width: 5px;
+        height: 5px;
+        background: getColor('color', 1);
+        margin: 3px;
+        animation: scale 0.8s ease infinite 0.4s;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  @include m(atom) {
+    @include e(animation) {
+      @include flex(center, center);
+      width: 40px;
+      height: 40px;
+      position: relative;
+
+      @include m(item) {
+        position: absolute;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+
+      @include m(item-1) {
+        left: 0;
+        top: 0;
+        animation: rotate-atom-one 1s linear infinite;
+        border-bottom: 3px solid getColor('color', 1);
+      }
+
+      @include m(item-2) {
+        right: 0;
+        top: 0;
+        animation: rotate-atom-two 1s linear infinite;
+        border-right: 3px solid getColor('color', 1);
+      }
+
+      @include m(item-3) {
+        right: 0;
+        bottom: 0;
+        animation: rotate-atom-three 1s linear infinite;
+        border-top: 3px solid getColor('color', 1);
+      }
+    }
+  }
+
+  @include m(ball) {
+    @include e(animation) {
+      width: 120px;
+      height: 40px;
+      position: relative;
+
+      @include m(item) {
+        width: 14px;
+        height: 14px;
+        position: absolute;
+        border-radius: 9999px;
+        left: 15%;
+        overflow: hidden;
+        transform-origin: 50%;
+        animation: ball-circle 0.23s alternate infinite ease;
+        background: radial-gradient(
+          circle at 40% 38%,
+          getColor('color', 0.06) 8%,
+          getColor('color') 50%,
+          getColor('color') 80%,
+          getColor('color') 100%
+        );
+      }
+
+      @include m(item-2) {
+        left: 44%;
+        animation-delay: 0.09s;
+      }
+
+      @include m(item-3) {
+        left: auto;
+        right: 15%;
+        animation-delay: 0.2s;
+      }
+
+      @include m(shadow) {
+        width: 13px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.12);
+        position: absolute;
+        top: 32px;
+        transform-origin: 50%;
+        z-index: -1;
+        left: 15%;
+        filter: blur(1px);
+        animation: ball-shadow 0.23s alternate infinite ease;
+      }
+
+      @include m(shadow-2) {
+        left: 44%;
+        animation-delay: 0.09s;
+      }
+
+      @include m(shadow-3) {
+        left: auto;
+        right: 15%;
+        animation-delay: 0.2s;
+      }
+    }
+  }
+}
+// rotate
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+//waves
+@keyframes waves {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    height: 50px;
+    width: 50px;
+    opacity: 0;
+  }
+}
+// corners
+@keyframes corners {
+  0% {
+    border-radius: 50%;
+    transform: rotate(0deg);
+  }
+  25% {
+    border-radius: 50% 50% 50% 15%;
+  }
+  50% {
+    border-radius: 50% 50% 15% 30%;
+  }
+  75% {
+    border-radius: 50% 15% 30% 30%;
+  }
+  100% {
+    border-radius: 50%;
+    transform: rotate(-180deg);
+  }
+}
+// points
+@keyframes points {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(0, -15px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+// rotate square
+@keyframes rotate-square {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+// rectangle
+@keyframes rectangle {
+  0% {
+    transform: translate(-50px);
+  }
+  50% {
+    transform: translate(50px);
+  }
+  100% {
+    transform: translate(-50px);
+  }
+}
+
+@keyframes square-rotate {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  25% {
+    transform: rotateX(180deg) rotateY(0deg);
+  }
+  50% {
+    transform: rotateX(180deg) rotateY(180deg);
+  }
+  75% {
+    transform: rotateX(0deg) rotateY(180deg);
+  }
+  100% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+}
+@keyframes scale {
+  0% {
+    height: 5px;
+  }
+  50% {
+    height: 25px;
+  }
+  0% {
+    height: 5px;
+  }
+}
+// Atom
+@keyframes rotate-atom-one {
+  0% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+  }
+}
+
+@keyframes rotate-atom-two {
+  0% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+  }
+}
+
+@keyframes rotate-atom-three {
+  0% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+  }
+}
+@keyframes ball-circle {
+  0% {
+    top: 30px;
+    height: 5px;
+    border-radius: 50px 50px 25px 25px;
+    transform: scaleX(1.7);
+  }
+  40% {
+    height: 14px;
+    border-radius: 50%;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+@keyframes ball-shadow {
+  0% {
+    transform: scaleX(1.5);
+  }
+  40% {
+    transform: scaleX(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scaleX(0.2);
+    opacity: 0.4;
+  }
+}
