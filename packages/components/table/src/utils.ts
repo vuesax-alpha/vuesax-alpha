@@ -6,10 +6,7 @@ import { useNamespace } from '@vuesax-alpha/hooks'
  * @param data
  * @return data or empty array
  */
-export const toggleSelectAll = <T = any>(
-  selected: Array<T>,
-  data: Array<T>
-): Array<T> => {
+export const toggleSelectAll = <T = any>(selected: T[], data: T[]): T[] => {
   if (selected.length !== data.length) {
     return [...data]
   }
