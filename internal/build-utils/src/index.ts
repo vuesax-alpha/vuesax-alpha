@@ -1,5 +1,4 @@
 export * from './fs'
 export * from './log'
-export * from './resolver'
 export * from './paths'
 export * from './pkg'

@@ -4,7 +4,6 @@ export * from '@vuesax-alpha/constants'
 export * from '@vuesax-alpha/directives'
 export * from '@vuesax-alpha/hooks'
 export * from '@vuesax-alpha/tokens'
-export * from './resolver'
 export * from './make-installer'
 
 export const install = installer.install
