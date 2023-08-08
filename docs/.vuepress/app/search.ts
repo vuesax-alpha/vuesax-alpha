@@ -161,4 +161,26 @@ export const enSearchData: SearchDataOption[] = [
       },
     ],
   },
+  {
+    title: 'Time select',
+    path: 'components/time-select',
+    headers: [
+      {
+        title: 'Default',
+        slug: 'default',
+      },
+      {
+        title: 'Fixed time ranges',
+        slug: 'fixed-time-ranges',
+      },
+      {
+        title: 'Time format',
+        slug: 'format',
+      },
+      {
+        title: 'Disabled',
+        slug: 'disabled',
+      },
+    ],
+  },
 ]

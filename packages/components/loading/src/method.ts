@@ -8,15 +8,7 @@ import LoadingConstructor from './loading.vue'
 import type { LoadingFn, LoadingParams, LoadingParamsRef } from './loading'
 
 export const loading: LoadingFn = (options = {}) => {
-  if (!options)
-    return {
-      setPercent: () => undefined,
-      setProgress: () => undefined,
-      close: () => undefined,
-      setText: () => undefined,
-    }
-
-  if (!isClient)
+  if (!options || !isClient)
     return {
       setPercent: () => undefined,
       setProgress: () => undefined,
@@ -45,7 +37,7 @@ export const loading: LoadingFn = (options = {}) => {
 
   if (!isElement(appendTo)) {
     debugWarn(
-      'VsNotification',
+      'VsLoading',
       'the appendTo option is not an HTMLElement. Falling back to document.body.'
     )
     appendTo = document.body
@@ -53,10 +45,9 @@ export const loading: LoadingFn = (options = {}) => {
   }
 
   if (appendTo.clientHeight < LOADING_RECT.height) {
-    // descre 80% parent height
     const eightyPercentParentHeight = appendTo.clientHeight * SCALE_PARENT
     const loadingScale = eightyPercentParentHeight / LOADING_RECT.height
-    optionsRef.scale!.value = loadingScale
+    optionsRef.scale = ref(loadingScale)
   }
 
   const vm = createVNode(LoadingConstructor, optionsRef)

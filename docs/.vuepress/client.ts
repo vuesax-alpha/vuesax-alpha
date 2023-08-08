@@ -6,7 +6,7 @@ import 'vuesax-alpha/theme-chalk/dark/css-vars.css'
 
 export default defineClientConfig({
   enhance({ app }) {
-    app.use(Vuesax as any)
+    app.use(Vuesax)
   },
   rootComponents: [],
 })

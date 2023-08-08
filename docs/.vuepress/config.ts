@@ -1,6 +1,7 @@
 import { defineUserConfig } from 'vuepress'
 import { enNavbar, enSearchData, enSidebar } from './app'
 import { vuesaxAlphaTheme } from './theme/index'
+import type { UserConfig } from 'vuepress'
 
 export default defineUserConfig({
   open: true,
@@ -78,7 +79,7 @@ export default defineUserConfig({
   theme: vuesaxAlphaTheme({
     linkSite: 'http://vuesax.space',
     repo: 'vuesax-alpha/vuesax-alpha',
-    docsBranch: 'main',
+    docsBranch: 'master',
     docsDir: 'docs',
     docsRepo: 'https://github.com/vuesax-alpha/vuesax-alpha/',
     editLink: true,
@@ -112,4 +113,4 @@ export default defineUserConfig({
     },
     typographer: true,
   },
-})
+}) as UserConfig

@@ -1,12 +1,6 @@
 import * as vueShared from '@vue/shared'
 import { describe, expect, it } from 'vitest'
-import {
-  camelize,
-  capitalize,
-  escapeStringRegexp,
-  hyphenate,
-  kebabCase,
-} from '..'
+import { camelize, capitalize, escapeStringRegexp, hyphenate } from '..'
 
 describe('strings', () => {
   it('escapeStringRegexp should work', () => {
@@ -25,6 +19,5 @@ describe('strings', () => {
   it('re-export from @vue/shared', () => {
     expect(camelize).toBe(vueShared.camelize)
     expect(hyphenate).toBe(vueShared.hyphenate)
-    expect(kebabCase).toBe(vueShared.hyphenate)
   })
 })
