@@ -322,7 +322,11 @@ Add a progress bar at the top to indicate the loading progress of the loading wi
 
 ## Target
 
-Use the loading on a specific dom element using the `target` property and the value can be a string with the `id` or the `class` only if it is unique for the element, you can also use the element itself as per example using `$refs`
+Use the loading on a specific dom element using the `target` property and the value can be a string with the `id` or the `class` only if it is unique for the element, you can also use the element itself as per example using `$refs`.
+
+::: tip
+Ensure the target's style was set position
+:::
 
 <template #example>
 <loading-target />

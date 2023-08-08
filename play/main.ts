@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import '@vuesax-alpha/theme-chalk/src/dark/css-vars.scss'
+import '@vuesax-alpha/theme-chalk/src/loading.scss'
 import { createRouter, createWebHashHistory } from 'vue-router'
 ;(async () => {
   const apps = import.meta.glob('./src/*.vue')
