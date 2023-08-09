@@ -155,7 +155,7 @@ If you use volar, please add the global component type definition to compilerOpt
 - [x] Tooltip
 - [ ] Upload
 - [ ] Time picker
-- [ ] Time select
+- [x] Time select
 
 ## Breaking change list
 
