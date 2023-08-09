@@ -156,7 +156,7 @@ $iconActiveMargin: -4px;
     }
   }
   @include e(arrow) {
-    position: absolute;
+    position: absolute !important;
     z-index: 2;
     color: getColor(text, 0.6);
     right: 10px;
