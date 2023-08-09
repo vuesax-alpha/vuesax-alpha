@@ -58,7 +58,7 @@ const handleClickItem = () => {
 
 const itemKls = computed(() => [
   ns.b(),
-  ns.is('active', sidebar.modelValue.value == props.id),
+  ns.is('active', props.active || sidebar.modelValue.value == props.id),
   ns.is('has-icon', Boolean(slots.icon)),
 ])
 </script>

@@ -9,4 +9,5 @@ export const sidebarItemProps = buildProps({
   },
   id: String,
   arrow: Boolean,
+  active: Boolean,
 } as const)
