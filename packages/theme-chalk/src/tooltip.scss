@@ -31,25 +31,25 @@
     color: getColor('color');
     box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, getCssVar(shadow-opacity));
 
-    &[data-popper-placement='top'] {
+    &[data-popper-placement*='top'] {
       border-bottom: 4px solid getColor('color');
       &:after {
         bottom: -7px;
       }
     }
-    &[data-popper-placement='left'] {
+    &[data-popper-placement*='left'] {
       border-right: 4px solid getColor('color');
       &:after {
         right: -7px;
       }
     }
-    &[data-popper-placement='right'] {
+    &[data-popper-placement*='right'] {
       border-left: 4px solid getColor('color');
       &:after {
         left: -7px;
       }
     }
-    &[data-popper-placement='bottom'] {
+    &[data-popper-placement*='bottom'] {
       border-top: 4px solid getColor('color');
       &:after {
         top: -7px;

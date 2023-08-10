@@ -19,16 +19,16 @@
 .tooltip-enter-from,
 .tooltip-leave-to {
   opacity: 0;
-  &[data-popper-placement='top'] {
+  &[data-popper-placement*='top'] {
     transform: translate(0, 5px);
   }
-  &[data-popper-placement='bottom'] {
+  &[data-popper-placement*='bottom'] {
     transform: translate(0, -5px);
   }
-  &[data-popper-placement='left'] {
+  &[data-popper-placement*='left'] {
     transform: translate(5px);
   }
-  &[data-popper-placement='right'] {
+  &[data-popper-placement*='right'] {
     transform: translate(-5px);
   }
 }
