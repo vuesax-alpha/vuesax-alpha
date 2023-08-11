@@ -181,27 +181,27 @@ provide(popperContextKey, {
 defineExpose(
   reactive({
     /**
-     * @description el-popper component instance
+     * @description popper component instance
      */
     triggerRef,
     /**
-     * @description el-tooltip-content component instance
+     * @description tooltip-content component instance
      */
     contentRef,
     /**
-     * @description validate current focus event is trigger inside el-tooltip-content
+     * @description validate current focus event is trigger inside tooltip-content
      */
     isFocusInsideContent,
     /**
-     * @description update el-popper component instance
+     * @description update popper component instance
      */
     updatePopper,
     /**
-     * @description expose onOpen function to mange el-tooltip open state
+     * @description expose onOpen function to mange tooltip open state
      */
     onOpen,
     /**
-     * @description expose onOpen function to mange el-tooltip open state
+     * @description expose onOpen function to mange tooltip open state
      */
     onClose,
     /**
