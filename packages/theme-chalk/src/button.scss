@@ -182,29 +182,29 @@
   }
 
   // SIZE -----
-  @include m(size) {
-    &-xl {
+  @include e(size) {
+    @include m(xl) {
       border-radius: 20px;
       @include e(content) {
         padding: 15px 20px;
         font-size: 1.1rem;
       }
     }
-    &-large {
+    @include m(large) {
       font-size: 1rem;
       border-radius: 15px;
       @include e(content) {
         padding: 10px 15px;
       }
     }
-    &-small {
+    @include m(small) {
       font-size: 0.75rem;
       border-radius: 9px;
       @include e(content) {
         padding: 5px 10px;
       }
     }
-    &-mini {
+    @include m(mini) {
       font-size: 0.6rem;
       border-radius: 7px;
       @include e(content) {
