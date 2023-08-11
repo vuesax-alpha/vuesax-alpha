@@ -2,8 +2,7 @@
 @use 'common/var' as *;
 
 @include b(popconfirm) {
-  // background: getColor('color');
-  background-color: getColor(background);
+  background-color: getColor('background');
   color: getColor('text');
   padding: 8px 10px;
   border-radius: 12px;
@@ -18,7 +17,7 @@
     align-items: center;
   }
   @include e(icon) {
-    margin-right: 6px;
+    margin-right: 5px;
   }
   @include e(action) {
     text-align: right;

@@ -4,7 +4,7 @@
     trigger="click"
     color="light"
     v-bind="$attrs"
-    :popper-class="`${ns.namespace.value}-popover`"
+    :popper-class="`${ns.namespace.value}-popconfirm`"
     :popper-style="style"
     :teleported="teleported"
     :fallback-placements="['bottom', 'top', 'right', 'left']"
@@ -12,36 +12,34 @@
     :persistent="persistent"
   >
     <template #content>
-      <div :class="ns.b()">
-        <div :class="ns.e('main')">
-          <vs-icon
-            v-if="!hideIcon && icon"
-            :class="ns.e('icon')"
-            :style="{ color: iconColor }"
-            size="26"
-          >
-            <component :is="icon" />
-          </vs-icon>
-          {{ title }}
-        </div>
-        <div :class="ns.e('action')">
-          <vs-button
-            size="small"
-            :color="cancelButtonColor"
-            :type="cancelButtonType"
-            @click="cancel"
-          >
-            {{ finalCancelButtonText }}
-          </vs-button>
-          <vs-button
-            size="small"
-            :color="confirmButtonColor"
-            :type="confirmButtonType"
-            @click="confirm"
-          >
-            {{ finalConfirmButtonText }}
-          </vs-button>
-        </div>
+      <div :class="ns.e('main')">
+        <vs-icon
+          v-if="!hideIcon && icon"
+          :class="ns.e('icon')"
+          :style="{ color: iconColor }"
+          size="26"
+        >
+          <component :is="icon" />
+        </vs-icon>
+        {{ title }}
+      </div>
+      <div :class="ns.e('action')">
+        <vs-button
+          size="small"
+          :color="cancelButtonColor"
+          :type="cancelButtonType"
+          @click="cancel"
+        >
+          {{ finalCancelButtonText }}
+        </vs-button>
+        <vs-button
+          size="small"
+          :color="confirmButtonColor"
+          :type="confirmButtonType"
+          @click="confirm"
+        >
+          {{ finalConfirmButtonText }}
+        </vs-button>
       </div>
     </template>
     <template v-if="$slots.reference">
