@@ -22,7 +22,7 @@
       </span>
     </div>
 
-    <label v-if="$slots.default" :for="uid" :class="ns.e('label')">
+    <label v-if="$slots.default || label" :for="uid" :class="ns.e('label')">
       <slot>{{ label }}</slot>
     </label>
   </div>

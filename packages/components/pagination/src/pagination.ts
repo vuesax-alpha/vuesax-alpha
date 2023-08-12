@@ -298,17 +298,34 @@ export default defineComponent({
       },
     })
 
-    // const isMobile = computed(() => window.innerWidth < 600)
+    watch(currentPageBridge, (newValue, oldValue) => {
+      if (isPagerDisabled(newValue) || isPagerLoading(newValue)) {
+        let newVal = newValue
+        if (newValue > oldValue) {
+          newVal += 1
+        } else {
+          newVal -= 1
+        }
 
-    // const pageProgress = computed(
-    //   () =>
-    //     (currentPageBridge.value * 100) /
-    //     (pageSizeBridge.value * pageCountBridge.value)
-    // )
+        if (newVal > pageCountBridge.value) {
+          newVal = props.infinite ? 1 : oldValue
+        } else if (newVal <= 0) {
+          newVal = props.infinite ? pageCountBridge.value : newValue + 1
+        }
+
+        currentPageBridge.value = newVal
+      }
+    })
 
     watch(pageCountBridge, (val) => {
       if (currentPageBridge.value > val) currentPageBridge.value = val
     })
+
+    const isPagerLoading = (pager = Number.NaN) =>
+      props.loadingItems.includes(pager)
+
+    const isPagerDisabled = (pager = Number.NaN) =>
+      props.disabled || props.disabledItems.includes(pager)
 
     function handleCurrentChange(val: number) {
       currentPageBridge.value = val
@@ -349,6 +366,10 @@ export default defineComponent({
       currentPage: currentPageBridge,
       buttonsDotted: computed(() => props.buttonsDotted),
       infinite: computed(() => props.infinite),
+      loadingItems: computed(() => props.loadingItems),
+      disabledItems: computed(() => props.disabledItems),
+      isPagerDisabled,
+      isPagerLoading,
       changeEvent: handleCurrentChange,
       handleSizeChange,
     })

@@ -6,6 +6,10 @@ export interface PaginationContext {
   disabled: ComputedRef<boolean>
   buttonsDotted: ComputedRef<boolean>
   infinite: ComputedRef<boolean>
+  loadingItems: ComputedRef<number[]>
+  disabledItems: ComputedRef<number[]>
+  isPagerLoading: (pager: number) => boolean
+  isPagerDisabled: (pager: number) => boolean
   changeEvent: (val: number) => void
   handleSizeChange: (val: number) => void
 }

@@ -4,16 +4,19 @@
       v-if="pageCount > 0"
       :class="[
         nsPager.is('active', currentPage === 1),
-        nsPager.is('disabled', disabled),
+        nsPager.is('disabled', isPagerDisabled(1)),
+        nsPager.is('loading', isPagerLoading(1)),
       ]"
       class="number"
       :aria-current="currentPage === 1"
       aria-label="1"
-      :tabindex="tabindex"
+      :tabindex="tabindex(1)"
       @click="onPageClick(1)"
       @keyup.enter="onPageClick(1)"
     >
       {{ buttonsDotted ? '' : 1 }}
+
+      <icon-loading v-if="isPagerLoading(1)" :class="nsPager.e('loading')" />
     </button>
     <button
       v-if="showPrevMore && !buttonsDotted"
@@ -23,7 +26,7 @@
         nsIcon.b(),
         nsPager.is('disabled', disabled),
       ]"
-      :tabindex="tabindex"
+      :tabindex="tabindex()"
       @mouseenter="onMouseEnter(true)"
       @mouseleave="quickPrevHover = false"
       @focus="onFocus(true)"
@@ -39,16 +42,22 @@
       :key="pager"
       :class="[
         nsPager.is('active', currentPage === pager),
-        nsPager.is('disabled', disabled),
+        nsPager.is('disabled', isPagerDisabled(pager)),
+        nsPager.is('loading', isPagerLoading(pager)),
       ]"
       class="number"
       :aria-label="`${pager}`"
       :aria-current="currentPage === pager"
-      :tabindex="tabindex"
+      :tabindex="tabindex(pager)"
       @click="onPageClick(pager)"
       @keyup.enter="onPageClick(pager)"
     >
       {{ buttonsDotted ? '' : pager }}
+
+      <icon-loading
+        v-if="isPagerLoading(pager)"
+        :class="nsPager.e('loading')"
+      />
     </button>
     <button
       v-if="showNextMore && !buttonsDotted"
@@ -58,7 +67,7 @@
         nsIcon.b(),
         nsPager.is('disabled', disabled),
       ]"
-      :tabindex="tabindex"
+      :tabindex="tabindex()"
       @mouseenter="onMouseEnter()"
       @mouseleave="quickNextHover = false"
       @focus="onFocus()"
@@ -73,16 +82,22 @@
       v-if="pageCount > 1"
       :class="[
         nsPager.is('active', currentPage === pageCount),
-        nsPager.is('disabled', disabled),
+        nsPager.is('disabled', isPagerDisabled(pageCount)),
+        nsPager.is('loading', isPagerLoading(pageCount)),
       ]"
       class="number"
       :aria-current="currentPage === pageCount"
       :aria-label="`${pageCount}`"
-      :tabindex="tabindex"
+      :tabindex="tabindex(pageCount)"
       @click="onPageClick(pageCount)"
       @keyup.enter="onPageClick(pageCount)"
     >
       {{ buttonsDotted ? '' : pageCount }}
+
+      <icon-loading
+        v-if="isPagerLoading(pageCount)"
+        :class="nsPager.e('loading')"
+      />
     </button>
 
     <div
@@ -101,6 +116,7 @@ import { computed, nextTick, reactive, ref, watch, watchEffect } from 'vue'
 import { isNil } from 'lodash-unified'
 import { useNamespace } from '@vuesax-alpha/hooks'
 import { ChevronLeftDouble, ChevronRightDouble } from '@vuesax-alpha/icons-vue'
+import { IconLoading } from '@vuesax-alpha/components/icon'
 import { usePagination } from '../usePagination'
 import { paginationPagerProps } from './pager'
 import PaginationProgress from './progress.vue'
@@ -113,7 +129,14 @@ const props = defineProps(paginationPagerProps)
 const emit = defineEmits(['change'])
 const nsPager = useNamespace('pager')
 const nsIcon = useNamespace('icon')
-const { currentPage, disabled, pageCount, buttonsDotted } = usePagination()
+const {
+  currentPage,
+  disabled,
+  pageCount,
+  buttonsDotted,
+  isPagerDisabled,
+  isPagerLoading,
+} = usePagination()
 
 const pagerRef = ref<HTMLElement>()
 const showPrevMore = ref(false)
@@ -166,7 +189,8 @@ const pagers = computed(() => {
   }
   return array
 })
-const tabindex = computed(() => (disabled.value ? -1 : 0))
+
+const tabindex = (index = Number.NaN) => (isPagerDisabled(index) ? -1 : 0)
 
 watchEffect(() => {
   const halfPagerCount = (props.pagerCount - 1) / 2
