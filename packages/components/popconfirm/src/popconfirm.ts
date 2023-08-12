@@ -2,11 +2,13 @@ import { MessageQuestion } from '@vuesax-alpha/icons-vue'
 import { buildProps, iconPropType } from '@vuesax-alpha/utils'
 import { popperContentProps } from '@vuesax-alpha/components/popper'
 import { useColorProp } from '@vuesax-alpha/hooks'
-import { buttonTypes } from '@vuesax-alpha/components/button'
+import { buttonSizes, buttonTypes } from '@vuesax-alpha/components/button'
+import { tooltipProps } from '@vuesax-alpha/components/tooltip'
 import type { ExtractPropTypes } from 'vue'
 import type Popconfirm from './popconfirm.vue'
 
 export const popconfirmProps = buildProps({
+  animation: tooltipProps.animation,
   /**
    * @description Title
    */
@@ -31,6 +33,11 @@ export const popconfirmProps = buildProps({
     values: buttonTypes,
     default: 'flat',
   },
+  confirmButtonSize: {
+    type: String,
+    values: buttonSizes,
+    default: 'small',
+  },
   /**
    * @description Cancel button color
    */
@@ -42,6 +49,11 @@ export const popconfirmProps = buildProps({
     type: String,
     values: buttonTypes,
     default: 'transparent',
+  },
+  cancelButtonSize: {
+    type: String,
+    values: buttonSizes,
+    default: 'small',
   },
   /**
    * @description Icon Component
