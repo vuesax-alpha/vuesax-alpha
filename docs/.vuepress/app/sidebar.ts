@@ -19,11 +19,15 @@ export const enSidebar: SidebarConfig = [
     ],
   },
   {
-    text: 'Theme',
+    text: 'Basic',
     children: [
       {
         text: 'Colors',
         link: '/theme/',
+      },
+      {
+        text: 'Icons',
+        link: '/icons/',
       },
     ],
   },
