@@ -25,6 +25,7 @@ declare module '@vue/runtime-core' {
     VsOption: typeof import('../packages/vuesax-alpha')['VsOption']
     VsOptionGroup: typeof import('../packages/vuesax-alpha')['VsOptionGroup']
     VsPagination: typeof import('../packages/vuesax-alpha')['VsPagination']
+    VsPopconfirm: typeof import('../packages/vuesax-alpha')['VsPopconfirm']
     VsPopper: typeof import('../packages/vuesax-alpha')['VsPopper']
     VsRate: typeof import('../packages/vuesax-alpha')['VsRate']
     VsRadio: typeof import('../packages/vuesax-alpha')['VsRadio']

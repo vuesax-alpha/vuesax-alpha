@@ -59,7 +59,7 @@ const buttonClasses = computed(() => {
     props.block && ns.m('block'),
     props.icon && ns.m('icon'),
     props.loading && ns.m('loading'),
-    ns.bm('size', props.size),
+    ns.em('size', props.size),
     ns.m(props.type),
     props.upload && ns.m('upload'),
   ]

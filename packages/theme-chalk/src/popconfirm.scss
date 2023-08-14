@@ -1,0 +1,28 @@
+@use 'mixins/mixins' as *;
+@use 'common/var' as *;
+
+@include b(popconfirm) {
+  background-color: getColor('background');
+  color: getColor('text');
+  padding: 8px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  max-width: 350px;
+  min-width: 30px;
+  min-height: 30px;
+  box-shadow: 0px 2px 32px 0px rgba(0, 0, 0, getCssVar(shadow-opacity));
+
+  @include e(main) {
+    display: flex;
+    align-items: center;
+  }
+  @include e(icon) {
+    margin-right: 5px;
+  }
+  @include e(action) {
+    text-align: right;
+    margin-top: 8px;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

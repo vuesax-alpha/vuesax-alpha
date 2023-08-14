@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@vuepress/shared-utils": "1.9.9",
+    "@vuesax-alpha/icons-vue": "0.0.2-beta.11",
     "@vueuse/components": "^9.13.0",
     "@vueuse/core": "^9.13.0",
     "@vueuse/motion": "2.0.0-beta.12",

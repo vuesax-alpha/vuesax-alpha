@@ -24,6 +24,8 @@
   background: getColor(gray-3);
   transition: getCssVar(transition-ease);
   overflow: hidden;
+  cursor: pointer;
+  user-select: none;
 
   @include when(icon) {
     .#{$namespace}-switch__input {
@@ -112,6 +114,7 @@
     position: relative;
     overflow: hidden;
     white-space: nowrap;
+    user-select: none;
 
     @include when(on) {
       transform: translate(-100%);
@@ -143,6 +146,7 @@
     position: absolute;
     width: 100%;
     opacity: 0 !important;
+    z-index: -1;
     height: 100%;
     border-radius: inherit;
     top: 0px;

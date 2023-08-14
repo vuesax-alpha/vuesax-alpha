@@ -160,6 +160,7 @@ importers:
       '@vuepress/plugin-register-components': 2.0.0-beta.62
       '@vuepress/plugin-theme-data': 2.0.0-beta.62
       '@vuepress/shared-utils': 1.9.9
+      '@vuesax-alpha/icons-vue': 0.0.2-beta.11
       '@vueuse/components': ^9.13.0
       '@vueuse/core': ^9.13.0
       '@vueuse/motion': 2.0.0-beta.12
@@ -174,6 +175,7 @@ importers:
       vuesax-alpha: npm:vuesax-alpha@latest
     dependencies:
       '@vuepress/shared-utils': 1.9.9
+      '@vuesax-alpha/icons-vue': 0.0.2-beta.11_vue@3.3.1
       '@vueuse/components': 9.13.0_vue@3.3.1
       '@vueuse/core': 9.13.0_vue@3.3.1
       '@vueuse/motion': 2.0.0-beta.12_vue@3.3.1
@@ -184,7 +186,7 @@ importers:
       prismjs: 1.29.0
       vue: 3.3.1
       vue-router: 4.2.0_vue@3.3.1
-      vuesax-alpha: 0.2.0-beta.39_vue@3.3.1
+      vuesax-alpha: 0.2.0-beta.48_vue@3.3.1
     devDependencies:
       '@types/prismjs': 1.26.0
       '@vuepress/client': 2.0.0-beta.62
@@ -4318,6 +4320,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@vuesax-alpha/icons-vue/0.0.2-beta.11_vue@3.3.1:
+    resolution: {integrity: sha512-tmTXL8sC0hdNGtqSUyh0sfnS9WYaNG/L0yP8uwkJuQqRh70DMUXsj3WU4JWEwm0Nv+aTRKSyGDDWUhauUsqLGw==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      vue: 3.3.1
+    dev: false
 
   /@vuesax-alpha/icons-vue/0.0.2-beta.9_vue@3.3.1:
     resolution: {integrity: sha512-7F3b6TBglSVEo4fONc5k83ZbPJNjVCfQni7uHFSvQwlZTvp8QzOkwpP6rHdOHZiZC+DoiYpzB6ZZvH5udSdnvQ==}
@@ -13387,8 +13397,8 @@ packages:
       - webpack
     dev: true
 
-  /vuesax-alpha/0.2.0-beta.39_vue@3.3.1:
-    resolution: {integrity: sha512-wjNMwNUwJST/Rv0pntOhqiqHoVyYKMfQWLnZexXW0awKn+IRaxoexeLt9nbMEwhf2C5Uc6bRoVcyMW3veUwIRg==}
+  /vuesax-alpha/0.2.0-beta.48_vue@3.3.1:
+    resolution: {integrity: sha512-kRDB0OfoFAPEF0sXLCkbTX09hzLtzSvvp3Pl5RtJ1VOM+JoceWEbWB4O6DhijkSCR+dKj3enSUtYlNlONH+7rw==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:

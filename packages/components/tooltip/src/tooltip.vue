@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useBaseComponent, useNamespace } from '@vuesax-alpha/hooks'
 import { VsPopper } from '@vuesax-alpha/components/popper'
 import { getVsColor } from '@vuesax-alpha/utils'
@@ -79,9 +79,5 @@ const tooltipKls = computed(() => [
 
 useTooltipDeprecated(props)
 
-defineExpose(
-  reactive({
-    ...popperRef.value!,
-  })
-)
+defineExpose({ popperRef })
 </script>

@@ -4,6 +4,19 @@ import { buildProps } from '@vuesax-alpha/utils'
 import type { ExtractPropTypes } from 'vue'
 import type Button from './button.vue'
 
+export const buttonTypes = [
+  'default',
+  'border',
+  'flat',
+  'floating',
+  'gradient',
+  'shadow',
+  'relief',
+  'transparent',
+] as const
+
+export const buttonSizes = ['xl', 'large', 'default', 'small', 'mini'] as const
+
 export const buttonProps = buildProps({
   /**
    * @description Determine if the component is active and change its style to that state.
@@ -66,7 +79,7 @@ export const buttonProps = buildProps({
    */
   size: {
     type: [Number, String],
-    values: ['xl', 'large', 'default', 'small', 'mini'] as const,
+    values: buttonSizes,
     default: 'default',
   },
 
@@ -86,16 +99,7 @@ export const buttonProps = buildProps({
    */
   type: {
     type: String,
-    values: [
-      'default',
-      'border',
-      'flat',
-      'floating',
-      'gradient',
-      'shadow',
-      'relief',
-      'transparent',
-    ] as const,
+    values: buttonTypes,
     default: 'default',
   },
 
