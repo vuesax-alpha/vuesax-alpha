@@ -6,7 +6,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import esbuild from 'rollup-plugin-esbuild'
 import glob from 'fast-glob'
-import { excludeFiles, pkgRoot, vsRoot } from '@vuesax-alpha/build-utils'
+import { excludeFiles, pkgRoot } from '@vuesax-alpha/build-utils'
 import { generateExternal, writeBundles } from '../utils'
 import { VuesaxAlphaAlias } from '../plugins/vuesax-alpha-alias'
 import { buildConfigEntries, target } from '../build-info'
@@ -58,7 +58,7 @@ export const buildModules = async () => {
         dir: config.output.path,
         exports: module === 'cjs' ? 'named' : undefined,
         preserveModules: true,
-        preserveModulesRoot: vsRoot,
+        preserveModulesRoot: pkgRoot,
         sourcemap: true,
         entryFileNames: `[name].${config.ext}`,
       }
