@@ -2,6 +2,16 @@ import { getPackageDependencies, vsPackage } from '@vuesax-alpha/build-utils'
 
 import type { OutputOptions, RollupBuild } from 'rollup'
 
+/**
+ * ReferenceError: __name is not defined
+ * https://github.com/vuejs/core/issues/8303
+ */
+const __defProp = Object.defineProperty
+const __name = (target: any, value: any) =>
+  __defProp(target, 'name', { value, configurable: true })
+
+;(globalThis as any).__name = __name
+
 export const generateExternal = async (options: { full: boolean }) => {
   const { dependencies, peerDependencies } = getPackageDependencies(vsPackage)
 
