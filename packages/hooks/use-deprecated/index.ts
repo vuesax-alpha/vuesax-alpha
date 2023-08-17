@@ -1,7 +1,7 @@
 import { unref, watch } from 'vue'
 import { debugWarn } from '@vuesax-alpha/utils'
 
-import type { MaybeRef } from '@vueuse/core'
+import type { MaybeRef } from '@vuesax-alpha/utils'
 
 type DeprecationParam = {
   from: string

@@ -1,7 +1,7 @@
 <template>
   <button
     :class="[ns.b(), ns.is('active', active || isActive)]"
-    @click="handleClickItem"
+    @click="handleClickItem($router)"
   >
     <slot>{{ link?.text }}</slot>
   </button>
@@ -9,7 +9,6 @@
 
 <script lang="ts" setup>
 import { inject, onBeforeUnmount } from 'vue'
-import { useRouter } from 'vue-router'
 import { throwError } from '@vuesax-alpha/utils'
 import { useNamespace } from '@vuesax-alpha/hooks'
 import {
@@ -17,6 +16,7 @@ import {
   navbarRegisterContextKey,
 } from '@vuesax-alpha/tokens/navbar'
 import { navbarItemProps } from './navbar-item'
+import type { Router } from 'vue-router'
 
 defineOptions({
   name: 'VsNavbarItem',
@@ -31,15 +31,13 @@ if (!navbarRegister) {
   throwError('navbar-item', 'need to call inside navbar component')
 }
 
-const router = useRouter()
-
 const { unregister, onClick, isActive } = navbarRegister(props.id)
 
 const navbarGroup = navbarGroupRegister?.(props.id)
 
 const ns = useNamespace('navbar-item')
 
-const handleClickItem = () => {
+const handleClickItem = (router: Router) => {
   onClick()
 
   if (props.to) {

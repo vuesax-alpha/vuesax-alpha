@@ -14,10 +14,11 @@ import {
   useZIndex,
   zIndexContextKey,
 } from '../use-z-index'
-import type { MaybeRef } from '@vueuse/core'
+import type { MaybeRef } from '@vuesax-alpha/utils'
 import type { App, Ref } from 'vue'
 import type { ConfigProviderContext } from '@vuesax-alpha/tokens'
 
+// this is meant to fix global methods like `VsNotification(opts)`
 const globalConfig = ref<ConfigProviderContext>()
 
 export function useGlobalConfig<

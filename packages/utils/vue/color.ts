@@ -1,7 +1,8 @@
 import { computed, getCurrentInstance } from 'vue'
-import { debugWarn, getVsColor } from '@vuesax-alpha/utils'
 import { useAttrs } from '@vuesax-alpha/hooks'
 import { componentColors } from '@vuesax-alpha/constants'
+import { getVsColor } from '../color'
+import { debugWarn } from '../error'
 
 export const getComponentColor = () => {
   const instance = getCurrentInstance()

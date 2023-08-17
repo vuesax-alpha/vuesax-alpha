@@ -1,6 +1,6 @@
 {
   "name": "vuesax-alpha",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "A Component Library for Vue 3",
   "keywords": [
     "vuesax-alpha",
@@ -56,6 +56,7 @@
     "@ctrl/tinycolor": "^3.4.1",
     "@types/lodash": "^4.14.182",
     "@types/lodash-es": "^4.17.6",
+    "@vuesax-alpha/icons-vue": "0.0.2-beta.11",
     "@vueuse/core": "^9.1.0",
     "async-validator": "^4.2.5",
     "dayjs": "^1.11.3",

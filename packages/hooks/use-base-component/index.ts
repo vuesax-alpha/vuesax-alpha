@@ -1,7 +1,7 @@
 import { computed, unref } from 'vue'
 import { vuesaxColors } from '@vuesax-alpha/constants'
 import { useNamespace } from '../use-namespace'
-import type { MaybeRef } from '@vueuse/core'
+import type { MaybeRef } from '@vuesax-alpha/utils'
 
 export const useBaseComponent = (color?: MaybeRef<string | undefined>) => {
   const ns = useNamespace('component')

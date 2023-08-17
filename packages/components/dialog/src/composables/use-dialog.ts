@@ -1,5 +1,5 @@
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
-import { isClient, useTimeoutFn } from '@vueuse/core'
+import { useTimeoutFn } from '@vueuse/core'
 import {
   useBaseComponent,
   useLockscreen,
@@ -7,8 +7,8 @@ import {
   useZIndex,
 } from '@vuesax-alpha/hooks'
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
-import { getVsColor } from '@vuesax-alpha/utils'
-import type { DialogEmitFn, DialogProps } from './../dialog'
+import { getVsColor, isClient } from '@vuesax-alpha/utils'
+import type { DialogEmitFn, DialogProps } from '../dialog'
 
 export const useDialog = (props: DialogProps, emit: DialogEmitFn) => {
   const rebound = ref(false)

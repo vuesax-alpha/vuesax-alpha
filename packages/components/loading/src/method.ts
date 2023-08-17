@@ -1,8 +1,7 @@
 // @ts-nocheck
 import { createVNode, ref, render, unref } from 'vue'
-import { isClient } from '@vueuse/shared'
 import { unrefElement } from '@vueuse/core'
-import { debugWarn, isElement, isString } from '@vuesax-alpha/utils'
+import { debugWarn, isClient, isElement, isString } from '@vuesax-alpha/utils'
 import { LOADING_RECT, SCALE_PARENT } from '@vuesax-alpha/constants'
 import LoadingConstructor from './loading.vue'
 import type { LoadingFn, LoadingParams, LoadingParamsRef } from './loading'

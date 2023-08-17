@@ -1,5 +1,5 @@
 import { computed, onBeforeMount } from 'vue'
-import { isClient } from '@vueuse/core'
+import { isClient } from '@vuesax-alpha/utils'
 import { useGlobalConfig } from '../use-global-config'
 import { defaultNamespace } from '../use-namespace'
 import { useIdInjection } from '../use-id'

@@ -1,11 +1,10 @@
 import { computed, getCurrentInstance, inject, unref } from 'vue'
-import { isClient } from '@vueuse/core'
-import { debugWarn } from '@vuesax-alpha/utils'
+import { debugWarn, isClient } from '@vuesax-alpha/utils'
 import { useGlobalConfig } from '../use-global-config'
 import { defaultNamespace } from '../use-namespace'
 
 import type { InjectionKey, Ref } from 'vue'
-import type { MaybeRef } from '@vueuse/core'
+import type { MaybeRef } from '@vuesax-alpha/utils'
 
 export type IdInjectionContext = {
   prefix: number

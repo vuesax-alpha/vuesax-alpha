@@ -7,7 +7,6 @@ import {
   triggerRef,
   watch,
 } from 'vue'
-import { isObject } from '@vue/shared'
 import {
   isArray,
   isEqual,
@@ -15,12 +14,13 @@ import {
   last,
   debounce as lodashDebounce,
 } from 'lodash-unified'
-import { isClient } from '@vueuse/core'
 import { EVENT_CODE, UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import {
   isBoolean,
+  isClient,
   isFunction,
   isKorean,
+  isObject,
   removeStyle,
   scrollIntoView,
   setStyle,
