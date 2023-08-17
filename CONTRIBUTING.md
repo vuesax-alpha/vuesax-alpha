@@ -4,7 +4,7 @@
 
 - Before opening issue please search for the keyword see whether the issue you encountered has been reported already.
 
-- Issues that with feature request should to go to [RFCs](https://github.com/vuesax-alphax/vuesax-alpha/issues). This helps us managing the project.
+- Issues that with feature request should to go to [RFCs](https://github.com/vuesax-alpha/vuesax-alpha/issues). This helps us managing the project.
 
 Next section is for those who wants to help develop Vuesax Alpha.
 
@@ -47,8 +47,7 @@ Ah, now you have installed the code correctly, you can choose:
 
 ```shell
 # If you would like to modify the website source code of https://vuesax.space
-# It was made with [VitePress](https://vitepress.vuejs.org)
-pnpm run docs:gen-locale # This generates locale files for your local development
+# It was made with Vuepress
 pnpm run docs:dev
 ```
 
@@ -75,7 +74,7 @@ pnpm build
 If you would like to compile the website code locally:
 
 ```shell
-DOC_ENV=production yarn docs:build
+pnpm docs:build
 ```
 
 ## Pulling request
