@@ -19,7 +19,7 @@ export const notificationPosition = [
   'bottom-left',
 ] as const
 
-export type NotificationPosition = typeof notificationPosition[number]
+export type NotificationPosition = (typeof notificationPosition)[number]
 
 export const notificationProps = buildProps({
   border: useColorProp,
