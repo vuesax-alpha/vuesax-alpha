@@ -24,8 +24,8 @@ defineOptions({
 
 const props = defineProps(navbarItemProps)
 
-const navbarRegister = inject(navbarRegisterContextKey)
-const navbarGroupRegister = inject(navbarGroupRegisterContextKey)
+const navbarRegister = inject(navbarRegisterContextKey, undefined)
+const navbarGroupRegister = inject(navbarGroupRegisterContextKey, undefined)
 
 if (!navbarRegister) {
   throwError('navbar-item', 'need to call inside navbar component')
