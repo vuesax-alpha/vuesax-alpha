@@ -30,7 +30,7 @@
           {
             [ns.em('placeholder', 'hidden')]:
               model ||
-              model !== 0 ||
+              model === 0 ||
               inputType == 'date' ||
               inputType == 'time',
           },
