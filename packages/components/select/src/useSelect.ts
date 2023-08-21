@@ -157,6 +157,15 @@ export const useSelect = (
     () => props.placeholder,
     (val) => {
       states.cachedPlaceHolder = states.currentPlaceholder = val
+
+      const hasValue =
+        props.multiple &&
+        Array.isArray(props.modelValue) &&
+        props.modelValue.length > 0
+
+      if (hasValue) {
+        states.currentPlaceholder = ''
+      }
     }
   )
 
