@@ -1,12 +1,4 @@
-import type { ComputedRef, InjectionKey, Ref } from 'vue'
-
-export type SidebarGroupContext = {
-  groupRef: Ref<HTMLElement | undefined>
-  contentRef: Ref<HTMLElement | undefined>
-}
-
-export const sidebarGroupContextKey: InjectionKey<SidebarGroupContext> =
-  Symbol('sidebar-group')
+import type { ComputedRef, InjectionKey } from 'vue'
 
 export type SidebarContext = {
   handleClickItem: (id: string) => void
