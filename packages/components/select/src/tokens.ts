@@ -13,7 +13,7 @@ export type SelectOptionContext = {
   visible: boolean
   hit: boolean
   hover: boolean
-  userCreated: boolean
+  created: boolean
   currentLabel: string
 }
 

@@ -154,6 +154,7 @@
         :native="nativeScrollbar"
         @mouseleave="hoverIndex = -1"
       >
+        <vs-option v-if="showNewOption" :value="query" :created="true" />
         <slot />
       </vs-scrollbar>
 
@@ -187,6 +188,7 @@ import VsPopper from '@vuesax-alpha/components/popper'
 import { ChevronDown } from '@vuesax-alpha/icons-vue'
 import { useBaseComponent, useColor, useNamespace } from '@vuesax-alpha/hooks'
 import { getVsColor } from '@vuesax-alpha/utils'
+import VsOption from './option.vue'
 import VsChip from './chip.vue'
 import { selectContextKey, selectRegisterKey } from './tokens'
 import { selectEmits, selectProps } from './select'
@@ -216,6 +218,7 @@ const colorCssVar = computed(() =>
 const optionsAnimation = computed(() => ns.b())
 
 const {
+  showNewOption,
   debouncedQueryChange,
   managePlaceholder,
   deletePrevTag,

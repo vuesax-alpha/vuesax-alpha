@@ -75,14 +75,14 @@ const currentLabel = computed(() => {
 })
 
 const isDisabled = computed(() => {
-  return props.disabled || optionContext.groupDisabled || limitReached.value
+  return props.disabled || states.groupDisabled || limitReached.value
 })
 
 const isSelected = computed(() => {
-  return select.selectedArray.some((e) => e.value == optionContext.value)
+  return select.selectedArray.some((e) => e.value == states.value)
 })
 
-const optionContext: SelectOptionContext = reactive({
+const states: SelectOptionContext = reactive({
   index: -1,
   el,
   value,
@@ -92,13 +92,13 @@ const optionContext: SelectOptionContext = reactive({
   visible: true,
   hit: false,
   hover: false,
-  userCreated: false,
+  created: props.created,
 })
 
-const { unregister, updateOption } = selectRegister(optionContext)
+const { unregister, updateOption } = selectRegister(states)
 
 const { unregister: optionGroupUnregister } =
-  optionGroupRegister?.(optionContext) || {}
+  optionGroupRegister?.(states) || {}
 
 onBeforeUnmount(() => {
   unregister()
@@ -107,27 +107,28 @@ onBeforeUnmount(() => {
 
 const hoverItem = () => {
   if (!props.disabled && !selectGroup.disabled) {
-    select.hoverIndex = select.optionsArray.indexOf(optionContext)
+    select.hoverIndex = select.optionsArray.indexOf(states)
   }
 }
 
 watch(currentLabel, () => {
-  if (!optionContext.userCreated) select.setSelected()
+  if (!props.created) select.setSelected()
 })
 
 watch(
   () => props.value,
   (val, oldVal) => {
     if (!Object.is(val, oldVal)) {
-      updateOption(optionContext)
+      updateOption(states)
     }
+    if (!props.created) select.setSelected()
   }
 )
 
 watch(
   () => selectGroup.disabled,
   (val) => {
-    optionContext.groupDisabled = val
+    states.groupDisabled = val
   },
   { immediate: true }
 )
@@ -136,8 +137,8 @@ watch(
   () => select.queryChange,
   (query) => {
     const regexp = new RegExp(escapeStringRegexp(`${query}`), 'i')
-    optionContext.visible = regexp.test(`${currentLabel.value}`)
-    if (!optionContext.visible) {
+    states.visible = regexp.test(`${currentLabel.value}`) || props.created
+    if (!states.visible) {
       select.states.filteredOptionsCount--
     }
   }
@@ -145,15 +146,15 @@ watch(
 
 const optionKls = computed(() => [
   ns.e('option'),
-  ns.is('hover', optionContext.hover),
+  ns.is('hover', states.hover),
   ns.is('active', isSelected.value),
   ns.is('disabled', isDisabled.value),
-  ns.is('hidden', !optionContext.visible),
+  ns.is('hidden', !states.visible),
 ])
 
 const selectOptionClick = () => {
-  if (props.disabled !== true && optionContext.groupDisabled !== true) {
-    select.handleOptionSelect(optionContext, true)
+  if (props.disabled !== true && states.groupDisabled !== true) {
+    select.handleOptionSelect(states, true)
   }
 }
 </script>
