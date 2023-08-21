@@ -106,6 +106,11 @@ export const selectProps = buildProps({
     type: String,
     default: null,
   },
+  shape: {
+    type: String,
+    values: ['square'] as const,
+    default: '',
+  },
   id: {
     type: String,
   },

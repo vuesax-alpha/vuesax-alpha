@@ -8,10 +8,10 @@ import {
   watch,
 } from 'vue'
 import {
+  findLastIndex,
   isArray,
   isEqual,
   isNil,
-  last,
   debounce as lodashDebounce,
 } from 'lodash-unified'
 import { EVENT_CODE, UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
@@ -42,6 +42,7 @@ export function useSelectStates(props: SelectProps): SelectStates {
     options: new Map(),
     cachedOptions: new Map(),
     selected: new Map(),
+    disabledOptions: new Map(),
     createdLabel: null,
     targetOnElement: null,
     createdSelected: false,
@@ -209,6 +210,7 @@ export const useSelect = (
     (val) => {
       if (!val) {
         input.value && input.value.blur()
+        handleQueryChange('')
         states.query = ''
         states.previousQuery = null
         states.selectedLabel = ''
@@ -494,15 +496,24 @@ export const useSelect = (
     }
   }
 
+  const getLastNotDisabledIndex = (value: SelectOptionValue[]) =>
+    findLastIndex(
+      value,
+      (it: SelectOptionValue) => !states.disabledOptions.has(it)
+    )
+
   const deletePrevTag = (e: KeyboardEvent) => {
     if (!props.multiple) return
+    if (e.code === EVENT_CODE.delete) return
 
     const value = (e.target as HTMLInputElement).value
 
     if (value.length <= 0 && !toggleLastOptionHitState()) {
       // @ts-ignore
       const value = props.modelValue.slice()
-      value.pop()
+      const lastNotDisabledIndex = getLastNotDisabledIndex(value)
+      if (lastNotDisabledIndex < 0) return
+      value.splice(lastNotDisabledIndex, 1)
       emit(UPDATE_MODEL_EVENT, value)
       emitChange(value)
     }
@@ -525,6 +536,7 @@ export const useSelect = (
       emitChange(value)
       emit('remove-tag', tag)
     }
+    focus()
   }
 
   const deleteSelected = () => {
@@ -541,6 +553,7 @@ export const useSelect = (
     states.hoverIndex = -1
     states.visible = false
     emit('clear')
+    focus()
   }
 
   const handleOptionSelect = (
@@ -643,6 +656,7 @@ export const useSelect = (
     states.filteredOptionsCount++
     states.options.set(value, option)
     states.cachedOptions.set(value, option)
+    option.isDisabled && states.disabledOptions.set(value, option)
   }
 
   const onOptionDestroy = (
@@ -661,7 +675,12 @@ export const useSelect = (
   }
 
   const toggleLastOptionHitState = (hit?: boolean) => {
-    const option = last(selectedArray.value)
+    if (!selectedArray.value.length) return
+
+    const lastNotDisabledIndex = getLastNotDisabledIndex(
+      selectedArray.value.map((it) => it.value)
+    )
+    const option = selectedArray.value[lastNotDisabledIndex]
     if (!option) return
 
     if (isBoolean(hit)) {

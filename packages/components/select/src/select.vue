@@ -32,7 +32,8 @@
         <vs-chip
           v-for="(item, cIndex) in selectedArray"
           :key="cIndex + 'chip'"
-          :closable="!selectDisabled && !item.isDisabled"
+          :shape="shape"
+          :disabled="selectDisabled || item.isDisabled"
           :hit="item.hit"
           @close="deleteTag(item.value)"
         >
@@ -40,7 +41,7 @@
         </vs-chip>
 
         <input
-          v-if="filter"
+          v-if="filter && !selectDisabled"
           ref="input"
           v-model="query"
           type="text"

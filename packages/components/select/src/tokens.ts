@@ -33,6 +33,7 @@ export type SelectStates = {
   options: Map<SelectOptionValue, SelectOptionContext>
   cachedOptions: Map<SelectOptionValue, SelectOptionContext>
   selected: Map<SelectOptionValue, SelectOptionContext>
+  disabledOptions: Map<SelectOptionValue, SelectOptionContext>
   createdLabel: string | null
   createdSelected: boolean
   targetOnElement: SelectTargetElement | null
