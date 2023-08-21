@@ -112,7 +112,7 @@ export const useSelect = (
   const showNewOption = computed(() => {
     const hasExistingOption = optionsArray.value
       .filter((option) => {
-        return !option.userCreated
+        return !option.created
       })
       .some((option) => {
         return option.currentLabel === states.query
@@ -360,7 +360,7 @@ export const useSelect = (
     const optionsInDropdown = optionsArray.value.filter(
       (n) => n.visible && !n.isDisabled && !n.groupDisabled
     )
-    const userCreatedOption = optionsInDropdown.find((n) => n.userCreated)
+    const userCreatedOption = optionsInDropdown.find((n) => n.created)
     const firstOriginOption = optionsInDropdown[0]
     states.hoverIndex = getValueIndex(
       optionsArray.value,
@@ -373,7 +373,7 @@ export const useSelect = (
 
     if (!props.multiple) {
       const option = getOption(props.modelValue as SelectOptionValue)
-      if (option.userCreated) {
+      if (option.created) {
         states.createdLabel = `${option.value}`
         states.createdSelected = true
       } else {
@@ -467,7 +467,7 @@ export const useSelect = (
   const onInputChange = () => {
     if (props.filter && states.query !== states.selectedLabel) {
       states.query = states.selectedLabel
-      handleQueryChange(states.query || '')
+      handleQueryChange(states.selectedLabel || '')
     }
   }
 
@@ -561,7 +561,7 @@ export const useSelect = (
       }
       emit(UPDATE_MODEL_EVENT, value)
       emitChange(value)
-      if (option.userCreated) {
+      if (option.created) {
         states.query = ''
         handleQueryChange('')
       }
