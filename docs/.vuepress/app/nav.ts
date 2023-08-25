@@ -15,8 +15,17 @@ export const enNavbar: NavbarConfig = [
     link: `/`,
     children: [
       {
-        text: `Theme`,
-        children: [{ text: `Color`, link: `/theme/` }],
+        text: 'Basic',
+        children: [
+          {
+            text: 'Colors',
+            link: '/theme/',
+          },
+          {
+            text: 'Icons',
+            link: '/icons/',
+          },
+        ],
       },
       {
         text: `Layout`,
@@ -51,6 +60,7 @@ export const enNavbar: NavbarConfig = [
           { text: 'Sidebar', link: `/components/sidebar` },
           { text: 'Card', link: `/components/card` },
           { text: 'Time select', link: `/components/time-select` },
+          { text: `Scrollbar`, link: `/components/scrollbar` },
           // new component slot 1
         ],
       },

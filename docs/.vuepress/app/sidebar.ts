@@ -52,6 +52,7 @@ export const enSidebar: SidebarConfig = [
       { text: `Sidebar`, link: `/components/sidebar` },
       { text: `Card`, link: `/components/card` },
       { text: `Time select`, link: `/components/time-select` },
+      { text: `Scrollbar`, link: `/components/scrollbar` },
       // new component slot 2
     ],
   },
