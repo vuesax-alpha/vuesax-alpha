@@ -47,7 +47,7 @@ $rate-height: map.merge(
     display: inline-block;
     font-size: getCssVar('rate-icon-size');
     margin-right: getCssVar('rate-icon-margin');
-    transition: getCssVar('transition-duration');
+    transition: getCssVar('transition-duration'), color 0s;
 
     &.hover {
       transform: scale(1.15);
