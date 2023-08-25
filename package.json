@@ -47,7 +47,7 @@
     "@vuesax-alpha/constants": "workspace:*",
     "@vuesax-alpha/directives": "workspace:*",
     "@vuesax-alpha/hooks": "workspace:*",
-    "@vuesax-alpha/icons-vue": "0.0.2-beta.11",
+    "@vuesax-alpha/icons-vue": "0.0.2-beta.12",
     "@vuesax-alpha/locale": "workspace:*",
     "@vuesax-alpha/test-utils": "workspace:*",
     "@vuesax-alpha/theme-chalk": "workspace:*",

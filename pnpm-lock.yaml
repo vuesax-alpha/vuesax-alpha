@@ -29,7 +29,7 @@ importers:
       '@vuesax-alpha/directives': workspace:*
       '@vuesax-alpha/eslint-config': workspace:*
       '@vuesax-alpha/hooks': workspace:*
-      '@vuesax-alpha/icons-vue': 0.0.2-beta.11
+      '@vuesax-alpha/icons-vue': 0.0.2-beta.12
       '@vuesax-alpha/locale': workspace:*
       '@vuesax-alpha/test-utils': workspace:*
       '@vuesax-alpha/theme-chalk': workspace:*
@@ -82,7 +82,7 @@ importers:
       '@vuesax-alpha/constants': link:packages/constants
       '@vuesax-alpha/directives': link:packages/directives
       '@vuesax-alpha/hooks': link:packages/hooks
-      '@vuesax-alpha/icons-vue': 0.0.2-beta.11_vue@3.2.45
+      '@vuesax-alpha/icons-vue': 0.0.2-beta.12_vue@3.2.45
       '@vuesax-alpha/locale': link:packages/locale
       '@vuesax-alpha/test-utils': link:packages/test-utils
       '@vuesax-alpha/theme-chalk': link:packages/theme-chalk
@@ -385,7 +385,7 @@ importers:
       '@types/lodash': ^4.14.182
       '@types/lodash-es': ^4.17.6
       '@types/node': '*'
-      '@vuesax-alpha/icons-vue': 0.0.2-beta.11
+      '@vuesax-alpha/icons-vue': 0.0.2-beta.12
       '@vueuse/core': ^9.1.0
       async-validator: ^4.2.5
       csstype: ^2.6.20
@@ -402,7 +402,7 @@ importers:
       '@ctrl/tinycolor': 3.5.0
       '@types/lodash': 4.14.191
       '@types/lodash-es': 4.17.6
-      '@vuesax-alpha/icons-vue': 0.0.2-beta.11_vue@3.2.45
+      '@vuesax-alpha/icons-vue': 0.0.2-beta.12_vue@3.2.45
       '@vueuse/core': 9.11.1_vue@3.2.45
       async-validator: 4.2.5
       dayjs: 1.11.7
@@ -3868,20 +3868,20 @@ packages:
       - supports-color
     dev: true
 
-  /@vuesax-alpha/icons-vue/0.0.2-beta.11_vue@3.2.45:
-    resolution: {integrity: sha512-tmTXL8sC0hdNGtqSUyh0sfnS9WYaNG/L0yP8uwkJuQqRh70DMUXsj3WU4JWEwm0Nv+aTRKSyGDDWUhauUsqLGw==}
-    peerDependencies:
-      vue: ^3.2.0
-    dependencies:
-      vue: 3.2.45
-    dev: false
-
   /@vuesax-alpha/icons-vue/0.0.2-beta.11_vue@3.3.1:
     resolution: {integrity: sha512-tmTXL8sC0hdNGtqSUyh0sfnS9WYaNG/L0yP8uwkJuQqRh70DMUXsj3WU4JWEwm0Nv+aTRKSyGDDWUhauUsqLGw==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
       vue: 3.3.1
+    dev: false
+
+  /@vuesax-alpha/icons-vue/0.0.2-beta.12_vue@3.2.45:
+    resolution: {integrity: sha512-uQ9/lVEtitCOb3P8wqj78wFRN8rGJsPgW7JaMth9vJFNqoV2fhu1dAjTu1KuR81uCCKy8mK4tvTOmcj61aVmSg==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      vue: 3.2.45
     dev: false
 
   /@vueuse/components/9.13.0_vue@3.3.1:
@@ -4058,7 +4058,7 @@ packages:
       '@types/semver': 7.3.13
       '@types/treeify': 1.0.0
       '@yarnpkg/fslib': 3.0.0-rc.36
-      '@yarnpkg/libzip': 3.0.0-rc.36_@yarnpkg+fslib@3.0.0-rc.36
+      '@yarnpkg/libzip': 3.0.0-rc.36
       '@yarnpkg/parsers': 3.0.0-rc.36
       '@yarnpkg/shell': 4.0.0-rc.36
       camelcase: 5.3.1
@@ -4088,7 +4088,7 @@ packages:
       '@types/semver': 7.3.13
       '@types/treeify': 1.0.0
       '@yarnpkg/fslib': 3.0.0-rc.36
-      '@yarnpkg/libzip': 3.0.0-rc.36_@yarnpkg+fslib@3.0.0-rc.36
+      '@yarnpkg/libzip': 3.0.0-rc.36
       '@yarnpkg/parsers': 3.0.0-rc.36
       '@yarnpkg/shell': 4.0.0-rc.36
       camelcase: 5.3.1
@@ -4139,11 +4139,9 @@ packages:
       '@types/emscripten': 1.39.6
       tslib: 1.14.1
 
-  /@yarnpkg/libzip/3.0.0-rc.36_@yarnpkg+fslib@3.0.0-rc.36:
+  /@yarnpkg/libzip/3.0.0-rc.36:
     resolution: {integrity: sha512-2Pj1uI097CjXJ5i1X6nKezLJ5lw6Bxr/JXz6gba0+94lmNJlha5daPPOtZry7VhtlSxe4qi88Jp+utX8r32+lg==}
     engines: {node: '>=14.15.0'}
-    peerDependencies:
-      '@yarnpkg/fslib': ^3.0.0-rc.36
     dependencies:
       '@types/emscripten': 1.39.6
       '@yarnpkg/fslib': 3.0.0-rc.36
