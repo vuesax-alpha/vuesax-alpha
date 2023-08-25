@@ -1,5 +1,5 @@
 import { onBeforeUnmount, onMounted } from 'vue'
-import { isClient } from '@vueuse/core'
+import { isClient } from '@vuesax-alpha/utils'
 import { EVENT_CODE } from '@vuesax-alpha/constants'
 
 let registeredEscapeHandlers: ((e: KeyboardEvent) => void)[] = []

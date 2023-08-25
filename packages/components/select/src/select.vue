@@ -32,7 +32,8 @@
         <vs-chip
           v-for="(item, cIndex) in selectedArray"
           :key="cIndex + 'chip'"
-          :closable="!selectDisabled && !item.isDisabled"
+          :shape="shape"
+          :disabled="selectDisabled || item.isDisabled"
           :hit="item.hit"
           @close="deleteTag(item.value)"
         >
@@ -40,7 +41,7 @@
         </vs-chip>
 
         <input
-          v-if="filter"
+          v-if="filter && !selectDisabled"
           ref="input"
           v-model="query"
           type="text"
@@ -154,6 +155,7 @@
         :native="nativeScrollbar"
         @mouseleave="hoverIndex = -1"
       >
+        <vs-option v-if="showNewOption" :value="query" :created="true" />
         <slot />
       </vs-scrollbar>
 
@@ -175,18 +177,19 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, onMounted, provide, reactive, toRefs } from 'vue'
-import { unrefElement, useResizeObserver } from '@vueuse/core'
+import { computed, nextTick, onMounted, provide, reactive } from 'vue'
+import { toRefs, unrefElement, useResizeObserver } from '@vueuse/core'
 import { isEqual } from 'lodash-unified'
 import { ClickOutside as vClickOutside } from '@vuesax-alpha/directives'
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
-import { IconClose, VsIcon } from '@vuesax-alpha/components/icon'
-import { VsCollapseTransition } from '@vuesax-alpha/components/collapse-transition'
-import { VsScrollbar } from '@vuesax-alpha/components/scrollbar'
-import { VsPopper } from '@vuesax-alpha/components/popper'
+import VsIcon, { IconClose } from '@vuesax-alpha/components/icon'
+import VsCollapseTransition from '@vuesax-alpha/components/collapse-transition'
+import VsScrollbar from '@vuesax-alpha/components/scrollbar'
+import VsPopper from '@vuesax-alpha/components/popper'
 import { ChevronDown } from '@vuesax-alpha/icons-vue'
 import { useBaseComponent, useColor, useNamespace } from '@vuesax-alpha/hooks'
 import { getVsColor } from '@vuesax-alpha/utils'
+import VsOption from './option.vue'
 import VsChip from './chip.vue'
 import { selectContextKey, selectRegisterKey } from './tokens'
 import { selectEmits, selectProps } from './select'
@@ -216,6 +219,7 @@ const colorCssVar = computed(() =>
 const optionsAnimation = computed(() => ns.b())
 
 const {
+  showNewOption,
   debouncedQueryChange,
   managePlaceholder,
   deletePrevTag,

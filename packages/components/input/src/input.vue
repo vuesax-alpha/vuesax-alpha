@@ -29,14 +29,16 @@
           { [ns.em('placeholder', 'float')]: labelFloat },
           {
             [ns.em('placeholder', 'hidden')]:
-              model || inputType == 'date' || inputType == 'time',
+              model ||
+              model === 0 ||
+              inputType == 'date' ||
+              inputType == 'time',
           },
         ]"
         @mousedown.prevent="NOOP"
       >
         {{ placeholder || label }}
       </label>
-      <template v-else />
 
       <label
         v-if="!labelFloat"
@@ -46,23 +48,18 @@
       >
         {{ label }}
       </label>
-      <template v-else />
 
-      <template v-if="$slots.icon">
-        <span
-          :class="[ns.e('icon')]"
-          @mousedown.prevent="NOOP"
-          @click="clickIcon"
-        >
-          <slot name="icon" />
-        </span>
-      </template>
-      <template v-else />
-
+      <span
+        v-if="$slots.icon"
+        :class="[ns.e('icon')]"
+        @mousedown.prevent="NOOP"
+        @click="clickIcon"
+      >
+        <slot name="icon" />
+      </span>
       <div v-if="loading" :class="ns.e('loading')">
         <icon-loading />
       </div>
-      <template v-else />
 
       <transition name="clearable-transition">
         <div v-if="showClear" :class="ns.e('clearable')">
@@ -100,7 +97,6 @@
         :style="{ width: `${progress}%` }"
       />
     </div>
-    <template v-else />
 
     <vs-collapse-transition v-for="message in messageType" :key="message">
       <div

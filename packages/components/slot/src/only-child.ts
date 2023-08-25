@@ -8,13 +8,13 @@ import {
   inject,
   withDirectives,
 } from 'vue'
-import { NOOP, isObject } from '@vue/shared'
+import { NOOP } from '@vue/shared'
 import {
   FORWARD_REF_INJECTION_KEY,
   useForwardRefDirective,
   useNamespace,
 } from '@vuesax-alpha/hooks'
-import { debugWarn } from '@vuesax-alpha/utils'
+import { debugWarn, isObject } from '@vuesax-alpha/utils'
 
 import type { Ref, VNode } from 'vue'
 

@@ -1,5 +1,4 @@
-import { isClient } from '@vueuse/core'
-import { isElement } from '@vuesax-alpha/utils'
+import { isClient, isElement } from '@vuesax-alpha/utils'
 
 import type {
   ComponentPublicInstance,

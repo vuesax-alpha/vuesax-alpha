@@ -1,4 +1,4 @@
-import type { PopperTriggerType } from '@vuesax-alpha/components'
+import type { PopperTriggerType } from '@vuesax-alpha/components/popper'
 import type { Arrayable } from '@vuesax-alpha/utils'
 import type { InjectionKey, Ref } from 'vue'
 

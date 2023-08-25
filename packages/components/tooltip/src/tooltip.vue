@@ -45,7 +45,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useBaseComponent, useNamespace } from '@vuesax-alpha/hooks'
-import { VsPopper } from '@vuesax-alpha/components/popper'
+import VsPopper from '@vuesax-alpha/components/popper'
 import { getVsColor } from '@vuesax-alpha/utils'
 import { tooltipProps } from './tooltip'
 import { useTooltipDeprecated } from './useTooltipDeprecated'

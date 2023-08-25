@@ -7,20 +7,20 @@ import {
   triggerRef,
   watch,
 } from 'vue'
-import { isObject } from '@vue/shared'
 import {
+  findLastIndex,
   isArray,
   isEqual,
   isNil,
-  last,
   debounce as lodashDebounce,
 } from 'lodash-unified'
-import { isClient } from '@vueuse/core'
 import { EVENT_CODE, UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import {
   isBoolean,
+  isClient,
   isFunction,
   isKorean,
+  isObject,
   removeStyle,
   scrollIntoView,
   setStyle,
@@ -42,6 +42,7 @@ export function useSelectStates(props: SelectProps): SelectStates {
     options: new Map(),
     cachedOptions: new Map(),
     selected: new Map(),
+    disabledOptions: new Map(),
     createdLabel: null,
     targetOnElement: null,
     createdSelected: false,
@@ -112,7 +113,7 @@ export const useSelect = (
   const showNewOption = computed(() => {
     const hasExistingOption = optionsArray.value
       .filter((option) => {
-        return !option.userCreated
+        return !option.created
       })
       .some((option) => {
         return option.currentLabel === states.query
@@ -157,6 +158,15 @@ export const useSelect = (
     () => props.placeholder,
     (val) => {
       states.cachedPlaceHolder = states.currentPlaceholder = val
+
+      const hasValue =
+        props.multiple &&
+        Array.isArray(props.modelValue) &&
+        props.modelValue.length > 0
+
+      if (hasValue) {
+        states.currentPlaceholder = ''
+      }
     }
   )
 
@@ -200,6 +210,7 @@ export const useSelect = (
     (val) => {
       if (!val) {
         input.value && input.value.blur()
+        handleQueryChange('')
         states.query = ''
         states.previousQuery = null
         states.selectedLabel = ''
@@ -360,7 +371,7 @@ export const useSelect = (
     const optionsInDropdown = optionsArray.value.filter(
       (n) => n.visible && !n.isDisabled && !n.groupDisabled
     )
-    const userCreatedOption = optionsInDropdown.find((n) => n.userCreated)
+    const userCreatedOption = optionsInDropdown.find((n) => n.created)
     const firstOriginOption = optionsInDropdown[0]
     states.hoverIndex = getValueIndex(
       optionsArray.value,
@@ -373,7 +384,7 @@ export const useSelect = (
 
     if (!props.multiple) {
       const option = getOption(props.modelValue as SelectOptionValue)
-      if (option.userCreated) {
+      if (option.created) {
         states.createdLabel = `${option.value}`
         states.createdSelected = true
       } else {
@@ -467,7 +478,7 @@ export const useSelect = (
   const onInputChange = () => {
     if (props.filter && states.query !== states.selectedLabel) {
       states.query = states.selectedLabel
-      handleQueryChange(states.query || '')
+      handleQueryChange(states.selectedLabel || '')
     }
   }
 
@@ -485,15 +496,24 @@ export const useSelect = (
     }
   }
 
+  const getLastNotDisabledIndex = (value: SelectOptionValue[]) =>
+    findLastIndex(
+      value,
+      (it: SelectOptionValue) => !states.disabledOptions.has(it)
+    )
+
   const deletePrevTag = (e: KeyboardEvent) => {
     if (!props.multiple) return
+    if (e.code === EVENT_CODE.delete) return
 
     const value = (e.target as HTMLInputElement).value
 
     if (value.length <= 0 && !toggleLastOptionHitState()) {
       // @ts-ignore
       const value = props.modelValue.slice()
-      value.pop()
+      const lastNotDisabledIndex = getLastNotDisabledIndex(value)
+      if (lastNotDisabledIndex < 0) return
+      value.splice(lastNotDisabledIndex, 1)
       emit(UPDATE_MODEL_EVENT, value)
       emitChange(value)
     }
@@ -516,6 +536,7 @@ export const useSelect = (
       emitChange(value)
       emit('remove-tag', tag)
     }
+    focus()
   }
 
   const deleteSelected = () => {
@@ -532,6 +553,7 @@ export const useSelect = (
     states.hoverIndex = -1
     states.visible = false
     emit('clear')
+    focus()
   }
 
   const handleOptionSelect = (
@@ -561,7 +583,7 @@ export const useSelect = (
       }
       emit(UPDATE_MODEL_EVENT, value)
       emitChange(value)
-      if (option.userCreated) {
+      if (option.created) {
         states.query = ''
         handleQueryChange('')
       }
@@ -634,6 +656,7 @@ export const useSelect = (
     states.filteredOptionsCount++
     states.options.set(value, option)
     states.cachedOptions.set(value, option)
+    option.isDisabled && states.disabledOptions.set(value, option)
   }
 
   const onOptionDestroy = (
@@ -652,7 +675,12 @@ export const useSelect = (
   }
 
   const toggleLastOptionHitState = (hit?: boolean) => {
-    const option = last(selectedArray.value)
+    if (!selectedArray.value.length) return
+
+    const lastNotDisabledIndex = getLastNotDisabledIndex(
+      selectedArray.value.map((it) => it.value)
+    )
+    const option = selectedArray.value[lastNotDisabledIndex]
     if (!option) return
 
     if (isBoolean(hit)) {

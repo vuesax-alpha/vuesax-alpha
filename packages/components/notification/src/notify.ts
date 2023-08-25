@@ -1,5 +1,5 @@
 import { createVNode, isVNode, render } from 'vue'
-import { isClient } from '@vueuse/core'
+import { isClient } from '@vuesax-alpha/utils'
 import {
   createContainer,
   useGlobalComponentSettings,

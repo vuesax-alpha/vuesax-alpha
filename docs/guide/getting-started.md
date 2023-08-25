@@ -83,7 +83,7 @@ There are cases that in your project you only need some components of vuesax and
 
 ```ts
 import { createApp } from 'vue'
-import { vsAlert, vsInput, vsPopup } from 'vuesax-alpha'
+import { VsAlert, VsInput, VsPopup } from 'vuesax-alpha'
 import App from './App.vue'
 
 import 'vuesax-alpha/theme-chalk/index.css'
@@ -92,7 +92,7 @@ import 'vuesax-alpha/theme-chalk/dark/css-vars.css'
 
 const app = createApp(App)
 
-app.use(vsPopup).use(vsAlert).use(vsInput)
+app.use(VsAlert).use(VsInput).use(VsPopup)
 
 app.mount('#app')
 ```

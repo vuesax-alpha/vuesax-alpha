@@ -1,6 +1,6 @@
 {
   "name": "@vuesax-alpha/build-utils",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "description": "Build utils for Vuesax Alpha",
   "keywords": [
@@ -16,12 +16,11 @@
     "stub": "unbuild --stub"
   },
   "dependencies": {
-    "@pnpm/find-workspace-packages": "4.0.16",
-    "@pnpm/logger": "4.0.0",
-    "consola": "2.15.3"
+    "@pnpm/find-workspace-packages": "^4.0.16",
+    "@pnpm/logger": "^4.0.0",
+    "consola": "^2.15.3"
   },
   "devDependencies": {
-    "@types/node": "20.1.3",
-    "unbuild": "0.7.4"
+    "unbuild": "^0.7.4"
   }
 }

@@ -8,7 +8,7 @@ import {
   vuesaxColors,
 } from '@vuesax-alpha/constants'
 import { debugWarn } from './error'
-import type { MaybeRef } from '@vuesax-alpha/utils'
+import type { MaybeRef } from './typescript'
 import type { VuesaxColor } from '@vuesax-alpha/constants'
 
 export const getCssVariable = (el: HTMLElement, property: string) => {

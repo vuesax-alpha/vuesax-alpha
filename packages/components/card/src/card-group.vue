@@ -28,7 +28,7 @@ import { useNamespace } from '@vuesax-alpha/hooks'
 import type {
   ScrollEmitParams,
   ScrollbarInstance,
-} from '@vuesax-alpha/components'
+} from '@vuesax-alpha/components/scrollbar'
 
 defineOptions({
   name: 'VsCardGroup',

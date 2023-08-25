@@ -20,4 +20,4 @@ export type NavbarGroupRegisterContext = (id: string) => {
 }
 
 export const navbarGroupRegisterContextKey: InjectionKey<NavbarGroupRegisterContext> =
-  Symbol('navbar-register')
+  Symbol('navbar-group-register')

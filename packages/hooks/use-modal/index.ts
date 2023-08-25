@@ -1,5 +1,6 @@
 import { watch } from 'vue'
-import { isClient, useEventListener } from '@vueuse/core'
+import { useEventListener } from '@vueuse/core'
+import { isClient } from '@vuesax-alpha/utils'
 import { EVENT_CODE } from '@vuesax-alpha/constants'
 
 import type { Ref } from 'vue'

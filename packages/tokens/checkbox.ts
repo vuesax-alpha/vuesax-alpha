@@ -1,5 +1,5 @@
 import type { InjectionKey, ToRefs, WritableComputedRef } from 'vue'
-import type { CheckboxGroupProps } from '@vuesax-alpha/components'
+import type { CheckboxGroupProps } from '@vuesax-alpha/components/checkbox'
 
 type CheckboxGroupContext = {
   modelValue?: WritableComputedRef<any>

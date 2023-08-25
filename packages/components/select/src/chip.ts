@@ -12,7 +12,7 @@ export const chipProps = buildProps({
   },
   shape: {
     type: String,
-    values: ['square', 'circle'] as const,
+    values: ['square'] as const,
     default: '',
   },
 })

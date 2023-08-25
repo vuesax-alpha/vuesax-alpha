@@ -132,6 +132,7 @@ type Tables = {
   PROPS?: ThemeNormalPropsFrontmatter
   SLOTS?: ThemeNormalPropsFrontmatter
   events?: ThemeNormalPropsFrontmatter
+  exposes?: ThemeNormalPropsFrontmatter
 }
 
 const route = useRoute()
@@ -145,6 +146,7 @@ const getTables = computed((): Tables => {
     PROPS: pageFrontmatter.value.PROPS,
     SLOTS: pageFrontmatter.value.SLOTS,
     events: pageFrontmatter.value.EVENTS,
+    exposes: pageFrontmatter.value.EXPOSES,
   }
 })
 

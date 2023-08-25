@@ -19,7 +19,7 @@ export const cardProps = buildProps({
   type: {
     type: [String, Number],
     values: cardType,
-    validator: (val: unknown): val is typeof cardType[number] =>
+    validator: (val: unknown): val is (typeof cardType)[number] =>
       cardType.includes(val as any),
     default: 1,
   },

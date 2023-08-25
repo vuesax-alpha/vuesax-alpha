@@ -1,4 +1,4 @@
-import { isClient } from '@vueuse/core'
+import { isClient } from '../browser'
 import { isNumber, isObject, isString, isStringNumber } from '../types'
 import { camelize } from '../strings'
 import { entriesOf, keysOf } from '../objects'

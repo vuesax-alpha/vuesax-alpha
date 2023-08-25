@@ -18,9 +18,9 @@
 
 <script lang="ts" setup>
 import { computed, inject, onBeforeUnmount, ref, toRef } from 'vue'
-import { isClient, useEventListener } from '@vueuse/core'
+import { useEventListener } from '@vueuse/core'
 import { scrollbarContextKey } from '@vuesax-alpha/tokens'
-import { throwError } from '@vuesax-alpha/utils'
+import { isClient, throwError } from '@vuesax-alpha/utils'
 import { useNamespace } from '@vuesax-alpha/hooks'
 import { BAR_MAP, renderThumbStyle } from './util'
 import { thumbProps } from './thumb'

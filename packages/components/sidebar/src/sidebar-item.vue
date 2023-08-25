@@ -1,5 +1,5 @@
 <template>
-  <button :class="itemKls" @click="handleClickItem">
+  <button :class="itemKls" @click="handleClickItem($router)">
     <div v-if="$slots.icon" :class="ns.e('icon')">
       <slot name="icon" />
     </div>
@@ -20,18 +20,17 @@
 
 <script setup lang="ts">
 import { computed, inject, useSlots } from 'vue'
-import { useRouter } from 'vue-router'
 import { useNamespace } from '@vuesax-alpha/hooks'
 import { sidebarContextKey } from '@vuesax-alpha/tokens'
 import { throwError } from '@vuesax-alpha/utils'
 import { IconArrow } from '@vuesax-alpha/components/icon'
 import { sidebarItemProps } from './sidebar-item'
+import type { Router } from 'vue-router'
 
 defineOptions({
   name: 'VsSidebarItem',
 })
 
-const router = useRouter()
 const slots = useSlots()
 
 const props = defineProps(sidebarItemProps)
@@ -44,7 +43,7 @@ if (!sidebar) {
   throwError('sidebar-item', 'need to call inside the sidebar component')
 }
 
-const handleClickItem = () => {
+const handleClickItem = (router: Router) => {
   if (props.id) {
     sidebar.handleClickItem(props.id)
   }

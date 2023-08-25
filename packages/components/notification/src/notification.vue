@@ -51,7 +51,7 @@
 </template>
 <script lang="ts" setup>
 import { computed, onBeforeUnmount, onMounted, ref, unref } from 'vue'
-import { useTimeoutFn } from '@vueuse/shared'
+import { useTimeoutFn } from '@vueuse/core'
 import {
   useBaseComponent,
   useColor,
