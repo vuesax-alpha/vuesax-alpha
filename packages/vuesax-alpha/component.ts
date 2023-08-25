@@ -15,6 +15,7 @@ import {
 } from '@vuesax-alpha/components/navbar'
 import { VsPagination } from '@vuesax-alpha/components/pagination'
 import { VsPopconfirm } from '@vuesax-alpha/components/popconfirm'
+import { VsPopper } from '@vuesax-alpha/components/popper'
 import { VsRadio } from '@vuesax-alpha/components/radio'
 import { VsRate } from '@vuesax-alpha/components/rate'
 import { VsRow } from '@vuesax-alpha/components/row'
@@ -58,6 +59,7 @@ export default [
   VsNavbarItem,
   VsPagination,
   VsPopconfirm,
+  VsPopper,
   VsRadio,
   VsRate,
   VsRow,
