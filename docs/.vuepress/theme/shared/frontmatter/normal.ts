@@ -19,6 +19,7 @@ export interface ThemeNormalApiFrontmatter extends PageFrontmatter {
   PROPS: ThemeNormalPropsFrontmatter
   SLOTS: ThemeNormalPropsFrontmatter
   EVENTS: ThemeNormalPropsFrontmatter
+  EXPOSES: ThemeNormalPropsFrontmatter
   NEWS: string[]
   UPDATES: string[]
 }

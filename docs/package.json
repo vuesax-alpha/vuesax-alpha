@@ -22,7 +22,7 @@
     "prismjs": "^1.29.0",
     "vue": "3.3.1",
     "vue-router": "4.2.0",
-    "vuesax-alpha": "npm:vuesax-alpha@latest"
+    "vuesax-alpha": "0.2.0-beta.57"
   },
   "devDependencies": {
     "@types/prismjs": "^1.26.0",

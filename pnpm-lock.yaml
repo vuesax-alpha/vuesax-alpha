@@ -172,7 +172,7 @@ importers:
       vue: 3.3.1
       vue-router: 4.2.0
       vuepress: 2.0.0-beta.62
-      vuesax-alpha: npm:vuesax-alpha@latest
+      vuesax-alpha: 0.2.0-beta.57
     dependencies:
       '@vuepress/shared-utils': 1.9.9
       '@vuesax-alpha/icons-vue': 0.0.2-beta.11_vue@3.3.1
@@ -186,7 +186,7 @@ importers:
       prismjs: 1.29.0
       vue: 3.3.1
       vue-router: 4.2.0_vue@3.3.1
-      vuesax-alpha: 0.2.0-beta.50_vue@3.3.1
+      vuesax-alpha: 0.2.0-beta.57_vue@3.3.1
     devDependencies:
       '@types/prismjs': 1.26.0
       '@vuepress/client': 2.0.0-beta.62
@@ -13089,14 +13089,15 @@ packages:
       - webpack
     dev: true
 
-  /vuesax-alpha/0.2.0-beta.50_vue@3.3.1:
-    resolution: {integrity: sha512-F388RFbjN63sOkwu95hc3DKBlCF0hMEyXej4SQiQfeZA98FIuUVS6ytE3RycQdntk1LPPTT1HuunwpxEpo8DXA==}
+  /vuesax-alpha/0.2.0-beta.57_vue@3.3.1:
+    resolution: {integrity: sha512-NFvQmOIWjph5LptP5OLFht3jFr2lppdm9FQ0QZLMCPCCtgusp2O201Ue26VQ3qaxrD8P9r3IaiTXtiGDGEuxUQ==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
       '@ctrl/tinycolor': 3.5.0
       '@types/lodash': 4.14.197
       '@types/lodash-es': 4.17.8
+      '@vuesax-alpha/icons-vue': 0.0.2-beta.11_vue@3.3.1
       '@vueuse/core': 9.13.0_vue@3.3.1
       async-validator: 4.2.5
       dayjs: 1.11.7

@@ -5,7 +5,7 @@
         <i class="bx bxs-megaphone" />
       </div>
       <div class="text-n">
-        <h3>New component <b>Card</b> 🎉</h3>
+        <h3>New component <b>Scrollbar</b> 🎉</h3>
         <p>See the examples and the new documentation</p>
       </div>
     </div>
@@ -26,10 +26,13 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const active = ref<number>(0)
-const number = ref<number>(12)
+/**
+ * Incre to display notify when add more feature
+ */
+const number = ref<number>(13)
 
 const handleClick = () => {
-  router.push('/components/card')
+  router.push('/components/scrollbar')
   active.value = 0
 
   localStorage.notificationHidden = number.value
@@ -43,8 +46,7 @@ onMounted(() => {
   if (localStorage.notificationHidden == number.value) {
     active.value = 0
   } else {
-    // TODO: uncomment after the docs are completed
-    // active.value = number.value
+    active.value = number.value
   }
 })
 </script>
