@@ -1,4 +1,7 @@
-import { IconStar, IconStarFilled } from '@vuesax-alpha/components/icon'
+import {
+  Star as IconStar,
+  StarBold as IconStarFilled,
+} from '@vuesax-alpha/icons-vue'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
 import {
   buildProps,
