@@ -11,7 +11,8 @@ export const useInputEvent = ({
   const focused = ref(false)
 
   const handleInput = (event: Event) => {
-    emit('input', event)
+    const { value } = event.target as HTMLInputElement
+    emit('input', value)
   }
 
   const blur = () => inputRef.value?.blur()
