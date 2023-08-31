@@ -111,9 +111,9 @@ export const checkboxProps = buildProps({
 } as const)
 
 export const checkboxEmits = {
-  [UPDATE_MODEL_EVENT]: (val: CheckboxValueType) =>
+  [UPDATE_MODEL_EVENT]: (val: CheckboxModelType) =>
     isString(val) || isNumber(val) || isBoolean(val),
-  change: (val: CheckboxValueType) =>
+  change: (val: CheckboxModelType) =>
     isString(val) || isNumber(val) || isBoolean(val),
 }
 
