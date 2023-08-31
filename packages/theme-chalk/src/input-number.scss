@@ -1,0 +1,131 @@
+@use 'sass:math';
+@use 'sass:map';
+
+@use 'mixins/mixins' as *;
+@use 'common/var' as *;
+
+@include b(input-number) {
+  @include set-component-var('input-number', $input-number);
+}
+
+@include b(input-number) {
+  position: relative;
+  display: inline-flex;
+  width: getCssVar(input-number-width);
+  background: getColor(input-number-background);
+  border-radius: getCssVar(input-number-rounded);
+  
+  .#{$namespace}-input {
+    &.#{$namespace}-input--has-label {
+      margin-top: 0 !important;
+    }
+
+    &.is-focus {
+      &.#{$namespace}-input--has-label {
+        margin-top: 0;
+      }
+      
+      .#{$namespace}-input__original {
+        padding-left: 8px;
+      }
+
+      .#{$namespace}-input__placeholder {
+        left: calc(getCssVar(input-number-control-width) + 4px);
+      }
+    }
+    &__wrapper {
+      background: transparent;
+      padding-left: calc(getCssVar(input-number-control-width) - 15px);
+      padding-right: calc(getCssVar(input-number-control-width) - 15px);
+    }
+
+    &__original {
+      -webkit-appearance: none;
+      -moz-appearance: textfield;
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        margin: 0;
+        -webkit-appearance: none;
+      }
+
+      background: transparent !important;
+      text-align: center;
+      line-height: 1;
+      color: getColor(input-number-color);
+      padding-left: 6px;
+      padding-right: 6px;
+
+    }
+
+    &__placeholder {
+      left: getCssVar(input-number-control-width);
+    }
+  }
+
+  @include e((increase, decrease)) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: getCssVar(input-number-control-width);
+    position: absolute;
+    z-index: 1;
+    top: 1px;
+    bottom: 1px;
+
+    color: getColor(input-number-color);
+    cursor: pointer;
+    font-size: getCssVar(input-number-control-size);
+    user-select: none;
+
+    &.is-disabled {
+      opacity: 0.7;
+      cursor: default;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 18px;
+      border-radius: 4px;
+      background: getColor(input-number-color ,0.3);
+    }
+  }
+
+  @include e(increase) {
+    right: 1px;
+
+    &::after {
+      left: 4px;
+    }
+  }
+
+  @include e(decrease) {
+    left: 1px;
+
+    &::after {
+      right: 4px;
+    }
+  }
+
+  @include when(disabled) {
+    opacity: 0.72;
+    pointer-events: none;
+    cursor: default;
+  }
+
+  @include when(without-controls) {
+    .#{$namespace}-input__wrapper {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  @include when(readonly) {
+    pointer-events: none;
+    cursor: default;
+  }
+}

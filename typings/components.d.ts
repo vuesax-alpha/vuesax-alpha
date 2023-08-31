@@ -19,6 +19,7 @@ declare module '@vue/runtime-core' {
     VsDialog: typeof import('../packages/vuesax-alpha')['VsDialog']
     VsIcon: typeof import('../packages/vuesax-alpha')['VsIcon']
     VsInput: typeof import('../packages/vuesax-alpha')['VsInput']
+    VsInputNumber: typeof import('../packages/vuesax-alpha')['VsInputNumber']
     VsNavbar: typeof import('../packages/vuesax-alpha')['VsNavbar']
     VsNavbarItem: typeof import('../packages/vuesax-alpha')['VsNavbarItem']
     VsNavbarGroup: typeof import('../packages/vuesax-alpha')['VsNavbarGroup']

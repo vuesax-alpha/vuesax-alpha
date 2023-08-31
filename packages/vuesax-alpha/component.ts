@@ -8,6 +8,7 @@ import { VsCollapseTransition } from '@vuesax-alpha/components/collapse-transiti
 import { VsDialog } from '@vuesax-alpha/components/dialog'
 import { VsIcon } from '@vuesax-alpha/components/icon'
 import { VsInput } from '@vuesax-alpha/components/input'
+import { VsInputNumber } from '@vuesax-alpha/components/input-number'
 import {
   VsNavbar,
   VsNavbarGroup,
@@ -52,6 +53,7 @@ export default [
   VsDialog,
   VsIcon,
   VsInput,
+  VsInputNumber,
   VsOptionGroup,
   VsOption,
   VsNavbar,

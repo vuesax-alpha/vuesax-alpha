@@ -139,7 +139,7 @@ If you use volar, please add the global component type definition to compilerOpt
 - [x] Loading
 - [x] Navbar
 - [x] Notification
-- [ ] Number Input
+- [x] Number Input
 - [x] Pagination
 - [x] Popup
 - [ ] Progress

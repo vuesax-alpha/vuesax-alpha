@@ -657,3 +657,18 @@ $table: map.merge(
   ),
   $table
 );
+
+// Input number
+// css3 var in packages/theme-chalk/src/input-number.scss
+$input-number: () !default;
+$input-number: map.merge(
+  (
+    'color': getCssVar(light),
+    'background': getCssVar(primary),
+    'control-width': 40px,
+    'control-size': 16px,
+    'width': 150px,
+    'rounded': 12px,
+  ),
+  $input-number
+);
