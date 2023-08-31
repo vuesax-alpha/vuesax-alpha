@@ -61,6 +61,7 @@ export const enNavbar: NavbarConfig = [
           { text: 'Card', link: `/components/card` },
           { text: 'Time select', link: `/components/time-select` },
           { text: `Scrollbar`, link: `/components/scrollbar` },
+          { text: `Rate`, link: `/components/rate` },
           // new component slot 1
         ],
       },
