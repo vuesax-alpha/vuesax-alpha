@@ -47,7 +47,7 @@ const trColor = (i: number): Color => {
     case 9:
       return 'warn'
   }
-  return ''
+  return 'secondary'
 }
 
 const users: User[] = [
