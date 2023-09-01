@@ -18,7 +18,7 @@ The following is a brief glimpse of how it works:
 With the `w` directive define the column width (vs-col) its value is **1-12**, an example of sizes would be:`12=100%`,`6=50%`,`4=33% `
 
 <template #example>
-  <grid-default />
+<grid-default />
 </template>
 
 <template #template>
@@ -36,7 +36,7 @@ With the `w` directive define the column width (vs-col) its value is **1-12**, a
 To give a distance from the left we have the offset property that with the same measurements **1-12** we add the specific space, an example would be: `12=100%`,`6=50%`,`4=33%`.
 
 <template #example>
-  <grid-offset />
+<grid-offset />
 </template>
 
 <template #template>
@@ -54,7 +54,7 @@ To give a distance from the left we have the offset property that with the same 
 If we have to align the elements horizontally, use the `justify` directive that uses CSS attributes as parameters:` flex-start`, `center`,` flex-end`, `space-around`,` space-between`.
 
 <template #example>
-  <grid-flex-justify />
+<grid-flex-justify />
 </template>
 
 <template #template>
@@ -69,10 +69,10 @@ If we have to align the elements horizontally, use the `justify` directive that 
 
 ## Align
 
-If we have to align the elements in Vertical, use the `align` directive that uses CSS attributes as parameters: `top`, 
+If we have to align the elements in Vertical, use the `align` directive that uses CSS attributes as parameters: `top`,
 
 <template #example>
-  <grid-flex-align />
+<grid-flex-align />
 </template>
 
 <template #template>
@@ -99,7 +99,7 @@ There are some measures that can only be added in a specific device size, the di
 - **sm**: is default
 
 <template #example>
-  <grid-responsive />
+<grid-responsive />
 </template>
 
 <template #template>

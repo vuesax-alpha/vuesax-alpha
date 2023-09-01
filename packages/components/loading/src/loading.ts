@@ -26,7 +26,7 @@ export const loadingTypes = [
   'square-rotate',
 ] as const
 
-export type LoadingType = (typeof loadingTypes)[number]
+export type LoadingType = typeof loadingTypes[number]
 
 export const loadingProps = buildProps({
   type: {

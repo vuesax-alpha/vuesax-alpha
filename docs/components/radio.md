@@ -54,7 +54,6 @@ SLOTS:
     link: null
     usage: '#icon'
     code: null
-
 ---
 
 # Radio

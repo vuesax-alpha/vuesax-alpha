@@ -236,14 +236,15 @@ const mousedownx = (e: MouseEvent) => {
 
 const keydownx = (evt: KeyboardEvent) => {
   const eventKey = evt.key
-  const element = $ul.value!
-  const parent = $twits.value!
+  const element = $ul.value
+  const parent = $twits.value
 
   if (eventKey == 'ArrowRight') {
     translatex.value -= -300
-    if (translatex.value > element.clientWidth - parent.clientWidth) {
-      translatex.value = element.clientWidth - parent.clientWidth
-    }
+    if (element && parent)
+      if (translatex.value > element.clientWidth - parent.clientWidth) {
+        translatex.value = element.clientWidth - parent.clientWidth
+      }
   } else if (eventKey == 'ArrowLeft') {
     translatex.value -= 300
     if (translatex.value < 0) {

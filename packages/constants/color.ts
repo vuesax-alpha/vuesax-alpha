@@ -18,7 +18,7 @@ export const componentColors = [
   'text',
 ] as const
 
-export type ComponentColor = (typeof componentColors)[number]
+export type ComponentColor = typeof componentColors[number]
 
 export type ColorProviderContext = {
   [T in ComponentColor]?: Color
@@ -53,6 +53,6 @@ export const vuesaxColors = [
   'messenger',
 ] as const
 
-export type VuesaxColor = (typeof vuesaxColors)[number]
+export type VuesaxColor = typeof vuesaxColors[number]
 
 export type Color = RGB | RGBA | HEX | VuesaxColor

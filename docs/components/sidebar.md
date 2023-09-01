@@ -222,7 +222,7 @@ For the sidebar to work correctly it is necessary to add to the items the icon s
 :::
 
 <template #example>
-  <sidebar-reduce />
+<sidebar-reduce />
 </template>
 
 <template #template>
@@ -246,7 +246,7 @@ For the sidebar to work correctly it is necessary to add to the items the icon s
 You can add the functionality to expand and collapse the sidebar with the mouse, with the property `hover-expand`
 
 <template #example>
-  <sidebar-reduce-expand />
+<sidebar-reduce-expand />
 </template>
 
 <template #template>
@@ -270,7 +270,7 @@ You can add the functionality to expand and collapse the sidebar with the mouse,
 Change the color of the sidebar, if necessary you can also change the color of the text to white with the `textWhite` property
 
 <template #example>
-  <sidebar-color />
+<sidebar-color />
 </template>
 
 <template #template>
@@ -294,7 +294,7 @@ Change the color of the sidebar, if necessary you can also change the color of t
 You can define if the sidebar is visible or hidden with the open property, this property by default is `false`
 
 <template #example>
-  <sidebar-open />
+<sidebar-open />
 </template>
 
 <template #template>
@@ -318,7 +318,7 @@ You can define if the sidebar is visible or hidden with the open property, this 
 Change the position of the sidebar to the right and its animation with the `right` property
 
 <template #example>
-  <sidebar-right />
+<sidebar-right />
 </template>
 
 <template #template>

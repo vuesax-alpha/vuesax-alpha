@@ -162,19 +162,19 @@ Change the type of loading with the option `type`
 
 Tipos de loading:
 
- - atom
- - ball
- - scale
- - waves
- - border
- - points
- - square
- - circles
- - corners
- - default
- - gradient
- - rectangle
- - square-rotate
+- atom
+- ball
+- scale
+- waves
+- border
+- points
+- square
+- circles
+- corners
+- default
+- gradient
+- rectangle
+- square-rotate
 
 ::: tip
 Click on the example loading to open it in the whole page

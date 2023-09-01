@@ -14,7 +14,7 @@
   width: getCssVar(input-number-width);
   background: getColor(input-number-background);
   border-radius: getCssVar(input-number-rounded);
-  
+
   .#{$namespace}-input {
     &.#{$namespace}-input--has-label {
       margin-top: 0 !important;
@@ -24,7 +24,7 @@
       &.#{$namespace}-input--has-label {
         margin-top: 0;
       }
-      
+
       .#{$namespace}-input__original {
         padding-left: 8px;
       }
@@ -54,7 +54,6 @@
       color: getColor(input-number-color);
       padding-left: 6px;
       padding-right: 6px;
-
     }
 
     &__placeholder {
@@ -91,7 +90,7 @@
       width: 1px;
       height: 18px;
       border-radius: 4px;
-      background: getColor(input-number-color ,0.3);
+      background: getColor(input-number-color, 0.3);
     }
   }
 

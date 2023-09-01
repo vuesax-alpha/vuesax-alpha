@@ -21,8 +21,8 @@ Use Time Select for time input.
 The available time range is 00:00 to 23:59
 
 ::: tip
-This component requires the 
-<code>\<client-only\> \<\/client-only\></code> 
+This component requires the
+<code>\<client-only\> \<\/client-only\></code>
 wrap when used in SSR (eg: [Nuxt](https://nuxt.com/)) and SSG (eg: [VitePress](https://vitepress.dev/)).
 :::
 

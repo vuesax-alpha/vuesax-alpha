@@ -232,9 +232,10 @@ const keydownx = (evt: KeyboardEvent) => {
 
   if (eventKey == 'ArrowRight') {
     translatex.value -= -300
-    if (translatex.value > element.clientWidth - parent.clientWidth) {
-      translatex.value = element.clientWidth - parent.clientWidth
-    }
+    if (element && parent)
+      if (translatex.value > element.clientWidth - parent.clientWidth) {
+        translatex.value = element.clientWidth - parent.clientWidth
+      }
   } else if (eventKey == 'ArrowLeft') {
     translatex.value -= 300
     if (translatex.value < 0) {

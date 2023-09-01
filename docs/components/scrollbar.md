@@ -4,11 +4,11 @@ PROPS:
     type: String, Number
     values: number
     description: height of scrollbar
-    default: 
+    default:
     link: null
     usage: '#default'
-    code: null  
-    
+    code: null
+
   - name: max-height
     type: String, Number
     values: number
@@ -92,7 +92,7 @@ PROPS:
 
   - name: min-size
     type: Number
-    values: 
+    values:
     description: minimum size of scrollbar
     default: 20
     link: null
@@ -194,7 +194,6 @@ EXPOSES:
 # Scrollbar
 
 <card>
-
 
 ## Default
 
