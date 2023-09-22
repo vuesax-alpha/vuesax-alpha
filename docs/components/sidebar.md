@@ -27,15 +27,6 @@ PROPS:
     usage: '#default'
     code: null
 
-  - name: relative
-    type: Boolean
-    values: true,false
-    description: Determine if the component is relative position.
-    default: false
-    link: null
-    usage: '#default'
-    code: null
-
   - name: reduce
     type: Boolean
     values: true,false
