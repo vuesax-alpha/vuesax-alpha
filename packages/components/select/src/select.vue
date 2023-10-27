@@ -115,6 +115,8 @@
         {{ states.currentPlaceholder }}
       </span>
 
+      <icon-loading v-if="loading" class="vs-select__loading" />
+
       <vs-icon :class="ns.e('arrow')" size="14"><chevron-down /></vs-icon>
 
       <transition name="v-clearable">
@@ -182,7 +184,7 @@ import { toRefs, unrefElement, useResizeObserver } from '@vueuse/core'
 import { isEqual } from 'lodash-unified'
 import { ClickOutside as vClickOutside } from '@vuesax-alpha/directives'
 import { UPDATE_MODEL_EVENT } from '@vuesax-alpha/constants'
-import VsIcon, { IconClose } from '@vuesax-alpha/components/icon'
+import VsIcon, { IconClose, IconLoading } from '@vuesax-alpha/components/icon'
 import VsCollapseTransition from '@vuesax-alpha/components/collapse-transition'
 import VsScrollbar from '@vuesax-alpha/components/scrollbar'
 import VsPopper from '@vuesax-alpha/components/popper'
