@@ -87,7 +87,7 @@ export const notificationProps = buildProps({
    */
   onClose: {
     type: definePropType<() => void>(Function),
-    required: true,
+    default: () => undefined,
   },
   /**
    * @description custom position
