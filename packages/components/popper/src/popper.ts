@@ -5,7 +5,7 @@ import {
 } from '@vuesax-alpha/hooks'
 import { popperContentProps } from './content'
 import { popperTriggerProps } from './trigger'
-import type { Placement } from '@vuesax-alpha/hooks'
+import type { Placement } from '@floating-ui/vue'
 import type { EmitFn } from '@vuesax-alpha/utils'
 import type Popper from './popper.vue'
 
@@ -39,7 +39,7 @@ export const popperProps = buildProps({
     default: () => true,
   },
 
-  showArrow: {
+  arrow: {
     type: Boolean,
     default: true,
   },

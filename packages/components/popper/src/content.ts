@@ -1,7 +1,14 @@
 import { buildProps, definePropType } from '@vuesax-alpha/utils'
 import { defaultZIndex, placements } from '@vuesax-alpha/constants'
+import type {
+  ArrowOptions,
+  FlipOptions,
+  OffsetOptions,
+  Placement,
+  ShiftOptions,
+  Strategy,
+} from '@floating-ui/vue'
 import type { EmitFn } from '@vuesax-alpha/utils'
-import type { Options, Placement, Strategy } from '@vuesax-alpha/hooks'
 import type Content from './content.vue'
 
 import type { ExtractPropTypes, StyleValue } from 'vue'
@@ -35,18 +42,26 @@ export const popperContentProps = buildProps({
     default: true,
   },
   disabled: Boolean,
-  options: {
-    type: definePropType<Options>(Object),
+  flip: Boolean,
+  flipOptions: {
+    type: definePropType<FlipOptions>(Object),
+  },
+  offsetOptions: {
+    type: definePropType<OffsetOptions>([Number, Function, Object]),
+  },
+  shift: Boolean,
+  shiftOptions: {
+    type: definePropType<ShiftOptions>(Object),
+  },
+  arrow: Boolean,
+  arrowOptions: {
+    type: definePropType<ArrowOptions>(Object),
   },
   strategy: {
     type: definePropType<Strategy>(String),
     values: POSITIONING_STRATEGIES,
     default: 'absolute',
   },
-  /**
-   * @description fit popper's width to trigger element
-   */
-  fit: Boolean,
   placement: {
     type: definePropType<Placement>(String),
     values: placements,
@@ -60,7 +75,6 @@ export const popperContentProps = buildProps({
     type: Boolean,
     default: true,
   },
-  flip: Boolean,
   windowResize: {
     type: Boolean,
     default: true,
@@ -69,20 +83,15 @@ export const popperContentProps = buildProps({
     type: Boolean,
     default: true,
   },
-  showArrow: {
-    type: Boolean,
-    default: true,
-  },
-  offset: {
-    type: Number,
-    default: 12,
-  },
   content: String,
   rawContent: Boolean,
   popperClass: {
     type: definePropType<ClassType>([String, Array, Object]),
   },
   popperStyle: {
+    type: definePropType<StyleValue>([String, Array, Object]),
+  },
+  floatingPosition: {
     type: definePropType<StyleValue>([String, Array, Object]),
   },
   /**

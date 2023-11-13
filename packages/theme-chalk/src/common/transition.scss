@@ -13,7 +13,7 @@
 
 .tooltip-enter-active,
 .tooltip-leave-active {
-  transition: all 0.25s ease;
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
 .tooltip-enter-from,

@@ -7,17 +7,17 @@
     :animation="animation"
     :append-to="appendTo"
     :flip="flip"
+    :flip-options="flipOptions"
+    :shift-options="shiftOptions"
     :window-resize="windowResize"
     :window-scroll="windowScroll"
     :disabled="disabled"
-    :fit="fit"
     :loading="loading"
     :hide-after="hideAfter"
-    :offset="offset"
+    :offset-options="offsetOptions"
     :placement="placement"
-    :options="options"
     :show-after="showAfter"
-    :show-arrow="showArrow"
+    :arrow="arrow"
     :strategy="strategy"
     :teleported="teleported"
     :trigger="trigger"
@@ -48,7 +48,6 @@ import { useBaseComponent, useNamespace } from '@vuesax-alpha/hooks'
 import VsPopper from '@vuesax-alpha/components/popper'
 import { getVsColor } from '@vuesax-alpha/utils'
 import { tooltipProps } from './tooltip'
-import { useTooltipDeprecated } from './useTooltipDeprecated'
 import type { PopperExpose } from '@vuesax-alpha/components/popper'
 
 defineOptions({
@@ -73,11 +72,9 @@ const tooltipKls = computed(() => [
   ns.is('loading', props.loading),
   ns.is(props.type, !!props.type),
   ns.is(props.shape, !!props.shape),
-  ns.is('not-arrow', !props.showArrow),
+  ns.is('not-arrow', !props.arrow),
   ns.is(props.effect),
 ])
-
-useTooltipDeprecated(props)
 
 defineExpose({ popperRef })
 </script>

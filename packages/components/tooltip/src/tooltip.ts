@@ -1,6 +1,7 @@
 import { buildProps, definePropType } from '@vuesax-alpha/utils'
 import { popperProps } from '@vuesax-alpha/components/popper'
 import { useColorProp } from '@vuesax-alpha/hooks'
+import type { OffsetOptions } from '@floating-ui/vue'
 import type Tooltip from './tooltip.vue'
 
 import type { ExtractPropTypes } from 'vue'
@@ -42,40 +43,18 @@ export const tooltipProps = buildProps({
     values: ['light', 'dark'] as const,
     default: 'dark',
   },
-  showArrow: {
+
+  arrow: {
     type: Boolean,
     default: true,
   },
 
   loading: Boolean,
-  offset: {
-    type: Number,
+
+  offsetOptions: {
+    type: definePropType<OffsetOptions>([Number, Function]),
     default: 8,
   },
-
-  /** @deprecated use placement instead*/
-  bottom: Boolean,
-  /** @deprecated use placement instead*/
-  left: Boolean,
-  /** @deprecated use placement instead*/
-  right: Boolean,
-  /** @deprecated use placement instead*/
-  top: Boolean,
-
-  /** @deprecated use trigger instead */
-  notHover: Boolean,
-
-  /** @deprecated use type instead */
-  shadow: Boolean,
-  /** @deprecated use type instead */
-  border: Boolean,
-  /** @deprecated use type instead */
-  borderThick: Boolean,
-
-  /** @deprecated use shape instead */
-  square: Boolean,
-  /** @deprecated use shape instead */
-  circle: Boolean,
 })
 
 export type TooltipProps = ExtractPropTypes<typeof tooltipProps>

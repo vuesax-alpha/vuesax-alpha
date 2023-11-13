@@ -19,23 +19,18 @@
     :animation="animation"
     :append-to="appendTo"
     :teleported="teleported"
-    :options="options"
     :strategy="strategy"
-    :fit="fit"
     :persistent="persistent"
     :placement="popperPlacement"
-    :flip="flip"
     :content="content"
     :z-index="zIndex"
     :interactivity="interactivity"
-    :offset="offset"
     :popper-class="popperClass"
     :popper-style="popperStyle"
+    :floating-position="floatingStyles"
     :disabled="disabled"
     :visible="visible"
-    :window-resize="windowResize"
-    :window-scroll="windowScroll"
-    :show-arrow="showArrow"
+    :arrow="arrow"
     @blur="onBlur"
     @close="onClose"
   >
@@ -55,10 +50,10 @@ import {
   unref,
   watch,
 } from 'vue'
+import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { isBoolean } from '@vuesax-alpha/utils'
 import {
   useDelayedToggle,
-  useFloating,
   usePopperContainer,
   usePopperContainerId,
   useZIndex,
@@ -107,12 +102,37 @@ const { onOpen, onClose } = useDelayedToggle({
   close: hide,
 })
 
-const { update, placement: popperPlacement } = useFloating(
-  triggerRef,
-  contentRef,
-  arrowRef,
-  { ...props, visible: open }
-)
+const placement = computed(() => props.placement)
+const middleware = computed(() => {
+  const _middleware = []
+
+  if (props.offsetOptions) {
+    _middleware.push(offset(props.offsetOptions))
+  }
+
+  if (props.flip) {
+    _middleware.push(flip(props.flipOptions))
+  }
+
+  if (props.shift) {
+    _middleware.push(shift(props.shiftOptions))
+  }
+
+  return _middleware
+})
+
+const {
+  floatingStyles,
+  placement: popperPlacement,
+  update,
+} = useFloating(triggerRef, contentRef, {
+  placement,
+  middleware,
+  whileElementsMounted: autoUpdate,
+  open,
+  transform: false,
+  strategy: props.strategy,
+})
 
 const controlled = computed(
   () => isBoolean(props.visible) && !hasUpdateHandler.value

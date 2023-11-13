@@ -104,6 +104,9 @@ $iconActiveMargin: -4px;
   max-width: getCssVar(select, width);
 
   @include e(content) {
+    @include set-component-var('select', $select);
+    width: getCssVar(select, width);
+    
     @include pseudo(before) {
       content: '';
       position: absolute;

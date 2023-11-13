@@ -97,7 +97,7 @@ const shouldShow = computed(() => {
 
 const popperKls = computed(() => [
   ns.b(),
-  ns.is('not-arrow', !props.showArrow),
+  ns.is('not-arrow', !props.arrow),
   props.popperClass,
 ])
 
@@ -105,7 +105,8 @@ const popperStyles = computed(
   () =>
     [
       props.popperStyle,
-      { position: 'absolute' },
+      props.floatingPosition,
+      { position: props.strategy },
       { zIndex: props.zIndex },
     ] as StyleValue
 )
@@ -135,7 +136,6 @@ const onTransitionLeave = () => {
 }
 
 const onBeforeEnter = () => {
-  // updatePopper()
   onBeforeShow?.()
 }
 
@@ -188,3 +188,21 @@ onBeforeUnmount(() => {
   destroyed.value = true
 })
 </script>
+
+<style>
+/* blur-in 1s cubic-bezier(0,.55,.45,1) */
+/* @keyframes blur-in {
+  0% {
+    filter: brightness(1) blur(10px);
+    transform: scale(0.94);
+  }
+  10% {
+    filter: brightness(1.15) blur(5px);
+    transform: scale(0.98);
+  }
+  100% {
+    filter: brightness(1) blur(0);
+    transform: scale(1);
+  }
+} */
+</style>

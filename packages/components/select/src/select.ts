@@ -25,13 +25,6 @@ export const selectProps = buildProps({
     default: 0,
   },
   /**
-   * @description fit select options's width to trigger element
-   */
-  fit: {
-    type: Boolean,
-    default: true,
-  },
-  /**
    * @description binding value
    */
   modelValue: {
