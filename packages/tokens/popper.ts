@@ -2,6 +2,20 @@ import type { PopperTriggerType } from '@vuesax-alpha/components/popper'
 import type { Arrayable } from '@vuesax-alpha/utils'
 import type { InjectionKey, Ref } from 'vue'
 
+export type {
+  ArrowOptions,
+  FlipOptions,
+  Middleware,
+  OffsetOptions,
+  Placement,
+  ShiftOptions,
+  Strategy,
+} from '@floating-ui/dom'
+
+export { flip, offset, shift, autoUpdate } from '@floating-ui/dom'
+
+export { useFloating } from '@floating-ui/vue'
+
 export type Measurable = {
   getBoundingClientRect: () => DOMRect
 }

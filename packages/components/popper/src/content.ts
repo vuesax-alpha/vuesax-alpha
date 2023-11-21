@@ -7,7 +7,7 @@ import type {
   Placement,
   ShiftOptions,
   Strategy,
-} from '@floating-ui/vue'
+} from '@vuesax-alpha/tokens'
 import type { EmitFn } from '@vuesax-alpha/utils'
 import type Content from './content.vue'
 
@@ -42,20 +42,38 @@ export const popperContentProps = buildProps({
     default: true,
   },
   disabled: Boolean,
-  flip: Boolean,
+  /**
+   * @description changes the placement of the floating element in order to keep it in view, with the ability to flip to any placement
+   * @default true
+   */
+  flip: {
+    type: Boolean,
+    default: true,
+  },
   flipOptions: {
     type: definePropType<FlipOptions>(Object),
+    default: undefined,
   },
   offsetOptions: {
     type: definePropType<OffsetOptions>([Number, Function, Object]),
+    default: undefined,
   },
-  shift: Boolean,
+  /**
+   * @description shifts the floating element along the specified axes in order to keep it in view
+   * @default true
+   */
+  shift: {
+    type: Boolean,
+    default: true,
+  },
   shiftOptions: {
     type: definePropType<ShiftOptions>(Object),
+    default: undefined,
   },
   arrow: Boolean,
   arrowOptions: {
     type: definePropType<ArrowOptions>(Object),
+    default: undefined,
   },
   strategy: {
     type: definePropType<Strategy>(String),

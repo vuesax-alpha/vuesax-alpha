@@ -1,7 +1,7 @@
 import { buildProps, definePropType } from '@vuesax-alpha/utils'
 import { popperProps } from '@vuesax-alpha/components/popper'
 import { useColorProp } from '@vuesax-alpha/hooks'
-import type { OffsetOptions } from '@floating-ui/vue'
+import type { OffsetOptions } from '@vuesax-alpha/tokens'
 import type Tooltip from './tooltip.vue'
 
 import type { ExtractPropTypes } from 'vue'

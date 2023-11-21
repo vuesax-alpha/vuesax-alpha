@@ -215,7 +215,6 @@ export const useSelect = (
         states.previousQuery = null
         states.selectedLabel = ''
         states.menuVisibleOnFocus = false
-        resetHoverIndex()
 
         nextTick(() => {
           if (
@@ -441,31 +440,6 @@ export const useSelect = (
     }
 
     return newOption
-  }
-
-  const resetHoverIndex = () => {
-    setTimeout(() => {
-      if (!props.multiple) {
-        states.hoverIndex = optionsArray.value.findIndex((item) => {
-          return isEqual(item, selectedArray.value[0])
-        })
-        return
-      }
-
-      if (selectedArray.value.length > 0) {
-        states.hoverIndex = Math.min.apply(
-          null,
-          selectedArray.value.map((selected) => {
-            return optionsArray.value.findIndex((item) => {
-              return isEqual(item.value, selected.value)
-            })
-          })
-        )
-        return
-      }
-
-      states.hoverIndex = -1
-    }, 300)
   }
 
   const handleResize = () => {
@@ -917,7 +891,5 @@ export const useSelect = (
     processBeforeClose,
 
     emptyText,
-
-    resetHoverIndex,
   }
 }

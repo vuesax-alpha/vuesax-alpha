@@ -50,7 +50,14 @@ import {
   unref,
   watch,
 } from 'vue'
-import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
+import {
+  autoUpdate,
+  flip,
+  offset,
+  popperContextKey,
+  shift,
+  useFloating,
+} from '@vuesax-alpha/tokens'
 import { isBoolean } from '@vuesax-alpha/utils'
 import {
   useDelayedToggle,
@@ -58,10 +65,10 @@ import {
   usePopperContainerId,
   useZIndex,
 } from '@vuesax-alpha/hooks'
-import { popperContextKey } from '@vuesax-alpha/tokens'
 import { popperEmits, popperProps, usePopperModelToggle } from './popper'
 import popperContent from './content.vue'
 import popperTrigger from './trigger.vue'
+import type { Middleware } from '@vuesax-alpha/tokens'
 
 defineOptions({
   name: 'VsPopper',
@@ -102,9 +109,11 @@ const { onOpen, onClose } = useDelayedToggle({
   close: hide,
 })
 
-const placement = computed(() => props.placement)
+const placement = toRef(props, 'placement')
+const strategy = toRef(props, 'strategy')
+
 const middleware = computed(() => {
-  const _middleware = []
+  const _middleware: Middleware[] = []
 
   if (props.offsetOptions) {
     _middleware.push(offset(props.offsetOptions))
@@ -131,7 +140,7 @@ const {
   whileElementsMounted: autoUpdate,
   open,
   transform: false,
-  strategy: props.strategy,
+  strategy,
 })
 
 const controlled = computed(
