@@ -285,7 +285,6 @@ $iconActiveMargin: -4px;
     overflow: hidden;
     opacity: 1;
     visibility: visible;
-    max-height: 40px;
 
     @include when(hidden) {
       opacity: 0;
