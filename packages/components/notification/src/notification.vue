@@ -17,11 +17,11 @@
           <div
             v-if="typeof icon === 'string'"
             :class="ns.e('icon')"
-            :style="{ fontSize: iconSize }"
+            :style="{ fontSize: addUnit(iconSize) }"
             v-html="icon"
           />
           <div v-else :class="ns.e('icon')">
-            <vs-icon :size="iconSize">
+            <vs-icon :size="addUnit(iconSize)">
               <component :is="icon" />
             </vs-icon>
           </div>
@@ -63,7 +63,7 @@ import {
   useGlobalComponentSettings,
 } from '@vuesax-alpha/hooks'
 import { IconClose, VsIcon } from '@vuesax-alpha/components/icon'
-import { getVsColor } from '@vuesax-alpha/utils'
+import { addUnit, getVsColor } from '@vuesax-alpha/utils'
 import { notificationProps } from './notification'
 
 defineOptions({
