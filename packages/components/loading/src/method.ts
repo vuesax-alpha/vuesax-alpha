@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { createVNode, ref, render, unref } from 'vue'
+import { createVNode, reactive, ref, render, unref } from 'vue'
 import { unrefElement } from '@vueuse/core'
 import { debugWarn, isClient, isElement, isString } from '@vuesax-alpha/utils'
 import { LOADING_RECT, SCALE_PARENT } from '@vuesax-alpha/constants'
@@ -49,7 +49,7 @@ export const loading: LoadingFn = (options = {}) => {
     optionsRef.scale = ref(loadingScale)
   }
 
-  const vm = createVNode(LoadingConstructor, optionsRef)
+  const vm = createVNode(LoadingConstructor, reactive(optionsRef))
   const container = document.createElement('div')
   render(vm, container)
 
