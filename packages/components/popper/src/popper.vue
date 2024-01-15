@@ -103,6 +103,7 @@ const { show, hide, hasUpdateHandler } = usePopperModelToggle({
 const { onOpen, onClose } = useDelayedToggle({
   showAfter: toRef(props, 'showAfter'),
   hideAfter: toRef(props, 'hideAfter'),
+  autoClose: toRef(props, 'autoClose'),
   open: show,
   close: hide,
 })

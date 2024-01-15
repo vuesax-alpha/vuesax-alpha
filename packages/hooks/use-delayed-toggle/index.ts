@@ -1,5 +1,5 @@
 import { unref } from 'vue'
-import { buildProps } from '@vuesax-alpha/utils'
+import { buildProps, isNumber } from '@vuesax-alpha/utils'
 import { useTimeout } from '../use-timeout'
 
 import type { ExtractPropTypes, ToRefs } from 'vue'
@@ -13,6 +13,13 @@ export const useDelayedToggleProps = buildProps({
     type: Number,
     default: 200,
   },
+  /**
+   * @description disappear automatically, in millisecond
+   */
+  autoClose: {
+    type: Number,
+    default: 0,
+  },
 } as const)
 
 export type UseDelayedToggleProps = {
@@ -23,18 +30,33 @@ export type UseDelayedToggleProps = {
 export const useDelayedToggle = ({
   showAfter,
   hideAfter,
+  autoClose,
   open,
   close,
 }: UseDelayedToggleProps) => {
   const { registerTimeout } = useTimeout()
 
+  const {
+    registerTimeout: registerTimeoutForAutoClose,
+    cancelTimeout: cancelTimeoutForAutoClose,
+  } = useTimeout()
+
   const onOpen = (event?: Event) => {
     registerTimeout(() => {
       open(event)
+
+      const _autoClose = unref(autoClose)
+      if (isNumber(_autoClose) && _autoClose > 0) {
+        registerTimeoutForAutoClose(() => {
+          close(event)
+        }, _autoClose)
+      }
     }, unref(showAfter))
   }
 
   const onClose = (event?: Event) => {
+    cancelTimeoutForAutoClose()
+
     registerTimeout(() => {
       close(event)
     }, unref(hideAfter))
