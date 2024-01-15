@@ -45,6 +45,10 @@ export const notificationProps = buildProps({
   icon: {
     type: iconPropType,
   },
+  iconSize: {
+    type: String,
+    default: '1.2rem',
+  },
   /**
    * @description notification dom id
    */
