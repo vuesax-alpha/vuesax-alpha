@@ -1,7 +1,13 @@
 import { buildProps, definePropType } from '@vuesax-alpha/utils'
 import { defaultZIndex, placements } from '@vuesax-alpha/constants'
+import type {
+  FlipOptions,
+  OffsetOptions,
+  Placement,
+  ShiftOptions,
+  Strategy,
+} from '@vuesax-alpha/hooks/use-floating/vue'
 import type { EmitFn } from '@vuesax-alpha/utils'
-import type { Options, Placement, Strategy } from '@vuesax-alpha/hooks'
 import type Content from './content.vue'
 
 import type { ExtractPropTypes, StyleValue } from 'vue'
@@ -35,13 +41,10 @@ export const popperContentProps = buildProps({
     default: true,
   },
   disabled: Boolean,
-  options: {
-    type: definePropType<Options>(Object),
-  },
   strategy: {
     type: definePropType<Strategy>(String),
     values: POSITIONING_STRATEGIES,
-    default: 'absolute',
+    default: 'fixed',
   },
   /**
    * @description fit popper's width to trigger element
@@ -60,7 +63,14 @@ export const popperContentProps = buildProps({
     type: Boolean,
     default: true,
   },
-  flip: Boolean,
+  flip: {
+    type: definePropType<FlipOptions | boolean>([Object, Boolean]),
+    default: () => ({}),
+  },
+  shift: {
+    type: definePropType<ShiftOptions | boolean>([Object, Boolean]),
+    default: () => ({}),
+  },
   windowResize: {
     type: Boolean,
     default: true,
@@ -74,16 +84,18 @@ export const popperContentProps = buildProps({
     default: true,
   },
   offset: {
-    type: Number,
+    type: definePropType<OffsetOptions>([Number, Object]),
     default: 12,
   },
   content: String,
   rawContent: Boolean,
   popperClass: {
     type: definePropType<ClassType>([String, Array, Object]),
+    default: '',
   },
   popperStyle: {
     type: definePropType<StyleValue>([String, Array, Object]),
+    default: '',
   },
   /**
    * @description `persistent` is `false`, popper content will be destroyed

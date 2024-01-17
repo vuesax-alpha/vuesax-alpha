@@ -122,6 +122,7 @@ $iconActiveMargin: -4px;
     &[data-popper-placement^='top'] {
       border-radius: 12px 12px 0px 0px;
       box-shadow: 0px -10px 20px -5px rgba(0, 0, 0, getCssVar(shadow-opacity));
+      margin-top: 0;
     }
     margin-top: -5px;
     padding: 5px;
@@ -130,6 +131,7 @@ $iconActiveMargin: -4px;
     color: getColor(color);
     border-radius: 0 0 12px 12px;
     box-shadow: 0px 10px 20px -5px rgba(0, 0, 0, getCssVar(shadow-opacity));
+    width: 200px;
   }
 
   @include e(state) {

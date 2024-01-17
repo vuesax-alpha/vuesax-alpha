@@ -15,7 +15,6 @@
     :hide-after="hideAfter"
     :offset="offset"
     :placement="placement"
-    :options="options"
     :show-after="showAfter"
     :show-arrow="showArrow"
     :strategy="strategy"

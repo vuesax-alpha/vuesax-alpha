@@ -12,7 +12,7 @@
         v-show="shouldShow"
         ref="contentRef"
         :class="popperKls"
-        :style="popperStyles"
+        :style="popperStyle"
         :data-popper-placement="placement"
         @mouseenter="onContentEnter"
         @mouseleave="onContentLeave"
@@ -51,7 +51,6 @@ import { useNamespace } from '@vuesax-alpha/hooks'
 import { popperContextKey } from '@vuesax-alpha/tokens'
 import { composeEventHandlers } from '@vuesax-alpha/utils'
 import { popperContentEmits, popperContentProps } from './content'
-import type { StyleValue } from 'vue'
 
 defineOptions({
   name: 'VsPopper',
@@ -101,15 +100,6 @@ const popperKls = computed(() => [
   props.popperClass,
 ])
 
-const popperStyles = computed(
-  () =>
-    [
-      props.popperStyle,
-      { position: 'absolute' },
-      { zIndex: props.zIndex },
-    ] as StyleValue
-)
-
 const togglePopperAlive = () => {
   updatePopper(false)
 }
@@ -135,7 +125,7 @@ const onTransitionLeave = () => {
 }
 
 const onBeforeEnter = () => {
-  // updatePopper()
+  updatePopper()
   onBeforeShow?.()
 }
 

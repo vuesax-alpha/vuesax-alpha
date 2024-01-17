@@ -1,3 +1,7 @@
+import type {
+  FloatingElement,
+  ReferenceElement,
+} from '@vuesax-alpha/hooks/use-floating/vue'
 import type { PopperTriggerType } from '@vuesax-alpha/components/popper'
 import type { Arrayable } from '@vuesax-alpha/utils'
 import type { InjectionKey, Ref } from 'vue'
@@ -12,10 +16,10 @@ export type Measurable = {
  * referenceRef indicates the element that popper content relative with
  */
 export type PopperContext = {
-  triggerRef: Ref<HTMLElement | undefined>
-  contentRef: Ref<HTMLElement | undefined>
+  triggerRef: Ref<ReferenceElement | undefined>
+  contentRef: Ref<FloatingElement | undefined>
   arrowRef: Ref<HTMLElement | undefined>
-  referenceRef: Ref<Measurable | undefined>
+  referenceRef: Ref<ReferenceElement | undefined>
 
   controlled: Ref<boolean>
   id: Ref<string>

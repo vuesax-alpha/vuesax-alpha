@@ -19,22 +19,14 @@
     :animation="animation"
     :append-to="appendTo"
     :teleported="teleported"
-    :options="options"
-    :strategy="strategy"
-    :fit="fit"
     :persistent="persistent"
     :placement="popperPlacement"
-    :flip="flip"
     :content="content"
-    :z-index="zIndex"
     :interactivity="interactivity"
-    :offset="offset"
     :popper-class="popperClass"
-    :popper-style="popperStyle"
+    :popper-style="[popperStyle, floatingStyles, { zIndex }]"
     :disabled="disabled"
     :visible="visible"
-    :window-resize="windowResize"
-    :window-scroll="windowScroll"
     :show-arrow="showArrow"
     @blur="onBlur"
     @close="onClose"
@@ -55,18 +47,28 @@ import {
   unref,
   watch,
 } from 'vue'
-import { isBoolean } from '@vuesax-alpha/utils'
+import { isBoolean, isEmpty } from '@vuesax-alpha/utils'
 import {
   useDelayedToggle,
-  useFloating,
   usePopperContainer,
   usePopperContainerId,
   useZIndex,
 } from '@vuesax-alpha/hooks'
 import { popperContextKey } from '@vuesax-alpha/tokens'
+import {
+  arrow as arrowMiddleware,
+  flip as flipMiddleware,
+  offset as offsetMiddleware,
+  shift as shiftMiddleware,
+  useFloating,
+} from '@vuesax-alpha/hooks/use-floating/vue'
 import { popperEmits, popperProps, usePopperModelToggle } from './popper'
 import popperContent from './content.vue'
 import popperTrigger from './trigger.vue'
+import type {
+  Middleware,
+  ReferenceElement,
+} from '@vuesax-alpha/hooks/use-floating/vue'
 
 defineOptions({
   name: 'VsPopper',
@@ -86,7 +88,7 @@ const { currentZIndex, nextZIndex } = useZIndex()
 
 const zIndex = computed(() => currentZIndex.value)
 
-const triggerRef = ref<HTMLElement>()
+const triggerRef = ref<ReferenceElement>()
 const contentRef = ref<HTMLElement>()
 const arrowRef = ref<HTMLElement>()
 
@@ -108,12 +110,26 @@ const { onOpen, onClose } = useDelayedToggle({
   close: hide,
 })
 
-const { update, placement: popperPlacement } = useFloating(
-  triggerRef,
-  contentRef,
-  arrowRef,
-  { ...props, visible: open }
-)
+const {
+  update,
+  placement: popperPlacement,
+  floatingStyles,
+} = useFloating(triggerRef, contentRef, {
+  open,
+  middleware: [
+    !isEmpty(props.offset) && offsetMiddleware(props.offset),
+    !isEmpty(props.flip) &&
+      flipMiddleware(isBoolean(props.flip) ? undefined : props.flip),
+    !isEmpty(props.shift) &&
+      shiftMiddleware(isBoolean(props.shift) ? undefined : props.shift),
+    arrowMiddleware({
+      element: arrowRef,
+    }),
+  ] as Middleware[],
+  placement: computed(() => props.placement),
+  strategy: computed(() => props.strategy),
+  transform: false,
+})
 
 const controlled = computed(
   () => isBoolean(props.visible) && !hasUpdateHandler.value
