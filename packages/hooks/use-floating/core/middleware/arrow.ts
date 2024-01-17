@@ -8,7 +8,6 @@ import {
   getPaddingObject,
   min as mathMin,
 } from '@vuesax-alpha/hooks/use-floating/utils'
-import type { MaybeElement } from '@vueuse/core'
 import type { Padding } from '@vuesax-alpha/hooks/use-floating/utils'
 import type { Derivable, Middleware } from '../types'
 
@@ -16,7 +15,7 @@ export interface ArrowOptions {
   /**
    * @default undefined
    */
-  element: MaybeElement
+  element: any
 
   /**
    * @default 0

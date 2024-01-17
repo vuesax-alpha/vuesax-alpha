@@ -1,4 +1,3 @@
-import type { MaybeElement } from '@vueuse/core'
 import type {
   ClientRectObject,
   Dimensions,
@@ -105,7 +104,7 @@ export type Middleware = Prettify<
 >
 export type ArrowOptions = Prettify<
   Omit<CoreArrowOptions, 'element'> & {
-    element: MaybeElement
+    element: Element
   }
 >
 export type ShiftOptions = Prettify<

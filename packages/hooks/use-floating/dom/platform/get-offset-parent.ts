@@ -5,7 +5,7 @@ import {
   isContainingBlock,
   isHTMLElement,
   isTableElement,
-} from '@vuesax-alpha/hooks/use-floating/utils'
+} from '@vuesax-alpha/hooks/use-floating/utils/dom'
 
 type Polyfill = (element: HTMLElement) => Element | null
 

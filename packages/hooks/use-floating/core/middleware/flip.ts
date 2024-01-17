@@ -99,7 +99,7 @@ export const flip = (
 
     const overflow = await detectOverflow(state, detectOverflowOptions)
 
-    const overflows = []
+    const overflows: number[] = []
     let overflowsData = middlewareData.flip?.overflows || []
 
     if (checkMainAxis) {

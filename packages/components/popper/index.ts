@@ -8,7 +8,4 @@ export * from './src/popper'
 export * from './src/trigger'
 export * from './src/content'
 
-export type {
-  Placement as PopperPlacement,
-  Options as PopperOptions,
-} from '@vuesax-alpha/hooks/use-floating'
+export type { Placement as PopperPlacement } from '@vuesax-alpha/hooks/use-floating/vue'

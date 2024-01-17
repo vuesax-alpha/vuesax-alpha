@@ -9,7 +9,7 @@ import {
 
 import { getBoundingClientRect } from '../utils/get-bounding-client-rect'
 import { getScale } from './get-scale'
-import type { Rect, Strategy } from '@vuesax-alpha/hooks/use-floating/core'
+import type { Rect, Strategy } from '@vuesax-alpha/hooks/use-floating/utils'
 
 export function convertOffsetParentRelativeRectToViewportRelativeRect({
   rect,

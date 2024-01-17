@@ -2,7 +2,7 @@ import {
   getDocumentElement,
   getWindow,
   isWebKit,
-} from '@vuesax-alpha/hooks/use-floating/utils'
+} from '@vuesax-alpha/hooks/use-floating/utils/dom'
 import type { Rect, Strategy } from '@vuesax-alpha/hooks/use-floating/utils'
 
 export function getViewportRect(element: Element, strategy: Strategy): Rect {

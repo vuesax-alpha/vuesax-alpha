@@ -1,8 +1,8 @@
+import { max } from '@vuesax-alpha/hooks/use-floating/utils'
 import {
   getComputedStyle,
   getNodeScroll,
-  max,
-} from '@vuesax-alpha/hooks/use-floating/utils'
+} from '@vuesax-alpha/hooks/use-floating/utils/dom'
 
 import { getDocumentElement } from '../platform/get-document-element'
 import { getWindowScrollBarX } from './get-window-scrollbar-x'

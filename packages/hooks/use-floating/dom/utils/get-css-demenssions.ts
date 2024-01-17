@@ -1,4 +1,5 @@
-import { isHTMLElement, round } from '@vuesax-alpha/hooks/use-floating/utils'
+import { round } from '@vuesax-alpha/hooks/use-floating/utils'
+import { isHTMLElement } from '@vuesax-alpha/hooks/use-floating/utils/dom'
 import type { Dimensions } from '@vuesax-alpha/hooks/use-floating/utils'
 
 export function getCssDimensions(

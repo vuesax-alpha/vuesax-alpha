@@ -1,8 +1,5 @@
-import {
-  createCoords,
-  getWindow,
-  isWebKit,
-} from '@vuesax-alpha/hooks/use-floating/utils'
+import { createCoords } from '@vuesax-alpha/hooks/use-floating/utils'
+import { getWindow, isWebKit } from '@vuesax-alpha/hooks/use-floating/utils/dom'
 import type { Coords } from '@vuesax-alpha/hooks/use-floating/utils'
 
 const noOffsets = createCoords(0)

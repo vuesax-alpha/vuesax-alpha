@@ -4,7 +4,7 @@ import {
   limitShift as limitShiftCore,
   shift as shiftCore,
 } from '@vuesax-alpha/hooks/use-floating/core'
-import type { Coords } from '../utils'
+import type { Coords } from '@vuesax-alpha/hooks/use-floating/utils'
 import type {
   Derivable,
   LimitShiftOptions,

@@ -58,7 +58,7 @@ export function isTableElement(element: Element): boolean {
 
 export function isContainingBlock(element: Element): boolean {
   const webkit = isWebKit()
-  const css = getComputedStyle(element)
+  const css = getComputedStyle(element) as any
 
   return (
     css.transform !== 'none' ||

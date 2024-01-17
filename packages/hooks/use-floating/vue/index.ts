@@ -1,5 +1,5 @@
 export { arrow } from './arrow'
-export type * from './types'
+export * from './types'
 export { useFloating } from './use-floating'
 export {
   computePosition,

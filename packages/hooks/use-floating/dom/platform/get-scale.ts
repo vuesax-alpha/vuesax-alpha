@@ -1,9 +1,6 @@
-import {
-  createCoords,
-  isHTMLElement,
-  round,
-} from '@vuesax-alpha/hooks/use-floating/utils'
-import { unwrapElement } from '../utils'
+import { createCoords, round } from '@vuesax-alpha/hooks/use-floating/utils'
+import { isHTMLElement } from '@vuesax-alpha/hooks/use-floating/utils/dom'
+import { unwrapElement } from '../utils/unwrap-element'
 import { getCssDimensions } from '../utils/get-css-demenssions'
 import type { Coords } from '@vuesax-alpha/hooks/use-floating/utils'
 import type { VirtualElement } from '../types'

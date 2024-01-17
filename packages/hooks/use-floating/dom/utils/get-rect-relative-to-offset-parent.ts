@@ -1,11 +1,11 @@
+import { createCoords } from '@vuesax-alpha/hooks/use-floating/utils'
 import {
-  createCoords,
   getDocumentElement,
   getNodeName,
   getNodeScroll,
   isHTMLElement,
   isOverflowElement,
-} from '@vuesax-alpha/hooks/use-floating/utils'
+} from '@vuesax-alpha/hooks/use-floating/utils/dom'
 import { getBoundingClientRect } from './get-bounding-client-rect'
 import { getWindowScrollBarX } from './get-window-scrollbar-x'
 import type {
