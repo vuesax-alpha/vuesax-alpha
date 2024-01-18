@@ -130,8 +130,8 @@ export function useFloating<T extends ReferenceElement = ReferenceElement>(
   }
 
   onMounted(() => {
-    useEventListener('resize', attach)
-    useEventListener('scroll', attach)
+    useEventListener('resize', attach, true)
+    useEventListener('scroll', attach, true)
 
     watch([middlewareOption, placementOption, strategyOption], update, {
       flush: 'sync',
