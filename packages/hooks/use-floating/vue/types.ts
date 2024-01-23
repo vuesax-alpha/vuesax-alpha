@@ -68,6 +68,10 @@ export type UseFloatingOptions<T extends ReferenceElement = ReferenceElement> =
      */
     open?: MaybeReadonlyRef<boolean | undefined>
     /**
+     * Make the popper content same width with reference element
+     */
+    fit?: MaybeReadonlyRef<boolean | undefined>
+    /**
      * Where to place the floating element relative to its reference element.
      * @default 'bottom'
      */

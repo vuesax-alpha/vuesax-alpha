@@ -34,12 +34,14 @@ export function useFloating<T extends ReferenceElement = ReferenceElement>(
 ): UseFloatingReturn {
   const whileElementsMountedOption = options.whileElementsMounted
   const openOption = computed(() => unref(options.open) ?? true)
+  const fitOption = computed(() => unref(options.fit) ?? false)
   const middlewareOption = computed(() => unref(options.middleware))
   const placementOption = computed(() => unref(options.placement) ?? 'bottom')
   const strategyOption = computed(() => unref(options.strategy) ?? 'absolute')
   const transformOption = computed(() => unref(options.transform) ?? true)
   const referenceElement = computed(() => unwrapElement(reference.value))
   const floatingElement = computed(() => unwrapElement(floating.value))
+
   const x = ref(0)
   const y = ref(0)
   const strategy = ref(strategyOption.value)
@@ -82,6 +84,12 @@ export function useFloating<T extends ReferenceElement = ReferenceElement>(
   function update() {
     if (referenceElement.value == null || floatingElement.value == null) {
       return
+    }
+
+    if (fitOption.value) {
+      floatingElement.value.style.width = `${
+        referenceElement.value.getBoundingClientRect().width
+      }px`
     }
 
     computePosition(referenceElement.value, floatingElement.value, {

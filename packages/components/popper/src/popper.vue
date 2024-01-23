@@ -129,6 +129,7 @@ const {
   placement: computed(() => props.placement),
   strategy: computed(() => props.strategy),
   transform: false,
+  fit: computed(() => props.fit),
 })
 
 const controlled = computed(
