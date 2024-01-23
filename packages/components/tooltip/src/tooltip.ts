@@ -1,12 +1,17 @@
 import { buildProps, definePropType } from '@vuesax-alpha/utils'
 import { popperProps } from '@vuesax-alpha/components/popper'
 import { useColorProp } from '@vuesax-alpha/hooks'
+import type { ShiftOptions } from '@vuesax-alpha/hooks/use-floating/core'
 import type Tooltip from './tooltip.vue'
 
 import type { ExtractPropTypes } from 'vue'
 
 export const tooltipProps = buildProps({
   ...popperProps,
+  shift: {
+    type: definePropType<ShiftOptions | boolean>([Object, Boolean]),
+    default: true,
+  },
   color: useColorProp,
   animation: {
     type: String,

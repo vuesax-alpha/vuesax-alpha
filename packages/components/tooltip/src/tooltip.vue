@@ -7,6 +7,7 @@
     :animation="animation"
     :append-to="appendTo"
     :flip="flip"
+    :shift="shift"
     :window-resize="windowResize"
     :window-scroll="windowScroll"
     :disabled="disabled"
