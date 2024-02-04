@@ -8,6 +8,8 @@ import * as VuesaxIconsVue from '@vuesax-alpha/icons-vue'
 
 export default defineClientConfig({
   enhance({ app }) {
+    // @ts-ignore
+    // dumb fix for my computer
     app.use(Vuesax)
 
     for (const [key, component] of Object.entries(VuesaxIconsVue)) {

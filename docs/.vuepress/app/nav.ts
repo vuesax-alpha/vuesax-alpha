@@ -7,6 +7,7 @@ export const enNavbar: NavbarConfig = [
     children: [
       { text: `Introduction`, link: `/guide/` },
       { text: `Getting Started`, link: `/guide/getting-started` },
+      { text: `Usage with Nuxt`, link: `/guide/nuxt` },
     ],
   },
   {
