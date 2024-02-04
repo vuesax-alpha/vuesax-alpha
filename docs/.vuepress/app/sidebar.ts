@@ -12,6 +12,10 @@ export const enSidebar: SidebarConfig = [
         text: 'Getting Started',
         link: '/guide/getting-started/',
       },
+      {
+        text: 'Usage with Nuxt',
+        link: '/guide/nuxt/',
+      },
     ],
   },
   {

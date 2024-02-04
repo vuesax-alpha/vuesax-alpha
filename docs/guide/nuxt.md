@@ -1,22 +1,23 @@
-# Vuesax + Nuxtjs
+# Vuesax + Nuxt
 
 <card>
 
 ## Installation
 
-Vuesax 4 has a plugin for [create-nuxt-app](https://nuxtjs.org/guide/installation#using-code-create-nuxt-app-code-) so starting a project is relatively quick just we have to select the Vuesax option within UI frameworks.
+Vuesax has a plugin for [Nuxt](https://nuxt.com) so starting a project is relatively quick just we have to add Vuesax module to the `nuxt.config.ts`
 
-  <img src="/nuxt-ui-vuesax.png" >
+  <command>
 
-</card>
+```ts
+export default defineNuxtConfig({
+  modules: ["@vuesax-alpha/nuxt"],
+  vuesaxAlpha: {
+    /** Options */
+  },
+});
+```
 
-<card>
-
-## Version
-
-Great, we already have vuesax in our project, but the version may not be updated as it is constantly changing before a stable version.
-
-So we are going to run after finishing installing all `npm install vuesax @ next` with this we are going to download the latest vuesax and should not break anything
+  </command>
 
 </card>
 
@@ -35,7 +36,7 @@ Let's try adding a simple component like [vsButton](/components/) the final code
 ```html
 <template>
   <div class="app">
-    <vs-button> Hello World Vuesax + Nuxtjs </vs-button>
+    <vs-button active> Hello World Vuesax + Nuxtjs </vs-button>
   </div>
 </template>
 
@@ -54,19 +55,5 @@ Let's try adding a simple component like [vsButton](/components/) the final code
 
 and if we see the page `/test` we find something like this
 
-  <img src="/nuxt-test-page.png" >
-</card>
-
-<card>
-
-## Tips
-
-#### nuxt-purgecss
-
-For some reason this plugin removes the css from vuesax and causes the components to not work correctly after running `npm run build`, if you are using this plugin at the moment it cannot be used with vuesax 4 to avoid this error
-
-#### Install the latest version
-
-Vuesax 4 is constantly updated before reaching a stable version and therefore whenever you start a project after installing all the packages you have to run `npm install vuesax@next`
-
+  <img src="/nuxt-test-app.png" >
 </card>
