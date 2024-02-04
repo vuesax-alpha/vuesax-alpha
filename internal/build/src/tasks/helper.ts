@@ -36,7 +36,7 @@ const reComponentName: ReComponentName = (title) =>
   `vs-${hyphenate(title).replace(/[ ]+/g, '-')}`
 
 const reDocUrl: ReDocUrl = (fileName, header) => {
-  const docs = 'https://vuesax.space/'
+  const docs = 'https://vuesax-alpha.vercel.app/'
   const _header = header
     ? removeTag(header).replaceAll(/\s+/g, '-').toLowerCase()
     : ''

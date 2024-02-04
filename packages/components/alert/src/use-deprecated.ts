@@ -11,7 +11,7 @@ export const useAlertDeprecated = (props: AlertProps) => {
       from: 'border',
       version: '0.2.0',
       replacement: 'type',
-      ref: 'https://vuesax.space/components/alert#props',
+      ref: 'https://vuesax-alpha.vercel.app/components/alert#props',
     },
     computed(() => !!props.border)
   )
@@ -23,7 +23,7 @@ export const useAlertDeprecated = (props: AlertProps) => {
       from: 'shadow',
       version: '0.2.0',
       replacement: 'type',
-      ref: 'https://vuesax.space/components/alert#props',
+      ref: 'https://vuesax-alpha.vercel.app/components/alert#props',
     },
     computed(() => !!props.shadow)
   )
@@ -34,7 +34,7 @@ export const useAlertDeprecated = (props: AlertProps) => {
       from: 'relief',
       version: '0.2.0',
       replacement: 'type',
-      ref: 'https://vuesax.space/components/alert#props',
+      ref: 'https://vuesax-alpha.vercel.app/components/alert#props',
     },
     computed(() => !!props.relief)
   )
@@ -45,7 +45,7 @@ export const useAlertDeprecated = (props: AlertProps) => {
       from: 'flat',
       version: '0.2.0',
       replacement: 'type',
-      ref: 'https://vuesax.space/components/alert#props',
+      ref: 'https://vuesax-alpha.vercel.app/components/alert#props',
     },
     computed(() => !!props.flat)
   )
@@ -56,7 +56,7 @@ export const useAlertDeprecated = (props: AlertProps) => {
       from: 'gradient',
       version: '0.2.0',
       replacement: 'type',
-      ref: 'https://vuesax.space/components/alert#props',
+      ref: 'https://vuesax-alpha.vercel.app/components/alert#props',
     },
     computed(() => !!props.gradient)
   )
@@ -67,7 +67,7 @@ export const useAlertDeprecated = (props: AlertProps) => {
       from: 'solid',
       version: '0.2.0',
       replacement: 'type',
-      ref: 'https://vuesax.space/components/alert#props',
+      ref: 'https://vuesax-alpha.vercel.app/components/alert#props',
     },
     computed(() => !!props.solid)
   )

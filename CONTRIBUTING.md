@@ -46,7 +46,7 @@ Ah, now you have installed the code correctly, you can choose:
 ### Modify and update the documentation site.
 
 ```shell
-# If you would like to modify the website source code of https://vuesax.space
+# If you would like to modify the website source code of https://vuesax-alpha.vercel.app
 # It was made with Vuepress
 pnpm run docs:dev
 ```

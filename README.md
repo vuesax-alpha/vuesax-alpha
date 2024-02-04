@@ -51,7 +51,7 @@ Then, see the [vuesax-next doucmentation](https://vuesax.com/) to try it
 
 ## New version - Vuesax-alpha
 
-The documentation of this version is different from the above version, see the [VuesaxAlpha doucmentation](https://vuesax.space/)
+The documentation of this version is different from the above version, see the [VuesaxAlpha doucmentation](https://vuesax-alpha.vercel.app/)
 
 ```sh
 # Choose a package manager you like.

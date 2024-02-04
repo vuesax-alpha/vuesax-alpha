@@ -139,7 +139,7 @@ useDeprecated(
     type: 'Prop',
     version: 'VuesaxAlpha',
     scope: 'vs-input',
-    ref: 'https://vuesax.space/components/input#style',
+    ref: 'https://vuesax-alpha.vercel.app/components/input#style',
     replacement: 'inputStyle',
   },
   computed(() => props.border)
@@ -151,7 +151,7 @@ useDeprecated(
     type: 'Prop',
     version: 'VuesaxAlpha',
     scope: 'vs-input',
-    ref: 'https://vuesax.space/components/input#style',
+    ref: 'https://vuesax-alpha.vercel.app/components/input#style',
     replacement: 'inputStyle',
   },
   computed(() => props.shadow)
@@ -163,7 +163,7 @@ useDeprecated(
     type: 'Prop',
     version: 'VuesaxAlpha',
     scope: 'vs-input',
-    ref: 'https://vuesax.space/components/input#style',
+    ref: 'https://vuesax-alpha.vercel.app/components/input#style',
     replacement: 'inputStyle',
   },
   computed(() => props.transparent)
@@ -175,7 +175,7 @@ useDeprecated(
     type: 'Prop',
     version: 'VuesaxAlpha',
     scope: 'vs-input',
-    ref: 'https://vuesax.space/components/input#label',
+    ref: 'https://vuesax-alpha.vercel.app/components/input#label',
     replacement: 'labelFloat',
   },
   computed(() => !!props.labelPlaceholder)
@@ -187,7 +187,7 @@ useDeprecated(
     type: 'Prop',
     version: 'VuesaxAlpha',
     scope: 'vs-input',
-    ref: 'https://vuesax.space/components/input#shape',
+    ref: 'https://vuesax-alpha.vercel.app/components/input#shape',
     replacement: 'shape',
   },
   computed(() => !!props.square)

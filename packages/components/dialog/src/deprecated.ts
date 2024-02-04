@@ -10,7 +10,7 @@ export const dialogDeprecated = (props: DialogProps) => {
       scope: 'vs-dialog',
       version: 'v0.1.0',
       type: 'Prop',
-      ref: 'https://vuesax.space/components/dialog#lockScroll',
+      ref: 'https://vuesax-alpha.vercel.app/components/dialog#lockScroll',
       replacement: 'lockScroll',
     },
     computed(() => !!props.overflowHidden)
