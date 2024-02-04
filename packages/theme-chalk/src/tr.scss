@@ -75,10 +75,10 @@
           border-radius: 15px 0px 0px 0px;
         }
       }
-      + .#{$namespace}-table-tr-expand {
-        td {
-          border-radius: 0px 0px 15px 15px !important;
-        }
+    }
+    + .#{$namespace}-table-tr-expand {
+      td {
+        border-radius: 0px 0px 15px 15px !important;
       }
     }
   }
