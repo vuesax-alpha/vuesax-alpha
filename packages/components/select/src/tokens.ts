@@ -1,4 +1,3 @@
-import type { SelectProps } from './select'
 import type { InjectionKey } from 'vue'
 
 export type SelectOptionValue = string | number | object
