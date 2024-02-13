@@ -15,6 +15,10 @@ export const chipProps = buildProps({
     values: ['square'] as const,
     default: '',
   },
+  showClose: {
+    type: Boolean,
+    default: true,
+  },
 })
 
 export type ChipProps = ExtractPropTypes<typeof chipProps>

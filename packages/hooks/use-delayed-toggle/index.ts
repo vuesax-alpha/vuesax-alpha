@@ -7,10 +7,12 @@ import type { ExtractPropTypes, ToRefs } from 'vue'
 export const useDelayedToggleProps = buildProps({
   showAfter: {
     type: Number,
+    validator: (value: number) => isNumber(value) && value >= 0,
     default: 0,
   },
   hideAfter: {
     type: Number,
+    validator: (value: number) => isNumber(value) && value >= 0,
     default: 200,
   },
   /**

@@ -58,7 +58,8 @@ export type SelectGroupContext = {
 }
 
 export type SelectContext = {
-  props: SelectProps
+  multipleLimit: number
+  multiple: boolean
   states: SelectStates
   queryChange: string | null
   selectWrapper: HTMLElement | undefined

@@ -9,6 +9,7 @@ import {
   isObject,
   isString,
 } from '@vuesax-alpha/utils'
+import { popperProps } from '@vuesax-alpha/components/popper'
 import type { EmitFn } from '@vuesax-alpha/utils'
 import type { SelectOptionValue, SelectValue } from './tokens'
 
@@ -19,18 +20,25 @@ export const selectProps = buildProps({
   showAfter: {
     type: Number,
     default: 0,
+    validator: (val: number) => isNumber(val) && val >= 0,
   },
   hideAfter: {
     type: Number,
     default: 0,
+    validator: (val: number) => isNumber(val) && val >= 0,
   },
-  /**
-   * @description fit select options's width to trigger element
-   */
-  fit: {
-    type: Boolean,
-    default: true,
-  },
+  flip: popperProps.flip,
+  fit: popperProps.fit,
+  disabled: popperProps.disabled,
+  onClick: popperProps.onClick,
+  onBlur: popperProps.onBlur,
+  onFocus: popperProps.onFocus,
+  onMouseenter: popperProps.onMouseenter,
+  onMouseleave: popperProps.onMouseleave,
+  onContextmenu: popperProps.onContextmenu,
+  onKeydown: popperProps.onKeydown,
+  strategy: popperProps.strategy,
+  teleported: popperProps.teleported,
   /**
    * @description binding value
    */
@@ -56,14 +64,15 @@ export const selectProps = buildProps({
     type: definePropType<(val: string) => void>(Function),
   },
   collapseChips: Boolean,
+  maxCollapseChips: {
+    type: Number,
+    default: 1,
+    validator: (value: number) => isNumber(value) && value >= 0,
+  },
   /**
    * @description set default select is firt option
    */
   defaultFirstOption: Boolean,
-  /**
-   * @description whether Select is disabled
-   */
-  disabled: Boolean,
 
   /**
    * @description Add a loading animation to the input.

@@ -59,12 +59,12 @@ const el = ref<HTMLElement>()
 const isObject = computed(() => _isObject(props.value))
 
 const limitReached = computed(() => {
-  if (select.props.multiple && select.props.multipleLimit) {
+  if (select.multiple && select.multipleLimit) {
     const modelValue = select.selectedArray
     return (
       !isSelected.value &&
-      modelValue.length >= select.props.multipleLimit &&
-      select.props.multipleLimit > 0
+      modelValue.length >= select.multipleLimit &&
+      select.multipleLimit > 0
     )
   }
   return false

@@ -4,19 +4,29 @@
     v-model:visible="dropMenuVisible"
     trigger="click"
     placement="bottom"
+    persistent
     :animation="optionsAnimation"
-    :flip="false"
+    :flip="flip"
     :fit="fit"
     :hide-after="hideAfter"
     :show-after="showAfter"
     :loading="loading"
+    :disabled="disabled"
+    :on-blur="onBlur"
+    :on-focus="onFocus"
+    :on-click="onClick"
+    :on-contextmenu="onContextmenu"
+    :on-mouseenter="onMouseenter"
+    :on-mouseleave="onMouseleave"
+    :on-keydown="onKeydown"
+    :teleported="teleported"
+    :strategy="strategy"
     :popper-class="[ns.e('content'), useBaseComponent(color)]"
     :popper-style="colorCssVar"
     :show-arrow="false"
     :offset="0"
     :process-before-open="processBeforeOpen"
     :process-before-close="processBeforeClose"
-    persistent
     @show="handleMenuEnter"
   >
     <div
@@ -30,7 +40,7 @@
     >
       <div v-if="multiple" ref="chips" :class="[ns.e('chips')]">
         <vs-chip
-          v-for="(item, cIndex) in selectedArray"
+          v-for="(item, cIndex) in showTagList"
           :key="cIndex + 'chip'"
           :shape="shape"
           :disabled="selectDisabled || item.isDisabled"
@@ -38,6 +48,15 @@
           @close="deleteTag(item.value)"
         >
           {{ item.currentLabel }}
+        </vs-chip>
+
+        <vs-chip
+          v-if="collapseChips && selectedArray.length > maxCollapseChips"
+          :show-close="false"
+          :shape="shape"
+          :hit="collapseTagList.some((item) => item.hit)"
+        >
+          + {{ selectedArray.length - maxCollapseChips }}
         </vs-chip>
 
         <input
@@ -179,7 +198,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, onMounted, provide, reactive } from 'vue'
+import { computed, nextTick, onMounted, provide, reactive, toRef } from 'vue'
 import { toRefs, unrefElement, useResizeObserver } from '@vueuse/core'
 import { isEqual } from 'lodash-unified'
 import { ClickOutside as vClickOutside } from '@vuesax-alpha/directives'
@@ -200,6 +219,7 @@ import type { SelectOptionContext } from './tokens'
 
 defineOptions({
   name: 'VsSelect',
+  inheritAttrs: false,
 })
 
 const messageTypes = ['success', 'warn', 'danger', 'primary', 'dark']
@@ -234,6 +254,8 @@ const {
   input,
   reference,
 
+  showTagList,
+  collapseTagList,
   chips,
   popperRef,
   selectDisabled,
@@ -319,7 +341,8 @@ onMounted(() => {
 provide(
   selectContextKey,
   reactive({
-    props,
+    multiple: toRef(props, 'multiple'),
+    multipleLimit: toRef(props, 'multipleLimit'),
     states,
     queryChange,
     hoverIndex,

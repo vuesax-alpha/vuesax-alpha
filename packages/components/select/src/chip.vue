@@ -3,7 +3,7 @@
     <slot />
 
     <icon-close
-      v-if="!disabled"
+      v-if="!disabled && showClose"
       hover="less"
       scale="0.5"
       @click="onClose"

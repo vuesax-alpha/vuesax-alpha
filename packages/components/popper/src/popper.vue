@@ -116,7 +116,7 @@ const {
   floatingStyles,
 } = useFloating(triggerRef, contentRef, {
   open,
-  middleware: [
+  middleware: reactive([
     !isEmpty(props.offset) && offsetMiddleware(props.offset),
     !isEmpty(props.flip) &&
       flipMiddleware(isBoolean(props.flip) ? undefined : props.flip),
@@ -125,7 +125,7 @@ const {
     arrowMiddleware({
       element: arrowRef,
     }),
-  ] as Middleware[],
+  ]) as Middleware[],
   placement: computed(() => props.placement),
   strategy: computed(() => props.strategy),
   transform: false,

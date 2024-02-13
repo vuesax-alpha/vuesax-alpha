@@ -314,6 +314,24 @@ export const useSelect = (
     }
   )
 
+  const showTagList = computed(() => {
+    if (!props.multiple) {
+      return []
+    }
+    return props.collapseChips
+      ? selectedArray.value.slice(0, props.maxCollapseChips)
+      : selectedArray.value
+  })
+
+  const collapseTagList = computed(() => {
+    if (!props.multiple) {
+      return []
+    }
+    return props.collapseChips
+      ? selectedArray.value.slice(props.maxCollapseChips)
+      : []
+  })
+
   const handleQueryChange = (val: string) => {
     if (states.previousQuery === val || states.isOnComposition) return
     if (states.previousQuery === null && isFunction(props.filterMethod)) {
@@ -900,6 +918,8 @@ export const useSelect = (
     navigateOptions,
     dropMenuVisible,
     queryChange,
+    showTagList,
+    collapseTagList,
 
     // DOM ref
     reference,
