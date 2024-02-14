@@ -172,7 +172,7 @@ importers:
       vue: 3.3.1
       vue-router: 4.2.4
       vuepress: 2.0.0-beta.62
-      vuesax-alpha: 0.2.0-beta.67
+      vuesax-alpha: 0.2.0-beta.69
     dependencies:
       '@vuepress/shared-utils': 1.9.9
       '@vuesax-alpha/icons-vue': 0.0.2-beta.11_vue@3.3.1
@@ -186,7 +186,7 @@ importers:
       prismjs: 1.29.0
       vue: 3.3.1
       vue-router: 4.2.4_vue@3.3.1
-      vuesax-alpha: 0.2.0-beta.67_vue@3.3.1
+      vuesax-alpha: 0.2.0-beta.69_vue@3.3.1
     devDependencies:
       '@types/prismjs': 1.26.0
       '@vuepress/client': 2.0.0-beta.62
@@ -11983,7 +11983,7 @@ packages:
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     dev: true
 
   /run-groups/3.0.1:
@@ -13699,7 +13699,7 @@ packages:
       postcss: 8.4.28
       rollup: 3.28.0
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     dev: true
 
   /vitest/0.12.6_xv2bop6xesereue37qdruhb4hy:
@@ -13915,8 +13915,8 @@ packages:
       - webpack
     dev: true
 
-  /vuesax-alpha/0.2.0-beta.67_vue@3.3.1:
-    resolution: {integrity: sha512-PiY7cdDwHXm8LIkOIVnYPEDBB3DzucJ6Cz5em1FhKfsYLy3Yxt0OKW16rDHWLZzvR9Bz5LMVVlT9kCiU2OnAKA==}
+  /vuesax-alpha/0.2.0-beta.69_vue@3.3.1:
+    resolution: {integrity: sha512-MPkEny2CoojCZC/KCYjt2M+g7QVeFlp/fb9tNwf7LMrz010CX7Q9Zsse3lWsYLld8+ztAYEQz71Q7HWpPofmUg==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
