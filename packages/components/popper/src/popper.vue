@@ -65,6 +65,7 @@ import {
 import { popperEmits, popperProps, usePopperModelToggle } from './popper'
 import popperContent from './content.vue'
 import popperTrigger from './trigger.vue'
+import type { Ref } from 'vue'
 import type {
   Middleware,
   ReferenceElement,
@@ -116,7 +117,7 @@ const {
   floatingStyles,
 } = useFloating(triggerRef, contentRef, {
   open,
-  middleware: reactive([
+  middleware: ref([
     !isEmpty(props.offset) && offsetMiddleware(props.offset),
     !isEmpty(props.flip) &&
       flipMiddleware(isBoolean(props.flip) ? undefined : props.flip),
@@ -125,7 +126,7 @@ const {
     arrowMiddleware({
       element: arrowRef,
     }),
-  ]) as Middleware[],
+  ]) as Ref<Middleware[]>,
   placement: computed(() => props.placement),
   strategy: computed(() => props.strategy),
   transform: false,
