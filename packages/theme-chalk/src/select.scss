@@ -7,7 +7,7 @@ $iconActiveMargin: -4px;
 
 .#{$namespace}-select-enter-active,
 .#{$namespace}-select-leave-active {
-  transition: all 0s ease 0s, transform 0.25s ease, opacity 0.12s ease;
+  transition: all 0s ease 0s, top 0s, left 0s, transform 0.25s ease, opacity 0.12s ease !important;
 }
 .#{$namespace}-select-enter-from,
 .#{$namespace}-select-leave-to {
@@ -104,6 +104,8 @@ $iconActiveMargin: -4px;
   max-width: getCssVar(select, width);
 
   @include e(content) {
+    transition: all 0s ease 0s;
+
     @include pseudo(before) {
       content: '';
       position: absolute;
