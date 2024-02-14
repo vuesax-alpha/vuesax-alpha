@@ -73,7 +73,7 @@ PROPS:
       text: New
     type: Boolean
     values: true, false
-    description: 	select first matching option on enter key. Use with `filter`
+    description: select first matching option on enter key. Use with `filter`
     default: false
     link: null
     usage: '#filter'
