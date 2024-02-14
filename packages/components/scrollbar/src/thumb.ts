@@ -3,14 +3,14 @@ import type { ExtractPropTypes } from 'vue'
 import type Thumb from './thumb.vue'
 
 export const thumbProps = buildProps({
-  vertical: Boolean,
-  size: String,
-  move: Number,
+  vertical: { type: Boolean },
+  size: { type: String },
+  move: { type: Number },
   ratio: {
     type: Number,
     required: true,
   },
-  always: Boolean,
+  always: { type: Boolean },
 } as const)
 export type ThumbProps = ExtractPropTypes<typeof thumbProps>
 

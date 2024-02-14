@@ -27,8 +27,14 @@ export const selectProps = buildProps({
     default: 0,
     validator: (val: number) => isNumber(val) && val >= 0,
   },
-  flip: popperProps.flip,
-  fit: popperProps.fit,
+  flip: {
+    ...popperProps.flip,
+    default: true,
+  },
+  fit: {
+    ...popperProps.fit,
+    default: true,
+  },
   disabled: popperProps.disabled,
   onClick: popperProps.onClick,
   onBlur: popperProps.onBlur,
@@ -50,20 +56,20 @@ export const selectProps = buildProps({
     type: definePropType<SelectOptionValue>([String, Number, Object]),
     default: '',
   },
-  loadingText: String,
-  noMatchText: String,
-  noDataText: String,
-  allowCreate: Boolean,
-  multiple: Boolean,
+  loadingText: { type: String },
+  noMatchText: { type: String },
+  noDataText: { type: String },
+  allowCreate: { type: Boolean },
+  multiple: { type: Boolean },
   multipleLimit: {
     type: Number,
     default: 0,
   },
-  filter: Boolean,
+  filter: { type: Boolean },
   filterMethod: {
     type: definePropType<(val: string) => void>(Function),
   },
-  collapseChips: Boolean,
+  collapseChips: { type: Boolean },
   maxCollapseChips: {
     type: Number,
     default: 1,
@@ -72,12 +78,12 @@ export const selectProps = buildProps({
   /**
    * @description set default select is firt option
    */
-  defaultFirstOption: Boolean,
+  defaultFirstOption: { type: Boolean },
 
   /**
    * @description Add a loading animation to the input.
    */
-  loading: Boolean,
+  loading: { type: Boolean },
   /**
    * @description Select color - Accept Vuesax's color, Hex, rgb
    */
@@ -89,16 +95,16 @@ export const selectProps = buildProps({
   /**
    * @description make select width full
    */
-  block: Boolean,
+  block: { type: Boolean },
   /**
    * @description hide scrollbar
    */
-  hideScrollbar: Boolean,
+  hideScrollbar: { type: Boolean },
 
   /**
    * @description label is placeholder when input empty
    */
-  labelFloat: Boolean,
+  labelFloat: { type: Boolean },
 
   /**
    * @description a label above the component.
@@ -126,11 +132,11 @@ export const selectProps = buildProps({
   /**
    * @description show native scrollbar
    */
-  nativeScrollbar: Boolean,
+  nativeScrollbar: { type: Boolean },
   /**
    * @description native input readonly
    */
-  clearable: Boolean,
+  clearable: { type: Boolean },
 } as const)
 
 export type SelectProps = ExtractPropTypes<typeof selectProps>

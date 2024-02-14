@@ -16,7 +16,7 @@ export const optionProps = buildProps({
   label: {
     type: String,
   },
-  created: Boolean,
+  created: { type: Boolean },
 } as const)
 
 export type OptionProps = ExtractPropTypes<typeof optionProps>

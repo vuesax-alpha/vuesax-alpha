@@ -41,7 +41,7 @@ export const sidebarProps = buildProps({
     type: Boolean,
     default: false,
   },
-  absolute: Boolean,
+  absolute: { type: Boolean },
   right: {
     type: Boolean,
     default: false,

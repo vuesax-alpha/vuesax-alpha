@@ -20,8 +20,8 @@ export const tableTrProps = buildProps({
     type: Boolean,
     default: null,
   },
-  notClickSelected: Boolean,
-  openExpandOnlyTd: Boolean,
+  notClickSelected: { type: Boolean },
+  openExpandOnlyTd: { type: Boolean },
 } as const)
 
 export type TableTrProps = ExtractPropTypes<typeof tableTrProps>

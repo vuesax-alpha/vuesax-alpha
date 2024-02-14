@@ -16,7 +16,9 @@ const EventHandler = {
 } as const
 
 export const popperTriggerProps = buildProps({
-  disabled: Boolean,
+  disabled: {
+    type: Boolean,
+  },
   trigger: {
     type: definePropType<Arrayable<PopperTriggerType>>([String, Array]),
     default: 'hover',
@@ -24,7 +26,9 @@ export const popperTriggerProps = buildProps({
   virtualRef: {
     type: definePropType<Measurable>(Object),
   },
-  virtualTriggering: Boolean,
+  virtualTriggering: {
+    type: Boolean,
+  },
   onMouseenter: EventHandler,
   onMouseleave: EventHandler,
   onClick: EventHandler,

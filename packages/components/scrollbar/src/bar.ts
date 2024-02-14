@@ -7,8 +7,8 @@ export const barProps = buildProps({
     type: Boolean,
     default: true,
   },
-  width: String,
-  height: String,
+  width: { type: String },
+  height: { type: String },
   ratioX: {
     type: Number,
     default: 1,

@@ -10,7 +10,9 @@ export const configProviderProps = buildProps({
   /**
    * @description global Initial zIndex
    */
-  zIndex: Number,
+  zIndex: {
+    type: Number,
+  },
   /**
    * @description global component className prefix (cooperated with [$namespace](https://github.com/vuesax-alphax/vuesax-alpha/blob/main/packages/theme-chalk/src/mixins/config.scss#L1)) | ^[string]
    */

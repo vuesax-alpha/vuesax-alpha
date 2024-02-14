@@ -55,7 +55,7 @@ export const scrollbarProps = buildProps({
   /**
    * @description do not respond to container size changes, if the container size does not change, it is better to set it to optimize performance
    */
-  noresize: Boolean,
+  noresize: { type: Boolean },
   /**
    * @description element tag of the view
    */

@@ -40,7 +40,9 @@ export const popperContentProps = buildProps({
     type: Boolean,
     default: true,
   },
-  disabled: Boolean,
+  disabled: {
+    type: Boolean,
+  },
   strategy: {
     type: definePropType<Strategy>(String),
     values: POSITIONING_STRATEGIES,
@@ -49,7 +51,9 @@ export const popperContentProps = buildProps({
   /**
    * @description fit popper's width to trigger element
    */
-  fit: Boolean,
+  fit: {
+    type: Boolean,
+  },
   placement: {
     type: definePropType<Placement>(String),
     values: placements,
@@ -87,8 +91,12 @@ export const popperContentProps = buildProps({
     type: definePropType<OffsetOptions>([Number, Object]),
     default: 12,
   },
-  content: String,
-  rawContent: Boolean,
+  content: {
+    type: String,
+  },
+  rawContent: {
+    type: Boolean,
+  },
   popperClass: {
     type: definePropType<ClassType>([String, Array, Object]),
     default: '',
@@ -100,7 +108,9 @@ export const popperContentProps = buildProps({
   /**
    * @description `persistent` is `false`, popper content will be destroyed
    */
-  persistent: Boolean,
+  persistent: {
+    type: Boolean,
+  },
 })
 
 export type PopperContentProps = ExtractPropTypes<typeof popperContentProps>

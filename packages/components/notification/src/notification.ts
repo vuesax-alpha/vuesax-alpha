@@ -38,7 +38,7 @@ export const notificationProps = buildProps({
     type: Number,
     default: 4500,
   },
-  flat: Boolean,
+  flat: { type: Boolean },
   /**
    * @description custom icon component.
    */
@@ -101,7 +101,7 @@ export const notificationProps = buildProps({
     values: notificationPosition,
     default: 'bottom-right',
   },
-  progressAuto: Boolean,
+  progressAuto: { type: Boolean },
   shape: {
     type: String,
     values: ['square', ''] as const,
@@ -114,7 +114,7 @@ export const notificationProps = buildProps({
     type: Boolean,
     default: true,
   },
-  sticky: Boolean,
+  sticky: { type: Boolean },
   /**
    * @description title
    */
@@ -132,7 +132,7 @@ export const notificationProps = buildProps({
   /**
    * @description initial zIndex
    */
-  zIndex: Number,
+  zIndex: { type: Number },
   width: {
     type: definePropType<string | number>([String, Number]),
     validator: (prop) =>

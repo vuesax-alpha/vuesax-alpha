@@ -5,7 +5,7 @@ import type { ExtractPropTypes } from 'vue'
 import type Chip from './chip.vue'
 
 export const chipProps = buildProps({
-  disabled: Boolean,
+  disabled: { type: Boolean },
   hit: {
     type: Boolean,
     default: false,

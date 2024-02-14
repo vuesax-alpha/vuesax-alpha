@@ -9,8 +9,12 @@ import type { ExtractPropTypes } from 'vue'
 import type FocusTrap from './focus-trap.vue'
 
 export const focusTrapProps = buildProps({
-  loop: Boolean,
-  trapped: Boolean,
+  loop: {
+    type: Boolean,
+  },
+  trapped: {
+    type: Boolean,
+  },
   focusTrapEl: {
     type: definePropType<HTMLElement>(Object),
   },

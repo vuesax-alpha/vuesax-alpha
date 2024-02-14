@@ -44,7 +44,9 @@ export const popperProps = buildProps({
     default: true,
   },
 
-  loading: Boolean,
+  loading: {
+    type: Boolean,
+  },
 })
 
 export type PopperProps = ExtractPropTypes<typeof popperProps>

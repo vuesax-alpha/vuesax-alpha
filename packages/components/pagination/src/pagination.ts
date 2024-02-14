@@ -52,24 +52,24 @@ export const paginationProps = buildProps({
   color: useColorProp,
 
   /** @description total item count */
-  total: Number,
+  total: { type: Number },
 
   /** @description default initial value of current page */
-  defaultCurrentPage: Number,
+  defaultCurrentPage: { type: Number },
 
   /** @description current page number */
-  currentPage: Number,
+  currentPage: { type: Number },
 
   /** @description default initial value of page size */
-  defaultPageSize: Number,
+  defaultPageSize: { type: Number },
 
   /** @description options of item count per page */
-  pageSize: Number,
+  pageSize: { type: Number },
 
   /**
    * @description total page count. Set either `total` or `page-count` and pages will be displayed; if you need `page-sizes`, `total` is required
    */
-  pageCount: Number,
+  pageCount: { type: Number },
 
   /**
    * @description number of pages to show. Pagination collapses when the total page count exceeds this value
@@ -111,7 +111,7 @@ export const paginationProps = buildProps({
   },
 
   /** @description */
-  hideOnSinglePage: Boolean,
+  hideOnSinglePage: { type: Boolean },
 
   /** @description text for the prev button */
   prevText: {
@@ -135,16 +135,16 @@ export const paginationProps = buildProps({
   },
 
   /** @description Determine if the pagination is infinite. */
-  infinite: Boolean,
+  infinite: { type: Boolean, default: false },
 
   /** @description Add a progress bar to the component determined by the current page and the total (length) of pages. */
-  progress: Boolean,
+  progress: { type: Boolean },
 
   /** @description Change the margin between the items causing them to be fully glued and the radius is removed making them square. */
-  notMargin: Boolean,
+  notMargin: { type: Boolean },
 
   /** @description Makes the buttons not have the internal number and changes its size. */
-  buttonsDotted: Boolean,
+  buttonsDotted: { type: Boolean, default: false },
 
   shape: {
     type: String,
@@ -153,7 +153,7 @@ export const paginationProps = buildProps({
   },
 
   /** @description Determine if the entire component is in the disabled state. */
-  disabled: Boolean,
+  disabled: { type: Boolean, default: false },
 
   /** @description Determine which items are in the disabled state. */
   disabledItems: {

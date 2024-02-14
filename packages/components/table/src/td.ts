@@ -3,8 +3,8 @@ import type { EmitFn } from '@vuesax-alpha/utils'
 import type { ExtractPropTypes } from 'vue'
 
 export const tableTdProps = buildProps({
-  checkbox: Boolean,
-  edit: Boolean,
+  checkbox: { type: Boolean },
+  edit: { type: Boolean },
 } as const)
 
 export type TableTdProps = ExtractPropTypes<typeof tableTdProps>

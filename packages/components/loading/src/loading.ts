@@ -34,7 +34,7 @@ export const loadingProps = buildProps({
     values: loadingTypes,
     default: 'default',
   },
-  text: String,
+  text: { type: String },
   scale: {
     type: definePropType<string | number>([String, Number]),
     validator: (scale: string | number) =>

@@ -52,7 +52,7 @@ export const tooltipProps = buildProps({
     default: true,
   },
 
-  loading: Boolean,
+  loading: { type: Boolean },
   offset: {
     type: Number,
     default: 8,

@@ -3,7 +3,7 @@ import type Total from './total.vue'
 import type { ExtractPropTypes } from 'vue'
 
 export const paginationTotalProps = buildProps({
-  total: Number,
+  total: { type: Number },
 } as const)
 
 export type PaginationTotalProps = ExtractPropTypes<typeof paginationTotalProps>

@@ -18,15 +18,21 @@ export const checkboxGroupProps = buildProps({
   /**
    * @description whether the nesting checkboxes are disabled
    */
-  disabled: Boolean,
+  disabled: {
+    type: Boolean,
+  },
   /**
    * @description minimum number of checkbox checked
    */
-  min: Number,
+  min: {
+    type: Number,
+  },
   /**
    * @description maximum number of checkbox checked
    */
-  max: Number,
+  max: {
+    type: Number,
+  },
 } as const)
 
 export type CheckboxGroupProps = ExtractPropTypes<typeof checkboxGroupProps>

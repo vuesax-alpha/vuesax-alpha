@@ -12,15 +12,15 @@ export const popconfirmProps = buildProps({
   /**
    * @description Title
    */
-  title: String,
+  title: { type: String },
   /**
    * @description Confirm button text
    */
-  confirmButtonText: String,
+  confirmButtonText: { type: String },
   /**
    * @description Cancel button text
    */
-  cancelButtonText: String,
+  cancelButtonText: { type: String },
   /**
    * @description Confirm button color
    */

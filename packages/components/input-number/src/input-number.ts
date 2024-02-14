@@ -29,7 +29,7 @@ export const inputNumberProps = buildProps({
   /**
    * @description whether input value can only be multiple of step
    */
-  stepStrictly: Boolean,
+  stepStrictly: { type: Boolean },
   /**
    * @description the maximum allowed value
    */
@@ -47,15 +47,15 @@ export const inputNumberProps = buildProps({
   /**
    * @description binding value
    */
-  modelValue: Number,
+  modelValue: { type: Number },
   /**
    * @description same as `readonly` in native input
    */
-  readonly: Boolean,
+  readonly: { type: Boolean },
   /**
    * @description whether the component is disabled
    */
-  disabled: Boolean,
+  disabled: { type: Boolean },
   /**
    * @description whether to enable the control buttons
    */
@@ -76,15 +76,15 @@ export const inputNumberProps = buildProps({
   /**
    * @description same as `name` in native input
    */
-  name: String,
+  name: { type: String },
   /**
    * @description same as `label` in native input
    */
-  label: String,
+  label: { type: String },
   /**
    * @description same as `placeholder` in native input
    */
-  placeholder: String,
+  placeholder: { type: String },
   /**
    * @description precision of input value
    */

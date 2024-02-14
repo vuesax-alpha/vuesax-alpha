@@ -3,7 +3,7 @@ import type { EmitFn } from '@vuesax-alpha/utils'
 import type { ExtractPropTypes } from 'vue'
 
 export const tableThProps = buildProps({
-  sort: Boolean,
+  sort: { type: Boolean },
 } as const)
 
 export type TableThProps = ExtractPropTypes<typeof tableThProps>

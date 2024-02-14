@@ -31,12 +31,12 @@ export const inputProps = buildProps({
   /**
    * @description whether Input is disabled
    */
-  disabled: Boolean,
+  disabled: { type: Boolean },
 
   /**
    * @description put the icon to the back of the input
    */
-  iconAfter: Boolean,
+  iconAfter: { type: Boolean },
 
   /**
    * @description input id
@@ -75,7 +75,7 @@ export const inputProps = buildProps({
   /**
    * @description Add a loading animation to the input.
    */
-  loading: Boolean,
+  loading: { type: Boolean },
 
   /**
    * @description binding value
@@ -96,7 +96,7 @@ export const inputProps = buildProps({
   /**
    * @description progress bar starting in red and ending in green.
    */
-  progress: Number,
+  progress: { type: Number },
 
   /**
    * @description input shape
@@ -124,7 +124,7 @@ export const inputProps = buildProps({
   /**
    * @description set text input to white color
    */
-  textWhite: Boolean,
+  textWhite: { type: Boolean },
 
   /**
    * @description type of input, native input type.
@@ -145,7 +145,7 @@ export const inputProps = buildProps({
   /**
    * @description set input width 100%
    */
-  block: Boolean,
+  block: { type: Boolean },
 
   /** @deprecated */
   border: Boolean,

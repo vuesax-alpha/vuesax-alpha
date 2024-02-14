@@ -66,33 +66,49 @@ export const checkboxProps = buildProps({
   },
 
   /** @description Set indeterminate state, only responsible for style control */
-  indeterminate: Boolean,
+  indeterminate: {
+    type: Boolean,
+  },
 
   /** @description if the Checkbox is checked */
-  checked: Boolean,
+  checked: {
+    type: Boolean,
+  },
 
   /** @description Force checked component */
-  checkedForce: Boolean,
+  checkedForce: {
+    type: Boolean,
+  },
   /**
    * @description whether the Checkbox is disabled
    */
-  disabled: Boolean,
+  disabled: {
+    type: Boolean,
+  },
   /**
    * @description if the Checkbox is loading
    */
-  loading: Boolean,
+  loading: {
+    type: Boolean,
+  },
   /**
    * @description Label of the Checkbox
    */
-  label: String,
+  label: {
+    type: String,
+  },
   /**
    * @description Change the position of the label.
    */
-  labelBefore: Boolean,
+  labelBefore: {
+    type: Boolean,
+  },
   /**
    * @description Add a line in the center of the label when checked.
    */
-  lineThrough: Boolean,
+  lineThrough: {
+    type: Boolean,
+  },
   /**
    * @description native 'name' attribute
    */
@@ -103,11 +119,15 @@ export const checkboxProps = buildProps({
   /**
    * @description minimum number of checkbox checked
    */
-  min: Number,
+  min: {
+    type: Number,
+  },
   /**
    * @description maximum number of checkbox checked
    */
-  max: Number,
+  max: {
+    type: Number,
+  },
 } as const)
 
 export const checkboxEmits = {

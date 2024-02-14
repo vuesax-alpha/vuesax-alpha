@@ -9,8 +9,8 @@ export const timeSelectProps = {
     type: String,
     default: 'HH:mm',
   },
-  modelValue: String,
-  disabled: Boolean,
+  modelValue: { type: String },
+  disabled: { type: Boolean },
   editable: {
     type: Boolean,
     default: true,
@@ -23,7 +23,7 @@ export const timeSelectProps = {
     type: Boolean,
     default: true,
   },
-  placeholder: String,
+  placeholder: { type: String },
   start: {
     type: String,
     default: '09:00',
@@ -36,9 +36,9 @@ export const timeSelectProps = {
     type: String,
     default: '00:30',
   },
-  minTime: String,
-  maxTime: String,
-  name: String,
+  minTime: { type: String },
+  maxTime: { type: String },
+  name: { type: String },
   // prefixIcon: {
   //   type: [String, Object] as PropType<string | Component>
   //   default: () => Clock,

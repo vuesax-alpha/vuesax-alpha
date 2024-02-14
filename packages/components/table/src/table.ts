@@ -24,9 +24,9 @@ export const tableProps = buildProps({
     ]),
     default: null,
   },
-  striped: Boolean,
-  loading: Boolean,
-  multiple: Boolean,
+  striped: { type: Boolean },
+  loading: { type: Boolean },
+  multiple: { type: Boolean },
 } as const)
 
 export type TableProps = ExtractPropTypes<typeof tableProps>
