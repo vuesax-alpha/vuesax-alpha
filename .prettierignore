@@ -4,3 +4,5 @@ coverage
 CHANGELOG.md
 pnpm-lock.yaml
 docs/components.d.ts
+.cache
+.temp

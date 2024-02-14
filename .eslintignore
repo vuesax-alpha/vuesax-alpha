@@ -2,8 +2,10 @@ node_modules
 dist
 pnpm-lock.yaml
 CHANGELOG.en-US.md
-docs/components.d.ts
 coverage
 play
 ssr-testing/cases/*
 !.*
+docs/components.d.ts
+docs/.vuepress/.cache
+docs/.vuepress/.temp
