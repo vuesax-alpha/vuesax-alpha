@@ -36,7 +36,9 @@
       label="Multiple collapse chips"
       filter
       multiple
+      :multiple-limit="4"
       collapse-chips
+      :max-collapse-chips="2"
       placeholder="Collapse chips"
     >
       <vs-option label="Vuesax" value="1"> Vuesax </vs-option>

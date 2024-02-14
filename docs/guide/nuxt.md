@@ -10,11 +10,11 @@ Vuesax has a plugin for [Nuxt](https://nuxt.com) so starting a project is relati
 
 ```ts
 export default defineNuxtConfig({
-  modules: ["@vuesax-alpha/nuxt"],
+  modules: ['@vuesax-alpha/nuxt'],
   vuesaxAlpha: {
     /** Options */
   },
-});
+})
 ```
 
   </command>

@@ -16,6 +16,26 @@ PROPS:
     link: null
     usage: '#loading'
     code: null
+  - name: flip
+    state:
+      text: New
+    type: Boolean
+    values: true, false
+    description: Changes the placement of the options element to keep it in view.
+    default: true
+    link: null
+    usage: '#default'
+    code: null
+  - name: teleported
+    state:
+      text: New
+    type: Boolean
+    values: true, false
+    description: whether select dropdown is teleported to the body
+    default: false
+    link: null
+    usage: null
+    code: null
   - name: placeholder
     type: String
     values: String
@@ -48,11 +68,41 @@ PROPS:
     link: null
     usage: '#filter'
     code: null
+  - name: default-first-option
+    state:
+      text: New
+    type: Boolean
+    values: true, false
+    description: 	select first matching option on enter key. Use with `filter`
+    default: false
+    link: null
+    usage: '#filter'
+    code: null
+  - name: allow-create
+    state:
+      text: New
+    type: Boolean
+    values: true, false
+    description: Whether creating new items is allowed. To use this, `filter` must be true
+    default: false
+    link: null
+    usage: '#filter'
+    code: null
   - name: multiple
     type: Boolean
     values: true, false
     description: Add the functionality of being able to select several options from a select.
     default: false
+    link: null
+    usage: '#multiple'
+    code: null
+  - name: multiple-limit
+    state:
+      text: New
+    type: Number
+    values: number
+    description: Maximum number of options user can select when `multiple` is `true`. No limit when set to 0
+    default: 0
     link: null
     usage: '#multiple'
     code: null
@@ -75,8 +125,18 @@ PROPS:
   - name: collapse-chips
     type: Boolean
     values: true, false
-    description: Determine if the chips in multiple are reduced to 2 elements.
+    description: Whether to collapse tags to a text when multiple selecting
     default: false
+    link: null
+    usage: '#multiple'
+    code: null
+  - name: max-collapse-chips
+    state:
+      text: New
+    type: Number
+    values: number
+    description: The max tags number to be shown. To use this, collapse-chips must be `true`
+    default: 1
     link: null
     usage: '#multiple'
     code: null
@@ -255,13 +315,13 @@ You can add the functionality of filtering options with the `filter` property, t
 
 <template #template>
 
-@[code{1-22} html{3,12}](../.vuepress/components/select/filter.vue)
+@[code{1-31} html{3,11}](../.vuepress/components/select/filter.vue)
 
 </template>
 
 <template #script>
 
-@[code{24-29}](../.vuepress/components/select/filter.vue)
+@[code{33-39}](../.vuepress/components/select/filter.vue)
 
 </template>
 
