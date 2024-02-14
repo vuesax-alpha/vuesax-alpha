@@ -20,6 +20,7 @@ export const checkboxGroupProps = buildProps({
    */
   disabled: {
     type: Boolean,
+    default: false,
   },
   /**
    * @description minimum number of checkbox checked

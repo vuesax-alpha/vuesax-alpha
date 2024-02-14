@@ -19,7 +19,7 @@ export const radioProps = buildProps({
   /**
    * @description whether Radio is disabled
    */
-  disabled: { type: Boolean },
+  disabled: { type: Boolean, default: false },
   /**
    * @description the value of Radio
    */
@@ -27,7 +27,7 @@ export const radioProps = buildProps({
     type: [String, Number, Boolean],
     default: '',
   },
-  name: { type: String },
+  name: { type: String, default: false },
   loading: {
     type: Boolean,
     default: false,

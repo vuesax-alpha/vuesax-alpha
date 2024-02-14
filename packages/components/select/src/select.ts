@@ -59,8 +59,8 @@ export const selectProps = buildProps({
   loadingText: { type: String },
   noMatchText: { type: String },
   noDataText: { type: String },
-  allowCreate: { type: Boolean },
-  multiple: { type: Boolean },
+  allowCreate: { type: Boolean, default: false },
+  multiple: { type: Boolean, default: false },
   multipleLimit: {
     type: Number,
     default: 0,
