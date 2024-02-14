@@ -27,8 +27,14 @@ export const selectProps = buildProps({
     default: 0,
     validator: (val: number) => isNumber(val) && val >= 0,
   },
-  flip: popperProps.flip,
-  fit: popperProps.fit,
+  flip: {
+    ...popperProps.flip,
+    default: true,
+  },
+  fit: {
+    ...popperProps.fit,
+    default: true,
+  },
   disabled: popperProps.disabled,
   onClick: popperProps.onClick,
   onBlur: popperProps.onBlur,
