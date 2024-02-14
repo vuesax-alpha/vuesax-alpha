@@ -43,7 +43,7 @@ export const selectProps = buildProps({
   onMouseleave: popperProps.onMouseleave,
   onContextmenu: popperProps.onContextmenu,
   onKeydown: popperProps.onKeydown,
-  strategy: popperProps.strategy,
+  strategy: { ...popperProps.strategy, default: 'absolute' },
   teleported: popperProps.teleported,
   /**
    * @description binding value

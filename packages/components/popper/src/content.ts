@@ -46,7 +46,7 @@ export const popperContentProps = buildProps({
   strategy: {
     type: definePropType<Strategy>(String),
     values: POSITIONING_STRATEGIES,
-    default: 'fixed',
+    default: 'absolute',
   },
   /**
    * @description fit popper's width to trigger element
