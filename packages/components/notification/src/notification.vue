@@ -32,12 +32,14 @@
             <h4>{{ title }}</h4>
           </div>
 
-          <div v-if="text" :class="ns.e('text')">
-            <p>{{ text }}</p>
+          <div v-if="content" :class="ns.e('text')">
+            <slot>
+              <p v-if="dangerousHtmlString" v-html="content" />
+              <p v-else>
+                {{ content }}
+              </p>
+            </slot>
           </div>
-
-          <div v-if="typeof content === 'string'" v-html="content" />
-          <component :is="content" v-else-if="content" />
         </div>
       </template>
       <div v-else :class="ns.e('loading')" />

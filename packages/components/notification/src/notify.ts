@@ -41,7 +41,15 @@ export const notification: NotifyFn & Partial<Notify> = (options = {}) => {
     globalContainer[position]?.classList.add(ns.is(position))
   }
 
-  const vm = createVNode(NotificationConstructor, { ...options, position })
+  const vm = createVNode(
+    NotificationConstructor,
+    { ...options, position },
+    isVNode(options.content)
+      ? {
+          default: options.content,
+        }
+      : null
+  )
 
   const container = document.createElement('div')
   render(vm, container)

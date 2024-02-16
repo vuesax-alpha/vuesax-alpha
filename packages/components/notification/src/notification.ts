@@ -56,6 +56,10 @@ export const notificationProps = buildProps({
     type: String,
     default: '',
   },
+  dangerousHtmlString: {
+    type: Boolean,
+    default: false,
+  },
   /**
    * @description description text
    */
@@ -119,13 +123,6 @@ export const notificationProps = buildProps({
    * @description title
    */
   title: {
-    type: String,
-    default: '',
-  },
-  /**
-   * @description description text
-   */
-  text: {
     type: String,
     default: '',
   },

@@ -4,10 +4,14 @@ import {
   useGlobalConfig,
   useIdInjection,
 } from '@vuesax-alpha/hooks'
+import type { ComputedRef } from 'vue'
 
 export let cachedContainer: HTMLElement
 
-export const useNotificationContainerId = () => {
+export const useNotificationContainerId = (): {
+  id: ComputedRef<string>
+  selector: ComputedRef<string>
+} => {
   const namespace = useGlobalConfig('namespace', defaultNamespace)
   const idInjection = useIdInjection()
 
