@@ -1,5 +1,5 @@
 import { createVNode, isVNode, render } from 'vue'
-import { isClient } from '@vuesax-alpha/utils'
+import { isClient, isObject } from '@vuesax-alpha/utils'
 import {
   createContainer,
   useGlobalComponentSettings,
@@ -46,7 +46,7 @@ export const notification: NotifyFn & Partial<Notify> = (options = {}) => {
     { ...options, position },
     isVNode(options.content)
       ? {
-          default: options.content,
+          default: () => (isObject(options) ? options.content : null),
         }
       : null
   )
