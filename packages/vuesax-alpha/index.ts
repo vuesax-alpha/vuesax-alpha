@@ -6,8 +6,6 @@ export * from '@vuesax-alpha/hooks'
 export * from '@vuesax-alpha/tokens'
 export * from './make-installer'
 
-export { VuesaxAlphaResolver } from '@vuesax-alpha/build-utils'
-
 export const install = installer.install
 export const version = installer.version
 export default installer
