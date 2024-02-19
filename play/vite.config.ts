@@ -14,8 +14,8 @@ import {
   getPackageDependencies,
   pkgRoot,
   projRoot,
-  VuesaxAlphaResolver,
 } from '@vuesax-alpha/build-utils'
+import { VuesaxAlphaResolver } from '@vuesax-alpha/auto-import-resolver'
 
 import type { Plugin } from 'vite'
 import './vite.init'
