@@ -10,6 +10,7 @@
     "build": "vuepress build"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.2.2",
     "@vuepress/shared-utils": "1.9.9",
     "@vuesax-alpha/icons-vue": "0.0.2-beta.11",
     "@vueuse/components": "^9.13.0",
