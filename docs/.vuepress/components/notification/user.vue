@@ -49,7 +49,9 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { VsAvatar, VsAvatarGroup, VsButton } from 'vuesax-alpha'
+</script>
 
 <style lang="scss" scoped>
 .con-user-example {

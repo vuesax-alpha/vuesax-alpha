@@ -13,6 +13,7 @@
 </template>
 
 <script lang="ts" setup>
+import { createVNode } from 'vue'
 import { VsNotification } from 'vuesax-alpha'
 
 import user from './user.vue'
@@ -22,21 +23,21 @@ import call from './call.vue'
 const openNotificationCookie = () => {
   VsNotification({
     duration: 0,
-    content: cookie,
+    content: createVNode(cookie),
   })
 }
 const openNotificationUser = () => {
   VsNotification({
     duration: 0,
     width: 'auto',
-    content: user,
+    content: createVNode(user),
   })
 }
 const openNotificationCall = () => {
   VsNotification({
     duration: 0,
     width: 'auto',
-    content: call,
+    content: createVNode(call),
     notPadding: true,
   })
 }

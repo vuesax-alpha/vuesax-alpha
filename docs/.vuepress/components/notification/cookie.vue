@@ -245,6 +245,7 @@
 </template>
 
 <script lang="ts" setup>
+import { VsButton } from 'vuesax-alpha'
 const props = defineProps<{
   close?: () => void
 }>()

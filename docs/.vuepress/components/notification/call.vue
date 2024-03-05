@@ -15,7 +15,9 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { VsButton } from 'vuesax-alpha'
+</script>
 
 <style lang="scss" scoped>
 .call {
