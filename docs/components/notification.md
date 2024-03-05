@@ -14,8 +14,8 @@ PROPS:
         to see the documents of the previous versions you can do it here 👉 Vuesax3.x`
       })
   - name: content
-    type: String
-    values: String
+    type: String, Component
+    values: String, VNode
     description: Add the content to the notification.
     default: null
     link: null
