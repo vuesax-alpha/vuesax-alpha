@@ -387,7 +387,7 @@ The necessary properties are the `title` and the` content`
 
 <template #script>
 
-@[code{7-16} vue{5}](../.vuepress/components/notification/default.vue)
+@[code{7-17} vue{5}](../.vuepress/components/notification/default.vue)
 
 </template>
 
@@ -420,13 +420,13 @@ supported values
 
 <template #script>
 
-@[code{24-34} vue{5}](../.vuepress/components/notification/position.vue)
+@[code{24-35} vue{5}](../.vuepress/components/notification/position.vue)
 
 </template>
 
 <template #style>
 
-@[code{35-56}](../.vuepress/components/notification/position.vue)
+@[code{36-57}](../.vuepress/components/notification/position.vue)
 
 </template>
 
@@ -460,7 +460,7 @@ Allowed values ​​are:
 
 <template #script>
 
-@[code{60-71} html{6}](../.vuepress/components/notification/color.vue)
+@[code{60-72} html{6}](../.vuepress/components/notification/color.vue)
 
 </template>
 
@@ -484,13 +484,13 @@ Add the icon provided as the value of the `icon` property to the notification
 
 <template #script>
 
-@[code{102-114} html{4,6}](../.vuepress/components/notification/icons.vue)
+@[code{102-115} html{4,6}](../.vuepress/components/notification/icons.vue)
 
 </template>
 
 <template #style>
 
-@[code{116-137}](../.vuepress/components/notification/icons.vue)
+@[code{117-138}](../.vuepress/components/notification/icons.vue)
 
 </template>
 
@@ -514,13 +514,13 @@ Add a progress bar to the notification, if the value of the `progress` property 
 
 <template #script>
 
-@[code{54-66} ts{6}](../.vuepress/components/notification/progress.vue)
+@[code{54-67} vue{6}](../.vuepress/components/notification/progress.vue)
 
 </template>
 
 <template #style>
 
-@[code{68-89}](../.vuepress/components/notification/progress.vue)
+@[code{69-90}](../.vuepress/components/notification/progress.vue)
 
 </template>
 
@@ -546,13 +546,13 @@ if you need the notification to never be hidden, the duration value would be `0`
 
 <template #script>
 
-@[code{18-29} html{6}](../.vuepress/components/notification/duration.vue)
+@[code{18-30} html{6}](../.vuepress/components/notification/duration.vue)
 
 </template>
 
 <template #style>
 
-@[code{30-51}](../.vuepress/components/notification/duration.vue)
+@[code{31-52}](../.vuepress/components/notification/duration.vue)
 
 </template>
 
@@ -576,13 +576,13 @@ Change the style of the notification with the `square` property so as not to hav
 
 <template #script>
 
-@[code{75-87} vue{6}](../.vuepress/components/notification/square.vue)
+@[code{75-88} vue{6}](../.vuepress/components/notification/square.vue)
 
 </template>
 
 <template #style>
 
-@[code{88-109}](../.vuepress/components/notification/square.vue)
+@[code{89-110}](../.vuepress/components/notification/square.vue)
 
 </template>
 
@@ -606,13 +606,13 @@ Change the notification style with the `border` property by adding a border of t
 
 <template #script>
 
-@[code{57-68} vue{6}](../.vuepress/components/notification/border.vue)
+@[code{57-69} vue{6}](../.vuepress/components/notification/border.vue)
 
 </template>
 
 <template #style>
 
-@[code{70-91}](../.vuepress/components/notification/border.vue)
+@[code{71-92}](../.vuepress/components/notification/border.vue)
 
 </template>
 
@@ -636,13 +636,13 @@ Change the style of the notification with the `flat` property, having this prope
 
 <template #script>
 
-@[code{57-70} vue{6}](../.vuepress/components/notification/flat.vue)
+@[code{57-71} vue{6}](../.vuepress/components/notification/flat.vue)
 
 </template>
 
 <template #style>
 
-@[code{72-93}](../.vuepress/components/notification/flat.vue)
+@[code{73-94}](../.vuepress/components/notification/flat.vue)
 
 </template>
 
@@ -666,13 +666,13 @@ Add a loading animation to the notification, having this property will only show
 
 <template #script>
 
-@[code{60-72} vue{6}](../.vuepress/components/notification/loading.vue)
+@[code{60-73} vue{6}](../.vuepress/components/notification/loading.vue)
 
 </template>
 
 <template #style>
 
-@[code{74-95}](../.vuepress/components/notification/loading.vue)
+@[code{75-96}](../.vuepress/components/notification/loading.vue)
 
 </template>
 
@@ -698,13 +698,13 @@ If you need the notification to have an automatic size to your content you can d
 
 <template #script>
 
-@[code{16-28} vue{4,6}](../.vuepress/components/notification/all-width.vue)
+@[code{16-29} vue{4,6}](../.vuepress/components/notification/all-width.vue)
 
 </template>
 
 <template #style>
 
-@[code{29-40}](../.vuepress/components/notification/all-width.vue)
+@[code{30-41}](../.vuepress/components/notification/all-width.vue)
 
 </template>
 
@@ -728,13 +728,13 @@ You can add a style to the paste component to the nearest corner with the `stick
 
 <template #script>
 
-@[code{60-73} vue{6}](../.vuepress/components/notification/sticky.vue)
+@[code{60-74} vue{6}](../.vuepress/components/notification/sticky.vue)
 
 </template>
 
 <template #style>
 
-@[code{75-96}](../.vuepress/components/notification/sticky.vue)
+@[code{76-97}](../.vuepress/components/notification/sticky.vue)
 
 </template>
 
