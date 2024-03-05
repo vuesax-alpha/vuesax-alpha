@@ -173,7 +173,7 @@ importers:
       vue: 3.3.1
       vue-router: 4.2.4
       vuepress: 2.0.0-beta.62
-      vuesax-alpha: 0.2.0-beta.72
+      vuesax-alpha: 0.2.0-beta.73
     dependencies:
       '@vercel/analytics': 1.2.2
       '@vuepress/shared-utils': 1.9.9
@@ -188,7 +188,7 @@ importers:
       prismjs: 1.29.0
       vue: 3.3.1
       vue-router: 4.2.4_vue@3.3.1
-      vuesax-alpha: 0.2.0-beta.72_vue@3.3.1
+      vuesax-alpha: 0.2.0-beta.73_vue@3.3.1
     devDependencies:
       '@types/prismjs': 1.26.0
       '@vuepress/client': 2.0.0-beta.62
@@ -13982,8 +13982,8 @@ packages:
       - webpack
     dev: true
 
-  /vuesax-alpha/0.2.0-beta.72_vue@3.3.1:
-    resolution: {integrity: sha512-FUKHS06C3Gj+D7b/vROOj1jfS4zDQ2URjPvxYtE71RCrnxrzoP43zHuq+9NV80aIhVUZZNISNtop87yshshwDA==}
+  /vuesax-alpha/0.2.0-beta.73_vue@3.3.1:
+    resolution: {integrity: sha512-6PO/9quzLacC+eqa24RR3IvZcY4ZfIjzHVHBQcDvspA2sYtdOVQC+7ojRATzkEhL0Ml9vSvBdJyvCGEjU+1E0g==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
