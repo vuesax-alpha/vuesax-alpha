@@ -62,7 +62,8 @@ const openNotification = (position = null, border) => {
     border,
     position,
     title: 'Documentation Vuesax-alpha',
-    text: 'These documents refer to the latest version of Vuesax-alpha, to see the documents of the previous versions you can do it here 👉 Vuesax4.0',
+    content:
+      'These documents refer to the latest version of Vuesax-alpha, to see the documents of the previous versions you can do it here 👉 Vuesax4.0',
   })
 }
 </script>
