@@ -10,20 +10,20 @@ PROPS:
     code: >
       VsNotification({
         title: 'Documentation Vuesax 4.0+',
-        text: `These documents refer to the latest version of vuesax (4.0+),
+        content: `These documents refer to the latest version of vuesax (4.0+),
         to see the documents of the previous versions you can do it here 👉 Vuesax3.x`
       })
-  - name: text
+  - name: content
     type: String
     values: String
-    description: Add the text to the notification.
+    description: Add the content to the notification.
     default: null
     link: null
     usage: '#default'
     code: >
       VsNotification({
         title: 'Documentation Vuesax 4.0+',
-        text: `These documents refer to the latest version of vuesax (4.0+),
+        content: `These documents refer to the latest version of vuesax (4.0+),
         to see the documents of the previous versions you can do it here 👉 Vuesax3.x`
       })
   - name: position
@@ -37,7 +37,7 @@ PROPS:
       const { close } = VsNotification({
         position: 'top-right',
         title: 'Documentation Vuesax 4.0+',
-        text: `These documents refer to the latest version of vuesax (4.0+),
+        content: `These documents refer to the latest version of vuesax (4.0+),
         to see the documents of the previous versions you can do it here 👉 Vuesax3.x`
       })
   - name: color
@@ -51,7 +51,7 @@ PROPS:
       const { close } = VsNotification({
         color: 'primary',
         title: 'Documentation Vuesax 4.0+',
-        text: 'These documents refer to the latest version of vuesax (4.0+), to see the
+        content: 'These documents refer to the latest version of vuesax (4.0+), to see the
         documents of the previous versions you can do it here 👉 Vuesax 3.x'
       })
   - name: border
@@ -65,7 +65,7 @@ PROPS:
       const { close } = VsNotification({
         border: 'success',
         title: 'Documentation Vuesax 4.0+',
-        text: `These documents refer to the latest version of vuesax (4.0+),
+        content: `These documents refer to the latest version of vuesax (4.0+),
         to see the documents of the previous versions you can do it here 👉 Vuesax3.x`
       })
   - name: icon
@@ -79,7 +79,7 @@ PROPS:
       const { close } = VsNotification({
         icon: `<i class='bx bxs-time'></i>`,
         title: 'Documentation Vuesax 4.0+',
-        text: `These documents refer to the latest version of vuesax (4.0+),
+        content: `These documents refer to the latest version of vuesax (4.0+),
         to see the documents of the previous versions you can do it here 👉 Vuesax3.x`
       })
   - name: duration
@@ -93,7 +93,7 @@ PROPS:
       const { close } = VsNotification({
         duration: 10000,
         title: 'Documentation Vuesax 4.0+',
-        text: `These documents refer to the latest version of vuesax (4.0+),
+        content: `These documents refer to the latest version of vuesax (4.0+),
         to see the documents of the previous versions you can do it here 👉 Vuesax3.x`
       })
   - name: onClick
@@ -106,7 +106,7 @@ PROPS:
     code: >
       const { close } = this.$notification({
         title: 'Documentation Vuesax 4.0+',
-        text: `These documents refer to the latest version of vuesax (4.0+),
+        content: `These documents refer to the latest version of vuesax (4.0+),
         to see the documents of the previous versions you can do it here 👉 Vuesax3.x`,
         onClick: () => {
           console.log('click notification')
@@ -122,7 +122,7 @@ PROPS:
     code: >
       const { close } = this.$notification({
         title: 'Documentation Vuesax 4.0+',
-        text: `These documents refer to the latest version of vuesax (4.0+),
+        content: `These documents refer to the latest version of vuesax (4.0+),
         to see the documents of the previous versions you can do it here 👉 Vuesax3.x`,
         buttonClose: false
       })
@@ -139,7 +139,7 @@ PROPS:
 
         const { close } = VsNotification({
           title: 'Documentation Vuesax 4.0+',
-          text: `These documents refer to the latest version of vuesax (4.0+),
+          content: `These documents refer to the latest version of vuesax (4.0+),
           to see the documents of the previous versions you can do it here 👉 Vuesax3.x`,
           flat: true,
         })
@@ -157,7 +157,7 @@ PROPS:
 
         const { close } = VsNotification({
           title: 'Documentation Vuesax 4.0+',
-          text: `These documents refer to the latest version of vuesax (4.0+),
+          content: `These documents refer to the latest version of vuesax (4.0+),
           to see the documents of the previous versions you can do it here 👉 Vuesax3.x`,
           sticky: true
         })
@@ -175,7 +175,7 @@ PROPS:
 
         const { close } = VsNotification({
           title: 'Documentation Vuesax 4.0+',
-          text: `These documents refer to the latest version of vuesax (4.0+),
+          content: `These documents refer to the latest version of vuesax (4.0+),
           to see the documents of the previous versions you can do it here 👉 Vuesax3.x`,
           sticky: true
         })
@@ -193,7 +193,7 @@ PROPS:
 
         const { close } = VsNotification({
           title: 'Documentation Vuesax 4.0+',
-          text: `These documents refer to the latest version of vuesax (4.0+),
+          content: `These documents refer to the latest version of vuesax (4.0+),
           to see the documents of the previous versions you can do it here 👉 Vuesax3.x`,
           shape: 'square',
         })
@@ -211,7 +211,7 @@ PROPS:
 
         const { close } = VsNotification({
           title: 'Documentation Vuesax 4.0+',
-          text: `These documents refer to the latest version of vuesax (4.0+),
+          content: `These documents refer to the latest version of vuesax (4.0+),
           to see the documents of the previous versions you can do it here 👉 Vuesax3.x`,
           width: 'auto',
         })
@@ -229,7 +229,7 @@ PROPS:
 
         const { close } = VsNotification({
           title: 'Documentation Vuesax 4.0+',
-          text: `These documents refer to the latest version of vuesax (4.0+),
+          content: `These documents refer to the latest version of vuesax (4.0+),
           to see the documents of the previous versions you can do it here 👉 Vuesax3.x`,
           loading: true
         })
@@ -247,7 +247,7 @@ PROPS:
 
         const { close } = VsNotification({
           title: 'Documentation Vuesax 4.0+',
-          text: `These documents refer to the latest version of vuesax (4.0+),
+          content: `These documents refer to the latest version of vuesax (4.0+),
           to see the documents of the previous versions you can do it here 👉 Vuesax3.x`,
           progressAuto: true
         })
@@ -265,7 +265,7 @@ PROPS:
 
         const { close } = VsNotification({
           title: 'Documentation Vuesax 4.0+',
-          text: `These documents refer to the latest version of vuesax (4.0+),
+          content: `These documents refer to the latest version of vuesax (4.0+),
           to see the documents of the previous versions you can do it here 👉 Vuesax3.x`,
           notPadding: true
         })
@@ -284,7 +284,7 @@ PROPS:
         const { close } = VsNotification({
           duration: 0,
           title: 'Documentation Vuesax 4.0+',
-          text: `These documents refer to the latest version of vuesax (4.0+),
+          content: `These documents refer to the latest version of vuesax (4.0+),
           to see the documents of the previous versions you can do it here 👉 Vuesax3.x`,
         })
       </script>
@@ -303,7 +303,7 @@ PROPS:
           duration: 0,
           width: 'auto',
           title: 'Documentation Vuesax 4.0+',
-          text: `These documents refer to the latest version of vuesax (4.0+),
+          content: `These documents refer to the latest version of vuesax (4.0+),
           to see the documents of the previous versions you can do it here 👉 Vuesax3.x`,
         })
       </script>
@@ -322,7 +322,7 @@ PROPS:
           duration: 0,
           width: 'auto',
           title: 'Documentation Vuesax 4.0+',
-          text: `These documents refer to the latest version of vuesax (4.0+),
+          content: `These documents refer to the latest version of vuesax (4.0+),
           to see the documents of the previous versions you can do it here 👉 Vuesax3.x`,
         })
 
@@ -345,7 +345,7 @@ PROPS:
           width: 'auto',
           customClass: 'my-class'
           title: 'Documentation Vuesax 4.0+',
-          text: `These documents refer to the latest version of vuesax (4.0+),
+          content: `These documents refer to the latest version of vuesax (4.0+),
           to see the documents of the previous versions you can do it here 👉 Vuesax3.x`,
         })
       </script>
@@ -372,7 +372,7 @@ VsNotification({ ...options })
 </command>
 
 ::: tip
-The necessary properties are the `title` and the` text` or failing the `content` property
+The necessary properties are the `title` and the` content`
 :::
 
 <template #example>
@@ -622,7 +622,7 @@ Change the notification style with the `border` property by adding a border of t
 
 ## Flat
 
-Change the style of the notification with the `flat` property, having this property changes to lighter colors and the text of the color of the `color` property, this property is a boolean so you can only use the value `true`
+Change the style of the notification with the `flat` property, having this property changes to lighter colors and the text  of the `color` property, this property is a boolean so you can only use the value `true`
 
 <template #example>
 <notification-flat />
