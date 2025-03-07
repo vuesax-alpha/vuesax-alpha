@@ -46,7 +46,7 @@ And import it to use
 import { createApp } from 'vue'
 import './style.css'
 import vuesax from 'vuesax-alpha'
-import 'vuesax-alpha/dist/vuesax.css'
+import 'vuesax-alpha/dist/index.css'
 
 import App from './App.vue'
 
