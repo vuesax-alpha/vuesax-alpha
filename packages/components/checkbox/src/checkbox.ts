@@ -58,6 +58,7 @@ export const checkboxProps = buildProps({
       Object,
       Array,
     ]),
+    default: true,
   },
 
   /** @description checkbox id */
